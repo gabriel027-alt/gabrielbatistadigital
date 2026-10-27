@@ -18,11 +18,11 @@ O código foi trabalhado em uma cópia separada. O ZIP original não foi modific
 - `npm run lint`: aprovado, sem avisos do código.
 - `npm run build`: aprovado, com geração da home, três demos e rotas de SEO.
 - `npm run typecheck`: aprovado com TypeScript estrito.
-- `npm run test:e2e`: **7 testes aprovados, 0 falhas, 0 ignorados** no Chromium do ambiente.
+- `npm run test:e2e`: **8 testes aprovados, 0 falhas, 0 ignorados** no Chromium do ambiente.
 - `npm audit --omit=dev`: nenhuma vulnerabilidade reportada nas dependências de produção na execução realizada.
 - Inspeção visual com capturas de desktop, celular e tema claro.
 
-Cobertura dos sete testes:
+Cobertura dos oito testes:
 
 1. Todas as seções, âncoras existentes, três projetos e WhatsApp correto.
 2. Abas por teclado e controles do carrossel.
@@ -31,6 +31,8 @@ Cobertura dos sete testes:
 5. Três demonstrações, navegação interna, retorno, noindex, larguras móveis e auditoria automática de acessibilidade.
 6. Auditoria automática da home nos temas claro e escuro e respeito a reduced motion.
 7. Robots, sitemap, imagem Open Graph, API opcional desativada, resposta 404 e cabeçalhos de segurança.
+
+8. Previews específicos por serviço, orientação responsiva das abas, navegação vertical, carregamento da imagem e acessibilidade dos cinco painéis.
 
 Problemas de contraste encontrados durante os testes foram corrigidos antes da última execução aprovada.
 
@@ -50,3 +52,9 @@ A composição da hero é estática, sem parallax contínuo. A faixa de tecnolog
 ## Usar no Antigravity
 
 Extraia o ZIP em uma pasta nova e abra essa pasta como projeto. Peça ao agente que siga `INSTRUCOES-ANTIGRAVITY.md`. Não sobreponha esta entrega com o código antigo nem copie `.next` ou `node_modules` da versão anterior.
+
+## Refinamento da seção de serviços
+
+A seção foi reorganizada a partir da estrutura identificada no HTML de referência fornecido pelo usuário: seleção vertical no desktop e painel de apresentação amplo. As artes abstratas repetidas foram substituídas por capturas das próprias demos e interfaces ilustrativas distintas. O WhatsApp oficial e as três marcas conceituais foram preservados. O acesso ao site externo ao vivo retornou 403 neste ambiente; esta etapa não alega comparação visual pixel a pixel com a referência.
+
+As novas capturas WebP de Chronos Atelier e Vanguard foram produzidas a partir das páginas do próprio projeto. Nenhum screenshot, personagem ou asset da EvoPixel foi incorporado.

@@ -34,7 +34,7 @@ Para publicar na Vercel: importar o repositório como Next.js, usar Node.js 22 o
 - Hero editorial de duas colunas, com composição geométrica original em CSS/SVG.
 - Faixa estática de tecnologias, sem animação contínua obrigatória.
 - Manifesto e princípios.
-- Cinco serviços em abas, incluindo SEO local; navegação por setas, Home e End.
+- Cinco serviços com seleção vertical no desktop e horizontal no celular, incluindo SEO local; navegação por setas, Home e End. Previews das demos autorais de Chronos e Vanguard e interfaces ilustrativas específicas para sistemas, SEO e performance.
 - Portfólio com três conceitos, previews originais, arraste/swipe, controles e reprodução opcional. O carrossel usa scroll nativo e navegação circular por controles, sem clones ou promessa de marquee infinito.
 - Processo em sete etapas.
 - Sobre o estúdio.
@@ -46,17 +46,19 @@ Para publicar na Vercel: importar o repositório como Next.js, usar Node.js 22 o
 
 ## Editar o conteúdo
 
-| Arquivo                         | Responsabilidade                               |
-| ------------------------------- | ---------------------------------------------- |
-| `lib/site.ts`                   | Marca, domínio, navegação e WhatsApp oficial   |
-| `lib/content.ts`                | Serviços, três conceitos e processo            |
-| `lib/whatsapp.ts`               | Links oficiais e mensagens codificadas         |
-| `lib/diagnosis.ts`              | Perguntas, regras e resumo do diagnóstico      |
-| `components/sections/`          | Seções efetivamente renderizadas pela home     |
-| `components/Hero.tsx`           | Texto e composição visual da primeira dobra    |
-| `components/ConceptArt.tsx`     | Arte local do relógio, arquitetura e escultura |
-| `app/globals.css`               | Tokens dos dois temas, layout e responsividade |
-| `app/conceitos/[slug]/page.tsx` | Template e metadados das três demonstrações    |
+| Arquivo                                  | Responsabilidade                                                   |
+| ---------------------------------------- | ------------------------------------------------------------------ |
+| `lib/site.ts`                            | Marca, domínio, navegação e WhatsApp oficial                       |
+| `lib/content.ts`                         | Serviços, três conceitos e processo                                |
+| `lib/whatsapp.ts`                        | Links oficiais e mensagens codificadas                             |
+| `lib/diagnosis.ts`                       | Perguntas, regras e resumo do diagnóstico                          |
+| `components/sections/`                   | Seções efetivamente renderizadas pela home                         |
+| `components/Hero.tsx`                    | Texto e composição visual da primeira dobra                        |
+| `components/sections/ServicePreview.tsx` | Previews e interfaces de cada serviço                              |
+| `public/images/services/`                | Capturas WebP das demonstrações próprias, sem assets da referência |
+| `components/ConceptArt.tsx`              | Arte local do relógio, arquitetura e escultura                     |
+| `app/globals.css`                        | Tokens dos dois temas, layout e responsividade                     |
+| `app/conceitos/[slug]/page.tsx`          | Template e metadados das três demonstrações                        |
 
 Demonstrações:
 

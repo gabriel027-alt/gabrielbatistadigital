@@ -213,3 +213,65 @@ test("SEO routes, disabled optional API, 404 and security headers", async ({
   expect((await request.get("/api/chat")).status()).toBe(404);
   expect((await request.get("/pagina-inexistente")).status()).toBe(404);
 });
+
+test("product-led service previews, vertical navigation and accessible panels", async ({
+  page,
+}) => {
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  const list = page.getByRole("tablist", { name: "Especialidades da agência" });
+  await expect(list).toHaveAttribute("aria-orientation", "vertical");
+  const first = page.getByRole("tab", { name: /Landing Pages/ });
+  await first.focus();
+  await first.press("ArrowDown");
+  await expect(
+    page.getByRole("tab", { name: /Sites Institucionais/ }),
+  ).toBeFocused();
+  for (const name of [
+    "Landing Pages",
+    "Sites Institucionais",
+    "Sistemas & Integrações",
+    "SEO Local",
+    "Performance & Evolução",
+  ]) {
+    await page.getByRole("tab", { name: new RegExp(name) }).click();
+    const panel = page.getByRole("tabpanel");
+    await expect(panel.locator(".service-product-preview")).toHaveCount(1);
+    await expect(
+      panel.getByRole("link", { name: "Conversar sobre este serviço" }),
+    ).toHaveAttribute("href", /wa\.me\/5538998267717/);
+    const result = await new AxeBuilder({ page })
+      .include("#service-panel")
+      .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
+      .analyze();
+    expect(result.violations, `Accessibility: ${name}`).toEqual([]);
+  }
+  await first.click();
+  const image = page.getByRole("tabpanel").locator("img");
+  await image.scrollIntoViewIfNeeded();
+  await expect
+    .poll(() =>
+      image.evaluate(
+        (img: HTMLImageElement) => img.complete && img.naturalWidth > 0,
+      ),
+    )
+    .toBe(true);
+  await page.setViewportSize({ width: 390, height: 844 });
+  await expect(list).toHaveAttribute("aria-orientation", "horizontal");
+  for (const name of [
+    "Landing Pages",
+    "Sites Institucionais",
+    "Sistemas & Integrações",
+    "SEO Local",
+    "Performance & Evolução",
+  ]) {
+    await page.getByRole("tab", { name }).click();
+    expect(
+      await page.evaluate(
+        () => document.documentElement.scrollWidth <= innerWidth,
+      ),
+      name,
+    ).toBe(true);
+  }
+});

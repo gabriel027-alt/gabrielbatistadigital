@@ -12,8 +12,6 @@ export const services = [
       "Jornada orientada ao contato",
       "Experiência rápida em qualquer tela",
     ],
-    visual: "Uma ideia.\nMuitas possibilidades.",
-    code: "experience.connect()",
   },
   {
     id: "sites",
@@ -28,8 +26,6 @@ export const services = [
       "SEO técnico desde a base",
       "Navegação acessível e intuitiva",
     ],
-    visual: "Identidade que se sente.",
-    code: "brand.express()",
   },
   {
     id: "sistemas",
@@ -44,8 +40,6 @@ export const services = [
       "Fluxos alinhados à operação",
       "Arquitetura modular",
     ],
-    visual: "Tudo no mesmo ritmo.",
-    code: "workflow.integrate()",
   },
   {
     id: "seo",
@@ -60,8 +54,6 @@ export const services = [
       "Revisão de dados do negócio",
       "Orientação para presença local",
     ],
-    visual: "A conexão começa perto.",
-    code: "presence.discover()",
   },
   {
     id: "performance",
@@ -76,8 +68,6 @@ export const services = [
       "Revisão de acessibilidade",
       "Evolução orientada por medições",
     ],
-    visual: "Precisão em movimento.",
-    code: "experience.evolve()",
   },
 ] as const;
 export const concepts = [
