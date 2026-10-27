@@ -1,6 +1,10 @@
-# Gabriel Batista Digital — versão revisada
+# Gabriel Batista Digital — direção Studio
 
 Site institucional em Next.js App Router, React, TypeScript estrito e Tailwind CSS 4. O projeto usa o domínio `https://gabrielbatistadigital.com.br` e exclusivamente o WhatsApp **5538998267717** para contato comercial.
+
+![Prévia da direção Studio](docs/preview/home-dark.webp)
+
+[Ver tema claro](docs/preview/home-light.webp) · [Página completa](docs/preview/pagina-completa.webp) · [Mobile](docs/preview/mobile.webp)
 
 ## Abrir esta versão
 
@@ -31,34 +35,38 @@ Para publicar na Vercel: importar o repositório como Next.js, usar Node.js 22 o
 ## O que foi implementado
 
 - Header sticky com navegação, tema persistente e menu móvel com Escape.
-- Hero editorial de duas colunas, com composição geométrica original em CSS/SVG.
+- Hero imersiva com cena original de estúdio, versões diurna/noturna em WebP e parallax discreto para ponteiros precisos.
 - Faixa estática de tecnologias, sem animação contínua obrigatória.
-- Manifesto e princípios.
+- Manifesto editorial e princípios, com hierarquia tipográfica revisada.
 - Cinco serviços com seleção vertical no desktop e horizontal no celular, incluindo SEO local; navegação por setas, Home e End. Previews das demos autorais de Chronos e Vanguard e interfaces ilustrativas específicas para sistemas, SEO e performance.
 - Portfólio com três conceitos, previews originais, arraste/swipe, controles e reprodução opcional. O carrossel usa scroll nativo e navegação circular por controles, sem clones ou promessa de marquee infinito.
-- Processo em sete etapas.
-- Sobre o estúdio.
+- Processo em sete etapas, organizado como uma sequência editorial conectada.
+- Sobre o estúdio com imagem autoral ilustrativa e princípios de atuação.
 - Fluxo ilustrativo de integrações, sem envio ou simulação de leads reais.
-- Diagnóstico local de três perguntas, recomendação determinística e link de WhatsApp com resumo. Sem cadastro ou armazenamento das respostas.
-- Rodapé e WhatsApp flutuante.
+- Diagnóstico com apresentação de dispositivo e três perguntas locais, recomendação determinística e link de WhatsApp com resumo. Sem cadastro ou armazenamento das respostas.
+- Rodapé editorial de fechamento e WhatsApp flutuante.
 - Metadados, canonical, Organization JSON-LD, imagem Open Graph, favicon, robots, sitemap e página 404.
 - Três demonstrações estáticas com navegação e conteúdo próprios, identificadas como marcas fictícias, com `noindex`.
 
 ## Editar o conteúdo
 
-| Arquivo                                  | Responsabilidade                                                   |
-| ---------------------------------------- | ------------------------------------------------------------------ |
-| `lib/site.ts`                            | Marca, domínio, navegação e WhatsApp oficial                       |
-| `lib/content.ts`                         | Serviços, três conceitos e processo                                |
-| `lib/whatsapp.ts`                        | Links oficiais e mensagens codificadas                             |
-| `lib/diagnosis.ts`                       | Perguntas, regras e resumo do diagnóstico                          |
-| `components/sections/`                   | Seções efetivamente renderizadas pela home                         |
-| `components/Hero.tsx`                    | Texto e composição visual da primeira dobra                        |
-| `components/sections/ServicePreview.tsx` | Previews e interfaces de cada serviço                              |
-| `public/images/services/`                | Capturas WebP das demonstrações próprias, sem assets da referência |
-| `components/ConceptArt.tsx`              | Arte local do relógio, arquitetura e escultura                     |
-| `app/globals.css`                        | Tokens dos dois temas, layout e responsividade                     |
-| `app/conceitos/[slug]/page.tsx`          | Template e metadados das três demonstrações                        |
+| Arquivo                                  | Responsabilidade                                                     |
+| ---------------------------------------- | -------------------------------------------------------------------- |
+| `lib/site.ts`                            | Marca, domínio, navegação e WhatsApp oficial                         |
+| `lib/content.ts`                         | Serviços, três conceitos e processo                                  |
+| `lib/whatsapp.ts`                        | Links oficiais e mensagens codificadas                               |
+| `lib/diagnosis.ts`                       | Perguntas, regras e resumo do diagnóstico                            |
+| `components/sections/`                   | Seções efetivamente renderizadas pela home                           |
+| `components/HeroScene.tsx`               | Cena, movimento discreto por ponteiro e limpeza de eventos           |
+| `public/images/studio/`                  | Ilustrações geradas para os dois temas; não são fotos de equipe real |
+| `public/images/portfolio/`               | Previews verticais das próprias demonstrações                        |
+| `components/VisualMotion.tsx`            | Entrada discreta das seções, sem esconder texto                      |
+| `components/Hero.tsx`                    | Texto e composição visual da primeira dobra                          |
+| `components/sections/ServicePreview.tsx` | Previews e interfaces de cada serviço                                |
+| `public/images/services/`                | Capturas WebP das demonstrações próprias, sem assets da referência   |
+| `components/ConceptArt.tsx`              | Arte local do relógio, arquitetura e escultura                       |
+| `app/globals.css`                        | Tokens dos dois temas, layout e responsividade                       |
+| `app/conceitos/[slug]/page.tsx`          | Template e metadados das três demonstrações                          |
 
 Demonstrações:
 
@@ -78,13 +86,13 @@ npm run test:e2e
 
 Os testes iniciam uma instância de produção temporária na porta 3107. Essa porta precisa estar livre. Para usar um Chromium já instalado, defina `PLAYWRIGHT_CHROMIUM_EXECUTABLE` com seu caminho. O servidor de testes é encerrado pelo Playwright.
 
-A suíte verifica seções e links, WhatsApp, abas, teclado, temas, menu móvel, carrossel, diagnóstico, três demos, metadados, larguras de 360 a 1920 px e auditoria automática de acessibilidade nos dois temas. Auditoria automática não substitui avaliação manual com tecnologias assistivas.
+A suíte tem nove testes de navegador e verifica seções e links, WhatsApp, abas, teclado, temas, menu móvel, carrossel, diagnóstico, três demos, metadados, larguras de 360 a 1920 px e auditoria automática de acessibilidade nos dois temas. Auditoria automática não substitui avaliação manual com tecnologias assistivas.
 
 ## Tema e movimento
 
 A preferência `gbd-theme` é salva localmente. Na ausência de escolha, a preferência do sistema define o tema. O bootstrap roda antes da pintura; listeners são limpos ao desmontar. O layout permanece um Server Component.
 
-Não há parallax contínuo ou texto oculto esperando animações. O portfólio só se move automaticamente após ação explícita. Reduced motion desativa essa reprodução e os efeitos de transição. Clones de slides não são usados.
+A cena tem deslocamento discreto com mouse, sem movimento contínuo, desativado em touch e reduced motion. A entrada das seções usa apenas um pequeno deslocamento; texto não fica oculto esperando animações. O portfólio só se move automaticamente após ação explícita. Reduced motion desativa essa reprodução e os efeitos de transição. Clones de slides não são usados.
 
 ## Assistente de IA da versão anterior
 
@@ -95,3 +103,11 @@ A API antiga retorna 404 por padrão; só é habilitada com `ENABLE_AI_ASSISTANT
 ## Arquivos excluídos da exportação
 
 O ZIP não contém `.env*`, chaves, `.git`, `node_modules`, `.next`, logs, caches de TypeScript nem relatórios gerados de teste. Execute `npm ci` na nova pasta para instalar as dependências. Não copie a `.next` do projeto antigo.
+
+## Atualização local sem clones aninhados
+
+Se estiver atualizando uma pasta extraída do ZIP, peça ao agente do editor que use uma pasta temporária fora da raiz para buscar a revisão. Preserve alterações locais e não copie `.next`, `node_modules`, `.env` ou `.git` de outra versão. `temp_repo/` é ignorado pelo TypeScript para evitar varredura do clone criado por tentativas anteriores. O endereço do servidor deve ser confirmado com uma requisição HTTP, não presumido a partir de uma mensagem antiga.
+
+## Origem da direção visual
+
+A estrutura narrativa foi orientada pelo HTML de referência fornecido pelo usuário. A cena foi gerada originalmente para este projeto e o portfólio mostra capturas das demos autorais. Não foram usados assets da EvoPixel. Os temas preservam a mesma composição da cena. Apenas a imagem do tema ativo é pré-carregada na home.

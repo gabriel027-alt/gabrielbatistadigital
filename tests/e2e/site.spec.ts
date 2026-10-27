@@ -275,3 +275,47 @@ test("product-led service previews, vertical navigation and accessible panels", 
     ).toBe(true);
   }
 });
+
+test("studio artwork follows theme and original portfolio images load", async ({
+  page,
+}) => {
+  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
+  await page.goto("/");
+  await expect(page.locator(".studio-hero-art")).toHaveCount(1);
+  expect(
+    await page
+      .locator(".studio-scene-image")
+      .evaluate((node) => getComputedStyle(node).backgroundImage),
+  ).toContain("/images/studio/night.webp");
+  await page
+    .getByRole("button", { name: "Alternar tema claro e escuro" })
+    .click();
+  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
+  expect(
+    await page
+      .locator(".studio-scene-image")
+      .evaluate((node) => getComputedStyle(node).backgroundImage),
+  ).toContain("/images/studio/day.webp");
+  for (const image of await page.locator(".project-website-image img").all()) {
+    await image.scrollIntoViewIfNeeded();
+    await expect
+      .poll(() =>
+        image.evaluate(
+          (node: HTMLImageElement) => node.complete && node.naturalWidth > 0,
+        ),
+      )
+      .toBe(true);
+  }
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator("#inicio").scrollIntoViewIfNeeded();
+  expect(
+    await page.evaluate(
+      () => document.documentElement.scrollWidth <= innerWidth,
+    ),
+  ).toBe(true);
+  expect(
+    await page
+      .locator(".studio-scene-image")
+      .evaluate((node) => getComputedStyle(node).transform),
+  ).toBe("none");
+});

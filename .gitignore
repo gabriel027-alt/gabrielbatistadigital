@@ -11,3 +11,6 @@ playwright-report/
 test-results/
 .DS_Store
 *.pem
+
+# Temporary clone created by older local update attempts
+/temp_repo/

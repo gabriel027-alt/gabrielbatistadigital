@@ -18,11 +18,11 @@ O código foi trabalhado em uma cópia separada. O ZIP original não foi modific
 - `npm run lint`: aprovado, sem avisos do código.
 - `npm run build`: aprovado, com geração da home, três demos e rotas de SEO.
 - `npm run typecheck`: aprovado com TypeScript estrito.
-- `npm run test:e2e`: **8 testes aprovados, 0 falhas, 0 ignorados** no Chromium do ambiente.
+- `npm run test:e2e`: **9 testes aprovados, 0 falhas, 0 ignorados** no Chromium do ambiente.
 - `npm audit --omit=dev`: nenhuma vulnerabilidade reportada nas dependências de produção na execução realizada.
 - Inspeção visual com capturas de desktop, celular e tema claro.
 
-Cobertura dos oito testes:
+Cobertura dos nove testes:
 
 1. Todas as seções, âncoras existentes, três projetos e WhatsApp correto.
 2. Abas por teclado e controles do carrossel.
@@ -33,6 +33,8 @@ Cobertura dos oito testes:
 7. Robots, sitemap, imagem Open Graph, API opcional desativada, resposta 404 e cabeçalhos de segurança.
 
 8. Previews específicos por serviço, orientação responsiva das abas, navegação vertical, carregamento da imagem e acessibilidade dos cinco painéis.
+
+9. Cena visual correspondente ao tema, carregamento dos três previews verticais e desativação de movimento em reduced motion.
 
 Problemas de contraste encontrados durante os testes foram corrigidos antes da última execução aprovada.
 
@@ -47,7 +49,7 @@ Problemas de contraste encontrados durante os testes foram corrigidos antes da �
 
 ## Diferenças deliberadas de interação
 
-A composição da hero é estática, sem parallax contínuo. A faixa de tecnologias é estática. O carrossel permite arraste, swipe e navegação circular por controles; reprodução automática é opcional e não usa clones. Esses comportamentos preservam leitura, desempenho e controle do usuário.
+A composição da hero possui parallax discreto com ponteiro preciso, sem loop contínuo; o movimento fica desativado em touch e reduced motion. A faixa de tecnologias é estática. O carrossel permite arraste, swipe e navegação circular por controles; reprodução automática é opcional e não usa clones. Esses comportamentos preservam leitura, desempenho e controle do usuário.
 
 ## Usar no Antigravity
 
@@ -58,3 +60,11 @@ Extraia o ZIP em uma pasta nova e abra essa pasta como projeto. Peça ao agente 
 A seção foi reorganizada a partir da estrutura identificada no HTML de referência fornecido pelo usuário: seleção vertical no desktop e painel de apresentação amplo. As artes abstratas repetidas foram substituídas por capturas das próprias demos e interfaces ilustrativas distintas. O WhatsApp oficial e as três marcas conceituais foram preservados. O acesso ao site externo ao vivo retornou 403 neste ambiente; esta etapa não alega comparação visual pixel a pixel com a referência.
 
 As novas capturas WebP de Chronos Atelier e Vanguard foram produzidas a partir das páginas do próprio projeto. Nenhum screenshot, personagem ou asset da EvoPixel foi incorporado.
+
+## Revisão visual integral — direção Studio
+
+A revisão agora abrange hero, navegação, faixa de tecnologias, manifesto, serviços, portfólio, processo, sobre, integrações, diagnóstico e rodapé. A hero troca a escultura de cubo por uma cena autoral de estúdio com pessoa, mesa e monitor, gerada em duas versões de iluminação. Essa cena é ilustrativa e não representa fotografia de equipe ou escritório real.
+
+O portfólio mostra capturas verticais das páginas de demonstração, sem perder os três conceitos ou os destinos funcionais. O processo recebeu uma composição de sequência, o diagnóstico ganhou apresentação de dispositivo e o rodapé fecha a narrativa com tipografia editorial. As regras visuais obsoletas da hero anterior foram removidas.
+
+Os arquivos de prévia em `docs/preview/` foram capturados no build de produção. Imagens de carregamento tardio foram carregadas antes de fazer as capturas de página completa. Lint, TypeScript estrito, build e nove testes de navegador foram aprovados nesta revisão. O acesso ao site de referência ao vivo continuou bloqueado; não se alega reprodução pixel a pixel.

@@ -1,3 +1,4 @@
+import { VisualMotion } from "@/components/VisualMotion";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Footer } from "@/components/Footer";
@@ -16,6 +17,7 @@ export default function HomePage() {
         Pular para o conteúdo
       </a>
       <Header />
+      <VisualMotion />
       <main id="conteudo">
         <Hero />
         <TechStrip />

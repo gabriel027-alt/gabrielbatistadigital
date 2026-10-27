@@ -37,7 +37,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
 };
-const themeBootstrap = `(function(){var t='dark';try{var s=localStorage.getItem('gbd-theme');t=s==='light'||s==='dark'?s:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){try{t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#111410':'#f4f3ed'})()`;
+const themeBootstrap = `(function(){var t='dark';try{var s=localStorage.getItem('gbd-theme');t=s==='light'||s==='dark'?s:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){try{t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#111410':'#f4f3ed';if(location.pathname==='/'){var l=document.createElement('link');l.rel='preload';l.as='image';l.href='/images/studio/'+(t==='dark'?'night':'day')+'.webp';l.fetchPriority='high';document.head.appendChild(l)}})()`;
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",

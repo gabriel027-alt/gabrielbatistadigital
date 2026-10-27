@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
+import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { concepts } from "@/lib/content";
-import { ConceptArt } from "../ConceptArt";
 import { Arrow, Chevron } from "../ui/icons";
 import { SectionLabel } from "../ui/shared";
 function subscribeMotion(callback: () => void) {
@@ -190,19 +190,30 @@ export function Portfolio() {
                 className="project-link"
                 draggable={false}
               >
-                <div className="project-preview">
-                  <div className="preview-topbar">
-                    <span>{project.name.toUpperCase()}</span>
-                    <span>CONCEITO / 0{index + 1}</span>
-                  </div>
-                  <div className="preview-headline">{project.headline}</div>
-                  <ConceptArt theme={project.theme} />
-                  <div className="preview-caption">
-                    <span>{project.category}</span>
-                    <span className="preview-arrow">
-                      <Arrow />
+                <div className="project-preview project-website-preview">
+                  <div className="project-browserline" aria-hidden="true">
+                    <span>
+                      <i />
+                      <i />
+                      <i />
                     </span>
+                    <span>{project.name.toLowerCase()} / conceito</span>
+                    <Arrow size={12} />
                   </div>
+                  <div className="project-website-image">
+                    <Image
+                      src={`/images/portfolio/${project.slug}.webp`}
+                      alt={`Prévia da demonstração conceitual ${project.name}`}
+                      width={900}
+                      height={1500}
+                      sizes="(max-width:600px) 85vw, (max-width:900px) 55vw, 38vw"
+                      loading="lazy"
+                      draggable={false}
+                    />
+                  </div>
+                  <span className="project-visit">
+                    Explorar demonstração <Arrow size={15} />
+                  </span>
                 </div>
                 <div className="project-info">
                   <p className="eyebrow">
