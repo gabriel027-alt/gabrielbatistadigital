@@ -1,21 +1,21 @@
-# Revisão Atelier
+# Revisão Studio / direção cinematográfica
 
-Base: ZIP gabrielbatistadigital-atual.zip enviado pelo usuário. A revisão preserva conteúdo, contato, tema persistente e a fotografia aprovada.
+## Implementação
 
-## Corrigido
+Hero com foto frontal aprovada provisoriamente, passagem para a imagem lateral aprovada e composição em tela inteira. Trata-se de dissolve editorial ligado ao scroll, com leve mudança de escala; não é um giro 3D nem uma sequência de vídeo. Sem movimento reduzido há fixação curta da hero; com prefers-reduced-motion a abertura é estática e sem fixação.
 
-O ZIP não incluía eslint.config.mjs, playwright.config.ts, next-env.d.ts e .gitignore. Esses arquivos foram restaurados para que os scripts e a entrega sejam executáveis. O README continha apenas o nome da agência e foi refeito. Blocos duplicados de CSS da hero foram substituídos por app/experience.css, importado pelo layout.
+Removidos gato, luminária e janela artificiais da revisão anterior. Não foi tentado apagar ou animar a luminária que pertence à própria fotografia. Temas usam paleta e gradação CSS.
 
-A letra A usada como Claude foi substituída pelo SVG da marca. A máscara TypeScript e os demais símbolos foram obtidos da mesma coleção identificada. A posição dos logos é limitada à cena e não depende mais do scroll absoluto da página inteira.
+Símbolos oficiais separados da área do rosto. Portfólio refeito com mockups de desktop/celular e capturas dos três sites renderizados. As demonstrações têm áreas interativas de exploração, navegação de teclado e estilo próprio por marca. Produtos, arquitetura e clínica são conceituais.
 
 ## Validação
 
-Build de produção, lint sem avisos e TypeScript estrito. Dez testes Playwright em Chromium: navegação, acessibilidade WCAG automatizada nos dois temas e demos, breakpoints 360–1920px, contato exclusivo, serviços por teclado, diagnóstico, três conceitos, assets, controle de tema e pausa, posição dos ícones fora da área reservada ao rosto, capítulos de scroll e conteúdo móvel.
+Lint sem avisos, build de produção e TypeScript estrito. Doze testes em Chromium verificam contato exclusivo, rotas, âncoras, metadados, temas, mobile, acessibilidade automatizada WCAG, diagnóstico, serviços, carrossel, mockups, abertura frontal, passagem lateral, pausa, movimento reduzido e abas dos três conceitos. Capturas desktop/mobile conferidas visualmente.
 
-Capturas de desktop e celular foram inspecionadas. Isso não representa validação em Safari, Firefox ou no Windows do usuário. Não houve medição Lighthouse nem promessa de nota de desempenho.
+Sem testes em Safari/Firefox ou no Windows do usuário e sem medição Lighthouse. A aparência final continua sujeita à avaliação do usuário; não há promessa de equivalência exata a um site de referência.
 
-## Assets
+## Integridade
 
-O SHA-256 do retrato é cc668c5536f5c845dc8ce69deba627bd5fe305ceb0d006cbf96fb9db81f16a74, igual ao arquivo extraído do ZIP. As novas imagens dos conceitos são geradas e não documentam obras ou produtos reais.
+Foto lateral aprovada preservada: SHA-256 cc668c5536f5c845dc8ce69deba627bd5fe305ceb0d006cbf96fb9db81f16a74.
 
-O ambiente diurno/noturno usa luz e elementos de cenário por CSS sobre a foto aprovada. O gato é uma silhueta SVG. Não foi criada uma animação 3D do usuário nem sequência de rostos por IA.
+O quadro frontal usa a imagem aprovada provisoriamente em conversa, exportada como WebP. Não foram geradas novas poses além desse quadro. Imagens dos conceitos são geradas, não fotografias documentais de trabalhos reais.

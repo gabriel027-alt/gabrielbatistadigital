@@ -34,6 +34,7 @@ export function ScrollExperience() {
     addEventListener("scroll", schedule, { passive: true });
     addEventListener("resize", schedule);
     reduced.addEventListener("change", schedule);
+    addEventListener("atelier-motion", schedule);
     schedule();
     return () => {
       cancelAnimationFrame(frame);
@@ -41,6 +42,8 @@ export function ScrollExperience() {
       removeEventListener("scroll", schedule);
       removeEventListener("resize", schedule);
       reduced.removeEventListener("change", schedule);
+      removeEventListener("atelier-motion", schedule);
+      delete document.documentElement.dataset.motion;
       document.documentElement.style.removeProperty("--reading-progress");
     };
   }, []);

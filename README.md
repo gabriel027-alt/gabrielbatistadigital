@@ -1,10 +1,10 @@
-# Gabriel Batista Digital — Atelier interativo
+# Gabriel Batista Digital — Studio / direção cinematográfica
 
 Next.js App Router, TypeScript estrito e Tailwind CSS 4. Contato comercial exclusivo: https://wa.me/5538998267717.
 
 ![Hero noturna](docs/preview/home-dark.webp)
 
-[Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/mobile.webp) · [Portfólio](docs/preview/portfolio.webp)
+[Ver transição no scroll](docs/preview/hero-scroll.gif) · [Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/mobile.webp) · [Portfólio](docs/preview/portfolio.webp)
 
 ## Executar
 
@@ -26,15 +26,14 @@ npm run start
 
 ## Direção visual
 
-- Retrato aprovado em `public/images/hero/gabriel.png`. O arquivo foi mantido intacto, sem geração de rosto, cabelo ou corpo. A composição usa enquadramento e gradação de luz por CSS.
-- Controle Dia/Noite centralizado, persistente e acessível por teclado. A janela muda entre sol e estrelas; a luminária ilustrada acende/apaga. O cenário usa a mesma foto aprovada, com camadas CSS, não dois ensaios fotográficos diferentes.
-- Símbolos separados de React, Next.js, TypeScript, GitHub, Claude e OpenAI, obtidos de Simple Icons v14. Não são placas nem cartões. Não indicam parceria com essas empresas. Fontes em `public/images/brands/README.md`.
-- Ícones com flutuação e deslocamento limitado ao scroll da hero; posições reservadas fora do rosto. A disposição móvel é própria.
-- Gato em silhueta SVG atravessa ocasionalmente a cena. É um detalhe gráfico 2D, não um personagem 3D.
-- Laboratório de scroll com etapa fixada no desktop: wireframe → código → interface. No celular e com movimento reduzido, mostra o resultado sem trecho fixado longo. A rolagem continua nativa, sem scroll hijacking.
-- Manifesto com movimento discreto, seleção de serviços com transição e processo com marcadores progressivos.
-- Três imagens editoriais novas: Chronos, Vanguard e Aura. São imagens geradas para marcas fictícias e não representam clientes, produtos ou resultados reais. As demonstrações usam recortes da mesma imagem editorial de cada conceito.
-- Botão Pausar animações e suporte a prefers-reduced-motion. Animações da hero pausam quando a cena sai da tela.
+- Hero com abertura frontal aprovada provisoriamente e enquadramento lateral aprovado. O arquivo lateral `public/images/hero/gabriel.png` foi preservado; o frontal foi exportado em WebP de uma imagem gerada e aprovada na conversa.
+- A passagem acompanha um trecho curto de scroll nativo com fixação da cena. É uma transição editorial entre duas imagens, não uma rotação 3D ou vídeo do usuário. Não há frames intermediários nem alegação de continuidade anatômica.
+- Temas Dia/Noite alteram paleta, gradação e composição de luz. A luminária gráfica, a janela e o gato da revisão anterior foram removidos. A luminária existente dentro da fotografia não é um objeto animável independente.
+- Logos oficiais em uma faixa própria, sem cartões e fora do rosto. Fontes em `public/images/brands/README.md`.
+- Portfólio com capturas reais das páginas conceituais renderizadas em desktop e celular. As capturas percorrem a página no hover/foco; abrir a demonstração leva ao site navegável.
+- Três conceitos fictícios, cada um com direção visual, navegação, imagens e um painel explorável por abas/teclado. Chronos explora detalhes da peça, Vanguard apresenta luz/matéria/paisagem e Aura apresenta princípios de cuidado. Nenhum deles representa uma loja ou clínica real.
+- Laboratório de scroll: wireframe → código → interface. Em celular e movimento reduzido, apresenta o resultado sem fixação longa.
+- Pausa global respeitada pela hero e pelo carrossel; suporte a prefers-reduced-motion. Sem scripts de terceiros para controlar a rolagem.
 
 ## Arquivos principais
 
@@ -44,6 +43,8 @@ npm run start
 - `components/ScrollExperience.tsx`: progresso de leitura, capítulos e pausa.
 - `components/ExperienceLab.tsx`: transição de wireframe para interface.
 - `components/ConceptPhoto.tsx`: imagens dos conceitos nas demonstrações.
+- `components/ConceptExplorer.tsx`: exploração interativa de cada conceito.
+- `public/images/screens/`: capturas reais das páginas renderizadas, usadas nos mockups.
 - `lib/content.ts`: textos, serviços e exatamente três conceitos.
 - `lib/site.ts`, `lib/whatsapp.ts`: marca e contato oficial.
 

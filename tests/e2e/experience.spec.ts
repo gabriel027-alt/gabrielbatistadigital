@@ -7,21 +7,17 @@ test("day/night scene, image integrity, logos and pause controls", async ({ page
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   const scene = page.locator(".atelier-scene");
-  const portrait = scene.locator("img");
+  const portrait = scene.locator(".cinema-front img");
   await expect.poll(() => portrait.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
-  await expect(scene.locator(".atelier-tool")).toHaveCount(6);
+  await expect(scene.locator(".cinema-tools li")).toHaveCount(6);
   for (const theme of ["Dia", "Noite"]) {
     await page.getByRole("button", { name: theme, exact: true }).click();
     await expect(page.getByRole("button", { name: theme, exact: true })).toHaveAttribute("aria-pressed", "true");
-    for (const icon of await scene.locator(".atelier-tool").all()) {
+    for (const icon of await scene.locator(".cinema-tools li").all()) {
       await expect(icon).toBeVisible();
-      const safe = await icon.evaluate(el => {
-        const box = el.getBoundingClientRect();
-        const stage = el.closest(".atelier-scene")!.getBoundingClientRect();
-        const face = { left: stage.left + stage.width * .5, right: stage.left + stage.width * .9, top: stage.top + stage.height * .07, bottom: stage.top + stage.height * .53 };
-        return box.right < face.left || box.left > face.right || box.bottom < face.top || box.top > face.bottom;
-      });
-      expect(safe).toBe(true);
+      const box = await icon.boundingBox();
+      const face = await scene.boundingBox();
+      expect(box!.y).toBeGreaterThan(face!.y + face!.height * .65);
     }
   }
   for (const slug of ["react", "nextdotjs", "typescript", "github", "claude", "openai"]) {
@@ -32,7 +28,8 @@ test("day/night scene, image integrity, logos and pause controls", async ({ page
   await page.getByRole("button", { name: "Pausar animações" }).click();
   await expect(page.locator("html")).toHaveAttribute("data-motion", "paused");
   await page.emulateMedia({ reducedMotion: "reduce" });
-  expect(await scene.locator(".atelier-cat").evaluate(el => getComputedStyle(el).display)).toBe("none");
+  await expect(scene.locator(".atelier-cat, .atelier-lamp")).toHaveCount(0);
+  await expect(scene).toHaveAttribute("data-view", "frontal");
   expect(errors).toEqual([]);
 });
 
@@ -48,7 +45,7 @@ test("native scroll chapters advance and mobile retains all content", async ({ p
   await page.setViewportSize({ width: 390, height: 844 });
   await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
   await expect(page.getByRole("group", { name: "Iluminação do estúdio" })).toBeVisible();
-  await expect(page.locator(".atelier-tool")).toHaveCount(6);
+  await expect(page.locator(".cinema-tools li")).toHaveCount(6);
   const brand = await page.locator(".site-header .brand-symbol").boundingBox();
   const toggle = await page.locator(".theme-switch").boundingBox();
   expect(brand!.x + brand!.width).toBeLessThan(toggle!.x);
@@ -56,5 +53,44 @@ test("native scroll chapters advance and mobile retains all content", async ({ p
   for (const img of await page.locator(".project-cover").all()) {
     await img.scrollIntoViewIfNeeded();
     await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
+  }
+});
+
+
+test("frontal opening and editorial transition follow scroll, freeze on pause", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await page.goto("/");
+  const scene = page.locator(".atelier-scene");
+  await expect(scene).toHaveAttribute("data-view", "frontal");
+  await page.evaluate(() => scrollTo({ top: 650, behavior: "instant" }));
+  await expect(scene).toHaveAttribute("data-view", "lateral");
+  const mix = await scene.evaluate(el => getComputedStyle(el).getPropertyValue("--scene-mix"));
+  await page.getByRole("button", { name: "Pausar animações" }).click();
+  await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+  await expect.poll(() => scene.evaluate(el => getComputedStyle(el).getPropertyValue("--scene-mix"))).toBe(mix);
+  await page.getByRole("button", { name: "Ativar animações" }).click();
+  await expect(scene).toHaveAttribute("data-view", "frontal");
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await page.evaluate(() => scrollTo({ top: 500, behavior: "instant" }));
+  await expect(scene).toHaveAttribute("data-view", "frontal");
+});
+
+test("prototype detail explorers support keyboard and real page previews load", async ({ page }) => {
+  for (const slug of ["chronos-atelier", "vanguard", "aura-aesthetics"]) {
+    await page.goto(`/conceitos/${slug}`);
+    const tabs = page.getByRole("tablist", { name: "Explorar o conceito" });
+    await tabs.getByRole("tab").first().focus();
+    await tabs.getByRole("tab").first().press("ArrowRight");
+    await expect(tabs.getByRole("tab").nth(1)).toHaveAttribute("aria-selected", "true");
+    await expect(page.getByRole("tabpanel")).toBeVisible();
+    await tabs.getByRole("tab").nth(1).press("End");
+    await expect(tabs.getByRole("tab").last()).toHaveAttribute("aria-selected", "true");
+  }
+  await page.goto("/");
+  for (const card of await page.locator(".project-card").all()) {
+    await card.scrollIntoViewIfNeeded();
+    for (const img of await card.locator("img").all()) {
+      await expect.poll(() => img.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
+    }
   }
 });

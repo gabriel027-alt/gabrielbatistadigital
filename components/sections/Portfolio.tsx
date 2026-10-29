@@ -8,7 +8,9 @@ import { SectionLabel } from "../ui/shared";
 function subscribeMotion(callback: () => void) {
   const media = window.matchMedia("(prefers-reduced-motion: reduce)");
   media.addEventListener("change", callback);
-  return () => media.removeEventListener("change", callback);
+  const observer = new MutationObserver(callback);
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ["data-motion"] });
+  return () => { media.removeEventListener("change", callback); observer.disconnect(); };
 }
 export function Portfolio() {
   const track = useRef<HTMLDivElement>(null);
@@ -19,7 +21,7 @@ export function Portfolio() {
   const [visible, setVisible] = useState(false);
   const reduced = useSyncExternalStore(
     subscribeMotion,
-    () => matchMedia("(prefers-reduced-motion: reduce)").matches,
+    () => matchMedia("(prefers-reduced-motion: reduce)").matches || document.documentElement.dataset.motion === "paused",
     () => true,
   );
   useEffect(() => {
@@ -191,20 +193,14 @@ export function Portfolio() {
                 draggable={false}
               >
                 <div className="project-preview">
-                  <div className="preview-topbar">
-                    <span>{project.name.toUpperCase()}</span>
-                    <span>CONCEITO / 0{index + 1}</span>
+                  <div className="case-browser">
+                    <div className="case-browser-toolbar"><i aria-hidden="true"><b /><b /><b /></i><span>{project.slug} / demonstração</span><Arrow size={9} /></div>
+                    <div className="case-scroll"><Image className="project-cover" src={`/images/screens/${project.slug}-desktop.webp`} alt={`Captura da página completa do site conceitual ${project.name}`} width={1200} height={2200} sizes="(max-width: 900px) 80vw, 50vw" /></div>
                   </div>
-                  <div className="preview-headline">{project.headline}</div>
-                  <Image className="project-cover" src={`/images/concepts/${project.theme}.webp`} alt={`Direção visual do conceito ${project.name}`} fill sizes="(max-width: 600px) 88vw, (max-width: 900px) 76vw, 42vw" />
-                  <div className="preview-caption">
-                    <span>{project.category}</span>
-                    <span className="preview-arrow">
-                      <Arrow />
-                    </span>
-                  </div>
+                  <div className="case-phone" aria-hidden="true"><Image src={`/images/screens/${project.slug}-mobile.webp`} alt="" width={390} height={1300} sizes="(max-width: 600px) 22vw, 12vw" /></div>
                 </div>
                 <div className="project-info">
+                  <span className="case-number">0{index + 1}</span>
                   <p className="eyebrow">
                     {project.category} <span>PROJETO CONCEITUAL</span>
                   </p>
@@ -213,6 +209,7 @@ export function Portfolio() {
                     <Arrow />
                   </h3>
                   <p>{project.description}</p>
+                  <span className="case-capabilities">DIREÇÃO VISUAL / INTERFACE / DESENVOLVIMENTO</span>
                   <span className="text-link">
                     Explorar demonstração <Arrow size={15} />
                   </span>
@@ -223,7 +220,7 @@ export function Portfolio() {
         </div>
         <div className="portfolio-bottom">
           <p id="portfolio-instructions">
-            Arraste para explorar. Use as setas com o carrossel em foco.
+            Sites para explorar. Arraste ou use as setas; abra cada demonstração.
           </p>
           <span className="micro">
             ESTÉTICA COM INTENÇÃO. CÓDIGO COM PRECISÃO.

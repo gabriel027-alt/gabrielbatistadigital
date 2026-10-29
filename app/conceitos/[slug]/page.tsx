@@ -1,3 +1,4 @@
+import { ConceptExplorer } from "@/components/ConceptExplorer";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
@@ -101,6 +102,7 @@ export default async function ConceptPage({ params }: Props) {
             ))}
           </div>
         </section>
+        <ConceptExplorer theme={project.theme} />
         <section id="filosofia" className="demo-philosophy">
           <p className="eyebrow">02 / FILOSOFIA</p>
           <div>
