@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import ThemeInitializer from "@/components/ThemeInitializer";
 import { siteConfig } from "@/lib/site";
 import "./globals.css";
+import "./experience.css";
 const manrope = localFont({
   src: "../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
   variable: "--font-manrope",
@@ -37,7 +38,7 @@ export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
 };
-const themeBootstrap = `(function(){var t='dark';try{var s=localStorage.getItem('gbd-theme');t=s==='light'||s==='dark'?s:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){try{t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#111410':'#f4f3ed';if(location.pathname==='/'){var l=document.createElement('link');l.rel='preload';l.as='image';l.href='/images/studio/'+(t==='dark'?'night':'day')+'.webp';l.fetchPriority='high';document.head.appendChild(l)}})()`;
+const themeBootstrap = `(function(){var t='dark';try{var s=localStorage.getItem('gbd-theme');t=s==='light'||s==='dark'?s:matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){try{t=matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light'}catch(e){}}document.documentElement.dataset.theme=t;var m=document.querySelector('meta[name="theme-color"]');if(m)m.content=t==='dark'?'#111410':'#f4f3ed'})()`;
 const organization = {
   "@context": "https://schema.org",
   "@type": "Organization",

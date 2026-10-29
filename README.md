@@ -1,25 +1,21 @@
-# Gabriel Batista Digital — direção Studio
+# Gabriel Batista Digital — Atelier interativo
 
-Site institucional em Next.js App Router, React, TypeScript estrito e Tailwind CSS 4. O projeto usa o domínio `https://gabrielbatistadigital.com.br` e exclusivamente o WhatsApp **5538998267717** para contato comercial.
+Next.js App Router, TypeScript estrito e Tailwind CSS 4. Contato comercial exclusivo: https://wa.me/5538998267717.
 
-![Prévia da direção Studio](docs/preview/home-dark.webp)
+![Hero noturna](docs/preview/home-dark.webp)
 
-[Ver tema claro](docs/preview/home-light.webp) · [Página completa](docs/preview/pagina-completa.webp) · [Mobile](docs/preview/mobile.webp)
+[Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/mobile.webp) · [Portfólio](docs/preview/portfolio.webp)
 
-## Abrir esta versão
+## Executar
 
-Extraia o ZIP em uma **pasta nova**, sem mesclar com a versão antiga. Abra essa pasta como projeto no Antigravity. A pasta correta contém este README, `package.json`, `app/`, `components/` e `lib/`.
-
-Requer Node.js 22+ e npm. O lockfile acompanha a entrega.
+Node.js 22+ e npm. Abra a pasta que contém este arquivo e `package.json`.
 
 ```sh
 npm ci
 npm run dev
 ```
 
-Mantenha uma única sessão de desenvolvimento. O endereço efetivo é o mostrado no terminal. Não encerre processos de outros projetos. Cada tarefa de nuvem já é isolada; não crie worktrees sem solicitação.
-
-## Validação e produção
+Use a porta que o terminal confirmar. Não inicie cópias concorrentes do mesmo projeto.
 
 ```sh
 npm run lint
@@ -28,86 +24,40 @@ npm run typecheck
 npm run start
 ```
 
-O build usa webpack explicitamente. Isso evita depender de diferenças do ambiente de Turbopack na geração de produção. O desenvolvimento usa o padrão do Next.js. A fonte Manrope é empacotada localmente via `@fontsource-variable/manrope`, com licença OFL presente na dependência; não há requisições de fontes ao Google em runtime ou build.
+## Direção visual
 
-Para publicar na Vercel: importar o repositório como Next.js, usar Node.js 22 ou superior, instalação `npm ci` e build `npm run build`. As funcionalidades públicas não precisam de variáveis ou chaves. A configuração do domínio e a publicação são etapas separadas e não foram feitas nesta entrega.
+- Retrato aprovado em `public/images/hero/gabriel.png`. O arquivo foi mantido intacto, sem geração de rosto, cabelo ou corpo. A composição usa enquadramento e gradação de luz por CSS.
+- Controle Dia/Noite centralizado, persistente e acessível por teclado. A janela muda entre sol e estrelas; a luminária ilustrada acende/apaga. O cenário usa a mesma foto aprovada, com camadas CSS, não dois ensaios fotográficos diferentes.
+- Símbolos separados de React, Next.js, TypeScript, GitHub, Claude e OpenAI, obtidos de Simple Icons v14. Não são placas nem cartões. Não indicam parceria com essas empresas. Fontes em `public/images/brands/README.md`.
+- Ícones com flutuação e deslocamento limitado ao scroll da hero; posições reservadas fora do rosto. A disposição móvel é própria.
+- Gato em silhueta SVG atravessa ocasionalmente a cena. É um detalhe gráfico 2D, não um personagem 3D.
+- Laboratório de scroll com etapa fixada no desktop: wireframe → código → interface. No celular e com movimento reduzido, mostra o resultado sem trecho fixado longo. A rolagem continua nativa, sem scroll hijacking.
+- Manifesto com movimento discreto, seleção de serviços com transição e processo com marcadores progressivos.
+- Três imagens editoriais novas: Chronos, Vanguard e Aura. São imagens geradas para marcas fictícias e não representam clientes, produtos ou resultados reais. As demonstrações usam recortes da mesma imagem editorial de cada conceito.
+- Botão Pausar animações e suporte a prefers-reduced-motion. Animações da hero pausam quando a cena sai da tela.
 
-## O que foi implementado
+## Arquivos principais
 
-- Header sticky com navegação, tema persistente e menu móvel com Escape.
-- Hero imersiva com cena original de estúdio, versões diurna/noturna em WebP e parallax discreto para ponteiros precisos.
-- Faixa estática de tecnologias, sem animação contínua obrigatória.
-- Manifesto editorial e princípios, com hierarquia tipográfica revisada.
-- Cinco serviços com seleção vertical no desktop e horizontal no celular, incluindo SEO local; navegação por setas, Home e End. Previews das demos autorais de Chronos e Vanguard e interfaces ilustrativas específicas para sistemas, SEO e performance.
-- Portfólio com três conceitos, previews originais, arraste/swipe, controles e reprodução opcional. O carrossel usa scroll nativo e navegação circular por controles, sem clones ou promessa de marquee infinito.
-- Processo em sete etapas, organizado como uma sequência editorial conectada.
-- Sobre o estúdio com imagem autoral ilustrativa e princípios de atuação.
-- Fluxo ilustrativo de integrações, sem envio ou simulação de leads reais.
-- Diagnóstico com apresentação de dispositivo e três perguntas locais, recomendação determinística e link de WhatsApp com resumo. Sem cadastro ou armazenamento das respostas.
-- Rodapé editorial de fechamento e WhatsApp flutuante.
-- Metadados, canonical, Organization JSON-LD, imagem Open Graph, favicon, robots, sitemap e página 404.
-- Três demonstrações estáticas com navegação e conteúdo próprios, identificadas como marcas fictícias, com `noindex`.
+- `app/experience.css`: cena, controle de temas, laboratório e apresentação dos conceitos.
+- `components/HeroScene.tsx`: retrato, elementos de cenário e ícones.
+- `components/ThemeToggle.tsx`: seleção explícita Dia/Noite.
+- `components/ScrollExperience.tsx`: progresso de leitura, capítulos e pausa.
+- `components/ExperienceLab.tsx`: transição de wireframe para interface.
+- `components/ConceptPhoto.tsx`: imagens dos conceitos nas demonstrações.
+- `lib/content.ts`: textos, serviços e exatamente três conceitos.
+- `lib/site.ts`, `lib/whatsapp.ts`: marca e contato oficial.
 
-## Editar o conteúdo
-
-| Arquivo                                  | Responsabilidade                                                     |
-| ---------------------------------------- | -------------------------------------------------------------------- |
-| `lib/site.ts`                            | Marca, domínio, navegação e WhatsApp oficial                         |
-| `lib/content.ts`                         | Serviços, três conceitos e processo                                  |
-| `lib/whatsapp.ts`                        | Links oficiais e mensagens codificadas                               |
-| `lib/diagnosis.ts`                       | Perguntas, regras e resumo do diagnóstico                            |
-| `components/sections/`                   | Seções efetivamente renderizadas pela home                           |
-| `components/HeroScene.tsx`               | Cena, movimento discreto por ponteiro e limpeza de eventos           |
-| `public/images/studio/`                  | Ilustrações geradas para os dois temas; não são fotos de equipe real |
-| `public/images/portfolio/`               | Previews verticais das próprias demonstrações                        |
-| `components/VisualMotion.tsx`            | Entrada discreta das seções, sem esconder texto                      |
-| `components/Hero.tsx`                    | Texto e composição visual da primeira dobra                          |
-| `components/sections/ServicePreview.tsx` | Previews e interfaces de cada serviço                                |
-| `public/images/services/`                | Capturas WebP das demonstrações próprias, sem assets da referência   |
-| `components/ConceptArt.tsx`              | Arte local do relógio, arquitetura e escultura                       |
-| `app/globals.css`                        | Tokens dos dois temas, layout e responsividade                       |
-| `app/conceitos/[slug]/page.tsx`          | Template e metadados das três demonstrações                          |
-
-Demonstrações:
-
-- `/conceitos/chronos-atelier` — Alta Relojoaria.
-- `/conceitos/vanguard` — Arquitetura Minimalista.
-- `/conceitos/aura-aesthetics` — Medicina de Luxo.
-
-As marcas, produtos e estudos não representam clientes, obras ou atendimentos reais. Nenhuma métrica, avaliação ou depoimento foi inventado. As páginas conceituais ficam fora do sitemap da agência.
-
-## Testes de navegador
+## Testes
 
 ```sh
 npx playwright install chromium
-npm run build
 npm run test:e2e
 ```
 
-Os testes iniciam uma instância de produção temporária na porta 3107. Essa porta precisa estar livre. Para usar um Chromium já instalado, defina `PLAYWRIGHT_CHROMIUM_EXECUTABLE` com seu caminho. O servidor de testes é encerrado pelo Playwright.
+Em ambientes com Chromium já instalado, use a variável `PLAYWRIGHT_CHROMIUM_EXECUTABLE` com o caminho local. Não é necessária para instalações comuns do Playwright. Os testes iniciam uma instância temporária de produção na porta 3107, então execute build antes e mantenha essa porta disponível.
 
-A suíte tem nove testes de navegador e verifica seções e links, WhatsApp, abas, teclado, temas, menu móvel, carrossel, diagnóstico, três demos, metadados, larguras de 360 a 1920 px e auditoria automática de acessibilidade nos dois temas. Auditoria automática não substitui avaliação manual com tecnologias assistivas.
+A API do assistente antigo permanece desativada por padrão. Não é necessária nenhuma chave para abrir a landing page. Não habilite essa API sem revisar seu comportamento e configuração.
 
-## Tema e movimento
+## Instalar a revisão no Antigravity
 
-A preferência `gbd-theme` é salva localmente. Na ausência de escolha, a preferência do sistema define o tema. O bootstrap roda antes da pintura; listeners são limpos ao desmontar. O layout permanece um Server Component.
-
-A cena tem deslocamento discreto com mouse, sem movimento contínuo, desativado em touch e reduced motion. A entrada das seções usa apenas um pequeno deslocamento; texto não fica oculto esperando animações. O portfólio só se move automaticamente após ação explícita. Reduced motion desativa essa reprodução e os efeitos de transição. Clones de slides não são usados.
-
-## Assistente de IA da versão anterior
-
-`components/ChatAssistant.tsx`, `lib/openai.ts` e `app/api/chat/route.ts` foram preservados para não perder o trabalho anterior. O assistente não é renderizado na landing page: o diagnóstico funciona localmente e o contato é pelo WhatsApp.
-
-A API antiga retorna 404 por padrão; só é habilitada com `ENABLE_AI_ASSISTANT=true`. Nenhuma chave foi incluída, copiada dos anexos ou usada nos testes. A integração externa não foi validada e não faz parte dos critérios de funcionamento do site. Antes de reativá-la publicamente, revise autenticação, limites de uso e validação de entrada adequados ao seu caso.
-
-## Arquivos excluídos da exportação
-
-O ZIP não contém `.env*`, chaves, `.git`, `node_modules`, `.next`, logs, caches de TypeScript nem relatórios gerados de teste. Execute `npm ci` na nova pasta para instalar as dependências. Não copie a `.next` do projeto antigo.
-
-## Atualização local sem clones aninhados
-
-Se estiver atualizando uma pasta extraída do ZIP, peça ao agente do editor que use uma pasta temporária fora da raiz para buscar a revisão. Preserve alterações locais e não copie `.next`, `node_modules`, `.env` ou `.git` de outra versão. `temp_repo/` é ignorado pelo TypeScript para evitar varredura do clone criado por tentativas anteriores. O endereço do servidor deve ser confirmado com uma requisição HTTP, não presumido a partir de uma mensagem antiga.
-
-## Origem da direção visual
-
-A estrutura narrativa foi orientada pelo HTML de referência fornecido pelo usuário. A cena foi gerada originalmente para este projeto e o portfólio mostra capturas das demos autorais. Não foram usados assets da EvoPixel. Os temas preservam a mesma composição da cena. Apenas a imagem do tema ativo é pré-carregada na home.
+Veja `INSTRUCOES-ANTIGRAVITY.md`. Prefira abrir o ZIP completo em uma pasta nova: aplicar apenas Hero.tsx deixa os componentes e estilos inconsistentes.

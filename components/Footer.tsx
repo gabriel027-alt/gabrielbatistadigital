@@ -4,11 +4,6 @@ import { Arrow, WhatsAppIcon } from "./ui/icons";
 export function Footer() {
   return (
     <footer className="site-footer shell">
-      <p className="footer-statement">
-        Sua próxima ideia.
-        <br />
-        <span>Uma presença à altura.</span>
-      </p>
       <div className="footer-main">
         <a href="#inicio" aria-label="Gabriel Batista Digital — início">
           <Brand />

@@ -36,6 +36,7 @@ export function Header() {
         >
           <Brand />
         </a>
+        <ThemeToggle />
         <nav className="desktop-nav" aria-label="Navegação principal">
           {navigation.map((item) => (
             <a key={item.href} href={item.href}>
@@ -44,7 +45,6 @@ export function Header() {
           ))}
         </nav>
         <div className="header-actions">
-          <ThemeToggle />
           <a
             className="header-cta"
             href={siteConfig.contactUrl}

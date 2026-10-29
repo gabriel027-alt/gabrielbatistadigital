@@ -30,5 +30,5 @@
     "**/*.ts",
     "**/*.tsx"
   ],
-  "exclude": ["node_modules", "temp_repo"]
+  "exclude": ["node_modules", "temp_repo", "temp_repo2", "temp_repo3"]
 }

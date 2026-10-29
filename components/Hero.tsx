@@ -1,10 +1,10 @@
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { Arrow } from "./ui/icons";
 import { HeroScene } from "./HeroScene";
+
 export function Hero() {
   return (
     <section id="inicio" className="studio-hero">
-      <HeroScene />
       <div className="shell studio-hero-layout">
         <div className="studio-hero-copy">
           <p className="eyebrow">
@@ -12,11 +12,11 @@ export function Hero() {
             DESIGN · TECNOLOGIA · PRESENÇA
           </p>
           <h1>
-            Criamos presença.
+            Sua visão.
             <br />
-            Construímos
+            Nossa engenharia.
             <br />
-            <span>possibilidades.</span>
+            <span>Além do comum.</span>
           </h1>
           <p className="studio-hero-description">
             Estratégia, design e código para transformar
@@ -27,7 +27,7 @@ export function Hero() {
             <a
               className="button button-primary"
               href={buildWhatsAppUrl(
-                "Olá, quero conversar sobre um projeto para minha marca.",
+                "Olá, quero conversar sobre um projeto para minha marca."
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -43,6 +43,7 @@ export function Hero() {
           </p>
         </div>
       </div>
+      <HeroScene />
       <div className="shell studio-hero-footer">
         <span>GABRIEL BATISTA / DIGITAL STUDIO</span>
         <a href="#manifesto">

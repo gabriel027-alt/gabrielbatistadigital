@@ -5,41 +5,28 @@ export function About() {
   return (
     <section className="about-section" id="sobre">
       <div className="shell about-layout">
-        <div
-          className="studio-about-figure"
-          aria-label="Ilustração autoral de um ambiente criativo"
-        >
-          <div className="studio-about-image" />
-          <span className="studio-about-caption">
-            UM ESPAÇO PARA IDEIAS GANHAREM FORMA.
-            <small>CENA ILUSTRATIVA · NÃO É FOTOGRAFIA DA EQUIPE</small>
-          </span>
+        <div className="about-art" aria-hidden="true">
+          <span className="micro">GBD / INDEPENDENT DIGITAL STUDIO</span>
+          <span className="about-monogram">g<span>/</span></span>
+          <span className="about-art-bottom">PENSAR. CRIAR. REFINAR.</span>
         </div>
         <div className="about-copy">
-          <SectionLabel number="05">QUEM PENSA CADA DETALHE</SectionLabel>
+          <SectionLabel number="05">POR TRÁS DA PRESENÇA</SectionLabel>
           <h2>
-            Design sensível.
+            Cada detalhe
             <br />
-            Engenharia precisa.
-            <br />
-            <span className="serif">Presença de verdade.</span>
+            revela uma <span className="serif">intenção.</span>
           </h2>
           <p>
-            A Gabriel Batista Digital nasce da conexão entre pensamento
-            estratégico, design e desenvolvimento. Cada projeto começa com uma
-            conversa e ganha forma a partir do que faz sentido para o seu
-            negócio.
+            Gabriel Batista Digital é um estúdio independente que une pensamento
+            estratégico e execução cuidadosa. Acreditamos que tecnologia bem
+            aplicada deve ser sentida na experiência, não percebida como uma
+            barreira.
           </p>
           <p>
-            Trabalhamos com intenção: entender antes de desenhar, simplificar
-            antes de adicionar e refinar até que cada escolha encontre seu
-            lugar.
+            Menos excessos. Mais clareza. Uma presença que tem a sua identidade,
+            do primeiro olhar à última linha de código.
           </p>
-          <ul className="about-values">
-            <li>Clareza na experiência.</li>
-            <li>Precisão no desenvolvimento.</li>
-            <li>Consistência em cada entrega.</li>
-          </ul>
           <a
             className="text-link"
             href={buildWhatsAppUrl(

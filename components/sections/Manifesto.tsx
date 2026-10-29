@@ -1,12 +1,11 @@
 import { SectionLabel } from "../ui/shared";
+import { Asterisk } from "../ui/icons";
 export function Manifesto() {
   return (
     <section id="manifesto" className="shell section manifesto">
       <div>
         <SectionLabel number="01">MENOS DO MESMO? NUNCA.</SectionLabel>
-        <span className="manifesto-index" aria-hidden="true">
-          01.
-        </span>
+        <Asterisk className="manifesto-mark" />
         <p className="micro muted">
           PENSAMENTO LIVRE.
           <br />

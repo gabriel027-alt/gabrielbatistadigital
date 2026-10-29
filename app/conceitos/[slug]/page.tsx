@@ -8,7 +8,7 @@ import {
 } from "@/components/ui/icons";
 import { concepts } from "@/lib/content";
 import { siteConfig } from "@/lib/site";
-import { ConceptArt } from "@/components/ConceptArt";
+import { ConceptPhoto } from "@/components/ConceptPhoto";
 export const dynamicParams = false;
 export function generateStaticParams() {
   return concepts.map(({ slug }) => ({ slug }));
@@ -76,7 +76,7 @@ export default async function ConceptPage({ params }: Props) {
             </a>
           </div>
           <div className="demo-hero-art">
-            <ConceptArt theme={project.theme} />
+            <ConceptPhoto theme={project.theme} preload />
             <span>ESTÉTICA. INTENÇÃO. IDENTIDADE.</span>
           </div>
         </section>
@@ -89,7 +89,7 @@ export default async function ConceptPage({ params }: Props) {
             {project.items.map((item, index) => (
               <a key={item} className="demo-item" href={`#detalhe-${index}`}>
                 <div className={`demo-item-art item-${index}`}>
-                  <ConceptArt theme={project.theme} />
+                  <ConceptPhoto theme={project.theme} />
                   <span>0{index + 1}</span>
                 </div>
                 <h3>

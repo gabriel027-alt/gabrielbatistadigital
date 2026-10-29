@@ -1,70 +1,21 @@
-# Relatório da revisão
+# Revisão Atelier
 
-## Diagnóstico do ZIP recebido
+Base: ZIP gabrielbatistadigital-atual.zip enviado pelo usuário. A revisão preserva conteúdo, contato, tema persistente e a fotografia aprovada.
 
-A home continha hero com SVG de círculo e monograma, três serviços estáticos e cartões de portfólio sem previews. As três demos eram páginas de título e descrição. O tema alternava classes, mas a maior parte da interface tinha cores fixas. O rodapé incluía ano fixo e e-mail não confirmado. TypeScript estava com `strict: false`.
+## Corrigido
 
-## Resultado entregue
+O ZIP não incluía eslint.config.mjs, playwright.config.ts, next-env.d.ts e .gitignore. Esses arquivos foram restaurados para que os scripts e a entrega sejam executáveis. O README continha apenas o nome da agência e foi refeito. Blocos duplicados de CSS da hero foram substituídos por app/experience.css, importado pelo layout.
 
-A home agora contém hero com composição geométrica original, tecnologias, manifesto, cinco serviços em abas, portfólio com três previews e carrossel nativo, processo em sete etapas, apresentação do estúdio, integrações ilustrativas, diagnóstico funcional de três perguntas e rodapé com WhatsApp flutuante. As três demos receberam páginas completas, navegação e metadados próprios.
+A letra A usada como Claude foi substituída pelo SVG da marca. A máscara TypeScript e os demais símbolos foram obtidos da mesma coleção identificada. A posição dos logos é limitada à cena e não depende mais do scroll absoluto da página inteira.
 
-O layout permanece no servidor. Tema e controles interativos são componentes cliente. A preferência é inicializada antes da pintura e a fonte Manrope é servida localmente. O contato é exclusivamente `https://wa.me/5538998267717`.
+## Validação
 
-O código foi trabalhado em uma cópia separada. O ZIP original não foi modificado. Nenhum arquivo `.env.local` anexado anteriormente foi usado.
+Build de produção, lint sem avisos e TypeScript estrito. Dez testes Playwright em Chromium: navegação, acessibilidade WCAG automatizada nos dois temas e demos, breakpoints 360–1920px, contato exclusivo, serviços por teclado, diagnóstico, três conceitos, assets, controle de tema e pausa, posição dos ícones fora da área reservada ao rosto, capítulos de scroll e conteúdo móvel.
 
-## Verificações executadas
+Capturas de desktop e celular foram inspecionadas. Isso não representa validação em Safari, Firefox ou no Windows do usuário. Não houve medição Lighthouse nem promessa de nota de desempenho.
 
-- Instalação via lockfile (`npm ci`).
-- `npm run lint`: aprovado, sem avisos do código.
-- `npm run build`: aprovado, com geração da home, três demos e rotas de SEO.
-- `npm run typecheck`: aprovado com TypeScript estrito.
-- `npm run test:e2e`: **9 testes aprovados, 0 falhas, 0 ignorados** no Chromium do ambiente.
-- `npm audit --omit=dev`: nenhuma vulnerabilidade reportada nas dependências de produção na execução realizada.
-- Inspeção visual com capturas de desktop, celular e tema claro.
+## Assets
 
-Cobertura dos nove testes:
+O SHA-256 do retrato é cc668c5536f5c845dc8ce69deba627bd5fe305ceb0d006cbf96fb9db81f16a74, igual ao arquivo extraído do ZIP. As novas imagens dos conceitos são geradas e não documentam obras ou produtos reais.
 
-1. Todas as seções, âncoras existentes, três projetos e WhatsApp correto.
-2. Abas por teclado e controles do carrossel.
-3. Persistência do tema, menu móvel e ausência de overflow em 360, 390, 768, 1024, 1440 e 1920 px.
-4. Diagnóstico, recomendação, reinício e mensagem codificada para WhatsApp.
-5. Três demonstrações, navegação interna, retorno, noindex, larguras móveis e auditoria automática de acessibilidade.
-6. Auditoria automática da home nos temas claro e escuro e respeito a reduced motion.
-7. Robots, sitemap, imagem Open Graph, API opcional desativada, resposta 404 e cabeçalhos de segurança.
-
-8. Previews específicos por serviço, orientação responsiva das abas, navegação vertical, carregamento da imagem e acessibilidade dos cinco painéis.
-
-9. Cena visual correspondente ao tema, carregamento dos três previews verticais e desativação de movimento em reduced motion.
-
-Problemas de contraste encontrados durante os testes foram corrigidos antes da última execução aprovada.
-
-## Limites da validação
-
-- Testes realizados em Chromium/Linux; não foram executados em Safari, Firefox ou no computador Windows do usuário.
-- Auditoria automática de acessibilidade não equivale a certificação ou teste manual completo com leitor de tela.
-- Nenhuma nota Lighthouse ou resultado de Core Web Vitals de produção está sendo alegado.
-- Nenhuma chamada real ao WhatsApp foi enviada. O destino e os textos dos links foram verificados.
-- A integração OpenAI herdada foi preservada, mas não foi validada com credenciais reais. Fica fora da interface e desativada por padrão.
-- Domínio, DNS, publicação na Vercel e push no GitHub não foram executados.
-
-## Diferenças deliberadas de interação
-
-A composição da hero possui parallax discreto com ponteiro preciso, sem loop contínuo; o movimento fica desativado em touch e reduced motion. A faixa de tecnologias é estática. O carrossel permite arraste, swipe e navegação circular por controles; reprodução automática é opcional e não usa clones. Esses comportamentos preservam leitura, desempenho e controle do usuário.
-
-## Usar no Antigravity
-
-Extraia o ZIP em uma pasta nova e abra essa pasta como projeto. Peça ao agente que siga `INSTRUCOES-ANTIGRAVITY.md`. Não sobreponha esta entrega com o código antigo nem copie `.next` ou `node_modules` da versão anterior.
-
-## Refinamento da seção de serviços
-
-A seção foi reorganizada a partir da estrutura identificada no HTML de referência fornecido pelo usuário: seleção vertical no desktop e painel de apresentação amplo. As artes abstratas repetidas foram substituídas por capturas das próprias demos e interfaces ilustrativas distintas. O WhatsApp oficial e as três marcas conceituais foram preservados. O acesso ao site externo ao vivo retornou 403 neste ambiente; esta etapa não alega comparação visual pixel a pixel com a referência.
-
-As novas capturas WebP de Chronos Atelier e Vanguard foram produzidas a partir das páginas do próprio projeto. Nenhum screenshot, personagem ou asset da EvoPixel foi incorporado.
-
-## Revisão visual integral — direção Studio
-
-A revisão agora abrange hero, navegação, faixa de tecnologias, manifesto, serviços, portfólio, processo, sobre, integrações, diagnóstico e rodapé. A hero troca a escultura de cubo por uma cena autoral de estúdio com pessoa, mesa e monitor, gerada em duas versões de iluminação. Essa cena é ilustrativa e não representa fotografia de equipe ou escritório real.
-
-O portfólio mostra capturas verticais das páginas de demonstração, sem perder os três conceitos ou os destinos funcionais. O processo recebeu uma composição de sequência, o diagnóstico ganhou apresentação de dispositivo e o rodapé fecha a narrativa com tipografia editorial. As regras visuais obsoletas da hero anterior foram removidas.
-
-Os arquivos de prévia em `docs/preview/` foram capturados no build de produção. Imagens de carregamento tardio foram carregadas antes de fazer as capturas de página completa. Lint, TypeScript estrito, build e nove testes de navegador foram aprovados nesta revisão. O acesso ao site de referência ao vivo continuou bloqueado; não se alega reprodução pixel a pixel.
+O ambiente diurno/noturno usa luz e elementos de cenário por CSS sobre a foto aprovada. O gato é uma silhueta SVG. Não foi criada uma animação 3D do usuário nem sequência de rostos por IA.

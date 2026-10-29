@@ -1,7 +1,10 @@
-# Instrução para o agente no Antigravity
+# Abrir a revisão Atelier
 
-Este é o projeto revisado completo, não um conjunto de sugestões para o código antigo.
+1. Extraia o ZIP em uma pasta nova e abra como raiz do projeto a pasta que contém este arquivo, app/, components/, public/ e package.json.
+2. Leia README.md e AGENTS.md. Preserve projetos e arquivos locais anteriores.
+3. Instale com npm ci. Execute npm run lint, npm run build e npm run typecheck.
+4. Inicie uma única sessão persistente de desenvolvimento. Se já existir servidor de outra versão, identifique pasta e processo antes de alterar qualquer coisa; não encerre outros projetos.
+5. Valide por HTTP a porta realmente em uso. No navegador confira Dia/Noite, o retrato aprovado, logos sem cartões, pausa, laboratório de scroll e os três conceitos no desktop e no celular.
+6. A presença de texto no HTML ou HTTP 200 não comprova a composição visual. Informe limitações reais de navegador sem afirmar validação que não ocorreu.
 
-Abra esta pasta como a raiz do projeto e leia README.md e AGENTS.md. Instale com npm ci. Execute npm run lint, npm run build e npm run typecheck. Identifique qualquer servidor da versão anterior sem encerrar processos desconhecidos. Inicie UMA sessão persistente com npm run dev, usando uma porta disponível, e informe o endereço efetivo. Confirme a home e as três demonstrações no navegador. Preserve o WhatsApp 5538998267717. Não copie a versão antiga por cima desta, não reintroduza o e-mail fictício e não modifique o layout para adicionar useEffect. O tema já possui bootstrap e componente cliente separados. Não peça ao usuário para executar comandos que você pode executar. Não publique nem faça push sem solicitação.
-
-Se atualizar a partir do GitHub, use uma pasta temporária FORA desta raiz. Não crie ou mantenha clones aninhados dentro da aplicação. Não remova arquivos locais desconhecidos. O diretório temp_repo de tentativas anteriores é ignorado pelo TypeScript. Antes de indicar uma porta, faça uma requisição HTTP local e confirme resposta 200; preserve a única sessão que estiver funcionando.
+Não copie apenas a hero: `app/experience.css`, seus imports no layout, os componentes novos e todos os assets são partes da mesma entrega. Não crie temp_repo dentro do projeto. Não inclua arquivos .env nem credenciais. Não faça push, merge ou deploy sem solicitação do usuário.

@@ -85,6 +85,7 @@ export function Services() {
           </p>
         </div>
         <div
+          key={service.id}
           role="tabpanel"
           id="service-panel"
           aria-labelledby={`tab-${service.id}`}

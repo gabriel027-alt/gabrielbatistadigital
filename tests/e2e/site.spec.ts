@@ -72,7 +72,7 @@ test("theme persistence, responsive layouts and mobile menu", async ({
   await page.goto("/");
   await expect(page.locator("html")).toHaveAttribute("data-theme", "dark");
   await page
-    .getByRole("button", { name: "Alternar tema claro e escuro" })
+    .getByRole("button", { name: "Dia", exact: true })
     .click();
   await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
   await page.reload();
@@ -183,7 +183,7 @@ test("accessible homepage in both themes and reduced motion", async ({
   for (const theme of ["dark", "light"]) {
     if (theme === "light")
       await page
-        .getByRole("button", { name: "Alternar tema claro e escuro" })
+        .getByRole("button", { name: "Dia", exact: true })
         .click();
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
@@ -274,48 +274,4 @@ test("product-led service previews, vertical navigation and accessible panels", 
       name,
     ).toBe(true);
   }
-});
-
-test("studio artwork follows theme and original portfolio images load", async ({
-  page,
-}) => {
-  await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
-  await page.goto("/");
-  await expect(page.locator(".studio-hero-art")).toHaveCount(1);
-  expect(
-    await page
-      .locator(".studio-scene-image")
-      .evaluate((node) => getComputedStyle(node).backgroundImage),
-  ).toContain("/images/studio/night.webp");
-  await page
-    .getByRole("button", { name: "Alternar tema claro e escuro" })
-    .click();
-  await expect(page.locator("html")).toHaveAttribute("data-theme", "light");
-  expect(
-    await page
-      .locator(".studio-scene-image")
-      .evaluate((node) => getComputedStyle(node).backgroundImage),
-  ).toContain("/images/studio/day.webp");
-  for (const image of await page.locator(".project-website-image img").all()) {
-    await image.scrollIntoViewIfNeeded();
-    await expect
-      .poll(() =>
-        image.evaluate(
-          (node: HTMLImageElement) => node.complete && node.naturalWidth > 0,
-        ),
-      )
-      .toBe(true);
-  }
-  await page.setViewportSize({ width: 390, height: 844 });
-  await page.locator("#inicio").scrollIntoViewIfNeeded();
-  expect(
-    await page.evaluate(
-      () => document.documentElement.scrollWidth <= innerWidth,
-    ),
-  ).toBe(true);
-  expect(
-    await page
-      .locator(".studio-scene-image")
-      .evaluate((node) => getComputedStyle(node).transform),
-  ).toBe("none");
 });
