@@ -102,6 +102,8 @@ export function Services() {
           <div className="service-preview-enter" key={service.id}>
             <ServicePreview id={service.id} />
           </div>
+          <dl className="service-scope"><div><dt>Quando faz sentido</dt><dd>{service.fit}</dd></div><div><dt>O que construímos</dt><dd>{service.delivery}</dd></div></dl>
+          <p className="service-boundary">{service.limit}</p>
           <div className="service-product-bottom">
             <ul className="service-product-features">
               {service.features.map((feature) => (

@@ -25,7 +25,7 @@ export function Contact() {
     <section id="contato" className="contact-section">
       <div className="shell contact-layout">
         <div className="contact-copy">
-          <SectionLabel number="07">
+          <SectionLabel number="08">
             O PRÓXIMO CAPÍTULO COMEÇA AQUI
           </SectionLabel>
           <h2>

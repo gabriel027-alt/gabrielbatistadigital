@@ -1,3 +1,4 @@
+import { FAQ } from "@/components/sections/FAQ";
 import { ExperienceLab } from "@/components/ExperienceLab";
 import { ScrollExperience } from "@/components/ScrollExperience";
 import { Header } from "@/components/Header";
@@ -29,6 +30,7 @@ export default function HomePage() {
         <Process />
         <About />
         <Integrations />
+        <FAQ />
         <Contact />
       </main>
       <Footer />

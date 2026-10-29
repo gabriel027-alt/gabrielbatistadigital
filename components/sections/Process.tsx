@@ -25,7 +25,7 @@ export function Process() {
               <Arrow size={14} />
             </div>
             <h3>{step.title}</h3>
-            <p>{step.text}</p>
+            <div className="process-delivery"><p>{step.text}</p><span>ENTREGA / {step.output}</span></div>
           </li>
         ))}
       </ol>

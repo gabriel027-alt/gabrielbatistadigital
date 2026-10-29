@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { services } from "@/lib/content";
+import { services, previewVersion } from "@/lib/content";
 type ServiceId = (typeof services)[number]["id"];
 export function ServicePreview({ id }: { id: ServiceId }) {
   if (id === "landing" || id === "sites") {
@@ -22,7 +22,7 @@ export function ServicePreview({ id }: { id: ServiceId }) {
         <div className="product-browser-image">
           <Image
             key={id}
-            src={`/images/services/${chronos ? "chronos-atelier" : "vanguard"}.webp`}
+            src={`/images/services/${previewVersion}/${chronos ? "chronos-atelier" : "vanguard"}.webp`}
             alt={
               chronos
                 ? "Demonstração autoral Chronos Atelier, com tipografia editorial e composição de relógio"

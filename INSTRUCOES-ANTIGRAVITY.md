@@ -9,4 +9,6 @@
 
 Não copie apenas a hero: `app/experience.css`, seus imports no layout, os componentes novos e todos os assets são partes da mesma entrega. Não crie temp_repo dentro do projeto. Não inclua arquivos .env nem credenciais. Não faça push, merge ou deploy sem solicitação do usuário.
 
-Identificadores desta revisão: `.cinematic-hero`, `.cinema-front`, `.cinema-side`, `.case-browser` e `components/ConceptExplorer.tsx`. Não use gato ou luminária em CSS, removidos por decisão do usuário.
+Identificadores desta revisão: `.cinematic-hero`, `.cinema-front`, `.cinema-sequence`, `.case-browser` e `components/ConceptExplorer.tsx`. Não use gato ou luminária em CSS, removidos por decisão do usuário.
+
+Revisão de sequência: HeroScene.tsx usa um único canvas `.cinema-sequence`, com nove quadros em `public/images/hero/frames/`. Não reintroduza `.cinema-side` nem opacidade misturando rostos. Inclua `lib/concept-content.ts`, FAQ e todas as imagens novas ao integrar.

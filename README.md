@@ -24,21 +24,26 @@ npm run typecheck
 npm run start
 ```
 
-## Direção visual
+## Direção visual e conteúdo
 
-- Hero com abertura frontal aprovada provisoriamente e enquadramento lateral aprovado. O arquivo lateral `public/images/hero/gabriel.png` foi preservado; o frontal foi exportado em WebP de uma imagem gerada e aprovada na conversa.
-- A passagem acompanha um trecho curto de scroll nativo com fixação da cena. É uma transição editorial entre duas imagens, não uma rotação 3D ou vídeo do usuário. Não há frames intermediários nem alegação de continuidade anatômica.
-- Temas Dia/Noite alteram paleta, gradação e composição de luz. A luminária gráfica, a janela e o gato da revisão anterior foram removidos. A luminária existente dentro da fotografia não é um objeto animável independente.
-- Logos oficiais em uma faixa própria, sem cartões e fora do rosto. Fontes em `public/images/brands/README.md`.
-- Portfólio com capturas reais das páginas conceituais renderizadas em desktop e celular. As capturas percorrem a página no hover/foco; abrir a demonstração leva ao site navegável.
-- Três conceitos fictícios, cada um com direção visual, navegação, imagens e um painel explorável por abas/teclado. Chronos explora detalhes da peça, Vanguard apresenta luz/matéria/paisagem e Aura apresenta princípios de cuidado. Nenhum deles representa uma loja ou clínica real.
-- Laboratório de scroll: wireframe → código → interface. Em celular e movimento reduzido, apresenta o resultado sem fixação longa.
-- Pausa global respeitada pela hero e pelo carrossel; suporte a prefers-reduced-motion. Sem scripts de terceiros para controlar a rolagem.
+- Hero com nove quadros de abertura frontal a lateral, ligados ao scroll em um canvas opaco. Cada atualização desenha apenas uma imagem, eliminando o rosto duplicado causado pelo antigo dissolve.
+- Os quadros intermediários são gerados a partir das imagens aprovadas, não extraídos de filmagem ou 3D. Variações entre poses podem ser percebidas; não há promessa de reconstrução física exata.
+- Versões de 1280×720 para desktop e 768×432 para celular. A sequência completa nas duas variantes soma aproximadamente 946 KB. Pausa congela a pose; movimento reduzido/economia de dados mantêm a abertura estática. Sem JS/canvas, a imagem HTML inicial permanece visível.
+- O retrato lateral aprovado `public/images/hero/gabriel.png` continua intacto. Gato, luminária e janela artificiais não foram reintroduzidos.
+- Dia/Noite altera paleta e gradação; a fotografia não contém objetos de iluminação animáveis separados.
+- Portfólio preserva os mockups de desktop/celular e agora mostra capturas atualizadas das demonstrações.
+- Chronos: três peças com imagens diferentes, materiais e descrições próprias. Vanguard: três estudos de programa, materialidade e partido distintos. Aura: três etapas de uma jornada de contato, sem diagnóstico, coleta de saúde ou promessa médica.
+- Seis novas imagens editoriais, além das três existentes. Nenhuma representa um cliente, produto à venda ou obra executada. Cada demonstração contém três seleções que atualizam imagem, texto e ficha.
+- Serviços explicam indicação, entrega e limites. O processo mostra o resultado esperado de cada etapa; FAQ aborda conteúdo, edição, hospedagem, SEO, escopo e natureza dos protótipos.
+- Laboratório de scroll, navegação nativa, suporte a teclado, temas e pausa global preservados.
 
 ## Arquivos principais
 
 - `app/experience.css`: cena, controle de temas, laboratório e apresentação dos conceitos.
-- `components/HeroScene.tsx`: retrato, elementos de cenário e ícones.
+- `components/HeroScene.tsx`: carregamento, desenho opaco e controles da sequência.
+- `public/images/hero/frames/`: nove quadros e suas versões móveis.
+- `lib/concept-content.ts`: fichas e conteúdo próprio dos nove itens conceituais.
+- `components/sections/FAQ.tsx`: dúvidas antes do contato.
 - `components/ThemeToggle.tsx`: seleção explícita Dia/Noite.
 - `components/ScrollExperience.tsx`: progresso de leitura, capítulos e pausa.
 - `components/ExperienceLab.tsx`: transição de wireframe para interface.

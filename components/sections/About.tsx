@@ -18,14 +18,15 @@ export function About() {
             revela uma <span className="serif">intenção.</span>
           </h2>
           <p>
-            Gabriel Batista Digital é um estúdio independente que une pensamento
-            estratégico e execução cuidadosa. Acreditamos que tecnologia bem
-            aplicada deve ser sentida na experiência, não percebida como uma
-            barreira.
+            Gabriel Batista Digital reúne direção visual e engenharia web em
+            um mesmo processo. Antes da interface, vem o entendimento do negócio:
+            o que precisa ser comunicado, quem precisa encontrar essa informação
+            e qual ação a experiência deve facilitar.
           </p>
           <p>
-            Menos excessos. Mais clareza. Uma presença que tem a sua identidade,
-            do primeiro olhar à última linha de código.
+            O trabalho vai da organização do conteúdo ao desenvolvimento e à
+            validação. Escopo, integrações, gestão de conteúdo e publicação são
+            decisões explícitas do projeto, não detalhes deixados para o final.
           </p>
           <a
             className="text-link"

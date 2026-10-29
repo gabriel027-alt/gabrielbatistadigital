@@ -1,3 +1,4 @@
+import { conceptDetails } from "@/lib/concept-content";
 import { ConceptExplorer } from "@/components/ConceptExplorer";
 import type { Metadata } from "next";
 import Link from "next/link";
@@ -36,6 +37,7 @@ export default async function ConceptPage({ params }: Props) {
   const { slug } = await params;
   const project = concepts.find((item) => item.slug === slug);
   if (!project) notFound();
+  const details = conceptDetails[project.theme];
   return (
     <div className={`concept-demo ${project.theme}`}>
       <a className="skip-link" href="#demo-main">
@@ -73,7 +75,7 @@ export default async function ConceptPage({ params }: Props) {
             <h1>{project.headline}</h1>
             <p>{project.intro}</p>
             <a className="demo-button" href="#colecao">
-              Descobrir o conceito <ArrowDown size={15} />
+              {project.theme === "chronos" ? "Explorar a coleção" : project.theme === "vanguard" ? "Ver os projetos" : "Entender a jornada"} <ArrowDown size={15} />
             </a>
           </div>
           <div className="demo-hero-art">
@@ -84,20 +86,20 @@ export default async function ConceptPage({ params }: Props) {
         <section id="colecao" className="demo-collection">
           <div className="demo-section-heading">
             <p className="eyebrow">01 / EXPLORAR</p>
-            <h2>{project.collection}</h2>
+            <h2>{details.section}</h2>
           </div>
           <div className="demo-item-grid">
-            {project.items.map((item, index) => (
-              <a key={item} className="demo-item" href={`#detalhe-${index}`}>
+            {details.items.map((item, index) => (
+              <a key={item.title} className="demo-item" href={`#detalhe-${index}`}>
                 <div className={`demo-item-art item-${index}`}>
-                  <ConceptPhoto theme={project.theme} />
+                  <ConceptPhoto theme={project.theme} image={item.image} alt={item.subtitle} />
                   <span>0{index + 1}</span>
                 </div>
                 <h3>
-                  {item.split(" · ")[0]}
+                  {item.title}
                   <ArrowUpRight size={17} />
                 </h3>
-                <p>{item.split(" · ")[1]}</p>
+                <p>{item.subtitle}</p>
               </a>
             ))}
           </div>
@@ -111,17 +113,16 @@ export default async function ConceptPage({ params }: Props) {
           </div>
         </section>
         <section className="demo-details" aria-label="Detalhes do conceito">
-          {project.items.map((item, index) => (
-            <article id={`detalhe-${index}`} key={item}>
+          {details.items.map((item, index) => (
+            <article id={`detalhe-${index}`} key={item.title}>
               <span>0{index + 1}</span>
-              <h3>{item.split(" · ")[0]}</h3>
+              <h3>{item.title}</h3>
               <p>
-                {item.split(" · ")[1]}. Um estudo de composição, proporção e
-                identidade visual que materializa a direção criativa de{" "}
-                {project.name}.
+                {item.detail}
               </p>
+              <p className="demo-detail-note">{item.use}</p>
               <a href="#demo-contato">
-                Quero esta direção para minha marca <ArrowUpRight size={16} />
+                {details.inquiry} <ArrowUpRight size={16} />
               </a>
             </article>
           ))}

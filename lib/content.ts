@@ -1,6 +1,10 @@
+export const previewVersion = "sequence-3";
 export const services = [
   {
     id: "landing",
+    fit: "Para lançar uma oferta, campanha ou serviço específico.",
+    delivery: "Estrutura da oferta, conteúdo organizado, interface responsiva e caminho até o contato.",
+    limit: "Integrações, formulários e mensuração são definidos no escopo.",
     name: "Landing Pages",
     category: "01 / CONVERSÃO COM INTENÇÃO",
     title: "Uma oferta clara.\nO próximo passo, evidente.",
@@ -15,6 +19,9 @@ export const services = [
   },
   {
     id: "sites",
+    fit: "Para empresas que precisam apresentar serviços, equipe e diferenciais com clareza.",
+    delivery: "Mapa de páginas, navegação, componentes reutilizáveis e estrutura técnica indexável.",
+    limit: "Quantidade de páginas e gestão de conteúdo são combinadas antes do desenvolvimento.",
     name: "Sites Institucionais",
     category: "02 / PRESENÇA COM IDENTIDADE",
     title: "Sua marca, traduzida\nem experiência.",
@@ -29,6 +36,9 @@ export const services = [
   },
   {
     id: "sistemas",
+    fit: "Para operações que dependem de planilhas, tarefas repetidas ou ferramentas desconectadas.",
+    delivery: "Mapeamento do fluxo, interface da operação e conexões com os serviços acordados.",
+    limit: "Cada integração depende da API, das permissões e das regras do sistema de origem.",
     name: "Sistemas & Integrações",
     category: "03 / ENGENHARIA SOB MEDIDA",
     title: "Menos atrito.\nMais possibilidades.",
@@ -43,6 +53,9 @@ export const services = [
   },
   {
     id: "seo",
+    fit: "Para negócios com uma região de atendimento ou presença física definida.",
+    delivery: "Revisão técnica, organização de informações locais e conteúdo alinhado às buscas relevantes.",
+    limit: "SEO não garante posição. Perfil da Empresa e outras plataformas exigem acesso autorizado.",
     name: "SEO Local",
     category: "04 / ENCONTROS QUE IMPORTAM",
     title: "Seja encontrado\npor quem está perto.",
@@ -57,6 +70,9 @@ export const services = [
   },
   {
     id: "performance",
+    fit: "Para sites existentes que carregam mal, dificultam a navegação ou perderam consistência.",
+    delivery: "Diagnóstico priorizado, correções do escopo e comparação das medições antes e depois.",
+    limit: "As metas dependem da base atual, das ferramentas externas e do ambiente de hospedagem.",
     name: "Performance & Evolução",
     category: "05 / EXCELÊNCIA CONTÍNUA",
     title: "O próximo nível\nestá nos detalhes.",
@@ -80,7 +96,7 @@ export const concepts = [
       "O tempo como matéria-prima. Uma experiência editorial para o universo da alta relojoaria.",
     headline: "O tempo é a mais rara das matérias.",
     intro:
-      "Uma interpretação digital da alta relojoaria. Silêncio visual, proporções precisas e detalhes que merecem um olhar mais atento.",
+      "Três peças conceituais, três combinações de materiais. Explore mostradores, acabamentos e os detalhes que definem cada modelo.",
     collection: "Estudos do tempo",
     items: [
       "Épure · A essência do instante",
@@ -101,7 +117,7 @@ export const concepts = [
       "Luz, matéria e espaço negativo. Uma presença digital desenhada para o essencial.",
     headline: "O essencial também ocupa espaço.",
     intro:
-      "Uma exploração de arquitetura através da luz, do vazio e da matéria. Espaços digitais que deixam o olhar respirar.",
+      "Residência, pavilhão e refúgio. Conheça três estudos que partem do lugar para organizar luz, matéria e formas de habitar.",
     collection: "Estudos de espaço",
     items: [
       "Casa Horizonte · Luz e permanência",
@@ -122,7 +138,7 @@ export const concepts = [
       "Precisão e acolhimento. Uma direção visual delicada para uma jornada de cuidado singular.",
     headline: "A beleza de ser inteiramente você.",
     intro:
-      "Um estudo de presença digital para o universo da estética. Delicadeza visual, informação clara e espaço para uma conexão mais humana.",
+      "Uma jornada que começa na conversa e dá espaço a dúvidas, expectativas e decisões informadas. Conheça as etapas deste conceito de atendimento.",
     collection: "Pilares da experiência",
     items: [
       "Escuta · Cada história é singular",
@@ -138,30 +154,37 @@ export const concepts = [
 export const processSteps = [
   {
     title: "Entender",
+    output: "Briefing com objetivo, público e prioridades.",
     text: "Conhecer seu negócio, seu público e o que precisa mudar.",
   },
   {
     title: "Estruturar",
+    output: "Mapa do conteúdo e dos principais caminhos.",
     text: "Organizar prioridades, conteúdo e a jornada de quem chega.",
   },
   {
     title: "Criar",
+    output: "Direção visual e telas para revisão.",
     text: "Dar forma à estratégia com identidade e direção visual.",
   },
   {
     title: "Desenvolver",
+    output: "Interface funcional e componentes organizados.",
     text: "Transformar o design em código preciso e responsivo.",
   },
   {
     title: "Validar",
+    output: "Revisão de navegação, telas e requisitos.",
     text: "Testar navegação, acessibilidade e comportamento real.",
   },
   {
     title: "Publicar",
+    output: "Configuração da entrega e orientações de acesso.",
     text: "Preparar a entrega, revisar os detalhes e colocar no ar.",
   },
   {
     title: "Evoluir",
+    output: "Lista de melhorias e próximos ciclos possíveis.",
     text: "Observar, aprender e aprimorar o que fizer sentido.",
   },
 ] as const;

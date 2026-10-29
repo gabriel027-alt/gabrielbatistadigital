@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
-import { concepts } from "@/lib/content";
+import { concepts, previewVersion } from "@/lib/content";
 import Image from "next/image";
 import { Arrow, Chevron } from "../ui/icons";
 import { SectionLabel } from "../ui/shared";
@@ -195,9 +195,9 @@ export function Portfolio() {
                 <div className="project-preview">
                   <div className="case-browser">
                     <div className="case-browser-toolbar"><i aria-hidden="true"><b /><b /><b /></i><span>{project.slug} / demonstração</span><Arrow size={9} /></div>
-                    <div className="case-scroll"><Image className="project-cover" src={`/images/screens/${project.slug}-desktop.webp`} alt={`Captura da página completa do site conceitual ${project.name}`} width={1200} height={2200} sizes="(max-width: 900px) 80vw, 50vw" /></div>
+                    <div className="case-scroll"><Image className="project-cover" src={`/images/screens/${previewVersion}/${project.slug}-desktop.webp`} alt={`Captura da página completa do site conceitual ${project.name}`} width={1200} height={2200} sizes="(max-width: 900px) 80vw, 50vw" /></div>
                   </div>
-                  <div className="case-phone" aria-hidden="true"><Image src={`/images/screens/${project.slug}-mobile.webp`} alt="" width={390} height={1300} sizes="(max-width: 600px) 22vw, 12vw" /></div>
+                  <div className="case-phone" aria-hidden="true"><Image src={`/images/screens/${previewVersion}/${project.slug}-mobile.webp`} alt="" width={390} height={1300} sizes="(max-width: 600px) 22vw, 12vw" /></div>
                 </div>
                 <div className="project-info">
                   <span className="case-number">0{index + 1}</span>
