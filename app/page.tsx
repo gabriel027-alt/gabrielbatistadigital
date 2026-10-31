@@ -1,3 +1,4 @@
+import { NicheGallery } from "@/components/sections/NicheGallery";
 import { FAQ } from "@/components/sections/FAQ";
 import { ExperienceLab } from "@/components/ExperienceLab";
 import { ScrollExperience } from "@/components/ScrollExperience";
@@ -27,6 +28,7 @@ export default function HomePage() {
         <ExperienceLab />
         <Services />
         <Portfolio />
+        <NicheGallery />
         <Process />
         <About />
         <Integrations />

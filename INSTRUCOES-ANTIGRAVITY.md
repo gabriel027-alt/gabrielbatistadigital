@@ -12,3 +12,9 @@ Não copie apenas a hero: `app/experience.css`, seus imports no layout, os compo
 Identificadores desta revisão: `.cinematic-hero`, `.cinema-front`, `.cinema-sequence`, `.case-browser` e `components/ConceptExplorer.tsx`. Não use gato ou luminária em CSS, removidos por decisão do usuário.
 
 Revisão de sequência: HeroScene.tsx usa um único canvas `.cinema-sequence`, com nove quadros em `public/images/hero/frames/`. Não reintroduza `.cinema-side` nem opacidade misturando rostos. Inclua `lib/concept-content.ts`, FAQ e todas as imagens novas ao integrar.
+
+## Ampliação da galeria
+
+Esta revisão contém 20 protótipos: três conceitos existentes e 17 modelos novos. Confirme `app/models.css`, `lib/models.ts`, `components/sections/NicheGallery.tsx`, `components/ModelInteraction.tsx`, `app/modelos/[slug]/page.tsx` e a pasta inteira `public/images/models/`, incluindo `previews/`. Não substitua imagens da hero por imagens dos modelos.
+
+Valide os filtros em #modelos, rolagem interna das capturas, abertura das 17 rotas, escolhas de conteúdo, cálculo de consumo, FAQ, teclado e viewport de 360px. Não apresente as marcas fictícias como clientes reais. O único contato é o desenvolvedor Gabriel, em 5538998267717.

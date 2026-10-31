@@ -67,3 +67,18 @@ A API do assistente antigo permanece desativada por padrão. Não é necessária
 ## Instalar a revisão no Antigravity
 
 Veja `INSTRUCOES-ANTIGRAVITY.md`. Prefira abrir o ZIP completo em uma pasta nova: aplicar apenas Hero.tsx deixa os componentes e estilos inconsistentes.
+
+## Galeria de 20 protótipos
+
+Os três conceitos originais continuam em `/conceitos/`. A seção `#modelos` acrescenta 17 páginas completas em `/modelos/[slug]`: advocacia patrimonial, direito do agro, psicologia, odontologia, imóveis, energia solar, dermatologia, medicina, contabilidade, consultoria, seguros, hotelaria, gastronomia, interiores, cibersegurança, educação executiva e logística.
+
+A apresentação usa capturas reais das páginas em janelas verticais roláveis, com filtros de setor e navegação horizontal. Cada modelo tem imagem própria, conteúdo específico, orientação interativa, FAQ e contato contextual com Gabriel. Energia inclui cálculo local de consumo diurno, sem dimensionamento ou promessa de economia. Os modelos usam seis direções visuais compartilhadas; não são 17 sistemas visuais inteiramente independentes.
+
+- `lib/models.ts`: marcas, conteúdo e orientações por nicho.
+- `app/modelos/[slug]/page.tsx`: rotas estáticas, com noindex e aviso de ficção.
+- `components/sections/NicheGallery.tsx`: filtros e prévias roláveis.
+- `components/ModelInteraction.tsx`: escolhas de conteúdo e cálculo local.
+- `app/models.css`: estilos isolados da galeria e das seis direções visuais.
+- `public/images/models/`: 17 fotografias geradas e capturas da galeria.
+
+Nenhum modelo representa uma empresa contratante, atendimento real, estoque, reserva ou resultado comercial. As chamadas finais são explicitamente para contratar desenvolvimento com Gabriel. Nenhum dado clínico, financeiro ou credencial é coletado. Retratos, quadros e código da hero permanecem inalterados nesta ampliação.

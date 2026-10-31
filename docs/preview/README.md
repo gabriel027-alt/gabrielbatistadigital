@@ -6,3 +6,7 @@
 - [Chronos](chronos.webp), [Vanguard](vanguard.webp), [Aura](aura.webp), [detalhe interativo Vanguard](vanguard-detail.webp).
 
 Os intermediários da hero são imagens geradas; pequenas diferenças entre poses permanecem possíveis. Não há mistura de rostos: um único quadro opaco é desenhado por vez.
+
+## Galeria de nichos
+
+[Dia](gallery-niches.webp) · [Noite](gallery-niches-dark.webp) · [Celular](gallery-niches-mobile.webp). São 17 novos modelos, além dos três conceitos anteriores. As capturas completas usadas na galeria estão em `public/images/models/previews/`.

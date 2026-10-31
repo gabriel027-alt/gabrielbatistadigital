@@ -13,7 +13,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Leia README.md antes de alterar a estrutura. Esta pasta já contém a implementação revisada.
 - Use a estrutura app/ existente; não crie src/app em paralelo.
 - Contato exclusivamente pelo número 5538998267717, centralizado em lib/site.ts.
-- Preserve exatamente três conceitos identificados como marcas fictícias.
+- Preserve os três conceitos existentes. A galeria /modelos adiciona 17 demonstrações de nichos, autorizadas pelo usuário, todas identificadas como marcas fictícias.
 - O layout é um Server Component; interações ficam em componentes cliente pequenos.
 - Tema usa data-theme e tokens de app/globals.css. Não volte a espalhar cores fixas da agência pelo JSX.
 - O assistente antigo permanece desativado por padrão. Não precisa de chaves para executar a landing page.
