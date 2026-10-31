@@ -10,3 +10,7 @@ Os intermediários da hero são imagens geradas; pequenas diferenças entre pose
 ## Galeria de nichos
 
 [Dia](gallery-niches.webp) · [Noite](gallery-niches-dark.webp) · [Celular](gallery-niches-mobile.webp). São 17 novos modelos, além dos três conceitos anteriores. As capturas completas usadas na galeria estão em `public/images/models/previews/`.
+
+## Revisão com presença humana
+
+As capturas da galeria foram substituídas pela revisão com pessoas, símbolos e narrativa de marca. [Jurídico](brand-patrimonio.webp) · [Psicologia](brand-psicologia.webp) · [Agro](brand-agro.webp) · [Energia](brand-energia.webp). As marcas e personagens são fictícios; a hero pessoal não foi alterada.

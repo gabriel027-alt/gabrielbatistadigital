@@ -1,71 +1,71 @@
-// Dimensions of captured pages, used to reserve image layout before loading.
+// Dimensions of the current branded page captures.
 export const modelPreviewSizes: Record<string, { width: number; height: number }> = {
   "agro": {
     "width": 720,
-    "height": 1996
+    "height": 2382
   },
   "ciberseguranca": {
     "width": 720,
-    "height": 2049
+    "height": 2447
   },
   "consultoria": {
     "width": 720,
-    "height": 2032
+    "height": 2395
   },
   "contabilidade": {
     "width": 720,
-    "height": 2026
+    "height": 2393
   },
   "dermatologia": {
     "width": 720,
-    "height": 2045
+    "height": 2415
   },
   "educacao": {
     "width": 720,
-    "height": 1996
+    "height": 2382
   },
   "energia": {
     "width": 720,
-    "height": 2053
+    "height": 2406
   },
   "gastronomia": {
     "width": 720,
-    "height": 2024
+    "height": 2394
   },
   "hotelaria": {
     "width": 720,
-    "height": 2027
+    "height": 2366
   },
   "imoveis": {
     "width": 720,
-    "height": 2065
+    "height": 2614
   },
   "interiores": {
     "width": 720,
-    "height": 2065
+    "height": 2575
   },
   "logistica": {
     "width": 720,
-    "height": 2029
+    "height": 2392
   },
   "medicina": {
     "width": 720,
-    "height": 2050
+    "height": 2384
   },
   "odontologia": {
     "width": 720,
-    "height": 2040
+    "height": 2397
   },
   "patrimonio": {
     "width": 720,
-    "height": 2029
+    "height": 2396
   },
   "psicologia": {
     "width": 720,
-    "height": 2043
+    "height": 2411
   },
   "seguros": {
     "width": 720,
-    "height": 1998
+    "height": 2366
   }
 };

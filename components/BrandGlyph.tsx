@@ -1,0 +1,32 @@
+const drawings: Record<string, string[]> = {
+  columns:["M6 37V17m9 20V17m9 20V17m9 20V17M3 40h34M3 13 20 5l17 8Z"],
+  leaf:["M8 34C0 13 18 4 35 5c1 18-7 31-27 29Z","M8 34 29 12M16 26l-1-10m1 10 10 1"],
+  dialogue:["M5 8h30v21H18L8 36v-7H5Z","M12 15h16M12 22h10"],
+  tooth:["M20 10C8 0 3 9 6 20c2 6 3 17 7 17 4 0 2-12 7-12s3 12 7 12c4 0 5-11 7-17 3-11-2-20-14-10Z"],
+  horizon:["M3 27h34M8 22a12 12 0 0 1 24 0M3 33h34M20 3v4M4 10l3 3M36 10l-3 3"],
+  solar:["M8 21h25l4 15H3ZM20 21v15M6 28h29M20 9v-5M8 12l-3-3M32 12l3-3M14 17a7 7 0 0 1 12 0"],
+  circle:["M20 4a16 16 0 1 1-11 4M20 11a9 9 0 1 1-6 3M20 18a2 2 0 1 1-1 0"],
+  pulse:["M2 21h9l5-12 7 23 5-11h10"],
+  ledger:["M8 4h25v32H8ZM14 4v32M19 12h8M19 19h8M19 26h8"],
+  compass:["M20 3v34M3 20h34M12 28l5-11 11-5-5 11Z"],
+  shield:["M20 3 5 9v11c0 9 15 17 15 17s15-8 15-17V9ZM12 20l5 5 11-12"],
+  sun:["M20 11a9 9 0 1 0 0 18 9 9 0 0 0 0-18ZM20 1v5M20 34v5M1 20h5M34 20h5M7 7l4 4M29 29l4 4M7 33l4-4M29 11l4-4"],
+  plate:["M20 8a12 12 0 1 1 0 24 12 12 0 0 1 0-24ZM20 13a7 7 0 1 1 0 14 7 7 0 0 1 0-14M3 8v11m-2-11v7h4V8M3 19v16M37 8v27m0-27c-5 0-5 12 0 12"],
+  arch:["M7 36V18a13 13 0 0 1 26 0v18M14 36V18a6 6 0 0 1 12 0v18M3 36h34"],
+  network:["M17 17h6v6h-6ZM3 3h7v7H3ZM30 3h7v7h-7ZM3 30h7v7H3ZM30 30h7v7h-7ZM10 10l7 7m6 6 7 7M30 10l-7 7m-6 6-7 7"],
+  branches:["M20 37V7M9 11l11-7 11 7M8 21l12 8 12-8M8 11v10m24-10v10"],
+  path:["M6 32h21a7 7 0 0 0 0-14H13a7 7 0 0 1 0-14h20M27 1l6 3-6 4M6 28v8"],
+  document:["M9 3h16l8 8v26H9ZM25 3v8h8M15 18h12M15 24h12M15 30h8"],
+  balance:["M20 5v31M10 36h20M6 12h28M10 12 4 25h12ZM30 12l-6 13h12Z"],
+  home:["M3 19 20 5l17 14M8 16v21h24V16M16 37V25h8v12"],
+  grid:["M5 5h12v12H5ZM23 5h12v12H23ZM5 23h12v12H5ZM23 23h12v12H23Z"],
+  chart:["M6 4v31h30M12 27l8-9 6 4 9-14M28 8h7v7"],
+  signal:["M20 29a3 3 0 1 1 0 6 3 3 0 0 1 0-6M10 24a14 14 0 0 1 20 0M4 17a23 23 0 0 1 32 0M14 28a8 8 0 0 1 12 0"],
+  layers:["M20 3 3 12l17 9 17-9ZM3 20l17 9 17-9M3 28l17 9 17-9"],
+  spark:["m20 3 5 12 12 5-12 5-5 12-5-12-12-5 12-5Z"],
+  people:["M14 5a6 6 0 1 1 0 12 6 6 0 0 1 0-12ZM3 35v-5a11 11 0 0 1 22 0v5M28 7a6 6 0 0 1 0 12M30 24a9 9 0 0 1 7 9v2"],
+  truck:["M3 10h22v21H3ZM25 18h7l5 7v6H25M8 29a4 4 0 1 0 0 8 4 4 0 0 0 0-8M30 29a4 4 0 1 0 0 8 4 4 0 0 0 0-8"],
+};
+export function BrandGlyph({ kind, className = "" }: { kind: string; className?: string }) {
+  return <svg className={className} width="40" height="40" viewBox="0 0 40 40" fill="none" stroke="currentColor" strokeWidth="1.25" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">{(drawings[kind] || drawings.circle).map((d,i) => <path key={i} d={d}/>)}</svg>;
+}

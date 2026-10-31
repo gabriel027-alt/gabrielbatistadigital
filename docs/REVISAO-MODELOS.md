@@ -1,5 +1,7 @@
 # Galeria ampliada: 20 protótipos
 
+Registro da primeira ampliação. A revisão visual posterior está em [REVISAO-IDENTIDADES.md](REVISAO-IDENTIDADES.md).
+
 ## Escopo
 
 A solicitação ampliou o portfólio para 20 protótipos: Chronos, Vanguard e Aura preservados, mais 17 modelos de nicho. A hero permanece sem alterações enquanto o usuário prepara o quinto retrato e a filmagem.

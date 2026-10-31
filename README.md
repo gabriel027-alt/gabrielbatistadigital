@@ -79,6 +79,12 @@ A apresentação usa capturas reais das páginas em janelas verticais roláveis,
 - `components/sections/NicheGallery.tsx`: filtros e prévias roláveis.
 - `components/ModelInteraction.tsx`: escolhas de conteúdo e cálculo local.
 - `app/models.css`: estilos isolados da galeria e das seis direções visuais.
-- `public/images/models/`: 17 fotografias geradas e capturas da galeria.
+- `public/images/models/`: 17 cenas humanas, 17 fotografias de ambientes e capturas da galeria.
 
 Nenhum modelo representa uma empresa contratante, atendimento real, estoque, reserva ou resultado comercial. As chamadas finais são explicitamente para contratar desenvolvimento com Gabriel. Nenhum dado clínico, financeiro ou credencial é coletado. Retratos, quadros e código da hero permanecem inalterados nesta ampliação.
+
+### Revisão de presença e identidade
+
+Os 17 modelos agora têm cenas com pessoas fictícias relacionadas à atividade, além das imagens de ambientes. A nova camada de marca em `lib/model-brands.ts` define símbolo, território verbal, princípios, narrativa, assinatura e iconografia de serviços. `components/BrandGlyph.tsx` fornece os desenhos vetoriais. Cada página inclui uma seção editorial de marca e ajustes próprios de paleta e composição via `data-brand`.
+
+As cenas humanas estão em `public/images/models/people/`. As capturas atualizadas ficam em `public/images/models/previews-branded/`; não use as capturas da revisão anterior. Os personagens são gerados e não representam uma equipe ou profissionais contratados. A arquitetura de componentes continua compartilhada; a revisão não significa 17 sistemas de design independentes nem identidades registradas.

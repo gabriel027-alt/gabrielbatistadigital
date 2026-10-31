@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
+import { modelBrands } from "../../lib/model-brands";
 import { nicheModels } from "../../lib/models";
 test("17 new models plus original three, gallery filters and real previews", async ({ page }) => {
   await page.goto("/");
@@ -31,7 +32,14 @@ for (const model of nicheModels) {
     expect(response?.status()).toBe(200);
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(model.headline);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
+    await expect(page.locator('meta[property="og:image"]').first()).toHaveAttribute("content", new RegExp(`/people/${model.slug}\\.webp`));
     await expect(page.locator(".model-hero-image")).toBeVisible();
+    await expect(page.locator(".model-hero-image")).toHaveAttribute("src", /people/);
+    await expect(page.locator(".brand-story h2")).toHaveText(modelBrands[model.slug].promise);
+    await expect(page.locator(".brand-principles > span")).toHaveCount(3);
+    await expect(page.locator(".brand-service-icon")).toHaveCount(3);
+    await page.locator(".brand-story img").evaluate((image: HTMLImageElement) => image.loading = "eager");
+    await expect.poll(() => page.locator(".brand-story img").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     expect(await page.locator(".model-hero-image").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
     for (const anchor of await page.locator('a[href^="#"]').evaluateAll(a => a.map(el => el.getAttribute("href")!))) expect(await page.locator(anchor).count()).toBe(1);
     const contact = page.locator("#interesse a"); const url = new URL((await contact.getAttribute("href"))!);
