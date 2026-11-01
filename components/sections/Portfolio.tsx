@@ -58,7 +58,7 @@ export function Portfolio() {
   return (
     <section id="portfolio" className="portfolio-section">
       <div className="shell section">
-        <SectionLabel number="03">SELEÇÃO DO ESTÚDIO</SectionLabel>
+        <SectionLabel number="01">SELEÇÃO DO ESTÚDIO</SectionLabel>
         <div className="section-heading portfolio-heading">
           <h2>
             Ideias que ganham

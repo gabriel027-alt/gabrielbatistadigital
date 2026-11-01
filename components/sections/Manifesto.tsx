@@ -4,7 +4,7 @@ export function Manifesto() {
   return (
     <section id="manifesto" className="shell section manifesto">
       <div>
-        <SectionLabel number="01">MENOS DO MESMO? NUNCA.</SectionLabel>
+        <SectionLabel number="03">MENOS DO MESMO? NUNCA.</SectionLabel>
         <Asterisk className="manifesto-mark" />
         <p className="micro muted">
           PENSAMENTO LIVRE.
@@ -19,14 +19,14 @@ export function Manifesto() {
         </h2>
         <div className="manifesto-copy">
           <p>
-            O extraordinário começa quando paramos de repetir. Cada marca tem um
-            jeito próprio de pensar, fazer e se conectar. A sua experiência
-            digital precisa refletir isso.
+            Seu visitante precisa entender o que você oferece, por que isso faz
+            sentido para ele e como dar o próximo passo. Design e conteúdo
+            trabalham juntos para tornar essa decisão mais clara.
           </p>
           <p>
-            Por isso, começamos pela intenção. Unimos estratégia, sensibilidade
-            visual e engenharia para criar o que faz sentido para o seu negócio.
-            Sem fórmulas prontas.
+            Começamos pelo objetivo do site e pelo contexto da sua empresa.
+            Depois organizamos o conteúdo, desenhamos a interface e desenvolvemos
+            a experiência para desktop e celular, dentro do escopo combinado.
           </p>
         </div>
         <ul className="principles">

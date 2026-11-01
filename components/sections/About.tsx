@@ -18,15 +18,16 @@ export function About() {
             revela uma <span className="serif">intenção.</span>
           </h2>
           <p>
-            Gabriel Batista Digital reúne direção visual e engenharia web em
-            um mesmo processo. Antes da interface, vem o entendimento do negócio:
-            o que precisa ser comunicado, quem precisa encontrar essa informação
-            e qual ação a experiência deve facilitar.
+            Sou Gabriel Batista e trabalho com design e desenvolvimento web.
+            Você conversa comigo para organizar o objetivo do site, apresentar
+            melhor o que sua empresa faz e definir uma experiência coerente
+            com o seu negócio.
           </p>
           <p>
-            O trabalho vai da organização do conteúdo ao desenvolvimento e à
-            validação. Escopo, integrações, gestão de conteúdo e publicação são
-            decisões explícitas do projeto, não detalhes deixados para o final.
+            O projeto vai da organização do conteúdo à interface e ao código.
+            Antes de começar, combinamos entregas, integrações e condições de
+            publicação. Durante o trabalho, você acompanha as decisões e as
+            etapas de validação.
           </p>
           <a
             className="text-link"

@@ -29,14 +29,14 @@ export function Contact() {
             O PRÓXIMO CAPÍTULO COMEÇA AQUI
           </SectionLabel>
           <h2>
-            Uma boa conversa.
+            Vamos falar do seu site.
             <br />
-            <span className="serif">Um novo começo.</span>
+            <span className="serif">Com clareza desde o início.</span>
           </h2>
           <p>
-            Tem uma ideia que merece sair do comum?
+            Conte o que sua empresa faz e o que você quer construir.
             <br />
-            Vamos encontrar a melhor forma de construir.
+            Vamos definir objetivo, escopo e próximos passos.
           </p>
           <a
             className="button button-primary"

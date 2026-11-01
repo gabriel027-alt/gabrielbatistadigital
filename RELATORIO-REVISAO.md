@@ -1,3 +1,5 @@
+> Relatório histórico. Para a abertura atual de fotografia única e a validação mais recente, consulte [REVISAO-LANDING](docs/REVISAO-LANDING.md).
+
 # Revisão — sequência e conteúdo
 
 ## Problema corrigido

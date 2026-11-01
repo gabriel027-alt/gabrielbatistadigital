@@ -7,7 +7,7 @@ test("day/night scene, image integrity, logos and pause controls", async ({ page
   page.on("pageerror", error => errors.push(error.message));
   await page.goto("/");
   const scene = page.locator(".atelier-scene");
-  const portrait = scene.locator(".cinema-front img");
+  const portrait = scene.locator(".portrait-photo img");
   await expect.poll(() => portrait.evaluate((el: HTMLImageElement) => el.complete && el.naturalWidth > 0)).toBe(true);
   await expect(scene.locator(".cinema-tools li")).toHaveCount(6);
   for (const theme of ["Dia", "Noite"]) {
@@ -29,7 +29,7 @@ test("day/night scene, image integrity, logos and pause controls", async ({ page
   await expect(page.locator("html")).toHaveAttribute("data-motion", "paused");
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(scene.locator(".atelier-cat, .atelier-lamp")).toHaveCount(0);
-  await expect(scene).toHaveAttribute("data-view", "frontal");
+  await expect(scene).toHaveAttribute("data-portrait", "single");
   expect(errors).toEqual([]);
 });
 
@@ -57,22 +57,23 @@ test("native scroll chapters advance and mobile retains all content", async ({ p
 });
 
 
-test("frontal opening and editorial transition follow scroll, freeze on pause", async ({ page }) => {
+test("one portrait stays unchanged while composition scrolls, pauses and respects reduced motion", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.goto("/");
-  const scene = page.locator(".atelier-scene");
-  await expect(scene).toHaveAttribute("data-view", "frontal");
-  await page.evaluate(() => { const hero = document.getElementById("inicio")!; scrollTo({ top: hero.offsetTop + (hero.clientHeight - innerHeight) * .8, behavior: "instant" }); });
-  await expect(scene).toHaveAttribute("data-view", "lateral");
-  const mix = await scene.getAttribute("data-frame");
+  const scene = page.locator(".portrait-scene");
+  const portrait = scene.locator(".portrait-photo img");
+  const source = await portrait.getAttribute("src");
+  await page.evaluate(() => scrollTo({ top: 250, behavior: "instant" }));
+  await expect.poll(() => scene.getAttribute("data-progress").then(Number)).toBeGreaterThan(0);
   await page.getByRole("button", { name: "Pausar animações" }).click();
-  await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
-  await expect(scene).toHaveAttribute("data-frame", mix!);
+  const progress = await scene.getAttribute("data-progress");
+  await page.evaluate(() => scrollTo({ top: 400, behavior: "instant" }));
+  await expect(scene).toHaveAttribute("data-progress", progress!);
   await page.getByRole("button", { name: "Ativar animações" }).click();
-  await expect(scene).toHaveAttribute("data-view", "frontal");
+  await expect.poll(() => scene.getAttribute("data-progress").then(Number)).toBeGreaterThan(Number(progress));
   await page.emulateMedia({ reducedMotion: "reduce" });
-  await page.evaluate(() => scrollTo({ top: 500, behavior: "instant" }));
-  await expect(scene).toHaveAttribute("data-view", "frontal");
+  await expect(scene).toHaveAttribute("data-progress", "0");
+  await expect(portrait).toHaveAttribute("src", source!);
 });
 
 test("prototype detail explorers support keyboard and real page previews load", async ({ page }) => {
@@ -96,32 +97,21 @@ test("prototype detail explorers support keyboard and real page previews load", 
 });
 
 
-test("every intermediate scroll position paints one opaque frame", async ({ page }) => {
-  await page.addInitScript(() => {
-    const original = CanvasRenderingContext2D.prototype.drawImage;
-    const calls: number[] = [];
-    (window as unknown as { frameAlphas: number[] }).frameAlphas = calls;
-    CanvasRenderingContext2D.prototype.drawImage = new Proxy(original, {
-      apply(target, receiver, args) {
-        calls.push((receiver as CanvasRenderingContext2D).globalAlpha);
-        return Reflect.apply(target, receiver, args);
-      },
-    });
-  });
-  await page.setViewportSize({ width: 1440, height: 1000 });
+test("no alternate poses or video are fetched and the gallery follows the offer", async ({ page }) => {
+  const frameRequests: string[] = [];
+  page.on("request", request => { if (request.url().includes("/hero/frames/") || request.url().endsWith(".mp4")) frameRequests.push(request.url()); });
   await page.goto("/");
-  const scene = page.locator(".atelier-scene");
-  await expect(scene).toHaveAttribute("data-ready", "true");
-  const bounds = await page.locator("#inicio").evaluate(el => ({ top: el.getBoundingClientRect().top + scrollY, range: el.clientHeight - innerHeight }));
-  for (let index = 0; index < 9; index++) {
-    const scroll = index === 0 ? 0 : bounds.top + (.06 + index / 8 * .64) * bounds.range;
-    await page.evaluate(y => scrollTo({ top: y, behavior: "instant" }), scroll);
-    await expect(scene).toHaveAttribute("data-frame", String(index));
-  }
-  expect(await page.locator(".cinema-side").count()).toBe(0);
-  const alphas = await page.evaluate(() => (window as unknown as { frameAlphas: number[] }).frameAlphas);
-  expect(alphas.length).toBeGreaterThan(8);
-  expect(alphas.every(alpha => alpha === 1)).toBe(true);
+  const portrait = page.locator(".portrait-photo img");
+  await expect(portrait).toHaveCount(1);
+  await expect(page.locator("#inicio canvas, #inicio video, .cinema-side")).toHaveCount(0);
+  for (const top of [0, 200, 450, 0]) await page.evaluate(y => scrollTo({ top: y, behavior: "instant" }), top);
+  expect(frameRequests).toEqual([]);
+  expect(await page.locator("#inicio").evaluate(el => el.nextElementSibling?.id)).toBe("modelos");
+  await page.evaluate(() => scrollTo({ top: 0, behavior: "instant" }));
+  const cta = page.getByRole("link", { name: "Conversar sobre meu site", exact: true });
+  await expect(cta).toBeInViewport();
+  await expect(cta).toHaveAttribute("href", /wa\.me\/5538998267717/);
+  await expect(page.getByRole("link", { name: "Ver modelos por nicho", exact: true })).toHaveAttribute("href", "#modelos");
 });
 
 test("prototype selections change content and image, FAQ answers are reachable", async ({ page }) => {
@@ -148,13 +138,22 @@ test("prototype selections change content and image, FAQ answers are reachable",
 });
 
 
-test("resizing a painted frame keeps portrait pixels", async ({ page }) => {
+test("portrait survives responsive resizing without changing pose", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".atelier-scene")).toHaveAttribute("data-ready", "true");
-  await page.setViewportSize({ width: 390, height: 844 });
-  await expect.poll(() => page.locator(".cinema-sequence").evaluate((el: HTMLCanvasElement) => {
-    const ctx = el.getContext("2d")!;
-    const sample = ctx.getImageData(Math.floor(el.width * .7), Math.floor(el.height * .4), 1, 1).data;
-    return sample[0] + sample[1] + sample[2];
-  })).toBeGreaterThan(20);
+  for (const width of [1440, 390, 768, 1440]) {
+    await page.setViewportSize({ width, height: 900 });
+    await expect.poll(() => page.locator(".portrait-photo img").evaluate((image: HTMLImageElement) => image.complete && image.naturalWidth > 0)).toBe(true);
+    await expect(page.locator(".portrait-photo img")).toHaveAttribute("src", /gabriel-contact/);
+    expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+  }
+});
+
+test("portrait and primary offer remain available without JavaScript", async ({ browser }) => {
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const page = await context.newPage();
+  await page.goto("/");
+  await expect(page.locator("#inicio h1")).toContainText("Um site à altura.");
+  await expect(page.locator(".portrait-photo img")).toBeVisible();
+  await expect(page.getByRole("link", { name: "Conversar sobre meu site", exact: true })).toBeVisible();
+  await context.close();
 });

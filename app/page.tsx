@@ -23,12 +23,12 @@ export default function HomePage() {
       <ScrollExperience />
       <main id="conteudo">
         <Hero />
-        <TechStrip />
+        <NicheGallery />
+        <Portfolio />
+        <Services />
         <Manifesto />
         <ExperienceLab />
-        <Services />
-        <Portfolio />
-        <NicheGallery />
+        <TechStrip />
         <Process />
         <About />
         <Integrations />

@@ -1,10 +1,10 @@
-# Gabriel Batista Digital — Studio / direção cinematográfica
+# Gabriel Batista Digital — Portfólio / contato direto
 
 Next.js App Router, TypeScript estrito e Tailwind CSS 4. Contato comercial exclusivo: https://wa.me/5538998267717.
 
 ![Hero noturna](docs/preview/home-dark.webp)
 
-[Ver transição no scroll](docs/preview/hero-scroll.gif) · [Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/mobile.webp) · [Portfólio](docs/preview/portfolio.webp)
+[Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/hero-mobile-complete.webp) · [Portfólio](docs/preview/portfolio.webp)
 
 ## Executar
 
@@ -26,11 +26,11 @@ npm run start
 
 ## Direção visual e conteúdo
 
-- Hero com nove quadros de abertura frontal a lateral, ligados ao scroll em um canvas opaco. Cada atualização desenha apenas uma imagem, eliminando o rosto duplicado causado pelo antigo dissolve.
-- Os quadros intermediários são gerados a partir das imagens aprovadas, não extraídos de filmagem ou 3D. Variações entre poses podem ser percebidas; não há promessa de reconstrução física exata.
-- Versões de 1280×720 para desktop e 768×432 para celular. A sequência completa nas duas variantes soma aproximadamente 946 KB. Pausa congela a pose; movimento reduzido/economia de dados mantêm a abertura estática. Sem JS/canvas, a imagem HTML inicial permanece visível.
-- O retrato lateral aprovado `public/images/hero/gabriel.png` continua intacto. Gato, luminária e janela artificiais não foram reintroduzidos.
-- Dia/Noite altera paleta e gradação; a fotografia não contém objetos de iluminação animáveis separados.
+- Abertura com a quinta fotografia escolhida pelo usuário, exportada para `public/images/hero/gabriel-contact.webp`. Não foram gerados novos rostos, expressões ou poses. A exportação WebP comprime a fotografia, sem retoque facial.
+- O scroll desloca e amplia discretamente a composição inteira; não simula giro corporal. Não há canvas, vídeo, sequência de quadros ou dissolve entre rostos.
+- Pausa congela o movimento; movimento reduzido e economia de dados deixam a composição estática. Sem JavaScript, fotografia, oferta e contato continuam disponíveis.
+- Oferta explícita de sites e landing pages, contato direto por WhatsApp e galeria dos 20 modelos imediatamente depois da abertura. Os modelos são demonstrações, não clientes ou resultados comerciais comprovados.
+- Dia/Noite altera a paleta e os gradientes de leitura, preservando a fotografia. O retrato lateral e os antigos quadros permanecem arquivados, sem uso na abertura atual.
 - Portfólio preserva os mockups de desktop/celular e agora mostra capturas atualizadas das demonstrações.
 - Chronos: três peças com imagens diferentes, materiais e descrições próprias. Vanguard: três estudos de programa, materialidade e partido distintos. Aura: três etapas de uma jornada de contato, sem diagnóstico, coleta de saúde ou promessa médica.
 - Seis novas imagens editoriais, além das três existentes. Nenhuma representa um cliente, produto à venda ou obra executada. Cada demonstração contém três seleções que atualizam imagem, texto e ficha.
@@ -40,8 +40,9 @@ npm run start
 ## Arquivos principais
 
 - `app/experience.css`: cena, controle de temas, laboratório e apresentação dos conceitos.
-- `components/HeroScene.tsx`: carregamento, desenho opaco e controles da sequência.
-- `public/images/hero/frames/`: nove quadros e suas versões móveis.
+- `components/HeroScene.tsx`: fotografia única, progresso e controle de movimento.
+- `app/landing.css`: composição responsiva da abertura e hierarquia de contato.
+- `public/images/hero/gabriel-contact.webp`: fotografia usada na abertura.
 - `lib/concept-content.ts`: fichas e conteúdo próprio dos nove itens conceituais.
 - `components/sections/FAQ.tsx`: dúvidas antes do contato.
 - `components/ThemeToggle.tsx`: seleção explícita Dia/Noite.
@@ -81,10 +82,14 @@ A apresentação usa capturas reais das páginas em janelas verticais roláveis,
 - `app/models.css`: estilos isolados da galeria e das seis direções visuais.
 - `public/images/models/`: 17 cenas humanas, 17 fotografias de ambientes e capturas da galeria.
 
-Nenhum modelo representa uma empresa contratante, atendimento real, estoque, reserva ou resultado comercial. As chamadas finais são explicitamente para contratar desenvolvimento com Gabriel. Nenhum dado clínico, financeiro ou credencial é coletado. Retratos, quadros e código da hero permanecem inalterados nesta ampliação.
+Nenhum modelo representa uma empresa contratante, atendimento real, estoque, reserva ou resultado comercial. As chamadas finais são explicitamente para contratar desenvolvimento com Gabriel. Nenhum dado clínico, financeiro ou credencial é coletado. A ampliação da galeria antecedeu a atual revisão da abertura.
 
 ### Revisão de presença e identidade
 
 Os 17 modelos agora têm cenas com pessoas fictícias relacionadas à atividade, além das imagens de ambientes. A nova camada de marca em `lib/model-brands.ts` define símbolo, território verbal, princípios, narrativa, assinatura e iconografia de serviços. `components/BrandGlyph.tsx` fornece os desenhos vetoriais. Cada página inclui uma seção editorial de marca e ajustes próprios de paleta e composição via `data-brand`.
 
 As cenas humanas estão em `public/images/models/people/`. As capturas atualizadas ficam em `public/images/models/previews-branded/`; não use as capturas da revisão anterior. Os personagens são gerados e não representam uma equipe ou profissionais contratados. A arquitetura de componentes continua compartilhada; a revisão não significa 17 sistemas de design independentes nem identidades registradas.
+
+## Revisão atual da landing page
+
+Veja [decisões e validação](docs/REVISAO-LANDING.md). Esta revisão substitui as instruções históricas sobre nove quadros da hero. Não há garantia de conversão: o objetivo é apresentar oferta, repertório e caminho de contato com clareza.

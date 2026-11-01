@@ -1,16 +1,9 @@
-# Prévias desta revisão
+# Prévias
 
-- [Sequência de nove quadros](hero-scroll.gif): captura em Chromium, seguindo os índices do scroll. O GIF é demonstrativo; não é vídeo original.
-- [Dia](home-light.webp), [Noite](home-dark.webp), [Celular](mobile.webp).
-- [Serviços](services.webp), [Portfólio](portfolio.webp), [FAQ](faq.webp).
-- [Chronos](chronos.webp), [Vanguard](vanguard.webp), [Aura](aura.webp), [detalhe interativo Vanguard](vanguard-detail.webp).
+A abertura atual usa uma única fotografia preservada, com movimento discreto da composição:
 
-Os intermediários da hero são imagens geradas; pequenas diferenças entre poses permanecem possíveis. Não há mistura de rostos: um único quadro opaco é desenhado por vez.
+- [Dia](home-light.webp), [Noite](home-dark.webp), [Celular](mobile.webp), [abertura completa no celular](hero-mobile-complete.webp).
+- [Portfólio](portfolio.webp), [Chronos](chronos.webp), [Vanguard](vanguard.webp), [Aura](aura.webp).
+- [Galeria](gallery-niches.webp), [Jurídico](brand-patrimonio.webp), [Psicologia](brand-psicologia.webp), [Agro](brand-agro.webp), [Energia](brand-energia.webp).
 
-## Galeria de nichos
-
-[Dia](gallery-niches.webp) · [Noite](gallery-niches-dark.webp) · [Celular](gallery-niches-mobile.webp). São 17 novos modelos, além dos três conceitos anteriores. As capturas completas usadas na galeria estão em `public/images/models/previews/`.
-
-## Revisão com presença humana
-
-As capturas da galeria foram substituídas pela revisão com pessoas, símbolos e narrativa de marca. [Jurídico](brand-patrimonio.webp) · [Psicologia](brand-psicologia.webp) · [Agro](brand-agro.webp) · [Energia](brand-energia.webp). As marcas e personagens são fictícios; a hero pessoal não foi alterada.
+As capturas dos modelos mostram marcas e personagens fictícios. O GIF hero-scroll.gif é histórico, da sequência anterior, e não representa a abertura atual. Veja ../REVISAO-LANDING.md.
