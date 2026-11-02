@@ -1,0 +1,49 @@
+name: Qualidade e revisão visual
+
+on:
+  push:
+    branches: [revisao-site, 'ajustes/**']
+  pull_request:
+    branches: [main, revisao-site]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: quality-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - name: Lint
+        run: npm run lint
+      - name: Build
+        run: npm run build
+      - name: Tipagem
+        run: npm run typecheck
+      - name: Instalar Chromium
+        run: npx playwright install --with-deps chromium
+      - name: Testes e evidências visuais
+        run: npm run test:e2e -- --reporter=list,html
+        env:
+          PLAYWRIGHT_HTML_OPEN: never
+      - name: Guardar relatório, capturas, vídeos e traces
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v4
+        with:
+          name: revisao-visual-${{ github.sha }}
+          path: |
+            playwright-report/
+            test-results/
+          retention-days: 14
+          if-no-files-found: ignore

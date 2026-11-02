@@ -67,7 +67,7 @@ A API do assistente antigo permanece desativada por padrão. Não é necessária
 
 ## Instalar a revisão no Antigravity
 
-Veja `INSTRUCOES-ANTIGRAVITY.md`. Prefira abrir o ZIP completo em uma pasta nova: aplicar apenas Hero.tsx deixa os componentes e estilos inconsistentes.
+Para trabalhar continuamente, use [o fluxo compartilhado pelo GitHub](docs/FLUXO-GITHUB.md). Ele preserva as alterações da pasta local e elimina a necessidade de novos ZIPs a cada revisão. A instalação por ZIP continua descrita em `INSTRUCOES-ANTIGRAVITY.md`.
 
 ## Galeria de 20 protótipos
 
