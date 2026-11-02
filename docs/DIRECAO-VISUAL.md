@@ -20,3 +20,11 @@
 ## 5. Acessibilidade e Contato Comercial
 - Botão de controle de movimento visível, acessível e sem sobreposições acidentais de rodapé ou utilitários.
 - Canal oficial de WhatsApp (5538998267717) contextualizado e acessível em pontos estratégicos de decisão.
+
+## Revisão implementada: vitrine de direções
+
+A seção #modelos agora começa com uma apresentação editorial em escala maior, antes do catálogo. Três escolhas explícitas — Confiança, Proximidade e Desejo — mostram advocacia, psicologia e residências. Cada escolha altera texto, fotografia, cores, captura da interface e link para a demonstração correspondente. O conteúdo explica decisões específicas de design, sem inventar clientes ou resultados.
+
+O scroll nativo movimenta a perspectiva da janela e percorre parte da captura do site. Não há troca automática de marca nem bloqueio do scroll. As escolhas são botões nativos acessíveis por teclado; o conteúdo permanece disponível sem JavaScript na direção inicial. Pausa congela o progresso e movimento reduzido elimina as transformações e entradas. Não foram instaladas bibliotecas adicionais.
+
+Arquivos: components/ProjectSpotlight.tsx e app/showcase.css. Os 20 protótipos e as alterações recuperadas da branch ajustes/antigravity-local foram preservados. A fotografia pessoal não foi substituída.

@@ -4,7 +4,7 @@ Next.js App Router, TypeScript estrito e Tailwind CSS 4. Contato comercial exclu
 
 ![Hero noturna](docs/preview/home-dark.webp)
 
-[Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/hero-mobile-complete.webp) · [Portfólio](docs/preview/portfolio.webp)
+[Versão diurna](docs/preview/home-light.webp) · [Celular](docs/preview/hero-mobile-complete.webp) · [Portfólio](docs/preview/portfolio.webp) · [Nova vitrine](docs/preview/spotlight-imoveis.webp) · [Gravação da interação](docs/preview/showcase.webm)
 
 ## Executar
 
@@ -93,3 +93,9 @@ As cenas humanas estão em `public/images/models/people/`. As capturas atualizad
 ## Revisão atual da landing page
 
 Veja [decisões e validação](docs/REVISAO-LANDING.md). Esta revisão substitui as instruções históricas sobre nove quadros da hero. Não há garantia de conversão: o objetivo é apresentar oferta, repertório e caminho de contato com clareza.
+
+## Vitrine de direções de marca
+
+Antes do catálogo, três apresentações em escala maior mostram advocacia patrimonial, psicologia e imóveis. Botões alteram composição, narrativa, imagem e demonstração. O scroll movimenta a janela e revela a interface, com pausa e movimento reduzido. Os 20 modelos continuam disponíveis. Implementação em `components/ProjectSpotlight.tsx` e `app/showcase.css`. Esta revisão incorpora as alterações locais do Antigravity no commit 9388c5a.
+
+Validação: lint, build, tipagem e 37 testes Playwright aprovados; revisão visual em Chromium desktop e celular. Os relatórios gerados pelo Playwright são excluídos do lint, assim como os artefatos de build. Não houve deploy.

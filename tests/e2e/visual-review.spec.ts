@@ -30,3 +30,26 @@ for (const viewport of [{ width: 1440, height: 1000 }, { width: 390, height: 844
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   });
 }
+
+test("featured directions change the demo and respect motion preferences", async ({ page }) => {
+  await page.goto("/");
+  const spotlight = page.locator(".project-spotlight");
+  await spotlight.scrollIntoViewIfNeeded();
+  const choices = spotlight.getByRole("group", { name: "Explorar direções de marca" }).getByRole("button");
+  await choices.nth(1).focus();
+  await page.keyboard.press("Enter");
+  await expect(choices.nth(1)).toHaveAttribute("aria-pressed", "true");
+  await expect(spotlight.getByRole("link")).toHaveAttribute("href", "/modelos/psicologia");
+  await expect.poll(() => spotlight.locator(".spotlight-scene img").evaluate((img: HTMLImageElement) => img.complete && img.naturalWidth > 0)).toBe(true);
+  await choices.nth(2).click();
+  await expect(spotlight.getByRole("link")).toHaveAttribute("href", "/modelos/imoveis");
+  await page.getByRole("button", { name: "Pausar animações" }).click();
+  const progress = await spotlight.evaluate(el => (el as HTMLElement).style.getPropertyValue("--showcase-progress"));
+  await page.mouse.wheel(0, 200);
+  await page.waitForTimeout(150);
+  expect(await spotlight.evaluate(el => (el as HTMLElement).style.getPropertyValue("--showcase-progress"))).toBe(progress);
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  await expect.poll(() => spotlight.locator(".spotlight-browser").evaluate(el => getComputedStyle(el).transform)).toBe("none");
+  await page.setViewportSize({ width: 360, height: 800 });
+  expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
+});

@@ -7,6 +7,7 @@ import "./globals.css";
 import "./experience.css";
 import "./models.css";
 import "./landing.css";
+import "./showcase.css";
 const manrope = localFont({
   src: "../node_modules/@fontsource-variable/manrope/files/manrope-latin-wght-normal.woff2",
   variable: "--font-manrope",
