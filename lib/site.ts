@@ -3,14 +3,14 @@ export const siteConfig = {
   domain: "https://gabrielbatistadigital.com.br",
   language: "pt-BR",
   description:
-    "Estratégia, design e engenharia web sob medida. Uma presença digital à altura da sua marca.",
+    "Sites que fazem sua marca ser percebida. Design com personalidade e desenvolvimento por Gabriel Batista.",
   whatsappNumber: "5538998267717",
   whatsappBaseUrl: "https://wa.me/5538998267717",
   contactUrl: "https://wa.me/5538998267717",
 } as const;
 export const navigation = [
-  { label: "Expertise", href: "#servicos" },
   { label: "Projetos", href: "#portfolio" },
+  { label: "Soluções", href: "#servicos" },
   { label: "Processo", href: "#processo" },
   { label: "Estúdio", href: "#sobre" },
 ];

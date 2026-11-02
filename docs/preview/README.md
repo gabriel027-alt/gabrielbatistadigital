@@ -1,3 +1,9 @@
+# Prévias atuais
+
+[Abertura noturna](signature-dark.webp) · [Dia](signature-light.webp) · [Celular](signature-mobile.webp) · [Projetos](signature-work.webp).
+
+Estas capturas representam a revisão integral de docs/REVISAO-SIGNATURE.md. As capturas abaixo são históricas e não representam a página principal atual.
+
 # Prévias
 
 A abertura atual usa uma única fotografia preservada, com movimento discreto da composição:

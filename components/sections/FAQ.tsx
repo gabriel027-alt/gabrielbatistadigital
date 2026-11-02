@@ -5,7 +5,7 @@ const questions = [
   ["Domínio, hospedagem e manutenção entram juntos?", "São itens distintos. A proposta deve esclarecer quem registra o domínio, qual ambiente hospeda a aplicação, quais custos são recorrentes e se haverá acompanhamento depois da entrega. Serviços externos e suas cobranças precisam ficar visíveis antes da publicação."],
   ["Um site novo garante resultado no Google?", "Não há garantia de posição ou volume de contatos. Estrutura técnica, conteúdo, concorrência, região e presença em outras plataformas influenciam as buscas. O trabalho de SEO começa por diagnóstico, prioridades e critérios de acompanhamento."],
   ["Como é definido o prazo e o investimento?", "Pelo escopo: quantidade de páginas, conteúdo disponível, interações, integrações e etapas de revisão. Um catálogo, uma landing page e uma aplicação com login têm necessidades diferentes. O diagnóstico evita comparar propostas que entregam coisas distintas."],
-  ["Os projetos do portfólio são clientes reais?", "Chronos Atelier, Vanguard e Aura Aesthetics são marcas fictícias criadas para demonstrar direção visual e desenvolvimento. Você pode navegar pelos protótipos, mas eles não representam lojas, obras executadas ou atendimento médico."],
+  ["Posso explorar os projetos antes de conversar?", "Sim. A seleção reúne estudos autorais com marcas desenvolvidas para o portfólio. Cada projeto pode ser aberto para conhecer a interface e suas interações; eles não representam empresas contratantes."],
 ];
 export function FAQ() {
   return <section className="shell section agency-faq" id="duvidas" aria-labelledby="faq-title">

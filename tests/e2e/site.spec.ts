@@ -42,7 +42,7 @@ test("full page, real anchor targets and official WhatsApp only", async ({
   await expect(page.locator('a[href^="mailto:"]')).toHaveCount(0);
   expect(errors).toEqual([]);
 });
-test("services and carousel keyboard interaction", async ({ page }) => {
+test("services keyboard interaction and selected project navigation", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("tab", { name: /SEO Local/ }).click();
   await expect(page.getByRole("tabpanel")).toContainText("Seja encontrado");
@@ -51,19 +51,10 @@ test("services and carousel keyboard interaction", async ({ page }) => {
   await expect(page.getByRole("tabpanel")).toContainText("O próximo nível");
   await page.getByRole("tab", { name: /Performance/ }).press("Home");
   await expect(page.getByRole("tab", { name: /Landing Pages/ })).toBeFocused();
-  const carousel = page.getByRole("region", { name: "Projetos conceituais" });
-  await carousel.focus();
-  await carousel.press("ArrowRight");
-  await expect
-    .poll(() => carousel.evaluate((e) => e.scrollLeft))
-    .toBeGreaterThan(10);
-  await carousel.press("Space");
-  await expect(
-    page.getByRole("button", { name: "Pausar movimento do portfólio" }),
-  ).toHaveAttribute("aria-pressed", "true");
-  await page
-    .getByRole("button", { name: "Pausar movimento do portfólio" })
-    .click();
+  const work = page.locator(".signature-work-card").first().getByRole("link");
+  await work.focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/conceitos\/vanguard/);
 });
 test("theme persistence, responsive layouts and mobile menu", async ({
   page,
@@ -177,14 +168,12 @@ test("accessible homepage in both themes and reduced motion", async ({
 }) => {
   await page.emulateMedia({ colorScheme: "dark", reducedMotion: "reduce" });
   await page.goto("/");
-  await expect(
-    page.getByRole("button", { name: "Iniciar movimento do portfólio" }),
-  ).toBeDisabled();
   for (const theme of ["dark", "light"]) {
     if (theme === "light")
       await page
         .getByRole("button", { name: "Dia", exact: true })
         .click();
+    await page.locator("#contato").scrollIntoViewIfNeeded();
     const results = await new AxeBuilder({ page })
       .withTags(["wcag2a", "wcag2aa", "wcag21aa"])
       .analyze();

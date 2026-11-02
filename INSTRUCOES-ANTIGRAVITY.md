@@ -6,11 +6,11 @@
 4. Identifique os processos e diretórios dos servidores existentes. Inicie uma única sessão persistente numa porta disponível; não encerre outros projetos. Informe a URL efetiva confirmada por HTTP.
 5. Confira no navegador desktop e celular: Dia/Noite, fotografia única, oferta e WhatsApp, pausa, galeria, filtros, prévias roláveis, rotas dos modelos, laboratório e três conceitos. HTTP 200 não comprova aparência. Se o navegador falhar, informe exatamente o que não foi validado.
 
-## Abertura atual
+## Página principal atual
 
-Confirme app/landing.css, seu import no layout, components/HeroScene.tsx e public/images/hero/gabriel-contact.webp. O identificador é `.portrait-scene[data-portrait="single"]`. A fotografia é a quinta referência escolhida, sem novo retoque facial. O movimento é apenas da composição. Não reintroduza canvas, sequência de poses, transições de rostos, barba, gato ou luminária artificial. Os antigos assets em hero/frames são históricos e não são carregados.
+Leia docs/REVISAO-SIGNATURE.md. Confirme components/SignatureHome.tsx, components/SelectedWork.tsx, app/signature.css e public/images/hero/gabriel-contact.webp. O identificador da abertura é .signature-hero. Não reintroduza os componentes antigos Hero, ProjectSpotlight ou NicheGallery na página principal.
 
-Não copie apenas Hero.tsx: integre o projeto completo. A galeria vem imediatamente depois da abertura. Preserve o contato exclusivo 5538998267717 e a identificação de demonstrações fictícias.
+A fotografia é preservada, sem geração de novas poses. A seleção tem seis projetos; o catálogo expansível dá acesso aos 20. Confira navegação, filtros, teclado, temas, pausa e movimento reduzido. Não substituir estudos autorais por alegações de clientes contratantes.
 
 ## Galeria de 20 protótipos
 

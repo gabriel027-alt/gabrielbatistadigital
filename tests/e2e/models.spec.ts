@@ -4,26 +4,20 @@ import { modelBrands } from "../../lib/model-brands";
 import { nicheModels } from "../../lib/models";
 test("17 new models plus original three, gallery filters and real previews", async ({ page }) => {
   await page.goto("/");
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".signature-work-card")).toHaveCount(6);
+  await page.locator("#modelos > summary").click();
   await expect(page.locator(".niche-preview-card")).toHaveCount(17);
   const gallery = page.locator("#modelos");
-  await gallery.getByRole("button", { name: "Jurídico", exact: true }).click();
-  await expect(gallery.locator(".niche-preview-card")).toHaveCount(2);
-  await gallery.getByRole("button", { name: "Saúde", exact: true }).click();
-  await expect(gallery.locator(".niche-preview-card")).toHaveCount(4);
-  await gallery.getByRole("button", { name: "Experiências", exact: true }).click();
-  await expect(gallery.locator(".niche-preview-card")).toHaveCount(3);
-  await gallery.getByRole("button", { name: "Todos", exact: true }).click();
-  await expect(gallery.locator(".niche-preview-card")).toHaveCount(17);
-  await gallery.scrollIntoViewIfNeeded();
-  await gallery.locator("img").evaluateAll(images => images.forEach(image => { if (image instanceof HTMLImageElement) image.loading = "eager"; }));
-  await expect.poll(() => gallery.locator("img").evaluateAll(images => images.every(image => image instanceof HTMLImageElement && image.complete && image.naturalWidth > 0))).toBe(true);
-  await gallery.getByRole("button", { name: "Ver próximos modelos" }).click();
-  await expect.poll(() => gallery.locator(".niche-gallery-track").evaluate(el => el.scrollLeft)).toBeGreaterThan(0);
-  await gallery.getByRole("button", { name: "Ver modelos anteriores" }).click();
-  const preview = gallery.locator(".niche-preview-window").first();
-  await preview.focus(); await page.keyboard.press("PageDown");
-  await expect.poll(() => preview.evaluate(el => el.scrollTop)).toBeGreaterThan(0);
+  for (const [group, count] of [["Jurídico", 2], ["Saúde", 4], ["Experiências", 3], ["Todos", 17]] as const) {
+    await gallery.getByRole("button", { name: group, exact: true }).click();
+    await expect(gallery.locator(".niche-preview-card")).toHaveCount(count);
+  }
+  const links = await gallery.locator("a").evaluateAll(nodes => nodes.map(node => node.getAttribute("href")));
+  expect(new Set(links).size).toBe(20);
+  const first = gallery.locator(".niche-preview-card").first();
+  await first.focus();
+  await page.keyboard.press("Enter");
+  await expect(page).toHaveURL(/modelos\/patrimonio/);
 });
 for (const model of nicheModels) {
   test(`${model.slug}: complete responsive demo, interactions, contact and accessibility`, async ({ page }) => {

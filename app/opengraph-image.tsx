@@ -1,5 +1,5 @@
 import { ImageResponse } from "next/og";
-export const alt = "Gabriel Batista Digital — O próximo nível da sua presença.";
+export const alt = "Gabriel Batista Digital — Sua marca não nasceu para ser mais uma.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export default function Image() {
@@ -8,8 +8,8 @@ export default function Image() {
       style={{
         width: "100%",
         height: "100%",
-        background: "#111410",
-        color: "#f1f1e9",
+        background: "#102963",
+        color: "#f1f4ff",
         display: "flex",
         flexDirection: "column",
         justifyContent: "space-between",
@@ -21,7 +21,7 @@ export default function Image() {
           display: "flex",
           justifyContent: "space-between",
           fontSize: 22,
-          color: "#ddeb9e",
+          color: "#d5e1ff",
         }}
       >
         <span>GABRIEL BATISTA DIGITAL</span>
@@ -35,9 +35,9 @@ export default function Image() {
           maxWidth: 950,
         }}
       >
-        O próximo nível da sua presença.
+        Sua marca não nasceu para ser mais uma.
       </div>
-      <div style={{ fontSize: 20, color: "#a5ae9f" }}>
+      <div style={{ fontSize: 20, color: "#c6d6ff" }}>
         ESTRATÉGIA · DESIGN · ENGENHARIA WEB
       </div>
     </div>,
