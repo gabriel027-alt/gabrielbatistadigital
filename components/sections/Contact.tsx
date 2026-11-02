@@ -12,13 +12,9 @@ export function Contact() {
   const [step, setStep] = useState(-1);
   const [answers, setAnswers] = useState<number[]>([-1, -1, -1]);
   const title = useRef<HTMLHeadingElement>(null);
-  const first = useRef(true);
   useEffect(() => {
-    if (first.current) {
-      first.current = false;
-      return;
-    }
-    title.current?.focus();
+    if (step < 0) return;
+    title.current?.focus({ preventScroll: true });
   }, [step]);
   const result = getRecommendation(answers[0], answers[1]);
   return (
