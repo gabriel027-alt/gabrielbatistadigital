@@ -57,4 +57,4 @@ A API antiga de assistente está desativada. Não é necessária nenhuma chave p
 
 ## Skills do workspace
 
-Instaladas `frontend-design` e `webapp-testing` em `.agent/skills/`, com fonte e licenças preservadas. Veja [como ativar e usar](docs/SKILLS-DESIGN.md). A última direção visual foi rejeitada; os próximos ajustes devem partir de uma crítica e de composições concretas, sem tratar a página atual como aprovada.
+Sete skills em `.agent/skills/`: direção visual, criação de conceitos, inspeção de frontend, Playwright, referência GSAP, preparação de assets 3D e auditoria de performance. Fontes e manifestos foram preservados; dependências externas são verificadas por tarefa. Veja [como ativar e usar](docs/SKILLS-DESIGN.md). A última direção visual foi rejeitada; os próximos ajustes devem partir de uma crítica e de composições concretas, sem tratar a página atual como aprovada.

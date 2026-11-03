@@ -32,3 +32,24 @@ Animação deve ser descrita por elemento, gatilho, comportamento e fallback. N�
 ## Critério para adicionar outras skills
 
 Adicionar apenas quando surgir uma necessidade concreta que as duas não atendam. Verificar fonte, licença, scripts, dependências e conflitos com as regras do projeto. Evitar pacotes grandes de skills sobrepostas e regras globais enormes. Nesta revisão não foram instaladas bibliotecas nem alterada a interface do site.
+
+## Ampliação pelo catálogo OpenAI Plugins
+
+| Skill | Uso | Situação |
+|---|---|---|
+| frontend-app-builder | Conceitos visuais antes do código; implementação comparada ao conceito | Arquivos instalados. Requer ferramenta de imagem para executar o fluxo completo; verificar disponibilidade no agente. Não editar a fisionomia da fotografia pessoal. |
+| frontend-testing-debugging | Inspeção visual, estados, interações e console | Arquivos instalados. Usa Browser quando disponível e prevê Playwright quando ausente. |
+| gsap | Timelines, easing e desempenho de animação | Referência instalada, originalmente para HyperFrames. Não instala GSAP, ScrollTrigger ou HyperFrames no site. |
+| web-3d-asset-pipeline | GLB/glTF, compressão, texturas e preparação de assets | Arquivos e referências instalados. Não cria automaticamente um modelo 3D e não instala Three.js, Blender ou React Three Fiber. |
+| web-perf | Auditoria de carregamento e métricas com Chrome DevTools | Arquivos instalados. Requer Chrome DevTools MCP, que não foi conectado nesta sessão. Não declarar auditoria executada até o requisito estar disponível. |
+
+Fonte: https://github.com/openai/plugins. Este é o catálogo atual indicado pelo antigo openai/skills. Os plugins HyperFrames e Cloudflare são de parceiros; a fonte e a licença declarada de cada um estão preservadas nos manifestos locais.
+
+### Roteamento sem sobreposição
+
+- Criação de proposta completa: frontend-app-builder conduz o conceito e a fidelidade. frontend-design fornece crítica e não substitui a direção aceita por seus próprios defaults.
+- Depuração da implementação: frontend-testing-debugging conduz a inspeção. webapp-testing é um recurso complementar, sem duplicar suítes ou iniciar servidores concorrentes.
+- Animação ou 3D: ler a referência correspondente somente quando houver uma interação definida. Uma cena WebGL precisa ter objetivo, asset, alternativa estática, suporte móvel e orçamento de carregamento. Não adicionar uma esfera ou objeto decorativo só para dizer que há 3D.
+- Performance: executar medições reais antes de propor otimizações; informar ferramenta, ambiente e limites. Não apresentar pontuação ou Core Web Vitals inventados.
+
+São sete skills no total, acionadas por tarefa. Não carregar as sete integralmente em toda conversa. A instalação de arquivos no repositório não torna plugins e conectores do Codex automaticamente disponíveis no Antigravity. Se a descoberta automática falhar, ler o SKILL.md explicitamente.

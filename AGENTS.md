@@ -25,3 +25,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Para inspeção no navegador, leia `.agent/skills/webapp-testing/SKILL.md`; aproveite a suíte Playwright existente antes de criar automação paralela.
 - A aparência atual foi rejeitada pelo usuário. Não a trate como direção visual aprovada. Skills não substituem evidência visual nem decisão de composição.
 - A instalação dessas skills não autoriza novos deploys, alterações de permissões ou mudanças globais do ambiente.
+- Skills adicionais do catálogo OpenAI Plugins estão em `.agent/skills/`: frontend-app-builder, frontend-testing-debugging, gsap, web-3d-asset-pipeline e web-perf. Consulte o roteamento em docs/SKILLS-DESIGN.md e carregue apenas a necessária à tarefa.
+- Verifique as dependências reais de cada skill. Arquivos de instrução não significam que Browser, geração de imagem, Chrome DevTools MCP, GSAP ou um motor 3D estão instalados no agente ou na aplicação.

@@ -1,0 +1,30 @@
+{
+  "repository": "https://github.com/openai/plugins",
+  "skills": {
+    "frontend-app-builder": {
+      "plugin": "build-web-apps",
+      "path": "plugins/build-web-apps/skills/frontend-app-builder",
+      "commit": "0722921d5542fc593105c27bd52630babd8b8c2a"
+    },
+    "frontend-testing-debugging": {
+      "plugin": "build-web-apps",
+      "path": "plugins/build-web-apps/skills/frontend-testing-debugging",
+      "commit": "0722921d5542fc593105c27bd52630babd8b8c2a"
+    },
+    "gsap": {
+      "plugin": "hyperframes",
+      "path": "plugins/hyperframes/skills/gsap",
+      "commit": "0722921d5542fc593105c27bd52630babd8b8c2a"
+    },
+    "web-3d-asset-pipeline": {
+      "plugin": "game-studio",
+      "path": "plugins/game-studio/skills/web-3d-asset-pipeline",
+      "commit": "0722921d5542fc593105c27bd52630babd8b8c2a"
+    },
+    "web-perf": {
+      "plugin": "cloudflare",
+      "path": "plugins/cloudflare/skills/web-perf",
+      "commit": "0722921d5542fc593105c27bd52630babd8b8c2a"
+    }
+  }
+}
