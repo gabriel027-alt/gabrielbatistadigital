@@ -23,3 +23,7 @@ A máscara da composição suaviza somente as bordas externas. Não aplicar luze
 A composição, estados, temas, responsividade e seleção local podem ser testados sem a fotografia original. Isso não equivale a validar o enquadramento do retrato aprovado: essa conferência depende do arquivo. Não anunciar a hero finalizada com a foto correta antes dessa integração.
 
 Verificações: lint, build, tipagem e dois testes específicos aprovados. Os testes verificam seleção local sem envio de arquivo, preservação da URL da imagem entre temas, ausência de filtros, contato oficial, seis larguras e acessibilidade nos dois temas. A imagem de teste é um PNG sintético de 1 pixel, exclusivamente para verificar o mecanismo de seleção; não é o retrato aprovado nem uma validação de sua composição. A revisão visual desta etapa cobriu os estados sem retrato em desktop e celular.
+
+## Correção após os primeiros prints com a foto
+
+O tema claro mantinha a fotografia escura atrás do texto escuro. A composição desktop passou a reservar colunas sólidas do tema para oferta e assinatura, com a fotografia numa área central e suavização somente nas bordas. O enquadramento usa recorte responsivo de apresentação, sem regravar ou filtrar o arquivo. Altura mínima ajustada para reduzir o corte da assinatura no primeiro viewport. Teste adicional verifica a separação geométrica entre as colunas e a área da imagem. Lint, build e os três testes da proposta aprovados. A avaliação da foto aprovada permanece baseada nos prints enviados pelo usuário, pois o original ainda não está no workspace.

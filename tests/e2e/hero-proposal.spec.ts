@@ -35,3 +35,18 @@ test("proposal empty state, theme controls and contact are accessible in both th
     expect(results.violations, JSON.stringify(results.violations.map(v => ({ id: v.id, nodes: v.nodes.map(n => n.target) })))).toEqual([]);
   }
 });
+
+test("desktop reading columns remain outside a dark selected photograph in light mode", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto("/propostas/gabriel");
+  await page.locator('input[type="file"]').first().setInputFiles({ name: "layout-test.png", mimeType: "image/png", buffer: png });
+  await page.getByRole("button", { name: "Claro", exact: true }).click();
+  const photo = page.getByRole("img", { name: "Retrato aprovado de Gabriel, preservado sem edição" });
+  const offer = await page.locator("#proposta-conteudo").boundingBox();
+  const portrait = await photo.boundingBox();
+  const name = await page.getByText("GABRIEL", { exact: true }).last().boundingBox();
+  expect(offer!.x + offer!.width).toBeLessThan(portrait!.x + portrait!.width * .1);
+  expect(name!.x).toBeGreaterThan(portrait!.x + portrait!.width * .9);
+  const height = await page.locator("section").first().evaluate(el => el.getBoundingClientRect().height);
+  expect(height).toBeLessThanOrEqual(900);
+});
