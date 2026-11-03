@@ -18,3 +18,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Tema usa data-theme e tokens de app/globals.css. Não volte a espalhar cores fixas da agência pelo JSX.
 - O assistente antigo permanece desativado por padrão. Não precisa de chaves para executar a landing page.
 - Não crie worktrees: cada tarefa de nuvem já é isolada, salvo pedido explícito.
+
+## Skills de direção e revisão visual
+
+- Antes de uma nova criação ou revisão visual, leia `.agent/skills/frontend-design/SKILL.md` e `docs/SKILLS-DESIGN.md`.
+- Para inspeção no navegador, leia `.agent/skills/webapp-testing/SKILL.md`; aproveite a suíte Playwright existente antes de criar automação paralela.
+- A aparência atual foi rejeitada pelo usuário. Não a trate como direção visual aprovada. Skills não substituem evidência visual nem decisão de composição.
+- A instalação dessas skills não autoriza novos deploys, alterações de permissões ou mudanças globais do ambiente.

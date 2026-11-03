@@ -54,3 +54,7 @@ Conteúdo em lib/content.ts, lib/models.ts e lib/model-brands.ts. Capturas em pu
 Use [docs/FLUXO-GITHUB.md](docs/FLUXO-GITHUB.md) para sincronizar com o Antigravity preservando as alterações locais. Trabalhe pela branch revisao-site. A main fica preservada. O workflow executa testes e guarda capturas, vídeos e relatório, sem deploy automático. Testes aprovados não significam aprovação estética.
 
 A API antiga de assistente está desativada. Não é necessária nenhuma chave para rodar a página.
+
+## Skills do workspace
+
+Instaladas `frontend-design` e `webapp-testing` em `.agent/skills/`, com fonte e licenças preservadas. Veja [como ativar e usar](docs/SKILLS-DESIGN.md). A última direção visual foi rejeitada; os próximos ajustes devem partir de uma crítica e de composições concretas, sem tratar a página atual como aprovada.
