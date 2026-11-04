@@ -26,3 +26,7 @@ Especificar e verificar abertura + transição para o primeiro projeto. Fixar fu
 ## Limites
 
 Nenhuma nova pesquisa externa, medição de performance, auditoria de segurança, validação com clientes ou aprovação estética foi realizada nesta retomada. Nenhum código de interface ou dependência foi alterado.
+
+## Atualização após respostas do usuário
+
+Público inicial confirmado: clínicas de estética. Produto inicial confirmado: landing page. Estrutura, fontes consultadas e hipóteses em OFERTA-LANDING-ESTETICA.md. Oferta específica, condições comerciais e pesquisa direta do público continuam pendentes.
