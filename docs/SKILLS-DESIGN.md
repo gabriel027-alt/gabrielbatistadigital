@@ -11,7 +11,11 @@ Fonte e commit em [.agent/skills/SOURCES.md](../.agent/skills/SOURCES.md). Os ar
 
 Atualize o clone pela branch revisao-site e abra uma conversa nova no workspace do clone. Peça explicitamente para ler os dois SKILL.md. A descoberta automática depende da versão do agente; a leitura explícita funciona mesmo quando a interface não lista as skills. Não basta o agente afirmar que usou: ele deve apontar os arquivos lidos e produzir os resultados abaixo.
 
-## Primeiro uso: crítica, sem nova implementação automática
+## Direção atual e crítica antes da expansão
+
+A direção atual está registrada em PROPOSTA-GABRIEL.md e o diagnóstico em DIAGNOSTICO-RETOMADA.md. A solicitação histórica de duas propostas abaixo já foi superada pela escolha do retrato vermelho e da composição GABRIEL; não criar novas alternativas A/B por rotina. Para as próximas tarefas, seguir METODO-DE-QUALIDADE.md.
+
+### Registro histórico do primeiro uso
 
 A última proposta foi rejeitada. Não usar sua aparência como direção aprovada e não fazer mais uma troca de paleta com a mesma estrutura.
 

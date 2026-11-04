@@ -27,3 +27,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - A instalação dessas skills não autoriza novos deploys, alterações de permissões ou mudanças globais do ambiente.
 - Skills adicionais do catálogo OpenAI Plugins estão em `.agent/skills/`: frontend-app-builder, frontend-testing-debugging, gsap, web-3d-asset-pipeline e web-perf. Consulte o roteamento em docs/SKILLS-DESIGN.md e carregue apenas a necessária à tarefa.
 - Verifique as dependências reais de cada skill. Arquivos de instrução não significam que Browser, geração de imagem, Chrome DevTools MCP, GSAP ou um motor 3D estão instalados no agente ou na aplicação.
+
+## Pesquisa, conteúdo e evidência
+
+- Antes de implementação relevante, siga docs/METODO-DE-QUALIDADE.md. Inspecione a base, identifique a necessidade concreta, consulte fontes e skills pertinentes e defina critérios verificáveis antes de expandir o escopo.
+- Diferencie fatos, hipóteses e decisões propostas. Não invente pesquisa de público, diferenciais, provas comerciais, resultados, observações de navegador ou disponibilidade de ferramentas.
+- Para dependências/skills novas, registre problema, alternativas existentes, fonte e versão, licença, compatibilidade, manutenção, custo de carregamento e verificação prevista. Popularidade não comprova adequação.
+- Uma alteração documental não valida a interface. Informe separadamente evidência técnica, visual, editorial e comercial; nunca equipare teste aprovado a aprovação estética.
+- Faça uma parte representativa e verifique antes de repetir o padrão na página inteira. Ajustes pequenos não exigem pesquisa ou documentação desproporcional.
