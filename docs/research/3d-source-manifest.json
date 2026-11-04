@@ -1,0 +1,150 @@
+{
+  "date": "2026-11-04",
+  "method": "Read raw GitHub HEAD files; hashes identify content actually read. HEAD resolutions below were checked separately and are not proof each mutable URL had identical revision. No source code incorporated.",
+  "heads": {
+    "pmndrs/react-three-fiber": "d74622ea8ed717f7212d7e19d65ff3e325508389",
+    "pmndrs/drei": "bf6f4addf47467d3885de272d94ca5127f6ef68f",
+    "google/model-viewer": "880d8fd219c7e552775627eab4acde1770619b16",
+    "donmccurdy/glTF-Transform": "8e2a94a2616d293c4b503d0fb6a4b42e6ec7c62f",
+    "KhronosGroup/glTF-Validator": "602c54043ba66856b2e68c40fdf2bced975cdb8a",
+    "CloudAI-X/threejs-skills": "0e181866f095b5f06d005133876e926515390d95",
+    "pmndrs/react-three-next": "bb29a61949601e1c563688faf33a12d062ec3710"
+  },
+  "files": [
+    {
+      "file": "CloudAI-X--threejs-skills--LICENSE",
+      "sha256": "d26f12fa1a0e03fd5aa4d3cbf05262a9f1c684672d0864abac78b3bbb12b268c",
+      "bytes": 1066
+    },
+    {
+      "file": "CloudAI-X--threejs-skills--README.md",
+      "sha256": "e068ef3b64df1fbfd82e4f078f868abc3a3d011520e86e40c5eda3707086d6ad",
+      "bytes": 5302
+    },
+    {
+      "file": "CloudAI-X--threejs-skills--skills--threejs-performance--SKILL.md",
+      "sha256": "dacbf6a43ed280bdfcda2ce9fcf7a3f0ae54c25ed264e62f6e9a0117d6534285",
+      "bytes": 25315
+    },
+    {
+      "file": "CloudAI-X--threejs-skills--skills--threejs-react-three-fiber--SKILL.md",
+      "sha256": "07c0f09516dce50c91c3d23c5baca83c35d161e1abe3d8460782aba56e9476fa",
+      "bytes": 30002
+    },
+    {
+      "file": "KhronosGroup--glTF-Sample-Assets--README.md",
+      "sha256": "b9d6ad7b0a67acdcfbd301ad80b64203fcc19c535c5af035fcf97e6781c31d18",
+      "bytes": 6294
+    },
+    {
+      "file": "KhronosGroup--glTF-Validator--LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "file": "KhronosGroup--glTF-Validator--README.md",
+      "sha256": "1f90625f23ac971c42e304aff18cf448c1d6d7ece6116fab7c6cff8d35e935e3",
+      "bytes": 7271
+    },
+    {
+      "file": "donmccurdy--glTF-Transform--LICENSE.md",
+      "sha256": "2c4f111d00dbf22b10d31a14813c5f5de6a828640f7311f26b9dda89b3fce165",
+      "bytes": 1078
+    },
+    {
+      "file": "donmccurdy--glTF-Transform--README.md",
+      "sha256": "d89d0c933e18062a4e664e6389774bc84e0bebc5011e5e801406c6895bc948a3",
+      "bytes": 6647
+    },
+    {
+      "file": "donmccurdy--glTF-Transform--package.json",
+      "sha256": "36927be73d69bd14d17a4820b92a43744ab4478abbb8d5374ae9b91ba9ba2f85",
+      "bytes": 2909
+    },
+    {
+      "file": "google--model-viewer--LICENSE",
+      "sha256": "cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30",
+      "bytes": 11358
+    },
+    {
+      "file": "google--model-viewer--README.md",
+      "sha256": "a2f5bfbad143316da5eeb5946105c8e0b17ccb7b0980e5149b499f65935e2276",
+      "bytes": 6009
+    },
+    {
+      "file": "google--model-viewer--package.json",
+      "sha256": "d017b70a795cd300177b53eba7f81f4a14572c665f4b811259b124de87003e18",
+      "bytes": 1949
+    },
+    {
+      "file": "google--model-viewer--packages--model-viewer--package.json",
+      "sha256": "12acceee4e9cf9a69d6d6f7ec531bd2521719136e2de603d20c19b7cf1bc1371",
+      "bytes": 4722
+    },
+    {
+      "file": "mrdoob--three.js--LICENSE",
+      "sha256": "8b378ebe60e2fe500158cb0ac71cb5e8b7d92953c2abcc63a0eb90499653b5bc",
+      "bytes": 1081
+    },
+    {
+      "file": "mrdoob--three.js--README.md",
+      "sha256": "d553d824625a07d7690de93af6f8daf13d6aaed42700929d7ce4e725fa5ef10d",
+      "bytes": 2969
+    },
+    {
+      "file": "mrdoob--three.js--package.json",
+      "sha256": "87f2c99a8718e5fdd6f5e51427fde52c6075f2f698ddf8f7b4e162882df93940",
+      "bytes": 3818
+    },
+    {
+      "file": "pmndrs--drei--LICENSE",
+      "sha256": "2e36b208b403882158daf95cae207087bbb830db4d434a79ebafffca177244c8",
+      "bytes": 1069
+    },
+    {
+      "file": "pmndrs--drei--README.md",
+      "sha256": "26718342352d21f3d2011829bb58bc515f06d25d51b19025df5a9eb3ab66299a",
+      "bytes": 27833
+    },
+    {
+      "file": "pmndrs--drei--package.json",
+      "sha256": "889bb72a2d8c9639454a93fef951ada9b601b1068cb565658015be087a521036",
+      "bytes": 4956
+    },
+    {
+      "file": "pmndrs--react-three-fiber--LICENSE",
+      "sha256": "9c35b5de7b7493a707fffe4eb23bd2f7f449153c1911f7c6eefb4e591fd5349a",
+      "bytes": 1072
+    },
+    {
+      "file": "pmndrs--react-three-fiber--package.json",
+      "sha256": "5dad57461421ab01340c84904bf521c67ce74f19ba4b2399188f2631f10c28ba",
+      "bytes": 2933
+    },
+    {
+      "file": "pmndrs--react-three-fiber--packages--fiber--package.json",
+      "sha256": "08cdd95784a1ecaa7a5c8d895d5da659bc23780301b7d6873916c03236cb198b",
+      "bytes": 2205
+    },
+    {
+      "file": "pmndrs--react-three-fiber--readme.md",
+      "sha256": "29c7319a41a30b95319e68d540672efaa31a2c3bd44bad6ef2e48b93d00d4ab6",
+      "bytes": 14301
+    },
+    {
+      "file": "pmndrs--react-three-next--LICENSE",
+      "sha256": "493dfd8b19ce9fdda160929b2efec0124908f320f1b19598073270549871f6b5",
+      "bytes": 1072
+    },
+    {
+      "file": "pmndrs--react-three-next--README.md",
+      "sha256": "b36abb4acd34262e059c6bd6df884f452cd9da7fb457e807a9096b18ec9e7873",
+      "bytes": 3452
+    },
+    {
+      "file": "pmndrs--react-three-next--package.json",
+      "sha256": "5f279ef5921370bf372fc3eb5f86810d2cbd6f161f9848ee259143910b08d39b",
+      "bytes": 1180
+    }
+  ]
+}
