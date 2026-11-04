@@ -35,3 +35,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Para dependências/skills novas, registre problema, alternativas existentes, fonte e versão, licença, compatibilidade, manutenção, custo de carregamento e verificação prevista. Popularidade não comprova adequação.
 - Uma alteração documental não valida a interface. Informe separadamente evidência técnica, visual, editorial e comercial; nunca equipare teste aprovado a aprovação estética.
 - Faça uma parte representativa e verifique antes de repetir o padrão na página inteira. Ajustes pequenos não exigem pesquisa ou documentação desproporcional.
+
+## Protótipos de clientes: direção imersiva
+
+- Os mesmos critérios de qualidade do portfólio valem para todos os protótipos de clientes. O usuário exige experiências intensamente animadas e imersivas, com identidade e conteúdo específicos; landing genérica com entrada de texto/parallax não satisfaz o pedido.
+- Antes de ampliar a implementação, definir roteiro de movimento com gatilhos, estados, continuidade entre seções, retorno do scroll, móvel e movimento reduzido. Consultar os efeitos escolhidos em docs/REFERENCIAS-ESCOLHIDAS-MOVIMENTO.md e o diagnóstico de escopo em docs/AURA-PRIMEIRO-PROTOTIPO.md.
+- Não confundir aprovação de referência/efeito com aprovação de paleta, composição ou página. Conferir a sequência renderizada em vídeo, além de screenshots e testes. Não anunciar 3D, fidelidade ou imersão apenas pelo uso de uma biblioteca.
