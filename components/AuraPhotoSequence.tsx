@@ -6,10 +6,10 @@ import styles from "@/app/propostas/aura/photo-sequence.module.css";
 
 const chapters = [
   { key: "portrait", title: "A expressão vem primeiro.", copy: "Antes de olhar para um detalhe, é preciso entender o conjunto.", x:.5, y:.5, zoom:1.04, side:.72 },
-  { key: "malar", title: "Zigomático.", copy: "Projeção e volume da região malar participam da leitura do terço médio. A relação com os demais traços faz parte da avaliação.", x:.73, y:.55, zoom:2.05, side:.72 },
-  { key: "lips", title: "Lábios.", copy: "Contorno, proporção e movimento são considerados juntos. O objetivo precisa respeitar a expressão e o que você deseja preservar.", x:.5, y:.66, zoom:2.2, side:.28 },
-  { key: "chin", title: "Queixo e mandíbula.", copy: "O queixo e a linha mandibular se relacionam com as proporções do rosto. Possibilidades e limites dependem da avaliação individual.", x:.5, y:.78, zoom:2.05, side:.72 },
-  { key: "nose", title: "A relação com o nariz.", copy: "Nariz, lábios e queixo são lidos em conjunto. Nem toda mudança de forma é indicada ou possível com preenchimento.", x:.5, y:.56, zoom:2.15, side:.28 },
+  { key: "malar", title: "Zigomático.", copy: "Projeção e volume da região malar participam da leitura do terço médio. A relação com os demais traços faz parte da avaliação.", x:.73, y:.55, zoom:2.45, side:.72 },
+  { key: "lips", title: "Lábios.", copy: "Contorno, proporção e movimento são considerados juntos. O objetivo precisa respeitar a expressão e o que você deseja preservar.", x:.5, y:.66, zoom:2.65, side:.28 },
+  { key: "chin", title: "Queixo e mandíbula.", copy: "O queixo e a linha mandibular se relacionam com as proporções do rosto. Possibilidades e limites dependem da avaliação individual.", x:.5, y:.78, zoom:2.45, side:.72 },
+  { key: "nose", title: "A relação com o nariz.", copy: "Nariz, lábios e queixo são lidos em conjunto. Nem toda mudança de forma é indicada ou possível com preenchimento.", x:.5, y:.56, zoom:2.55, side:.28 },
   { key: "portrait", title: "O detalhe encontra o todo.", copy: "Um planejamento individual considera as relações entre os traços, a sua expressão e as suas expectativas.", x:.5, y:.5, zoom:1.04, side:.72 },
 ];
 
@@ -45,6 +45,25 @@ export function AuraPhotoSequence() {
         const vertical = buffer.createLinearGradient(0,0,0,texture.height);
         vertical.addColorStop(0,"transparent"); vertical.addColorStop(.025,"black"); vertical.addColorStop(.96,"black"); vertical.addColorStop(1,"transparent");
         buffer.fillStyle = vertical; buffer.fillRect(0,0,texture.width,texture.height);
+        // Each region uses a feathered patch; eyes, hair and other identity cues stay on the original master.
+        const before = new window.Image();
+        before.src = "/images/aura-sequence/continuous-before.webp";
+        const patches: HTMLCanvasElement[] = [];
+        try {
+          await before.decode();
+          const regions = [ [[.27,.55,.18,.11],[.74,.55,.18,.11]], [[.5,.66,.19,.075]], [[.5,.78,.29,.11]], [[.5,.55,.12,.12]] ];
+          regions.forEach(ellipses => {
+            const patch = document.createElement("canvas"); patch.width=texture.width; patch.height=texture.height;
+            const ctx=patch.getContext("2d")!;
+            ellipses.forEach(([cx,cy,rx,ry]) => {
+              ctx.save(); ctx.translate(cx*patch.width,cy*patch.height); ctx.scale(rx*patch.width,ry*patch.height);
+              const fade=ctx.createRadialGradient(0,0,.48,0,0,1); fade.addColorStop(0,"black"); fade.addColorStop(1,"transparent");
+              ctx.fillStyle=fade; ctx.fillRect(-1,-1,2,2); ctx.restore();
+            });
+            ctx.globalCompositeOperation="source-in"; ctx.drawImage(before,0,0,patch.width,patch.height); patches.push(patch);
+          });
+        } catch { /* A missing comparison keeps the original photographic chapter usable. */ }
+        if (disposed || parent!.dataset.motion === "off") return;
         gsap.registerPlugin(ScrollTrigger);
         const media = gsap.matchMedia(); revert = () => media.revert();
         media.add("(min-height: 700px) and (prefers-reduced-motion: no-preference)", () => {
@@ -58,9 +77,15 @@ export function AuraPhotoSequence() {
             if (previousProgress === progress) return;
             previousProgress = progress;
             const frame = Math.round(progress*239);
-            const travel = progress*5, index = Math.min(4,Math.floor(travel));
-            const fraction = Math.min(1,travel-index), t = fraction*fraction*(3-2*fraction);
-            const a = chapters[index], b = chapters[index+1];
+            // Camera arrives first, holds while the local comparison develops, then travels again.
+            const stops = [0,.14,.34,.54,.74,.96];
+            const departures = [.06,.26,.46,.66,.86,1];
+            let index=0;
+            while(index<5 && progress>=stops[index+1]) index++;
+            const next=Math.min(5,index+1);
+            const fraction=next===index ? 0 : Math.max(0,Math.min(1,(progress-departures[index])/(stops[next]-departures[index])));
+            const t=fraction*fraction*fraction*(fraction*(fraction*6-15)+10);
+            const a = chapters[index], b = chapters[next];
             const mix = (start:number,end:number) => start+(end-start)*t;
             const mobile = width<900, pictureHeight = mobile ? height*.64 : height;
             const zoom = mix(a.zoom,b.zoom);
@@ -71,18 +96,35 @@ export function AuraPhotoSequence() {
             const y = targetY-mix(a.y,b.y)*texture.height*scale;
             context!.clearRect(0,0,width,height);
             context!.drawImage(texture,x,y,texture.width*scale,texture.height*scale);
+            const reveals=patches.map((patch,i)=>{
+              const start=stops[i+1]+.025, end=departures[i+1]-.02;
+              const value=Math.max(0,Math.min(1,(progress-start)/(end-start)));
+              const reveal=value*value*(3-2*value);
+              if(reveal<1) {
+                context!.globalAlpha=1-reveal;
+                context!.drawImage(patch,x,y,texture.width*scale,texture.height*scale);
+              }
+              return reveal;
+            });
+            context!.globalAlpha=1;
+            canvas!.dataset.comparison=reveals.map(value=>value.toFixed(3)).join(",");
             // A soft, moving edge maintains room for the copy while the same photograph travels.
             context!.globalCompositeOperation = "destination-in";
             const mask = context!.createLinearGradient(width*(anchor-.50),0,width*(anchor+.50),0);
             mask.addColorStop(0,"transparent"); mask.addColorStop(.17,"black"); mask.addColorStop(.83,"black"); mask.addColorStop(1,"transparent");
             context!.fillStyle = mask; context!.fillRect(0,0,width,height);
             context!.globalCompositeOperation = "source-over";
-            const active = Math.min(5,Math.round(travel));
+            const active = fraction>.5 ? next : index;
             notes.forEach((note,i) => {
               // Copy switches only after the camera has moved toward its new focus.
               note.style.visibility = i===active ? "visible" : "hidden";
-              note.style.opacity = i===active ? String(.55+.45*Math.abs(2*fraction-1)) : "0";
+              note.style.opacity = i===active ? String(1-.65*Math.sin(Math.PI*fraction)) : "0";
               note.dataset.active = String(i===active);
+              const label=note.querySelector<HTMLElement>("[data-comparison-label]");
+              if(label) {
+                const value=reveals[i-1];
+                label.textContent=value===undefined ? "Comparação indisponível" : value<.02 ? "Antes · simulação" : value>.98 ? "Depois · simulação" : "Antes → Depois · simulação";
+              }
               if (mobile) { note.style.left = ""; note.style.right = ""; }
               else { note.style.left = chapters[i].side>.5 ? "4%" : "64%"; note.style.right = "auto"; }
             });
@@ -97,7 +139,7 @@ export function AuraPhotoSequence() {
             previousProgress = -1; draw();
           });
           resize.observe(stage);
-          gsap.to(state,{progress:1,ease:"none",onUpdate:draw,scrollTrigger:{trigger:section!,start:"top top",end:"bottom bottom",scrub:.16,invalidateOnRefresh:true}});
+          gsap.to(state,{progress:1,ease:"none",onUpdate:draw,scrollTrigger:{trigger:section!,start:"top top",end:"bottom bottom",scrub:.38,invalidateOnRefresh:true}});
           ScrollTrigger.refresh();
           return () => { resize.disconnect(); notes.forEach(note=>{note.removeAttribute("style"); delete note.dataset.active;}); delete section!.dataset.sequenceAnimated; };
         },section!);
@@ -115,8 +157,8 @@ export function AuraPhotoSequence() {
         if (!image.dataset.cameraFallback) { image.dataset.cameraFallback="true"; image.src="/images/aura-sequence/portrait.webp"; }
       }}/></figure>
       <canvas ref={canvasRef} className={styles.canvas} data-photo-camera aria-hidden="true"/>
-      <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}><h3>{chapter.title}</h3><p>{chapter.copy}</p></article>)}</div>
-      <footer className={styles.foot}><span>Simulação ilustrativa · Imagem gerada</span><a href="#aura-avaliacao">Entender a avaliação ↓</a></footer>
+      <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index>0 && index<5 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index>0 && index<5 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src="/images/aura-sequence/continuous-before.webp" width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
+      <footer className={styles.foot}><span>Simulação ilustrativa · Imagens geradas · Não prevê resultado clínico</span><a href="#aura-avaliacao">Entender a avaliação ↓</a></footer>
     </div>
   </section>;
 }

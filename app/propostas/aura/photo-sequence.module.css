@@ -12,7 +12,7 @@
 .foot { display:flex; gap:25px; justify-content:space-between; padding:25px 4vw; font-size:12px; border-top:1px solid #f2f1eb55; }
 .foot a { text-decoration:none; }
 @media(min-height:700px) {
- .track[data-sequence-animated=true] { height:480svh; }
+ .track[data-sequence-animated=true] { height:600svh; }
  .track[data-sequence-animated=true] .stage { position:sticky; top:0; height:100svh; overflow:hidden; isolation:isolate; }
  .track[data-sequence-animated=true] .source { display:none; }
  .track[data-sequence-animated=true] .canvas { display:block; position:absolute; inset:0; width:100%; height:100%; }
@@ -34,7 +34,7 @@
  .foot { padding:24px; flex-wrap:wrap; line-height:1.6; }
 }
 @media(max-width:899px) and (min-height:700px) {
- .track[data-sequence-animated=true] { height:420svh; }
+ .track[data-sequence-animated=true] { height:540svh; }
  .track[data-sequence-animated=true] .heading { padding:25px 24px; }
  .track[data-sequence-animated=true] .heading h2 { font-size:24px; }
  .track[data-sequence-animated=true] .copy { top:auto; bottom:145px; left:24px; right:24px; width:auto; border:0; }
@@ -44,3 +44,13 @@
  .track[data-sequence-animated=true] .foot { bottom:70px; left:24px; right:24px; padding:15px 0 0; flex-direction:column; gap:5px; font-size:10px; }
  .track[data-sequence-animated=true] .foot a { margin-right:0; }
 }
+
+.comparisonLabel { display:block; color:#e8b197; font-size:12px; letter-spacing:.12em; text-transform:uppercase; margin-bottom:20px; }
+.staticComparison { margin-top:24px; font-size:13px; }
+.staticComparison summary { cursor:pointer; padding:12px 0; }
+.staticComparison>div { display:grid; grid-template-columns:1fr 1fr; gap:12px; }
+.staticComparison figure { margin:0; }
+.staticComparison img { width:100%; height:auto; display:block; }
+.staticComparison figcaption { padding:8px 0; }
+.track[data-sequence-animated=true] .staticComparison { display:none; }
+@media(max-width:899px) { .comparisonLabel { font-size:10px; margin-bottom:12px; } }

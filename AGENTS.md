@@ -58,3 +58,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - components/AuraPhotoSequence.tsx desenha uma única imagem fotográfica gerada em Canvas2D, com posições intermediárias de câmera. Não há giro real da cabeça, WebGL nem vídeo contínuo gerado. Não anunciar isso como sequência nativa de fotografias intermediárias.
 - A rota /propostas/aura/personagem redireciona ao capítulo. AuraCharacterStudy e AuraFaceScene são históricos; não reativar sem nova instrução.
 - A fonte do capítulo é continuous-portrait.webp (1024×1536). O hero usa portrait.webp da mesma personagem. Não anunciar 4K, antes/depois de paciente ou tratamento realizado.
+
+## Aura: comparação ilustrativa regional
+
+- O capítulo agora mantém a câmera durante cada comparação e revela recortes locais de continuous-before.webp para continuous-portrait.webp. São variações digitais de personagem gerada, com identificação visível; não resultados clínicos. Preservar as legendas e a alternativa estática.
+- O movimento é Canvas2D com aproximação/deslocamento e fusão regional; não anunciar rotação 3D ou vídeo anatômico. Fonte e limitações em docs/AURA-COMPARACAO-SCROLL.md.

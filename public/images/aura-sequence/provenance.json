@@ -48,11 +48,20 @@
       "bytes": 365582,
       "sha256": "c9e8f7b4a9d3940eff59451a461e32e544729a14db6016a974134159343bc4c1",
       "generatedSource": "/workspace/generated_images/exec-0f4d8805-bf32-446b-8204-9fdb5c1a324c.png"
+    },
+    {
+      "name": "continuous-before",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 277018,
+      "sha256": "3b1b82032a22f1abd094be78be800d6af5554f2e9949169cf50990887673f9a9",
+      "generatedSource": "/workspace/generated_images/exec-e492a3cd-e399-4565-8214-02e80c948fdd.png"
     }
   ],
   "runtimeSources": [
     "portrait.webp",
-    "continuous-portrait.webp"
+    "continuous-portrait.webp",
+    "continuous-before.webp"
   ],
-  "camera": "Continuous Canvas2D pan/zoom of one photograph; no generated video or anatomical morph"
+  "camera": "Continuous Canvas2D camera with stationary comparison holds and feathered regional AI-generated before patches; illustrative digital variations, not clinical outcomes or true 3D."
 }
