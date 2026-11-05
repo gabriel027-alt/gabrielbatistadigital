@@ -1,0 +1,67 @@
+{
+  "source": "https://github.com/met4citizen/TalkingHead/blob/1563de184c19b310de4b636664d5835e2c74dbba/avatars/mpfb.glb",
+  "sourceSha256": "63c645a2a863b9972e9a9c2ed576a1de4c390b8475508e1473e69c87a3ee299c",
+  "license": "CC0-1.0 per pinned repository README attribution",
+  "outputBytes": 4576056,
+  "outputSha256": "e031dec72e234db99806f26f413a06b6fa836fd99db850f0c4d2919851459062",
+  "meshes": [
+    {
+      "name": "base",
+      "targets": [
+        "eyeBlinkLeft",
+        "eyeBlinkRight",
+        "auraMalarProjection"
+      ],
+      "vertices": 11779
+    },
+    {
+      "name": "female_casualsuit01",
+      "targets": [],
+      "vertices": 2377
+    },
+    {
+      "name": "high-poly",
+      "targets": [],
+      "vertices": 1076
+    },
+    {
+      "name": "mind_eyebrows_02",
+      "targets": [
+        "eyeBlinkLeft",
+        "eyeBlinkRight"
+      ],
+      "vertices": 12243
+    },
+    {
+      "name": "mind_eyelashes_02",
+      "targets": [
+        "eyeBlinkLeft",
+        "eyeBlinkRight"
+      ],
+      "vertices": 16992
+    },
+    {
+      "name": "ponytail01",
+      "targets": [],
+      "vertices": 3902
+    },
+    {
+      "name": "teeth_base",
+      "targets": [],
+      "vertices": 4494
+    },
+    {
+      "name": "tongue01",
+      "targets": [],
+      "vertices": 253
+    }
+  ],
+  "modifications": [
+    "Removed unused expression morphs",
+    "Added bilateral malar design morph, not clinical simulation",
+    "Retained eye blinking morphs",
+    "Blender 4.3.2 GLB export",
+    "glTF Transform 4.5.1 WebP quality 85 and texture cap 1024px"
+  ],
+  "clinicalValidation": false
+}

@@ -1,0 +1,6 @@
+Source: https://raw.githubusercontent.com/met4citizen/TalkingHead/1563de184c19b310de4b636664d5835e2c74dbba/avatars/mpfb.glb
+Source attribution in pinned README:
+- Example avatar "mpfb.glb" was created using [Blender](https://www.blender.org/) and [MPFB](https://static.makehumancommunity.org/mpfb.html) Blender extension. The avatar is licensed under [CC0](https://creativecommons.org/public-domain/cc0/).
+Modified by this project: expression selection, malar design morph, texture optimization and GLB re-export.
+Not a patient, treatment outcome, anatomical measurement or predictive clinical simulation.
+CC0: https://creativecommons.org/publicdomain/zero/1.0/
