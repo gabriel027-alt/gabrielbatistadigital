@@ -1,3 +1,5 @@
+> Registro histórico da primeira proposta. A direção atual, baseada nas respostas posteriores do usuário, está em [AURA-EDITORIAL.md](AURA-EDITORIAL.md). Não reaplicar os rótulos ou a composição desta versão antiga à rota atual.
+
 # Aura: primeira unidade de protótipo
 
 ## Escopo e diagnóstico
