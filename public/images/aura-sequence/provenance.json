@@ -1,0 +1,58 @@
+{
+  "kind": "AI-generated illustrative photographic keyframes; not patient results",
+  "frames": [
+    {
+      "name": "portrait",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 97730,
+      "sha256": "262729cd9b7d362f14968d52aa0708984a830beb5a509356200538c258bb7bd6",
+      "generatedSource": "/workspace/generated_images/exec-1b1be9b7-36be-4bf3-a31b-8f54e0de5fd3.png"
+    },
+    {
+      "name": "malar",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 149948,
+      "sha256": "ead8367bf0fc818b2694bfcb62bb9e3969e821bbc4f767ef51bf3a82dd459889",
+      "generatedSource": "/workspace/generated_images/exec-53f5d523-c565-4065-b9f7-2b7423de0a65.png"
+    },
+    {
+      "name": "lips",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 127108,
+      "sha256": "bbf07450d302aa560883ca9860420dc1aab4c76c7966d7b236435afd72063a94",
+      "generatedSource": "/workspace/generated_images/exec-b5a06956-bdab-4e7e-8d3a-06e38dc34b67.png"
+    },
+    {
+      "name": "chin",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 158608,
+      "sha256": "c5370c1dd464af0e7c444cc422088dccfd06c1525e8adb3a3319324801a0ffe3",
+      "generatedSource": "/workspace/generated_images/exec-abecc755-d96e-4e31-813f-e38ccbceccd8.png"
+    },
+    {
+      "name": "nose",
+      "width": 1536,
+      "height": 1024,
+      "bytes": 139980,
+      "sha256": "0e365642b7e7180025e146a4f0d4f69f34e2030c5d3b8682f539d45280b8d5cc",
+      "generatedSource": "/workspace/generated_images/exec-af7dc4f5-0ebc-4372-b8d7-ce82d6c337c1.png"
+    },
+    {
+      "name": "continuous-portrait",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 365582,
+      "sha256": "c9e8f7b4a9d3940eff59451a461e32e544729a14db6016a974134159343bc4c1",
+      "generatedSource": "/workspace/generated_images/exec-0f4d8805-bf32-446b-8204-9fdb5c1a324c.png"
+    }
+  ],
+  "runtimeSources": [
+    "portrait.webp",
+    "continuous-portrait.webp"
+  ],
+  "camera": "Continuous Canvas2D pan/zoom of one photograph; no generated video or anatomical morph"
+}

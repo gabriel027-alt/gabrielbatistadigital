@@ -51,3 +51,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Para /propostas/aura, usar docs/AURA-EDITORIAL.md como brief atual: harmonização facial, fotografia editorial dominante, tipografia expressiva e transições dramáticas. O usuário dispensou rótulos visíveis de fictício/demonstração; não reintroduzi-los nessa rota. Isso não autoriza inventar pacientes, antes/depois, depoimentos, qualificações ou atendimento real.
 - O foco anterior em cuidado genérico da pele e as capturas aura-study são históricos. Não trocar o retrato de Gabriel pela fotografia editorial da marca Aura. Preservar homepage e conceitos antigos até instrução específica.
+
+## Aura: enquadramento fotográfico contínuo em 05/11/2026
+
+- O usuário cancelou o avatar 3D e rejeitou a simples troca/fusão de imagens. A direção atual é movimento contínuo de aproximação/deslocamento, controlado pelo scroll.
+- components/AuraPhotoSequence.tsx desenha uma única imagem fotográfica gerada em Canvas2D, com posições intermediárias de câmera. Não há giro real da cabeça, WebGL nem vídeo contínuo gerado. Não anunciar isso como sequência nativa de fotografias intermediárias.
+- A rota /propostas/aura/personagem redireciona ao capítulo. AuraCharacterStudy e AuraFaceScene são históricos; não reativar sem nova instrução.
+- A fonte do capítulo é continuous-portrait.webp (1024×1536). O hero usa portrait.webp da mesma personagem. Não anunciar 4K, antes/depois de paciente ou tratamento realizado.

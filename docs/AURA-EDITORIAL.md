@@ -62,3 +62,23 @@ Sequência planejada: visão geral → região malar (texto à esquerda, face à
 Build de produção e lint aprovados. Cinco testes Playwright passaram em 16,1s, cobrindo navegação, acessibilidade axe, larguras 360–1920px, scroll reversível, modo estático/manual/reduzido, conteúdo sem JavaScript e renderização WebGL com retorno à fotografia após perda de contexto. Teste WebGL em Chromium com SwiftShader; não equivale a ensaio de GPU/aparelho físico. Khronos glTF Validator: zero erros e zero avisos (relatório em research/aura-face-validation.json). Câmeras e textos dos três estados foram inspecionados visualmente. Evidências em preview/aura-face-3d/, incluindo avanço/retorno em vídeo e alternativa móvel reduzida.
 
 O modelo é deliberadamente uma escultura facial genérica em cobre, sem promessa de precisão anatômica ou correspondência à modelo da fotografia. A composição abandona o quadro fotográfico persistente no desktop. Abertura fotográfica, avaliação e contato continuam preservados. Não houve deploy nem alteração da homepage.
+
+## Direção atualizada em 05/11/2026: enquadramento contínuo
+
+O usuário cancelou a busca/modelagem 3D e escolheu frames realistas com foco regional pelo scroll. Em seguida esclareceu que não queria simples trocas entre imagens: precisava de movimento contínuo entre os closes.
+
+Pesquisa e testes: gerados retrato horizontal, quatro closes e dois enquadramentos intermediários. Um teste FFmpeg minterpolate de movimento compensado entre fotografias geradas apresentou duplicações/rasgos faciais; foi examinado e rejeitado. Não integrado. A tentativa MB-Lab também não foi integrada. Não continuar esses caminhos por conta própria.
+
+Solução implementada: uma nova fotografia vertical nativa 1024×1536, gerada com a imagem-mestre como referência. Uma câmera 2D calcula continuamente escala e deslocamento sobre essa única imagem. O Canvas2D desenha o enquadramento em cada atualização do scroll, com suavização curta e retorno reversível. É aproximação/pan fotográfico, não rotação 3D real, vídeo gerado ou uma sequência densa de poses independentes. A continuidade não depende de dissolver rostos diferentes. Essa limitação foi comunicada ao usuário durante a implementação.
+
+Seis focos: rosto inteiro → zigomático → lábios → queixo/mandíbula → relação com nariz → retorno ao conjunto. Captions mudam perto do novo foco. O movimento da câmera continua entre os pontos. Abertura usa o retrato horizontal da mesma personagem. Não se altera a anatomia durante o percurso nem se atribui resultado clínico a ela. Interface identifica “Simulação ilustrativa · Imagem gerada”. A rota antiga /propostas/aura/personagem redireciona ao capítulo.
+
+Palco desktop 480svh, mobile 420svh; telas baixas, movimento reduzido, ausência de JS e pausa global retornam à fotografia estática com os seis textos lineares. DPR limitado a 1,5. Desenho por atualização de progresso/redimensionamento, sem loop ocioso permanente. Imagem de fallback quando a fonte principal falha. Nenhum arquivo GLB é solicitado na rota.
+
+Fontes: ferramenta de geração de imagens desta sessão. Cinco imagens horizontais nativas 1536×1024 e uma fonte vertical 1024×1536, convertidas a WebP (qualidade 91/94). Não anunciar resolução 4K. Closes horizontais ficam como estudos de referência, não frames efetivos da câmera atual. Não foi usado modelo pago nem adicionada dependência npm. Código anterior de 3D permanece histórico, sem importação nesta rota. Origem, peso e hashes em public/images/aura-sequence/provenance.json.
+
+### Verificação do enquadramento contínuo
+
+Build de produção, TypeScript e lint aprovados. Sete testes focados passaram (seis na execução conjunta; o teste longo de câmera foi repetido após corrigir a expectativa de reativação fora da área de carregamento). Cobrem posições intermediárias com pixels diferentes, retorno ao mesmo frame visual, seis focos, pausa/retomada, movimento reduzido, recuperação de imagem ausente, redirecionamento da rota antiga, navegação móvel, ausência de JS, axe nos critérios selecionados e larguras 360–1920px sem overflow. O teste não atribui identidade clínica nem valida conteúdo médico.
+
+Capturas e vídeo de navegador revisados em preview/aura-continuous/. Vídeo MP4 H.264, velocidade original da gravação; não foi acelerado. Inspeção desktop/móvel e quadros intermediários; zero erros de página na gravação. Câmera fotográfica frontal com zoom/pan, sem giro real da cabeça. Não há medição em GPU/aparelho físico nem certificação de Core Web Vitals. Homepage e demais conceitos preservados; sem deploy.

@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
-import { AuraFaceScene } from "@/components/AuraFaceScene";
+import { AuraPhotoSequence } from "@/components/AuraPhotoSequence";
 import { AuraMotion } from "@/components/AuraMotion";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./aura.module.css";
@@ -22,7 +22,7 @@ export default function AuraProposal() {
     <main id="aura-conteudo">
       <section className={styles.heroTrack} data-hero-track aria-labelledby="aura-title">
         <div className={styles.stage} data-hero-stage>
-          <figure className={styles.portrait} data-portrait><Image src="/images/aura-editorial/portrait.webp" alt="Retrato editorial feminino, com pele natural e luz em tons de cobre" fill preload sizes="100vw" /></figure>
+          <figure className={styles.portrait} data-portrait><Image src="/images/aura-sequence/portrait.webp" alt="Retrato editorial feminino, com pele natural e luz em tons de cobre" fill preload sizes="100vw" /></figure>
           <header className={styles.header}>
             <a href="#aura-conteudo" className={styles.brand} aria-label="Aura, início">aura</a>
             <span className={styles.specialty}>Harmonização facial</span>
@@ -36,22 +36,7 @@ export default function AuraProposal() {
           <p className={styles.transitionText} data-transition-text aria-hidden="true">Um detalhe muda.<br/>A expressão é sua.</p>
         </div>
       </section>
-      <section id="aura-olhar" className={styles.focusTrack} data-focus-track aria-labelledby="aura-manifesto-title">
-        <div className={styles.manifesto} data-manifesto>
-          <div className={styles.orbits} aria-hidden="true" data-orbits><span/><span/><span/></div>
-          <h2 id="aura-manifesto-title" data-focus-title><span className={styles.sr}>O seu rosto. Por inteiro.</span><Letters text="O seu rosto."/><Letters text="Por inteiro."/></h2>
-          <p className={styles.manifestoCopy} data-focus-intro><span className={styles.sr}>Antes de olhar para um detalhe, é preciso entender o conjunto.</span><span aria-hidden="true">{"Antes de olhar para um detalhe, é preciso entender o conjunto.".split(" ").map((word, index) => <span key={index} data-copy-word>{word}{" "}</span>)}</span></p>
-          <figure className={styles.focusMedia} data-focus-media>
-            <AuraFaceScene/>
-          </figure>
-          <div className={styles.focusNotes} data-focus-notes>
-            <article className={styles.focusNote} data-focus-note data-side="left"><h3>Maçãs do rosto.</h3><p>Volume e projeção da região malar participam do contorno facial. Na avaliação, entram em relação com as demais proporções do rosto.</p></article>
-            <article className={styles.focusNote} data-focus-note data-side="right"><h3>Lábios.</h3><p>Contorno, proporção e movimento precisam ser considerados juntos. A conversa inclui o que você deseja mudar e o que pretende preservar.</p></article>
-            <article className={styles.focusNote} data-focus-note data-side="left"><h3>Mandíbula e queixo.</h3><p>O perfil e o terço inferior também fazem parte da leitura facial. Possibilidades de contorno dependem de avaliação individual, limites e cuidados.</p></article>
-          </div>
-          <p className={styles.manifestoFoot} data-focus-foot>O ponto de partida é você.</p>
-        </div>
-      </section>
+      <AuraPhotoSequence/>
       <section id="aura-avaliacao" className={styles.evaluation} aria-labelledby="aura-evaluation-title">
         <div className={styles.evaluationHeading}><p>A avaliação facial</p><h2 id="aura-evaluation-title">O que você quer mudar.<br/>O que quer preservar.</h2></div>
         <div className={styles.evaluationGrid}>

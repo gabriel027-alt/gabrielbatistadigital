@@ -34,48 +34,9 @@ export function AuraMotion({ children }: { children: ReactNode }) {
               .fromTo(select("[data-transition-text]"), { y: 70, opacity: 0 }, { y: 0, opacity: 1, duration: .3 }, .55);
             gsap.to(select("[data-hero-stage]"), { yPercent: -8, ease: "none", scrollTrigger: { trigger: track, start: "bottom bottom", end: "bottom top", scrub: true } });
           }
-          const manifesto = select("[data-manifesto]")[0];
-          gsap.fromTo(select("[data-glyph]"), { rotationY: -75, x: 30, opacity: .1 }, { rotationY: 0, x: 0, opacity: 1, stagger: .02, ease: "power2.out", scrollTrigger: { trigger: manifesto, start: "top 85%", end: "top 10%", scrub: .5, invalidateOnRefresh: true } });
-          if (context.conditions.desktop) {
-            const focus = gsap.timeline({
-              scrollTrigger: {
-                trigger: select("[data-focus-track]")[0],
-                start: "top top",
-                end: "bottom bottom",
-                scrub: .45,
-                invalidateOnRefresh: true,
-              },
-              onUpdate: () => {
-                const progress = focus.progress();
-                node.dataset.faceProgress = String(progress);
-                node.dispatchEvent(new CustomEvent("aura-face-progress", { detail: { progress } }));
-              },
-            });
-            const notes = select("[data-focus-note]");
-            gsap.set(notes, { autoAlpha: 0, y: 35 });
-            focus.to(select("[data-focus-title]"), { scale: .32, y: -80, transformOrigin: "0% 0%", duration: .22, ease: "power2.inOut" }, .06)
-              .to(select("[data-focus-intro]"), { autoAlpha: 0, y: -20, duration: .12 }, .12)
-              .fromTo(select("[data-focus-media]"), { autoAlpha: 0 }, { autoAlpha: 1, duration: .2 }, .12)
-              .to(manifesto, { backgroundColor: "#201714", color: "#f2f1eb", duration: .2 }, .1)
-              .to(select("[data-orbits]"), { autoAlpha: 0, duration: .15 }, .1);
-            notes.forEach((note, index) => {
-              const start = .28 + index * .26;
-              focus.to(note, { autoAlpha: 1, y: 0, duration: .1 }, start);
-              if (index < notes.length - 1) focus.to(note, { autoAlpha: 0, y: -25, duration: .08 }, start + .17);
-            });
-            focus.to(select("[data-focus-title]"), { x: () => innerWidth * .54, duration: .1, ease: "power2.inOut" }, .47)
-              .to(select("[data-focus-title]"), { x: 0, duration: .1, ease: "power2.inOut" }, .73);
-            focus.to({}, { duration: .12 }, .88);
-            focus.to({}, { duration: .08 });
-          } else {
-            gsap.from(select("[data-focus-media]"), { y: 45, rotationX: -8, transformPerspective: 1000, ease: "none", scrollTrigger: { trigger: select("[data-focus-media]")[0], start: "top bottom", end: "top 55%", scrub: true } });
-            gsap.fromTo(select("[data-copy-word]"), { opacity: .2 }, { opacity: 1, stagger: .08, ease: "none", scrollTrigger: { trigger: manifesto, start: "top 35%", end: "top 5%", scrub: true } });
-          }
           ScrollTrigger.refresh();
           return () => {
             delete node.dataset.animated;
-            delete node.dataset.faceProgress;
-            node.dispatchEvent(new CustomEvent("aura-face-progress", { detail: { progress: 0 } }));
           };
         }, node);
         if (disposed) revert();
