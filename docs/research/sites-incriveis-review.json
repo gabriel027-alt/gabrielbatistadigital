@@ -1,0 +1,115 @@
+{
+  "review_date": "2026-11-04",
+  "archive_sha256": "bf2a5438cddfa00533b61c4edf29f40c15bf8c4a53254a46cf9c438cff538699",
+  "scope": "All 13 files read. Minimal browser reproductions using the supplied engine, not a full-site certification. Original package is not redistributed.",
+  "files": [
+    {
+      "path": "LEIA-ME.md",
+      "bytes": 1554,
+      "sha256": "82050c14bd5386322cecf01ae7603dc9a4e4ed77d5d460a34a03f480f8ad2f62"
+    },
+    {
+      "path": "LICENCA.md",
+      "bytes": 1049,
+      "sha256": "c0b0926281e6c6f6bc09043cbe644e37c06e65691d4899e55b1299d3ef6bd3e6"
+    },
+    {
+      "path": "SKILL.md",
+      "bytes": 5871,
+      "sha256": "235e578675e92d2c297fb916f7702c4d14f63c4cc40a6bbcc8307273dbbbb95a"
+    },
+    {
+      "path": "construcoes.md",
+      "bytes": 353,
+      "sha256": "aef18f5d7867ebb2b341ad12c7f700d3424c0b4bd431ae620ad6d1504c13b164"
+    },
+    {
+      "path": "modelos/exemplo.html",
+      "bytes": 5284,
+      "sha256": "3878ca22345e88207740aa35c2bb7979cf6f06c0b1099826640bf7db0255336b"
+    },
+    {
+      "path": "motor/sites-incriveis.css",
+      "bytes": 4333,
+      "sha256": "902f03945ef7f9500cad5d1fb619d88ced8be0cf33006251f27b14ef2d27649c"
+    },
+    {
+      "path": "motor/sites-incriveis.js",
+      "bytes": 13674,
+      "sha256": "cb76aca9b2c50f7587773c307f0f1cf43f5cab50009359a2d885ce32248f5bdd"
+    },
+    {
+      "path": "referencias/animacoes.md",
+      "bytes": 4840,
+      "sha256": "79c79c0891739305bc962fd6997aaa8a516ff02b8d992ec5b1c2f05bc47654af"
+    },
+    {
+      "path": "referencias/design.md",
+      "bytes": 2993,
+      "sha256": "fa1faae0b2161c1307274bff5f382ce9313410274b50915fe02cdd88c400bd02"
+    },
+    {
+      "path": "referencias/entrevista.md",
+      "bytes": 2213,
+      "sha256": "fa96d3bcfcab5b3ddb3ab54a151bec86cf20e47a8cbcbc08132eb8d50dbd7af0"
+    },
+    {
+      "path": "referencias/verificacao.md",
+      "bytes": 2065,
+      "sha256": "bdaf66cf43e8221edf68e84cbc53be59365315c7744831d36ae362668faae215"
+    },
+    {
+      "path": "scripts/servir.mjs",
+      "bytes": 1888,
+      "sha256": "3d0880100299d49a15138b26af8cdd56aa0ec2b1776c294b9aa49d3cc06a82c5"
+    },
+    {
+      "path": "scripts/verificar.mjs",
+      "bytes": 4769,
+      "sha256": "0d92d894237ba81ffbd1d93f205f4a12ded2bfde642011ff4b3500a2d4d6dc7a"
+    }
+  ],
+  "observations": {
+    "noJS": {
+      "opacity": "0",
+      "transform": "matrix(1, 0, 0, 1, 0, 36)"
+    },
+    "stages": [
+      {
+        "opacity": "0.820189",
+        "ariaHidden": null,
+        "inert": false
+      },
+      {
+        "opacity": "0",
+        "ariaHidden": null,
+        "inert": false
+      },
+      {
+        "opacity": "0",
+        "ariaHidden": null,
+        "inert": false
+      }
+    ],
+    "hiddenFocus": true,
+    "rail": {
+      "client": 1800,
+      "scroll": 1800,
+      "window": 900
+    },
+    "dynamicReduced": {
+      "media": true,
+      "classApplied": false
+    },
+    "markup": {
+      "label": "PrimeiraSegunda ênfase",
+      "lineBreaks": 0,
+      "emphasis": 0
+    }
+  },
+  "syntax_checks": {
+    "motor": "passed",
+    "servir": "passed",
+    "verificar": "passed"
+  }
+}
