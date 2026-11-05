@@ -54,3 +54,33 @@ test("Aura retains readable copy, imagery and disclosures without JavaScript", a
   await expect(page.getByRole('button', { name: /animações/ })).toHaveCount(0);
   await context.close();
 });
+
+test("Aura main chapter reveals three states, reverses, and restores the linear alternative", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  await page.goto("/propostas/aura");
+  await expect(page.locator('[data-motion]')).toHaveAttribute('data-animated', 'true');
+  const geometry = await page.locator('[data-focus-track]').evaluate(el => ({
+    top: el.getBoundingClientRect().top + scrollY,
+    travel: (el as HTMLElement).offsetHeight - innerHeight,
+  }));
+  const notes = page.locator('[data-focus-note]');
+  for (const [index, progress] of [[0, .4], [1, .64], [2, .88], [0, .4]]) {
+    await page.evaluate(y => scrollTo(0, y), geometry.top + geometry.travel * progress);
+    await expect.poll(() => notes.nth(index).evaluate(el => Number(getComputedStyle(el).opacity))).toBeGreaterThan(.95);
+    await expect(notes.nth(index)).toBeVisible();
+    for (let other = 0; other < 3; other++) {
+      if (other !== index) await expect(notes.nth(other)).toBeHidden();
+    }
+  }
+  await page.getByRole('button', { name: 'Desativar animações' }).click();
+  for (let index = 0; index < 3; index++) await expect(notes.nth(index)).toBeVisible();
+  expect(await page.locator('[data-focus-media]').evaluate(el => getComputedStyle(el).transform)).toBe('none');
+  await page.getByRole('button', { name: 'Ativar animações' }).click();
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  for (let index = 0; index < 3; index++) await expect(notes.nth(index)).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: "no-preference" });
+  for (let index = 0; index < 3; index++) await expect(notes.nth(index)).toBeVisible();
+  expect(await page.locator('[data-focus-track]').evaluate(el => (el as HTMLElement).offsetHeight < 2 * innerHeight)).toBe(true);
+});

@@ -595,3 +595,141 @@
     display:none
   }
 }
+
+/* A continuous editorial chapter; the static composition is the fallback. */
+.focusTrack {
+  background: var(--accent);
+  color: var(--ink);
+  position: relative;
+}
+.focusMedia {
+  width: 44%;
+  margin: 40px 0 45px auto;
+  perspective: 1200px;
+  overflow: clip;
+}
+.focusMedia img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: .9;
+  object-fit: cover;
+  object-position: 78% 45%;
+}
+.focusNotes {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 5%;
+  position: relative;
+  z-index: 2;
+  margin: 0 0 65px;
+}
+.focusNote h3 {
+  font-family: inherit;
+  font-size: clamp(24px, 3vw, 45px);
+  font-weight: 550;
+  letter-spacing: -.045em;
+  line-height: 1.1;
+  margin: 0 0 18px;
+}
+.focusNote p {
+  font-size: 16px;
+  line-height: 1.65;
+  max-width: 330px;
+  margin: 0;
+}
+@media(min-width:900px) and (min-height:700px) {
+  .page[data-animated="true"] .focusTrack {
+    height: 260svh;
+  }
+  .page[data-animated="true"] .manifesto {
+    position: sticky;
+    top: 0;
+    height: 100svh;
+    min-height: 0;
+  }
+  .page[data-animated="true"] .manifestoCopy {
+    position: absolute;
+    top: 59%;
+    left: 52%;
+    width: 42%;
+    margin: 0;
+  }
+  .page[data-animated="true"] .focusMedia {
+    position: absolute;
+    top: 18%;
+    right: 4%;
+    width: 44%;
+    height: 70%;
+    margin: 0;
+    z-index: 2;
+    transform-origin: center center;
+  }
+  .page[data-animated="true"] .focusMedia img {
+    height: 100%;
+  }
+  .page[data-animated="true"] .focusNotes {
+    position: absolute;
+    left: 4%;
+    top: 48%;
+    width: 40%;
+    display: grid;
+    margin: 0;
+  }
+  .page[data-animated="true"] .focusNote {
+    grid-area: 1 / 1;
+  }
+  .page[data-animated="true"] .focusNote h3 {
+    font-size: clamp(35px, 4vw, 64px);
+  }
+  .page[data-animated="true"] .focusNote p {
+    font-size: 18px;
+    max-width: 360px;
+  }
+  .page[data-animated="true"] .manifestoFoot {
+    position: absolute;
+    left: 4%;
+    right: 4%;
+    bottom: 35px;
+  }
+}
+@media(max-width:899px) {
+  .focusMedia {
+    width: 82%;
+    margin: 0 0 45px auto;
+  }
+  .focusMedia img {
+    aspect-ratio: 1.1;
+  }
+  .focusNotes {
+    display: block;
+    margin-bottom: 45px;
+  }
+  .focusNote {
+    padding: 25px 0;
+    border-top: 1px solid #20171455;
+  }
+  .focusNote h3 {
+    font-size: 30px;
+    margin-bottom: 14px;
+  }
+  .focusNote p {
+    font-size: 16px;
+    max-width: 100%;
+  }
+  .manifestoCopy {
+    margin-bottom: 40px;
+  }
+}
+
+.orbits {
+  height: 580px;
+  bottom: auto;
+}
+@media(max-width:899px) {
+  .orbits {
+    inset: 120px -20% auto 62%;
+    height: 460px;
+    opacity: .35;
+  }
+}

@@ -34,3 +34,17 @@ Inspecionar primeiro abertura e transição; expandir seção de avaliação som
 - Retrato WebP: aproximadamente 156 KiB no disco. Isso não é medida do carregamento total nem certificação de Core Web Vitals. Não foram executados Lighthouse, teste em aparelho físico ou validação comercial.
 
 O momento principal usa enquadramento e tipografia; não há modelo WebGL, antes/depois de paciente, depoimento ou profissional fabricado. A interface não exibe rótulo de demonstração/fictício. A autoria e o contato comercial de Gabriel permanecem explícitos. A homepage e os conceitos anteriores não foram substituídos.
+
+## Segunda unidade: momento principal integrado
+
+Autorizada após apresentação da proposta de integração. Escopo: abertura → transição → momento principal, preservando avaliação e contato. Sem novos assets, bibliotecas ou resultados clínicos.
+
+Coreografia: o enquadramento da abertura continua expandindo; ao sair, o palco recua discretamente e a superfície laranja entra. No momento principal, título ocupa a tela primeiro, depois reduz sua escala e libera a composição para um plano fotográfico com perspectiva e três leituras consecutivas: proporção, expressão e planejamento. O scroll avança e reverte os estados. A fotografia é sempre a mesma, sem alterar traços ou criar antes/depois. O efeito de profundidade é perspectiva CSS, não modelo facial 3D nem simulação de tratamento.
+
+Desktop amplo: palco sticky dedicado por aproximadamente 2,6 telas; tempo inicial de leitura, entrada do plano, três estados e encerramento estável. Mobile/telas baixas: fluxo natural, plano fotográfico com entrada curta, todos os textos presentes em sequência; não impor a sequência longa de desktop. Sem JS/movimento reduzido: composição estática completa. Desativação e mudança de preferência precisam reverter posições/opacidades e altura da seção. Não ocultar links dentro dos estados. Capturas e gravações devem examinar cada estado e a reversão.
+
+### Verificação da segunda unidade
+
+Lint e build de produção aprovados. Quatro testes focados aprovados em 21,3s: o novo teste verifica cada estado do capítulo, retorno ao primeiro, desativação manual, mudança de preferência e composição móvel linear, além das verificações anteriores. Inspeção em Chromium confirmou uma nota visível por vez nos estados estáveis e todas visíveis no fallback; axe sem violações nos critérios selecionados e sem overflow entre 360 e 1920px. O recorte fotográfico recebeu sizes compatível com a ampliação para não buscar uma fonte pequena demais.
+
+Vídeos desktop/mobile em preview/aura-immersive/ com avanço e retorno. Capturas dos três estados e da composição móvel estática foram examinadas; quadros da gravação desktop também foram revisados em sequência. Nenhum erro de página nas gravações. A imagem de recepção foi carregada antes das capturas integrais, e o foco de inspeção foi removido para não incluir o skip-link ativado pela auditoria. Sem ensaio em aparelho físico, medição de GPU ou validação comercial. Não há novo modelo 3D, resultado clínico, depoimento ou dependência nesta unidade.
