@@ -733,3 +733,80 @@
     opacity: .35;
   }
 }
+
+/* A borderless WebGL surface, with the photograph retained for failure/reduced motion. */
+.focusMedia {
+  position: relative;
+}
+.faceScene {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.faceScene canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+.focusMedia[data-face-ready="true"] > img {
+  visibility: hidden;
+}
+@media(min-width:900px) and (min-height:700px) {
+  .page[data-animated="true"] .focusTrack {
+    height: 330svh;
+  }
+  .page[data-animated="true"] .focusMedia {
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+    z-index: 1;
+  }
+  .page[data-animated="true"] .focusMedia > img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: 70% 45%;
+  }
+  .page[data-animated="true"] .focusMedia:not([data-face-ready="true"])::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, #201714e8, transparent 40%, transparent 65%, #201714ed);
+  }
+  .page[data-animated="true"] .focusNotes {
+    left: 0;
+    width: 100%;
+    top: 45%;
+    z-index: 3;
+  }
+  .page[data-animated="true"] .focusNote {
+    width: 33%;
+    margin-left: 4%;
+  }
+  .page[data-animated="true"] .focusNote[data-side="right"] {
+    margin-left: 63%;
+  }
+  .page[data-animated="true"] .focusNote h3 {
+    font-size: clamp(30px, 3.5vw, 58px);
+  }
+  .page[data-animated="true"] .focusNote p {
+    max-width: 370px;
+    font-size: 17px;
+    line-height: 1.75;
+  }
+  .page[data-animated="true"] .manifesto h2 {
+    z-index: 3;
+  }
+  .page[data-animated="true"] .manifestoFoot {
+    z-index: 3;
+    border-color: currentColor;
+  }
+}
+
+@media(min-width:900px) and (min-height:700px) {
+  .page[data-animated="true"] .focusNotes {
+    grid-template-columns: 1fr;
+  }
+}

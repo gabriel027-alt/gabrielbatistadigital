@@ -84,3 +84,29 @@ test("Aura main chapter reveals three states, reverses, and restores the linear 
   for (let index = 0; index < 3; index++) await expect(notes.nth(index)).toBeVisible();
   expect(await page.locator('[data-focus-track]').evaluate(el => (el as HTMLElement).offsetHeight < 2 * innerHeight)).toBe(true);
 });
+
+test("Aura renders a real face canvas and recovers its photograph when WebGL is lost", async ({ playwright }) => {
+  const browser = await playwright.chromium.launch({ executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE, args: ['--enable-unsafe-swiftshader'] });
+  const page = await browser.newPage({ viewport: { width: 1440, height: 900 }, reducedMotion: 'no-preference' });
+  const errors: string[] = [];
+  page.on('pageerror', error => errors.push(error.message));
+  await page.goto('http://127.0.0.1:3107/propostas/aura');
+  await page.locator('[data-focus-track]').scrollIntoViewIfNeeded();
+  const media = page.locator('[data-focus-media]');
+  await expect(media).toHaveAttribute('data-face-ready', 'true');
+  await expect(media.locator('canvas')).toHaveCount(1);
+  await expect.poll(() => media.locator('canvas').evaluate(el => (el as HTMLCanvasElement).width)).toBeGreaterThan(100);
+  await media.locator('canvas').evaluate(el => {
+    const context = (el as HTMLCanvasElement).getContext('webgl2');
+    const extension = context?.getExtension('WEBGL_lose_context');
+    if (!extension) throw new Error('Context-loss extension unavailable');
+    extension.loseContext();
+  });
+  await expect(media).not.toHaveAttribute('data-face-ready', 'true');
+  await expect(media.locator('img')).toBeVisible();
+  await page.getByRole('button', { name: 'Desativar animações' }).click();
+  await expect(media.locator('canvas')).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Lábios.' })).toBeVisible();
+  expect(errors).toEqual([]);
+  await browser.close();
+});

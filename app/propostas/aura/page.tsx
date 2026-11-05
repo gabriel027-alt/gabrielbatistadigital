@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
+import { AuraFaceScene } from "@/components/AuraFaceScene";
 import { AuraMotion } from "@/components/AuraMotion";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "./aura.module.css";
@@ -41,12 +42,12 @@ export default function AuraProposal() {
           <h2 id="aura-manifesto-title" data-focus-title><span className={styles.sr}>O seu rosto. Por inteiro.</span><Letters text="O seu rosto."/><Letters text="Por inteiro."/></h2>
           <p className={styles.manifestoCopy} data-focus-intro><span className={styles.sr}>Antes de olhar para um detalhe, é preciso entender o conjunto.</span><span aria-hidden="true">{"Antes de olhar para um detalhe, é preciso entender o conjunto.".split(" ").map((word, index) => <span key={index} data-copy-word>{word}{" "}</span>)}</span></p>
           <figure className={styles.focusMedia} data-focus-media>
-            <Image src="/images/aura-editorial/portrait.webp" alt="Outro enquadramento do mesmo retrato editorial, preservando os traços e a expressão" width={1536} height={1024} sizes="(max-width: 899px) 130vw, 70vw"/>
+            <AuraFaceScene/>
           </figure>
           <div className={styles.focusNotes} data-focus-notes>
-            <article className={styles.focusNote} data-focus-note><h3>Proporção.</h3><p>A relação entre as partes importa tanto quanto cada detalhe.</p></article>
-            <article className={styles.focusNote} data-focus-note><h3>Expressão.</h3><p>O olhar, o sorriso, os traços pelos quais você se reconhece.</p></article>
-            <article className={styles.focusNote} data-focus-note><h3>Planejamento.</h3><p>O que pode mudar precisa ser discutido em avaliação individual.</p></article>
+            <article className={styles.focusNote} data-focus-note data-side="left"><h3>Maçãs do rosto.</h3><p>Volume e projeção da região malar participam do contorno facial. Na avaliação, entram em relação com as demais proporções do rosto.</p></article>
+            <article className={styles.focusNote} data-focus-note data-side="right"><h3>Lábios.</h3><p>Contorno, proporção e movimento precisam ser considerados juntos. A conversa inclui o que você deseja mudar e o que pretende preservar.</p></article>
+            <article className={styles.focusNote} data-focus-note data-side="left"><h3>Mandíbula e queixo.</h3><p>O perfil e o terço inferior também fazem parte da leitura facial. Possibilidades de contorno dependem de avaliação individual, limites e cuidados.</p></article>
           </div>
           <p className={styles.manifestoFoot} data-focus-foot>O ponto de partida é você.</p>
         </div>

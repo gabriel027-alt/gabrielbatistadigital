@@ -1,0 +1,5 @@
+Canonical facial surface: Google AI Edge / MediaPipe.
+Source: https://github.com/google-ai-edge/mediapipe/blob/03322747e96377e6ee40b51f038b4c108add7774/mediapipe/modules/face_geometry/data/canonical_face_model.obj
+Apache License 2.0; see LICENSE.txt.
+Modified for this project: normals recomputed, centered, scaled, two offline Loop subdivision passes, exported as GLB.
+This generic surface is an illustration, not a patient scan, clinical assessment or treatment result.

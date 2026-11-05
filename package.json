@@ -14,23 +14,26 @@
     "test:e2e": "playwright test"
   },
   "dependencies": {
+    "@fontsource-variable/manrope": "5.3.0",
+    "gsap": "3.15.1",
     "next": "16.4.3",
     "openai": "^7.43.0",
     "react": "19.3.1",
     "react-dom": "19.3.1",
-    "@fontsource-variable/manrope": "5.3.0",
-    "gsap": "3.15.1"
+    "three": "0.186.1"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.11.0",
+    "@playwright/test": "1.64.1",
     "@tailwindcss/postcss": "4.3.3",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
-    "tailwindcss": "4.3.3",
-    "typescript": "^5.9.3",
+    "@types/three": "0.186.0",
     "eslint": "^9.39.5",
     "eslint-config-next": "16.4.3",
-    "@playwright/test": "1.64.1",
-    "@axe-core/playwright": "^4.11.0"
+    "tailwindcss": "4.3.3",
+    "three-subdivide": "1.1.5",
+    "typescript": "^5.9.3"
   }
 }

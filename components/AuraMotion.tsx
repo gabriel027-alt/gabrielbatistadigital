@@ -45,26 +45,38 @@ export function AuraMotion({ children }: { children: ReactNode }) {
                 scrub: .45,
                 invalidateOnRefresh: true,
               },
+              onUpdate: () => {
+                const progress = focus.progress();
+                node.dataset.faceProgress = String(progress);
+                node.dispatchEvent(new CustomEvent("aura-face-progress", { detail: { progress } }));
+              },
             });
             const notes = select("[data-focus-note]");
             gsap.set(notes, { autoAlpha: 0, y: 35 });
-            focus.to(select("[data-focus-title]"), { scale: .48, y: -55, transformOrigin: "0% 0%", duration: .22, ease: "power2.inOut" }, .06)
+            focus.to(select("[data-focus-title]"), { scale: .32, y: -80, transformOrigin: "0% 0%", duration: .22, ease: "power2.inOut" }, .06)
               .to(select("[data-focus-intro]"), { autoAlpha: 0, y: -20, duration: .12 }, .12)
-              .fromTo(select("[data-focus-media]"), { autoAlpha: 0, yPercent: 25, rotationY: -20, rotationZ: 5, scale: .85, transformPerspective: 1200 }, { autoAlpha: 1, yPercent: 0, rotationY: 0, rotationZ: 0, scale: 1, duration: .32, ease: "power2.out" }, .14)
-              .to(select("[data-orbits]"), { rotation: 65, scale: 1.2, autoAlpha: .35, duration: .8, ease: "none" }, 0);
+              .fromTo(select("[data-focus-media]"), { autoAlpha: 0 }, { autoAlpha: 1, duration: .2 }, .12)
+              .to(manifesto, { backgroundColor: "#201714", color: "#f2f1eb", duration: .2 }, .1)
+              .to(select("[data-orbits]"), { autoAlpha: 0, duration: .15 }, .1);
             notes.forEach((note, index) => {
-              const start = .3 + index * .23;
+              const start = .28 + index * .26;
               focus.to(note, { autoAlpha: 1, y: 0, duration: .1 }, start);
-              if (index < notes.length - 1) focus.to(note, { autoAlpha: 0, y: -25, duration: .08 }, start + .15);
+              if (index < notes.length - 1) focus.to(note, { autoAlpha: 0, y: -25, duration: .08 }, start + .17);
             });
-            focus.to(select("[data-focus-media] img"), { scale: 1.08, xPercent: -3, duration: .65, ease: "none" }, .3);
+            focus.to(select("[data-focus-title]"), { x: () => innerWidth * .54, duration: .1, ease: "power2.inOut" }, .47)
+              .to(select("[data-focus-title]"), { x: 0, duration: .1, ease: "power2.inOut" }, .73);
+            focus.to({}, { duration: .12 }, .88);
             focus.to({}, { duration: .08 });
           } else {
             gsap.from(select("[data-focus-media]"), { y: 45, rotationX: -8, transformPerspective: 1000, ease: "none", scrollTrigger: { trigger: select("[data-focus-media]")[0], start: "top bottom", end: "top 55%", scrub: true } });
             gsap.fromTo(select("[data-copy-word]"), { opacity: .2 }, { opacity: 1, stagger: .08, ease: "none", scrollTrigger: { trigger: manifesto, start: "top 35%", end: "top 5%", scrub: true } });
           }
           ScrollTrigger.refresh();
-          return () => { delete node.dataset.animated; };
+          return () => {
+            delete node.dataset.animated;
+            delete node.dataset.faceProgress;
+            node.dispatchEvent(new CustomEvent("aura-face-progress", { detail: { progress: 0 } }));
+          };
         }, node);
         if (disposed) revert();
       } catch {
