@@ -810,3 +810,25 @@
     grid-template-columns: 1fr;
   }
 }
+
+/* Commercial ending: one audience, one contact destination, no clinic booking claim. */
+.projectClosing { display:grid; grid-template-columns:1.15fr 1fr; gap:8%; align-items:center; }
+.projectEyebrow { font-size:13px; margin:0 0 26px; }
+.projectClosing h2 { width:auto; font-size:clamp(38px,4vw,64px); }
+.projectOffer>p:first-child { font-size:20px; line-height:1.65; margin:0 0 28px; max-width:500px; }
+.projectOffer .button { max-width:100%; }
+.projectOffer .contactNote { font-size:12px; line-height:1.6; max-width:380px; margin:17px 0 0; }
+.ownerQuestions { display:grid; grid-template-columns:1.15fr 1fr; gap:8%; margin-top:65px; }
+.ownerQuestions h3 { font-size:20px; font-weight:500; margin:24px 0; letter-spacing:-.03em; }
+.ownerQuestions .steps summary { font-size:19px; line-height:1.4; }
+.footerTop .button { flex-shrink:0; }
+@media(max-width:899px) {
+ .projectClosing,.ownerQuestions { grid-template-columns:1fr; gap:28px; }
+ .projectOffer>p:first-child { font-size:18px; }
+ .projectOffer .button { width:100%; font-size:13px; gap:14px; padding:18px; }
+ .ownerQuestions { margin-top:42px; gap:8px; }
+ .ownerQuestions h3 { margin:16px 0; }
+ .footerTop .button { width:100%; font-size:13px; gap:14px; padding:18px; }
+}
+.button:focus-visible { outline-color:var(--paper); }
+.evaluation .button:focus-visible { outline-color:var(--ink); }

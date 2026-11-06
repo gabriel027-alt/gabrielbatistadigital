@@ -76,3 +76,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Comparador final em AuraComparison: preservar arraste/teclado/toque e rótulo de simulação. Filme: public/videos/projects/aura-showcase.mp4; origem, limitações e testes em docs/AURA-FILME-PORTFOLIO.md. Não usar autoplay nem carregar vídeo na chegada à homepage (preload=none).
 
 - O comparador final também acompanha o scroll: metade → antes inteiro → depois inteiro. Ajuste manual interrompe o automático até o próximo scroll; preservar essa prioridade e a alternativa manual com movimento reduzido/pausa. Regravar o MP4 ao mudar essa coreografia.
+
+## Conversão da Aura: público comercial confirmado
+
+- Prioridade confirmada pelo usuário: dono de clínica contratar um site de Gabriel. O antigo encerramento de avaliação para pacientes foi reformulado; não restaurá-lo nem introduzir agendamento clínico fictício.
+- Contatos do projeto/filme ficam em lib/aura-contact.ts, usando o número oficial centralizado. Há CTA junto ao player e no encerramento. A paleta aprovada foi mantida; contraste e lacunas de medição em docs/AURA-AUDITORIA-CONVERSAO.md. Awwwards é referência visual, não certificação nem evidência de conversão.

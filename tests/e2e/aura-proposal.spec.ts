@@ -6,15 +6,15 @@ test("Aura editorial: navigation, content and responsive accessibility", async (
   await page.goto("/propostas/aura");
   await expect(page.locator('meta[name="robots"]')).toHaveAttribute("content", /noindex/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Sua expressão. Em primeiro plano.");
-  await page.getByRole("link", { name: "Entender a avaliação", exact: true }).click();
+  await page.getByRole("link", { name: "Seu próximo site", exact: true }).click();
   await expect(page).toHaveURL(/#aura-avaliacao$/);
-  await page.locator("summary").filter({ hasText: "Possibilidades e limites" }).click();
-  await expect(page.getByText("Indicações, riscos, alternativas", { exact: false })).toBeVisible();
+  await page.locator("summary").filter({ hasText: "Quero algo com a identidade" }).click();
+  await expect(page.getByText("O seu projeto parte da sua marca", { exact: false })).toBeVisible();
   for (const width of [360, 390, 768, 900, 1024, 1440, 1920]) {
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth), `overflow ${width}`).toBe(true);
   }
-  await expect(page.getByRole("link", { name: "Falar com Gabriel sobre o projeto" })).toHaveAttribute("href", /wa.me\/5538998267717/);
+  await expect(page.locator("#aura-contato").getByRole("link", { name: "Falar sobre meu site no WhatsApp" })).toHaveAttribute("href", /wa.me\/5538998267717/);
   const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(audit.violations).toEqual([]);
 });
@@ -49,8 +49,8 @@ test("Aura retains readable copy, imagery and disclosures without JavaScript", a
   const page = await context.newPage();
   await page.goto("http://127.0.0.1:3107/propostas/aura");
   await expect(page.getByRole("heading", { level: 1 })).toBeVisible();
-  await page.locator("summary").filter({ hasText: "Uma decisão informada" }).click();
-  await expect(page.getByText("Antes de decidir, esclareça", { exact: false })).toBeVisible();
+  await page.locator("summary").filter({ hasText: "Como definimos o projeto" }).click();
+  await expect(page.getByText("Conte qual é a sua clínica", { exact: false })).toBeVisible();
   expect(await page.locator('[data-hero-glyph]').first().evaluate(el => getComputedStyle(el).opacity)).toBe('1');
   await expect(page.getByRole('button', { name: /animações/ })).toHaveCount(0);
   await context.close();
@@ -98,7 +98,7 @@ test("Aura camera draws intermediate views and reverses without loading a 3D mod
   await page.waitForTimeout(650);
   expect((await camera.screenshot()).equals(before)).toBe(true);
   expect(models).toEqual([]);
-  await page.getByRole('link',{name:'Entender a avaliação ↓',exact:true}).click();
+  await page.getByRole('link',{name:'Pensar no site da minha clínica ↓',exact:true}).click();
   await expect(page).toHaveURL(/#aura-avaliacao$/);
   await page.getByRole('button',{name:'Desativar animações'}).click();
   await expect(track).not.toHaveAttribute('data-sequence-animated','true');
@@ -123,7 +123,7 @@ test("Aura continuous camera keeps mobile copy visible and supports evaluation n
   await expect(note.getByRole('heading',{name:'Lábios.'})).toBeInViewport();
   await expect(page.locator('[data-photo-camera]')).toBeInViewport();
   expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
-  await page.getByRole('link',{name:'Entender a avaliação ↓',exact:true}).click();
+  await page.getByRole('link',{name:'Pensar no site da minha clínica ↓',exact:true}).click();
   await expect(page).toHaveURL(/#aura-avaliacao$/);
 });
 

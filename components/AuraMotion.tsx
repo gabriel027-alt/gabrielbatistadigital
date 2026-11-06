@@ -6,6 +6,18 @@ export function AuraMotion({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   const [paused, setPaused] = useState(false);
+  useEffect(()=>{
+    const node=root.current;if(!node)return;
+    const focusScene=(event:MouseEvent)=>{
+      const anchor=(event.target as Element).closest<HTMLAnchorElement>('a[href="#aura-olhar"]');
+      const track=node.querySelector<HTMLElement>('[data-photo-track]');
+      if(!anchor || !track || track.dataset.sequenceAnimated!=="true" || event.button!==0 || event.ctrlKey || event.metaKey || event.shiftKey || event.altKey)return;
+      event.preventDefault();
+      history.replaceState(null,"","#aura-olhar");
+      scrollTo({top:track.getBoundingClientRect().top+scrollY+(track.offsetHeight-innerHeight)*.18,behavior:"smooth"});
+    };
+    node.addEventListener("click",focusScene);return()=>node.removeEventListener("click",focusScene);
+  },[]);
   useEffect(() => {
     const node = root.current;
     if (!node || paused) return;

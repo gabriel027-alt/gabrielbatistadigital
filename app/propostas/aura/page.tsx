@@ -5,7 +5,7 @@ import { Arrow } from "@/components/ui/icons";
 import { AuraComparison } from "@/components/AuraComparison";
 import { AuraPhotoSequence } from "@/components/AuraPhotoSequence";
 import { AuraMotion } from "@/components/AuraMotion";
-import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import { auraProjectContact } from "@/lib/aura-contact";
 import styles from "./aura.module.css";
 
 export const metadata: Metadata = {
@@ -27,32 +27,37 @@ export default function AuraProposal() {
           <header className={styles.header}>
             <a href="#aura-conteudo" className={styles.brand} aria-label="Aura, início">aura</a>
             <span className={styles.specialty}>Harmonização facial</span>
-            <nav aria-label="Navegação Aura"><a href="#aura-olhar">O olhar</a><a href="#aura-avaliacao">A avaliação</a><a href="#aura-contato">Contato</a></nav>
+            <nav aria-label="Navegação Aura"><a href="#aura-olhar">O olhar</a><a href="#aura-avaliacao">Seu próximo site</a><a href="#aura-contato">Falar com Gabriel</a></nav>
           </header>
           <div className={styles.heroCopy} data-hero-copy>
             <h1 id="aura-title"><span className={styles.sr}>Sua expressão. Em primeiro plano.</span><Letters text="Sua expressão." hero/><Letters text="Em primeiro" hero/><Letters text="plano." hero/></h1>
-            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><a className={styles.button} href="#aura-avaliacao">Entender a avaliação <Arrow size={22}/></a></div>
+            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><a className={styles.button} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={22}/></a></div>
           </div>
           <p className={styles.heroSignature} data-hero-signature>Proporção. Expressão. Identidade.</p>
         </div>
       </section></AuraPhotoSequence>
       <AuraComparison/>
-      <section id="aura-avaliacao" className={styles.evaluation} aria-labelledby="aura-evaluation-title">
-        <div className={styles.evaluationHeading}><p>A avaliação facial</p><h2 id="aura-evaluation-title">O que você quer mudar.<br/>O que quer preservar.</h2></div>
-        <div className={styles.evaluationGrid}>
-          <figure className={styles.space}><Image src="/images/concepts/aura-escuta.webp" alt="Ambiente de recepção com materiais naturais e iluminação suave" width={1200} height={800} sizes="(max-width: 800px) 100vw, 48vw"/><figcaption>Espaço para conversar. Tempo para decidir.</figcaption></figure>
-          <div className={styles.evaluationCopy}><p className={styles.intro}>Uma mudança no rosto começa por entender sua motivação. A avaliação reúne o que você deseja, as características faciais e os limites de cada possibilidade.</p>
-            <div className={styles.steps}>
-              <details open><summary>Seu objetivo <span aria-hidden="true">+</span></summary><p>Quais detalhes incomodam? O que você deseja manter? Essas perguntas ajudam a esclarecer a expectativa antes de falar em procedimentos.</p></details>
-              <details><summary>Possibilidades e limites <span aria-hidden="true">+</span></summary><p>Indicações, riscos, alternativas e cuidados precisam ser discutidos em avaliação individual com o profissional responsável.</p></details>
-              <details><summary>Uma decisão informada <span aria-hidden="true">+</span></summary><p>Antes de decidir, esclareça as etapas, os valores, o acompanhamento e o tempo de recuperação do que for proposto. Não é necessário decidir no primeiro contato.</p></details>
-            </div>
+      <section id="aura-avaliacao" className={styles.evaluation} aria-labelledby="aura-project-title">
+        <div className={styles.projectClosing}>
+          <div><p className={styles.projectEyebrow}>Para a sua clínica</p><h2 id="aura-project-title">O cuidado começa<br/>antes do primeiro contato.</h2></div>
+          <div className={styles.projectOffer}>
+            <p>Seu site pode apresentar os procedimentos com clareza, expressar a identidade da clínica e facilitar a conversa pelo WhatsApp.</p>
+            <a className={styles.button} href={auraProjectContact} target="_blank" rel="noopener noreferrer">Falar sobre meu site no WhatsApp <Arrow size={22}/></a>
+            <p className={styles.contactNote}>Você fala com Gabriel, responsável pelo design e desenvolvimento.</p>
+          </div>
+        </div>
+        <div className={styles.ownerQuestions}>
+          <h3>O que precisamos para começar?</h3>
+          <div className={styles.steps}>
+            <details><summary>Ainda não tenho fotos e textos. <span aria-hidden="true">+</span></summary><p>Na conversa inicial, identificamos quais materiais você já tem e o que precisa ser produzido. Imagens de pacientes e informações profissionais exigem autorização e revisão dos responsáveis.</p></details>
+            <details><summary>Quero algo com a identidade da minha clínica. <span aria-hidden="true">+</span></summary><p>A Aura mostra uma direção possível. O seu projeto parte da sua marca, dos seus serviços e das pessoas que você quer atender.</p></details>
+            <details><summary>Como definimos o projeto? <span aria-hidden="true">+</span></summary><p>Conte qual é a sua clínica, o que já existe hoje e o que você quer melhorar. A partir dessa conversa, alinhamos prioridades, escopo e proposta.</p></details>
           </div>
         </div>
       </section>
     </main>
     <footer id="aura-contato" className={styles.footer}>
-      <div className={styles.footerTop}><p>Uma nova perspectiva.<br/>A mesma essência.</p><a className={styles.contact} href={buildWhatsAppUrl("Olá, Gabriel! Conheci o projeto Aura e quero conversar sobre uma página para minha clínica.")} target="_blank" rel="noopener noreferrer">Falar com Gabriel sobre o projeto <Arrow size={20}/></a></div>
+      <div className={styles.footerTop}><p>Vamos pensar no site<br/>da sua clínica.</p><a className={styles.button} href={auraProjectContact} target="_blank" rel="noopener noreferrer">Falar sobre meu site no WhatsApp <Arrow size={20}/></a></div>
       <div className={styles.footerBrand} aria-hidden="true">aura</div>
       <div className={styles.colophon}><span>Aura · Harmonização facial</span><Link href="/propostas/gabriel">Design e desenvolvimento por Gabriel Batista Digital <Arrow size={13}/></Link></div>
     </footer>

@@ -36,3 +36,9 @@ html[data-motion=paused] .signature-photo img,html[data-motion=paused] .signatur
 .signature-video-project .signature-window-screen { height:auto; aspect-ratio:16/10; background:#201714; }
 .signature-video-project video { display:block; width:100%; height:100%; object-fit:contain; }
 .signature-video-project .signature-work-art { height:auto; min-height:360px; padding-bottom:65px; }
+
+.signature-aura-contact { display:inline-flex; align-items:center; gap:20px; margin-top:20px; padding:14px 18px; background:var(--fg); color:var(--bg); text-decoration:none; font-size:12px; border-radius:4px; }
+.signature-aura-contact:hover { text-decoration:underline; text-underline-offset:4px; }
+.signature-aura-contact-note { margin:9px 0 0; font-size:11px; color:var(--muted); }
+@media(max-width:760px) { .signature-aura-contact { width:100%; justify-content:space-between; } }
+.signature-aura-contact:focus-visible { outline:3px solid var(--fg); outline-offset:5px; }

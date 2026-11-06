@@ -29,7 +29,8 @@ test('Portfolio presents Aura as one video among six projects without a landing-
  await expect(page.locator('.signature-work-card')).toHaveCount(6);
  const card=page.locator('[data-aura-video-project]'),video=card.locator('video');
  await expect(card.getByRole('heading',{name:'Aura',exact:true})).toBeVisible();
- await expect(card.getByRole('link')).toHaveCount(0);
+ await expect(card.getByRole('link')).toHaveCount(1);
+ await expect(card.getByRole('link',{name:'Quero um site para minha clínica'})).toHaveAttribute('href',/wa.me\/5538998267717/);
  await expect(video).toHaveAttribute('preload','none');
  await expect(video).toHaveAttribute('controls','');
  await expect(video.locator('source')).toHaveAttribute('src','/videos/projects/aura-showcase.mp4');
