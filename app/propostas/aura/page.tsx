@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
+import { AuraComparison } from "@/components/AuraComparison";
 import { AuraPhotoSequence } from "@/components/AuraPhotoSequence";
 import { AuraMotion } from "@/components/AuraMotion";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
@@ -35,6 +36,7 @@ export default function AuraProposal() {
           <p className={styles.heroSignature} data-hero-signature>Proporção. Expressão. Identidade.</p>
         </div>
       </section></AuraPhotoSequence>
+      <AuraComparison/>
       <section id="aura-avaliacao" className={styles.evaluation} aria-labelledby="aura-evaluation-title">
         <div className={styles.evaluationHeading}><p>A avaliação facial</p><h2 id="aura-evaluation-title">O que você quer mudar.<br/>O que quer preservar.</h2></div>
         <div className={styles.evaluationGrid}>

@@ -69,3 +69,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - A moldura expansível da hero foi rejeitada. AuraPhotoSequence recebe a abertura como children e controla uma única câmera contínua do rosto inteiro até o malar; não restaurar o clip-path nem o texto intermediário antigo em AuraMotion. Primeiros 18% do scroll fazem a aproximação, depois seguem as comparações regionais.
 
 - Não condicionar a simulação Aura a altura mínima da janela: isso substituía a experiência por retratos estáticos repetidos em viewports menores que 700 px. Preservar animação em janelas compactas; fallback é para movimento reduzido, pausa ou falha real de recursos. Regressão em tests/e2e/aura-proposal.spec.ts (1440×640).
+
+## Aura como filme entre os projetos selecionados
+
+- Por pedido explícito, a entrada Aura de SelectedWork agora apresenta MP4 com capa e controles, sem link para a landing. Manter os outros cinco cartões. O índice do catálogo aponta ao filme. A rota Aura continua como fonte/revisão; ausência de link não é bloqueio de acesso.
+- Comparador final em AuraComparison: preservar arraste/teclado/toque e rótulo de simulação. Filme: public/videos/projects/aura-showcase.mp4; origem, limitações e testes em docs/AURA-FILME-PORTFOLIO.md. Não usar autoplay nem carregar vídeo na chegada à homepage (preload=none).

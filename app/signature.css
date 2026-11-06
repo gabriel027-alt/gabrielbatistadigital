@@ -31,3 +31,8 @@ html[data-motion=paused] .signature-photo img,html[data-motion=paused] .signatur
 @media(max-width:900px){.signature-author{display:none}}
 .signature-contact .contact-copy>p:not(.section-label),.signature-contact .contact-note{color:#e3eaff}.signature-contact .contact-copy>.section-label span{color:inherit}.signature-contact .diagnosis{box-shadow:12px 14px 0 #ffffff1a}
 .signature-hero-bottom{padding-bottom:65px}
+
+.signature-video-project .signature-work-window { transform:none!important; }
+.signature-video-project .signature-window-screen { height:auto; aspect-ratio:16/10; background:#201714; }
+.signature-video-project video { display:block; width:100%; height:100%; object-fit:contain; }
+.signature-video-project .signature-work-art { height:auto; min-height:360px; padding-bottom:65px; }
