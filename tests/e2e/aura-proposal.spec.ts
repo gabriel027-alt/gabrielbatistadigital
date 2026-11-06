@@ -66,10 +66,14 @@ test("Aura camera draws intermediate views and reverses without loading a 3D mod
   await expect(track).toHaveAttribute('data-sequence-animated','true');
   const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
   const notes=page.locator('[data-photo-copy]');
-  for(const [index,p] of [[0,0],[1,.2],[2,.4],[3,.6],[4,.8],[5,1],[1,.2]]){
+  for(const [index,p] of [[0,0],[1,.3],[2,.55],[3,.8],[4,1],[0,0]]){
     await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*p);
     await expect(notes.nth(index)).toHaveAttribute('data-active','true');
     await expect(notes.nth(index)).toBeVisible();
+    if(p===0) {
+      await expect(camera).toHaveAttribute('data-camera','0.7300,0.5500,2.4500,0.7200');
+      await expect(notes.first()).toHaveAttribute('data-region','malar');
+    }
   }
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.24);
   await expect.poll(()=>camera.getAttribute('data-frame')).toBe('57');
@@ -88,7 +92,7 @@ test("Aura camera draws intermediate views and reverses without loading a 3D mod
   await expect(page).toHaveURL(/#aura-avaliacao$/);
   await page.getByRole('button',{name:'Desativar animações'}).click();
   await expect(track).not.toHaveAttribute('data-sequence-animated','true');
-  for(let i=0;i<6;i++)await expect(notes.nth(i)).toBeVisible();
+  for(let i=0;i<5;i++)await expect(notes.nth(i)).toBeVisible();
   await page.getByRole('button',{name:'Ativar animações'}).click();
   await track.evaluate(el=>scrollTo(0,el.getBoundingClientRect().top+scrollY-350));
   await expect(track).toHaveAttribute('data-sequence-animated','true');
@@ -104,7 +108,7 @@ test("Aura continuous camera keeps mobile copy visible and supports evaluation n
   await expect(track).toHaveAttribute('data-sequence-animated','true');
   const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.4);
-  const note=page.locator('[data-photo-copy]').nth(2);
+  const note=page.locator('[data-photo-copy]').nth(1);
   await expect(note).toHaveAttribute('data-active','true');
   await expect(note.getByRole('heading',{name:'Lábios.'})).toBeInViewport();
   await expect(page.locator('[data-photo-camera]')).toBeInViewport();
@@ -121,14 +125,14 @@ test("Aura holds the camera while the illustrative comparison changes and revers
   await track.evaluate(el=>scrollTo(0,el.getBoundingClientRect().top+scrollY));
   await expect(track).toHaveAttribute('data-sequence-animated','true');
   const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
-  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.15); await page.waitForTimeout(800);
+  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.01); await page.waitForTimeout(800);
   const before=await camera.screenshot(), position=await camera.getAttribute('data-camera');
   await expect(page.locator('[data-comparison-label]').first()).toHaveText('Antes · simulação');
-  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.25); await page.waitForTimeout(800);
+  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.14); await page.waitForTimeout(800);
   expect(await camera.getAttribute('data-camera')).toBe(position);
   expect((await camera.screenshot()).equals(before)).toBe(false);
   await expect(page.locator('[data-comparison-label]').first()).toHaveText('Depois · simulação');
-  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.15); await page.waitForTimeout(800);
+  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.01); await page.waitForTimeout(800);
   expect((await camera.screenshot()).equals(before)).toBe(true);
   await page.emulateMedia({reducedMotion:'reduce'});
   await expect(track).not.toHaveAttribute('data-sequence-animated','true');

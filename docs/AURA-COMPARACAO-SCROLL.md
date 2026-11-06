@@ -13,3 +13,9 @@ Critérios: câmera imóvel durante a alteração local; pixels mudam e retornam
 Validação: lint e build aprovados. Oito cenários Playwright aprovados, incluindo câmera estável com pixels distintos entre antes/depois, retorno idêntico ao estado inicial, móvel, acessibilidade, falha da imagem, pausa e ausência de JavaScript. Um cenário excedeu o tempo durante captura concorrente e passou na repetição isolada (43,5 s). Não houve teste em aparelho físico nem validação clínica. Capturas e gravação em docs/preview/aura-comparison.
 
 Prévia: movement.gif está acelerado em 2,5× para facilitar a inspeção; desktop.mp4 mantém o tempo da captura no navegador. A gravação não registrou erros de execução. Captura móvel inspecionada em 390×844.
+
+## Ajuste de entrada — 06/11/2026
+
+A abertura mantém o rosto inteiro. O capítulo seguinte começa imediatamente no close do zigomático, sem uma segunda apresentação do rosto inteiro nem espera antes do primeiro foco. Ordem: zigomático → lábios → queixo/mandíbula → nariz → retorno final ao conjunto. As pausas de comparação e o retorno pelo scroll foram remapeados para essa sequência mais curta. A alternativa estática também abre com enquadramento aproximado.
+
+Verificação desta entrada direta: lint/build e os oito testes Playwright aprovados. Captura second-scene-close.png inspecionada: primeiro texto e enquadramento do capítulo são malar, no estado anterior ilustrativo; aproximação já ativa em progresso zero. Novo registro de scroll em direct-focus.mp4.

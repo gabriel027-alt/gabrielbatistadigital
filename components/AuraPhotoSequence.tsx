@@ -5,7 +5,6 @@ import { useEffect, useRef } from "react";
 import styles from "@/app/propostas/aura/photo-sequence.module.css";
 
 const chapters = [
-  { key: "portrait", title: "A expressão vem primeiro.", copy: "Antes de olhar para um detalhe, é preciso entender o conjunto.", x:.5, y:.5, zoom:1.04, side:.72 },
   { key: "malar", title: "Zigomático.", copy: "Projeção e volume da região malar participam da leitura do terço médio. A relação com os demais traços faz parte da avaliação.", x:.73, y:.55, zoom:2.45, side:.72 },
   { key: "lips", title: "Lábios.", copy: "Contorno, proporção e movimento são considerados juntos. O objetivo precisa respeitar a expressão e o que você deseja preservar.", x:.5, y:.66, zoom:2.65, side:.28 },
   { key: "chin", title: "Queixo e mandíbula.", copy: "O queixo e a linha mandibular se relacionam com as proporções do rosto. Possibilidades e limites dependem da avaliação individual.", x:.5, y:.78, zoom:2.45, side:.72 },
@@ -78,11 +77,11 @@ export function AuraPhotoSequence() {
             previousProgress = progress;
             const frame = Math.round(progress*239);
             // Camera arrives first, holds while the local comparison develops, then travels again.
-            const stops = [0,.14,.34,.54,.74,.96];
-            const departures = [.06,.26,.46,.66,.86,1];
+            const stops = [0,.25,.5,.75,.96];
+            const departures = [.15,.4,.65,.87,1];
             let index=0;
-            while(index<5 && progress>=stops[index+1]) index++;
-            const next=Math.min(5,index+1);
+            while(index<chapters.length-1 && progress>=stops[index+1]) index++;
+            const next=Math.min(chapters.length-1,index+1);
             const fraction=next===index ? 0 : Math.max(0,Math.min(1,(progress-departures[index])/(stops[next]-departures[index])));
             const t=fraction*fraction*fraction*(fraction*(fraction*6-15)+10);
             const a = chapters[index], b = chapters[next];
@@ -97,7 +96,7 @@ export function AuraPhotoSequence() {
             context!.clearRect(0,0,width,height);
             context!.drawImage(texture,x,y,texture.width*scale,texture.height*scale);
             const reveals=patches.map((patch,i)=>{
-              const start=stops[i+1]+.025, end=departures[i+1]-.02;
+              const start=stops[i]+.025, end=departures[i]-.02;
               const value=Math.max(0,Math.min(1,(progress-start)/(end-start)));
               const reveal=value*value*(3-2*value);
               if(reveal<1) {
@@ -122,7 +121,7 @@ export function AuraPhotoSequence() {
               note.dataset.active = String(i===active);
               const label=note.querySelector<HTMLElement>("[data-comparison-label]");
               if(label) {
-                const value=reveals[i-1];
+                const value=reveals[i];
                 label.textContent=value===undefined ? "Comparação indisponível" : value<.02 ? "Antes · simulação" : value>.98 ? "Depois · simulação" : "Antes → Depois · simulação";
               }
               if (mobile) { note.style.left = ""; note.style.right = ""; }
@@ -151,13 +150,13 @@ export function AuraPhotoSequence() {
   },[]);
   return <section ref={ref} id="aura-olhar" className={styles.track} data-photo-track aria-labelledby="aura-photo-title">
     <div className={styles.stage} data-camera-stage>
-      <header className={styles.heading}><h2 id="aura-photo-title">O seu rosto. Por inteiro.</h2><span>Proporção. Expressão. Identidade.</span></header>
+      <header className={styles.heading}><h2 id="aura-photo-title">Cada detalhe, de perto.</h2><span>Proporção. Expressão. Identidade.</span></header>
       <figure className={styles.source}><Image data-camera-source src="/images/aura-sequence/continuous-portrait.webp" alt="Personagem feminina gerada, usada como base fotográfica contínua para os enquadramentos faciais" width={1024} height={1536} unoptimized onError={event=>{
         const image=event.currentTarget;
         if (!image.dataset.cameraFallback) { image.dataset.cameraFallback="true"; image.src="/images/aura-sequence/portrait.webp"; }
       }}/></figure>
       <canvas ref={canvasRef} className={styles.canvas} data-photo-camera aria-hidden="true"/>
-      <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index>0 && index<5 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index>0 && index<5 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src="/images/aura-sequence/continuous-before.webp" width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
+      <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index<chapters.length-1 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index<chapters.length-1 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src="/images/aura-sequence/continuous-before.webp" width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
       <footer className={styles.foot}><span>Simulação ilustrativa · Imagens geradas · Não prevê resultado clínico</span><a href="#aura-avaliacao">Entender a avaliação ↓</a></footer>
     </div>
   </section>;
