@@ -375,7 +375,7 @@
 }
 @media(min-width:900px) and (min-height:700px) {
   .page[data-animated="true"] .heroTrack {
-    height:220svh
+    height:auto
   }
   .page[data-animated="true"] .stage {
     position:sticky;

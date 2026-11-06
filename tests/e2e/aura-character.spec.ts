@@ -3,6 +3,7 @@ import { test, expect } from "@playwright/test";
 test("The old avatar route opens the photographic chapter",async({page})=>{
  await page.goto('/propostas/aura/personagem');
  await expect(page).toHaveURL(/\/propostas\/aura#aura-olhar$/);
+ await page.locator('[data-photo-track]').evaluate(el=>scrollTo(0,el.getBoundingClientRect().top+scrollY+(el as HTMLElement).offsetHeight*.2));
  await expect(page.getByRole('heading',{name:'Cada detalhe, de perto.'})).toBeVisible();
  await expect(page.locator('[data-photo-camera]')).toHaveCount(1);
 });

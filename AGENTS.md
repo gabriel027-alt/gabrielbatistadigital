@@ -63,3 +63,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - O capítulo agora mantém a câmera durante cada comparação e revela recortes locais de continuous-before.webp para continuous-portrait.webp. São variações digitais de personagem gerada, com identificação visível; não resultados clínicos. Preservar as legendas e a alternativa estática.
 - O movimento é Canvas2D com aproximação/deslocamento e fusão regional; não anunciar rotação 3D ou vídeo anatômico. Fonte e limitações em docs/AURA-COMPARACAO-SCROLL.md.
+
+## Aura: abertura e focos no mesmo palco
+
+- A moldura expansível da hero foi rejeitada. AuraPhotoSequence recebe a abertura como children e controla uma única câmera contínua do rosto inteiro até o malar; não restaurar o clip-path nem o texto intermediário antigo em AuraMotion. Primeiros 18% do scroll fazem a aproximação, depois seguem as comparações regionais.

@@ -19,3 +19,9 @@ Prévia: movement.gif está acelerado em 2,5× para facilitar a inspeção; desk
 A abertura mantém o rosto inteiro. O capítulo seguinte começa imediatamente no close do zigomático, sem uma segunda apresentação do rosto inteiro nem espera antes do primeiro foco. Ordem: zigomático → lábios → queixo/mandíbula → nariz → retorno final ao conjunto. As pausas de comparação e o retorno pelo scroll foram remapeados para essa sequência mais curta. A alternativa estática também abre com enquadramento aproximado.
 
 Verificação desta entrada direta: lint/build e os oito testes Playwright aprovados. Captura second-scene-close.png inspecionada: primeiro texto e enquadramento do capítulo são malar, no estado anterior ilustrativo; aproximação já ativa em progresso zero. Novo registro de scroll em direct-focus.mp4.
+
+## Abertura contínua, sem moldura — 06/11/2026
+
+O usuário esclareceu que a moldura expansível da abertura também deveria sair. A abertura passou a integrar o mesmo palco/canvas dos focos, com um único retrato e câmera: rosto inteiro → aproximação suave ao malar → comparação → demais regiões. Os primeiros 18% do percurso conduzem ao malar; não há expansão de clip-path, troca entre duas fotografias ou texto intermediário cobrindo o rosto. O título inicial desaparece enquanto o texto regional entra. O retorno refaz o mesmo caminho. Pausa/movimento reduzido/sem JS mantêm a composição estática e as comparações acessíveis.
+
+Validação da abertura contínua: build/lint aprovados; oito cenários aprovados, com repetição do teste de câmera após retirar o texto intermediário residual. Esse teste verifica enquadramento inicial de rosto inteiro, aproximação intermediária e chegada ao malar no mesmo canvas. Nova evidência: continuous-opening.png e unframed-opening.mp4.

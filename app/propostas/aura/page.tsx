@@ -20,7 +20,7 @@ export default function AuraProposal() {
   return <AuraMotion>
     <a href="#aura-conteudo" className={styles.skip}>Pular para o conteúdo</a>
     <main id="aura-conteudo">
-      <section className={styles.heroTrack} data-hero-track aria-labelledby="aura-title">
+      <AuraPhotoSequence><section className={styles.heroTrack} data-hero-track aria-labelledby="aura-title">
         <div className={styles.stage} data-hero-stage>
           <figure className={styles.portrait} data-portrait><Image src="/images/aura-sequence/portrait.webp" alt="Retrato editorial feminino, com pele natural e luz em tons de cobre" fill preload sizes="100vw" /></figure>
           <header className={styles.header}>
@@ -33,10 +33,8 @@ export default function AuraProposal() {
             <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><a className={styles.button} href="#aura-avaliacao">Entender a avaliação <Arrow size={22}/></a></div>
           </div>
           <p className={styles.heroSignature} data-hero-signature>Proporção. Expressão. Identidade.</p>
-          <p className={styles.transitionText} data-transition-text aria-hidden="true">Um detalhe muda.<br/>A expressão é sua.</p>
         </div>
-      </section>
-      <AuraPhotoSequence/>
+      </section></AuraPhotoSequence>
       <section id="aura-avaliacao" className={styles.evaluation} aria-labelledby="aura-evaluation-title">
         <div className={styles.evaluationHeading}><p>A avaliação facial</p><h2 id="aura-evaluation-title">O que você quer mudar.<br/>O que quer preservar.</h2></div>
         <div className={styles.evaluationGrid}>

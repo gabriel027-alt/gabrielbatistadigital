@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type ReactNode } from "react";
 import styles from "@/app/propostas/aura/photo-sequence.module.css";
 
 const chapters = [
@@ -12,7 +12,7 @@ const chapters = [
   { key: "portrait", title: "O detalhe encontra o todo.", copy: "Um planejamento individual considera as relações entre os traços, a sua expressão e as suas expectativas.", x:.5, y:.5, zoom:1.04, side:.72 },
 ];
 
-export function AuraPhotoSequence() {
+export function AuraPhotoSequence({ children }: { children: ReactNode }) {
   const ref = useRef<HTMLElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
   useEffect(() => {
@@ -69,12 +69,17 @@ export function AuraPhotoSequence() {
           section!.dataset.sequenceAnimated = "true";
           const stage = section!.querySelector<HTMLElement>("[data-camera-stage]")!;
           const notes = Array.from(section!.querySelectorAll<HTMLElement>("[data-photo-copy]"));
+          const intro=section!.querySelector<HTMLElement>("[data-scene-intro]")!;
+          const chapterChrome=Array.from(section!.querySelectorAll<HTMLElement>("[data-focus-chrome]"));
           const state = { progress:0 };
           let width = 1, height = 1, previousProgress = -1;
           const draw = () => {
-            const progress = Math.round(Math.max(0,Math.min(1,state.progress))*10000)/10000;
-            if (previousProgress === progress) return;
-            previousProgress = progress;
+            const sceneProgress=Math.round(Math.max(0,Math.min(1,state.progress))*10000)/10000;
+            const progress=Math.max(0,(sceneProgress-.18)/.82);
+            const entry=Math.min(1,sceneProgress/.18);
+            const entryEase=entry*entry*entry*(entry*(entry*6-15)+10);
+            if (previousProgress === sceneProgress) return;
+            previousProgress = sceneProgress;
             const frame = Math.round(progress*239);
             // Camera arrives first, holds while the local comparison develops, then travels again.
             const stops = [0,.25,.5,.75,.96];
@@ -86,13 +91,20 @@ export function AuraPhotoSequence() {
             const t=fraction*fraction*fraction*(fraction*(fraction*6-15)+10);
             const a = chapters[index], b = chapters[next];
             const mix = (start:number,end:number) => start+(end-start)*t;
+            const enter=(start:number,end:number)=>start+(end-start)*entryEase;
+            const cameraX=enter(.5,mix(a.x,b.x)), cameraY=enter(.5,mix(a.y,b.y));
+            const introOpacity=1-Math.min(1,sceneProgress/.10);
+            intro.style.opacity=String(introOpacity);
+            intro.style.visibility=introOpacity>0 ? "visible" : "hidden";
+            intro.style.pointerEvents=introOpacity>.5 ? "auto" : "none";
+            chapterChrome.forEach(el=>{el.style.opacity=String(Math.max(0,Math.min(1,(sceneProgress-.12)/.06)));el.style.visibility=sceneProgress>.12 ? "visible" : "hidden";});
             const mobile = width<900, pictureHeight = mobile ? height*.64 : height;
-            const zoom = mix(a.zoom,b.zoom);
+            const zoom = enter(1.04,mix(a.zoom,b.zoom));
             const scale = pictureHeight/texture.height*zoom;
             const anchor = mobile ? .5 : mix(a.side,b.side);
             const targetY = mobile ? pictureHeight*.49 : height*.48;
-            const x = width*anchor-mix(a.x,b.x)*texture.width*scale;
-            const y = targetY-mix(a.y,b.y)*texture.height*scale;
+            const x = width*anchor-cameraX*texture.width*scale;
+            const y = targetY-cameraY*texture.height*scale;
             context!.clearRect(0,0,width,height);
             context!.drawImage(texture,x,y,texture.width*scale,texture.height*scale);
             const reveals=patches.map((patch,i)=>{
@@ -116,7 +128,7 @@ export function AuraPhotoSequence() {
             const active = fraction>.5 ? next : index;
             notes.forEach((note,i) => {
               // Copy switches only after the camera has moved toward its new focus.
-              note.style.visibility = i===active ? "visible" : "hidden";
+              note.style.visibility = i===active && sceneProgress>.12 ? "visible" : "hidden";
               note.style.opacity = i===active ? String(1-.65*Math.sin(Math.PI*fraction)) : "0";
               note.dataset.active = String(i===active);
               const label=note.querySelector<HTMLElement>("[data-comparison-label]");
@@ -128,7 +140,7 @@ export function AuraPhotoSequence() {
               else { note.style.left = chapters[i].side>.5 ? "4%" : "64%"; note.style.right = "auto"; }
             });
             canvas!.dataset.frame = String(frame);
-            canvas!.dataset.camera = `${mix(a.x,b.x).toFixed(4)},${mix(a.y,b.y).toFixed(4)},${zoom.toFixed(4)},${anchor.toFixed(4)}`;
+            canvas!.dataset.camera = `${cameraX.toFixed(4)},${cameraY.toFixed(4)},${zoom.toFixed(4)},${anchor.toFixed(4)}`;
           };
           const resize = new ResizeObserver(() => {
             width = stage.clientWidth; height = stage.clientHeight;
@@ -140,7 +152,7 @@ export function AuraPhotoSequence() {
           resize.observe(stage);
           gsap.to(state,{progress:1,ease:"none",onUpdate:draw,scrollTrigger:{trigger:section!,start:"top top",end:"bottom bottom",scrub:.38,invalidateOnRefresh:true}});
           ScrollTrigger.refresh();
-          return () => { resize.disconnect(); notes.forEach(note=>{note.removeAttribute("style"); delete note.dataset.active;}); delete section!.dataset.sequenceAnimated; };
+          return () => { resize.disconnect(); intro.removeAttribute("style"); chapterChrome.forEach(el=>el.removeAttribute("style")); notes.forEach(note=>{note.removeAttribute("style"); delete note.dataset.active;}); delete section!.dataset.sequenceAnimated; };
         },section!);
       } catch { revert?.(); revert = undefined; delete section!.dataset.sequenceAnimated; } finally { pending = false; }
     }
@@ -150,14 +162,15 @@ export function AuraPhotoSequence() {
   },[]);
   return <section ref={ref} id="aura-olhar" className={styles.track} data-photo-track aria-labelledby="aura-photo-title">
     <div className={styles.stage} data-camera-stage>
-      <header className={styles.heading}><h2 id="aura-photo-title">Cada detalhe, de perto.</h2><span>Proporção. Expressão. Identidade.</span></header>
+      <div className={styles.intro} data-scene-intro>{children}</div>
+      <header className={styles.heading} data-focus-chrome><h2 id="aura-photo-title">Cada detalhe, de perto.</h2><span>Proporção. Expressão. Identidade.</span></header>
       <figure className={styles.source}><Image data-camera-source src="/images/aura-sequence/continuous-portrait.webp" alt="Personagem feminina gerada, usada como base fotográfica contínua para os enquadramentos faciais" width={1024} height={1536} unoptimized onError={event=>{
         const image=event.currentTarget;
         if (!image.dataset.cameraFallback) { image.dataset.cameraFallback="true"; image.src="/images/aura-sequence/portrait.webp"; }
       }}/></figure>
       <canvas ref={canvasRef} className={styles.canvas} data-photo-camera aria-hidden="true"/>
       <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index<chapters.length-1 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index<chapters.length-1 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src="/images/aura-sequence/continuous-before.webp" width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
-      <footer className={styles.foot}><span>Simulação ilustrativa · Imagens geradas · Não prevê resultado clínico</span><a href="#aura-avaliacao">Entender a avaliação ↓</a></footer>
+      <footer className={styles.foot} data-focus-chrome><span>Simulação ilustrativa · Imagens geradas · Não prevê resultado clínico</span><a href="#aura-avaliacao">Entender a avaliação ↓</a></footer>
     </div>
   </section>;
 }
