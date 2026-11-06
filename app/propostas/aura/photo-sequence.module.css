@@ -11,7 +11,7 @@
 .copy p { font-size:17px; line-height:1.75; max-width:440px; margin:0; }
 .foot { display:flex; gap:25px; justify-content:space-between; padding:25px 4vw; font-size:12px; border-top:1px solid #f2f1eb55; }
 .foot a { text-decoration:none; }
-@media(min-height:700px) {
+@media(min-height:1px) {
  .track[data-sequence-animated=true] { height:620svh; }
  .track[data-sequence-animated=true] .stage { position:sticky; top:0; height:100svh; overflow:hidden; isolation:isolate; }
  .track[data-sequence-animated=true] .source { display:none; }
@@ -33,7 +33,7 @@
  .copy h3 { font-size:40px; }
  .foot { padding:24px; flex-wrap:wrap; line-height:1.6; }
 }
-@media(max-width:899px) and (min-height:700px) {
+@media(max-width:899px) {
  .track[data-sequence-animated=true] { height:580svh; }
  .track[data-sequence-animated=true] .heading { padding:25px 24px; }
  .track[data-sequence-animated=true] .heading h2 { font-size:24px; }
@@ -60,11 +60,30 @@
 .source img { height:100%; object-fit:cover; object-position:73% 55%; }
 
 .intro { position:relative; }
-@media(min-height:700px) {
+@media(min-height:1px) {
  .track[data-sequence-animated=true] .intro { position:absolute; inset:0; z-index:5; }
  .track[data-sequence-animated=true] .intro [data-portrait] { display:none; }
  .track[data-sequence-animated=true] .intro [data-hero-track] { height:100svh; }
  .track[data-sequence-animated=true] .intro [data-hero-stage] { height:100svh; min-height:0; }
  .track[data-sequence-animated=true] .heading,.track[data-sequence-animated=true] .foot { visibility:hidden; }
  .track[data-sequence-animated=true] .copy { visibility:hidden; }
+}
+
+/* Compact browser windows keep the scroll simulation; height is not a motion preference. */
+@media(max-height:699px) and (min-width:900px) {
+ .track[data-sequence-animated=true] .heading { padding-top:18px; }
+ .track[data-sequence-animated=true] .heading h2 { font-size:23px; }
+ .track[data-sequence-animated=true] .copy { top:29%; }
+ .track[data-sequence-animated=true] .copy h3 { font-size:42px; margin-bottom:16px; }
+ .track[data-sequence-animated=true] .copy p { font-size:14px; line-height:1.6; }
+ .track[data-sequence-animated=true] .foot { bottom:18px; padding-top:12px; font-size:10px; }
+ .track[data-sequence-animated=true] .intro [data-hero-copy] { top:23%; }
+ .track[data-sequence-animated=true] .intro [data-hero-copy] h1 { font-size:clamp(50px,6vw,80px); }
+}
+@media(max-height:699px) and (max-width:899px) {
+ .track[data-sequence-animated=true] .copy { bottom:115px; }
+ .track[data-sequence-animated=true] .copy h3 { font-size:28px; margin-bottom:10px; }
+ .track[data-sequence-animated=true] .copy p { font-size:12px; line-height:1.5; }
+ .track[data-sequence-animated=true] .foot { bottom:58px; }
+ .track[data-sequence-animated=true] .comparisonLabel { margin-bottom:10px; }
 }

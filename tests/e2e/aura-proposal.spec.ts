@@ -148,3 +148,26 @@ test("Aura holds the camera while the illustrative comparison changes and revers
   await page.getByText('Ver comparação ilustrativa',{exact:true}).first().click();
   await expect(page.getByAltText('Antes — variação digital ilustrativa da personagem').first()).toBeVisible();
 });
+
+
+test("Compact browser retains animated regional comparisons instead of repeated static portraits",async({page})=>{
+ await page.setViewportSize({width:1440,height:640});
+ await page.goto('/propostas/aura');
+ const track=page.locator('[data-photo-track]'), camera=page.locator('[data-photo-camera]');
+ await expect(track).toHaveAttribute('data-sequence-animated','true');
+ const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
+ for(const [i,progress] of [[0,.01],[1,.3],[2,.55],[3,.8]]) {
+  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*progress));
+  await expect(page.locator('[data-photo-copy]').nth(i)).toHaveAttribute('data-active','true');
+  await expect(page.locator('[data-photo-copy]').nth(i).getByRole('heading')).toBeInViewport();
+  await expect(camera).toBeVisible();
+  await expect(page.locator('summary').filter({hasText:'Ver comparação ilustrativa'}).first()).toBeHidden();
+ }
+ await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(650);
+ const initial=await camera.getAttribute('data-comparison');
+ await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.14)); await page.waitForTimeout(650);
+ expect(await camera.getAttribute('data-comparison')).not.toBe(initial);
+ await page.emulateMedia({reducedMotion:'reduce'});
+ await expect(track).not.toHaveAttribute('data-sequence-animated','true');
+ await expect(page.locator('summary').filter({hasText:'Ver comparação ilustrativa'}).first()).toBeVisible();
+});

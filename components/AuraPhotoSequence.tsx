@@ -65,7 +65,7 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
         if (disposed || parent!.dataset.motion === "off") return;
         gsap.registerPlugin(ScrollTrigger);
         const media = gsap.matchMedia(); revert = () => media.revert();
-        media.add("(min-height: 700px) and (prefers-reduced-motion: no-preference)", () => {
+        media.add("(prefers-reduced-motion: no-preference)", () => {
           section!.dataset.sequenceAnimated = "true";
           const stage = section!.querySelector<HTMLElement>("[data-camera-stage]")!;
           const notes = Array.from(section!.querySelectorAll<HTMLElement>("[data-photo-copy]"));

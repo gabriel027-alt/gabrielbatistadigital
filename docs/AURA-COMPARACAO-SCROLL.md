@@ -25,3 +25,9 @@ Verificação desta entrada direta: lint/build e os oito testes Playwright aprov
 O usuário esclareceu que a moldura expansível da abertura também deveria sair. A abertura passou a integrar o mesmo palco/canvas dos focos, com um único retrato e câmera: rosto inteiro → aproximação suave ao malar → comparação → demais regiões. Os primeiros 18% do percurso conduzem ao malar; não há expansão de clip-path, troca entre duas fotografias ou texto intermediário cobrindo o rosto. O título inicial desaparece enquanto o texto regional entra. O retorno refaz o mesmo caminho. Pausa/movimento reduzido/sem JS mantêm a composição estática e as comparações acessíveis.
 
 Validação da abertura contínua: build/lint aprovados; oito cenários aprovados, com repetição do teste de câmera após retirar o texto intermediário residual. Esse teste verifica enquadramento inicial de rosto inteiro, aproximação intermediária e chegada ao malar no mesmo canvas. Nova evidência: continuous-opening.png e unframed-opening.mp4.
+
+## Preservar simulações em janelas baixas
+
+A animação tinha uma condição indevida de altura mínima de 700 px, que exibia o fallback estático com retratos repetidos em janelas mais baixas. A altura não representa preferência de movimento: removida essa restrição de JS/CSS, preservando hero contínua, câmera, quatro comparações regionais e reversão. A alternativa estática permanece para movimento reduzido, pausa, ausência de JS ou falha de recursos. Layout compacto ajusta tamanhos de texto. Teste de regressão em 1440×640 percorre as quatro regiões e verifica que a comparação muda pelo scroll, com os detalhes estáticos ocultos.
+
+Verificação: lint/build e nove testes aprovados, incluindo regressão em janela compacta com todos os focos e antes/depois por scroll, reversão, celular, navegação, acessibilidade e fallback. Evidência compact-scroll.png / compact-scroll.mp4.

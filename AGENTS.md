@@ -67,3 +67,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Aura: abertura e focos no mesmo palco
 
 - A moldura expansível da hero foi rejeitada. AuraPhotoSequence recebe a abertura como children e controla uma única câmera contínua do rosto inteiro até o malar; não restaurar o clip-path nem o texto intermediário antigo em AuraMotion. Primeiros 18% do scroll fazem a aproximação, depois seguem as comparações regionais.
+
+- Não condicionar a simulação Aura a altura mínima da janela: isso substituía a experiência por retratos estáticos repetidos em viewports menores que 700 px. Preservar animação em janelas compactas; fallback é para movimento reduzido, pausa ou falha real de recursos. Regressão em tests/e2e/aura-proposal.spec.ts (1440×640).
