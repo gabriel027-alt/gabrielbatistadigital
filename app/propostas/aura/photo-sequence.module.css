@@ -87,3 +87,10 @@
  .track[data-sequence-animated=true] .foot { bottom:58px; }
  .track[data-sequence-animated=true] .comparisonLabel { margin-bottom:10px; }
 }
+
+.comparisonMeter { display:none; max-width:300px; margin-top:28px; }
+.track[data-sequence-animated=true] .comparisonMeter { display:block; }
+.comparisonMeter>div:first-child { display:flex; justify-content:space-between; font-size:11px; color:#e8b197; }
+.meterTrack { height:2px; background:#f2f1eb33; margin-top:10px; }
+.meterTrack span { display:block; height:100%; background:#e8b197; transform:scaleX(0); transform-origin:left; }
+@media(max-width:899px), (max-height:699px) { .comparisonMeter { margin-top:18px; max-width:240px; } }

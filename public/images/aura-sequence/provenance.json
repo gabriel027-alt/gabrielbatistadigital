@@ -56,12 +56,22 @@
       "bytes": 277018,
       "sha256": "3b1b82032a22f1abd094be78be800d6af5554f2e9949169cf50990887673f9a9",
       "generatedSource": "/workspace/generated_images/exec-e492a3cd-e399-4565-8214-02e80c948fdd.png"
+    },
+    {
+      "name": "malar-before-refined",
+      "width": 1024,
+      "height": 1536,
+      "bytes": 285774,
+      "sha256": "6dafae840fb744c4994d89241dcc42808f053506f60f7fcd69c15c112b0545ee",
+      "generatedSource": "/workspace/generated_images/exec-a739def5-94dd-4831-88f3-f9a823193a04.png",
+      "purpose": "Local malar before patch only; illustrative variation, not a clinical outcome"
     }
   ],
   "runtimeSources": [
     "portrait.webp",
     "continuous-portrait.webp",
-    "continuous-before.webp"
+    "continuous-before.webp",
+    "malar-before-refined.webp"
   ],
   "camera": "Continuous Canvas2D camera with stationary comparison holds and feathered regional AI-generated before patches; illustrative digital variations, not clinical outcomes or true 3D."
 }

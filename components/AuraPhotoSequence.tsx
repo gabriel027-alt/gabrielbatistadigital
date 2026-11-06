@@ -5,7 +5,7 @@ import { useEffect, useRef, type ReactNode } from "react";
 import styles from "@/app/propostas/aura/photo-sequence.module.css";
 
 const chapters = [
-  { key: "malar", title: "Zigomático.", copy: "Projeção e volume da região malar participam da leitura do terço médio. A relação com os demais traços faz parte da avaliação.", x:.73, y:.55, zoom:2.45, side:.72 },
+  { key: "malar", title: "Zigomático.", copy: "Observe a região das maçãs do rosto. Nesta comparação ilustrativa, o volume muda gradualmente enquanto os demais traços permanecem na mesma base.", x:.73, y:.55, zoom:2.45, side:.72 },
   { key: "lips", title: "Lábios.", copy: "Contorno, proporção e movimento são considerados juntos. O objetivo precisa respeitar a expressão e o que você deseja preservar.", x:.5, y:.66, zoom:2.65, side:.28 },
   { key: "chin", title: "Queixo e mandíbula.", copy: "O queixo e a linha mandibular se relacionam com as proporções do rosto. Possibilidades e limites dependem da avaliação individual.", x:.5, y:.78, zoom:2.45, side:.72 },
   { key: "nose", title: "A relação com o nariz.", copy: "Nariz, lábios e queixo são lidos em conjunto. Nem toda mudança de forma é indicada ou possível com preenchimento.", x:.5, y:.56, zoom:2.55, side:.28 },
@@ -50,8 +50,12 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
         const patches: HTMLCanvasElement[] = [];
         try {
           await before.decode();
-          const regions = [ [[.27,.55,.18,.11],[.74,.55,.18,.11]], [[.5,.66,.19,.075]], [[.5,.78,.29,.11]], [[.5,.55,.12,.12]] ];
-          regions.forEach(ellipses => {
+          const malarBefore = new window.Image();
+          malarBefore.src = "/images/aura-sequence/malar-before-refined.webp";
+          let malarSource: HTMLImageElement = before;
+          try { await malarBefore.decode(); malarSource=malarBefore; } catch { /* Keep the previous malar comparison if the refinement is unavailable. */ }
+          const regions = [ [[.27,.55,.17,.085],[.74,.55,.17,.085]], [[.5,.66,.19,.075]], [[.5,.78,.29,.11]], [[.5,.55,.12,.12]] ];
+          regions.forEach((ellipses,regionIndex) => {
             const patch = document.createElement("canvas"); patch.width=texture.width; patch.height=texture.height;
             const ctx=patch.getContext("2d")!;
             ellipses.forEach(([cx,cy,rx,ry]) => {
@@ -59,7 +63,7 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
               const fade=ctx.createRadialGradient(0,0,.48,0,0,1); fade.addColorStop(0,"black"); fade.addColorStop(1,"transparent");
               ctx.fillStyle=fade; ctx.fillRect(-1,-1,2,2); ctx.restore();
             });
-            ctx.globalCompositeOperation="source-in"; ctx.drawImage(before,0,0,patch.width,patch.height); patches.push(patch);
+            ctx.globalCompositeOperation="source-in"; ctx.drawImage(regionIndex===0 ? malarSource : before,0,0,patch.width,patch.height); patches.push(patch);
           });
         } catch { /* A missing comparison keeps the original photographic chapter usable. */ }
         if (disposed || parent!.dataset.motion === "off") return;
@@ -136,6 +140,8 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
                 const value=reveals[i];
                 label.textContent=value===undefined ? "Comparação indisponível" : value<.02 ? "Antes · simulação" : value>.98 ? "Depois · simulação" : "Antes → Depois · simulação";
               }
+              const meter=note.querySelector<HTMLElement>("[data-malar-progress]");
+              if(meter) meter.style.transform=`scaleX(${reveals[0] ?? 0})`;
               if (mobile) { note.style.left = ""; note.style.right = ""; }
               else { note.style.left = chapters[i].side>.5 ? "4%" : "64%"; note.style.right = "auto"; }
             });
@@ -169,7 +175,7 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
         if (!image.dataset.cameraFallback) { image.dataset.cameraFallback="true"; image.src="/images/aura-sequence/portrait.webp"; }
       }}/></figure>
       <canvas ref={canvasRef} className={styles.canvas} data-photo-camera aria-hidden="true"/>
-      <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index<chapters.length-1 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index<chapters.length-1 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src="/images/aura-sequence/continuous-before.webp" width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
+      <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index<chapters.length-1 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index===0 && <div className={styles.comparisonMeter} aria-hidden="true"><div><span>Antes</span><span>Depois</span></div><div className={styles.meterTrack}><span data-malar-progress/></div></div>}{index<chapters.length-1 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src={index===0 ? "/images/aura-sequence/malar-before-refined.webp" : "/images/aura-sequence/continuous-before.webp"} width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
       <footer className={styles.foot} data-focus-chrome><span>Simulação ilustrativa · Imagens geradas · Não prevê resultado clínico</span><a href="#aura-avaliacao">Entender a avaliação ↓</a></footer>
     </div>
   </section>;

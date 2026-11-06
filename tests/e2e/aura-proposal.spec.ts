@@ -24,6 +24,7 @@ test("Aura scroll reverses and disabling motion restores static readable content
   await page.emulateMedia({ reducedMotion: "no-preference" });
   await page.goto("/propostas/aura");
   await expect(page.locator('[data-motion]')).toHaveAttribute('data-animated', 'true');
+  await expect(page.locator('[data-photo-track]')).toHaveAttribute('data-sequence-animated','true');
   const portrait = page.locator('[data-portrait]');
   expect(await portrait.evaluate(el => getComputedStyle(el).clipPath)).toBe('none');
   await page.evaluate(() => scrollTo(0, 1050));
@@ -136,11 +137,19 @@ test("Aura holds the camera while the illustrative comparison changes and revers
   const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(800);
   const before=await camera.screenshot(), position=await camera.getAttribute('data-camera');
+  const eyePixels=()=>camera.evaluate(el=>{
+    const c=el as HTMLCanvasElement;
+    return Array.from(c.getContext('2d')!.getImageData(Math.round(c.width*.60),Math.round(c.height*.14),60,40).data);
+  });
+  const unchangedEye=await eyePixels();
+  await expect(page.locator('[data-malar-progress]')).toHaveAttribute('style','transform: scaleX(0);');
   await expect(page.locator('[data-comparison-label]').first()).toHaveText('Antes · simulação');
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.14)); await page.waitForTimeout(800);
   expect(await camera.getAttribute('data-camera')).toBe(position);
   expect((await camera.screenshot()).equals(before)).toBe(false);
   await expect(page.locator('[data-comparison-label]').first()).toHaveText('Depois · simulação');
+  await expect(page.locator('[data-malar-progress]')).toHaveAttribute('style','transform: scaleX(1);');
+  expect(await eyePixels()).toEqual(unchangedEye);
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(800);
   expect((await camera.screenshot()).equals(before)).toBe(true);
   await page.emulateMedia({reducedMotion:'reduce'});

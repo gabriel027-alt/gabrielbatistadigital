@@ -31,3 +31,11 @@ Validação da abertura contínua: build/lint aprovados; oito cenários aprovado
 A animação tinha uma condição indevida de altura mínima de 700 px, que exibia o fallback estático com retratos repetidos em janelas mais baixas. A altura não representa preferência de movimento: removida essa restrição de JS/CSS, preservando hero contínua, câmera, quatro comparações regionais e reversão. A alternativa estática permanece para movimento reduzido, pausa, ausência de JS ou falha de recursos. Layout compacto ajusta tamanhos de texto. Teste de regressão em 1440×640 percorre as quatro regiões e verifica que a comparação muda pelo scroll, com os detalhes estáticos ocultos.
 
 Verificação: lint/build e nove testes aprovados, incluindo regressão em janela compacta com todos os focos e antes/depois por scroll, reversão, celular, navegação, acessibilidade e fallback. Evidência compact-scroll.png / compact-scroll.mp4.
+
+## Unidade de acabamento: zigomático
+
+Nova fonte malar-before-refined.webp gerada especificamente para o malar, com o retrato aprovado como referência. Apenas as bochechas são incorporadas por máscaras elípticas suaves, agora limitadas verticalmente para não alcançar os olhos. Os demais focos conservam suas fontes e coreografia. A câmera permanece estável durante a comparação e a barra Antes/Depois indica o avanço visual, sem representar dose, intensidade de tratamento ou previsão clínica. O texto explica a observação da região em linguagem direta. Falha no novo recurso mantém o recorte anterior. A resolução continua nativa 1024×1536.
+
+Esta unidade exige avaliação estética do usuário antes de repetir o refinamento nas demais regiões. A geração alterou também alguns detalhes fora das bochechas; eles não são incorporados ao canvas, que preserva a base original nessas áreas. A diferença malar continua discreta e não constitui validação clínica.
+
+Verificação desta unidade: lint/build e nove cenários aprovados; o cenário de pausa/reversão passou após passar a aguardar explicitamente a inicialização da câmera antes de rolar. Comparação com câmera estável muda pixels e retorna ao estado anterior; região dos olhos permanece idêntica. Capturas before/middle/after e gravação sem erros em docs/preview/aura-malar-refined. Não se trata de aprovação estética ou clínica.
