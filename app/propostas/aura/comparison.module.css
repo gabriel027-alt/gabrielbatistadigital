@@ -1,4 +1,5 @@
-.section { background:#201714; color:#f2f1eb; padding:90px 7vw; display:grid; grid-template-columns:1fr 1fr; gap:9vw; align-items:center; }
+.section { background:#201714; color:#f2f1eb; position:relative; }
+.stage { padding:90px 7vw; display:grid; grid-template-columns:1fr 1fr; gap:9vw; align-items:center; }
 .eyebrow { font-size:13px; color:#e8b197; }
 .copy h2 { font:500 clamp(40px,4.4vw,72px)/1.04 var(--font-manrope),sans-serif; letter-spacing:-.055em; margin:25px 0 32px; }
 .copy>p:not(.eyebrow) { font-size:17px; line-height:1.7; max-width:430px; }
@@ -13,4 +14,22 @@
 .slider { position:absolute; inset:0; width:100%; height:100%; opacity:0; cursor:ew-resize; margin:0; touch-action:pan-y; }
 .picture:focus-within { outline:3px solid #e8b197; outline-offset:6px; }
 .hint { display:block; font-size:12px; margin-top:18px; color:#d6c2b8; }
-@media(max-width:899px) { .section { padding:70px 24px; grid-template-columns:1fr; gap:35px; }.picture { max-width:520px; margin:auto; }.copy h2 { font-size:45px; }.copy .disclosure { margin-top:20px; }.hint { text-align:center; } }
+@media(max-width:899px) { .stage { padding:70px 24px; grid-template-columns:1fr; gap:35px; }.picture { max-width:520px; margin:auto; }.copy h2 { font-size:45px; }.copy .disclosure { margin-top:20px; }.hint { text-align:center; } }
+
+.section[data-comparison-animated=true] { height:240svh; }
+.section[data-comparison-animated=true] .stage { position:sticky; top:0; height:100svh; padding-block:35px; }
+.section[data-comparison-animated=true] .picture { height:min(76svh,660px); width:auto; max-width:100%; }
+@media(max-width:899px) {
+ .section[data-comparison-animated=true] .stage { padding:22px 24px; gap:16px; align-content:center; }
+ .section[data-comparison-animated=true] .copy h2 { font-size:30px; margin:12px 0; }
+ .section[data-comparison-animated=true] .copy>p:not(.eyebrow) { font-size:13px; line-height:1.5; margin:10px 0; }
+ .section[data-comparison-animated=true] .copy .eyebrow { font-size:11px; margin:0; }
+ .section[data-comparison-animated=true] .copy .disclosure { font-size:10px!important; margin-top:10px; }
+ .section[data-comparison-animated=true] .picture { height:46svh; }
+ .section[data-comparison-animated=true] .hint { margin-top:10px; font-size:10px; }
+}
+@media(max-height:699px) and (min-width:900px) {
+ .section[data-comparison-animated=true] .copy h2 { font-size:42px; margin:18px 0; }
+ .section[data-comparison-animated=true] .copy>p:not(.eyebrow) { font-size:14px; }
+ .section[data-comparison-animated=true] .copy .disclosure { margin-top:20px; }
+}

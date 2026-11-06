@@ -10,6 +10,14 @@ Gravação produzida no navegador da própria implementação, com abertura, qua
 
 Fontes: componentes e ativos já documentados em docs/AURA-COMPARACAO-SCROLL.md e public/images/aura-sequence/provenance.json. Nenhum banco de pacientes ou material de terceiros foi utilizado.
 
-Entrega de mídia: public/videos/projects/aura-showcase.mp4, H.264 1440×900, 33,96 s, cerca de 1,3 MB, sem faixa de áudio. Capa WebP de cerca de 75 KB; legendas VTT opcionais. A gravação foi inspecionada na abertura e no comparador em movimento. Não há alegação de resolução 4K.
+Entrega de mídia: public/videos/projects/aura-showcase.mp4, H.264 1440×900, 37,00 s, cerca de 1,3 MB, sem faixa de áudio. Capa WebP de cerca de 75 KB; legendas VTT opcionais. A gravação foi inspecionada na abertura e no comparador em movimento. Não há alegação de resolução 4K.
 
 Validação: lint/build aprovados; 17 cenários distintos aprovados (com repetição do comparador para acrescentar teste de toque). Abrangem comparação por teclado/mouse/toque, reprodução H.264 e metadados no navegador, seis cartões, ausência de link da Aura para landing, preload=none, hero preservada, scroll regional, mobile, pausa, ausência de JS, catálogo com 20 entradas e âncoras/WhatsApp oficiais. Cartão em desktop e celular e comparador final inspecionados em docs/preview/aura-showcase. A gravação não registrou erros de execução. Não houve deploy nem alteração de autenticação.
+
+## Comparador com percurso pelo scroll
+
+A seção fica sticky durante um percurso de 240svh: começa dividida ao meio, recolhe a camada depois até exibir o antes inteiro, mantém um breve intervalo e revela o depois inteiro. O percurso é reversível e suavizado por requestAnimationFrame, sem loop quando a posição já estabilizou. A legenda da parte oculta desaparece nos extremos.
+
+Arraste, toque e teclado interrompem o movimento automático e mantêm a posição escolhida; o automático só retoma ao voltar a rolar. Pausa global e preferência de movimento reduzido desativam o trecho sticky/automático e preservam o controle manual. Layout compacto mantém o comparador dentro da janela. O filme do portfólio é regravado para mostrar a varredura automática e depois o ajuste manual.
+
+Validação do percurso automático: lint/build aprovados e 12 cenários aprovados, incluindo os dois extremos pelo scroll, retorno, controle manual sem reposicionamento enquanto parado, retomada ao rolar, toque/teclado e preferência de movimento reduzido. A medição do teste aguarda a câmera inicial carregar antes de calcular a posição da seção. Capturas scroll-before.png e scroll-after.png inspecionadas. Filme atualizado: 37.00 s, 1.28 MiB, sem erros na gravação.

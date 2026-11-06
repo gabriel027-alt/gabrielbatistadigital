@@ -74,3 +74,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Por pedido explícito, a entrada Aura de SelectedWork agora apresenta MP4 com capa e controles, sem link para a landing. Manter os outros cinco cartões. O índice do catálogo aponta ao filme. A rota Aura continua como fonte/revisão; ausência de link não é bloqueio de acesso.
 - Comparador final em AuraComparison: preservar arraste/teclado/toque e rótulo de simulação. Filme: public/videos/projects/aura-showcase.mp4; origem, limitações e testes em docs/AURA-FILME-PORTFOLIO.md. Não usar autoplay nem carregar vídeo na chegada à homepage (preload=none).
+
+- O comparador final também acompanha o scroll: metade → antes inteiro → depois inteiro. Ajuste manual interrompe o automático até o próximo scroll; preservar essa prioridade e a alternativa manual com movimento reduzido/pausa. Regravar o MP4 ao mudar essa coreografia.

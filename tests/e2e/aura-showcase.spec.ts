@@ -38,3 +38,21 @@ test('Portfolio presents Aura as one video among six projects without a landing-
  await expect.poll(()=>video.evaluate(v=>(v as HTMLVideoElement).readyState)).toBeGreaterThan(0);
  expect(await video.evaluate(v=>(v as HTMLVideoElement).duration)).toBeGreaterThan(10);
 });
+
+
+test('Scroll sweeps to all-before then all-after and preserves manual adjustment until further scroll',async({page})=>{
+ await page.setViewportSize({width:1440,height:900});await page.goto('/propostas/aura');
+ const section=page.locator('[data-aura-comparator]'),slider=section.getByRole('slider');
+ await expect(section).toHaveAttribute('data-comparison-animated','true');
+ await expect(page.locator('[data-photo-track]')).toHaveAttribute('data-sequence-animated','true');
+ const g=await section.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
+ const at=async(p:number)=>page.evaluate(y=>scrollTo(0,y),g.top+g.travel*p);
+ await at(.34);await expect(slider).toHaveValue('0');await expect(slider).toBeInViewport();
+ await at(.95);await expect(slider).toHaveValue('100');await expect(slider).toBeInViewport();
+ await slider.focus();await slider.press('Home');await slider.press('ArrowRight');
+ const manual=await slider.inputValue();await page.waitForTimeout(600);await expect(slider).toHaveValue(manual);
+ await at(.8);await expect.poll(async()=>Number(await slider.inputValue())).toBeGreaterThan(80);
+ await at(.34);await expect(slider).toHaveValue('0');
+ await page.emulateMedia({reducedMotion:'reduce'});await expect(section).not.toHaveAttribute('data-comparison-animated','true');
+ await slider.press('End');await expect(slider).toHaveValue('100');
+});
