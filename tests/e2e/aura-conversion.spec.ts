@@ -1,21 +1,14 @@
 import { test,expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 
-test('Aura ending targets clinic owners with truthful WhatsApp contact and no clinical booking',async({page})=>{
+test('Aura stays in its own brand voice and keeps agency sales outside the film',async({page})=>{
  await page.emulateMedia({reducedMotion:'reduce'});await page.goto('/propostas/aura');
- const closing=page.locator('#aura-avaliacao');
- await closing.scrollIntoViewIfNeeded();
- await expect(closing.getByRole('heading',{name:'O cuidado começa antes do primeiro contato.'})).toBeVisible();
- await expect(closing.locator('img')).toHaveCount(0);
- await expect(closing.getByRole('link',{name:'Falar sobre meu site no WhatsApp'})).toBeVisible();
- for(const anchor of await page.locator('a[href*="wa.me"]').all()){
-  const url=new URL((await anchor.getAttribute('href'))!);
-  expect(url.hostname).toBe('wa.me');expect(url.pathname).toBe('/5538998267717');
-  expect(url.searchParams.get('text')).toContain('Gabriel');expect(url.searchParams.get('text')).toContain('site para minha clínica');
- }
+ const closing=page.locator('#aura-avaliacao');await closing.scrollIntoViewIfNeeded();
+ await expect(closing.getByRole('heading',{name:'A harmonia está no conjunto.'})).toBeVisible();
+ await expect(closing.getByRole('link',{name:'Rever a comparação'})).toHaveAttribute('href','#aura-comparacao');
+ await expect(page.locator('a[href*="wa.me"]')).toHaveCount(0);
+ await expect(page.getByText(/Falar sobre meu site|Seu site pode apresentar|O que precisamos para começar/)).toHaveCount(0);
  await expect(page.getByRole('link',{name:/agendar|marcar consulta/i})).toHaveCount(0);
- await closing.locator('summary').filter({hasText:'Como definimos o projeto?'}).click();
- await expect(closing.getByText('Conte qual é a sua clínica',{exact:false})).toBeVisible();
  for(const width of [360,390,768,1440,1920]){await page.setViewportSize({width,height:900});expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);}
  expect((await new AxeBuilder({page}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze()).violations).toEqual([]);
 });

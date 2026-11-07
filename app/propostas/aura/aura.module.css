@@ -811,24 +811,24 @@
   }
 }
 
-/* Commercial ending: one audience, one contact destination, no clinic booking claim. */
-.projectClosing { display:grid; grid-template-columns:1.15fr 1fr; gap:8%; align-items:center; }
-.projectEyebrow { font-size:13px; margin:0 0 26px; }
-.projectClosing h2 { width:auto; font-size:clamp(38px,4vw,64px); }
-.projectOffer>p:first-child { font-size:20px; line-height:1.65; margin:0 0 28px; max-width:500px; }
-.projectOffer .button { max-width:100%; }
-.projectOffer .contactNote { font-size:12px; line-height:1.6; max-width:380px; margin:17px 0 0; }
-.ownerQuestions { display:grid; grid-template-columns:1.15fr 1fr; gap:8%; margin-top:65px; }
-.ownerQuestions h3 { font-size:20px; font-weight:500; margin:24px 0; letter-spacing:-.03em; }
-.ownerQuestions .steps summary { font-size:19px; line-height:1.4; }
-.footerTop .button { flex-shrink:0; }
-@media(max-width:899px) {
- .projectClosing,.ownerQuestions { grid-template-columns:1fr; gap:28px; }
- .projectOffer>p:first-child { font-size:18px; }
- .projectOffer .button { width:100%; font-size:13px; gap:14px; padding:18px; }
- .ownerQuestions { margin-top:42px; gap:8px; }
- .ownerQuestions h3 { margin:16px 0; }
- .footerTop .button { width:100%; font-size:13px; gap:14px; padding:18px; }
-}
+
+/* Client-brand ending: commercial contact belongs to the portfolio around the film. */
+.brandEnding { padding:90px 7vw 80px; background:var(--ink); color:var(--paper); border-top:1px solid #f2f1eb30; }
+.endingEyebrow { font-size:12px; margin:0 0 28px; color:#e8b197; }
+.brandEnding h2 { font-size:clamp(50px,7vw,112px); font-weight:500; line-height:.98; letter-spacing:-.065em; margin:0; }
+.endingBody { display:grid; grid-template-columns:1fr auto; gap:80px; align-items:end; margin-top:44px; }
+.endingBody p { max-width:590px; font-size:17px; line-height:1.7; margin:0; }
+.endingLink { display:inline-flex; align-items:center; justify-content:space-between; gap:35px; padding:16px 0; border-bottom:1px solid #f2f1eb88; font-size:13px; }
+.brandFooter { padding:0 7vw 30px; background:var(--ink); color:var(--paper); }
+.brandWordmark { font-size:clamp(100px,16vw,235px); line-height:1; font-weight:650; letter-spacing:-.085em; padding:22px 0 30px; }
+.brandColophon { border-top:1px solid #f2f1eb30; padding-top:20px; display:flex; justify-content:space-between; gap:25px; font-size:11px; }
 .button:focus-visible { outline-color:var(--paper); }
-.evaluation .button:focus-visible { outline-color:var(--ink); }
+@media(max-width:899px) {
+ .brandEnding { padding:65px 24px 45px; }
+ .brandEnding h2 { font-size:clamp(48px,9vw,76px); }
+ .endingBody { grid-template-columns:1fr; gap:25px; margin-top:30px; }
+ .endingBody p { font-size:15px; }
+ .endingLink { justify-self:start; }
+ .brandFooter { padding:0 24px 70px; }
+ .brandColophon { font-size:10px; }
+}

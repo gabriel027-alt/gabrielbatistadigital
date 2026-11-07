@@ -1,3 +1,5 @@
+> Correção de escopo: a oferta comercial foi retirada do interior da Aura. A captação de donos de clínicas permanece no portfólio, junto ao filme. As recomendações abaixo sobre o encerramento comercial interno são históricas; ver [a separação corrigida](AURA-APRESENTACAO-CLIENTE.md).
+
 # Aura — auditoria editorial e de conversão
 
 ## Objetivo confirmado

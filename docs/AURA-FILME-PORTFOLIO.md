@@ -1,3 +1,5 @@
+> Separação corrigida: a oferta de Gabriel fica fora do filme, no portfólio. O encerramento interno da Aura é exclusivamente da marca; ver [apresentação atual](AURA-APRESENTACAO-CLIENTE.md).
+
 # Aura — apresentação em filme no portfólio
 
 Pedido: comparador arrastável da mesma personagem ao final da experiência, seguido de apresentação em MP4 como um dos projetos selecionados. O visitante do portfólio assiste à apresentação, sem um link para navegar pela landing Aura.

@@ -45,13 +45,13 @@ export function AuraComparison() {
     return()=>{removeEventListener("pointerup",release);removeEventListener("pointercancel",release);stop();resize.disconnect();motion.disconnect();media.removeEventListener("change",sync);removeEventListener("scroll",onScroll);removeEventListener("resize",update);delete section.dataset.comparisonAnimated;};
   },[]);
   const adjust=(value:number)=>{manual.current=true;cancelAnimationFrame(frame.current);frame.current=0;current.current=value;setPosition(value);};
-  return <section ref={sectionRef} className={styles.section} aria-labelledby={`${id}-title`} data-aura-comparator>
+  return <section id="aura-comparacao" ref={sectionRef} className={styles.section} aria-labelledby={`${id}-title`} data-aura-comparator>
     <div className={styles.stage} data-comparison-stage>
     <div className={styles.copy}>
       <p className={styles.eyebrow}>O detalhe encontra o todo</p>
       <h2 id={`${id}-title`}>Um outro olhar.<br/>A mesma expressão.</h2>
-      <p>Arraste para observar as duas versões da personagem, no mesmo enquadramento e sob a mesma luz.</p>
-      <p className={styles.disclosure}>Simulação ilustrativa com imagens geradas. Não representa uma paciente nem prevê resultado clínico.</p>
+      <p>Deslize para observar como volumes e contornos participam da expressão do rosto.</p>
+      <p className={styles.disclosure}>Comparação ilustrativa com imagens geradas. Não representa resultados clínicos.</p>
     </div>
     <div>
       <div className={styles.picture}>
