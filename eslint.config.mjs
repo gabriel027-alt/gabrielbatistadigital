@@ -4,5 +4,6 @@ import nextTypescript from "eslint-config-next/typescript";
 export default defineConfig([
   ...nextVitals,
   ...nextTypescript,
-  globalIgnores([".next/**", "next-env.d.ts", "playwright-report/**", "test-results/**"]),
+  // Third-party skill sources are reference packages, not application code.
+  globalIgnores([".agents/skills/**", ".next/**", "next-env.d.ts", "playwright-report/**", "test-results/**"]),
 ]);

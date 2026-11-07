@@ -90,3 +90,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Reutilizar brief e aprovações existentes; consultar apenas fontes pertinentes à necessidade atual. Não importar automaticamente motores, serviços pagos, entrevistas repetidas ou instruções de ferramentas de outro agente.
 
 - Download dos seis repositórios autorizado e realizado. Fontes locais e commits em docs/research/video-repositories-lock.json. Humanizer, grill-me/grilling e ScrollCraft estão em .agents/skills/ com licenças; podem ser lidos explicitamente. Consultar .agents/skills/SOURCES.md para adaptação de ferramentas. Runtimes de Laya/VoiceStudio/REA e geração paga não foram instalados.
+
+## Orla: primeira unidade de revisão
+
+- `/propostas/orla` é a apresentação fotográfica em revisão, documentada em docs/ORLA-DIRECAO.md. Usa dois assets gerados existentes, GSAP/ScrollTrigger e galeria lateral reversível, com atalhos e pausa. Sem JS ou com movimento reduzido, fotografias seguem em fluxo vertical.
+- `/modelos/imoveis`, os 20 itens e SelectedWork continuam preservados até avaliação dessa direção. Não confundir esta unidade com catálogo imobiliário operacional, oferta real, tour 3D ou filme final aprovado. Aura permanece independente.
