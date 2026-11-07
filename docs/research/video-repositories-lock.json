@@ -1,0 +1,44 @@
+[
+  {
+    "repository": "blader/humanizer",
+    "url": "https://github.com/blader/humanizer",
+    "path": "/workspace/library-files/github-tools/blader--humanizer",
+    "commit": "0ef9fe5bc3572734fd3ae6c448fe00a30cd5dcf0",
+    "runtime_installed": false
+  },
+  {
+    "repository": "mattpocock/skills",
+    "url": "https://github.com/mattpocock/skills",
+    "path": "/workspace/library-files/github-tools/mattpocock--skills",
+    "commit": "4ae2317ddb22b046e26455e4f9c9b3aaaf62212d",
+    "runtime_installed": false
+  },
+  {
+    "repository": "nateherkai/scroll-craft",
+    "url": "https://github.com/nateherkai/scroll-craft",
+    "path": "/workspace/library-files/github-tools/nateherkai--scroll-craft",
+    "commit": "75d81f74e83692add18cd7a8a8e078b8a887a579",
+    "runtime_installed": false
+  },
+  {
+    "repository": "NandhaKishorM/laya",
+    "url": "https://github.com/NandhaKishorM/laya",
+    "path": "/workspace/library-files/github-tools/NandhaKishorM--laya",
+    "commit": "4444f2f56acdd31a633d594e9f3227f853241d9e",
+    "runtime_installed": false
+  },
+  {
+    "repository": "debpalash/VoiceStudio",
+    "url": "https://github.com/debpalash/VoiceStudio",
+    "path": "/workspace/library-files/github-tools/debpalash--VoiceStudio",
+    "commit": "aaabec19e6a36f857d724f56173d13c92caa2b27",
+    "runtime_installed": false
+  },
+  {
+    "repository": "morluto/rea",
+    "url": "https://github.com/morluto/rea",
+    "path": "/workspace/library-files/github-tools/morluto--rea",
+    "commit": "c5301e6145a9c8e06719f27e83da55af8e5480fc",
+    "runtime_installed": false
+  }
+]

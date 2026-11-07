@@ -83,3 +83,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - O usuário rejeitou o encerramento comercial interno por dar aparência de protótipo. Aura agora tem navegação e encerramento próprios da marca, sem FAQ sobre criação de site, sem WhatsApp de Gabriel apresentado como canal da clínica e sem credenciais/consultas/endereços inventados.
 - Preservar o caráter ilustrativo das comparações, o scroll aprovado e o comparador manual/automático. “Aspecto de entrega” não autoriza afirmar cliente contratado ou resultados clínicos reais.
 - Contato do filme em lib/aura-contact.ts, usando o número oficial centralizado. Paleta/contraste continuam válidos. As conclusões de AURA-AUDITORIA-CONVERSAO.md que colocavam a oferta da agência dentro da Aura são históricas e foram corrigidas; contexto atual em docs/AURA-APRESENTACAO-CLIENTE.md.
+
+## Repositórios do vídeo: adaptação seletiva
+
+- Para tarefas relacionadas a Humanizer, Grill Me, ScrollCraft, Laya, VoiceStudio ou REA, consultar docs/ADAPTACAO-REPOSITORIOS-VIDEO.md. A pesquisa não constitui instalação ou validação de runtime.
+- Reutilizar brief e aprovações existentes; consultar apenas fontes pertinentes à necessidade atual. Não importar automaticamente motores, serviços pagos, entrevistas repetidas ou instruções de ferramentas de outro agente.
+
+- Download dos seis repositórios autorizado e realizado. Fontes locais e commits em docs/research/video-repositories-lock.json. Humanizer, grill-me/grilling e ScrollCraft estão em .agents/skills/ com licenças; podem ser lidos explicitamente. Consultar .agents/skills/SOURCES.md para adaptação de ferramentas. Runtimes de Laya/VoiceStudio/REA e geração paga não foram instalados.
