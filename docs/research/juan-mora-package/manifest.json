@@ -1,0 +1,183 @@
+{
+  "origin": "user-uploaded juanmora-analysis.zip",
+  "zip_sha256": "985ac8c64c2486d1c4e438b01140f196426d3606944a60ed32984f20f55d77dc",
+  "file_count": 35,
+  "local_library": "/workspace/library-files/references/juanmora-analysis",
+  "files": [
+    {
+      "file": "REPORT.md",
+      "bytes": 18148,
+      "sha256": "036ea34d630cd6292765f02d1fcd2247dcee4bbf9064004ada5a4f8653e99e89"
+    },
+    {
+      "file": "juanmora-inspection.json",
+      "bytes": 25598,
+      "sha256": "75ec65e3c776e3d9e466ccbd5fb12a8985c63b4979b5bf699badd2c4883414c7"
+    },
+    {
+      "file": "screenshots/01-desktop-hero-initial.png",
+      "bytes": 1677869,
+      "sha256": "28e05d2f1d40207b938e18449e116dd153991b8290b721f802a3404583a456dd"
+    },
+    {
+      "file": "screenshots/02-desktop-scroll-transition.png",
+      "bytes": 374693,
+      "sha256": "99f8d44fa0864d98f6196b5ffdc8366dedae72c0077ef29666d16a7b314555e5"
+    },
+    {
+      "file": "screenshots/03-desktop-work-selected.png",
+      "bytes": 549183,
+      "sha256": "1dbef10c3eecd267f8f44648eab94b09cb5c129836535347bc437e3ac39bfbde"
+    },
+    {
+      "file": "screenshots/05-desktop-about-middle.png",
+      "bytes": 388451,
+      "sha256": "6c2158ea3888efb14986c35dac55853d9b7c7695e01687e51d0fce91c6236045"
+    },
+    {
+      "file": "screenshots/06-desktop-footer-contact.png",
+      "bytes": 1254369,
+      "sha256": "c1ae8757998109f41ff6bd43ad0bf49b8e255e38fda16d3dc089f7d4922b8eff"
+    },
+    {
+      "file": "screenshots/desktop-fullpage.png",
+      "bytes": 5132105,
+      "sha256": "9d2ec0ffdb4a3da2c0c27e09ff15b29153069366e801186a17afca2d123f816e"
+    },
+    {
+      "file": "screenshots/mobile-01-hero.png",
+      "bytes": 460657,
+      "sha256": "e358721959040262d408114884474c4d5408376ad506c244f82f5713018ab56b"
+    },
+    {
+      "file": "screenshots/mobile-02-work.png",
+      "bytes": 188612,
+      "sha256": "3112c4526e063679c4b4e84a417fcf85e5b87989ba65c9bd86034e661a4a9643"
+    },
+    {
+      "file": "screenshots/mobile-03-footer.png",
+      "bytes": 200278,
+      "sha256": "8e9572b9320c105d7586ffd12a25053523bdfd0a57a4f32003ed3901ada845ec"
+    },
+    {
+      "file": "screenshots/mobile-fullpage.png",
+      "bytes": 1513229,
+      "sha256": "9634896ed21e4b6904e88a8a20e8f5dcb30da548a1e574a0476c0c05b8f6296e"
+    },
+    {
+      "file": "screenshots/recording-frame-05s.jpg",
+      "bytes": 79736,
+      "sha256": "490c0c5adabd7c403efe6233bcafcd62a990d1f4f0c7e98ce5f12457198bfc5d"
+    },
+    {
+      "file": "screenshots/recording-frame-20s.jpg",
+      "bytes": 71749,
+      "sha256": "5c8b948265bfde2f27e6dcb79605dbeca1d4d15f7847b2ef17702124a69c91c8"
+    },
+    {
+      "file": "screenshots/recording-frame-35s.jpg",
+      "bytes": 111551,
+      "sha256": "aae253139934d5e1c93da27dbc73d8d34a4f3853d4481d1f9729cc9621629fe6"
+    },
+    {
+      "file": "sources/custom-interactions.js",
+      "bytes": 6905,
+      "sha256": "175168a6e17526acde8c353e905e9951891647ce4a72eddd9a42773d03a58abf"
+    },
+    {
+      "file": "sources/fonts/Goga-Medium.otf",
+      "bytes": 11488,
+      "sha256": "3aed6cef4debc035d898f75ac7fafb7411f7e612ef7fc1391793b7eb4bec5e5f"
+    },
+    {
+      "file": "sources/fonts/Goga-Regular.otf",
+      "bytes": 11736,
+      "sha256": "52f2bec31fb0509151c6fa2425eed7eda54fc7cb2aa92857f54c417d84ca15ff"
+    },
+    {
+      "file": "sources/fonts/Goga-SemiBold.otf",
+      "bytes": 11832,
+      "sha256": "dcc918ffbf720b82db07d13346a3a29f711d8071493902e7f854ad16373e86da"
+    },
+    {
+      "file": "sources/index.html",
+      "bytes": 1040041,
+      "sha256": "1dd9e9bc635ba5299d438597249ab5f8e32ca33ae93d400d6f7fb62e912ffdf3"
+    },
+    {
+      "file": "sources/script-1.js",
+      "bytes": 89476,
+      "sha256": "f7f6a5894f1d19ddad6fa392b2ece2c5e578cbf7da4ea805b6885eb6985b6e3d"
+    },
+    {
+      "file": "sources/script-10.js",
+      "bytes": 540662,
+      "sha256": "d2fd340065b34e676abd71d8f210d2739b4d5bbff45dfa5ee1e40dd53e788ac6"
+    },
+    {
+      "file": "sources/script-2.js",
+      "bytes": 72927,
+      "sha256": "92bb9a96476f983d212a2bc4f54c889039c1696dd4461d40a736860938570fbb"
+    },
+    {
+      "file": "sources/script-3.js",
+      "bytes": 7732,
+      "sha256": "419f7027a5f086a12cb7988736d8fdd3a6ed2200229661de25b6628ca7ced344"
+    },
+    {
+      "file": "sources/script-4.js",
+      "bytes": 44575,
+      "sha256": "b0b14d67b55b0c43c756ac0b106cfcb09d0879945f6ead64451065b0672916a2"
+    },
+    {
+      "file": "sources/script-5.js",
+      "bytes": 7143,
+      "sha256": "b76d9b7f6586b27b76b84f46374b194a60743983bf539c8394492ae2547a5f29"
+    },
+    {
+      "file": "sources/script-6.js",
+      "bytes": 17020,
+      "sha256": "6cda2b1ace4a3d67798587936aaabb91e9232ca222168397da2a8dad5fc5614a"
+    },
+    {
+      "file": "sources/script-7.js",
+      "bytes": 72779,
+      "sha256": "b216c8122377d9b94baed346799cfaaa7a010ddf3cdbea815f689ad3304c4462"
+    },
+    {
+      "file": "sources/script-8.js",
+      "bytes": 647494,
+      "sha256": "9ea963030240fc41a84c989861f55bda9f5ff5bd5219e32ce7f8841631242ad7"
+    },
+    {
+      "file": "sources/script-9.js",
+      "bytes": 128670,
+      "sha256": "214bf0580e98d01978312b74bbcf50bc00c9bebee5a30bc16f1e2374d59c0b7e"
+    },
+    {
+      "file": "sources/style-1.css",
+      "bytes": 7772,
+      "sha256": "0d336a97efd52a4ef44ef3270e71eac24ba405d4450016f9d3e943256e9e58c8"
+    },
+    {
+      "file": "sources/style-2.css",
+      "bytes": 38924,
+      "sha256": "1b0aa44860cf225f851e844568cde1c8f216a40c14b244732a7e39f4dae63a70"
+    },
+    {
+      "file": "sources/style-3.css",
+      "bytes": 81434,
+      "sha256": "f1e8d29e87f5d4f381da8f719279573e2ccc1a130c1c43c864b4cd76d58bd60c"
+    },
+    {
+      "file": "sources/style-4.css",
+      "bytes": 381,
+      "sha256": "a0510d86f0c81ed6753eccf8ddb06f196ecbb385af6df6356f734bebfeb28e7d"
+    },
+    {
+      "file": "video/20261107-1508-40-720p.mp4",
+      "bytes": 5419207,
+      "sha256": "b7f5c50998d4f5750d4f6ba967343d56bbe0837cced56088ff012a828568a822"
+    }
+  ]
+}

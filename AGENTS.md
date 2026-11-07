@@ -113,3 +113,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - O usuário forneceu o HTML da homepage; análise em docs/ANALISE-JUAN-MORA-HTML.md e inventários em docs/research/juan-mora/. REA efetivamente analisou os quatro scripts inline, sem executá-los.
 - O arquivo confirma seis vídeos de amostra em serviços com autoplay/loop/muted/playsinline. Não confirma vídeo controlado pelo scroll, layout completo, página work.html, carregamento por visibilidade ou premiação. CSS e mídia externos não foram recebidos.
 - A proposta de prévia curta mais filme completo é uma adaptação sugerida. Não ativar autoplay na galeria automaticamente: o comportamento atual de reprodução manual foi preservado nesta análise.
+
+## Reconstrução editorial do portfólio
+
+- O usuário forneceu juanmora-analysis.zip após pedir a reprodução da experiência completa. Rota de revisão: /propostas/portfolio-editorial; prévia com player: /propostas/portfolio-editorial/previa. A homepage atual e os 20 projetos permanecem preservados.
+- Referência conferida por vídeo, screenshots, DOM, CSS e análise estática REA. O relatório de origem tem imprecisões; correções e diferenças em docs/RECONSTRUCAO-PORTFOLIO-EDITORIAL.md. Não afirmar cópia integral, prêmio Awwwards ou equivalência de fontes/filmagens não recebidas.
+- Lenis 1.3.17 MIT foi adicionado somente à nova experiência, com limpeza e movimento reduzido. Não ativá-lo globalmente. Loops próprios de seis segundos só carregam quando visíveis e permitidos; pausa, economia de dados e ausência de JS mantêm conteúdo estático. Filmes completos abrem em diálogo, com CTA de Gabriel fora da gravação.
+- Preservar fotografia existente sem editar fisionomia; não incorporar Goga, vídeos pessoais, analytics ou código Webflow do autor. Novo layout usa Manrope licenciada, mídias próprias e formas CSS.
