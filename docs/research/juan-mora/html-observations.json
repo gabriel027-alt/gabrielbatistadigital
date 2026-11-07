@@ -1,0 +1,169 @@
+{
+  "origin": "user-supplied HTML, not fetched from live site",
+  "date": "2026-11-07",
+  "sha256": "41b4abf8fd939ef24b5fd50a8c1e6edbaca41c214fefe08e5e50bda823d85e2d",
+  "bytes": 40190,
+  "videos": [
+    {
+      "tag": "video",
+      "autoplay": "",
+      "loop": "",
+      "muted": "",
+      "playsinline": "",
+      "width": "100%",
+      "height": "auto",
+      "preload": "metadata",
+      "poster": "https://juanmora.co/videos-work/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/home/home-ampli.mp4",
+      "type": "video/mp4"
+    },
+    {
+      "tag": "video",
+      "autoplay": "",
+      "loop": "",
+      "muted": "",
+      "playsinline": "",
+      "width": "100%",
+      "height": "auto",
+      "preload": "metadata",
+      "poster": "https://juanmora.co/videos-work/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/home/home-shopping.mp4",
+      "type": "video/mp4"
+    },
+    {
+      "tag": "video",
+      "autoplay": "",
+      "loop": "",
+      "muted": "",
+      "playsinline": "",
+      "width": "100%",
+      "height": "auto",
+      "preload": "metadata",
+      "poster": "https://juanmora.co/videos-work/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/home/home-ampli-brand.mp4",
+      "type": "video/mp4"
+    },
+    {
+      "tag": "video",
+      "autoplay": "",
+      "loop": "",
+      "muted": "",
+      "playsinline": "",
+      "width": "100%",
+      "height": "auto",
+      "preload": "metadata",
+      "poster": "https://juanmora.co/videos-work/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/home/home-brudget1.mp4",
+      "type": "video/mp4"
+    },
+    {
+      "tag": "video",
+      "autoplay": "",
+      "loop": "",
+      "muted": "",
+      "playsinline": "",
+      "width": "100%",
+      "height": "auto",
+      "preload": "metadata",
+      "poster": "https://juanmora.co/videos-work/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/home/home-alena.mp4",
+      "type": "video/mp4"
+    },
+    {
+      "tag": "video",
+      "autoplay": "",
+      "loop": "",
+      "muted": "",
+      "playsinline": "",
+      "width": "100%",
+      "height": "auto",
+      "preload": "metadata",
+      "poster": "https://juanmora.co/videos-work/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/home/home-apechain.mp4",
+      "type": "video/mp4"
+    },
+    {
+      "tag": "video",
+      "class": "video-embed",
+      "muted": "",
+      "autoplay": "",
+      "loop": "",
+      "playsinline": "",
+      "poster": "https://juanmora.co/portfolio2025/video/juan-video-loading.jpg"
+    },
+    {
+      "tag": "source",
+      "src": "https://juanmora.co/videos-work/desk_jm3.mp4",
+      "type": "video/mp4"
+    }
+  ],
+  "externalScripts": [
+    "https://www.googletagmanager.com/gtag/js?id=G-CPH7PYBDWJ",
+    "https://d3e54v103j8qbb.cloudfront.net/js/jquery-3.5.1.min.dc5e7f18c8.js?site=6966d53c7b70efaabd0a64ff",
+    "js/webflow.js",
+    "https://cdn.prod.website-files.com/gsap/3.15.0/gsap.min.js",
+    "https://cdn.prod.website-files.com/gsap/3.15.0/SplitText.min.js",
+    "https://cdn.prod.website-files.com/gsap/3.15.0/ScrollTrigger.min.js",
+    "https://cdn.jsdelivr.net/npm/lenis@1.3.17/dist/lenis.min.js",
+    "https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/gsap.min.js",
+    "https://cdn.jsdelivr.net/npm/gsap@3.14.1/dist/CustomEase.min.js",
+    "https://cdn.gh/hiunicornstudio/unicornstudio.js@v2.1.1/dist/unicornStudio.umd.js"
+  ],
+  "stylesheets": [
+    "css/normalize.css",
+    "css/webflow.css",
+    "css/juan-portfolio-2026.webflow.css",
+    "https://unpkg.com/lenis@1.3.17/dist/lenis.css"
+  ],
+  "inlineScriptFilesAnalyzed": [
+    "inline-0.js",
+    "inline-2.js",
+    "inline-12.js",
+    "inline-13.js"
+  ],
+  "workPageLinks": [
+    {
+      "href": "about.html",
+      "class": "nav-link-mobile"
+    },
+    {
+      "href": "work.html",
+      "class": "nav-link-mobile"
+    },
+    {
+      "href": "about.html",
+      "class": "nav-link"
+    },
+    {
+      "href": "work.html",
+      "class": "nav-link"
+    },
+    {
+      "href": "work.html",
+      "class": "folder-wrapper w-inline-block"
+    },
+    {
+      "data-wf--cta-big--variant": "base",
+      "href": "about.html",
+      "class": "main-cont-button w-inline-block"
+    }
+  ]
+}

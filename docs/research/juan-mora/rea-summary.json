@@ -1,0 +1,37 @@
+{
+  "origin": "JavaScript extracted from user-supplied HTML; no live access",
+  "tool": "rea-agents",
+  "version": "6.8.0",
+  "runtime": "Node 24.22.1",
+  "command": "rea analyze-javascript-application /tmp/juan-mora-supplied --artifact-format directory --format json",
+  "operation": "analyze_javascript_application",
+  "provider": {
+    "id": "rea-javascript-application",
+    "name": "REA JavaScript application analyzer",
+    "version": "1"
+  },
+  "evidence_id": "ev_50e8d9cc7d0e9c764a4f95e13b68ff9ca9fc0cc9763c965921bde352123431b4",
+  "confidence": "derived",
+  "statistics": {
+    "relevant_files": 5,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 8014,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 4,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 1061,
+    "findings": 0,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "limitations": [
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ],
+  "artifact_sha256": "363936dabde0f1e52bdc9391772eea21a9c1f7d835db70f019e9b14b26163fd2",
+  "evidence_sha256": "3adcef41580959a33c52311837181cdcec49126ce934845c7bb56ef61a6596f0",
+  "full_evidence_local_path": "/workspace/library-files/references/juan-mora-user-supplied/rea-evidence.json"
+}

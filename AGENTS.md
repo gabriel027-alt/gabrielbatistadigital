@@ -107,3 +107,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Aura e Orla passam a ter um filme único cada na homepage: abertura, scroll, CTA local, escolhas, resumo e encerramento. ProjectFilmCard/lib/project-films.ts mantêm contato de Gabriel fora dos filmes. Preservar seis destaques, o catálogo de 20, preload=none e reprodução por iniciativa do visitante; um filme pausa o outro.
 - As prévias de /propostas/jornadas continuam auxiliares, sem entrar na homepage. Captura completa em scripts/capture-project-films.mjs; manifestos e legendas acompanham os filmes. Ao modificar a jornada, regravar o filme correspondente.
 - Comparação externa com portfólios premiados ainda depende de acesso permitido. O usuário sugeriu juanmora.co; a consulta foi bloqueada. Estado e decisões em docs/INTEGRACAO-FILMES-PORTFOLIO.md. Não tratar o candidato como referência inspecionada ou premiada sem evidência.
+
+## Referência Juan Mora recebida em HTML
+
+- O usuário forneceu o HTML da homepage; análise em docs/ANALISE-JUAN-MORA-HTML.md e inventários em docs/research/juan-mora/. REA efetivamente analisou os quatro scripts inline, sem executá-los.
+- O arquivo confirma seis vídeos de amostra em serviços com autoplay/loop/muted/playsinline. Não confirma vídeo controlado pelo scroll, layout completo, página work.html, carregamento por visibilidade ou premiação. CSS e mídia externos não foram recebidos.
+- A proposta de prévia curta mais filme completo é uma adaptação sugerida. Não ativar autoplay na galeria automaticamente: o comportamento atual de reprodução manual foi preservado nesta análise.
