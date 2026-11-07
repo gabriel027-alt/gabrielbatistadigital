@@ -46,7 +46,7 @@ try {
       const start = scrollY, began = performance.now();
       function tick(now) {
         const progress = Math.min(1, (now - began) / duration);
-        scrollTo(0, start + (target - start) * progress);
+        scrollTo({ top: start + (target - start) * progress, behavior: 'instant' });
         if (progress < 1) requestAnimationFrame(tick); else resolve();
       }
       requestAnimationFrame(tick);
