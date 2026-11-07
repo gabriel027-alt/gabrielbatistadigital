@@ -1,3 +1,4 @@
+import { BrandInquiry } from "@/components/BrandInquiry";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Arrow } from "@/components/ui/icons";
@@ -17,7 +18,7 @@ export default function OrlaPage() {
     <OrlaMotion />
     <header className={styles.header}>
       <a className={styles.logo} href="#orla-inicio" aria-label="Orla, início">orla<span>residências</span></a>
-      <nav aria-label="Navegação Orla"><a href="#orla-percurso">Os espaços</a><a href="#orla-olhar">Nosso olhar</a></nav>
+      <nav aria-label="Navegação Orla"><a href="#orla-percurso">Os espaços</a><a href="#orla-olhar">Nosso olhar</a><a href="#orla-interesse">Encontrar meu imóvel</a></nav>
     </header>
     <main id="orla-conteudo">
       <section className={styles.hero} data-orla-hero aria-labelledby="orla-title">
@@ -26,7 +27,7 @@ export default function OrlaPage() {
           <h1 id="orla-title">Uma casa.<br />Todo um horizonte.</h1>
           <p>Arquitetura que abre espaço<br />para a vida lá fora.</p>
         </div>
-        <div className={styles.heroBottom}><p>Entre a casa<br />e a paisagem.</p><a className={styles.explore} href="#orla-percurso">Conhecer os espaços <Arrow size={22} /></a></div>
+        <div className={styles.heroBottom}><p>Entre a casa<br />e a paisagem.</p><div className={styles.heroActions}><a className={styles.inquiryLink} href="#orla-interesse">Encontrar meu imóvel <Arrow size={18}/></a><a className={styles.explore} href="#orla-percurso">Conhecer os espaços <Arrow size={22} /></a></div></div>
       </section>
       <section className={styles.journey} id="orla-percurso" data-orla-journey aria-labelledby="orla-journey-title">
         <div className={styles.stage} data-orla-stage>
@@ -44,6 +45,7 @@ export default function OrlaPage() {
         <p className={styles.outlookLabel}>O olhar Orla</p>
         <div><h2 id="orla-outlook-title">A vista chama.<br />A casa precisa<br />fazer sentido.</h2><p>A orientação da luz. A ligação entre os ambientes. O espaço para receber e para se recolher. É no encontro desses detalhes com a sua rotina que uma casa se torna uma escolha.</p><a href="#orla-percurso" className={styles.back}>Rever os espaços <Arrow size={22} /></a></div>
       </section>
+      <BrandInquiry brand="orla" />
     </main>
     <footer className={styles.footer}><a href="#orla-inicio" aria-label="Orla, voltar ao início">orla</a><div><span>Entre a casa e a paisagem.</span><p>Estudo autoral. Imagens geradas.<br />Sem oferta de imóveis ou atendimento imobiliário.</p></div></footer>
   </div>;

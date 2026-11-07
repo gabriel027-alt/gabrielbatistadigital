@@ -1,0 +1,53 @@
+{
+  "date": "2026-11-07",
+  "sources": [
+    {
+      "source": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/html/reference/elements/dialog/index.md",
+      "status": 200,
+      "bytes": 39601,
+      "sha256": "9c7eb7bc291b575cae8e0a13a692127dc17e10c6cafbda282ddea23a82ba0aff",
+      "revision": "main (mutable) \u2014 documentation inspected, not installed dependency"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/mdn/content/main/files/en-us/web/html/reference/elements/fieldset/index.md",
+      "status": 200,
+      "bytes": 7539,
+      "sha256": "1c05c1cc01497340b26baa9b6993078745904e05638779391928e8182e93ee9c",
+      "revision": "main (mutable) \u2014 documentation inspected, not installed dependency"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/alphagov/govuk-frontend/main/packages/govuk-frontend/src/govuk/components/radios/template.njk",
+      "status": 200,
+      "bytes": 5025,
+      "sha256": "6a34f183e5678a473e8d517ca1a5c650e6e1fd27b3095f731e96bd058ceb8b62",
+      "revision": "main (mutable) \u2014 documentation inspected, not installed dependency"
+    },
+    {
+      "source": "https://raw.githubusercontent.com/alphagov/govuk-frontend/main/LICENSE.txt",
+      "status": 200,
+      "bytes": 1111,
+      "sha256": "c652f35b1f2e5b88eb49f1e8a935eec79b4761a81666ace576e1af723f4a9238",
+      "revision": "main (mutable) \u2014 documentation inspected, not installed dependency"
+    },
+    {
+      "source": "https://www.awwwards.com/websites/real-estate/",
+      "status": 403,
+      "result": "Tunnel denied by network policy; page content not inspected"
+    },
+    {
+      "source": "https://www.awwwards.com/websites/health-fitness/",
+      "status": 403,
+      "result": "Tunnel denied by network policy; page content not inspected"
+    },
+    {
+      "source": "https://www.w3.org/WAI/tutorials/forms/multi-page/",
+      "status": 403,
+      "result": "Tunnel denied by network policy; page content not inspected"
+    },
+    {
+      "source": "https://www.nngroup.com/articles/multi-step-forms/",
+      "status": 403,
+      "result": "Tunnel denied by network policy; page content not inspected"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { BrandInquiry } from "@/components/BrandInquiry";
 import type { Metadata } from "next";
 import Image from "next/image";
 import { Arrow } from "@/components/ui/icons";
@@ -25,11 +26,11 @@ export default function AuraProposal() {
           <header className={styles.header}>
             <a href="#aura-conteudo" className={styles.brand} aria-label="Aura, início">aura</a>
             <span className={styles.specialty}>Harmonização facial</span>
-            <nav aria-label="Navegação Aura"><a href="#aura-olhar">O olhar</a><a href="#aura-comparacao">Comparar</a><a href="#aura-avaliacao">A abordagem</a></nav>
+            <nav aria-label="Navegação Aura"><a href="#aura-olhar">O olhar</a><a href="#aura-comparacao">Comparar</a><a href="#aura-avaliacao">A abordagem</a><a href="#aura-interesse">Quero uma avaliação</a></nav>
           </header>
           <div className={styles.heroCopy} data-hero-copy>
             <h1 id="aura-title"><span className={styles.sr}>Sua expressão. Em primeiro plano.</span><Letters text="Sua expressão." hero/><Letters text="Em primeiro" hero/><Letters text="plano." hero/></h1>
-            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><a className={styles.button} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={22}/></a></div>
+            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><a className={styles.button} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={22}/></a><a className={styles.inquiryLink} href="#aura-interesse">Quero uma avaliação <Arrow size={18}/></a></div>
           </div>
           <p className={styles.heroSignature} data-hero-signature>Proporção. Expressão. Identidade.</p>
         </div>
@@ -43,6 +44,7 @@ export default function AuraProposal() {
           <a className={styles.endingLink} href="#aura-comparacao">Rever a comparação <Arrow size={20}/></a>
         </div>
       </section>
+      <BrandInquiry brand="aura" />
     </main>
     <footer className={styles.brandFooter}>
       <div className={styles.brandWordmark} aria-hidden="true">aura</div>

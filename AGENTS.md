@@ -95,3 +95,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `/propostas/orla` é a apresentação fotográfica em revisão, documentada em docs/ORLA-DIRECAO.md. Usa dois assets gerados existentes, GSAP/ScrollTrigger e galeria lateral reversível, com atalhos e pausa. Sem JS ou com movimento reduzido, fotografias seguem em fluxo vertical.
 - `/modelos/imoveis`, os 20 itens e SelectedWork continuam preservados até avaliação dessa direção. Não confundir esta unidade com catálogo imobiliário operacional, oferta real, tour 3D ou filme final aprovado. Aura permanece independente.
+
+## CTAs locais: Aura e Orla
+
+- O usuário esclareceu que deseja demonstrar a jornada de conversão dentro das marcas, sem conexão com atendimento real. BrandInquiry abre roteiros locais, com voltar, resumo, ajuste e fechamento. Aura: região e dúvida. Orla: objetivo, cenário, investimento e prazo.
+- Não substituir por WhatsApp de Gabriel, confirmação de consulta/visita, coleta clínica ou envio de dados. As escolhas ficam em memória. Manter CTAs de exploração e animações existentes.
+- Fontes, limitações de acesso ao Awwwards e verificações em docs/JORNADAS-AURA-ORLA.md. Não afirmar validação por premiação ou conversão comprovada. Prévias específicas em /propostas/jornadas; os filmes anteriores permanecem registros de suas versões.
