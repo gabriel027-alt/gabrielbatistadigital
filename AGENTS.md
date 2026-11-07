@@ -101,3 +101,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - O usuário esclareceu que deseja demonstrar a jornada de conversão dentro das marcas, sem conexão com atendimento real. BrandInquiry abre roteiros locais, com voltar, resumo, ajuste e fechamento. Aura: região e dúvida. Orla: objetivo, cenário, investimento e prazo.
 - Não substituir por WhatsApp de Gabriel, confirmação de consulta/visita, coleta clínica ou envio de dados. As escolhas ficam em memória. Manter CTAs de exploração e animações existentes.
 - Fontes, limitações de acesso ao Awwwards e verificações em docs/JORNADAS-AURA-ORLA.md. Não afirmar validação por premiação ou conversão comprovada. Prévias específicas em /propostas/jornadas; os filmes anteriores permanecem registros de suas versões.
+
+## Filmes completos na seleção
+
+- Aura e Orla passam a ter um filme único cada na homepage: abertura, scroll, CTA local, escolhas, resumo e encerramento. ProjectFilmCard/lib/project-films.ts mantêm contato de Gabriel fora dos filmes. Preservar seis destaques, o catálogo de 20, preload=none e reprodução por iniciativa do visitante; um filme pausa o outro.
+- As prévias de /propostas/jornadas continuam auxiliares, sem entrar na homepage. Captura completa em scripts/capture-project-films.mjs; manifestos e legendas acompanham os filmes. Ao modificar a jornada, regravar o filme correspondente.
+- Comparação externa com portfólios premiados ainda depende de acesso permitido. O usuário sugeriu juanmora.co; a consulta foi bloqueada. Estado e decisões em docs/INTEGRACAO-FILMES-PORTFOLIO.md. Não tratar o candidato como referência inspecionada ou premiada sem evidência.

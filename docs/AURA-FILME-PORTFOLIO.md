@@ -1,5 +1,6 @@
 > Separação corrigida: a oferta de Gabriel fica fora do filme, no portfólio. O encerramento interno da Aura é exclusivamente da marca; ver [apresentação atual](AURA-APRESENTACAO-CLIENTE.md).
 
+> Atualização: a integração posterior consolidou os filmes completos de Aura e Orla na galeria. Estado atual em [INTEGRACAO-FILMES-PORTFOLIO.md](INTEGRACAO-FILMES-PORTFOLIO.md); referências a filmes anteriores neste documento descrevem a etapa histórica.
 # Aura — apresentação em filme no portfólio
 
 Pedido: comparador arrastável da mesma personagem ao final da experiência, seguido de apresentação em MP4 como um dos projetos selecionados. O visitante do portfólio assiste à apresentação, sem um link para navegar pela landing Aura.

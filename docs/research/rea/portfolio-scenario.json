@@ -1,0 +1,9 @@
+{
+  "browser": { "mode": "launch", "executable_path": "/usr/bin/chromium" },
+  "start_url": { "url": "http://127.0.0.1:3118/#portfolio" },
+  "actions": [
+    { "step_id": "project-cards", "action": "wait_for", "locator": { "kind": "css", "selector": "[data-aura-video-project]" }, "state": "visible", "timeout_ms": 15000 },
+    { "step_id": "settle", "action": "wait_for_timeout", "duration_ms": 1000 }
+  ],
+  "capture": { "at_end": ["dom", "accessibility", "url"] }
+}

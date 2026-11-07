@@ -42,3 +42,5 @@ html[data-motion=paused] .signature-photo img,html[data-motion=paused] .signatur
 .signature-aura-contact-note { margin:9px 0 0; font-size:11px; color:var(--muted); }
 @media(max-width:760px) { .signature-aura-contact { width:100%; justify-content:space-between; } }
 .signature-aura-contact:focus-visible { outline:3px solid var(--fg); outline-offset:5px; }
+
+.work-orla .signature-work-art { background:#dce7e8; }

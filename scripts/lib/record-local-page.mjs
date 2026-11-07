@@ -2,7 +2,7 @@ import { mkdir, mkdtemp, writeFile } from 'node:fs/promises';
 import { spawnSync } from 'node:child_process';
 import path from 'node:path';
 
-export async function recordLocalPage(page, destination, action) {
+export async function recordLocalPage(page, destination, action, { width = 960, height = 600 } = {}) {
   if (!['localhost', '127.0.0.1'].includes(new URL(page.url()).hostname)) throw new Error('Local page required');
   const cdp = await page.context().newCDPSession(page);
   const frames = [];
@@ -24,6 +24,6 @@ export async function recordLocalPage(page, destination, action) {
   const source = path.join(temp, 'frames.txt');
   await writeFile(source, list.join('\n') + '\n');
   await mkdir(path.dirname(destination), { recursive: true });
-  const result = spawnSync('/usr/bin/ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', source, '-an', '-vf', 'fps=30,scale=960:600:in_range=full:out_range=tv,format=yuv420p', '-c:v', 'libx264', '-profile:v', 'baseline', '-level:v', '3.1', '-preset', 'fast', '-crf', '23', '-color_range', 'tv', '-movflags', '+faststart', destination], { encoding: 'utf8' });
+  const result = spawnSync('/usr/bin/ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', source, '-an', '-vf', `fps=30,scale=${width}:${height}:in_range=full:out_range=tv,format=yuv420p`, '-c:v', 'libx264', '-profile:v', 'baseline', '-level:v', width > 960 ? '4.0' : '3.1', '-preset', 'fast', '-crf', '23', '-color_range', 'tv', '-movflags', '+faststart', destination], { encoding: 'utf8' });
   if (result.status !== 0) throw new Error(result.stderr);
 }

@@ -1,14 +1,41 @@
 {
   "title": "Aura — filme do projeto",
-  "source": "Browser recording of /propostas/aura, generated fictional character and illustrative comparisons",
-  "durationSeconds": 39.36,
-  "width": 1440,
-  "height": 900,
-  "codec": "H.264",
+  "source": "/propostas/aura",
+  "durationSeconds": 32.233333,
+  "width": 1280,
+  "height": 800,
+  "codec": "H.264 Baseline",
   "audio": false,
-  "bytes": 1534499,
-  "sha256": "2e58113d7cd1e154e237c20723f0fe1a73ab7ea223b832eadd9c8149f5aff48d",
-  "captureViewport": "1440x900",
+  "bytes": 3083515,
+  "sha256": "587a56ce9cc7cb7cebc414495bd07e9bceb3e30b2c92f9c7606867cd32d232fa",
+  "captureViewport": "1280x800",
   "patientResults": false,
-  "ending": "Aura brand closing and wordmark, without agency sales inside the film; commercial CTA remains outside the player"
+  "localInteractionsOnly": true,
+  "chapters": [
+    {
+      "label": "Abertura",
+      "seconds": 0.00004204800000024988
+    },
+    {
+      "label": "Experiência pelo scroll",
+      "seconds": 1.6039197960000002
+    },
+    {
+      "label": "Comparação ilustrativa",
+      "seconds": 15.158962597000002
+    },
+    {
+      "label": "CTA e escolhas",
+      "seconds": 22.832833435
+    },
+    {
+      "label": "Resumo revisável",
+      "seconds": 27.584041943
+    },
+    {
+      "label": "Encerramento da marca",
+      "seconds": 30.007856273999998
+    }
+  ],
+  "ending": "Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film."
 }

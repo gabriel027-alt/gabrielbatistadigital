@@ -1,5 +1,6 @@
 # Jornadas locais de conversão: Aura e Orla
 
+> Atualização: a integração posterior consolidou os filmes completos de Aura e Orla na galeria. Estado atual em [INTEGRACAO-FILMES-PORTFOLIO.md](INTEGRACAO-FILMES-PORTFOLIO.md); referências a filmes anteriores neste documento descrevem a etapa histórica.
 ## Objetivo autorizado
 
 O usuário quer demonstrar como os sites conduzem do interesse à qualificação, sem telefone, pessoa ou operação reais conectados. Os projetos devem mostrar raciocínio comercial, além da direção de arte. Preservar as animações e as marcas; a oferta de Gabriel fica fora desses sites.
