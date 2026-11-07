@@ -71,3 +71,19 @@ test("Orla works without JavaScript and preserves both complete photographs", as
   }
   await context.close();
 });
+
+test("Orla preview loads, plays and seeks the compatible MP4", async ({ page }) => {
+  await page.goto("/propostas/orla/previa");
+  const video = page.getByLabel("Prévia do movimento da Orla");
+  await expect(video).toHaveAttribute("preload", "metadata");
+  await expect.poll(() => video.evaluate(el => (el as HTMLVideoElement).readyState)).toBeGreaterThanOrEqual(1);
+  const duration = await video.evaluate(el => (el as HTMLVideoElement).duration);
+  expect(duration).toBeGreaterThan(19);
+  expect(duration).toBeLessThan(20);
+  await video.evaluate(el => (el as HTMLVideoElement).play());
+  await expect.poll(() => video.evaluate(el => (el as HTMLVideoElement).currentTime)).toBeGreaterThan(.5);
+  await video.evaluate(el => { const media = el as HTMLVideoElement; media.pause(); media.currentTime = 10; });
+  await expect.poll(() => video.evaluate(el => (el as HTMLVideoElement).seeking)).toBe(false);
+  expect(await video.evaluate(el => (el as HTMLVideoElement).videoWidth)).toBe(960);
+  await expect(page.getByRole("link", { name: "Baixar o MP4" })).toHaveAttribute("download", "orla-previa.mp4");
+});

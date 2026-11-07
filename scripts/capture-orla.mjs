@@ -77,7 +77,9 @@ try {
   await writeFile(source, concat.join('\n') + '\n');
   const result = spawnSync('/usr/bin/ffmpeg', ['-y', '-f', 'concat', '-safe', '0', '-i', source, '-an', '-vf', 'fps=30', '-c:v', 'libx264', '-preset', 'fast', '-crf', '21', '-pix_fmt', 'yuv420p', '-movflags', '+faststart', `${out}/desktop.mp4`], { encoding: 'utf8' });
   if (result.status !== 0) throw new Error(result.stderr);
-  console.log('Orla screenshots and MP4 saved in docs/preview/orla');
+  const compatible = spawnSync('/usr/bin/ffmpeg', ['-y', '-i', `${out}/desktop.mp4`, '-an', '-vf', 'scale=960:600:in_range=full:out_range=tv,format=yuv420p', '-c:v', 'libx264', '-profile:v', 'baseline', '-level:v', '3.1', '-preset', 'fast', '-crf', '23', '-color_range', 'tv', '-movflags', '+faststart', path.resolve('public/videos/projects/orla-preview.mp4')], { encoding: 'utf8' });
+  if (compatible.status !== 0) throw new Error(compatible.stderr);
+  console.log('Orla screenshots, source MP4 and compatible browser preview saved');
 } finally {
   await browser.close();
 }

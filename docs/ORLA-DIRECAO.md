@@ -43,3 +43,11 @@ Escolha: Next Server Component para conteúdo e pequeno controlador cliente com 
 - ESLint agora exclui `.agents/skills/**`, fontes upstream de referência. A verificação da aplicação e dos scripts próprios permanece ativa. Nenhum arquivo do motor externo foi alterado ou importado para a aplicação.
 
 Na captura automática, cada avanço usa `behavior: instant` porque o interpolador do roteiro já calcula posições intermediárias. Isso evita que o `scroll-behavior: smooth` global retarde cada quadro novamente. A navegação interativa da aplicação mantém seu comportamento próprio.
+
+## Reprodução da prévia no navegador
+
+O usuário aprovou a abertura, mas relatou que o visualizador de arquivos do chat não carregou o MP4. Não foi possível atribuir a falha a um codec específico do visualizador. Foi preservada a gravação original e adicionada a versão `public/videos/projects/orla-preview.mp4`: H.264 Constrained Baseline, 960×600, YUV420p com faixa limitada, faststart, 19,33s e aproximadamente 1,6 MB.
+
+A rota `/propostas/orla/previa` apresenta player nativo sem autoplay, legendas descritivas, poster e link de download. Não foi adicionada ao portfólio nem à apresentação da marca. A rota é noindex. O script de captura também passa a atualizar essa versão compatível. Sincronizar e reiniciar o projeto no Antigravity para acessar a nova rota na porta local confirmada.
+
+Validação: build e lint aprovados; teste de navegador específico verifica carregamento dos metadados, reprodução com avanço do tempo, busca para 10 segundos e dimensão decodificada. Essa evidência cobre Chromium local, não certifica a prévia do chat ou todos os navegadores.
