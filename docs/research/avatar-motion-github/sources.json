@@ -1,0 +1,91 @@
+{
+  "checked_utc": "2026-11-08T02:53:10.968212+00:00",
+  "method": "Read public raw GitHub README, LICENSE, configuration and selected node source; no model inference. GitHub API tunnel blocked; no commit or maintenance status asserted.",
+  "files": [
+    {
+      "path": "KwaiVGI--LivePortrait/LICENSE",
+      "sha256": "75fcad03ad21369e9eeb369b97b73fc0bba7f7f3243d0a661f968bd1478207bb",
+      "bytes": 1417
+    },
+    {
+      "path": "KwaiVGI--LivePortrait/readme.md",
+      "sha256": "ba9144f3a57c4acdeae3e51cdaf379b41c32ffe27ec7ff4b279265995ad01878",
+      "bytes": 21614
+    },
+    {
+      "path": "KwaiVGI--LivePortrait/src--config--argument_config.py",
+      "sha256": "d3b536c8c9d365a9351afa28f04945eff368ace197b0f1b22b2f37b9ec07b80a",
+      "bytes": 4969
+    },
+    {
+      "path": "KwaiVGI--LivePortrait/src--config--inference_config.py",
+      "sha256": "ac4e6eaa6cc00569cf23dbb7d831e4a991ed77225f96f9ae9041f78afc711315",
+      "bytes": 4433
+    },
+    {
+      "path": "PowerHouseMan--ComfyUI-AdvancedLivePortrait/README.md",
+      "sha256": "90287c552ce68be30ae247e57aafa0d0f88c45da3ec708eca783df09edda60bc",
+      "bytes": 1570
+    },
+    {
+      "path": "Tencent--MimicMotion/LICENSE",
+      "sha256": "b5ca34413710a0f8cbebc205ecf3f557cfe3e03fa0497d864967b8e60067758d",
+      "bytes": 21810
+    },
+    {
+      "path": "Tencent--MimicMotion/README.md",
+      "sha256": "b6106459c84d21eaf95223192bd6b24c80263fce82b76ceb09c20a7393afedd4",
+      "bytes": 5945
+    },
+    {
+      "path": "Wan-Video--Wan2.2/LICENSE.txt",
+      "sha256": "c71d239df91726fc519c6eb72d318ec65820627232b2f796219e87dcf35d0ab4",
+      "bytes": 11357
+    },
+    {
+      "path": "Wan-Video--Wan2.2/README.md",
+      "sha256": "40222cb3a66cc89aa1cd84589d1fa696806c93c09cf1c4383b3994139202dfa1",
+      "bytes": 35804
+    },
+    {
+      "path": "Wan-Video--Wan2.2/wan--modules--animate--preprocess--UserGuider.md",
+      "sha256": "689f4adf919c587a5e131ce8ef06f98fe8e7992da58fb2736db81981dbd9a8c3",
+      "bytes": 4854
+    },
+    {
+      "path": "kijai--ComfyUI-LivePortraitKJ/LICENSE",
+      "sha256": "fa482721292fac05844152373054aec5ab250b34433b3292582636f65cfb784d",
+      "bytes": 1106
+    },
+    {
+      "path": "kijai--ComfyUI-LivePortraitKJ/__init__.py",
+      "sha256": "b18de9dc0005d53c6f3d873b501fc60dee4a6810b74a3722dd0f9420633a04e8",
+      "bytes": 131
+    },
+    {
+      "path": "kijai--ComfyUI-LivePortraitKJ/nodes.py",
+      "sha256": "07450845653ef62d491ded8ffad08649412a3cc664d38ea80bde3814359ff897",
+      "bytes": 35146
+    },
+    {
+      "path": "kijai--ComfyUI-LivePortraitKJ/readme.md",
+      "sha256": "8b61dbf5361cb7f3d8465e5483cb4574888e264f6bd03f706808ffdfb4f71dad",
+      "bytes": 3586
+    },
+    {
+      "path": "kijai--ComfyUI-LivePortraitKJ/requirements.txt",
+      "sha256": "39bc9ec3d04002d529703402d8835c150e4d760b332030025ac49d988158b376",
+      "bytes": 80
+    },
+    {
+      "path": "warmshao--FasterLivePortrait/LICENSE",
+      "sha256": "6e6c71fb0c4e501217badb2a5b270cd665cb437b632f82d55788224e28ea0fc1",
+      "bytes": 1549
+    },
+    {
+      "path": "warmshao--FasterLivePortrait/README.md",
+      "sha256": "534ae3ef67602dd833e16a212c5973493130c8269a2034354bc72b43f207d508",
+      "bytes": 14522
+    }
+  ]
+}
