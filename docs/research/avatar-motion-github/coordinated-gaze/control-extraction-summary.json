@@ -1,0 +1,31 @@
+{
+  "frames": 333,
+  "valid": 333,
+  "fps": 30,
+  "kalidokitVersion": "1.1.5",
+  "pupilXRange": [
+    -0.5858030434815791,
+    0.07056330440646029
+  ],
+  "pupilYRange": [
+    -0.7794875059170783,
+    -0.19190934469149878
+  ],
+  "eyeChannels": [
+    "eyeBlinkLeft",
+    "eyeBlinkRight",
+    "eyeLookDownLeft",
+    "eyeLookDownRight",
+    "eyeLookInLeft",
+    "eyeLookInRight",
+    "eyeLookOutLeft",
+    "eyeLookOutRight",
+    "eyeLookUpLeft",
+    "eyeLookUpRight",
+    "eyeSquintLeft",
+    "eyeSquintRight",
+    "eyeWideLeft",
+    "eyeWideRight"
+  ],
+  "rendered": false
+}

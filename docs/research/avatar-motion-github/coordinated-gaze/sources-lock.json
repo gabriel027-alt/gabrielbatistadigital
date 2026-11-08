@@ -1,0 +1,178 @@
+[
+  {
+    "repo": "yeemachine/kalidokit",
+    "commit": "6437947da2f889fdf241b84745b53082f9e881a8",
+    "files": [
+      {
+        "file": "README.md",
+        "url": "https://raw.githubusercontent.com/yeemachine/kalidokit/6437947da2f889fdf241b84745b53082f9e881a8/README.md",
+        "bytes": 11558,
+        "sha256": "b4aef5c40106451850c3444af54faa2ae43bf3730501c0a0b8767851d58e4dcc"
+      },
+      {
+        "file": "LICENSE",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "file": "package.json",
+        "url": "https://raw.githubusercontent.com/yeemachine/kalidokit/6437947da2f889fdf241b84745b53082f9e881a8/package.json",
+        "bytes": 2039,
+        "sha256": "3572307bcce4717ef1bebf4342a4dfcf5112672703b0c222f013facdd174280e"
+      },
+      {
+        "file": "src/FaceSolver/calcPupils.ts",
+        "error": "HTTP Error 404: Not Found"
+      },
+      {
+        "file": "src/FaceSolver/calcEyes.ts",
+        "url": "https://raw.githubusercontent.com/yeemachine/kalidokit/6437947da2f889fdf241b84745b53082f9e881a8/src/FaceSolver/calcEyes.ts",
+        "bytes": 8503,
+        "sha256": "8b7ed629b2aa108fbc8480d1a803925fd00086e82bdfef51966837b9ccd776f5"
+      },
+      {
+        "file": "src/FaceSolver/index.ts",
+        "url": "https://raw.githubusercontent.com/yeemachine/kalidokit/6437947da2f889fdf241b84745b53082f9e881a8/src/FaceSolver/index.ts",
+        "bytes": 2490,
+        "sha256": "f88d669f061916d42a8f21608b8ed02e768a4667069bcd0553c60f466e7fc6bf"
+      },
+      {
+        "file": "LICENSE.md",
+        "url": "https://raw.githubusercontent.com/yeemachine/kalidokit/6437947da2f889fdf241b84745b53082f9e881a8/LICENSE.md",
+        "bytes": 1067,
+        "sha256": "5f87543ab2826461fed78bcaa686478d0c3c17e702e638b20379ab2dd9dc300a"
+      },
+      {
+        "file": "docs/script.js",
+        "url": "https://raw.githubusercontent.com/yeemachine/kalidokit/6437947da2f889fdf241b84745b53082f9e881a8/docs/script.js",
+        "bytes": 12660,
+        "sha256": "1a9b409ac52f770cd91a66826b035720e86252529607f4228af958c40c3ea1ba"
+      }
+    ]
+  },
+  {
+    "repo": "pixiv/three-vrm",
+    "commit": "3caf7a21ee68f0d5dfa363ab3d577450bbf60136",
+    "files": [
+      {
+        "file": "README.md",
+        "url": "https://raw.githubusercontent.com/pixiv/three-vrm/3caf7a21ee68f0d5dfa363ab3d577450bbf60136/README.md",
+        "bytes": 4455,
+        "sha256": "09cd85c8a6d8b2616bd43b190ed78fd34dbc5b35cd9b1d93b196c976a09c804d"
+      },
+      {
+        "file": "LICENSE",
+        "url": "https://raw.githubusercontent.com/pixiv/three-vrm/3caf7a21ee68f0d5dfa363ab3d577450bbf60136/LICENSE",
+        "bytes": 1072,
+        "sha256": "279ec82987aec7e72ecb9850bb704a87e352d577bc7581454c30f3551a88ea92"
+      },
+      {
+        "file": "packages/three-vrm-core/src/lookAt/VRMLookAt.ts",
+        "url": "https://raw.githubusercontent.com/pixiv/three-vrm/3caf7a21ee68f0d5dfa363ab3d577450bbf60136/packages/three-vrm-core/src/lookAt/VRMLookAt.ts",
+        "bytes": 8710,
+        "sha256": "8606dcec16171fbf7ba25f3bb152c29fca62497d18bbc8f61c16f04828b10c57"
+      },
+      {
+        "file": "packages/three-vrm-core/src/lookAt/VRMLookAtBoneApplier.ts",
+        "url": "https://raw.githubusercontent.com/pixiv/three-vrm/3caf7a21ee68f0d5dfa363ab3d577450bbf60136/packages/three-vrm-core/src/lookAt/VRMLookAtBoneApplier.ts",
+        "bytes": 7702,
+        "sha256": "a5ca03aec5d3d2aa3e929a39927433955db09faa8b442a6cc9e90f2622d72927"
+      },
+      {
+        "file": "packages/three-vrm-core/src/expressions/VRMExpressionManager.ts",
+        "url": "https://raw.githubusercontent.com/pixiv/three-vrm/3caf7a21ee68f0d5dfa363ab3d577450bbf60136/packages/three-vrm-core/src/expressions/VRMExpressionManager.ts",
+        "bytes": 7928,
+        "sha256": "38b670acaafb35a0f611bd75ae48c7feb8b8c2fd82d3eec5c4bbd72480bd0e00"
+      }
+    ]
+  },
+  {
+    "repo": "met4citizen/TalkingHead",
+    "commit": "1563de184c19b310de4b636664d5835e2c74dbba",
+    "files": [
+      {
+        "file": "README.md",
+        "url": "https://raw.githubusercontent.com/met4citizen/TalkingHead/1563de184c19b310de4b636664d5835e2c74dbba/README.md",
+        "bytes": 69071,
+        "sha256": "89a03be67743b02e251da23ae4d948dd5422cd7f0bb7ee833354e469990d7681"
+      },
+      {
+        "file": "LICENSE",
+        "url": "https://raw.githubusercontent.com/met4citizen/TalkingHead/1563de184c19b310de4b636664d5835e2c74dbba/LICENSE",
+        "bytes": 1075,
+        "sha256": "a168d1f90b70b313fb594ddb07e03c9dea08fe2a43df2b4f607db6920ce69cfa"
+      },
+      {
+        "file": "modules/talkinghead.mjs",
+        "url": "https://raw.githubusercontent.com/met4citizen/TalkingHead/1563de184c19b310de4b636664d5835e2c74dbba/modules/talkinghead.mjs",
+        "bytes": 219524,
+        "sha256": "d305a73b70c86f12c3572ce83d8c4e274faa5949e2f4f84951a927fffa12a602"
+      }
+    ]
+  },
+  {
+    "repo": "emilianavt/OpenSeeFace",
+    "commit": "50c09741897010faad721a218b2bbe14ecad6251",
+    "files": [
+      {
+        "file": "README.md",
+        "url": "https://raw.githubusercontent.com/emilianavt/OpenSeeFace/50c09741897010faad721a218b2bbe14ecad6251/README.md",
+        "bytes": 17940,
+        "sha256": "4dacb968bfad08b8ca5ee2a2725b761624609f0f397d083a87404aa55ce8d095"
+      },
+      {
+        "file": "LICENSE",
+        "url": "https://raw.githubusercontent.com/emilianavt/OpenSeeFace/50c09741897010faad721a218b2bbe14ecad6251/LICENSE",
+        "bytes": 1364,
+        "sha256": "28612834d7ca038a9009550e3869a67e6be3a87c238d997f58c0907e08744146"
+      },
+      {
+        "file": "tracker.py",
+        "url": "https://raw.githubusercontent.com/emilianavt/OpenSeeFace/50c09741897010faad721a218b2bbe14ecad6251/tracker.py",
+        "bytes": 54827,
+        "sha256": "1d2d42b4b5d7c56799d2f3aeb5eb76473683c2b9d5da991cea8ba7ccbcedde69"
+      }
+    ]
+  },
+  {
+    "repo": "cgtinker/BlendArMocap",
+    "commit": "ecb4c91c01befbe29b75196eb72321867810ddf0",
+    "files": [
+      {
+        "file": "README.md",
+        "url": "https://raw.githubusercontent.com/cgtinker/BlendArMocap/ecb4c91c01befbe29b75196eb72321867810ddf0/README.md",
+        "bytes": 3521,
+        "sha256": "5f40a75b0a57bcef198e64f5e1cc66a07d73be294c8f1ec9c7fb4297d75fec0a"
+      },
+      {
+        "file": "LICENSE",
+        "url": "https://raw.githubusercontent.com/cgtinker/BlendArMocap/ecb4c91c01befbe29b75196eb72321867810ddf0/LICENSE",
+        "bytes": 35148,
+        "sha256": "8b1ba204bb69a0ade2bfcf65ef294a920f6bb361b317dba43c7ef29d96332b9b"
+      }
+    ]
+  },
+  {
+    "repo": "google-ai-edge/mediapipe",
+    "commit": "29d3038de5e0532868b2e982ce3d5b5c9757c8f7",
+    "files": [
+      {
+        "file": "LICENSE",
+        "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/29d3038de5e0532868b2e982ce3d5b5c9757c8f7/LICENSE",
+        "bytes": 12331,
+        "sha256": "8707eef0533987efc5b155d64761eeb6e20793f50b9bd1a68dad1cf4719d0ed8"
+      },
+      {
+        "file": "mediapipe/tasks/web/vision/face_landmarker/face_landmarker.ts",
+        "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/29d3038de5e0532868b2e982ce3d5b5c9757c8f7/mediapipe/tasks/web/vision/face_landmarker/face_landmarker.ts",
+        "bytes": 16469,
+        "sha256": "d6044e566022f3ecc2be87923bae96662b41ca35e80a66780f07385be1e4802a"
+      },
+      {
+        "file": "mediapipe/tasks/cc/vision/face_landmarker/face_blendshapes_graph.cc",
+        "url": "https://raw.githubusercontent.com/google-ai-edge/mediapipe/29d3038de5e0532868b2e982ce3d5b5c9757c8f7/mediapipe/tasks/cc/vision/face_landmarker/face_blendshapes_graph.cc",
+        "bytes": 11656,
+        "sha256": "c2b01e752359e85561c914fad76aa64e1779821d6ac8729a88866f77cb0a5047"
+      }
+    ]
+  }
+]

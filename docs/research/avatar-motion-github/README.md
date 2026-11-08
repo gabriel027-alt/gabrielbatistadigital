@@ -56,3 +56,7 @@ O usuário autorizou seguir. Foi criado um ambiente Python isolado e executada d
 ## Atualização: acesso liberado e inferência executada
 
 Depois da publicação da configuração, a rede ativa passou à revisão 5/unrestricted. Os pesos foram baixados e o teste de pose foi renderizado em CPU: [inference-3s/README.md](inference-3s/README.md). Há agora evidência de inferência real, separada da detecção anterior. A expressão facial completa e a emenda do loop ainda não foram avaliadas; nenhum teste foi integrado ao site.
+
+## Revisão: atuação coordenada dos olhos
+
+Após rejeição de v1 e dos ensaios de correção de pose, o usuário pediu nova busca GitHub incluindo o comportamento das íris. Código, manutenção, licenças e extração de 333 quadros estão em [coordinated-gaze/README.md](coordinated-gaze/README.md). MediaPipe + rig editável/three-vrm é a base recomendada para estudar a aplicação de canais independentes; KalidoKit e BlendArMocap foram identificados como descontinuados. Nenhum novo filme final ou rig de Gabriel foi produzido nesta pesquisa. A integração anterior não foi promovida a aprovada.
