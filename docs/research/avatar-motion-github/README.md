@@ -52,3 +52,7 @@ Pesquisa documental e inspeção de trechos de código concluídas. Neste ambien
 ## Atualização: primeiro pré-teste executado
 
 O usuário autorizou seguir. Foi criado um ambiente Python isolado e executada detecção CPU por MediaPipe, com recortes de cabeça. Resultados, evidência visual e bloqueio atual em [preflight-3s/README.md](preflight-3s/README.md). A etapa de inferência LivePortrait ainda não foi executada porque os pesos externos estão bloqueados pela política de rede. Isso atualiza o estado de execução histórico acima; a aplicação web permanece inalterada.
+
+## Atualização: acesso liberado e inferência executada
+
+Depois da publicação da configuração, a rede ativa passou à revisão 5/unrestricted. Os pesos foram baixados e o teste de pose foi renderizado em CPU: [inference-3s/README.md](inference-3s/README.md). Há agora evidência de inferência real, separada da detecção anterior. A expressão facial completa e a emenda do loop ainda não foram avaliadas; nenhum teste foi integrado ao site.
