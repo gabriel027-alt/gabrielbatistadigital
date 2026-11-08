@@ -1,0 +1,85 @@
+{
+  "stage": "landmark_preflight_only",
+  "inference_rendered": false,
+  "runtime": {
+    "python": "3.12.14",
+    "mediapipe": "0.10.21",
+    "device": "CPU",
+    "kijai_commit": "4d9dc6205b793ffd0fb319816136d9b8c0dbfdff"
+  },
+  "source_sha256": "209c60bade78df3c01eedf49676eb832dec9a05a26c6518e3a0f4c3af900db74",
+  "driving_sha256": "6a745a255a446a26396796192cd2aca54231e7df23cc681f69a85cdcf4f2cabd",
+  "source": {
+    "full": {
+      "roi": null,
+      "detected": false,
+      "landmark_count": 0
+    },
+    "head_roi": {
+      "roi": [
+        650,
+        245,
+        920,
+        540
+      ],
+      "detected": true,
+      "landmark_count": 478,
+      "bbox_normalized": [
+        0.2260822206735611,
+        0.4292467534542084,
+        0.7671945095062256,
+        0.9473835229873657
+      ],
+      "transform": [
+        [
+          0.9998844861984253,
+          -0.008910469710826874,
+          -0.012337915599346161,
+          -0.10263562202453613
+        ],
+        [
+          0.0074230157770216465,
+          0.9932503700256348,
+          -0.11575443297624588,
+          -4.587047576904297
+        ],
+        [
+          0.013286062516272068,
+          0.11564943939447403,
+          0.9932012557983398,
+          -26.23040771484375
+        ],
+        [
+          0.0,
+          0.0,
+          0.0,
+          1.0
+        ]
+      ]
+    }
+  },
+  "driving": {
+    "fps": 30.0,
+    "frames_requested": 90,
+    "head_roi": [
+      820,
+      320,
+      1240,
+      720
+    ],
+    "full": {
+      "detected": 0,
+      "frames": 90
+    },
+    "cropped": {
+      "detected": 90,
+      "frames": 90
+    }
+  },
+  "blocker": {
+    "url": "https://huggingface.co/Kijai/LivePortrait_safetensors/resolve/main/appearance_feature_extractor.safetensors",
+    "error": "CONNECT tunnel failed, response 403",
+    "cause": "domain absent from enforced network allowlist",
+    "models_downloaded": false
+  }
+}

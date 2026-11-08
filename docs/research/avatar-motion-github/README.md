@@ -48,3 +48,7 @@ README confirma entrada de imagem + vídeo e modos animation/replacement; inclui
 ## Estado de execução
 
 Pesquisa documental e inspeção de trechos de código concluídas. Neste ambiente não foram encontrados `nvidia-smi`, dispositivos `/dev/nvidia*`, PyTorch, OpenCV ou ONNX Runtime instalados. Isso não prova inviabilidade em CPU ou na máquina Windows do usuário; significa que ainda não há runtime pronto nem resultado de inferência para apresentar. Código aberto não implica GPU gratuita nem disponibilidade garantida de demos online. Nenhuma compra, instalação global ou alteração da aplicação foi realizada nesta pesquisa.
+
+## Atualização: primeiro pré-teste executado
+
+O usuário autorizou seguir. Foi criado um ambiente Python isolado e executada detecção CPU por MediaPipe, com recortes de cabeça. Resultados, evidência visual e bloqueio atual em [preflight-3s/README.md](preflight-3s/README.md). A etapa de inferência LivePortrait ainda não foi executada porque os pesos externos estão bloqueados pela política de rede. Isso atualiza o estado de execução histórico acima; a aplicação web permanece inalterada.
