@@ -1,0 +1,36 @@
+{
+  "canonicalToNativeScale": 0.09581263964248858,
+  "canonicalToNativeRotation": [
+    [
+      0.9999725563394376,
+      -0.007334583087475789,
+      -0.0010442504027060012
+    ],
+    [
+      0.007161580512480673,
+      0.9930778094092091,
+      -0.1172398235394886
+    ],
+    [
+      0.0018969271293053356,
+      0.11722912756623306,
+      0.9931030829262019
+    ]
+  ],
+  "nativeCanonicalOrigin": [
+    -0.004004799883915821,
+    0.5750198824554209,
+    0.4128634577517326
+  ],
+  "virtualFocalPixels": 340.48052439147705,
+  "sourceEyeSpanPixels": 136.71720304892608,
+  "ownEyeSpanPixels": 95.96389989505514,
+  "cameraDistance": 20.0,
+  "sourceMetricTranslationSpan": [
+    1.1723677939418504,
+    1.7035433599228833,
+    0.45927346377597544
+  ],
+  "note": "Single MediaPipe metric rotation+translation stream, canonical-to-native alignment, observed eye-span framing normalization and fractional depth preservation. Virtual-camera calibration is inferred, not author camera recovery.",
+  "pnpAuditRejected": "PnP rotation disagreed with reference pitch and was not used for the final acting stream."
+}

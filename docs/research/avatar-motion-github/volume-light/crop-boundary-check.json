@@ -1,0 +1,5 @@
+{
+  "frameCount": 90,
+  "max_rgb_change_outer_three_crop_pixels": 0,
+  "note": "Movement or light changes at crop edge could indicate clipping; inspect against static studio background."
+}

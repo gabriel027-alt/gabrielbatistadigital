@@ -44,3 +44,7 @@ Os 333 quadros da referência alimentam a cena editável. Foram renderizados os 
 `gabriel-partial-rig.blend` contém texturas empacotadas e os controles animados, sem depender do ambiente Python para abrir. Câmera fixa; timeline 1–333. O MP4 corresponde a 1–90. Renderizar F12 ou entrar na câmera para revisar; os controles da cabeça e dos olhos são objetos nomeados, e pálpebras/sobrancelhas são shape keys da malha parcial. Não exportar este arquivo como se fosse um VRM humanoide completo.
 
 Os scripts de preparação usam caminhos absolutos deste workspace e dependências existentes; precisam de adaptação para outra máquina. O arquivo Blender e os vídeos são os artefatos portáteis de revisão. A etapa não inclui cabelo volumétrico, perfil, novas vistas, boca falante, chamas nos olhos, rock licenciado, loop final ou integração no portfólio.
+
+## Feedback posterior
+
+O usuário considerou que a cabeça continuava pulando e não identificou a resposta de luzes da referência. A prova não foi aprovada. A auditoria e o estudo posterior com base anatômica volumétrica, pose/posição métricas e materiais iluminados estão em `../volume-light/README.md`; também não equivalem a uma réplica final aprovada.

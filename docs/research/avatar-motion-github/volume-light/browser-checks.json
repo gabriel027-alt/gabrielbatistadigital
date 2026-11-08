@@ -1,0 +1,54 @@
+[
+  {
+    "id": "comparison",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "time": 0.714895,
+    "duration": 3,
+    "width": 840,
+    "height": 490,
+    "mediaError": null,
+    "overflow": false
+  },
+  {
+    "id": "full",
+    "viewport": {
+      "width": 1440,
+      "height": 900
+    },
+    "time": 0.713062,
+    "duration": 3,
+    "width": 1280,
+    "height": 818,
+    "mediaError": null,
+    "overflow": false
+  },
+  {
+    "id": "comparison",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "time": 0.715346,
+    "duration": 3,
+    "width": 840,
+    "height": 490,
+    "mediaError": null,
+    "overflow": false
+  },
+  {
+    "id": "full",
+    "viewport": {
+      "width": 390,
+      "height": 844
+    },
+    "time": 0.713531,
+    "duration": 3,
+    "width": 1280,
+    "height": 818,
+    "mediaError": null,
+    "overflow": false
+  }
+]

@@ -1,0 +1,16 @@
+{
+  "frames": 90,
+  "fps": 30,
+  "crop": [
+    530,
+    194,
+    754,
+    458
+  ],
+  "fullResolution": [
+    1280,
+    818
+  ],
+  "elapsed": 451.0910479209997,
+  "method": "Native fitted anatomical volume, coupled metric rigid pose, perspective depth and dynamic PBR area lighting; inferred identity profile"
+}
