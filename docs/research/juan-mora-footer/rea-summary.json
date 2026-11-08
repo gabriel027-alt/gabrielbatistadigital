@@ -1,0 +1,73 @@
+{
+  "version": "rea-agents 6.8.0",
+  "evidence_id": "ev_06ce45ee1731ac45d018c5775359e855856505e92551a79e9d56ceb889d5c4a7",
+  "root_artifact_sha256": "3434faa9b17e538b215f0cf624498cbf8147453b4d1a4d291094d74258e8f735",
+  "source_selection": {
+    "requested_paths": [
+      "custom-interactions.js"
+    ],
+    "unselected_files": 11
+  },
+  "summary": {
+    "browser_windows": 0,
+    "explicit_web_preferences": 0,
+    "preload_entrypoints": 0,
+    "context_bridge_apis": 0,
+    "exposed_api_members": 0,
+    "ipc": {
+      "operations": 0,
+      "literal_channels": 0,
+      "dynamic_channel_operations": 0,
+      "renderer_transmissions": 0,
+      "renderer_listeners": 0,
+      "main_handlers": 0,
+      "paired_renderer_transmissions": 0,
+      "ambiguous_renderer_transmissions": 0,
+      "unpaired_literal_renderer_transmissions": 0
+    },
+    "sender_validation_observations": 0,
+    "utility_processes": 0,
+    "resolved_utility_entrypoints": 0,
+    "native_addon_bindings": 0,
+    "resolved_native_addon_bindings": 0
+  },
+  "statistics": {
+    "relevant_files": 12,
+    "nested_asar_containers": 0,
+    "text_bytes_read": 6905,
+    "invalid_utf8_files": 0,
+    "parsed_javascript_files": 1,
+    "skipped_javascript_files": 0,
+    "visited_ast_nodes": 866,
+    "findings": 0,
+    "modules": 0,
+    "parse_failures": 0
+  },
+  "limitations": [
+    "Caller-selected source analysis leaves 11 inventoried files outside analysis scope. Inventory identity covers the complete artifact; relationships through unselected sources remain unknown.",
+    "CommonJS and ESM binding relationships were recovered from inert syntax and resolved only within the inventoried artifact container.",
+    "Graph coverage is incomplete; unavailable facts remain explicit and must not be read as absence.",
+    "JavaScript and HTML were parsed as inert text; bundle bootstrap code was never executed.",
+    "Static imports, entrypoints, workers, endpoints, and storage relationships do not prove runtime execution.",
+    "Static paths and relationships may remain unresolved when expressions are dynamic or obfuscated.",
+    "Webpack/Rspack factories were recovered from AST literals; REA did not invoke push handlers or bundle bootstrap code."
+  ],
+  "prior_attempt": {
+    "sources": [
+      "custom-interactions.js",
+      "script-9.js"
+    ],
+    "status": "provider_timeout",
+    "deadline_ms": 60000,
+    "partial_evidence_id": "ev_3e77f115d426f9400d1e02329cdeddc436ffea360d3acbaba820cf3903954ce1"
+  },
+  "asset": {
+    "url": "https://juanmora.co/videos-work/desk_jm3.mp4",
+    "access": "CONNECT tunnel HTTP 403; asset not retrieved"
+  },
+  "glow": {
+    "source": "style-3.css .top-glow",
+    "mechanism": "fixed inset box-shadow",
+    "animation_in_rule": false
+  }
+}

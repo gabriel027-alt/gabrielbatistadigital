@@ -88,7 +88,7 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
     window.addEventListener("mousemove",move);return()=>{window.removeEventListener("mousemove",move);cursor.dataset.visible="false";};
   },[paused]);
   return <div ref={root} className={styles.page} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo">
-    {children}<div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
+    {children}<div className={styles.frameGlow} aria-hidden="true"/><div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
     {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? "Ativar movimento" : "Pausar movimento"}</button>}
   </div>;
 }
