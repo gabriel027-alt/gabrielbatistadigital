@@ -1,0 +1,14 @@
+{
+  "right": {
+    "relative_iris_correlation_xy": [
+      0.7788080606952397,
+      0.6996386429565895
+    ]
+  },
+  "left": {
+    "relative_iris_correlation_xy": [
+      0.8231027300292715,
+      0.4564695347838713
+    ]
+  }
+}

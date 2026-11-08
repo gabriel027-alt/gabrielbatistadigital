@@ -1,0 +1,16 @@
+{
+  "frames": 90,
+  "fps": 30,
+  "crop": [
+    530,
+    194,
+    754,
+    458
+  ],
+  "fullResolution": [
+    1280,
+    818
+  ],
+  "elapsed": 87.43927070400241,
+  "method": "Actual partial 3D shell, independent textured eyeballs and eyelid shape keys; fixed studio compositing"
+}

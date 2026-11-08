@@ -1,0 +1,13 @@
+{
+  "frames": 90,
+  "fps": 30,
+  "duplicate_frames_intentionally_inserted": false,
+  "raw_album_roi_max_error": 0,
+  "album_roi_xyxy": [
+    679,
+    166,
+    726,
+    197
+  ],
+  "limitations": "ROI check does not certify all background pixels. Actual occlusion by head is allowed. No perfect-motion or likeness claim."
+}

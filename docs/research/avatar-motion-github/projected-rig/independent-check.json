@@ -1,0 +1,42 @@
+{
+  "reference": {
+    "samples": 30,
+    "angle_span": [
+      2.6549225668459924,
+      1.7717120276170037,
+      1.5990933521642319
+    ],
+    "lip_opening_ratio_span": 0.15424577245969642,
+    "album_mean_difference_max_after_compression": null
+  },
+  "v1": {
+    "samples": 30,
+    "angle_span": [
+      1.4107081492561298,
+      1.8442057105177727,
+      0.7638572205273846
+    ],
+    "lip_opening_ratio_span": 0.0587621040611573,
+    "album_mean_difference_max_after_compression": 0.05035714285714286,
+    "angle_correlation_with_reference": [
+      0.22417649180815324,
+      -0.20584268637577702,
+      0.5064769139207849
+    ]
+  },
+  "correction": {
+    "samples": 30,
+    "angle_span": [
+      3.206007240059262,
+      1.4526472019290604,
+      1.8736872353978917
+    ],
+    "lip_opening_ratio_span": 0.005670734341581841,
+    "album_mean_difference_max_after_compression": 0.0,
+    "angle_correlation_with_reference": [
+      0.8837547325196692,
+      0.7514989639338524,
+      0.9148311989290249
+    ]
+  }
+}
