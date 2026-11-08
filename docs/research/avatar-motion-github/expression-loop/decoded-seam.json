@@ -1,0 +1,7 @@
+{
+  "frames": 333,
+  "decoded_seam_full_mae": 0.6967696235737572,
+  "decoded_seam_head_mae": 1.6934469696969696,
+  "duration_seconds": 11.1,
+  "bytes": 1121196
+}

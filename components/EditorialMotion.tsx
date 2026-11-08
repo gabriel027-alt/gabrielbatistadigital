@@ -11,6 +11,7 @@ const subscribe = () => () => {};
 
 export function EditorialMotion({ children }: { children: ReactNode }) {
   const root = useRef<HTMLDivElement>(null);
+  const initialAnchorHandled = useRef(false);
   const [paused, setPaused] = useState(false);
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   useEffect(() => {
@@ -70,7 +71,20 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
       const images = [...node.querySelectorAll("img")];images.forEach(img => img.addEventListener("load", refresh));
       const resize = () => { lenis.resize(); refresh(); }; window.addEventListener("resize", resize);
       refresh();
-      return () => { ctx.revert(); lenis.destroy(); gsap.ticker.remove(tick); delete node.dataset.editorialAnimated; document.documentElement.style.scrollBehavior = previous; node.removeEventListener("toggle", refresh, true); images.forEach(img => img.removeEventListener("load", refresh)); window.removeEventListener("resize", resize); };
+      let active = true;
+      if (!initialAnchorHandled.current) {
+        let id = "";
+        try { id = decodeURIComponent(location.hash.slice(1)); } catch { /* Invalid fragment stays at the current position. */ }
+        const target = id ? document.getElementById(id) : null;
+        if (target && node.contains(target)) void document.fonts.ready.then(() => {
+          if (!active) return;
+          initialAnchorHandled.current = true;
+          refresh(); lenis.resize();
+          lenis.scrollTo(target, { immediate: true, force: true });
+        });
+        else initialAnchorHandled.current = true;
+      }
+      return () => { active = false; ctx.revert(); lenis.destroy(); gsap.ticker.remove(tick); delete node.dataset.editorialAnimated; document.documentElement.style.scrollBehavior = previous; node.removeEventListener("toggle", refresh, true); images.forEach(img => img.removeEventListener("load", refresh)); window.removeEventListener("resize", resize); };
     });
     return () => media.revert();
   }, [paused]);

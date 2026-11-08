@@ -1,0 +1,54 @@
+[
+  {
+    "name": "desktop",
+    "footerTop": -0.140625,
+    "returnLink": {
+      "x": 1149.171875,
+      "y": 843.359375,
+      "width": 73.234375,
+      "height": 16.5,
+      "top": 843.359375,
+      "right": 1222.40625,
+      "bottom": 859.859375,
+      "left": 1149.171875
+    },
+    "pauseButton": {
+      "x": 1304.90625,
+      "y": 840,
+      "width": 119.09375,
+      "height": 44,
+      "top": 840,
+      "right": 1424,
+      "bottom": 884,
+      "left": 1304.90625
+    },
+    "overlap": false,
+    "overflow": false
+  },
+  {
+    "name": "mobile",
+    "footerTop": 0.15625,
+    "returnLink": {
+      "x": 23.390625,
+      "y": 744.15625,
+      "width": 66.578125,
+      "height": 15,
+      "top": 744.15625,
+      "right": 89.96875,
+      "bottom": 759.15625,
+      "left": 23.390625
+    },
+    "pauseButton": {
+      "x": 271.40625,
+      "y": 724,
+      "width": 104.59375,
+      "height": 40,
+      "top": 724,
+      "right": 376,
+      "bottom": 764,
+      "left": 271.40625
+    },
+    "overlap": false,
+    "overflow": false
+  }
+]

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { previewVersion } from "@/lib/content";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { Arrow } from "@/components/ui/icons";
+import { EditorialAvatarLoop } from "@/components/EditorialAvatarLoop";
 import { EditorialMotion } from "@/components/EditorialMotion";
 import { EditorialMedia } from "@/components/EditorialMedia";
 import styles from "./editorial.module.css";
@@ -57,6 +58,6 @@ export default function EditorialPortfolio() {
       </section>
       <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar"><div><h2>O próximo projeto<br/>pode ser o seu.</h2><p>Conte sobre seu negócio e o que você precisa construir.</p></div><span className={styles.contactAction}><Arrow size={42}/><span>Vamos conversar</span></span></a></section>
     </main>
-    <footer className={styles.footer} data-editorial-theme="photo"><div className={styles.footerPhoto}><Image src="/images/hero/gabriel-approved-red.png" alt="" fill sizes="100vw" /></div><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>Construído com</span><p>Next.js<br/>React<br/>GSAP<br/>Lenis</p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>Design e desenvolvimento web</span><a href="#editorial-start">Voltar ao início</a></div></footer>
+    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>Construído com</span><p>Next.js<br/>React<br/>GSAP<br/>Lenis</p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>Design e desenvolvimento web</span><a href="#editorial-start">Voltar ao início</a></div></footer>
   </EditorialMotion>;
 }

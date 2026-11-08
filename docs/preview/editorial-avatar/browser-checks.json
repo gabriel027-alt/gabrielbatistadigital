@@ -1,0 +1,36 @@
+[
+  {
+    "name": "desktop",
+    "errors": 0,
+    "wraps": 2,
+    "stalls": 0,
+    "previous": 1.585262,
+    "duration": 11.1,
+    "time": 1.704165,
+    "paused": false,
+    "muted": true,
+    "ready": 4,
+    "footerTop": -0.140625,
+    "footerHeight": 900,
+    "viewportHeight": 900,
+    "overflow": false,
+    "videoError": null
+  },
+  {
+    "name": "mobile",
+    "errors": 0,
+    "wraps": 2,
+    "stalls": 0,
+    "previous": 1.323164,
+    "duration": 11.1,
+    "time": 1.581472,
+    "paused": false,
+    "muted": true,
+    "ready": 4,
+    "footerTop": 0.15625,
+    "footerHeight": 844,
+    "viewportHeight": 844,
+    "overflow": false,
+    "videoError": null
+  }
+]

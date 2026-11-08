@@ -72,3 +72,11 @@ A revisão de movimento usa o GSAP 3.15.1 já instalado, incluindo SplitText, se
 - Pausa e movimento reduzido revertem as transformações; o conteúdo continua disponível sem JavaScript.
 
 Evidência parcial, anterior à substituição da capa: `docs/preview/editorial-portfolio/gallery-reversible.mp4`, `gallery-folded.png`, `gallery-unfolded.png`. O MP4 geral foi regravado com o retrato correto e as novas transições, sem os personagens rejeitados. Estas alterações não encerram a revisão de fidelidade visual solicitada. Build, lint e sete testes Playwright passaram; conferência visual da capa cobriu desktop e celular. O personagem e seu vídeo continuam pendentes da avaliação de semelhança.
+
+## Encerramento próprio em loop
+
+A personagem aprovada foi animada com LivePortrait e está no rodapé da rota de revisão, sem alterar a homepage. Arquivo próprio: `public/videos/editorial/gabriel-avatar-loop-v1.mp4`, 11,1 s, 333 quadros, com duas piscadas adicionadas e expressão relativa suavizada. O brilho vermelho continua sendo CSS separado. Não reutiliza o rosto, cena ou áudio do vídeo do Juan.
+
+O hash `#editorial-footer` e o player `/propostas/portfolio-editorial/previa` permitem avaliar o encerramento. O vídeo só baixa quando o rodapé fica visível e as preferências permitem; mantém poster sem JS, em movimento reduzido/economia de dados e em falha de mídia. Pausa fora da tela, com aba oculta, diálogo aberto ou controle global.
+
+Método, procedência, limitações e medições em `docs/research/avatar-motion-github/expression-loop/README.md`. O resultado não é uma reprodução idêntica do estilo ou da coreografia; o movimento medido no avatar é mais contido. A avaliação estética do usuário continua necessária. Nenhum deploy foi feito.

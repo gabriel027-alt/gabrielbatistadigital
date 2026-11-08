@@ -14,8 +14,15 @@
 /* Original approved portrait: no facial filters or regenerated cover. */
 .heroPhoto img{object-position:50% 45%}.heroPhoto:after{background:linear-gradient(0deg,#170c0b80,transparent 38%)}
 .footer{min-height:100svh}.footerPhoto img{object-position:center;filter:none}.footerPhoto:after{z-index:1;background:linear-gradient(0deg,#170c0b66,transparent 55%),linear-gradient(180deg,#170c0b55,transparent 30%)}.footerName,.footerTop,.footerBottom{position:relative;z-index:2}.footerName{margin-top:auto;padding-top:240px}.footerTop>p{margin:0}.footerTop>div{padding:10px 12px;background:#201714b0;border-radius:10px}.footerTop>div p{margin:5px 0 0}
-@media(max-width:700px){.heroPhoto img{object-position:50% center}.heroOffer{top:auto;bottom:23%;max-width:45%;text-shadow:0 2px 12px #000}.heroBottom{top:auto;bottom:23%;text-shadow:0 2px 12px #000}.aboutPhoto img{object-position:50% center}.footer{min-height:90svh}.footerPhoto img{object-position:center;object-fit:cover}.footerName{padding-top:280px}.footerTop>div{font-size:9px}.footerName{font-size:14vw}}
+@media(max-width:700px){.heroPhoto img{object-position:50% center}.heroOffer{top:auto;bottom:23%;max-width:45%;text-shadow:0 2px 12px #000}.heroBottom{top:auto;bottom:23%;text-shadow:0 2px 12px #000}.aboutPhoto img{object-position:50% center}.footer{min-height:100svh}.footerPhoto img{object-position:center;object-fit:cover}.footerName{padding-top:280px}.footerTop>div{font-size:9px}.footerName{font-size:14vw}}
 
 /* Reference top-glow: a fixed compositing layer, independent of the film. */
 .frameGlow{position:fixed;inset:0;z-index:45;pointer-events:none;box-shadow:inset 0 2px 30px #ff3434a6,inset 0 2px 130px 8px #c710304d}
 @media(max-width:479px){.frameGlow{box-shadow:inset 0 2px 30px #ff34348c,inset 0 1px 80px 3px #c710303d}}
+
+.avatarVideo{opacity:0;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
+
+.avatarVideo[data-ready=true]{opacity:1}
+/* Keep the footer return link clear of the fixed motion control. */
+.footerBottom{padding-right:160px}
+@media(max-width:700px){.footerBottom{padding-right:0;flex-direction:column;align-items:flex-start;gap:8px}}
