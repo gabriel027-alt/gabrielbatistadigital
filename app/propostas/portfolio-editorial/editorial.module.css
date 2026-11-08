@@ -6,3 +6,12 @@
 
 /* The supplied mobile capture has a centered brand and bottom navigation, not a scaled desktop wordmark. */
 @media(max-width:700px){.nav{display:block;padding:24px 0;text-align:center;pointer-events:none}.logo{display:inline-block;pointer-events:auto;font-size:15px}.nav nav{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);pointer-events:auto;background:#faf6eff0;box-shadow:0 3px 25px #20171420}.nav nav a{padding:11px 19px}.heroOffer{top:49%;left:6vw;font-size:16px;line-height:1.2;max-width:44%;letter-spacing:-.04em}.heroBottom{top:49%;left:auto;right:6vw;bottom:auto;width:41%}.heroBottom h1{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}.heroBottom>p{font-size:15px;text-align:right;font-weight:600;line-height:1.2;margin:0;max-width:100%}.motionControl{bottom:80px;right:14px;font-size:9px;min-height:40px;padding:10px 13px}}
+
+/* Individual gallery planes unfold, then settle into a readable flat row. */
+.samples>.media{backface-visibility:hidden;transform-origin:center bottom}.hook h2,.servicesTitle,.aboutStatement h2{perspective:1000px}.aboutPhoto{overflow:hidden}.page[data-editorial-motion=off] :global(.editorial-word){transform:none!important;opacity:1!important}
+@media(prefers-reduced-motion:reduce){.page :global(.editorial-word){transform:none!important;opacity:1!important}}
+
+/* Original approved portrait: no facial filters or regenerated cover. */
+.heroPhoto img{object-position:50% 45%}.heroPhoto:after{background:linear-gradient(0deg,#170c0b80,transparent 38%)}
+.footer{min-height:100svh}.footerPhoto img{object-position:center;filter:none}.footerPhoto:after{z-index:1;background:linear-gradient(0deg,#170c0b66,transparent 55%),linear-gradient(180deg,#170c0b55,transparent 30%)}.footerName,.footerTop,.footerBottom{position:relative;z-index:2}.footerName{margin-top:auto;padding-top:240px}.footerTop>p{margin:0}.footerTop>div{padding:10px 12px;background:#201714b0;border-radius:10px}.footerTop>div p{margin:5px 0 0}
+@media(max-width:700px){.heroPhoto img{object-position:50% center}.heroOffer{top:auto;bottom:23%;max-width:45%;text-shadow:0 2px 12px #000}.heroBottom{top:auto;bottom:23%;text-shadow:0 2px 12px #000}.aboutPhoto img{object-position:50% center}.footer{min-height:90svh}.footerPhoto img{object-position:center;object-fit:cover}.footerName{padding-top:280px}.footerTop>div{font-size:9px}.footerName{font-size:14vw}}

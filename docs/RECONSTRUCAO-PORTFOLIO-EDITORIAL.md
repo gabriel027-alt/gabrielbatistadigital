@@ -57,3 +57,18 @@ Prévia em `/propostas/portfolio-editorial/previa`, com controles, download e le
 ### Rodada final
 
 Build, lint e tipagem aprovados. Dez testes Playwright passaram, somando os cinco da nova experiência (incluindo o player de prévia) e regressões do comparador Aura e dos filmes na homepage. Capturas móveis finais atualizadas após ajustar marca central/navegação inferior. MP4 da prévia: 40,37s, 960×600, aproximadamente 2,55 MB. Testada sua reprodução no Chromium. Sem deploy e sem substituição da homepage.
+
+## Revisão de movimento e correção de referência pessoal
+
+A solicitação seguinte rejeitou os movimentos genéricos e informou que a capa usada era incorreta. O ZIP posterior `meu-retrato-emgrafitecomluzvermelha.zip` trouxe o original correto. O PNG foi copiado sem alterações para `public/images/hero/gabriel-approved-red.png` (SHA256 `98840395228353397319a18e8c3735f546d15e910e75345b7c602ab14f64ea2f`), usado na abertura e na apresentação pessoal. Os arquivos `gabriel-front.webp`, `gabriel.png` e `gabriel-contact.webp` mostram outros retratos no estúdio e não são a referência para o personagem. O usuário apontou também a referência incorreta na primeira geração do personagem: essa geração foi descartada, permanece fora da aplicação e não autoriza reutilizar aquele rosto. A segunda geração, já baseada na referência correta, também foi rejeitada por falta de semelhança. O componente e o MP4 experimental foram retirados da aplicação. Há um novo estudo apenas de rosto na conversa, aguardando avaliação de semelhança antes de outro cenário. Nenhum personagem foi aprovado ou entregue. O motor disponível gera imagens, não vídeo nativo; o teste de MP4 usou interpolação óptica de poses e não deve ser apresentado como vídeo gerado nativamente nem como movimento idêntico à referência.
+
+A revisão de movimento usa o GSAP 3.15.1 já instalado, incluindo SplitText, sem dependência adicional. A fonte fornecida confirma SplitText, Lenis, transformação dos exemplos e cursor interpolado; a gravação confirma as fases da composição. Isso fundamenta os mecanismos escolhidos, não uma alegação de movimentos idênticos ou prêmio Awwwards.
+
+- Abertura: fotografia, assinatura e amostra têm deslocamentos diferentes durante a saída.
+- Títulos: revelação escalonada por palavras, reversível; o título com link preserva a semântica do link.
+- Objetos: trajetórias e rotações alternadas, em vez de uma única entrada vertical.
+- Galerias desktop: desdobramento do conjunto e dos cinco planos individuais; no celular continua o arraste horizontal. O retorno do scroll refaz a dobra.
+- Pasta, fotografia da apresentação e painel de contato têm movimentos próprios.
+- Pausa e movimento reduzido revertem as transformações; o conteúdo continua disponível sem JavaScript.
+
+Evidência parcial, anterior à substituição da capa: `docs/preview/editorial-portfolio/gallery-reversible.mp4`, `gallery-folded.png`, `gallery-unfolded.png`. O MP4 geral foi regravado com o retrato correto e as novas transições, sem os personagens rejeitados. Estas alterações não encerram a revisão de fidelidade visual solicitada. Build, lint e sete testes Playwright passaram; conferência visual da capa cobriu desktop e celular. O personagem e seu vídeo continuam pendentes da avaliação de semelhança.

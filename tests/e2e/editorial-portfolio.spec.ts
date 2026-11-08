@@ -27,6 +27,7 @@ test("Visible loops load locally, pause with the control and open a full film wi
   await page.goto(route);
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated','true');
   expect(await page.locator('video[data-editorial-loop][src]').count()).toBe(0);
+  await expect(page.getByRole('link', { name: 'clique' })).toHaveCount(1);
   const row = page.locator('[data-sample-row]').first();
   await row.scrollIntoViewIfNeeded();
   const loop = row.locator('video[data-editorial-loop="aura"]');
@@ -69,4 +70,37 @@ test("Editorial motion preview decodes in the browser",async({page})=>{
  await expect.poll(()=>video.evaluate(el=>(el as HTMLVideoElement).readyState)).toBeGreaterThanOrEqual(1);
  expect(await video.evaluate(el=>(el as HTMLVideoElement).duration)).toBeGreaterThan(25);
  await video.evaluate(el=>(el as HTMLVideoElement).play());await expect.poll(()=>video.evaluate(el=>(el as HTMLVideoElement).currentTime)).toBeGreaterThan(.3);
+});
+
+test('Scroll unfolds the gallery reversibly and pause restores readable geometry', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(route);
+  await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+  const row = page.locator('[data-sample-row]').first();
+  const move = async (offset: number) => {
+    await row.evaluate((el, offset) => scrollTo({ top: el.getBoundingClientRect().top + scrollY - offset, behavior: 'instant' }), offset);
+    await page.waitForTimeout(1100);
+  };
+  const transform = () => row.evaluate(el => getComputedStyle(el).transform);
+  await move(880);
+  const folded = await transform();
+  await move(300);
+  const unfolded = await transform();
+  expect(unfolded).not.toBe(folded);
+  await move(880);
+  expect(await transform()).toBe(folded);
+  await page.getByRole('button', { name: 'Pausar movimento' }).click();
+  await expect(page.locator('[data-editorial]')).not.toHaveAttribute('data-editorial-animated', 'true');
+  expect(await transform()).toBe('none');
+  await expect(page.locator('[data-hook] h2')).toHaveCount(1);
+  await expect(page.locator('[data-hook] h2 a')).toBeVisible();
+  await page.getByRole('button', { name: 'Ativar movimento' }).click();
+  await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+});
+
+
+test('Cover uses the approved original portrait', async ({ page }) => {
+  await page.goto(route);
+  await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('alt', 'Retrato frontal de Gabriel Batista com luz vermelha');
+  await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('src', /gabriel-approved-red/);
 });

@@ -5,6 +5,7 @@ import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
+import { SplitText } from "gsap/SplitText";
 import styles from "@/app/propostas/portfolio-editorial/editorial.module.css";
 const subscribe = () => () => {};
 
@@ -15,7 +16,7 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
   useEffect(() => {
     const node = root.current;
     if (!node || paused) return;
-    gsap.registerPlugin(ScrollTrigger, CustomEase);
+    gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText);
     CustomEase.create("editorial-flow", ".625,.05,0,1");
     const media = gsap.matchMedia();
     media.add("(prefers-reduced-motion: no-preference)", () => {
@@ -26,10 +27,43 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
       const tick = (seconds: number) => lenis.raf(seconds * 1000);
       lenis.on("scroll", ScrollTrigger.update); gsap.ticker.add(tick);
       const ctx = gsap.context(() => {
-        gsap.to("[data-hero-photo]", { yPercent: 15, scale: 1.08, ease: "none", scrollTrigger: { trigger: "[data-hero-photo]", start: "top top", end: "bottom top", scrub: .8 } });
-        gsap.utils.toArray<HTMLElement>("[data-shape]").forEach(shape => gsap.fromTo(shape, { y: 85, rotation: -8 }, { y: Number(shape.dataset.shape), rotation: 10, ease: "none", scrollTrigger: { trigger: "[data-hook]", start: "top bottom", end: "bottom top", scrub: 1 } }));
-        gsap.utils.toArray<HTMLElement>("[data-kinetic]").forEach(title => gsap.fromTo(title, { y: 45, opacity: .45 }, { y: 0, opacity: 1, ease: "editorial-flow", scrollTrigger: { trigger: title, start: "top 95%", end: "top 55%", scrub: .8 } }));
-        if (innerWidth > 700) gsap.utils.toArray<HTMLElement>("[data-sample-row]").forEach(row => gsap.fromTo(row, { rotationX: 62, y: 95 }, { rotationX: 0, y: 0, ease: "none", scrollTrigger: { trigger: row, start: "top bottom", end: "top 50%", scrub: 1 } }));
+        const desktop = innerWidth > 700;
+        const splits: SplitText[] = [];
+        // The reference separates typography, floating objects and unfolding galleries.
+        // Keep each choreography reversible instead of applying one fade to every section.
+        gsap.timeline({ scrollTrigger: { trigger: "#editorial-start", start: "top top", end: "bottom top", scrub: .65 } })
+          .to("[data-hero-photo]", { yPercent: 22, scale: 1.13, ease: "none" }, 0)
+          .to("[data-hero-wordmark]", { yPercent: -34, scale: .91, transformOrigin: "center bottom", ease: "none" }, 0)
+          .to("[data-hero-sample]", { rotation: 12, yPercent: -45, ease: "none" }, 0);
+        gsap.utils.toArray<HTMLElement>("[data-kinetic]").forEach(title => {
+          const split = SplitText.create(title, { type: "words", wordsClass: "editorial-word", aria: title.querySelector("a") ? "none" : "auto" });
+          splits.push(split);
+          gsap.fromTo(split.words, { yPercent: 95, rotationX: -35, opacity: .12 }, {
+            yPercent: 0, rotationX: 0, opacity: 1, stagger: .08, ease: "power2.out",
+            scrollTrigger: { trigger: title, start: "top 90%", end: "bottom 55%", scrub: .65 },
+          });
+        });
+        gsap.utils.toArray<HTMLElement>("[data-shape]").forEach((shape, index) => {
+          gsap.fromTo(shape, { y: 150, rotation: index % 2 ? -32 : 22, scale: .85 }, {
+            y: Number(shape.dataset.shape) * 1.6, rotation: index % 2 ? 30 : -25, scale: 1.08, ease: "none",
+            scrollTrigger: { trigger: "[data-hook]", start: "top bottom", end: "bottom top", scrub: .8 },
+          });
+        });
+        if (desktop) gsap.utils.toArray<HTMLElement>("[data-sample-row]").forEach(row => {
+          const cards = [...row.children];
+          const fold = gsap.timeline({ scrollTrigger: { trigger: row, start: "top 96%", end: "bottom 30%", scrub: .65 } });
+          fold.fromTo(row, { rotationX: 65, y: 120 }, { rotationX: 0, y: 0, duration: 1, ease: "power2.out" }, 0);
+          cards.forEach((card, index) => {
+            const distance = index - 2;
+            fold.fromTo(card, { xPercent: distance * -24, yPercent: Math.abs(distance) * 20, rotationY: distance * -14, rotationZ: distance * 7, scale: .82 },
+              { xPercent: 0, yPercent: 0, rotationY: 0, rotationZ: 0, scale: 1, ease: "power2.out", duration: .85 }, .08 * Math.abs(distance));
+          });
+        });
+        gsap.fromTo("[data-folder]", { rotation: -12, y: 90, scale: .72 }, { rotation: 0, y: 0, scale: 1, ease: "back.out(1.4)", scrollTrigger: { trigger: "#editorial-work", start: "top 90%", end: "center 60%", scrub: .8 } });
+        gsap.to("[data-about-photo]", { scale: 1.14, yPercent: 7, ease: "none", scrollTrigger: { trigger: "#editorial-about", start: "top bottom", end: "bottom top", scrub: .8 } });
+        gsap.fromTo("[data-contact-panel]", { scale: .9, borderRadius: 100 }, { scale: 1, borderRadius: 40, ease: "none", scrollTrigger: { trigger: "#editorial-contact", start: "top 95%", end: "center 65%", scrub: .65 } });
+        // SplitText owns generated word wrappers and restores accessible original markup.
+        return () => splits.forEach(split => split.revert());
       }, node);
       const refresh = () => ScrollTrigger.refresh();
       node.addEventListener("toggle", refresh, true);
