@@ -45,3 +45,7 @@ Foram corrigidos dois problemas encontrados durante a inspeção: o hash direto 
 O player de revisão fornece o loop atualizado separadamente. A gravação geral anterior da página permanece identificada como anterior ao novo encerramento, evitando apresentá-la como registro atualizado da integração.
 
 Validação final após corrigir hash, altura e controles: build e lint passaram; 13 testes Playwright passaram, incluindo retorno ao início por clique, link direto no desktop/móvel, reprodução cíclica, pausa fora da tela, poster sem JS/movimento reduzido/saveData e falha de mídia. As capturas finais foram atualizadas. O link de retorno não intercepta nem é encoberto pelo botão de pausa (`final-framing.json`: overlap=false em ambos os tamanhos). O navegador usado foi Chromium neste ambiente, não Safari/iPhone físico.
+
+## Rejeição posterior do usuário
+
+A versão foi rejeitada por boca articulando, álbum movendo e cabeça com coreografia diferente. Testes de playback/emenda não validam fidelidade. Diagnóstico e ensaios corretivos, ainda sem equivalência suficiente para substituir a integração, em `../correction-study/README.md`.
