@@ -3,8 +3,9 @@ import { test, expect } from "@playwright/test";
 test("The old avatar route opens the photographic chapter",async({page})=>{
  await page.goto('/propostas/aura/personagem');
  await expect(page).toHaveURL(/\/propostas\/aura#aura-olhar$/);
- await page.locator('[data-photo-track]').evaluate(el=>scrollTo(0,el.getBoundingClientRect().top+scrollY+(el as HTMLElement).offsetHeight*.2));
- await expect(page.getByRole('heading',{name:'Cada detalhe, de perto.'})).toBeVisible();
+ // A refresh while images load can restore the previous scroll position: scroll again while waiting.
+ const heading=page.getByRole('heading',{name:'Cada detalhe, de perto.'});
+ await expect.poll(async()=>{await page.locator('[data-photo-track]').evaluate(el=>scrollTo(0,el.getBoundingClientRect().top+scrollY+(el as HTMLElement).offsetHeight*.2));return heading.isVisible();}).toBe(true);
  await expect(page.locator('[data-photo-camera]')).toHaveCount(1);
 });
 

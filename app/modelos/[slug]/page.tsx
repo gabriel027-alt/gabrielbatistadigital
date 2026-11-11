@@ -5,11 +5,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { nicheModels } from "@/lib/models";
+import { nicheModels, rebuiltModels } from "@/lib/models";
 import { ModelInteraction } from "@/components/ModelInteraction";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 export const dynamicParams = false;
-export function generateStaticParams() { return nicheModels.map(({ slug }) => ({ slug })); }
+// Rebuilt models have their own route (app/modelos/<slug>/page.tsx) and leave the shared template.
+export function generateStaticParams() { return nicheModels.filter(({ slug }) => !rebuiltModels.has(slug)).map(({ slug }) => ({ slug })); }
 type Props = { params: Promise<{ slug: string }> };
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;

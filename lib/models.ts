@@ -84,3 +84,6 @@ export const modelPreparation: Record<string, string[]> = {
   educacao: ["Identifique uma situação concreta de liderança em que deseja ampliar suas opções de ação.", "Traga uma decisão que esteja travada e quais informações faltam para avançar.", "Antes de desenhar uma turma, esclareça público, objetivos de aprendizagem e disponibilidade para aplicação."],
   logistica: ["Volume, frequência, dimensões e pontos de entrega ajudam a avaliar a necessidade de distribuição.", "Identifique exigências da carga, janelas de operação e recursos que precisam estar disponíveis.", "Mapeie entrada, movimentação, estoque e expedição para compreender os requisitos do fluxo."],
 };
+
+/** Models rebuilt outside the shared template, each with its own route and structure (docs/MODELOS-ALTO-TICKET.md). */
+export const rebuiltModels = new Set<string>(["odontologia", "patrimonio"]);

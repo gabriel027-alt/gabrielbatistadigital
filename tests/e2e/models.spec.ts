@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 import { modelBrands } from "../../lib/model-brands";
-import { nicheModels } from "../../lib/models";
+import { nicheModels as allModels, rebuiltModels } from "../../lib/models";
+// Rebuilt models have their own pages and specs; this file covers the shared template.
+const nicheModels = allModels.filter(model => !rebuiltModels.has(model.slug));
 test("17 new models plus original three, gallery filters and real previews", async ({ page }) => {
   await page.goto("/");
   await expect(page.locator(".signature-work-card")).toHaveCount(6);

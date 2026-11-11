@@ -1,0 +1,169 @@
+/* Vanguard: technical drawing that becomes a photograph. Palette taken from the concrete and its shadow. */
+.page{--vg-paper:#dddbd5;--vg-ink:#1d1c1a;--vg-line:#2a2926;--vg-mute:#57554f;--vg-light:#f4f1ea;--vg-focus:50%;background:var(--vg-paper);color:var(--vg-ink);font-family:var(--font-manrope),sans-serif;isolation:isolate;overflow:clip}
+.page *{box-sizing:border-box}
+.page a{color:inherit}
+.page :is(a,button):focus-visible{outline:2px solid var(--vg-ink);outline-offset:5px}
+.skip{position:fixed;left:20px;top:-100px;z-index:30;padding:14px;background:var(--vg-paper)}
+.skip:focus{top:14px}
+
+.header{position:absolute;z-index:6;inset:0 0 auto;display:flex;align-items:center;justify-content:space-between;padding:30px 4vw;color:var(--vg-ink)}
+.logo{display:flex;align-items:baseline;gap:14px;font-size:22px;font-weight:500;letter-spacing:-.04em;text-decoration:none}
+.logo span{font-size:11px;font-weight:400;letter-spacing:0;color:var(--vg-mute)}
+.header nav{display:flex;gap:32px;font-size:13px}
+.header nav a{text-decoration:none;padding:10px 0;border-bottom:1px solid currentColor}
+
+/* Opening. Without motion everything shows in its final state. */
+.opening{position:relative}
+.stage{position:relative;height:100svh;min-height:600px;overflow:hidden;background:var(--vg-paper)}
+.frame{position:absolute;top:50%;left:50%;aspect-ratio:3/2;width:max(100%,calc(max(100svh,600px)*1.5));transform:translate(calc(-1 * var(--vg-focus)),-50%);transform-origin:50% 55%}
+.photo{position:absolute;inset:0}
+.photo img{object-fit:cover}
+.shade{position:absolute;inset:0;pointer-events:none;background:linear-gradient(0deg,#141311c7,transparent 46%),linear-gradient(90deg,#141311a0,transparent 55%)}
+.drawing{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.drawing path{fill:none;stroke:var(--vg-light);stroke-width:1.4;stroke-opacity:.55;stroke-linecap:square}
+.notes{list-style:none;margin:0;padding:0}
+.note{position:absolute;display:flex;align-items:center;gap:0}
+.dot{width:9px;height:9px;border-radius:50%;background:var(--vg-light);box-shadow:0 0 0 4px #f4f1ea40;transform:translate(-50%,-50%);flex:none}
+.label{position:absolute;top:0;left:34px;transform:translateY(-50%);display:flex;flex-direction:column;gap:3px;padding:10px 13px;min-width:170px;background:#f4f1eae6;color:var(--vg-ink);font-size:12px;line-height:1.35;backdrop-filter:blur(6px)}
+.label strong{font-size:13px;font-weight:600;letter-spacing:-.01em}
+.label:before{content:"";position:absolute;top:50%;right:100%;width:30px;height:1px;background:var(--vg-light)}
+.note[data-side=left] .label{left:auto;right:34px}
+.note[data-side=left] .label:before{right:auto;left:100%}
+
+.titleBlock{position:absolute;z-index:3;left:4vw;bottom:8svh;max-width:min(92vw,980px);color:var(--vg-light)}
+.kicker{margin:0 0 18px;font-size:13px;letter-spacing:.01em}
+.titleBlock h1{margin:0;font-size:clamp(48px,7.4vw,124px);font-weight:300;line-height:.98;letter-spacing:-.055em;text-wrap:balance}
+.hint{position:absolute;z-index:3;right:4vw;bottom:8svh;display:flex;align-items:center;gap:16px;font-size:13px;text-decoration:none;color:var(--vg-light);padding:12px 0;border-bottom:1px solid currentColor}
+
+/* With motion the opening becomes a fixed stage the scroll plays through; it starts as a blank sheet. */
+.page[data-vanguard-animated=true] .opening{height:230svh}
+.page[data-vanguard-animated=true] .stage{position:sticky;top:0}
+.page[data-vanguard-animated=true] .titleBlock,.page[data-vanguard-animated=true] .hint{color:var(--vg-ink)}
+
+.study{display:grid;grid-template-columns:1fr 1.4fr;gap:6vw;padding:140px 4vw 120px;scroll-margin-top:20px}
+.studyHead p{margin:0 0 22px;font-size:13px;color:var(--vg-mute)}
+.studyHead h2{margin:0;font-size:clamp(40px,5vw,84px);font-weight:300;line-height:1;letter-spacing:-.05em}
+.studyBody{max-width:62ch}
+.studyBody p{font-size:16px;line-height:1.8;margin:0 0 26px}
+.lead{font-size:clamp(20px,1.8vw,27px)!important;line-height:1.45!important;letter-spacing:-.02em}
+.facts{margin:44px 0;border-top:1px solid #2a292640}
+.facts div{display:grid;grid-template-columns:1fr 2fr;gap:20px;padding:16px 0;border-bottom:1px solid #2a292640;font-size:14px}
+.facts dt{color:var(--vg-mute)}
+.facts dd{margin:0}
+
+/* Peak: the route through the house. Static by default: photo with the full route and the three steps listed. */
+.route{padding:0 4vw 140px}
+.routeStage{position:relative}
+.routeFrame{position:relative;aspect-ratio:3/2;overflow:hidden;background:#c9c6be}
+.routeCamera{position:absolute;inset:0;transform-origin:50% 50%}
+.routeCamera img{object-fit:cover}
+.routeDrawing{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.routeDrawing path{fill:none;stroke:var(--vg-light);stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round}
+.routeDrawing circle{fill:var(--vg-light)}
+.routeShade{position:absolute;inset:0;pointer-events:none;opacity:0;background:linear-gradient(90deg,#141311d9,#14131180 38%,transparent 62%)}
+.routeText{padding-top:44px}
+.routeKicker{margin:0 0 18px;font-size:13px;color:var(--vg-mute)}
+.routeText h2{margin:0 0 40px;font-size:clamp(40px,5vw,84px);font-weight:300;line-height:1;letter-spacing:-.05em}
+.steps{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(3,1fr);gap:3vw}
+.steps li{border-top:1px solid #2a292640;padding-top:18px}
+.steps span{display:block;font-size:12px;color:var(--vg-mute);margin-bottom:22px;font-variant-numeric:tabular-nums}
+.steps strong{display:block;font-size:26px;font-weight:400;letter-spacing:-.03em;margin-bottom:10px}
+.steps p{margin:0;font-size:15px;line-height:1.6;max-width:32ch}
+
+/* With motion: a fixed stage, one camera, one step at a time over the shade. */
+.page[data-vanguard-animated=true] .route{height:330svh;padding:0}
+.page[data-vanguard-animated=true] .routeStage{position:sticky;top:0;height:100svh;min-height:600px;overflow:hidden;background:#141311}
+.page[data-vanguard-animated=true] .routeFrame{position:absolute;top:50%;left:50%;aspect-ratio:3/2;width:max(100%,calc(max(100svh,600px)*1.5));transform:translate(calc(-1 * var(--vg-focus)),-50%);background:none}
+.page[data-vanguard-animated=true] .routeText{position:absolute;z-index:2;left:4vw;bottom:9svh;width:min(440px,84vw);padding:0;color:var(--vg-light)}
+.page[data-vanguard-animated=true] .routeKicker{color:#f4f1eab3}
+.page[data-vanguard-animated=true] .steps{display:grid;grid-template-columns:1fr;gap:0}
+.page[data-vanguard-animated=true] .steps li{grid-area:1/1;border-top-color:#f4f1ea59}
+.page[data-vanguard-animated=true] .steps span{color:#f4f1eab3}
+.page[data-vanguard-animated=true] .steps strong{font-size:clamp(28px,3vw,40px)}
+.page[data-vanguard-animated=true] .steps p{font-size:16px}
+
+/* Peak: how a project starts. Static by default: the four stages as a grid of pictures and a list. */
+.process{padding:20px 4vw 140px}
+.processStage{position:relative}
+.processFrame{display:grid;grid-template-columns:1fr 1fr;gap:2vw}
+.layer{position:relative;margin:0;aspect-ratio:3/2;overflow:hidden;background:#c9c6be}
+.layer img{object-fit:cover}
+.sketch{position:absolute;inset:0;width:100%;height:100%;overflow:visible;pointer-events:none}
+.sketch path{fill:none;stroke:var(--vg-light);stroke-width:3.2;stroke-linecap:square;filter:drop-shadow(0 0 3px #14131199)}
+.processShade{display:none}
+.processText{padding-top:50px}
+.processText h2{margin:0 0 44px;font-size:clamp(40px,5vw,84px);font-weight:300;line-height:1;letter-spacing:-.05em;max-width:14ch}
+.stages{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,1fr);gap:2.4vw}
+.stages li{border-top:1px solid #2a292640;padding-top:18px}
+.stages span{display:block;font-size:12px;color:var(--vg-mute);margin-bottom:22px;font-variant-numeric:tabular-nums}
+.stages strong{display:block;font-size:26px;font-weight:400;letter-spacing:-.03em;margin-bottom:10px}
+.stages p{margin:0;font-size:15px;line-height:1.6;max-width:30ch}
+.pencil{display:none}
+
+/* With motion: one frame, the layers replace each other, the pencil on the left measures the way. */
+.page[data-vanguard-animated=true] .process{height:520svh;padding:0}
+.page[data-vanguard-animated=true] .processStage{position:sticky;top:0;height:100svh;min-height:600px;overflow:hidden;background:var(--vg-paper)}
+.page[data-vanguard-animated=true] .processFrame{position:absolute;top:50%;left:50%;display:block;aspect-ratio:3/2;width:max(100%,calc(max(100svh,600px)*1.5));transform:translate(calc(-1 * var(--vg-focus)),-50%)}
+.page[data-vanguard-animated=true] .layer{position:absolute;inset:0;aspect-ratio:auto;background:none}
+.page[data-vanguard-animated=true] .processShade{display:block;position:absolute;inset:0;pointer-events:none;background:linear-gradient(90deg,#141311d9,#14131180 36%,transparent 60%)}
+.page[data-vanguard-animated=true] .processText{position:absolute;z-index:2;left:calc(4vw + 34px);bottom:9svh;width:min(460px,80vw);padding:0;color:var(--vg-light)}
+.page[data-vanguard-animated=true] .processText .routeKicker{color:#f4f1eab3}
+.page[data-vanguard-animated=true] .processText h2{font-size:clamp(34px,3.6vw,58px);margin-bottom:34px}
+.page[data-vanguard-animated=true] .stages{grid-template-columns:1fr;gap:0}
+.page[data-vanguard-animated=true] .stages li{grid-area:1/1;border-top-color:#f4f1ea59}
+.page[data-vanguard-animated=true] .stages span{color:#f4f1eab3}
+.page[data-vanguard-animated=true] .stages strong{font-size:clamp(28px,3vw,40px)}
+.page[data-vanguard-animated=true] .stages p{font-size:16px}
+.page[data-vanguard-animated=true] .pencil{display:block;position:absolute;z-index:2;left:4vw;top:18svh;bottom:18svh;width:12px}
+.pencilLine{position:absolute;left:5px;top:0;bottom:0;width:1.5px;background:var(--vg-light);transform-origin:50% 0}
+.tick{position:absolute;left:1px;width:9px;height:9px;margin-top:-4.5px;border-radius:50%;border:1.5px solid var(--vg-light);background:#141311}
+
+.others{padding:40px 4vw 140px;scroll-margin-top:20px}
+.others h2{margin:0 0 60px;font-size:clamp(36px,4vw,66px);font-weight:300;line-height:1.02;letter-spacing:-.05em}
+.otherGrid{display:grid;grid-template-columns:1fr 1fr;gap:3vw}
+.otherGrid figure{margin:0}
+.otherPhoto{position:relative;aspect-ratio:3/2;overflow:hidden;background:#c9c6be}
+.otherPhoto img{object-fit:cover}
+.otherGrid figcaption{display:flex;justify-content:space-between;gap:20px;padding-top:18px}
+.otherGrid h3{margin:0;font-size:24px;font-weight:400;letter-spacing:-.03em}
+.otherGrid figcaption p{margin:0;font-size:13px;color:var(--vg-mute)}
+
+.footer{display:flex;align-items:end;justify-content:space-between;gap:20px;padding:0 4vw 36px;border-top:1px solid #2a292630}
+.footer>a{font-size:clamp(90px,19vw,300px);font-weight:300;letter-spacing:-.08em;line-height:1.05;text-decoration:none;margin-left:-.04em}
+.footer p{margin:0 0 12px;font-size:11px;line-height:1.6;text-align:right;color:var(--vg-mute)}
+
+.motionControl{position:fixed;z-index:20;right:18px;bottom:16px;min-height:44px;padding:12px 16px;border:1px solid #2a292650;border-radius:30px;background:var(--vg-paper);color:var(--vg-ink);font:inherit;font-size:10px;cursor:pointer}
+
+@media(max-width:700px){
+  .page{--vg-focus:60%}
+  .header{padding:24px 6vw}
+  .header nav{gap:20px;font-size:12px}
+  .titleBlock{left:6vw;right:6vw;bottom:12svh}
+  .titleBlock h1{font-size:clamp(40px,11vw,60px)}
+  .hint{right:6vw;bottom:5svh;font-size:12px}
+  .note[data-wide-only]{display:none}
+  .label{min-width:0;width:max-content;max-width:150px;font-size:11px;padding:8px 10px}
+  .label strong{font-size:12px}
+  .study{display:block;padding:90px 6vw 70px}
+  .studyHead h2{margin-bottom:34px}
+  .studyBody p{font-size:15px}
+  .route{padding:0 0 90px}
+  .routeText{padding:36px 6vw 0}
+  .steps{grid-template-columns:1fr;gap:30px}
+  .page[data-vanguard-animated=true] .routeText{left:6vw;right:6vw;width:auto;bottom:10svh}
+  .page[data-vanguard-animated=true] .routeText h2{margin-bottom:26px}
+  .page[data-vanguard-animated=true] .routeShade{background:linear-gradient(0deg,#141311e6,#14131199 40%,transparent 70%)}
+  .process{padding:10px 6vw 90px}
+  .processFrame{grid-template-columns:1fr;gap:14px}
+  .stages{grid-template-columns:1fr;gap:30px}
+  .page[data-vanguard-animated=true] .processText{left:calc(6vw + 26px);right:6vw;width:auto;bottom:8svh}
+  .page[data-vanguard-animated=true] .processText h2{font-size:30px;margin-bottom:22px}
+  .page[data-vanguard-animated=true] .processShade{background:linear-gradient(0deg,#141311eb,#141311a6 42%,transparent 72%)}
+  .page[data-vanguard-animated=true] .pencil{left:6vw;top:auto;bottom:8svh;height:44svh}
+  .others{padding:20px 6vw 90px}
+  .otherGrid{grid-template-columns:1fr;gap:42px}
+  .footer{flex-direction:column;align-items:start;padding:0 6vw 80px}
+  .footer p{text-align:left}
+  .motionControl{bottom:14px}
+}
+@media(prefers-reduced-motion:reduce){.page *{scroll-behavior:auto!important}}

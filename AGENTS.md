@@ -114,6 +114,72 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - O arquivo confirma seis vídeos de amostra em serviços com autoplay/loop/muted/playsinline. Não confirma vídeo controlado pelo scroll, layout completo, página work.html, carregamento por visibilidade ou premiação. CSS e mídia externos não foram recebidos.
 - A proposta de prévia curta mais filme completo é uma adaptação sugerida. Não ativar autoplay na galeria automaticamente: o comportamento atual de reprodução manual foi preservado nesta análise.
 
+## Avatar do rodapé editorial: loop v11
+
+- v1 (LivePortrait), v2 (coreografia autoral de esquivas), v3 (corpo com ombros, queixo em V) e v6 (mandíbula alargada e sombra escura no pescoço) foram rejeitadas. O usuário aprovou com entusiasmo a direção da v4: movimento da gravação do rodapé de Juan Mora, boca fechada e cabeça atrás do monitor. A v5 acrescentou sobrancelhas paradas e vapor no café. A v7, aprovada pelo usuário no rosto e no queixo, mantém o contorno original da imagem aprovada, continua a própria linha da mandíbula, sobe a cabeça 14 px e usa as cores originais do pescoço. A v8, com gola e ombros desenhados por código, foi rejeitada por parecer irreal (ombros em linha reta e mancha laranja no pescoço). O usuário decidiu que basta o trapézio, sem ombros nem jaqueta: a v9, aprovada, só abre o pescoço em curva, em pele, até o monitor. A v10 corrige a piscada, com pálpebra e linha de cílios lisas. A v11, aprovada pelo usuário, corrige a vesguice que ele notou: as duas íris compartilham o mesmo olhar, que fixa e salta. Não voltar a usar canais de íris independentes. Não recolocar roupa ou ombros pintados por código; se ele quiser mais corpo, usar imagem gerada a partir de base-para-gpt.png, aproveitando só pescoço e ombros. Não alterar o formato do rosto, nem esticar pixels da boca, nem escurecer o pescoço, nem reanimar sobrancelhas.
+- gabriel-avatar-loop-v11.mp4 vem de docs/research/avatar-motion-github/reference-loop/: trajetória medida (só números, sem pixels da gravação) em render 2,5D sem modelo. Não anunciar como 3D real ou rig. A atuação dos olhos da referência não é reproduzida: o olhar é discreto e autoral a partir do movimento médio. No celular, o recorte do vídeo deixa a caneca e o vapor fora da tela.
+- As capas de bandas foram trocadas por arte própria. Não reintroduzir capas, logotipos ou marcas de terceiros no cenário.
+- Música do rodapé: DESLIGADA por padrão, por decisão do usuário, na versão para prospectar clínicas (letras explícitas, aviso do Spotify e prévias de 30 s). Religar com NEXT_PUBLIC_FOOTER_MUSIC=on no .env.local e novo build. Quando ligada: player oficial do Spotify (lib/editorial-avatar.ts: os álbuns Significant Other, Gold Cobra e Results May Vary, escolhidos por ele, em revezamento automático e por botão). Só carrega após o clique; não há autoplay nem conteúdo do Spotify antes disso. O site não transmite a conta do usuário aos visitantes: sem login no Spotify, o player toca prévias curtas. Não hospedar arquivos de música comercial sem licença. O instrumental gerado (make_groove.py) foi retirado do site.
+
+## Vanguard: primeira unidade de revisão
+
+- `/propostas/vanguard` (Casa Horizonte) é a nova direção em avaliação: folha mineral, linhas medidas na fotografia que se desenham pelo scroll, foto revelada pela abertura de vidro e três anotações de projeto. Roteiro, paleta e evidência em docs/VANGUARD-DIRECAO.md; testes em tests/e2e/vanguard-proposal.spec.ts.
+- `/conceitos/vanguard`, os cartões e o catálogo ficam preservados até aprovação. As linhas dependem das coordenadas da fotografia vanguard.webp: ao trocar a imagem, medir de novo. São estudos com imagens geradas, sem obra executada.
+- Método de cenas aplicado (jornada de 5 cenas, um pico, trava contra repetição) sem o motor do pacote Sites Incríveis. O pico “O percurso” leva a câmera da água à sombra e à abertura enquanto a rota se desenha. Cenas 4 (fundo escuro nos outros estudos) e 5 (fechamento com uma ação local) aguardam aprovação do pico.
+- Entrevista de 7 perguntas feita com o usuário em 10/11/2026, no fluxo do vídeo da skill: docs/VANGUARD-BRIEF.md manda sobre VANGUARD-DIRECAO.md.
+  - Convicção: “começar é simples”. O pico passa a ser “Como começa um projeto”.
+  - Assinatura: uma única linha (a rolagem é o lápis).
+  - O botão de conversa é só visual, aparece em vários pontos e leva ao fechamento.
+  - O pico “Como começa um projeto” está construído: terreno → traço sobre o terreno → maquete → casa, com lápis medindo o caminho. As imagens do usuário são vanguard-terreno.webp (alinhado ao enquadramento da casa) e vanguard-maquete.webp.
+  - Não recalcular o ScrollTrigger a cada imagem carregada: isso fazia a rolagem voltar.
+  - Cenas 4 (fundo escuro) e 6 (fechamento com botões visuais) aguardam aprovação do pico.
+
+- Por pedido do usuário, “Cada lugar pede uma resposta” fica depois do pico, para que nenhuma outra casa interrompa o começo da cena.
+
+## Design system dos projetos de marca (10/11/2026)
+
+- O usuário pediu autenticidade e marca própria em cada design, “extremamente personalizados, animados e imersivos, cada um com sua cara, mas no mesmo nível”, com referências godly.website, Awwwards, Land-book e Dribbble. Isso **substitui a cópia do formato evopixel**: a evopixel passa a valer só como esqueleto de conversão (conteúdo), não como formato visual.
+- docs/DESIGN-SYSTEM.md é obrigatório antes de qualquer marca nova ou refeita:
+  - fundação comum invisível;
+  - kit de marca com 8 campos únicos;
+  - esqueleto de conversão;
+  - régua de qualidade com proibições;
+  - registro contra repetição, em que cada marca difere em pelo menos 6 de 7 campos.
+- Forma e Almeida ficaram “muito iguais”. O usuário aprovou os kits das duas no mesmo documento.
+- Base no código:
+  - lib/brand-kits.ts, com o teste contra repetição em tests/e2e/brand-kits.spec.ts;
+  - components/brand/useBrandMotion.ts, com o contrato de movimento.
+- Regra revista em 11/11/2026:
+  - estrutura evopixel aprovada mais uma camada de marca própria (símbolo, elemento e movimento-assinatura);
+  - paleta e material sempre derivados das fotos da marca.
+- O azul-gelo da Forma foi rejeitado por não combinar com a foto quente da dentista.
+- A Forma harmonizada (versão aprovada com o F do incisivo e a cena de planejamento em vinho e cerâmica quente) foi **aprovada pelo usuário em 11/11/2026**. É a referência validada do design system para os próximos nichos.
+- A Almeida aguarda as imagens.
+- O recorte da dentista por GrabCut foi rejeitado pela qualidade. Não há Blender nem gerador de imagem neste Windows.
+
+## Modelos de nicho de alto ticket (plano de 10/11/2026)
+
+- O usuário avaliou os 17 modelos como ruins e repetitivos. Diagnóstico: um único template com 6 paletas e cara de protótipo.
+- Decisões em docs/MODELOS-ALTO-TICKET.md:
+  - misto: superimersivos (Aura, Orla, Vanguard) mais sites de entrega com cara de cliente real;
+  - nichos de saúde e estética, jurídico, patrimônio e consumo premium;
+  - refazer os de alto ticket e tirar os demais da galeria, sem apagar código;
+  - galeria em faixa de páginas inteiras com “Visitar site”, como evopixel.com.br.
+- Cada modelo novo usa arquétipo de estrutura próprio (Autoridade, Procedimento, Vitrine, Editorial, Calculadora). Não voltar ao template único com troca de paleta.
+- Sem aviso de protótipo dentro do site e sem fatos inventados. Chamadas da marca levam a um roteiro local; o contato com Gabriel fica na galeria.
+- O usuário exige o formato exato dos sites da evopixel nos modelos de entrega:
+  - hero com foto larga em tela cheia, profissional à direita, texto à esquerda;
+  - títulos serifados com linha em itálico;
+  - faixa de ícones, seção do profissional com selo, cards centralizados, faixa escura de chamada e FAQ.
+  - Ele rejeitou foto em arco e formatos experimentais (“imagem de IA amadora”), que ficam só nos superimersivos.
+  - Detalhes em docs/MODELOS-ALTO-TICKET.md.
+- Forma Odontologia (app/modelos/odontologia/) foi aprovada pelo usuário nesse formato.
+- Segunda unidade: Almeida & Valença, família e sucessões (app/modelos/patrimonio/).
+  - Linguagem jurídica informativa, sem promessa de resultado.
+  - Ícones compartilhados em components/ModelIcon.tsx.
+  - Modelos refeitos entram em `rebuiltModels` (lib/models.ts) e saem do template [slug].
+  - BrandInquiry agora recebe marcas por conteúdo, não por ramificações de nome.
+
 ## Reconstrução editorial do portfólio
 
 - O usuário forneceu juanmora-analysis.zip após pedir a reprodução da experiência completa. Rota de revisão: /propostas/portfolio-editorial; prévia com player: /propostas/portfolio-editorial/previa. A homepage atual e os 20 projetos permanecem preservados.
