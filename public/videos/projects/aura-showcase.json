@@ -6,35 +6,35 @@
   "height": 800,
   "codec": "H.264 Baseline",
   "audio": false,
-  "bytes": 3083515,
-  "sha256": "587a56ce9cc7cb7cebc414495bd07e9bceb3e30b2c92f9c7606867cd32d232fa",
+  "bytes": 4134537,
+  "sha256": "1e5c8b9570bb00adfa39163d60f23703a79a324a1611d9c40ac8c3ae7e3dd103",
   "captureViewport": "1280x800",
   "patientResults": false,
   "localInteractionsOnly": true,
   "chapters": [
     {
       "label": "Abertura",
-      "seconds": 0.00004204800000024988
+      "seconds": 0.00003179999999974825
     },
     {
       "label": "Experiência pelo scroll",
-      "seconds": 1.6039197960000002
+      "seconds": 1.6142200000000002
     },
     {
-      "label": "Comparação ilustrativa",
-      "seconds": 15.158962597000002
+      "label": "Antes e depois",
+      "seconds": 15.1567688
     },
     {
       "label": "CTA e escolhas",
-      "seconds": 22.832833435
+      "seconds": 22.8030855
     },
     {
       "label": "Resumo revisável",
-      "seconds": 27.584041943
+      "seconds": 27.402041599999997
     },
     {
       "label": "Encerramento da marca",
-      "seconds": 30.007856273999998
+      "seconds": 29.746104
     }
   ],
   "ending": "Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film."

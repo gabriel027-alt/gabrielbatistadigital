@@ -12,7 +12,8 @@ try {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
     await page.goto(`${base}/propostas/${brand}`);
     await page.waitForLoadState('networkidle');
-    await page.addStyleTag({ content: 'nextjs-portal{display:none!important}' });
+    // The motion pause control stays on the site; it is only hidden in the recorded film.
+    await page.addStyleTag({ content: 'nextjs-portal{display:none!important}button[aria-pressed]{display:none!important}' });
     await page.locator(`[data-inquiry="${brand}"]`).getByRole('button').waitFor({ state: 'visible', timeout: 20000 });
     await page.waitForTimeout(1000);
     const destination = `public/videos/projects/${brand}-showcase.mp4`;
@@ -42,7 +43,7 @@ try {
         const scene = await geometry('[data-photo-track]');
         await travel(scene.top + scene.travel, 13000);
         await page.waitForTimeout(500);
-        chapter('Comparação ilustrativa');
+        chapter('Antes e depois');
         const comparison = await geometry('[data-aura-comparator]');
         await travel(comparison.top, 900);
         await travel(comparison.top + comparison.travel, 4500);
@@ -72,12 +73,12 @@ try {
       await travel(await page.locator('footer').last().evaluate(el => el.getBoundingClientRect().top + scrollY), 1100);
       await page.waitForTimeout(1100);
     }, { width: 1280, height: 800 });
-    const metadata = JSON.parse(execFileSync('/usr/bin/ffprobe', ['-v', 'error', '-show_entries', 'format=duration:stream=width,height', '-of', 'json', destination], { encoding: 'utf8' }));
+    const metadata = JSON.parse(execFileSync(process.env.FFPROBE || 'ffprobe', ['-v', 'error', '-show_entries', 'format=duration:stream=width,height', '-of', 'json', destination], { encoding: 'utf8' }));
     const bytes = await readFile(destination);
     const manifest = { title: `${brand === 'aura' ? 'Aura' : 'Orla'} — filme do projeto`, source: `/propostas/${brand}`, durationSeconds: Number(metadata.format.duration), width: 1280, height: 800, codec: 'H.264 Baseline', audio: false, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex'), captureViewport: '1280x800', patientResults: false, localInteractionsOnly: true, chapters, ending: 'Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film.' };
     await writeFile(destination.replace('.mp4', '.json'), JSON.stringify(manifest, null, 2) + '\n');
     const stamp = s => { const ms = Math.round(s * 1000); return `${String(Math.floor(ms / 60000)).padStart(2, '0')}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}.${String(ms % 1000).padStart(3, '0')}`; };
-    const cues = chapters.map((c, i) => `${stamp(c.seconds)} --> ${stamp(Math.min(i + 1 < chapters.length ? chapters[i + 1].seconds : manifest.durationSeconds, manifest.durationSeconds))}\n${c.label}${c.label === 'Comparação ilustrativa' ? '. Imagens geradas, sem resultados clínicos.' : ''}`);
+    const cues = chapters.map((c, i) => `${stamp(c.seconds)} --> ${stamp(Math.min(i + 1 < chapters.length ? chapters[i + 1].seconds : manifest.durationSeconds, manifest.durationSeconds))}\n${c.label}`);
     await writeFile(destination.replace('.mp4', '.pt.vtt'), 'WEBVTT\n\n' + cues.join('\n\n') + '\n');
     console.log(`${brand}: ${manifest.durationSeconds}s, ${manifest.bytes} bytes`);
     if (brand === 'orla') {

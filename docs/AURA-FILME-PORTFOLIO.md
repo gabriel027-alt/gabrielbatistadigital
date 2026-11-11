@@ -26,3 +26,13 @@ Arraste, toque e teclado interrompem o movimento automático e mantêm a posiç�
 Validação do percurso automático: lint/build aprovados e 12 cenários aprovados, incluindo os dois extremos pelo scroll, retorno, controle manual sem reposicionamento enquanto parado, retomada ao rolar, toque/teclado e preferência de movimento reduzido. A medição do teste aguarda a câmera inicial carregar antes de calcular a posição da seção. Capturas scroll-before.png e scroll-after.png inspecionadas. Filme atualizado: 37.00 s, 1.28 MiB, sem erros na gravação.
 
 Revisão comercial: o filme passa a terminar na oferta de site para donos de clínicas, sem agendamento de paciente. O cartão tem CTA externo ao player, com mensagem contextual e contato oficial de Gabriel. Diagnóstico e verificação em AURA-AUDITORIA-CONVERSAO.md.
+
+## Regravação de 11/11/2026, sem avisos
+
+O usuário pediu para tirar todos os avisos dos projetos, inclusive a palavra “simulação” dos rótulos antes/depois da Aura. As descrições acima sobre identificação de simulação são históricas.
+
+- Os filmes da Aura e da Orla foram regravados com `scripts/capture-project-films.mjs`.
+- Rótulos agora: “Antes”, “Depois” e “Antes → Depois”.
+- O capítulo da legenda passou a se chamar “Antes e depois”, sem o complemento “Imagens geradas, sem resultados clínicos”.
+- O rodapé da Orla é “© 2026 Orla Residências. Site por Gabriel Batista Digital”, e o roteiro local não mostra mais “Nada é enviado”.
+- O manifesto continua registrando `patientResults: false`, porque nenhuma imagem é de paciente real.
