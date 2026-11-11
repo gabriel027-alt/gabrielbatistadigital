@@ -13,7 +13,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Leia README.md antes de alterar a estrutura. Esta pasta já contém a implementação revisada.
 - Use a estrutura app/ existente; não crie src/app em paralelo.
 - Contato exclusivamente pelo número 5538998267717, centralizado em lib/site.ts.
-- Preserve os três conceitos existentes. A galeria /modelos adiciona 17 demonstrações de nichos, autorizadas pelo usuário, todas identificadas como marcas fictícias.
+- Preserve os três conceitos existentes. A galeria /modelos reúne modelos de nichos com marcas criadas para o portfólio.
+- **Sem avisos em nenhum projeto (decisão do usuário em 11/11/2026).** Nada de “demonstração”, “marca fictícia”, “estudo autoral/conceitual”, “imagens geradas” ou “nada é enviado”, nem no portfólio nem nas marcas. O propósito é parecer entrega ou simbolizar projetos selecionados. Rodapé das marcas: “© 2026 <marca>. Site por Gabriel Batista Digital”.
+  - Exceção mantida: na Aura, as comparações antes/depois de harmonização seguem com a palavra “simulação” nos rótulos. Sem ela, uma personagem gerada passaria por resultado clínico real.
+  - A regra não autoriza inventar clientes, depoimentos, números, registros profissionais ou resultados, nem dizer que um agendamento foi feito.
 - O layout é um Server Component; interações ficam em componentes cliente pequenos.
 - Tema usa data-theme e tokens de app/globals.css. Não volte a espalhar cores fixas da agência pelo JSX.
 - O assistente antigo permanece desativado por padrão. Não precisa de chaves para executar a landing page.

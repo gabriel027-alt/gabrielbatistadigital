@@ -48,7 +48,7 @@ export default function EditorialPortfolio() {
         <details id="editorial-work" className={styles.workFolder}>
           <summary><span className={styles.workWord} aria-hidden="true">Work</span><span className={styles.folderCaption}>Veja os projetos de perto.</span><span className={styles.folder} data-folder aria-hidden="true"><span className={styles.folderBack}/><span className={styles.folderSheet}>aura / orla / vanguard</span><span className={styles.folderFront}><span>gb</span></span></span><span className={styles.folderAction}>Abrir seleção <Arrow size={18}/></span></summary>
           <div className={styles.selectedGrid}>{works.map(work => <figure key={work.name}><EditorialMedia name={work.name} image={work.image} film={work.film} href={work.href}/><figcaption><h3>{work.name}</h3><span>{work.sector}</span></figcaption></figure>)}</div>
-          <p className={styles.disclosure}>Projetos autorais de design e desenvolvimento. As marcas foram criadas para estes estudos.</p><Link href="/#modelos" className={styles.catalogLink}>Explorar o catálogo de 20 projetos <Arrow size={18}/></Link>
+          <Link href="/#modelos" className={styles.catalogLink}>Explorar o catálogo de 20 projetos <Arrow size={18}/></Link>
         </details>
       </section>
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">

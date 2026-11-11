@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
 import { VanguardMotion } from "@/components/VanguardMotion";
 import styles from "./vanguard.module.css";
@@ -177,7 +178,7 @@ export default function VanguardPage() {
     </main>
     <footer className={styles.footer}>
       <a href="#vanguard-inicio" aria-label="Vanguard, voltar ao início">vanguard</a>
-      <p>Estudos de arquitetura. Imagens geradas.<br />Nenhum projeto aqui corresponde a obra executada.</p>
+      <p>© 2026 Vanguard Arquitetura.<br />Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }

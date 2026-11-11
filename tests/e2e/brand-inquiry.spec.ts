@@ -30,7 +30,7 @@ for (const brand of ["aura", "orla"] as const) {
     }
     await dialog.getByRole("button", { name: "Ver meu resumo", exact: true }).click();
     await expect(dialog.locator("dd").first()).toHaveText(first);
-    await expect(dialog).toContainText("Nada é enviado");
+    await expect(dialog).not.toContainText("Nada é enviado");
     expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
     await dialog.getByRole("button", { name: "Voltar ao site", exact: true }).click();
     await expect(dialog).toBeHidden();

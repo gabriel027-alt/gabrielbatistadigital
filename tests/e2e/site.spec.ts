@@ -129,9 +129,8 @@ test("all concept demos, detail navigation and valid metadata", async ({
     const response = await page.goto(`/conceitos/${slug}`);
     expect(response?.status()).toBe(200);
     await expect(page.locator("h1")).toHaveCount(1);
-    await expect(
-      page.getByText("PROTÓTIPO CONCEITUAL · MARCA FICTÍCIA"),
-    ).toBeVisible();
+    // The owner asked for no demo notices in any project.
+    await expect(page.getByText(/PROTÓTIPO CONCEITUAL|MARCA FICTÍCIA|demonstração/i)).toHaveCount(0);
     await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
       "content",
       /noindex/,

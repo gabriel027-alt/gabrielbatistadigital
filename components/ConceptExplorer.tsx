@@ -21,7 +21,6 @@ export function ConceptExplorer({ theme }: { theme: ConceptTheme }) {
       <div id="explorer-panel" className="explorer-panel" role="tabpanel" aria-labelledby={`explorer-tab-${active}`} tabIndex={0}>
         <div className="explorer-item-copy" key={active}><h3>{item.subtitle}</h3><p>{item.description}</p><dl className="concept-facts">{item.facts.map(([label,value])=><div key={label}><dt>{label}</dt><dd>{value}</dd></div>)}</dl></div>
       </div>
-      <small>DEMONSTRAÇÃO CONCEITUAL · MARCA E IMAGENS FICTÍCIAS</small>
     </div>
   </section>;
 }

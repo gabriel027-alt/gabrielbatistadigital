@@ -20,7 +20,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const { slug } = await params;
   const project = concepts.find((item) => item.slug === slug);
   if (!project) return {};
-  const title = `${project.name} · Demonstração conceitual`;
+  const title = project.name;
   return {
     title,
     description: project.description,
@@ -47,7 +47,6 @@ export default async function ConceptPage({ params }: Props) {
         <Link href="/#portfolio">
           <ArrowLeft size={13} /> Voltar ao portfólio
         </Link>
-        <span>PROTÓTIPO CONCEITUAL · MARCA FICTÍCIA</span>
       </div>
       <header className="demo-header">
         <Link className="demo-wordmark" href={`/conceitos/${project.slug}`}>
@@ -134,7 +133,7 @@ export default async function ConceptPage({ params }: Props) {
             <br />a próxima história.
           </h2>
           <p>
-            Esta é uma demonstração da Gabriel Batista Digital.
+            Site por Gabriel Batista Digital.
             <br />
             Fale com a agência para criar seu projeto.
           </p>
@@ -149,7 +148,7 @@ export default async function ConceptPage({ params }: Props) {
         </section>
       </main>
       <footer className="demo-footer">
-        <span>{project.name} · Conceito autoral</span>
+        <span>© 2026 {project.name}</span>
         <Link href="/#portfolio">
           Gabriel Batista Digital <ArrowUpRight size={14} />
         </Link>

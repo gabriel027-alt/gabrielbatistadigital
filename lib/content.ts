@@ -105,7 +105,7 @@ export const concepts = [
     ],
     story: "Cada segundo, uma escolha.",
     storyText:
-      "Um estudo autoral sobre a relação entre tempo, objeto e desejo. A composição dá espaço ao essencial e convida a descobrir cada detalhe com calma.",
+      "Uma relação entre tempo, objeto e desejo. A composição dá espaço ao essencial e convida a descobrir cada detalhe com calma.",
     cta: "Criar uma experiência como esta",
   },
   {
@@ -126,7 +126,7 @@ export const concepts = [
     ],
     story: "A forma segue a intenção.",
     storyText:
-      "Volumes puros e ritmo editorial traduzem a visão de um estúdio fictício. Os projetos aqui são estudos visuais, não obras construídas ou clientes reais.",
+      "Volumes puros e ritmo editorial traduzem a visão do estúdio: cada projeto parte do lugar, da luz e do essencial.",
     cta: "Projetar minha presença digital",
   },
   {
@@ -147,7 +147,7 @@ export const concepts = [
     ],
     story: "O cuidado começa na escuta.",
     storyText:
-      "Uma marca fictícia que explora precisão e acolhimento. Esta demonstração não representa uma clínica, não oferece atendimento e não faz promessas de resultados médicos.",
+      "Precisão e acolhimento em cada etapa: escuta, avaliação e um plano explicado com calma.",
     cta: "Construir uma marca com presença",
   },
 ] as const;

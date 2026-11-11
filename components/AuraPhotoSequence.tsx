@@ -176,7 +176,7 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
       }}/></figure>
       <canvas ref={canvasRef} className={styles.canvas} data-photo-camera aria-hidden="true"/>
       <div className={styles.notes}>{chapters.map((chapter,index)=><article key={index} className={styles.copy} data-photo-copy data-region={chapter.key}>{index<chapters.length-1 && <span className={styles.comparisonLabel} data-comparison-label>Antes → Depois · simulação</span>}<h3>{chapter.title}</h3><p>{chapter.copy}</p>{index===0 && <div className={styles.comparisonMeter} aria-hidden="true"><div><span>Antes</span><span>Depois</span></div><div className={styles.meterTrack}><span data-malar-progress/></div></div>}{index<chapters.length-1 && <details className={styles.staticComparison}><summary>Ver comparação ilustrativa</summary><div><figure><Image src={index===0 ? "/images/aura-sequence/malar-before-refined.webp" : "/images/aura-sequence/continuous-before.webp"} width={1024} height={1536} alt="Antes — variação digital ilustrativa da personagem" unoptimized/><figcaption>Antes · imagem gerada</figcaption></figure><figure><Image src="/images/aura-sequence/continuous-portrait.webp" width={1024} height={1536} alt="Depois — variação digital ilustrativa, sem previsão de resultado clínico" unoptimized/><figcaption>Depois · imagem gerada</figcaption></figure></div></details>}</article>)}</div>
-      <footer className={styles.foot} data-focus-chrome><span>Simulação ilustrativa · Imagens geradas · Não prevê resultado clínico</span><a href="#aura-avaliacao">O olhar Aura ↓</a></footer>
+      <footer className={styles.foot} data-focus-chrome><span>Aura · Harmonização facial</span><a href="#aura-avaliacao">O olhar Aura ↓</a></footer>
     </div>
   </section>;
 }

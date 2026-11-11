@@ -25,8 +25,8 @@ export function ServicePreview({ id }: { id: ServiceId }) {
             src={`/images/services/${previewVersion}/${chronos ? "chronos-atelier" : "vanguard"}.webp`}
             alt={
               chronos
-                ? "Demonstração autoral Chronos Atelier, com tipografia editorial e composição de relógio"
-                : "Demonstração autoral Vanguard, com composição arquitetônica e hierarquia editorial"
+                ? "Site Chronos Atelier, com tipografia editorial e composição de relógio"
+                : "Site Vanguard, com composição arquitetônica e hierarquia editorial"
             }
             width={1440}
             height={1000}
@@ -35,7 +35,6 @@ export function ServicePreview({ id }: { id: ServiceId }) {
           />
         </div>
         <figcaption>
-          Projeto conceitual autoral ·{" "}
           {chronos ? "Chronos Atelier" : "Vanguard"}
         </figcaption>
       </figure>
@@ -50,7 +49,7 @@ export function ServicePreview({ id }: { id: ServiceId }) {
             <i />
             <i />
           </span>
-          <span>workspace / interface ilustrativa</span>
+          <span>workspace / projeto</span>
           <span>↗</span>
         </div>
         <div className="workspace-preview" aria-hidden="true">
@@ -78,7 +77,7 @@ export function ServicePreview({ id }: { id: ServiceId }) {
               <div>
                 <span>EM FOCO</span>
                 <strong>Design de interface</strong>
-                <small>Etapa ilustrativa do projeto</small>
+                <small>Etapa do projeto</small>
               </div>
               <div>
                 <span>PRÓXIMO PASSO</span>
@@ -117,9 +116,6 @@ export function ServicePreview({ id }: { id: ServiceId }) {
             </div>
           </div>
         </div>
-        <figcaption>
-          Interface ilustrativa · Sem dados de clientes ou integração ativa
-        </figcaption>
       </figure>
     );
   }
@@ -132,7 +128,7 @@ export function ServicePreview({ id }: { id: ServiceId }) {
             <i />
             <i />
           </span>
-          <span>presença local / estudo de experiência</span>
+          <span>presença local</span>
           <span>↗</span>
         </div>
         <div className="local-preview" aria-hidden="true">
@@ -153,10 +149,6 @@ export function ServicePreview({ id }: { id: ServiceId }) {
                 <small>SUA IDENTIDADE · SEU CONTEXTO</small>
               </div>
             </div>
-            <span className="local-disclaimer">
-              Visual conceitual. Não representa um resultado de busca ou uma
-              posição no Google.
-            </span>
           </div>
           <div className="local-map">
             <svg viewBox="0 0 340 340" fill="none">
@@ -179,7 +171,7 @@ export function ServicePreview({ id }: { id: ServiceId }) {
             <div className="local-radius radius-outer" />
             <div className="local-radius radius-inner" />
             <span className="local-pin">g/</span>
-            <span className="map-label">MAPA ILUSTRATIVO</span>
+            <span className="map-label">MAPA</span>
           </div>
         </div>
         <figcaption>
@@ -244,14 +236,10 @@ export function ServicePreview({ id }: { id: ServiceId }) {
               <span>↗</span>
             </div>
           ))}
-          <p className="performance-disclaimer">
-            Composição ilustrativa. Sem pontuações ou medições simuladas.
-          </p>
         </div>
       </div>
       <figcaption>
-        Melhorias orientadas por diagnóstico · Sem resultados de desempenho
-        fictícios
+        Melhorias orientadas por diagnóstico
       </figcaption>
     </figure>
   );

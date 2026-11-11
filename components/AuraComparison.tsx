@@ -50,9 +50,7 @@ export function AuraComparison() {
     <div className={styles.copy}>
       <p className={styles.eyebrow}>O detalhe encontra o todo</p>
       <h2 id={`${id}-title`}>Um outro olhar.<br/>A mesma expressão.</h2>
-      <p>Deslize para observar como volumes e contornos participam da expressão do rosto.</p>
-      <p className={styles.disclosure}>Comparação ilustrativa com imagens geradas. Não representa resultados clínicos.</p>
-    </div>
+      <p>Deslize para observar como volumes e contornos participam da expressão do rosto.</p>    </div>
     <div>
       <div className={styles.picture}>
         <Image src="/images/aura-sequence/continuous-before.webp" alt="Versão anterior ilustrativa da personagem" width={1024} height={1536} unoptimized/>

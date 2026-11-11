@@ -22,8 +22,6 @@ export default function OrlaPreview() {
       <div className={styles.links}>
         <a href="/videos/projects/orla-preview.mp4" download="orla-previa.mp4">Baixar o MP4</a>
         <Link href="/propostas/orla">Abrir a experiência com scroll</Link>
-      </div>
-      <p className={styles.note}>Estudo autoral com imagens geradas, sem oferta imobiliária.</p>
-    </div>
+      </div>    </div>
   </main>;
 }

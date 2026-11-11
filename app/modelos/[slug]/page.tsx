@@ -1,6 +1,6 @@
 import { BrandGlyph } from "@/components/BrandGlyph";
 import { modelBrands } from "@/lib/model-brands";
-import { Arrow, ArrowLeft } from "@/components/ui/icons";
+import { Arrow } from "@/components/ui/icons";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,8 +25,7 @@ export default async function ModelPage({ params }: Props) {
   const brand = modelBrands[slug];
   return <div className={`niche-site niche-${model.style}`} data-brand={slug}>
     <a className="skip-link" href="#model-main">Pular para o conteúdo</a>
-    <div className="model-notice"><Link href="/#modelos"><ArrowLeft size={12} /> Voltar à galeria</Link><span>MODELO AUTORAL · MARCA FICTÍCIA</span></div>
-    <header className="model-header"><Link className="model-brand" href={`/modelos/${slug}`}><BrandGlyph kind={brand.symbol} /><span>{model.brand}<small>{brand.territory}</small></span></Link><nav aria-label="Navegação da demonstração"><a href="#atuacao">{slug === "imoveis" ? "Seleção" : "Conheça"}</a><a href="#caminho">{slug === "psicologia" ? "Como funciona" : "Abordagem"}</a><a href="#interesse">Sobre este modelo <Arrow size={12} /></a></nav></header>
+    <header className="model-header"><Link className="model-brand" href={`/modelos/${slug}`}><BrandGlyph kind={brand.symbol} /><span>{model.brand}<small>{brand.territory}</small></span></Link><nav aria-label="Navegação principal"><a href="#atuacao">{slug === "imoveis" ? "Seleção" : "Conheça"}</a><a href="#caminho">{slug === "psicologia" ? "Como funciona" : "Abordagem"}</a><a href="#interesse">Contato <Arrow size={12} /></a></nav></header>
     <main id="model-main">
       <section className="model-hero"><Image className="model-hero-image" src={`/images/models/people/${slug}.webp`} alt={brand.humanAlt} width={1672} height={941} sizes="100vw" preload /><div className="model-hero-copy"><p className="model-kicker">{model.eyebrow}</p><h1>{model.headline}</h1><p>{model.intro}</p><a className="model-button" href="#atuacao">{model.action}<Arrow size={15} aria-hidden="true" /></a></div><span className="model-hero-caption">{brand.territory}</span><div className="brand-hero-seal" aria-hidden="true"><BrandGlyph kind={brand.symbol} /><span>{brand.monogram}</span></div></section>
       <div className="brand-principles">{brand.principles.map((principle, i) => <span key={principle}><BrandGlyph kind={brand.serviceIcons[i]} />{principle}</span>)}</div>
@@ -34,9 +33,9 @@ export default async function ModelPage({ params }: Props) {
       <section className="brand-story" aria-labelledby="brand-story-title"><div className="brand-story-photo"><Image src={`/images/models/${slug}.webp`} alt={brand.sceneAlt} width={1440} height={810} sizes="(max-width: 650px) 100vw, 45vw" /><span className="brand-photo-caption">{brand.chapter}</span></div><div className="brand-story-copy"><p className="model-kicker">{brand.territory}</p><h2 id="brand-story-title">{brand.promise}</h2><p>{brand.manifesto}</p><div className="brand-signature"><BrandGlyph kind={brand.symbol} /><span>{model.brand}</span></div></div></section>
       <section id="caminho" className="model-approach"><div><p className="model-kicker">02 / NOSSA ABORDAGEM</p><h2>{model.approach}</h2><p>{brand.signature}</p></div><ol>{model.steps.map((step, i) => <li key={step}><span>0{i + 1}</span><p>{step}</p></li>)}</ol></section>
       <ModelInteraction model={model} />
-      <section className="model-faq"><p className="model-kicker">ANTES DO PRÓXIMO PASSO</p><h2>Uma dúvida importante.</h2><details><summary>{model.question}</summary><p>{model.answer}</p></details><details><summary>Este é o site de uma empresa real?</summary><p>Não. Esta é uma demonstração de design e desenvolvimento da Gabriel Batista Digital. Marca, personagens, ambientes e ofertas são fictícios. Não há equipe profissional, registro, atendimento ou empreendimento anunciado por esta marca.</p></details></section>
-      <section id="interesse" className="model-contact"><p className="model-kicker">GOSTOU DESTA DIREÇÃO?</p><h2>Uma presença assim.<br />Com a identidade do seu negócio.</h2><p>Converse com Gabriel sobre um projeto próprio para {model.niche.toLowerCase()}, com conteúdo, imagens e funcionalidades definidos para a sua operação.</p><a className="model-button" href={buildWhatsAppUrl(`Olá, Gabriel! Conheci o modelo ${model.brand}, para ${model.niche}, e quero conversar sobre um projeto para meu negócio.`)} target="_blank" rel="noopener noreferrer">Conversar com Gabriel <Arrow size={15} aria-hidden="true" /></a><p className="model-fine">Contato com o desenvolvedor do site, não com uma empresa deste nicho.</p></section>
+      <section className="model-faq"><p className="model-kicker">ANTES DO PRÓXIMO PASSO</p><h2>Uma dúvida importante.</h2><details><summary>{model.question}</summary><p>{model.answer}</p></details></section>
+      <section id="interesse" className="model-contact"><p className="model-kicker">GOSTOU DESTA DIREÇÃO?</p><h2>Uma presença assim.<br />Com a identidade do seu negócio.</h2><p>Converse com Gabriel sobre um projeto próprio para {model.niche.toLowerCase()}, com conteúdo, imagens e funcionalidades definidos para a sua operação.</p><a className="model-button" href={buildWhatsAppUrl(`Olá, Gabriel! Conheci o modelo ${model.brand}, para ${model.niche}, e quero conversar sobre um projeto para meu negócio.`)} target="_blank" rel="noopener noreferrer">Conversar com Gabriel <Arrow size={15} aria-hidden="true" /></a></section>
     </main>
-    <footer className="model-footer"><span>{model.brand} · ESTUDO CONCEITUAL</span><Link href="/#modelos">Gabriel Batista Digital <Arrow size={12} /></Link><span>Imagens geradas · Nenhum cliente real representado</span></footer>
+    <footer className="model-footer"><span>© 2026 {model.brand}</span><Link href="/#modelos">Site por Gabriel Batista Digital <Arrow size={12} /></Link></footer>
   </div>;
 }

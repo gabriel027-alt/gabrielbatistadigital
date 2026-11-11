@@ -121,7 +121,8 @@ test("Vanguard fits phones and shows the final state with reduced motion", async
   for (const title of ["Água", "Sombra", "Abertura"]) await expect(page.locator("[data-vg-step]").filter({ hasText: title })).toBeVisible();
   for (const title of ["Terreno", "Conversa", "Estudo", "Casa"]) await expect(page.locator("[data-vg-process-step] strong").getByText(title, { exact: true })).toBeVisible();
   for (const layer of ["terreno", "conversa", "maquete", "casa"]) await expect(page.locator(`[data-vg-layer="${layer}"] img`)).toBeVisible();
-  await expect(page.getByText("Nenhum projeto aqui corresponde a obra executada.")).toBeVisible();
+  await expect(page.locator("footer")).toContainText("Site por Gabriel Batista Digital");
+  await expect(page.locator("footer")).not.toContainText("Imagens geradas");
   await expect(page.locator('a[href*="wa.me"]')).toHaveCount(0);
   expect((await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze()).violations).toEqual([]);
 });

@@ -1,6 +1,7 @@
 import { BrandInquiry } from "@/components/BrandInquiry";
 import type { Metadata } from "next";
 import Image from "next/image";
+import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
 import { OrlaMotion } from "@/components/OrlaMotion";
 import styles from "./orla.module.css";
@@ -47,6 +48,6 @@ export default function OrlaPage() {
       </section>
       <BrandInquiry brand="orla" />
     </main>
-    <footer className={styles.footer}><a href="#orla-inicio" aria-label="Orla, voltar ao início">orla</a><div><span>Entre a casa e a paisagem.</span><p>Estudo autoral. Imagens geradas.<br />Sem oferta de imóveis ou atendimento imobiliário.</p></div></footer>
+    <footer className={styles.footer}><a href="#orla-inicio" aria-label="Orla, voltar ao início">orla</a><div><span>Entre a casa e a paisagem.</span><p>© 2026 Orla Residências.<br />Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p></div></footer>
   </div>;
 }

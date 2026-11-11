@@ -23,7 +23,7 @@ const content: Record<Brand, Content> = {
     ],
     next: "Uma avaliação individual considera suas expectativas, suas características e os limites de cada possibilidade. Essas escolhas ajudam a começar a conversa; não indicam um procedimento.",
     invitation: "Uma avaliação começa por ouvir.", stepNames: ["Seu interesse", "Sua dúvida"], stepTitles: ["O que chama sua atenção?", "Vamos esclarecer sua dúvida."],
-    summaryTitle: "Seu ponto de partida.", noscript: "Para começar, pense na região de interesse e nas dúvidas que deseja esclarecer em uma avaliação individual.", privacyItem: "agendamento",
+    summaryTitle: "Seu ponto de partida.", noscript: "Para começar, pense na região de interesse e nas dúvidas que deseja esclarecer em uma avaliação individual.",
   },
   orla: {
     name: "Orla", title: "Como é a casa que você procura?",
@@ -38,7 +38,7 @@ const content: Record<Brand, Content> = {
     ],
     next: "Localização, arquitetura e condições de compra precisam ser avaliadas em conjunto. Este resumo organiza o que importa para você antes de aprofundar a busca.",
     invitation: "Uma seleção começa pelas suas preferências.", stepNames: ["Seu objetivo", "O lugar", "Investimento e prazo"], stepTitles: ["Uma casa para qual momento?", "O lugar também faz parte.", "Vamos delimitar sua busca."],
-    summaryTitle: "Uma busca com direção.", noscript: "Para começar, considere a finalidade do imóvel, a região, o investimento e o prazo da sua busca.", privacyItem: "pedido de visita",
+    summaryTitle: "Uma busca com direção.", noscript: "Para começar, considere a finalidade do imóvel, a região, o investimento e o prazo da sua busca.",
   },
   forma: {
     name: "Forma", title: "Vamos preparar a sua avaliação.",
