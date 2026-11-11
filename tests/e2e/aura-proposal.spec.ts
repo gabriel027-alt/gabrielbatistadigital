@@ -141,19 +141,19 @@ test("Aura holds the camera while the illustrative comparison changes and revers
   });
   const unchangedEye=await eyePixels();
   await expect(page.locator('[data-malar-progress]')).toHaveAttribute('style','transform: scaleX(0);');
-  await expect(page.locator('[data-comparison-label]').first()).toHaveText('Antes · simulação');
+  await expect(page.locator('[data-comparison-label]').first()).toHaveText('Antes');
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.14)); await page.waitForTimeout(800);
   expect(await camera.getAttribute('data-camera')).toBe(position);
   expect((await camera.screenshot()).equals(before)).toBe(false);
-  await expect(page.locator('[data-comparison-label]').first()).toHaveText('Depois · simulação');
+  await expect(page.locator('[data-comparison-label]').first()).toHaveText('Depois');
   await expect(page.locator('[data-malar-progress]')).toHaveAttribute('style','transform: scaleX(1);');
   expect(await eyePixels()).toEqual(unchangedEye);
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(800);
   expect((await camera.screenshot()).equals(before)).toBe(true);
   await page.emulateMedia({reducedMotion:'reduce'});
   await expect(track).not.toHaveAttribute('data-sequence-animated','true');
-  await page.getByText('Ver comparação ilustrativa',{exact:true}).first().click();
-  await expect(page.getByAltText('Antes — variação digital ilustrativa da personagem').first()).toBeVisible();
+  await page.getByText('Ver comparação',{exact:true}).first().click();
+  await expect(page.getByAltText('Antes — o rosto da personagem').first()).toBeVisible();
 });
 
 
@@ -168,7 +168,7 @@ test("Compact browser retains animated regional comparisons instead of repeated 
   await expect(page.locator('[data-photo-copy]').nth(i)).toHaveAttribute('data-active','true');
   await expect(page.locator('[data-photo-copy]').nth(i).getByRole('heading')).toBeInViewport();
   await expect(camera).toBeVisible();
-  await expect(page.locator('summary').filter({hasText:'Ver comparação ilustrativa'}).first()).toBeHidden();
+  await expect(page.locator('summary').filter({hasText:'Ver comparação'}).first()).toBeHidden();
  }
  await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(650);
  const initial=await camera.getAttribute('data-comparison');
@@ -176,5 +176,5 @@ test("Compact browser retains animated regional comparisons instead of repeated 
  expect(await camera.getAttribute('data-comparison')).not.toBe(initial);
  await page.emulateMedia({reducedMotion:'reduce'});
  await expect(track).not.toHaveAttribute('data-sequence-animated','true');
- await expect(page.locator('summary').filter({hasText:'Ver comparação ilustrativa'}).first()).toBeVisible();
+ await expect(page.locator('summary').filter({hasText:'Ver comparação'}).first()).toBeVisible();
 });

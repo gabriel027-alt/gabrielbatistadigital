@@ -15,7 +15,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Contato exclusivamente pelo número 5538998267717, centralizado em lib/site.ts.
 - Preserve os três conceitos existentes. A galeria /modelos reúne modelos de nichos com marcas criadas para o portfólio.
 - **Sem avisos em nenhum projeto (decisão do usuário em 11/11/2026).** Nada de “demonstração”, “marca fictícia”, “estudo autoral/conceitual”, “imagens geradas” ou “nada é enviado”, nem no portfólio nem nas marcas. O propósito é parecer entrega ou simbolizar projetos selecionados. Rodapé das marcas: “© 2026 <marca>. Site por Gabriel Batista Digital”.
-  - Exceção mantida: na Aura, as comparações antes/depois de harmonização seguem com a palavra “simulação” nos rótulos. Sem ela, uma personagem gerada passaria por resultado clínico real.
+  - Em 11/11/2026 o usuário pediu para retirar também a palavra “simulação” dos rótulos antes/depois da Aura. Os rótulos são só “Antes”, “Depois” e “Antes → Depois”. As instruções antigas abaixo que pedem identificação visível ou rótulo de simulação nas comparações da Aura estão substituídas.
+  - Mesmo assim, não escrever que as imagens são de paciente real ou resultado de tratamento feito.
   - A regra não autoriza inventar clientes, depoimentos, números, registros profissionais ou resultados, nem dizer que um agendamento foi feito.
 - O layout é um Server Component; interações ficam em componentes cliente pequenos.
 - Tema usa data-theme e tokens de app/globals.css. Não volte a espalhar cores fixas da agência pelo JSX.

@@ -53,9 +53,9 @@ export function AuraComparison() {
       <p>Deslize para observar como volumes e contornos participam da expressão do rosto.</p>    </div>
     <div>
       <div className={styles.picture}>
-        <Image src="/images/aura-sequence/continuous-before.webp" alt="Versão anterior ilustrativa da personagem" width={1024} height={1536} unoptimized/>
+        <Image src="/images/aura-sequence/continuous-before.webp" alt="O rosto da personagem antes" width={1024} height={1536} unoptimized/>
         <div className={styles.after} style={{clipPath:`inset(0 ${100-position}% 0 0)`}} data-comparison-reveal>
-          <Image src="/images/aura-sequence/continuous-portrait.webp" alt="Versão final ilustrativa da mesma personagem" width={1024} height={1536} unoptimized/>
+          <Image src="/images/aura-sequence/continuous-portrait.webp" alt="O mesmo rosto depois" width={1024} height={1536} unoptimized/>
         </div>
         <span className={styles.afterLabel} style={{visibility:position>1 ? "visible" : "hidden"}}>Depois</span><span className={styles.beforeLabel} style={{visibility:position<99 ? "visible" : "hidden"}}>Antes</span>
         <div className={styles.divider} style={{left:`${position}%`}} aria-hidden="true"><span>↔</span></div>
