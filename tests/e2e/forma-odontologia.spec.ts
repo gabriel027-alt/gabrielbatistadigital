@@ -44,7 +44,6 @@ test("Forma keeps the conversion skeleton and a local booking flow", async ({ pa
   await expect(page.locator('[aria-labelledby="diferenciais-titulo"] li')).toHaveCount(5);
   await expect(page.locator("#sobre img")).toBeVisible();
   await expect(page.getByRole("img", { name: /planejamento do sorriso/ })).toBeVisible();
-  await expect(page.getByText("Não representa um paciente.")).toBeVisible();
   for (const title of ["Medir", "Desenhar", "Ensaiar"]) await expect(page.locator("[data-plan-step]").filter({ hasText: title })).toBeVisible();
   const cards = page.locator("[data-treatment]");
   await expect(cards).toHaveCount(4);
@@ -61,6 +60,9 @@ test("Forma keeps the conversion skeleton and a local booking flow", async ({ pa
   await dialog.getByText("Manhã").click();
   await dialog.getByRole("button", { name: "Ver meu resumo" }).click();
   await expect(dialog.getByRole("heading", { name: "Sua avaliação, preparada." })).toBeVisible();
+  // The owner asked for no demo notices inside the brand: no "nothing is sent" line, no "demonstração" in the footer.
+  await expect(dialog).not.toContainText("Nada é enviado");
+  await expect(page.locator("footer")).not.toContainText("demonstra");
   await dialog.getByRole("button", { name: "Voltar ao site" }).click();
 
   for (const width of [360, 390, 768, 1440]) {

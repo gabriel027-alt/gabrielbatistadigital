@@ -44,11 +44,12 @@ export const brandKits: BrandKit[] = [
   {
     id: "almeida", route: "/modelos/patrimonio", niche: "Advocacia de família e sucessões",
     concept: "O patrimônio passa de mãos.", mark: "Lacre de cera com A&V em relevo",
-    palette: { papel: "#f3ede2", tinta: "#2b2420", lacre: "#8c2f23", garrafa: "#1f3b33", latao: "#a8864d" },
-    material: "Papel de algodão com fibra e relevo", typography: { display: "Cormorant Garamond", text: "Source Sans 3" },
-    photo: "Still life documental em duotom; retrato em preto e branco granulado",
-    signatureGraphic: "Linha de tinta com nós, como árvore genealógica",
-    signatureMotion: "A partilha se desenha: uma linha que se divide até os herdeiros",
-    hero: "Página composta como escritura, com cláusulas e lacre", status: "proposto",
+    // 2026-11-11: palette taken from the current office photos (user chose to keep them), not from the paper/bottle-green proposal.
+    palette: { noite: "#151a22", nogueira: "#4b3221", conhaque: "#8a4f2e", latao: "#c49a6c", marfim: "#f5ecdf" },
+    material: "Nogueira e latão escovado", typography: { display: "Cormorant Garamond", text: "Source Sans 3" },
+    photo: "Escritório em azul-noite, nogueira, couro e luminária de latão",
+    signatureGraphic: "Linha de latão com nós, como árvore genealógica",
+    signatureMotion: "A partilha se desenha: do patrimônio, uma linha que se divide até os herdeiros",
+    hero: "Escritório noturno com o título sublinhado por uma linha de latão e o lacre", status: "aprovado",
   },
 ];

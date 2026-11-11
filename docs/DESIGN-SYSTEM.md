@@ -37,7 +37,7 @@ Compartilhada por todas as marcas, sem determinar a aparência:
 | Conversão | Componente BrandInquiry (roteiro local, sem envio de dados). Botões de chamada em vários pontos, com textos diferentes. |
 | Ícones | `components/ModelIcon.tsx` só como apoio. Ícone nunca é o elemento de identidade. |
 | Verificação | Playwright: formato, roteiro, 360/390/768/1440 sem overflow, axe AA, sem JS. Vídeo da rolagem para ida e volta, no celular e com movimento reduzido. |
-| Conteúdo | Nada de números, depoimentos, registros profissionais, endereços ou antes/depois inventados. A identificação de projeto conceitual fica no rodapé. |
+| Conteúdo | Nada de números, depoimentos, registros profissionais, endereços ou antes/depois inventados. Rodapé como site de cliente: “© 2026 <marca>. Site por Gabriel Batista Digital”. Em 11/11/2026 o usuário dispensou os avisos dentro das marcas: demonstração no rodapé, legendas das ilustrações e “Nada é enviado” no roteiro (`privacyItem` opcional no BrandInquiry). A ilustração mantém o nome acessível descritivo no SVG, e o resumo do roteiro não afirma agendamento feito. |
 
 ## Camada 2: kit de marca (obrigatório e único por marca)
 
@@ -93,7 +93,7 @@ Cada nova marca precisa diferir de todas as anteriores em pelo menos 6 dos 7 cam
 | Orla (imóveis) | definida em ORLA-DIRECAO | Costa | Arquitetura costeira | Galeria lateral | Trilho horizontal | Fotografia lateral |
 | Vanguard (arquitetura) | Manrope | Mineral e papel | Arquitetura e maquete | Linhas medidas | A rolagem é o lápis | Folha que vira casa |
 | Forma (odontologia) | Lora | Porcelana, linho, vinho; cerâmica quente sobre travertino | Consultório quente, foto larga e retrato | Grade de proporção | Grade, contornos em proporção áurea, cerâmica | Foto larga com o texto sobre a pedra |
-| Almeida (sucessões) | Cormorant Garamond | Papel, tinta, lacre; papel de algodão | Still life em duotom | Linha de tinta com nós | A partilha se desenha | Escritura com lacre |
+| Almeida (sucessões) | Cormorant Garamond | Noite, nogueira, conhaque, latão, marfim; nogueira e latão | Escritório azul-noite com luminária de latão | Linha de latão com nós; lacre; cláusulas e índice | A partilha se desenha | Escritório noturno com título sublinhado em latão e lacre |
 
 ## Kits aprovados pelo usuário em 10/11/2026
 
@@ -220,6 +220,49 @@ Regra para todos os nichos:
 - Evidência técnica: suíte completa com 94 aprovados e 4 pulados (música). Vídeos em `docs/preview/forma/`.
 - **Aprovada pelo usuário em 11/11/2026.** É a primeira marca validada do sistema e a referência para os próximos nichos.
 - O recorte da dentista deixa de ser necessário nesta direção.
+## Almeida pelo sistema (11/11/2026)
+
+O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (papel, lacre, verde-garrafa) foi substituída pela das fotos, para não repetir o erro do azul-gelo da Forma.
+
+**Cores medidas por k-means nas duas fotos:**
+- parede #15181e;
+- nogueira #4b3221;
+- couro #946e51;
+- latão #c69b71;
+- luz #f3e3cd.
+
+**Tokens:** noite #151a22, nogueira #4b3221, conhaque #8a4f2e, latão #c49a6c, latão escuro #8d6a3f, marfim #f5ecdf e suave #5c5048.
+
+**Estrutura validada, com camada própria:**
+1. Hero noturno com o título sublinhado por uma linha de latão que se desenha ao carregar, e o lacre de cera A&V (`AlmeidaSeal.tsx`).
+2. As três dúvidas escritas como cláusulas (§ 1, § 2, § 3) sob fio duplo.
+3. **Assinatura “A partilha, passo a passo”** (`EstateTree.tsx`, `AlmeidaMotion.tsx`), cena fixa de 3,8 telas:
+   - patrimônio da família;
+   - bens;
+   - a linha do inventário até o nó (cartório ou judicial);
+   - anel do imposto;
+   - ramos até os herdeiros, com “registro em seu nome”.
+
+   Sem frações, porque a divisão depende da lei e de cada família; a legenda diz isso. A cena substitui a faixa escura numerada.
+4. Áreas de atuação como índice de documento: algarismos romanos, pontilhado e “Ler”.
+5. Escritório com sombra de nogueira deslocada, sem selo circular.
+6. FAQ sobre o fundo noite.
+7. Roteiro local.
+8. Rodapé em nogueira.
+
+**Tipografia:** Cormorant Garamond com Source Sans 3, ambas OFL via `next/font/google`.
+
+**Correções:**
+- O tronco da árvore cruzava o rótulo “Contas e aplicações”.
+- No celular, os rótulos ficavam pequenos: o texto aumenta e as notas secundárias somem, porque já estão nos passos.
+
+**Evidência:**
+- `almeida-patrimonio.spec.ts` (3 testes): sequência de ida e volta, pausa, esqueleto de conversão, textos proibidos, roteiro, 4 larguras, axe AA e sem JS.
+- `brand-kits.spec.ts` aprovado.
+- Vídeos em `docs/preview/almeida/`.
+- Design system “Gabriel Batista Digital — Marcas” atualizado na conta do usuário.
+- **Aprovada pelo usuário em 11/11/2026.** O aviso de demonstração foi trocado pelo crédito “Site por Gabriel Batista Digital”, também na Forma.
+
 ## Processo por marca
 
 1. **Entrevista curta:** reaproveitar as respostas já dadas e perguntar só o que falta.

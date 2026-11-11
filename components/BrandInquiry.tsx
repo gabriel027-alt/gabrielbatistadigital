@@ -8,7 +8,9 @@ type Brand = "aura" | "orla" | "forma" | "almeida";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
-  invitation: string; stepNames: string[]; stepTitles: string[]; summaryTitle: string; noscript: string; privacyItem: string;
+  invitation: string; stepNames: string[]; stepTitles: string[]; summaryTitle: string; noscript: string;
+  /** What is not made (an appointment, a visit request). Omitted for brands whose owner asked to drop the notice. */
+  privacyItem?: string;
 };
 const subscribe = () => () => {};
 const content: Record<Brand, Content> = {
@@ -50,7 +52,7 @@ const content: Record<Brand, Content> = {
     ],
     next: "Na primeira consulta, a dentista conversa sobre o que você quer mudar, examina e explica as alternativas, com etapas e orçamento por escrito. Nenhum tratamento é decidido antes disso.",
     invitation: "A primeira consulta é uma conversa.", stepNames: ["O que resolver", "Quando"], stepTitles: ["Por onde começamos?", "Vamos encontrar um horário."],
-    summaryTitle: "Sua avaliação, preparada.", noscript: "Para agendar, pense no que você quer resolver e no melhor período para a primeira consulta.", privacyItem: "agendamento",
+    summaryTitle: "Sua avaliação, preparada.", noscript: "Para agendar, pense no que você quer resolver e no melhor período para a primeira consulta.",
   },
   almeida: {
     name: "Almeida & Valença", title: "Conte o que a sua família precisa resolver.",
@@ -64,7 +66,7 @@ const content: Record<Brand, Content> = {
     ],
     next: "Na primeira conversa, a advogada entende a situação da família, explica os caminhos possíveis e apresenta custos e prazos por escrito. Nenhuma decisão é tomada antes disso.",
     invitation: "A primeira conversa é para entender o seu caso.", stepNames: ["Sua situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como prefere conversar?"],
-    summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense na situação da família e em como prefere a primeira conversa.", privacyItem: "agendamento",
+    summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense na situação da família e em como prefere a primeira conversa.",
   },
 };
 
@@ -109,9 +111,9 @@ export function BrandInquiry({ brand }: { brand: Brand }) {
     <div className={styles.invitation}><p className={styles.brandName}>{data.invitation}</p><h2 id={`${id}-section-title`}>{data.title}</h2></div>
     <div className={styles.offer}><p>{data.intro}</p>{hydrated && <button type="button" className={styles.launch} onClick={show}>{completed ? "Rever minhas escolhas" : data.action}<Arrow size={21} /></button>}
       <p className={styles.note}>{completed ? "Seu resumo continua disponível enquanto esta página estiver aberta." : "Sem cadastro. Você pode rever suas escolhas."}</p>
-      <noscript><p>O roteiro interativo precisa de JavaScript. {data.noscript} Nenhuma informação é enviada.</p></noscript>
+      <noscript><p>O roteiro interativo precisa de JavaScript. {data.noscript}{data.privacyItem && " Nenhuma informação é enviada."}</p></noscript>
     </div>
-    <dialog ref={dialog} className={styles.dialog} aria-labelledby={`${id}-title`} aria-describedby={`${id}-privacy`} onClose={() => opener.current?.focus()}>
+    <dialog ref={dialog} className={styles.dialog} aria-labelledby={`${id}-title`} aria-describedby={data.privacyItem ? `${id}-privacy` : undefined} onClose={() => opener.current?.focus()}>
       <div className={styles.dialogHeader}><span>{data.name}</span><button type="button" onClick={close} aria-label="Fechar roteiro">Fechar <span aria-hidden="true">×</span></button></div>
       <ol className={styles.steps} aria-label="Etapas do roteiro">{data.steps.map((_, index) => <li key={index} aria-current={!summary && step === index ? "step" : undefined}>{data.stepNames[index]}</li>)}<li aria-current={summary ? "step" : undefined}>Seu resumo</li></ol>
       <div className={styles.body}>
@@ -124,7 +126,7 @@ export function BrandInquiry({ brand }: { brand: Brand }) {
           {data.steps[step].map(question => <fieldset key={question.key} className={styles.fieldset}><legend>{question.label}</legend><div className={styles.options}>{question.options.map(option => <label key={option}><input type="radio" name={`${id}-${question.key}`} value={option} checked={answers[question.key] === option} required onChange={() => setAnswers(previous => ({ ...previous, [question.key]: option }))} /><span>{option}</span></label>)}</div></fieldset>)}
           <div className={styles.actions}>{step > 0 && <button className={styles.back} type="button" onClick={() => setStep(value => value - 1)}>Voltar</button>}<button className={styles.primary} type="submit">{step === data.steps.length - 1 ? "Ver meu resumo" : "Continuar"}<Arrow size={18} /></button></div>
         </form>}
-        <p id={`${id}-privacy`} className={styles.privacy}>As escolhas ficam nesta página. Nada é enviado e nenhum {data.privacyItem} é realizado.</p>
+        {data.privacyItem && <p id={`${id}-privacy`} className={styles.privacy}>As escolhas ficam nesta página. Nada é enviado e nenhum {data.privacyItem} é realizado.</p>}
       </div>
     </dialog>
   </section>;

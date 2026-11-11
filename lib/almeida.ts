@@ -23,6 +23,15 @@ export const values: { icon: ModelIconName; title: string; text: string }[] = [
   { icon: "people", title: "Acompanhamento", text: "Você sabe em que etapa o processo está, sem precisar perguntar." },
 ];
 
+/** Steps of the signature scene, each lighting one part of the estate tree. */
+export const partitionSteps = [
+  { title: "Primeira conversa", text: "Entendemos a família, o que ela tem e o que precisa resolver." },
+  { title: "Documentos e bens", text: "Imóveis, contas e participações em empresas entram no levantamento." },
+  { title: "Escolha da via", text: "Cartório, quando há acordo e a lei permite, ou processo judicial." },
+  { title: "Imposto e avaliação", text: "Os bens são avaliados e o ITCMD é calculado e pago." },
+  { title: "Partilha e registro", text: "A divisão é formalizada e cada bem passa para o nome de quem herda." },
+];
+
 export const inventorySteps = [
   { title: "Primeira conversa", text: "Entendemos a situação da família e os bens envolvidos." },
   { title: "Documentos e bens", text: "Reunimos certidões, documentos pessoais e comprovantes de cada bem." },

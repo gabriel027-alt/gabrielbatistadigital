@@ -154,7 +154,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - paleta e material sempre derivados das fotos da marca.
 - O azul-gelo da Forma foi rejeitado por não combinar com a foto quente da dentista.
 - A Forma harmonizada (versão aprovada com o F do incisivo e a cena de planejamento em vinho e cerâmica quente) foi **aprovada pelo usuário em 11/11/2026**. É a referência validada do design system para os próximos nichos.
-- A Almeida aguarda as imagens.
+- A Almeida foi refeita pelo sistema com as fotos atuais, por escolha do usuário, e foi **aprovada em 11/11/2026**.
+  - Paleta medida nas fotos: noite, nogueira, conhaque, latão e marfim.
+  - Camada própria: lacre A&V, linha de latão, cláusulas §, índice e a cena “A partilha, passo a passo”.
+- Rodapé das marcas: o usuário dispensou o aviso de projeto conceitual ou demonstração. O rodapé leva “© 2026 <marca>. Site por Gabriel Batista Digital”, com link para a galeria, como num site de cliente. Não reintroduzir avisos de demonstração dentro das marcas.
+  - A pedido dele, também saíram as legendas das ilustrações (“Não representa um paciente”, “A divisão depende da lei…”) e o aviso “Nada é enviado” do roteiro local na Forma e na Almeida. No BrandInquiry, `privacyItem` ficou opcional; Aura e Orla mantêm o aviso.
+  - Isso não autoriza inventar registros, depoimentos ou resultados, nem afirmar que um agendamento foi feito.
+- Design system na conta do usuário: https://claude.ai/artifact/KVvH8Vh2nDhJCLLPv3yVkY (privado). Atualizar junto quando uma marca mudar.
 - O recorte da dentista por GrabCut foi rejeitado pela qualidade. Não há Blender nem gerador de imagem neste Windows.
 
 ## Modelos de nicho de alto ticket (plano de 10/11/2026)

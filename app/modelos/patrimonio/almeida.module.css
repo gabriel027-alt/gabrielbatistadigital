@@ -1,133 +1,158 @@
-/* Almeida & Valença, in the format of the reference legal sites: navy hero with the lawyer and a gold curve,
-   question cards, practice areas, office section with seal and values, navy step band, FAQ. */
-.page{--marinho:#0f1a2e;--marinho-2:#16233b;--ouro:#c9a35a;--ouro-claro:#e2c78f;--marfim:#f8f5ef;--areia:#efe8dc;--tinta:#141c2c;--linha:#e2dacb;--suave:#5b6170;
-  background:var(--marfim);color:var(--tinta);font-family:var(--font-manrope),sans-serif;font-size:16px;line-height:1.6;overflow-x:clip}
+/* Almeida & Valença. Validated structure plus the brand layer: the cognac wax seal, the brass ink line,
+   clauses, a document index and the estate tree. Palette from the office photos: night-blue wall, walnut, cognac leather, brass, lamp light. */
+.page{--noite:#151a22;--noite-2:#1f2631;--nogueira:#4b3221;--conhaque:#8a4f2e;--latao:#c49a6c;--latao-escuro:#8d6a3f;--marfim:#f5ecdf;--marfim-2:#ede2d1;--tinta:#1b1612;--suave:#5c5048;--claro:#ddd0bf;
+  background:var(--marfim);color:var(--tinta);font-family:var(--almeida-sans),system-ui,sans-serif;font-size:17px;line-height:1.65;overflow-x:clip}
 .page *{box-sizing:border-box}
-.page h1,.page h2,.page h3{font-family:var(--almeida-serif),Georgia,serif;font-weight:500;letter-spacing:0;text-wrap:balance;color:var(--marinho)}
-.page h1 em,.page h2 em{font-style:italic}
-.page :is(a,button,summary):focus-visible{outline:2px solid var(--ouro);outline-offset:4px}
-.skip{position:absolute;left:16px;top:-80px;z-index:20;padding:12px 16px;background:var(--marinho);color:#fff}
+.page h1,.page h2,.page h3{font-family:var(--almeida-serif),Georgia,serif;font-weight:600;letter-spacing:-.005em;line-height:1.05;text-wrap:balance;margin:0}
+.page :is(a,button,summary):focus-visible{outline:2px solid var(--conhaque);outline-offset:4px}
+.skip{position:absolute;left:16px;top:-80px;z-index:20;padding:12px 16px;background:var(--noite);color:var(--marfim)}
 .skip:focus{top:12px}
-.kicker{display:flex;align-items:center;gap:12px;margin:0 0 18px;font-size:12px;font-weight:700;letter-spacing:.06em;color:#8a6a2c}
-.kicker:before{content:"";width:28px;height:1px;background:currentColor}
+.section{margin:0 0 14px;font-family:var(--almeida-serif),serif;font-size:19px;font-style:italic;color:var(--conhaque)}
 
-.header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:40px;padding:14px 5vw;background:var(--marinho);color:#fff}
-.logo{display:flex;align-items:center;gap:12px;color:#fff;text-decoration:none;font-family:var(--almeida-serif),serif;font-size:19px;line-height:1.1}
-.logo small{display:block;font-family:var(--font-manrope),sans-serif;font-size:11px;letter-spacing:.12em;color:var(--ouro-claro)}
-.monogram{display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border:1px solid var(--ouro);border-radius:50%;font-family:var(--almeida-serif),serif;font-size:15px;color:var(--ouro-claro)}
-.monogram i{font-style:italic;font-size:12px;margin:0 1px}
-.header nav{display:flex;gap:28px;margin-left:auto;font-size:14px}
-.header nav a{color:#ffffffd9;text-decoration:none;padding:8px 0}
-.header nav a:hover{color:var(--ouro-claro)}
-.headerCta,.gold,.navyButton{display:inline-flex;align-items:center;min-height:48px;padding:13px 26px;border-radius:40px;font-size:14px;font-weight:700;text-decoration:none}
-.headerCta,.gold{background:var(--ouro);color:var(--marinho)}
-.headerCta:hover,.gold:hover{background:var(--ouro-claro)}
-.navyButton{background:var(--marinho);color:#fff}
-.navyButton:hover{background:var(--marinho-2)}
-.lightLink{display:inline-flex;align-items:center;min-height:44px;color:#fff;font-size:14px;font-weight:600;text-decoration:underline;text-underline-offset:6px}
+.header{position:sticky;top:0;z-index:10;display:flex;align-items:center;gap:36px;padding:12px 5vw;background:var(--noite);color:var(--marfim);border-bottom:1px solid #c49a6c40}
+.logo{display:flex;align-items:center;gap:12px;color:var(--marfim);text-decoration:none;font-family:var(--almeida-serif),serif;font-size:22px;font-weight:600;line-height:1.05}
+.logo small{display:block;font-family:var(--almeida-sans),sans-serif;font-size:12px;font-weight:400;color:var(--claro)}
+.logoSeal{color:var(--conhaque);flex:none}
+.header nav{display:flex;gap:28px;margin-left:auto;font-size:15px}
+.header nav a{color:var(--claro);text-decoration:none;padding:8px 0}
+.header nav a:hover{color:var(--latao)}
+.headerCta,.brass,.inkButton{display:inline-flex;align-items:center;min-height:48px;padding:12px 24px;border-radius:4px;font-size:15px;font-weight:600;text-decoration:none}
+.headerCta,.brass{background:var(--latao);color:var(--noite)}
+.headerCta:hover,.brass:hover{background:#d6b086}
+.inkButton{background:var(--noite);color:var(--marfim)}
+.inkButton:hover{background:var(--nogueira)}
+.lightLink{display:inline-flex;align-items:center;min-height:44px;color:var(--marfim);font-size:15px;font-weight:600;text-decoration:underline;text-decoration-color:var(--latao);text-underline-offset:6px}
 
-/* Hero: the office photo, the navy wall on the left under the text, a gold curve crossing it. */
-.hero{position:relative;min-height:min(88svh,780px);display:flex;align-items:center;padding:90px 5vw;overflow:hidden;background:var(--marinho);color:#fff}
+/* Hero: the night office, the title underlined by a brass ink line, the seal pressed beside it. */
+.hero{position:relative;min-height:min(88svh,780px);display:flex;align-items:center;padding:90px 5vw;overflow:hidden;background:var(--noite);color:var(--marfim)}
 .heroImage{object-fit:cover;object-position:68% 40%;z-index:0}
-.hero:after{content:"";position:absolute;inset:0;z-index:1;background:linear-gradient(90deg,#0f1a2ef5 0%,#0f1a2ee0 36%,#0f1a2e70 56%,transparent 72%)}
-.swoosh{position:absolute;inset:0;z-index:2;width:100%;height:100%;pointer-events:none}
-.swoosh path{fill:none;stroke:var(--ouro);stroke-width:2;opacity:.8;vector-effect:non-scaling-stroke}
-.swoosh path+path{opacity:.35}
-.heroCopy{position:relative;z-index:3;max-width:580px}
-.hero .kicker{color:var(--ouro-claro)}
-.heroCopy h1{margin:0 0 24px;font-size:clamp(38px,4.4vw,62px);line-height:1.08;color:#fff}
-.heroCopy h1 em{color:var(--ouro-claro)}
-.heroCopy>p{margin:0 0 34px;max-width:46ch;font-size:17px;color:#ffffffd1}
-.heroActions{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-bottom:42px}
-.trust{display:flex;flex-wrap:wrap;gap:26px;margin:0;padding:0;list-style:none;font-size:13px;color:#ffffffc7}
+.hero:after{content:"";position:absolute;inset:0;z-index:1;background:radial-gradient(120% 90% at 85% 40%,transparent 30%,#151a22b3 70%),linear-gradient(90deg,#151a22f2 0%,#151a22cc 38%,transparent 66%)}
+.heroCopy{position:relative;z-index:2;max-width:600px}
+.hero .section{color:var(--latao)}
+.heroCopy h1{font-size:clamp(44px,5vw,74px);color:var(--marfim)}
+.inkLine{display:block;width:min(420px,80%);height:20px;margin:14px 0 26px}
+.inkLine path{fill:none;stroke:var(--latao);stroke-width:3;stroke-linecap:round}
+.lead{margin:0 0 32px;max-width:46ch;color:var(--claro)}
+.actions{display:flex;flex-wrap:wrap;align-items:center;gap:24px;margin-bottom:40px}
+.trust{display:flex;flex-wrap:wrap;gap:26px;margin:0;padding:0;list-style:none;font-size:14px;color:var(--claro)}
 .trust li{display:flex;align-items:center;gap:8px}
-.trust svg{color:var(--ouro);flex:none}
+.trust svg{color:var(--latao);flex:none}
+.heroSeal{position:absolute;z-index:2;left:calc(5vw + 520px);bottom:12svh;color:var(--conhaque);filter:drop-shadow(0 10px 18px #0007)}
 
-/* Doubts: three question cards. */
-.doubts{padding:96px 5vw;background:#fff}
-.doubts>h2{max-width:780px;margin:0 auto 50px;font-size:clamp(28px,2.8vw,42px);line-height:1.2;text-align:center}
-.doubtGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1180px;margin:0 auto}
-.doubtGrid article{padding:32px 30px;border:1px solid var(--linha);border-radius:12px;background:#fff;box-shadow:0 10px 30px #0f1a2e0d}
-.doubtGrid h3{margin:0 0 14px;font-size:22px;line-height:1.25}
-.doubtGrid p{margin:0;color:var(--suave);font-size:15px}
-.center{display:flex;justify-content:center;margin-top:44px}
+/* Clauses: the three doubts written like the paragraphs of a deed. */
+.clauses{padding:110px 5vw;background:var(--marfim)}
+.clauses>h2{max-width:20ch;margin-bottom:56px;font-size:clamp(34px,3.6vw,54px)}
+.clauseGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:4vw;margin-bottom:56px}
+.clauseGrid article{padding-top:22px;border-top:3px double var(--latao-escuro)}
+.clauseMark{display:block;margin-bottom:12px;font-family:var(--almeida-serif),serif;font-size:30px;color:var(--conhaque)}
+.clauseGrid h3{margin-bottom:14px;font-size:26px}
+.clauseGrid p{margin:0;color:var(--suave)}
 
-/* Practice areas. */
-.areas{padding:100px 5vw;background:var(--areia)}
-.centerHead{max-width:760px;margin:0 auto 54px;text-align:center}
-.centerHead .kicker{justify-content:center}
-.centerHead .kicker:after{content:"";width:28px;height:1px;background:currentColor}
-.centerHead h2{margin:0 0 14px;font-size:clamp(30px,3.2vw,48px);line-height:1.15}
-.centerHead p{margin:0;color:var(--suave)}
-.areaGrid{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
-.areaGrid article{padding:34px 28px;border-top:3px solid var(--ouro);border-radius:4px;background:var(--marfim)}
-.areaGrid svg{color:#8a6a2c;margin-bottom:18px}
-.areaGrid h3{margin:0 0 10px;font-size:23px}
-.areaGrid p{margin:0;font-size:15px;color:var(--suave)}
+/* Signature: the estate tree. Static by default; a pinned scene with motion. */
+.partition{background:var(--marfim-2)}
+.partitionStage{display:grid;grid-template-columns:.8fr 1.4fr;gap:4vw;align-items:center;padding:110px 5vw}
+.partitionText h2{margin-bottom:30px;font-size:clamp(34px,3.6vw,54px)}
+.partitionSteps{margin:0;padding:0;list-style:none;display:grid;gap:20px}
+.partitionSteps li{display:grid;grid-template-columns:40px 1fr;column-gap:10px;padding-top:14px;border-top:1px solid #8d6a3f59}
+.partitionSteps span{grid-row:span 2;font-family:var(--almeida-serif),serif;font-size:26px;line-height:1;color:var(--conhaque)}
+.partitionSteps strong{font-family:var(--almeida-serif),serif;font-size:25px}
+.partitionSteps p{margin:4px 0 0;color:var(--suave);max-width:40ch}
+.treeFigure{margin:0}
+.tree{display:block;width:100%;height:auto}
+.tree text{font-family:var(--almeida-sans),sans-serif;font-size:19px;fill:var(--tinta)}
+.tree [data-tree-heading]{font-family:var(--almeida-serif),serif;font-size:30px;font-weight:600}
+.tree [data-tree-note]{font-size:16px;fill:var(--suave)}
+.tree [data-tree-rule]{stroke:var(--latao-escuro);stroke-width:1.5}
+.tree [data-tree-asset] circle{fill:var(--marfim);stroke:var(--latao-escuro);stroke-width:2}
+.tree [data-tree-asset] svg{color:var(--nogueira)}
+.tree [data-tree-trunk],.tree [data-tree-branch]{fill:none;stroke:var(--latao-escuro);stroke-width:3.5;stroke-linecap:round}
+.tree [data-tree-knot] circle{fill:var(--noite)}
+.tree [data-tree-tax] circle{fill:none;stroke:var(--latao);stroke-width:2.5}
+.tree [data-tree-heirs] circle{fill:var(--conhaque)}
+.treeFigure figcaption{margin-top:6px;font-size:13px;color:var(--suave);text-align:right}
+.page[data-brand-animated=true] .partition{height:380svh}
+.page[data-brand-animated=true] .partitionStage{position:sticky;top:0;height:100svh;min-height:620px;padding-top:calc(66px + 3svh);padding-bottom:3svh}
+.page[data-brand-animated=true] .partitionSteps li{grid-area:1/1}
 
-/* Office: photo with a seal, values with icons. */
-.office{display:grid;grid-template-columns:1fr 1.05fr;gap:7vw;align-items:center;padding:110px 5vw}
-.officePhoto{position:relative;margin:0;aspect-ratio:4/4.4;border-radius:10px}
-.officePhoto img{object-fit:cover;object-position:62% 50%;border-radius:10px}
-.seal{position:absolute;right:-30px;bottom:40px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;width:148px;height:148px;padding:20px;border-radius:50%;background:var(--marinho);border:2px solid var(--ouro);color:#fff;font-size:13px;line-height:1.35;text-align:center;box-shadow:0 14px 40px #0f1a2e40}
-.seal svg{color:var(--ouro)}
-.officeCopy h2{margin:0 0 22px;font-size:clamp(32px,3.2vw,48px);line-height:1.12}
+/* Practice areas as the index of a document: roman numerals, dotted leaders. */
+.index{padding:110px 5vw;background:var(--marfim)}
+.indexHead{max-width:760px;margin-bottom:46px}
+.indexHead h2{font-size:clamp(34px,3.6vw,54px)}
+.indexList{margin:0;padding:0;list-style:none;border-top:1px solid var(--tinta)}
+.indexList li{border-bottom:1px solid #1b161233}
+.indexList summary{display:flex;align-items:baseline;gap:18px;padding:22px 0;cursor:pointer;list-style:none}
+.indexList summary::-webkit-details-marker{display:none}
+.indexNumber{width:44px;flex:none;font-family:var(--almeida-serif),serif;font-size:22px;color:var(--conhaque)}
+.indexTitle{font-family:var(--almeida-serif),serif;font-size:clamp(26px,2.4vw,36px);font-weight:600}
+.leader{flex:1;border-bottom:2px dotted #8d6a3f80;transform:translateY(-6px)}
+.indexMore{font-size:14px;font-weight:600;color:var(--conhaque)}
+.indexList details[open] .indexMore{color:var(--suave)}
+.indexList details p{margin:0 0 24px 62px;max-width:62ch;color:var(--suave)}
+
+/* Office: the walnut desk photo, values as definitions. */
+.office{display:grid;grid-template-columns:1fr 1fr;gap:6vw;align-items:center;padding:110px 5vw;background:var(--marfim-2)}
+.officePhoto{position:relative;margin:0;aspect-ratio:4/4.6;border-radius:4px;overflow:hidden;box-shadow:16px 16px 0 var(--nogueira)}
+.officePhoto img{object-fit:cover;object-position:62% 50%}
+.officeCopy h2{margin-bottom:22px;font-size:clamp(34px,3.4vw,52px)}
 .officeCopy>p{margin:0 0 30px;max-width:52ch;color:var(--suave)}
-.values{display:grid;gap:22px;margin:0;padding:0;list-style:none}
-.values li{display:flex;gap:16px;align-items:flex-start}
-.valueIcon{display:inline-flex;align-items:center;justify-content:center;flex:none;width:40px;height:40px;border-radius:8px;background:var(--marinho);color:var(--ouro)}
-.values strong{display:block;font-size:16px}
-.values div span{font-size:15px;color:var(--suave)}
+.values{display:grid;gap:18px;margin:0 0 34px}
+.values div{padding-top:14px;border-top:1px solid #8d6a3f59}
+.values dt{display:flex;align-items:center;gap:10px;font-weight:700}
+.values dt svg{color:var(--conhaque)}
+.values dd{margin:4px 0 0 30px;color:var(--suave)}
 
-/* Steps band. */
-.steps{padding:100px 5vw;background:var(--marinho);color:#fff}
-.steps .centerHead h2{color:#fff;text-transform:none}
-.steps .centerHead h2 em{color:var(--ouro-claro)}
-.steps .centerHead p{color:#ffffffc2}
-.steps ol{display:grid;grid-template-columns:repeat(5,1fr);gap:18px;margin:0;padding:0;list-style:none;counter-reset:passo}
-.steps li{counter-increment:passo;padding:26px 22px;border:1px solid #c9a35a55;border-radius:10px;background:var(--marinho-2)}
-.steps li:before{content:counter(passo);display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;margin-bottom:16px;border-radius:50%;background:var(--ouro);color:var(--marinho);font-weight:800}
-.steps strong{display:block;margin-bottom:6px;font-size:16px}
-.steps li span{font-size:14px;color:#ffffffbd}
-
-.faq{padding:100px 5vw;background:#fff}
-.faqList{max-width:840px;margin:0 auto}
-.faqList details{border:1px solid var(--linha);border-radius:10px;margin-bottom:12px;padding:0 24px;background:var(--marfim)}
-.faqList summary{display:flex;justify-content:space-between;gap:20px;padding:20px 0;cursor:pointer;list-style:none;font-size:17px;font-weight:600}
+/* FAQ on the night wall. */
+.faq{display:grid;grid-template-columns:.8fr 1.4fr;gap:6vw;padding:110px 5vw;background:var(--noite);color:var(--marfim)}
+.faq h2{font-size:clamp(34px,3.4vw,52px);color:var(--marfim);max-width:12ch}
+.faqList details{border-top:1px solid #c49a6c59}
+.faqList details:last-child{border-bottom:1px solid #c49a6c59}
+.faqList summary{display:flex;justify-content:space-between;gap:20px;padding:22px 0;cursor:pointer;list-style:none;font-size:18px;font-weight:600}
 .faqList summary::-webkit-details-marker{display:none}
-.faqList summary:after{content:"+";color:#8a6a2c;font-size:22px;line-height:1}
+.faqList summary:after{content:"+";color:var(--latao);font-size:24px;line-height:1}
 .faqList details[open] summary:after{content:"–"}
-.faqList details p{margin:0 0 22px;color:var(--suave)}
+.faqList details p{margin:0 0 24px;color:var(--claro);max-width:60ch}
 
-.footer{display:grid;grid-template-columns:1fr auto;gap:20px 40px;padding:56px 5vw 40px;background:var(--marinho);color:#fff}
-.footerBrand{display:flex;align-items:center;gap:12px;margin:0;font-family:var(--almeida-serif),serif;font-size:22px}
+.footer{display:grid;grid-template-columns:1fr auto;gap:20px 40px;padding:56px 5vw 40px;background:var(--nogueira);color:var(--marfim)}
+.footerBrand{display:flex;align-items:center;gap:12px;margin:0;font-family:var(--almeida-serif),serif;font-size:26px;font-weight:600}
+.footer .logoSeal{color:var(--conhaque)}
 .footer nav{display:flex;gap:26px;flex-wrap:wrap;align-items:center}
-.footer nav a{color:#fff;text-decoration:none}
-.credit{grid-column:1/-1;margin:24px 0 0;padding-top:20px;border-top:1px solid #ffffff26;font-size:13px;color:#ffffffb3}
+.footer nav a{color:var(--marfim);text-decoration:none}
+.credit{grid-column:1/-1;margin:24px 0 0;padding-top:20px;border-top:1px solid #f5ecdf2e;font-size:13px;color:#f5ecdfc2}
 .credit a{color:inherit}
 
+.motionToggle{position:fixed;z-index:25;right:18px;bottom:16px;min-height:44px;padding:10px 16px;border:1px solid var(--latao-escuro);border-radius:4px;background:var(--marfim);color:var(--tinta);font:inherit;font-size:13px;font-weight:600;cursor:pointer}
+
 @media(max-width:1100px){
-  .areaGrid{grid-template-columns:repeat(2,1fr)}
-  .steps ol{grid-template-columns:repeat(3,1fr)}
+  .partitionStage{grid-template-columns:1fr;gap:20px}
+  .page[data-brand-animated=true] .partitionStage{align-content:center}
+  .heroSeal{display:none}
 }
 @media(max-width:900px){
   .header{gap:14px}
   .header nav{display:none}
   .headerCta{margin-left:auto}
-  .logo>span:last-child{display:none}
+  .logo>span{display:none}
   .hero{flex-direction:column;align-items:stretch;min-height:0;padding:0}
   .heroImage{position:relative!important;height:300px!important;object-position:72% 40%}
-  .hero:after{background:linear-gradient(0deg,var(--marinho) 0,transparent 0)}
-  .swoosh{display:none}
+  .hero:after{display:none}
   .heroCopy{max-width:none;padding:40px 6vw 56px}
-  .doubts,.areas,.steps,.faq{padding:76px 6vw}
-  .doubtGrid{grid-template-columns:1fr}
-  .office{grid-template-columns:1fr;gap:56px;padding:76px 6vw}
-  .seal{right:12px;bottom:-30px;width:124px;height:124px;font-size:12px}
-  .steps ol{grid-template-columns:1fr}
+  .clauses,.index,.faq{padding:76px 6vw}
+  .clauseGrid{grid-template-columns:1fr;gap:34px}
+  .partitionStage{padding:76px 6vw}
+  .page[data-brand-animated=true] .partitionStage{padding:calc(66px + 2svh) 6vw 2svh;gap:12px}
+  .page[data-brand-animated=true] .partitionText h2{font-size:30px;margin-bottom:12px}
+  .page[data-brand-animated=true] .partitionText>.section{display:none}
+  .office{grid-template-columns:1fr;gap:48px;padding:76px 6vw}
+  .officePhoto{box-shadow:10px 10px 0 var(--nogueira)}
+  .faq{grid-template-columns:1fr;gap:30px}
+  .indexList details p{margin-left:0}
+  .tree text{font-size:24px}
+  .tree [data-tree-heading]{font-size:34px}
+  .tree [data-tree-note]{display:none}
   .footer{grid-template-columns:1fr;padding:48px 6vw 36px}
 }
 @media(max-width:560px){
-  .areaGrid{grid-template-columns:1fr}
-  .headerCta{padding:10px 16px;font-size:13px;min-height:44px}
+  .headerCta{padding:10px 14px;font-size:14px;min-height:44px}
+  .indexNumber{width:30px}
+  .leader{display:none}
 }
