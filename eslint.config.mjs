@@ -5,5 +5,6 @@ export default defineConfig([
   ...nextVitals,
   ...nextTypescript,
   // Third-party skill sources are reference packages, not application code.
-  globalIgnores([".agents/skills/**", ".next/**", "next-env.d.ts", "playwright-report/**", "test-results/**"]),
+  // docs/research holds offline study scripts and third-party sources under analysis.
+  globalIgnores([".agents/skills/**", "docs/research/**", ".next/**", "next-env.d.ts", "playwright-report/**", "test-results/**"]),
 ]);

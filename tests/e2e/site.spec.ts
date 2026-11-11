@@ -21,7 +21,7 @@ test("full page, real anchor targets and official WhatsApp only", async ({
   await expect(page.locator("h1")).toHaveCount(1);
   for (const id of sections)
     await expect(page.locator(`#${id}`)).toHaveCount(1);
-  await expect(page.locator(".project-card")).toHaveCount(3);
+  await expect(page.locator(".signature-work-card")).toHaveCount(6);
   const missing = await page
     .locator('a[href^="#"]')
     .evaluateAll((links) =>

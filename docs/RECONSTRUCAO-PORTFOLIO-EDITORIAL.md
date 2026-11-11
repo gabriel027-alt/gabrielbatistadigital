@@ -80,3 +80,47 @@ A personagem aprovada foi animada com LivePortrait e está no rodapé da rota de
 O hash `#editorial-footer` e o player `/propostas/portfolio-editorial/previa` permitem avaliar o encerramento. O vídeo só baixa quando o rodapé fica visível e as preferências permitem; mantém poster sem JS, em movimento reduzido/economia de dados e em falha de mídia. Pausa fora da tela, com aba oculta, diálogo aberto ou controle global.
 
 Método, procedência, limitações e medições em `docs/research/avatar-motion-github/expression-loop/README.md`. O resultado não é uma reprodução idêntica do estilo ou da coreografia; o movimento medido no avatar é mais contido. A avaliação estética do usuário continua necessária. Nenhum deploy foi feito.
+
+## Correções após inspeção em 08/11/2026
+
+Inspeção com scroll real em 1440×900 e 390×844 encontrou e corrigiu:
+
+- A fotografia animada da apresentação vazava até 256 px sobre o contato e escondia o fundo do título do CTA. `.about` agora recorta a fotografia.
+- O tema da navegação podia ficar errado por uma seção inteira após uma pequena reversão perto de um limite, porque duas seções cabiam na faixa observada. O tema agora segue a seção sob o logo, calculada a cada scroll.
+- Títulos colidiam com o logo. Uma máscara na cor da seção passa sob a navegação, exceto na abertura, para não cobrir o retrato aprovado.
+- A descendente de “precisa” cobria “No visual”; o rodapé começava sob a navegação; `.hook` deixava quase uma tela vazia no desktop.
+- No celular, o controle de pausa virou ícone de 44 px na linha da navegação, mantendo o nome acessível.
+
+`npm run lint` passa a ignorar `docs/research`, que guarda estudos e fontes de terceiros. `scripts/lib/record-local-page.mjs` deixou de depender de caminhos Linux. Três testes de regressão foram adicionados. O MP4 da prévia e as capturas desta pasta foram refeitos: 42,43 s, 960×600, já com o loop v2 descrito abaixo.
+
+Evidência: 80 testes aprovados com o Chrome instalado na máquina, não o Chromium do Playwright, e sequência conferida em quadros extraídos do MP4. Não houve teste em iPhone físico ou Safari. Isso não constitui aprovação estética.
+
+## Loop v11 no encerramento
+
+As versões v1, v2, v3, v6 e v8 foram rejeitadas, e v4 e v5 foram aprovadas com pedidos de ajuste. Todas saíram de `public/`. A v7 foi aprovada no rosto e no queixo. O rodapé usa `gabriel-avatar-loop-v11.mp4`, que é a v7 com o trapézio (v9, aprovada), a piscada corrigida e um só olhar para os dois olhos, que antes discordavam e pareciam vesgos: 11,13 s, com a trajetória medida na gravação de tela enviada pelo usuário, boca fechada, íris, piscadas, sobrancelhas sem animação própria e vapor saindo do café. As capas de bandas foram trocadas por arte própria. Método, medições e limites em `docs/research/avatar-motion-github/reference-loop/README.md`.
+
+A pedido do usuário, o queixo foi fechado. A v6 alargou a mandíbula pela foto real e escureceu o pescoço, o que mudou o rosto, e foi rejeitada. A v7 mantém o contorno da imagem aprovada, sobe a cabeça 14 px e continua a linha da própria mandíbula até fechar. Da foto real vem apenas a altura do queixo: lábio-queixo equivale a 36% da distância olhos-boca. As últimas linhas de pele repetem a linha limpa da imagem, sem esticar. O pescoço usa as cores da própria imagem, um tom abaixo do queixo. Na descida do aceno, o queixo entra atrás do monitor.
+
+Depois de aprovar o queixo, o usuário pediu trapézio e ombros. A v8, com gola de jaqueta e linha de ombros desenhadas por código, foi rejeitada por parecer irreal. O usuário concluiu que basta o trapézio, sem ombros nem jaqueta. A v9 apenas abre as laterais do pescoço em curva até o monitor, na mesma pele, com leve queda de luz. O trapézio é decisão de desenho: a foto real o cobre com a jaqueta.
+
+Medições no MP4 final, com o mesmo tipo de rastreamento da referência: correlação x 0,997, y 0,996 e inclinação 0,79. Amplitude de 0,61 e 0,62, contra 0,68 teóricos em 1280 px. Maior passo em um quadro: 3,30 px. Emenda (MAE RGB): fundo 0,023; cabeça 0,991, ante mediana de 1,090 entre quadros. Arquivo: H.264 Constrained Baseline, 1280×818, 334 quadros, 1.333.569 bytes, sem áudio. No celular, o recorte do vídeo deixa a caneca fora da tela.
+
+## Enquadramento da abertura
+
+O usuário apontou o cabelo cortado e animações cobrindo o rosto. A foto aprovada tem só 13 px entre o cabelo e a borda de cima, e o zoom de 13% no scroll cortava ainda mais. `scripts/extend-hero-portrait.py` gera `gabriel-approved-red-framed.webp` com margem nova acima, nas laterais e abaixo. A área original da foto é copiada sem alteração, conferida pixel a pixel pelo script. Só o fundo e a continuação da jaqueta são sintetizados. A abertura não tem mais zoom; nome, miniatura e oferta descem com a foto e somem antes de alcançar o rosto. Regressão em `tests/e2e/editorial-portfolio.spec.ts` (1366×768). A seção “Sobre” continua usando a foto original.
+
+## Música do encerramento
+
+Desligada por padrão desde a decisão do usuário de não prospectar clínicas com o player. Motivos: letras explícitas, aviso “Use o Spotify” e prévias de 30 s para quem não tem login. Sem a configuração, nem o botão nem qualquer requisição ao Spotify existem. Para religar: `NEXT_PUBLIC_FOOTER_MUSIC=on` em `.env.local`, seguido de novo build. O restante desta seção descreve o player quando ligado.
+
+O botão “Ouvir Limp Bizkit” abre o player oficial do Spotify com três álbuns escolhidos pelo usuário: Significant Other, Gold Cobra e Results May Vary. Eles se revezam ao chegar perto do fim da última faixa de cada um, e o botão “Próximo álbum” troca na hora. A música pausa quando o visitante sai do rodapé e volta com ele, exceto se ele mesmo a pausou. O nome de usuário do Spotify não é necessário e não está no código.
+
+Teste no Spotify real, sem login, em Chrome com a política padrão de autoplay: o botão passou pelos três álbuns e voltou ao primeiro. Significant Other tocou inteiro em prévias e, após a última faixa, passou sozinho para Gold Cobra, aos 474 s. A troca automática de Gold Cobra e de Results May Vary usa a mesma lógica, com as últimas faixas lidas da lista oficial, mas só foi testada com Spotify simulado. Com a conta do usuário logada no painel do app, o player a reconheceu (“Salvo no Spotify”), mas seguiu em prévia: esse navegador não tem Widevine (`NotSupportedError`), então o teste de faixa inteira precisa ser feito em um Chrome comum. Também não foi testado o celular físico. O caso de pausa feita pelo visitante só foi testado com Spotify simulado.
+
+Registro da dependência, conforme `docs/METODO-DE-QUALIDADE.md`:
+
+- **Problema:** tocar música comercial sem hospedar o arquivo.
+- **Alternativas:** arquivo próprio exigiria licença; faixa gerada foi testada e retirada a pedido do usuário; Web Playback SDK exigiria login Premium de cada visitante.
+- **Fonte:** `https://open.spotify.com/embed/iframe-api/v1`, versão mantida pelo Spotify e sem pacote npm. Documentação em `https://developer.spotify.com/documentation/embeds`.
+- **Custo:** zero até o clique. Depois, script e iframe de terceiros, que podem gravar cookies do Spotify.
+- **Limites:** o site não transmite a conta do usuário aos visitantes. Sem login no Spotify, o player toca prévias curtas; relatos da comunidade indicam que a faixa inteira exige Premium e, em geral, navegador de desktop. A música não sincroniza com o movimento. As letras são explícitas e os termos do Spotify devem ser revistos antes de publicar. A permissão de uso não foi avaliada juridicamente.

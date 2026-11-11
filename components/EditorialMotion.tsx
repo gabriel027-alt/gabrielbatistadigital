@@ -33,9 +33,13 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
         // The reference separates typography, floating objects and unfolding galleries.
         // Keep each choreography reversible instead of applying one fade to every section.
         gsap.timeline({ scrollTrigger: { trigger: "#editorial-start", start: "top top", end: "bottom top", scrub: .65 } })
-          .to("[data-hero-photo]", { yPercent: 22, scale: 1.13, ease: "none" }, 0)
-          .to("[data-hero-wordmark]", { yPercent: -34, scale: .91, transformOrigin: "center bottom", ease: "none" }, 0)
-          .to("[data-hero-sample]", { rotation: 12, yPercent: -45, ease: "none" }, 0);
+          // The face must stay clear: no zoom that crops the hair, and the name, sample and offer
+          // drift down with the photo and fade before they can reach the face.
+          .to("[data-hero-photo]", { yPercent: 12, scale: 1.02, ease: "none" }, 0)
+          .to("[data-hero-wordmark]", { yPercent: 24, opacity: 0, ease: "power1.in", duration: .4 }, 0)
+          .to("[data-hero-sample]", { rotation: 6, yPercent: 30, opacity: 0, ease: "power1.in", duration: .35 }, 0)
+          .to("[data-hero-offer]", { yPercent: 40, opacity: 0, ease: "none", duration: .18 }, 0)
+          .to({}, { duration: 1 }, 0);
         gsap.utils.toArray<HTMLElement>("[data-kinetic]").forEach(title => {
           const split = SplitText.create(title, { type: "words", wordsClass: "editorial-word", aria: title.querySelector("a") ? "none" : "auto" });
           splits.push(split);
@@ -90,9 +94,26 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
   }, [paused]);
   useEffect(() => {
     const node = root.current;if (!node) return;
-    const observer = new IntersectionObserver(entries => entries.forEach(entry => { if (entry.isIntersecting) node.dataset.editorialTheme = (entry.target as HTMLElement).dataset.editorialTheme; }), { rootMargin: "0px 0px -85% 0px" });
-    node.querySelectorAll("section[data-editorial-theme],footer[data-editorial-theme]").forEach(section => observer.observe(section));
-    return () => observer.disconnect();
+    // The theme follows whichever section is under the logo right now, so reversing near a boundary cannot leave it stale.
+    const sections = [...node.querySelectorAll<HTMLElement>("section[data-editorial-theme],footer[data-editorial-theme]")];
+    const logo = node.querySelector<HTMLElement>("[data-editorial-nav] a");
+    let frame = 0;
+    const update = () => {
+      frame = 0;
+      if (!logo) return;
+      const box = logo.getBoundingClientRect();
+      const line = box.top + box.height / 2;
+      const current = sections.find(section => { const rect = section.getBoundingClientRect(); return rect.top <= line && rect.bottom > line; });
+      if (!current?.dataset.editorialTheme) return;
+      node.dataset.editorialTheme = current.dataset.editorialTheme;
+      node.dataset.editorialNavOver = current.id;
+    };
+    const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
+    update();
+    window.addEventListener("scroll", schedule, { passive: true });
+    window.addEventListener("resize", schedule);
+    node.addEventListener("toggle", schedule, true);
+    return () => { if (frame) cancelAnimationFrame(frame); window.removeEventListener("scroll", schedule); window.removeEventListener("resize", schedule); node.removeEventListener("toggle", schedule, true); };
   }, []);
   useEffect(() => {
     const node=root.current;if(!node || paused || !matchMedia("(pointer:fine) and (prefers-reduced-motion:no-preference)").matches)return;
@@ -101,8 +122,8 @@ export function EditorialMotion({ children }: { children: ReactNode }) {
     const move=(event:MouseEvent)=>{x(event.clientX);y(event.clientY);const label=(event.target as Element).closest<HTMLElement>("[data-cursor-label]")?.dataset.cursorLabel;cursor.textContent=label||"";cursor.dataset.visible=label?"true":"false";};
     window.addEventListener("mousemove",move);return()=>{window.removeEventListener("mousemove",move);cursor.dataset.visible="false";};
   },[paused]);
-  return <div ref={root} className={styles.page} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo">
+  return <div ref={root} className={styles.page} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo" data-editorial-nav-over="editorial-start">
     {children}<div className={styles.frameGlow} aria-hidden="true"/><div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
-    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}>{paused ? "Ativar movimento" : "Pausar movimento"}</button>}
+    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}><span className={styles.motionLabel}>{paused ? "Ativar movimento" : "Pausar movimento"}</span></button>}
   </div>;
 }

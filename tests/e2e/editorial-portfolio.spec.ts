@@ -99,6 +99,69 @@ test('Scroll unfolds the gallery reversibly and pause restores readable geometry
 });
 
 
+test('The animated about portrait stays inside its section and leaves the contact panel readable', async ({ page }) => {
+  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+    await page.setViewportSize(viewport);
+    await page.goto(route);
+    await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+    await page.locator('[data-contact-panel]').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 120, behavior: 'instant' }));
+    await page.waitForTimeout(1100);
+    const paintsOverTitle = await page.locator('[data-contact-panel] h2').evaluate(title => {
+      const box = title.getBoundingClientRect();
+      return document.elementsFromPoint(box.left + 5, box.top + 5).some(el => Boolean(el.closest('[data-about-photo]')));
+    });
+    expect(paintsOverTitle).toBe(false);
+  }
+});
+
+test('Navigation theme follows the section under the logo after reversing near a boundary', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(route);
+  const root = page.locator('[data-editorial]');
+  const sectionTop = (selector: string) => page.locator(selector).evaluate(el => el.getBoundingClientRect().top + scrollY);
+  const moveTo = async (y: number) => { await page.evaluate(top => scrollTo({ top, behavior: 'instant' }), y); await page.waitForTimeout(350); };
+  const hook = await sectionTop('[data-hook]');
+  for (const y of [hook + 40, hook - 40, hook + 600]) await moveTo(y);
+  await expect(root).toHaveAttribute('data-editorial-theme', 'paper');
+  const about = await sectionTop('#editorial-about');
+  for (const y of [about + 40, about - 40, about + 700]) await moveTo(y);
+  await expect(root).toHaveAttribute('data-editorial-theme', 'photo');
+});
+
+test('Mobile motion control shares the navigation row without covering it', async ({ page }) => {
+  for (const width of [320, 360, 390]) {
+    await page.setViewportSize({ width, height: 800 });
+    await page.goto(route);
+    const control = page.getByRole('button', { name: 'Pausar movimento' });
+    await expect(control).toBeVisible();
+    const pill = await page.locator('[data-editorial-nav] nav').boundingBox();
+    const button = await control.boundingBox();
+    expect(pill && button && button.x >= pill.x + pill.width).toBe(true);
+    expect(button!.width).toBeGreaterThanOrEqual(44);
+    expect(button!.height).toBeGreaterThanOrEqual(44);
+  }
+});
+
+test('Scrolling the opening never puts the name or the sample over the face', async ({ page }) => {
+  await page.setViewportSize({ width: 1366, height: 768 });
+  await page.goto(route);
+  await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+  for (const fraction of [.2, .4, .6]) {
+    await page.evaluate(top => scrollTo({ top, behavior: 'instant' }), Math.round(768 * fraction));
+    await page.waitForTimeout(900);
+    // Whatever is still visible of the name or the sample must sit below the chin.
+    const state = await page.evaluate(() => {
+      const opacity = (selector: string) => Number(getComputedStyle(document.querySelector(selector)!).opacity);
+      const top = (selector: string) => document.querySelector(selector)!.getBoundingClientRect().top;
+      const photo = document.querySelector('[data-hero-photo]')!.getBoundingClientRect();
+      // At 1366×768 the framed portrait is cropped to width; its chin lands at about 60% of the photo area.
+      return { chin: photo.top + photo.height * .6, word: top('[data-hero-wordmark]'), wordOpacity: opacity('[data-hero-wordmark]'), sample: top('[data-hero-sample]'), sampleOpacity: opacity('[data-hero-sample]') };
+    });
+    expect(state.wordOpacity < .1 || state.word > state.chin).toBe(true);
+    expect(state.sampleOpacity < .1 || state.sample > state.chin).toBe(true);
+  }
+});
+
 test('Cover uses the approved original portrait', async ({ page }) => {
   await page.goto(route);
   await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('alt', 'Retrato frontal de Gabriel Batista com luz vermelha');

@@ -26,3 +26,44 @@
 /* Keep the footer return link clear of the fixed motion control. */
 .footerBottom{padding-right:160px}
 @media(max-width:700px){.footerBottom{padding-right:0;flex-direction:column;align-items:flex-start;gap:8px}}
+
+/* Optional music: Spotify's own player, loaded only when the visitor opens it. */
+.music{position:absolute;z-index:3;top:148px;left:4vw;width:min(320px,calc(100vw - 8vw));display:flex;flex-direction:column;align-items:flex-start;gap:10px}
+.musicControl{min-height:44px;padding:0 18px;border:1px solid #ffbc9580;border-radius:30px;background:#201714b0;color:var(--peach);font:inherit;font-size:12px;cursor:pointer}
+.musicControl[aria-expanded=true]{background:var(--peach);color:#201714}
+.musicButtons{display:flex;flex-wrap:wrap;gap:8px}
+.musicNext{min-height:44px;padding:0 18px;border:1px solid #ffbc9580;border-radius:30px;background:#201714b0;color:var(--peach);font:inherit;font-size:12px;cursor:pointer}
+.musicPlayer{width:100%;min-height:80px;border-radius:12px;overflow:hidden}
+.musicPlayer[hidden]{display:none}
+.musicPlayer iframe{display:block}
+.musicNote{margin:0;padding:8px 12px;border-radius:10px;background:#201714d9;color:var(--peach);font-size:11px;line-height:1.4}
+@media(max-width:700px){.music{top:104px;left:6vw;width:calc(100vw - 12vw)}.musicControl,.musicNext{font-size:11px;padding:0 15px}}
+
+/* The animated portrait grows past its section; keep it from painting over the contact panel. */
+.about{overflow:hidden;overflow:clip}
+
+/* Content passes under the fixed navigation and fades out instead of colliding with the logo. */
+.page{--nav-scrim:#201714d9}.page[data-editorial-theme=paper]{--nav-scrim:#faf6ef}
+.page[data-editorial-nav-over=editorial-contact]{--nav-scrim:var(--peach)}
+.nav:before{content:"";position:absolute;inset:0 0 auto;height:112px;z-index:-1;pointer-events:none;background:linear-gradient(180deg,var(--nav-scrim) 45%,transparent);transition:opacity .25s}
+/* The approved portrait stays unobstructed at the opening. */
+.page[data-editorial-nav-over=editorial-start] .nav:before{opacity:0}
+
+/* Headline descenders overflow the tight line box. */
+.aboutStatement p{margin:clamp(26px,3.6vw,56px) 0 0}
+
+/* The footer opens below the navigation row. */
+.footer{padding-top:112px}
+
+/* The shapes end well before the old section height, which left a screen with almost nothing on it. */
+@media(min-width:701px){.hook{min-height:0}.shapes{height:66vw}}
+
+@media(max-width:700px){
+  .nav:before{height:76px}
+  .footer{padding-top:76px}
+  /* Icon-only control on the same row as the navigation; the label stays available to assistive technology. */
+  .motionControl{bottom:22px;width:44px;height:44px;min-height:44px;padding:0;display:grid;place-items:center;border-radius:50%;box-shadow:0 3px 25px #20171420}
+  .motionControl:before{content:"";width:10px;height:12px;border:solid var(--ink);border-width:0 3px;box-sizing:border-box}
+  .motionControl[aria-pressed=true]:before{width:0;height:0;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent var(--ink)}
+  .motionLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
+}

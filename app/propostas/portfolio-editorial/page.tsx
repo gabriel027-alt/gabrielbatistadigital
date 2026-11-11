@@ -32,8 +32,8 @@ export default function EditorialPortfolio() {
     <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label="Navegação do portfólio"><a href="#editorial-about">Sobre</a><a href="#editorial-work">Projetos</a></nav><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar">Conversar <Arrow size={15}/></a></header>
     <main id="editorial-main">
       <section id="editorial-start" className={styles.hero} data-editorial-theme="photo">
-        <div className={styles.heroPhoto} data-hero-photo><Image src="/images/hero/gabriel-approved-red.png" alt="Retrato frontal de Gabriel Batista com luz vermelha" fill preload sizes="(max-width:700px) 1800px, 100vw" /></div>
-        <p className={styles.heroOffer}>Design &<br/>desenvolvimento web</p>
+        <div className={styles.heroPhoto} data-hero-photo><Image src="/images/hero/gabriel-approved-red-framed.webp" alt="Retrato frontal de Gabriel Batista com luz vermelha" fill preload sizes="(max-width:700px) 1800px, 100vw" /></div>
+        <p className={styles.heroOffer} data-hero-offer>Design &<br/>desenvolvimento web</p>
         <div className={styles.heroBottom}><h1 data-hero-wordmark><span className={styles.sr}>Gabriel Batista</span><span aria-hidden="true">Gabriel</span><span className={styles.heroSample} data-hero-sample aria-hidden="true"><Image src="/images/projects/orla-film-poster.jpg" alt="" fill sizes="18vw" /></span><span aria-hidden="true">Batista</span></h1><p>Sites, páginas e experiências digitais</p></div>
       </section>
       <section className={styles.hook} data-editorial-theme="paper" data-hook>
