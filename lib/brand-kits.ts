@@ -74,4 +74,15 @@ export const brandKits: BrandKit[] = [
     signatureMotion: "A recuperação dia a dia: a régua avança, o contador de dias sobe e a luz da janela atravessa a sala",
     hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "aprovado",
   },
+  {
+    id: "toca", route: "/modelos/veterinaria", niche: "Hospital veterinário",
+    concept: "O cuidado começa na altura deles.", mark: "A entrada de uma toca com duas orelhas que formam um T",
+    // Palette measured on the user's photos: glazed tile (deepened for text), mustard blanket, oak, wall, graphite trousers.
+    palette: { azulejo: "#4a787c", petroleo: "#24474b", mostarda: "#b8894f", carvalho: "#bba085", parede: "#ece9e4" },
+    material: "Azulejo esmaltado, carvalho e feltro mostarda", typography: { display: "Fraunces", text: "DM Sans" },
+    photo: "Câmera na altura do animal, azulejo petróleo e madeira clara",
+    signatureGraphic: "Placas de sinalização hospitalar numeradas, em mostarda",
+    signatureMotion: "Chave Cão / Gato que muda a página e portas do hospital que se abrem sala a sala com a rolagem",
+    hero: "Veterinária ajoelhada com o cão (ou sentada com o gato), título sobre a parede clara e a chave Cão / Gato", status: "em construção",
+  },
 ];

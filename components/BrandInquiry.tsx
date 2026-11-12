@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react"
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -95,6 +95,20 @@ const content: Record<Brand, Content> = {
     next: "Na primeira consulta, a cirurgiã ouve o que você deseja, examina e entrega o plano por escrito, com exames, recuperação e orçamento. Nenhuma cirurgia é marcada antes disso.",
     invitation: "A primeira consulta é uma conversa.", stepNames: ["O que conversar", "Quando"], stepTitles: ["Por onde começamos?", "Vamos encontrar um horário."],
     summaryTitle: "Sua consulta, preparada.", noscript: "Para agendar, pense no que você gostaria de conversar e no melhor período para a consulta.",
+  },
+  toca: {
+    name: "Toca Hospital Veterinário", title: "Vamos preparar a visita.",
+    intro: "Três perguntas rápidas ajudam a equipe a reservar o horário e o espaço certo para o seu animal.", action: "Agendar consulta",
+    steps: [
+      [{ key: "animal", label: "Quem vem com você?", options: ["Um cão", "Um gato", "Mais de um animal"] }],
+      [
+        { key: "motivo", label: "Qual é o motivo da visita?", options: ["Consulta de rotina", "Vacinas", "Algo mudou na saúde ou no comportamento", "Exames", "Avaliação para cirurgia"] },
+        { key: "periodo", label: "Qual período fica melhor?", options: ["Manhã", "Tarde", "Início da noite"] },
+      ],
+    ],
+    next: "A equipe confirma o horário e orienta a chegada. Gatos aguardam na área separada, longe dos cães.",
+    invitation: "A visita começa antes da chegada.", stepNames: ["O animal", "A visita"], stepTitles: ["Quem vem com você?", "Do que ele precisa?"],
+    summaryTitle: "Visita preparada.", noscript: "Para agendar, pense no animal, no motivo da visita e no melhor período.",
   },
 };
 

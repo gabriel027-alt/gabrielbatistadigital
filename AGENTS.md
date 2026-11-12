@@ -207,3 +207,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `/modelos/cirurgia-plastica` (aprovada pelo usuário em 12/11/2026) é a Sutil Cirurgia Plástica, pelo design system. Kit, paleta medida nas fotos do usuário e evidência em docs/DESIGN-SYSTEM.md. A assinatura é a recuperação dia a dia (contador, régua de dias e luz), com prazos aproximados e informativos.
 - Não inventar nome, CRM/RQE, depoimentos, antes/depois ou resultados para a cirurgiã. Não usar fotos de corpos. Ainda fora do catálogo da homepage até a galeria ser refeita.
+
+## Toca: hospital veterinário (12/11/2026)
+
+- `/modelos/veterinaria` é a Toca Hospital Veterinário, pelo design system. A chave Cão / Gato troca fotos e textos por `data-species`, e as portas do hospital se abrem sala a sala pela rolagem. Kit, paleta e evidência em docs/DESIGN-SYSTEM.md.
+- Posicionar como hospital ou clínica de especialidades, não pet shop. Não inventar CRMV, nome da veterinária, depoimentos, números ou plantão 24 h. Fora do catálogo da homepage até a galeria ser refeita.

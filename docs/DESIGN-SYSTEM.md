@@ -96,6 +96,7 @@ Cada nova marca precisa diferir de todas as anteriores em pelo menos 6 dos 7 cam
 | Almeida (sucessões) | Cormorant Garamond | Noite, nogueira, conhaque, latão, marfim; nogueira e latão | Escritório azul-noite com luminária de latão | Linha de latão com nós; lacre; cláusulas e índice | A partilha se desenha | Escritório noturno com título sublinhado em latão e lacre |
 | Casa Brisa (hotel boutique) | Marcellus + Karla | Cal, areia, telha, oliva, nogueira; cal, telha de barro e nogueira | Tour contínuo em vídeo, da baía à piscina | Trajeto do sol sobre o horizonte, marcando capítulos; arco com sol | Tour quadro a quadro pelo scroll | Vista aérea da baía com o nome sobre o céu |
 | Sutil (cirurgia plástica) | Bodoni Moda + Figtree | Gesso, travertino, sálvia, sálvia profunda, grafite; gesso, travertino e linho | Consultório de gesso e travertino com luz lateral | Régua de dias da recuperação; S de sutura | A recuperação dia a dia (contador, régua e luz) | Consulta em tela cheia com o título sobre o gesso |
+| Toca (hospital veterinário) | Fraunces + DM Sans | Azulejo, petróleo, mostarda, carvalho, parede; azulejo esmaltado, carvalho e feltro | Câmera na altura do animal, azulejo petróleo | Placas hospitalares numeradas em mostarda; toca com orelhas | Chave Cão / Gato e portas que se abrem sala a sala | Veterinária com o cão ou o gato, título sobre a parede clara e a chave |
 
 ## Kits aprovados pelo usuário em 10/11/2026
 
@@ -326,3 +327,39 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 - Vídeo da unidade em `Downloads/sutil-recuperacao-scroll.mp4`, fora do repositório.
 
 **Galeria:** a Sutil ainda não está no catálogo da homepage. O catálogo usa capturas do template antigo e depende da galeria em faixa de páginas, que está pendente em MODELOS-ALTO-TICKET.md.
+
+## Toca pelo sistema (12/11/2026)
+
+**Pedido:** o usuário perguntou se veterinário fazia sentido. A resposta foi sim, se posicionado como hospital ou clínica de especialidades, não como pet shop. Ele aprovou o kit, gerou as seis fotos e aprovou a unidade do hero com o percurso ("Aprovado, montar").
+
+**Kit:** `toca` em `lib/brand-kits.ts`, em construção até a aprovação da página.
+- Paleta medida nas fotos:
+  - azulejo #4a787c;
+  - petróleo #24474b, o azulejo aprofundado para texto e botões;
+  - mostarda #b8894f, da manta;
+  - carvalho #bba085;
+  - parede #ece9e4;
+  - grafite #23282a.
+- O pijama sálvia da veterinária não virou cor da marca, porque a sálvia é da Sutil.
+- Os rótulos pequenos usam #3b6467 para ter contraste AA.
+- Tipografia: Fraunces e DM Sans (OFL, `next/font/google`).
+
+**Página** `/modelos/veterinaria` (`app/modelos/veterinaria/`, conteúdo em `lib/toca.ts`, fotos em `public/images/toca/`):
+1. Hero com a chave Cão / Gato (`SpeciesSwitch.tsx`), que troca foto, apresentação, legendas das salas e cuidados por fase. Sem JS, fica a versão do cão.
+2. Cinco diferenciais.
+3. A assinatura "O percurso" (`TocaMotion.tsx`), em 520svh: portas de carvalho com placas mostarda se abrem e fecham sala a sala (recepção, exames, internação), com a foto se aproximando. O quadro do percurso acende a sala atual junto com a placa, nos dois sentidos.
+4. Especialidades como placas de ala.
+5. "Conheça a veterinária", com uma placa retangular.
+6. Fases da vida sobre a parede de azulejo, uma versão por espécie.
+7. Primeira consulta sobre uma faixa mostarda de piso.
+8. FAQ.
+9. Roteiro `BrandInquiry` "toca": animal, motivo e período.
+
+**Conteúdo:** sem CRMV, sem nome da veterinária, sem depoimentos, sem número de atendimentos e sem plantão 24 h. Textos revisados com o Humanizer.
+
+**Fotos:** o gato é consistente entre as fotos, mas o cão muda de pelagem entre o hero, os exames e a recepção. O usuário foi avisado e pode regerar as fotos.
+
+**Evidência:**
+- `tests/e2e/toca-model.spec.ts`, com 5 testes: chave Cão / Gato, portas de ida e volta, movimento reduzido com axe AA, esqueleto e roteiro, celular.
+- Suíte completa: 106 aprovados e 4 ignorados. Uma falha intermitente em `visual-review` passou ao repetir.
+- Vídeo em `Downloads/toca-percurso-scroll.mp4`, fora do repositório.
