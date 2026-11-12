@@ -83,6 +83,6 @@ export const brandKits: BrandKit[] = [
     photo: "Câmera na altura do animal, azulejo petróleo e madeira clara",
     signatureGraphic: "Placas de sinalização hospitalar numeradas, em mostarda",
     signatureMotion: "Chave Cão / Gato que muda a página e portas do hospital que se abrem sala a sala com a rolagem",
-    hero: "Veterinária ajoelhada com o cão (ou sentada com o gato), título sobre a parede clara e a chave Cão / Gato", status: "em construção",
+    hero: "Veterinária ajoelhada com o cão (ou sentada com o gato), título sobre a parede clara e a chave Cão / Gato", status: "aprovado",
   },
 ];

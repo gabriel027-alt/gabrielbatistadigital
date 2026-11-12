@@ -332,7 +332,7 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 
 **Pedido:** o usuário perguntou se veterinário fazia sentido. A resposta foi sim, se posicionado como hospital ou clínica de especialidades, não como pet shop. Ele aprovou o kit, gerou as seis fotos e aprovou a unidade do hero com o percurso ("Aprovado, montar").
 
-**Kit:** `toca` em `lib/brand-kits.ts`, em construção até a aprovação da página.
+**Kit:** `toca` em `lib/brand-kits.ts`. **Aprovada pelo usuário em 12/11/2026.**
 - Paleta medida nas fotos:
   - azulejo #4a787c;
   - petróleo #24474b, o azulejo aprofundado para texto e botões;

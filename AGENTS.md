@@ -210,7 +210,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Toca: hospital veterinário (12/11/2026)
 
-- `/modelos/veterinaria` é a Toca Hospital Veterinário, pelo design system. A chave Cão / Gato troca fotos e textos por `data-species`, e as portas do hospital se abrem sala a sala pela rolagem. Kit, paleta e evidência em docs/DESIGN-SYSTEM.md.
+- `/modelos/veterinaria` (aprovada pelo usuário em 12/11/2026) é a Toca Hospital Veterinário, pelo design system. A chave Cão / Gato troca fotos e textos por `data-species`, e as portas do hospital se abrem sala a sala pela rolagem. Kit, paleta e evidência em docs/DESIGN-SYSTEM.md.
 - Posicionar como hospital ou clínica de especialidades, não pet shop. Não inventar CRMV, nome da veterinária, depoimentos, números ou plantão 24 h. Fora do catálogo da homepage até a galeria ser refeita.
 
 ## Homepage editorial (12/11/2026)
