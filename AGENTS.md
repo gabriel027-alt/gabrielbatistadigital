@@ -202,3 +202,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - `/modelos/hotelaria` (aprovada pelo usuário em 11/11/2026) é a Casa Brisa refeita pelo design system: tour em canvas de 561 quadros (`public/videos/casa-brisa/{d,m}`), da baía à fachada, recepção, suíte, jardim e piscina, ida e volta pelo scroll. Origem, montagem e roteiro em docs/CASA-BRISA-TOUR.md; kit e evidência em docs/DESIGN-SYSTEM.md.
 - O vídeo foi gerado pelo usuário no Gemini (Veo) e montado aqui com pontes de porta e de dissolução. A curvatura da Terra foi retirada a pedido dele: não reintroduzir abertura orbital. Não anunciar como filmagem real, drone ou 3D.
 - Ao trocar o vídeo, reextrair os quadros (a cada 2) e conferir os intervalos de capítulo em `lib/brisa.ts`. Sem movimento, pausado ou sem JS: uma foto por capítulo.
+
+## Sutil: cirurgia plástica (11/11/2026)
+
+- `/modelos/cirurgia-plastica` é a Sutil Cirurgia Plástica, pelo design system. Kit, paleta medida nas fotos do usuário e evidência em docs/DESIGN-SYSTEM.md. A assinatura é a recuperação dia a dia (contador, régua de dias e luz), com prazos aproximados e informativos.
+- Não inventar nome, CRM/RQE, depoimentos, antes/depois ou resultados para a cirurgiã. Não usar fotos de corpos. Ainda fora do catálogo da homepage até a galeria ser refeita.

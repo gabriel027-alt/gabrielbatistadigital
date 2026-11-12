@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react"
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -81,6 +81,20 @@ const content: Record<Brand, Content> = {
     next: "A equipe confirma a disponibilidade, as condições da estadia e o valor antes de qualquer pagamento. Nada fica reservado sem a sua confirmação.",
     invitation: "A estadia começa antes da chegada.", stepNames: ["A estadia", "Datas e pessoas"], stepTitles: ["Onde você quer acordar?", "Quando, e com quem?"],
     summaryTitle: "Sua estadia, preparada.", noscript: "Para reservar, pense no tipo de acomodação, no período e em quantas pessoas vêm.",
+  },
+  sutil: {
+    name: "Sutil Cirurgia Plástica", title: "Vamos preparar a sua consulta.",
+    intro: "Três perguntas rápidas ajudam a equipe a reservar o tempo certo para a sua primeira consulta.", action: "Agendar consulta",
+    steps: [
+      [{ key: "area", label: "O que você gostaria de conversar?", options: ["Mama", "Abdome", "Contorno corporal", "Face", "Ainda não sei, quero uma avaliação"] }],
+      [
+        { key: "momento", label: "Quando você pensa em operar?", options: ["Nos próximos meses", "Ainda este ano", "Só estou me informando"] },
+        { key: "periodo", label: "Qual período fica melhor para a consulta?", options: ["Manhã", "Tarde", "Início da noite"] },
+      ],
+    ],
+    next: "Na primeira consulta, a cirurgiã ouve o que você deseja, examina e entrega o plano por escrito, com exames, recuperação e orçamento. Nenhuma cirurgia é marcada antes disso.",
+    invitation: "A primeira consulta é uma conversa.", stepNames: ["O que conversar", "Quando"], stepTitles: ["Por onde começamos?", "Vamos encontrar um horário."],
+    summaryTitle: "Sua consulta, preparada.", noscript: "Para agendar, pense no que você gostaria de conversar e no melhor período para a consulta.",
   },
 };
 

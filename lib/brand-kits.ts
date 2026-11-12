@@ -63,4 +63,15 @@ export const brandKits: BrandKit[] = [
     signatureMotion: "Tour contínuo quadro a quadro: da baía à porta, à recepção, à suíte e à piscina",
     hero: "Vista aérea da baía em tela cheia, com o nome sobre o céu", status: "aprovado",
   },
+  {
+    id: "sutil", route: "/modelos/cirurgia-plastica", niche: "Cirurgia plástica",
+    concept: "A decisão mais importante vem antes da cirurgia.", mark: "Um S desenhado por uma linha contínua de sutura",
+    // Palette measured on the user's photos: plaster wall, travertine, curtain sage, blouse sage, graphite trousers.
+    palette: { gesso: "#efebe6", travertino: "#c8bfb5", salvia: "#9ba191", salviaProfunda: "#4a5044", grafite: "#2a2a27" },
+    material: "Gesso, travertino e linho sálvia", typography: { display: "Bodoni Moda", text: "Figtree" },
+    photo: "Consultório de gesso e travertino com luz lateral, cirurgiã em sálvia e branco",
+    signatureGraphic: "Régua de dias da recuperação, com marcos",
+    signatureMotion: "A recuperação dia a dia: a régua avança, o contador de dias sobe e a luz da janela atravessa a sala",
+    hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "em construção",
+  },
 ];

@@ -95,6 +95,7 @@ Cada nova marca precisa diferir de todas as anteriores em pelo menos 6 dos 7 cam
 | Forma (odontologia) | Lora | Porcelana, linho, vinho; cerâmica quente sobre travertino | Consultório quente, foto larga e retrato | Grade de proporção | Grade, contornos em proporção áurea, cerâmica | Foto larga com o texto sobre a pedra |
 | Almeida (sucessões) | Cormorant Garamond | Noite, nogueira, conhaque, latão, marfim; nogueira e latão | Escritório azul-noite com luminária de latão | Linha de latão com nós; lacre; cláusulas e índice | A partilha se desenha | Escritório noturno com título sublinhado em latão e lacre |
 | Casa Brisa (hotel boutique) | Marcellus + Karla | Cal, areia, telha, oliva, nogueira; cal, telha de barro e nogueira | Tour contínuo em vídeo, da baía à piscina | Trajeto do sol sobre o horizonte, marcando capítulos; arco com sol | Tour quadro a quadro pelo scroll | Vista aérea da baía com o nome sobre o céu |
+| Sutil (cirurgia plástica) | Bodoni Moda + Figtree | Gesso, travertino, sálvia, sálvia profunda, grafite; gesso, travertino e linho | Consultório de gesso e travertino com luz lateral | Régua de dias da recuperação; S de sutura | A recuperação dia a dia (contador, régua e luz) | Consulta em tela cheia com o título sobre o gesso |
 
 ## Kits aprovados pelo usuário em 10/11/2026
 
@@ -285,3 +286,43 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 3. A casa, estadias (três cartões com quadros do tour), como funciona a reserva, dúvidas, roteiro local (`BrandInquiry` marca `brisa`: estadia, período, pessoas) e rodapé com crédito.
 
 **Evidência:** `tests/e2e/brisa-model.spec.ts` com 4 testes: ida e volta por quadro, capítulos, pausa, roteiro, textos proibidos, movimento reduzido com axe AA, e quadros de celular sem estouro lateral. Suíte completa: 98 aprovados e 4 ignorados. Vídeo do scroll de ida e volta em `Downloads/casa-brisa-tour/casa-brisa-pagina-scroll.mp4`, fora do repositório.
+
+## Sutil pelo sistema (11/11/2026)
+
+**Pedido:** novo nicho de cirurgia plástica, escolhido pelo usuário. Ele aprovou o kit ao mandar as três fotos, gerou as imagens no ChatGPT/Gemini e aprovou a unidade do hero com a cena da recuperação ("Aprovado, montar").
+
+**Kit:** `sutil` em `lib/brand-kits.ts`, com status em construção até a aprovação da página.
+- Paleta medida nas fotos: gesso #efebe6 (parede), travertino #c8bfb5 (mesa), sálvia #9ba191 (cortina), sálvia profunda #4a5044 (da blusa, escurecida para contraste AA) e grafite #2a2a27 (calça).
+- A argila rosada da proposta não está nas fotos e saiu.
+- Bodoni Moda e Figtree (OFL, `next/font/google`).
+- Símbolo: um S de sutura.
+- Botões quase retos (2px).
+
+**Página** `/modelos/cirurgia-plastica` (`app/modelos/cirurgia-plastica/`, conteúdo em `lib/sutil.ts`, fotos em `public/images/sutil/`):
+1. Hero com a foto da consulta.
+2. Cinco diferenciais separados por pontos de sutura.
+3. "Conheça a cirurgiã", com o retrato e uma placa sálvia. É retangular: não é um selo circular.
+4. Assinatura "A recuperação, dia a dia" (`SutilMotion.tsx`), em 420svh:
+   - o contador vai do Dia 1 ao Dia 90;
+   - a régua usa escala de raiz quadrada, para dar espaço às primeiras semanas;
+   - cinco fases;
+   - a luz atravessa a foto da poltrona.
+5. Quatro cirurgias com "Como funciona".
+6. Primeira consulta: quatro passos ligados por uma linha de sutura, sobre o gesso. Não usa a faixa escura numerada.
+7. FAQ.
+8. Roteiro local `BrandInquiry` "sutil" (área, momento, período).
+9. Rodapé com crédito.
+
+**Linguagem:** informativa. Prazos aproximados ("cada cirurgia tem o seu cronograma"). Sem CRM/RQE, sem nome inventado da cirurgiã, sem depoimentos, sem antes/depois e sem promessa de resultado.
+
+**Evidência:**
+- `tests/e2e/sutil-model.spec.ts`, com 4 testes:
+  - contador de ida e volta;
+  - fases;
+  - movimento reduzido com axe AA;
+  - esqueleto e roteiro;
+  - celular.
+- Suíte completa: 102 aprovados e 4 ignorados.
+- Vídeo da unidade em `Downloads/sutil-recuperacao-scroll.mp4`, fora do repositório.
+
+**Galeria:** a Sutil ainda não está no catálogo da homepage. O catálogo usa capturas do template antigo e depende da galeria em faixa de páginas, que está pendente em MODELOS-ALTO-TICKET.md.
