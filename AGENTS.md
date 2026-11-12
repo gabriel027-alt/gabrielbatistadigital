@@ -238,4 +238,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - sem JS, pausado ou com movimento reduzido, o "g." aparece montado e os pingos vermelhos já estão nos "i";
   - o brilho vermelho da moldura aparece só nas seções de foto;
   - no celular, o WhatsApp fica no menu inferior.
-- Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. O CSS global ainda carrega regras da homepage antiga; a limpeza depende de conferência visual nas outras páginas.
+- Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. CSS global limpo em 12/11/2026: as regras sem classe usada em lugar nenhum saíram (de cerca de 164 KB para 46 KB), e `signature.css` e `landing.css` foram removidos. A conferência foi feita pixel a pixel nas 34 rotas, no computador e no celular, mais a suíte completa. Antes de reintroduzir uma classe global antiga, procure-a no histórico do git.
