@@ -111,7 +111,9 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           cardLoop.seek(assembledAt).pause(); gsap.set(dot, { opacity: 0 });
           gsap.set(tittles, { scale: 0, transformOrigin: "50% 50%" });
           gsap.set(fly, { transformOrigin: "50% 100%" });
-          const scene = gsap.timeline({ delay: .45, onComplete: () => { dotSceneDone.current = true; startLoops(true); } });
+          // Marked as played when it starts: pausing mid-scene and resuming shows the final state instead of replaying.
+          dotSceneDone.current = true;
+          const scene = gsap.timeline({ delay: .45, onComplete: () => startLoops(true) });
           let current = { x: tittleA.x, y: tittleA.y };
           const land = () => scene.to(fly, { scaleX: 1.5, scaleY: .55, duration: .07, ease: "power2.out" }).to(fly, { scaleX: 1, scaleY: 1, duration: .3, ease: "elastic.out(1,.4)" });
           const hop = (to: { x: number; y: number }, apex: number, duration: number) => {
