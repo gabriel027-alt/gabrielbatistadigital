@@ -291,7 +291,7 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 
 **Pedido:** novo nicho de cirurgia plástica, escolhido pelo usuário. Ele aprovou o kit ao mandar as três fotos, gerou as imagens no ChatGPT/Gemini e aprovou a unidade do hero com a cena da recuperação ("Aprovado, montar").
 
-**Kit:** `sutil` em `lib/brand-kits.ts`, com status em construção até a aprovação da página.
+**Kit:** `sutil` em `lib/brand-kits.ts`. **Aprovada pelo usuário em 12/11/2026**, depois da revisão dos textos com o Humanizer (sem mudar fatos nem tom).
 - Paleta medida nas fotos: gesso #efebe6 (parede), travertino #c8bfb5 (mesa), sálvia #9ba191 (cortina), sálvia profunda #4a5044 (da blusa, escurecida para contraste AA) e grafite #2a2a27 (calça).
 - A argila rosada da proposta não está nas fotos e saiu.
 - Bodoni Moda e Figtree (OFL, `next/font/google`).

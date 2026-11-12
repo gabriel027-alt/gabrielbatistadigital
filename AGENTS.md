@@ -205,5 +205,5 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 ## Sutil: cirurgia plástica (11/11/2026)
 
-- `/modelos/cirurgia-plastica` é a Sutil Cirurgia Plástica, pelo design system. Kit, paleta medida nas fotos do usuário e evidência em docs/DESIGN-SYSTEM.md. A assinatura é a recuperação dia a dia (contador, régua de dias e luz), com prazos aproximados e informativos.
+- `/modelos/cirurgia-plastica` (aprovada pelo usuário em 12/11/2026) é a Sutil Cirurgia Plástica, pelo design system. Kit, paleta medida nas fotos do usuário e evidência em docs/DESIGN-SYSTEM.md. A assinatura é a recuperação dia a dia (contador, régua de dias e luz), com prazos aproximados e informativos.
 - Não inventar nome, CRM/RQE, depoimentos, antes/depois ou resultados para a cirurgiã. Não usar fotos de corpos. Ainda fora do catálogo da homepage até a galeria ser refeita.

@@ -72,6 +72,6 @@ export const brandKits: BrandKit[] = [
     photo: "Consultório de gesso e travertino com luz lateral, cirurgiã em sálvia e branco",
     signatureGraphic: "Régua de dias da recuperação, com marcos",
     signatureMotion: "A recuperação dia a dia: a régua avança, o contador de dias sobe e a luz da janela atravessa a sala",
-    hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "em construção",
+    hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "aprovado",
   },
 ];
