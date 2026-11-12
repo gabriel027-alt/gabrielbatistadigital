@@ -228,7 +228,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - na seção após a frase de abertura, as formas flutuam da esquerda para a direita e uma linha pêssego as atravessa, desenhando-se com a rolagem. Num trilho fixo (sticky), elas montam o "g." e se desmontam na volta. É uma timeline única, com `lazy:false`;
   - não usar pin do ScrollTrigger: ele mudava a altura da página ao pausar o movimento;
   - no hero, "Gabriel" e "Batista" alternam a largura (eixo wdth da Bricolage), como na referência, e entre as palavras há um cartão pêssego, inclinado como o cartão da referência, onde o "g." se monta em loop: o anel cai, a haste desliza, o gancho sobe, o ponto quica, há uma pausa e tudo se desmonta. O usuário achou "sem sal" as formas soltas e pequenas no vão. As formas do cartão usam tons escuros (`tone="dark"`). A pasta mostra "g.";
-  - cena do ponto (inspirada no princípio da animação da Pixar, sem copiar o abajur nem a piada do "I"): na chegada, só no computador e uma vez por visita, o ponto vermelho cai sobre o nome. Ele quica com amassar e esticar, planta o pingo vermelho nos dois "i" (o "ı" sem pingo da fonte mais o ponto da marca), salta por cima do cartão e vira o ponto do "g.". Só então o nome respira e o cartão começa o loop. Pausar e retomar não repete a cena;
+  - cena do ponto (inspirada no princípio da animação da Pixar, sem copiar o abajur nem a piada do "I"), na chegada e uma vez por visita, no computador e no celular:
+    - o ponto nasce como pingo do "i" de "Design" e encharca de tinta vermelha a frase "Design & desenvolvimento web", como uma moldura;
+    - a tinta escorre de volta para uma gota, que cai como chuva no "i" de "Gabriel";
+    - de lá, em arcos baixos (sem subir ao pescoço; no celular, ainda mais baixos), planta o pingo no "i" de "Batista";
+    - final, ideia do usuário: o ponto se eleva um pouco (no celular, só um pouco acima do "i"), ganha energia (pulsos cada vez mais rápidos com anel de brilho) e dispara numa volta contínua em torno do cartão, deixando um rastro-cometa pêssego, a mesma linha da cena do "g." abaixo (MotionPathPlugin do GSAP). Mergulha no ponto do "g.", com onda de choque e solavanco do cartão, e o rastro some por completo;
+    - só então o nome respira e o cartão começa o loop. Pausar e retomar não repete a cena;
+  - hero no celular: o nome aparece em grade fixa de duas linhas ("Gabriel" com o cartão; "Batista" à direita, abaixo), na altura do peito. A grade é fixa porque a largura variável empurrava o cartão entre as linhas;
   - sem JS, pausado ou com movimento reduzido, o "g." aparece montado e os pingos vermelhos já estão nos "i";
   - o brilho vermelho da moldura aparece só nas seções de foto;
   - no celular, o WhatsApp fica no menu inferior.

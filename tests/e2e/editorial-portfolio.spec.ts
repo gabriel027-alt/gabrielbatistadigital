@@ -206,8 +206,9 @@ test('The brand dot plants the tittle on each i of the name and lands in the car
   const scales = () => tittles.evaluateAll(nodes => nodes.map(node => new DOMMatrix(getComputedStyle(node).transform).a));
   // Hidden at the start of the scene, both planted by its end.
   await expect.poll(scales, { timeout: 2000 }).toEqual([0, 0]);
-  await expect.poll(async () => (await scales()).every(scale => scale > .95), { timeout: 9000 }).toBe(true);
-  await expect.poll(() => page.locator('[data-card-part="dot"]').evaluate(el => Number(getComputedStyle(el).opacity)), { timeout: 4000 }).toBeGreaterThan(.9);
+  // The scene (ink, drop, hops, charge and lap) lasts about eight seconds; allow for a busy machine.
+  await expect.poll(async () => (await scales()).every(scale => scale > .95), { timeout: 15000 }).toBe(true);
+  await expect.poll(() => page.locator('[data-card-part="dot"]').evaluate(el => Number(getComputedStyle(el).opacity)), { timeout: 8000 }).toBeGreaterThan(.9);
   // Pausing and resuming motion does not replay the scene.
   await page.getByRole('button', { name: 'Pausar movimento' }).click();
   await page.getByRole('button', { name: 'Ativar movimento' }).click();

@@ -158,3 +158,31 @@
 .tittle{position:absolute;left:50%;top:.075em;width:.14em;height:.14em;margin-left:-.07em}
 .heroDot{display:none;position:absolute;left:0;top:0;width:.14em;height:.14em;z-index:4;pointer-events:none}
 .page[data-editorial-animated=true] .heroDot{display:block;opacity:0}
+
+/* Mobile hero (12/11/2026): the name, the "g." card and the dot scene were hidden on phones, where clinic owners
+   open the link. The name now steps across two lines at chest height, below the chin and above the menu. */
+@media(max-width:700px){
+  .heroOffer{top:84px;bottom:auto;left:6vw;max-width:62%;font-size:16px}
+  .heroBottom{top:auto;left:5vw;right:5vw;width:auto;bottom:92px}
+  /* A fixed grid, not wrapping: the breathing name changes width and would push the card between lines. */
+  .heroBottom h1{position:relative;width:auto;height:auto;overflow:visible;clip-path:none;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:3vw;row-gap:1vw;font-size:21vw;line-height:.88;margin:0}
+  .heroBottom h1 [data-hero-word]:first-of-type{grid-column:1;grid-row:1}
+  .heroSample{display:block;order:0;grid-column:2;grid-row:1;width:27vw;height:18vw;transform:rotate(-7deg)}
+  .heroSample + [data-hero-word]{grid-column:1 / -1;grid-row:2;justify-self:end}
+  .heroCard{border-radius:2.2vw}
+  .heroBottom>p{margin-top:12px;font-size:13px;text-align:right;max-width:none}
+}
+
+/* The dot's origin: the tittle of "Design" and the red ink that soaks the phrase like a frame before it drips. */
+.heroOffer{isolation:isolate}
+.offerTittle{top:.06em;width:.17em;height:.17em;margin-left:-.085em;box-shadow:none}
+.offerInk{display:none;position:absolute;inset:-.28em -.42em -.32em;z-index:-1;border-radius:.22em;background:#c4372bec;clip-path:circle(0px at 0px 0px);pointer-events:none}
+.page[data-editorial-animated=true] .offerInk{display:block}
+
+/* The dot's finale: it rises, charges (pulsing glow), then dives around the card leaving a comet trail in the
+   same peach as the line of the "g." scene below, and lands with a shock wave. Only while animated. */
+.heroTrail,.heroGlow{display:none;position:absolute;left:0;top:0;pointer-events:none;z-index:3}
+.heroTrail{width:1px;height:1px;overflow:visible}
+.heroTrail path{fill:none;stroke:#e8916a;stroke-width:.09em;stroke-linecap:round;stroke-dasharray:.32 2;stroke-dashoffset:.32}
+.heroGlow{width:.14em;height:.14em;border-radius:50%;border:.018em solid #ef5a4a;box-shadow:0 0 .12em #ef5a4a99;opacity:0}
+.page[data-editorial-animated=true] :is(.heroTrail,.heroGlow){display:block}

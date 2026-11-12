@@ -6,8 +6,9 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
 import Lenis from "lenis";
 import { SplitText } from "gsap/SplitText";
+import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
-import { linePath, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
+import { linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
 const subscribe = () => () => {};
 
 export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -20,7 +21,7 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
   useEffect(() => {
     const node = root.current;
     if (!node || paused) return;
-    gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText);
+    gsap.registerPlugin(ScrollTrigger, CustomEase, SplitText, MotionPathPlugin);
     CustomEase.create("editorial-flow", ".625,.05,0,1");
     const media = gsap.matchMedia();
     media.add("(prefers-reduced-motion: no-preference)", () => {
@@ -91,25 +92,27 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           if (cardLoop) { if (fromAssembled) cardLoop.play(assembledAt); else cardLoop.play(0); }
         };
 
-        // The brand dot's scene, once per visit (not again after pausing and resuming): it falls onto the name,
-        // hops across "Gabriel" with squash and stretch, leaves a red tittle on each "i", jumps over the card
-        // and lands in it as the dot of "g.". Then the name starts breathing and the card starts its loop.
+        // The brand dot's scene, once per visit (not again after pausing and resuming): born as the tittle of
+        // "Design", it soaks that phrase in red ink, drips like rain onto the "i" of "Gabriel", hops with squash and
+        // stretch to the "i" of "Batista" and lands in the card as the dot of "g.". Then the loops begin.
         const h1 = node.querySelector<HTMLElement>("[data-hero-wordmark]");
         const fly = node.querySelector<HTMLElement>("[data-hero-dot]");
         const tittles = gsap.utils.toArray<HTMLElement>("[data-tittle]");
-        if (desktop && !dotSceneDone.current && h1 && fly && tittles.length === 2 && words.length === 2 && cardLoop && dot) {
+        if (!dotSceneDone.current && h1 && fly && tittles.length === 2 && words.length === 2 && cardLoop && dot) {
+          // Jump heights follow the letter size, so the same scene works on the phone's two-line name.
+          const em = parseFloat(getComputedStyle(h1).fontSize);
           const box = h1.getBoundingClientRect();
           const centre = (el: Element) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2 - box.left, y: r.top + r.height / 2 - box.top, w: r.width }; };
           const first = words[0].getBoundingClientRect();
           const tittleA = centre(tittles[0]), tittleB = centre(tittles[1]), cardDot = centre(dot);
           const r = tittleA.w / 2;
-          const along = (share: number) => ({ x: first.left - box.left + first.width * share, y: tittleA.y });
+          void first;
           // The card shows its letter without the dot until the brand dot lands in it.
           cardLoop.seek(assembledAt).pause(); gsap.set(dot, { opacity: 0 });
           gsap.set(tittles, { scale: 0, transformOrigin: "50% 50%" });
           gsap.set(fly, { transformOrigin: "50% 100%" });
-          const scene = gsap.timeline({ delay: .5, onComplete: () => { dotSceneDone.current = true; gsap.set(dot, { opacity: 1 }); gsap.set(fly, { opacity: 0 }); startLoops(true); } });
-          let current = along(.06);
+          const scene = gsap.timeline({ delay: .45, onComplete: () => { dotSceneDone.current = true; startLoops(true); } });
+          let current = { x: tittleA.x, y: tittleA.y };
           const land = () => scene.to(fly, { scaleX: 1.5, scaleY: .55, duration: .07, ease: "power2.out" }).to(fly, { scaleX: 1, scaleY: 1, duration: .3, ease: "elastic.out(1,.4)" });
           const hop = (to: { x: number; y: number }, apex: number, duration: number) => {
             const peak = Math.min(current.y, to.y) - apex;
@@ -124,16 +127,92 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             current = to;
           };
           const plant = (tittle: HTMLElement) => scene.to(tittle, { scale: 1, duration: .35, ease: "back.out(3)" }, "<");
-          scene.fromTo(fly, { x: current.x - r, y: current.y - r - 460, opacity: 1 }, { y: current.y - r, duration: .55, ease: "power2.in" });
-          land();
-          hop(along(.36), 110, .42);
-          hop({ x: tittleA.x, y: tittleA.y }, 90, .4);
-          plant(tittles[0]);
-          scene.to(fly, { x: `+=${r * .5}`, duration: .18, ease: "power1.inOut", yoyo: true, repeat: 1 }, "+=.15"); // a glance towards "Batista"
-          hop({ x: tittleB.x, y: tittleB.y }, 230, .75);
+          // 1. Born as the tittle of "Design": the red ink spreads from it and soaks the phrase like a frame.
+          const offer = node.querySelector<HTMLElement>("[data-hero-offer]");
+          const ink = node.querySelector<HTMLElement>("[data-offer-ink]");
+          const origin = node.querySelector<HTMLElement>("[data-offer-tittle]");
+          if (offer && ink && origin) {
+            const inkBox = ink.getBoundingClientRect(), dotBox = origin.getBoundingClientRect();
+            const cx = dotBox.left + dotBox.width / 2 - inkBox.left, cy = dotBox.top + dotBox.height / 2 - inkBox.top;
+            const cover = Math.hypot(Math.max(cx, inkBox.width - cx), Math.max(cy, inkBox.height - cy));
+            const start = centre(origin);
+            const below = { x: start.x, y: inkBox.bottom - box.top + r * 1.2 }; // the drop hangs under the frame
+            const tiny = dotBox.width / tittleA.w;
+            const offerColour = getComputedStyle(offer).color;
+            gsap.set(ink, { clipPath: `circle(0px at ${cx}px ${cy}px)` });
+            scene.fromTo(ink, { clipPath: `circle(0px at ${cx}px ${cy}px)` }, { clipPath: `circle(${cover}px at ${cx}px ${cy}px)`, duration: .75, ease: "power2.out" })
+              .to(offer, { color: "#faf6ef", duration: .3 }, "<+=.15")
+              // Hold the soaked frame, then the ink drains down into a drop under the "i".
+              .to(ink, { clipPath: `circle(0px at ${cx}px ${inkBox.height}px)`, duration: .6, ease: "power2.in" }, "+=.3")
+              .to(offer, { color: offerColour, duration: .3 }, "<+=.25")
+              .fromTo(fly, { x: start.x - r, y: start.y - r, scale: tiny, opacity: 1 }, { x: below.x - r, y: below.y - r, scaleX: .85, scaleY: 1.25, duration: .6, ease: "power2.in" }, "<")
+              // 2. The drop falls like rain onto the "i" of "Gabriel" and splashes into its tittle.
+              .to(fly, { x: tittleA.x - r, duration: .55, ease: "none" })
+              .to(fly, { y: tittleA.y - r, scaleX: .7, scaleY: 1.6, duration: .55, ease: "power3.in" }, "<");
+            land();
+            plant(tittles[0]);
+            restore.push(() => { gsap.set(ink, { clearProps: "clipPath" }); gsap.set(offer, { clearProps: "color" }); });
+          } else {
+            scene.fromTo(fly, { x: current.x - r, y: current.y - r - em * 3, opacity: 1 }, { y: current.y - r, duration: .55, ease: "power2.in" });
+            land();
+            plant(tittles[0]);
+          }
+          // 3. A glance towards "Batista", a low arc over the card (not up to the neck), then into the card.
+          scene.to(fly, { x: `+=${r * .5}`, duration: .18, ease: "power1.inOut", yoyo: true, repeat: 1 }, "+=.15");
+          // On phones the name sits just under the chin: flatter arcs keep the dot off the neck.
+          const arc = innerWidth <= 700 ? .35 : 1;
+          hop({ x: tittleB.x, y: tittleB.y }, em * .55 * arc, .7);
           plant(tittles[1]);
-          hop({ x: cardDot.x, y: cardDot.y }, 140, .55);
-          scene.to(fly, { scale: cardDot.w / tittleA.w, duration: .16, ease: "power2.out" });
+          // 4. The finale: rise a little (to the card's top, never up to the neck), charge with pulsing glow, then dive
+          //    in one lap around the card leaving a comet trail (the peach line of the "g." scene) and land with a wave.
+          const scaleIn = cardDot.w / tittleA.w;
+          const trail = node.querySelector<SVGPathElement>("[data-hero-trail]");
+          const glow = node.querySelector<HTMLElement>("[data-hero-glow]");
+          const wave = node.querySelector<HTMLElement>("[data-hero-wave]");
+          const cardBox = card?.getBoundingClientRect();
+          if (trail && glow && wave && card && cardBox) {
+            const c = { x: cardBox.left + cardBox.width / 2 - box.left, y: cardBox.top + cardBox.height / 2 - box.top };
+            const m = em * (arc < 1 ? .08 : .2), hw = cardBox.width / 2 + m, hh = cardBox.height / 2 + m;
+            // On phones the card sits above "Batista", right under the chin: rise only a little above the "i".
+            const lift = arc < 1 ? { x: current.x, y: current.y - em * .3 } : { x: current.x, y: Math.min(current.y, c.y - hh) - em * .15 };
+            // The lap: from the lift point down the far side, under the card, up the near side, over the top, then in.
+            const side = lift.x > c.x ? 1 : -1;
+            const lap = [lift, { x: c.x + side * hw, y: c.y }, { x: c.x, y: c.y + hh }, { x: c.x - side * hw, y: c.y }, { x: c.x, y: c.y - cardBox.height * .3 }, { x: cardDot.x, y: cardDot.y }];
+            trail.setAttribute("d", pathThrough(lap));
+            const flyPath = pathThrough(lap.map(point => ({ x: point.x - r, y: point.y - r })));
+            const ring = (el: HTMLElement, at: { x: number; y: number }) => gsap.set(el, { x: at.x - r, y: at.y - r, transformOrigin: "50% 50%" });
+            ring(glow, lift);
+            const trace = { head: 0 };
+            const segment = .32;
+            const drawTrail = () => { trail.style.strokeDashoffset = String(segment - trace.head); };
+            scene.set(fly, { transformOrigin: "50% 50%" })
+              .to(fly, { y: lift.y - r, scaleX: .85, scaleY: 1.2, duration: .35, ease: "power2.out" })
+              // Charging: the dot clenches and swells faster each time while a red glow pulses out of it.
+              .addLabel("charge")
+              .to(fly, { keyframes: [{ scale: .75, duration: .14 }, { scale: 1.2, duration: .14 }, { scale: .72, duration: .11 }, { scale: 1.25, duration: .11 }, { scale: .7, duration: .08 }, { scale: 1.3, duration: .08 }], ease: "sine.inOut" }, "charge")
+              .to(fly, { x: `+=${r * .12}`, duration: .04, repeat: 9, yoyo: true, ease: "none" }, "charge+=.2")
+              .fromTo(glow, { scale: .6, opacity: .9 }, { scale: 2.6, opacity: 0, duration: .32, ease: "power1.out", repeat: 2 }, "charge")
+              // The dive: one continuous lap, the trail's head follows the dot and its tail fades behind it.
+              .addLabel("dive")
+              .to(fly, { motionPath: { path: flyPath, autoRotate: false }, duration: .95, ease: "power2.in" }, "dive")
+              .fromTo(trace, { head: 0 }, { head: 1, duration: .95, ease: "power2.in", onUpdate: drawTrail }, "dive")
+              .to(fly, { scaleX: 1.35, scaleY: .75, duration: .3 }, "dive")
+              .to(fly, { scale: scaleIn, duration: .25, ease: "power2.in" }, "dive+=.7")
+              // Impact: the card's own dot appears, the card takes the hit, a shock wave and the trail drains away.
+              .addLabel("impact")
+              .to(dot, { opacity: 1, duration: .06 }, "impact")
+              .to(fly, { opacity: 0, duration: .06 }, "impact")
+              .call(() => ring(wave, cardDot), undefined, "impact")
+              .fromTo(wave, { scale: .4, opacity: .9 }, { scale: 3.4, opacity: 0, duration: .55, ease: "power2.out" }, "impact")
+              .fromTo(card, { scale: 1.09 }, { scale: 1, duration: .6, ease: "elastic.out(1,.45)" }, "impact")
+              .to(trace, { head: 1 + segment + .05, duration: .35, ease: "power1.out", onUpdate: drawTrail }, "impact")
+              // A round cap could linger at the path's end: hide the trail once it has drained.
+              .set(trail, { opacity: 0 });
+            restore.push(() => { trail.removeAttribute("d"); trail.style.strokeDashoffset = ""; gsap.set(trail, { clearProps: "opacity" }); gsap.set([glow, wave, card], { clearProps: "transform,opacity" }); });
+          } else {
+            scene.to(fly, { x: cardDot.x - r, y: cardDot.y - r, scale: scaleIn, duration: .5, ease: "power2.inOut" })
+              .to(dot, { opacity: 1, duration: .14 }).to(fly, { opacity: 0, duration: .14 }, "<");
+          }
           restore.push(() => { gsap.set(tittles, { clearProps: "transform" }); gsap.set(dot, { clearProps: "opacity" }); });
         } else startLoops(false);
         // The monogram, taken apart: the shapes drift, one line threads them, then the scroll assembles "gb/".
