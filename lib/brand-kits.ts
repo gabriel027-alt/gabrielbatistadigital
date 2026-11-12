@@ -61,6 +61,6 @@ export const brandKits: BrandKit[] = [
     photo: "Tour contínuo em vídeo, do alto da baía à suíte e à piscina",
     signatureGraphic: "Trajeto do sol sobre a linha do horizonte, marcando os capítulos",
     signatureMotion: "Tour contínuo quadro a quadro: da baía à porta, à recepção, à suíte e à piscina",
-    hero: "Vista aérea da baía em tela cheia, com o nome sobre o céu", status: "em construção",
+    hero: "Vista aérea da baía em tela cheia, com o nome sobre o céu", status: "aprovado",
   },
 ];

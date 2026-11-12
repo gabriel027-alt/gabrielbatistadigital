@@ -277,7 +277,7 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 
 **Pedido:** câmera que sai do alto, chega à fachada, entra, passa pela recepção e mostra os demais ambientes, quadro a quadro pelo scroll, sem cortes e sem curvatura da Terra. O usuário aprovou o vídeo-mestre (“Aprovado, montar”).
 
-**Kit:** `brisa` em `lib/brand-kits.ts`, status em construção. Paleta medida no vídeo por k-means: cal #f6efe2, areia #e7d7bf, telha #9a4c2b, oliva #55552f, nogueira #33261a. Tipografia Marcellus com Karla (OFL, `next/font/google`). O símbolo (arco com sol nascendo) é só logotipo: nenhuma foto recortada em arco.
+**Kit:** `brisa` em `lib/brand-kits.ts`. **Aprovada pelo usuário em 11/11/2026.** Paleta medida no vídeo por k-means: cal #f6efe2, areia #e7d7bf, telha #9a4c2b, oliva #55552f, nogueira #33261a. Tipografia Marcellus com Karla (OFL, `next/font/google`). O símbolo (arco com sol nascendo) é só logotipo: nenhuma foto recortada em arco.
 
 **Página** `/modelos/hotelaria` (`app/modelos/hotelaria/`, conteúdo em `lib/brisa.ts`):
 1. Tour em canvas (`BrisaTour.tsx`) com 561 quadros em 1100svh (900svh no celular). Primeiro o nome sobre o céu, depois seis capítulos com legenda: chegada, entrada, recepção, suíte, jardim e casa.
