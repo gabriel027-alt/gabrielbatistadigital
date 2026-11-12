@@ -196,3 +196,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Referência conferida por vídeo, screenshots, DOM, CSS e análise estática REA. O relatório de origem tem imprecisões; correções e diferenças em docs/RECONSTRUCAO-PORTFOLIO-EDITORIAL.md. Não afirmar cópia integral, prêmio Awwwards ou equivalência de fontes/filmagens não recebidas.
 - Lenis 1.3.17 MIT foi adicionado somente à nova experiência, com limpeza e movimento reduzido. Não ativá-lo globalmente. Loops próprios de seis segundos só carregam quando visíveis e permitidos; pausa, economia de dados e ausência de JS mantêm conteúdo estático. Filmes completos abrem em diálogo, com CTA de Gabriel fora da gravação.
 - Preservar fotografia existente sem editar fisionomia; não incorporar Goga, vídeos pessoais, analytics ou código Webflow do autor. Novo layout usa Manrope licenciada, mídias próprias e formas CSS.
+
+## Casa Brisa: tour quadro a quadro (11/11/2026)
+
+- `/modelos/hotelaria` é a Casa Brisa refeita pelo design system: tour em canvas de 561 quadros (`public/videos/casa-brisa/{d,m}`), da baía à fachada, recepção, suíte, jardim e piscina, ida e volta pelo scroll. Origem, montagem e roteiro em docs/CASA-BRISA-TOUR.md; kit e evidência em docs/DESIGN-SYSTEM.md.
+- O vídeo foi gerado pelo usuário no Gemini (Veo) e montado aqui com pontes de porta e de dissolução. A curvatura da Terra foi retirada a pedido dele: não reintroduzir abertura orbital. Não anunciar como filmagem real, drone ou 3D.
+- Ao trocar o vídeo, reextrair os quadros (a cada 2) e conferir os intervalos de capítulo em `lib/brisa.ts`. Sem movimento, pausado ou sem JS: uma foto por capítulo.

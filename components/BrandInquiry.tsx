@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react"
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -67,6 +67,20 @@ const content: Record<Brand, Content> = {
     next: "Na primeira conversa, a advogada entende a situação da família, explica os caminhos possíveis e apresenta custos e prazos por escrito. Nenhuma decisão é tomada antes disso.",
     invitation: "A primeira conversa é para entender o seu caso.", stepNames: ["Sua situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como prefere conversar?"],
     summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense na situação da família e em como prefere a primeira conversa.",
+  },
+  brisa: {
+    name: "Casa Brisa", title: "Vamos preparar a sua estadia.",
+    intro: "Três escolhas rápidas ajudam a equipe a separar a acomodação certa para as suas datas.", action: "Reservar estadia",
+    steps: [
+      [{ key: "estadia", label: "Como você quer ficar?", options: ["Suíte Jardim", "Suíte Pátio", "Casa inteira", "Ainda estou escolhendo"] }],
+      [
+        { key: "periodo", label: "Quando você pensa em vir?", options: ["Nas próximas semanas", "Nos próximos meses", "Em um feriado", "Datas em aberto"] },
+        { key: "pessoas", label: "Quantas pessoas vêm?", options: ["Só eu", "Duas pessoas", "De três a seis", "Um grupo maior"] },
+      ],
+    ],
+    next: "A equipe confirma a disponibilidade, as condições da estadia e o valor antes de qualquer pagamento. Nada fica reservado sem a sua confirmação.",
+    invitation: "A estadia começa antes da chegada.", stepNames: ["A estadia", "Datas e pessoas"], stepTitles: ["Onde você quer acordar?", "Quando, e com quem?"],
+    summaryTitle: "Sua estadia, preparada.", noscript: "Para reservar, pense no tipo de acomodação, no período e em quantas pessoas vêm.",
   },
 };
 

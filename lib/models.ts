@@ -86,4 +86,4 @@ export const modelPreparation: Record<string, string[]> = {
 };
 
 /** Models rebuilt outside the shared template, each with its own route and structure (docs/MODELOS-ALTO-TICKET.md). */
-export const rebuiltModels = new Set<string>(["odontologia", "patrimonio"]);
+export const rebuiltModels = new Set<string>(["odontologia", "patrimonio", "hotelaria"]);

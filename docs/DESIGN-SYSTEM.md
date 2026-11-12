@@ -94,6 +94,7 @@ Cada nova marca precisa diferir de todas as anteriores em pelo menos 6 dos 7 cam
 | Vanguard (arquitetura) | Manrope | Mineral e papel | Arquitetura e maquete | Linhas medidas | A rolagem é o lápis | Folha que vira casa |
 | Forma (odontologia) | Lora | Porcelana, linho, vinho; cerâmica quente sobre travertino | Consultório quente, foto larga e retrato | Grade de proporção | Grade, contornos em proporção áurea, cerâmica | Foto larga com o texto sobre a pedra |
 | Almeida (sucessões) | Cormorant Garamond | Noite, nogueira, conhaque, latão, marfim; nogueira e latão | Escritório azul-noite com luminária de latão | Linha de latão com nós; lacre; cláusulas e índice | A partilha se desenha | Escritório noturno com título sublinhado em latão e lacre |
+| Casa Brisa (hotel boutique) | Marcellus + Karla | Cal, areia, telha, oliva, nogueira; cal, telha de barro e nogueira | Tour contínuo em vídeo, da baía à piscina | Trajeto do sol sobre o horizonte, marcando capítulos; arco com sol | Tour quadro a quadro pelo scroll | Vista aérea da baía com o nome sobre o céu |
 
 ## Kits aprovados pelo usuário em 10/11/2026
 
@@ -271,3 +272,16 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 4. **Unidade representativa:** hero mais movimento-assinatura, conferido em vídeo.
 5. **Página completa:** depois da aprovação da unidade.
 6. **Registro:** atualizar a tabela acima e o AGENTS.md.
+
+## Casa Brisa pelo sistema (11/11/2026)
+
+**Pedido:** câmera que sai do alto, chega à fachada, entra, passa pela recepção e mostra os demais ambientes, quadro a quadro pelo scroll, sem cortes e sem curvatura da Terra. O usuário aprovou o vídeo-mestre (“Aprovado, montar”).
+
+**Kit:** `brisa` em `lib/brand-kits.ts`, status em construção. Paleta medida no vídeo por k-means: cal #f6efe2, areia #e7d7bf, telha #9a4c2b, oliva #55552f, nogueira #33261a. Tipografia Marcellus com Karla (OFL, `next/font/google`). O símbolo (arco com sol nascendo) é só logotipo: nenhuma foto recortada em arco.
+
+**Página** `/modelos/hotelaria` (`app/modelos/hotelaria/`, conteúdo em `lib/brisa.ts`):
+1. Tour em canvas (`BrisaTour.tsx`) com 561 quadros em 1100svh (900svh no celular). Primeiro o nome sobre o céu, depois seis capítulos com legenda: chegada, entrada, recepção, suíte, jardim e casa.
+2. Trajeto do sol: indica o progresso, e os capítulos são botões que levam ao início de cada um.
+3. A casa, estadias (três cartões com quadros do tour), como funciona a reserva, dúvidas, roteiro local (`BrandInquiry` marca `brisa`: estadia, período, pessoas) e rodapé com crédito.
+
+**Evidência:** `tests/e2e/brisa-model.spec.ts` com 4 testes: ida e volta por quadro, capítulos, pausa, roteiro, textos proibidos, movimento reduzido com axe AA, e quadros de celular sem estouro lateral. Suíte completa: 98 aprovados e 4 ignorados. Vídeo do scroll de ida e volta em `Downloads/casa-brisa-tour/casa-brisa-pagina-scroll.mp4`, fora do repositório.

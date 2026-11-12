@@ -52,4 +52,15 @@ export const brandKits: BrandKit[] = [
     signatureMotion: "A partilha se desenha: do patrimônio, uma linha que se divide até os herdeiros",
     hero: "Escritório noturno com o título sublinhado por uma linha de latão e o lacre", status: "aprovado",
   },
+  {
+    id: "brisa", route: "/modelos/hotelaria", niche: "Hotel boutique",
+    concept: "A chegada já é parte da estadia.", mark: "Sol nascendo sobre a linha do horizonte, dentro de um arco",
+    // Palette measured on the tour video (k-means over every 12th frame): lime wash, sand, roof tile, olive garden, walnut.
+    palette: { cal: "#f6efe2", areia: "#e7d7bf", telha: "#9a4c2b", oliva: "#55552f", nogueira: "#33261a" },
+    material: "Cal, telha de barro e madeira de nogueira", typography: { display: "Marcellus", text: "Karla" },
+    photo: "Tour contínuo em vídeo, do alto da baía à suíte e à piscina",
+    signatureGraphic: "Trajeto do sol sobre a linha do horizonte, marcando os capítulos",
+    signatureMotion: "Tour contínuo quadro a quadro: da baía à porta, à recepção, à suíte e à piscina",
+    hero: "Vista aérea da baía em tela cheia, com o nome sobre o céu", status: "em construção",
+  },
 ];
