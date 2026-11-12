@@ -137,7 +137,7 @@ export default function FormaPage() {
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><FormaMark size={26} />Forma Odontologia</p>
       <nav aria-label="Rodapé"><a href="#planejamento">Planejamento</a><a href="#tratamentos">Tratamentos</a><a href={book}>Agendar avaliação</a></nav>
-      <p className={styles.credit}>© 2026 Forma Odontologia. Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
+      <p className={styles.credit}>© 2026 Forma Odontologia. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }

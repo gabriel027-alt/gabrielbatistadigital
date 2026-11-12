@@ -129,7 +129,7 @@ export default function BrisaPage() {
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><BrisaMark size={26} />Casa Brisa</p>
       <nav aria-label="Rodapé"><a href="#estadias">Estadias</a><a href="#reserva">Reserva</a><a href={book}>Reservar</a></nav>
-      <p className={styles.credit}>© 2026 Casa Brisa. Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
+      <p className={styles.credit}>© 2026 Casa Brisa. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }

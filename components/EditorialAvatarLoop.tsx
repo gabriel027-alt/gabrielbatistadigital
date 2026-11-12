@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { editorialAvatar, footerMusic } from "@/lib/editorial-avatar";
-import styles from "@/app/propostas/portfolio-editorial/editorial.module.css";
+import styles from "@/app/editorial.module.css";
 
 type Connection = EventTarget & { saveData?: boolean };
 type PlaybackUpdate = { data: { isPaused: boolean; playingURI?: string; position?: number; duration?: number } };

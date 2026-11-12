@@ -212,3 +212,24 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - `/modelos/veterinaria` é a Toca Hospital Veterinário, pelo design system. A chave Cão / Gato troca fotos e textos por `data-species`, e as portas do hospital se abrem sala a sala pela rolagem. Kit, paleta e evidência em docs/DESIGN-SYSTEM.md.
 - Posicionar como hospital ou clínica de especialidades, não pet shop. Não inventar CRMV, nome da veterinária, depoimentos, números ou plantão 24 h. Fora do catálogo da homepage até a galeria ser refeita.
+
+## Homepage editorial (12/11/2026)
+
+- Por decisão do usuário, a versão editorial com base na referência de Juan Mora é a homepage em `/` (`app/page.tsx`, `app/editorial.module.css`). `/propostas/portfolio-editorial` redireciona para `/`.
+- A homepage anterior ("Sua marca não nasceu para ser mais uma": SignatureHome, SelectedWork, Header, Footer, ThemeToggle e o catálogo de 20) foi apagada a pedido dele. Estão substituídas as regras antigas sobre "seis destaques", "catálogo de 20", SelectedWork e cartões de filme. Os filmes da Aura e da Orla continuam na seleção, sem autoplay de filme completo. Os loops curtos seguem as regras de visibilidade, pausa e economia de dados.
+- A seleção mostra as marcas aprovadas (Forma, Sutil, Toca, Casa Brisa e Almeida), mais os filmes da Aura e da Orla. Cada marca traz fonte e cores medidas lidas de `lib/brand-kits.ts`. As amostras ficam em `public/images/projects/brands/` e saem das próprias páginas (hero e cena-assinatura). Ao mudar uma marca, recapturar.
+- Fundação:
+  - Bricolage Grotesque nas palavras monumentais;
+  - Manrope no texto;
+  - JetBrains Mono só para dados reais das marcas;
+  - o azul elétrico foi trocado pelo vermelho do retrato.
+- Motif autoral (substitui as amostras flutuantes, a pedido do usuário):
+  - o usuário preferiu "g." a "gb" (12/11/2026). As formas são o g desmontado (bojo em anel, haste, gancho) mais o ponto vermelho, que é o ponto do logo "Gabriel • Batista" (`lib/gb-shapes.ts`, `components/GbShape.tsx`). Uma barra e uma esfera acompanham a linha e saem de cena. Não voltar ao "gb";
+  - na seção após a frase de abertura, as formas flutuam da esquerda para a direita e uma linha pêssego as atravessa, desenhando-se com a rolagem. Num trilho fixo (sticky), elas montam o "g." e se desmontam na volta. É uma timeline única, com `lazy:false`;
+  - não usar pin do ScrollTrigger: ele mudava a altura da página ao pausar o movimento;
+  - no hero, "Gabriel" e "Batista" alternam a largura (eixo wdth da Bricolage), como na referência, e entre as palavras há um cartão pêssego, inclinado como o cartão da referência, onde o "g." se monta em loop: o anel cai, a haste desliza, o gancho sobe, o ponto quica, há uma pausa e tudo se desmonta. O usuário achou "sem sal" as formas soltas e pequenas no vão. As formas do cartão usam tons escuros (`tone="dark"`). A pasta mostra "g.";
+  - cena do ponto (inspirada no princípio da animação da Pixar, sem copiar o abajur nem a piada do "I"): na chegada, só no computador e uma vez por visita, o ponto vermelho cai sobre o nome. Ele quica com amassar e esticar, planta o pingo vermelho nos dois "i" (o "ı" sem pingo da fonte mais o ponto da marca), salta por cima do cartão e vira o ponto do "g.". Só então o nome respira e o cartão começa o loop. Pausar e retomar não repete a cena;
+  - sem JS, pausado ou com movimento reduzido, o "g." aparece montado e os pingos vermelhos já estão nos "i";
+  - o brilho vermelho da moldura aparece só nas seções de foto;
+  - no celular, o WhatsApp fica no menu inferior.
+- Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. O CSS global ainda carrega regras da homepage antiga; a limpeza depende de conferência visual nas outras páginas.

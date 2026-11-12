@@ -118,7 +118,7 @@ export default function AlmeidaPage() {
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><AlmeidaSeal size={44} className={styles.logoSeal} />Almeida &amp; Valença Advocacia</p>
       <nav aria-label="Rodapé"><a href="#inventario">Inventário</a><a href="#partilha">A partilha</a><a href={talk}>Falar com a advogada</a></nav>
-      <p className={styles.credit}>© 2026 Almeida &amp; Valença Advocacia. Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
+      <p className={styles.credit}>© 2026 Almeida &amp; Valença Advocacia. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }

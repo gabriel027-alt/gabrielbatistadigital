@@ -24,23 +24,6 @@ test('Final comparison supports keyboard, mouse and mobile without replacing the
  await mobileContext.close();
 });
 
-test('Portfolio presents Aura as one video among six projects without a landing-page link',async({page})=>{
- await page.goto('/');
- await expect(page.locator('.signature-work-card')).toHaveCount(6);
- const card=page.locator('[data-aura-video-project]'),video=card.locator('video');
- await expect(card.getByRole('heading',{name:'Aura',exact:true})).toBeVisible();
- await expect(card.getByRole('link')).toHaveCount(1);
- await expect(card.getByRole('link',{name:'Quero um site para minha clínica'})).toHaveAttribute('href',/wa.me\/5538998267717/);
- await expect(video).toHaveAttribute('preload','none');
- await expect(video).toHaveAttribute('controls','');
- await expect(video.locator('source')).toHaveAttribute('src','/videos/projects/aura-showcase.mp4');
- const response=await page.request.get('/videos/projects/aura-showcase.mp4');expect(response.status()).toBe(200);
- await video.evaluate(v=>(v as HTMLVideoElement).load());
- await expect.poll(()=>video.evaluate(v=>(v as HTMLVideoElement).readyState)).toBeGreaterThan(0);
- expect(await video.evaluate(v=>(v as HTMLVideoElement).duration)).toBeGreaterThan(10);
-});
-
-
 test('Scroll sweeps to all-before then all-after and preserves manual adjustment until further scroll',async({page})=>{
  await page.setViewportSize({width:1440,height:900});await page.goto('/propostas/aura');
  const section=page.locator('[data-aura-comparator]'),slider=section.getByRole('slider');

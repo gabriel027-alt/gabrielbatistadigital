@@ -36,6 +36,6 @@ export default async function ModelPage({ params }: Props) {
       <section className="model-faq"><p className="model-kicker">ANTES DO PRÓXIMO PASSO</p><h2>Uma dúvida importante.</h2><details><summary>{model.question}</summary><p>{model.answer}</p></details></section>
       <section id="interesse" className="model-contact"><p className="model-kicker">GOSTOU DESTA DIREÇÃO?</p><h2>Uma presença assim.<br />Com a identidade do seu negócio.</h2><p>Converse com Gabriel sobre um projeto próprio para {model.niche.toLowerCase()}, com conteúdo, imagens e funcionalidades definidos para a sua operação.</p><a className="model-button" href={buildWhatsAppUrl(`Olá, Gabriel! Conheci o modelo ${model.brand}, para ${model.niche}, e quero conversar sobre um projeto para meu negócio.`)} target="_blank" rel="noopener noreferrer">Conversar com Gabriel <Arrow size={15} aria-hidden="true" /></a></section>
     </main>
-    <footer className="model-footer"><span>© 2026 {model.brand}</span><Link href="/#modelos">Site por Gabriel Batista Digital <Arrow size={12} /></Link></footer>
+    <footer className="model-footer"><span>© 2026 {model.brand}</span><Link href="/#editorial-work">Site por Gabriel Batista Digital <Arrow size={12} /></Link></footer>
   </div>;
 }

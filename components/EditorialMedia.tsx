@@ -5,7 +5,7 @@ import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import { projectFilms } from "@/lib/project-films";
-import styles from "@/app/propostas/portfolio-editorial/editorial.module.css";
+import styles from "@/app/editorial.module.css";
 const subscribe = () => () => {};
 
 export function EditorialMedia({ name, image, film, href, compact = false }: { name: string; image: string; film?: "aura" | "orla"; href?: string; compact?: boolean }) {

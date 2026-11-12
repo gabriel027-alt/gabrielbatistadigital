@@ -4,23 +4,6 @@ import { modelBrands } from "../../lib/model-brands";
 import { nicheModels as allModels, rebuiltModels } from "../../lib/models";
 // Rebuilt models have their own pages and specs; this file covers the shared template.
 const nicheModels = allModels.filter(model => !rebuiltModels.has(model.slug));
-test("17 new models plus original three, gallery filters and real previews", async ({ page }) => {
-  await page.goto("/");
-  await expect(page.locator(".signature-work-card")).toHaveCount(6);
-  await page.locator("#modelos > summary").click();
-  await expect(page.locator(".niche-preview-card")).toHaveCount(17);
-  const gallery = page.locator("#modelos");
-  for (const [group, count] of [["Jurídico", 2], ["Saúde", 4], ["Experiências", 3], ["Todos", 17]] as const) {
-    await gallery.getByRole("button", { name: group, exact: true }).click();
-    await expect(gallery.locator(".niche-preview-card")).toHaveCount(count);
-  }
-  const links = await gallery.locator("a").evaluateAll(nodes => nodes.map(node => node.getAttribute("href")));
-  expect(new Set(links).size).toBe(20);
-  const first = gallery.locator(".niche-preview-card").first();
-  await first.focus();
-  await page.keyboard.press("Enter");
-  await expect(page).toHaveURL(/modelos\/patrimonio/);
-});
 for (const model of nicheModels) {
   test(`${model.slug}: complete responsive demo, interactions, contact and accessibility`, async ({ page }) => {
     const errors: string[] = []; page.on("pageerror", e => errors.push(e.message));

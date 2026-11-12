@@ -178,7 +178,7 @@ export default function VanguardPage() {
     </main>
     <footer className={styles.footer}>
       <a href="#vanguard-inicio" aria-label="Vanguard, voltar ao início">vanguard</a>
-      <p>© 2026 Vanguard Arquitetura.<br />Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
+      <p>© 2026 Vanguard Arquitetura.<br />Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }

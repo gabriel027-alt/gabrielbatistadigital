@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
 
-const route = "/propostas/portfolio-editorial";
+const route = "/";
 const src = "/videos/editorial/gabriel-avatar-loop-v11.mp4";
 const albums = ["spotify:album:3HCCUaRSjHSFOe4fqE0BiP", "spotify:album:6zr7fFAGz7kdayP8p3pbss", "spotify:album:3oUoQ0UH7Rv06x1kpSjS36"];
 const lastTrack = "spotify:track:2ZozYdvhnrCPeE7SvbxxLS";

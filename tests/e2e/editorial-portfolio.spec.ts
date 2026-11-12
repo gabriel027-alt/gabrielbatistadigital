@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const route = "/propostas/portfolio-editorial";
+const route = "/";
 
 test("Editorial reconstruction retains a complete readable mobile and motion-reduced experience", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -16,7 +16,7 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
   }
   await page.locator('#editorial-work > summary').click();
   await expect(page.locator('#editorial-work')).toHaveAttribute('open','');
-  await expect(page.locator('#editorial-work figure')).toHaveCount(6);
+  await expect(page.locator('#editorial-work figure')).toHaveCount(7);
   expect(videos).toEqual([]);
   const audit = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   expect(audit.violations).toEqual([]);
@@ -28,7 +28,7 @@ test("Visible loops load locally, pause with the control and open a full film wi
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated','true');
   expect(await page.locator('video[data-editorial-loop][src]').count()).toBe(0);
   await expect(page.getByRole('link', { name: 'clique' })).toHaveCount(1);
-  const row = page.locator('[data-sample-row]').first();
+  const row = page.locator('[data-sample-row]').filter({ has: page.locator('video[data-editorial-loop="aura"]') });
   await row.scrollIntoViewIfNeeded();
   const loop = row.locator('video[data-editorial-loop="aura"]');
   await expect(loop).toHaveAttribute('src','/videos/projects/aura-loop.mp4');
@@ -58,7 +58,7 @@ test("No JavaScript retains original content, projects and contact without scrip
   const page=await context.newPage();
   await page.goto(route);
   await page.locator('#editorial-work > summary').click();
-  await expect(page.locator('#editorial-work figure')).toHaveCount(6);
+  await expect(page.locator('#editorial-work figure')).toHaveCount(7);
   await expect(page.getByRole('heading',{name:'Uma boa ideia precisa funcionar.'})).toBeVisible();
   await expect(page.locator('a[href*="wa.me"]').first()).toHaveAttribute('href',/5538998267717/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -160,6 +160,65 @@ test('Scrolling the opening never puts the name or the sample over the face', as
     expect(state.wordOpacity < .1 || state.word > state.chin).toBe(true);
     expect(state.sampleOpacity < .1 || state.sample > state.chin).toBe(true);
   }
+});
+
+test('Selection shows the approved brands with the colors measured for each', async ({ page }) => {
+  await page.goto(route);
+  await page.locator('#editorial-work > summary').click();
+  for (const name of ['Forma Odontologia', 'Sutil Cirurgia Plástica', 'Toca Hospital Veterinário', 'Casa Brisa', 'Almeida & Valença']) {
+    await expect(page.locator('#editorial-work figcaption h3', { hasText: name })).toBeVisible();
+  }
+  await expect(page.locator('#editorial-work dl')).toHaveCount(5);
+  await expect(page.locator('#editorial-work a[href="/modelos/veterinaria"]')).toHaveCount(1);
+  const images = await page.locator('[data-sample-row] img').evaluateAll(nodes => nodes.map(node => (node as HTMLImageElement).getAttribute('src')));
+  expect(new Set(images).size).toBe(images.length);
+  await expect(page.locator('body')).not.toContainText(/Vanguard|Chronos|catálogo de 20/);
+});
+
+test('The name breathes and the monogram shapes assemble with the scroll and come apart on the way back', async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(route);
+  await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+  // The two words of the name change width over time, in opposite directions.
+  const widths = () => page.locator('[data-hero-word]').evaluateAll(words => words.map(word => getComputedStyle(word).getPropertyValue('--wdth').trim()));
+  const first = await widths();
+  // The breathing starts after the brand dot's arrival scene (about five seconds).
+  await expect.poll(widths, { timeout: 10000 }).not.toEqual(first);
+  await expect(page.locator('[data-hero-sample] img')).toHaveCount(0);
+  // The shapes: apart before the hold, assembled into the monogram at its end, apart again on the way back.
+  const bowl = page.locator('[data-gb-shape="bowl"]');
+  const finalTransform = 'translate(675.0 470.0) rotate(0.00) scale(1.000)';
+  const track = await page.locator('[data-gb-track]').evaluate(el => ({ top: el.getBoundingClientRect().top + scrollY, height: (el as HTMLElement).offsetHeight }));
+  const go = (y: number) => page.evaluate(top => scrollTo({ top, behavior: 'instant' }), y);
+  await go(track.top - 700);
+  await expect.poll(() => bowl.getAttribute('transform')).not.toBe(finalTransform);
+  await go(track.top + track.height - 900);
+  await expect.poll(() => bowl.getAttribute('transform')).toBe(finalTransform);
+  await go(track.top - 700);
+  await expect.poll(() => bowl.getAttribute('transform')).not.toBe(finalTransform);
+});
+
+test('The brand dot plants the tittle on each i of the name and lands in the card, once per visit', async ({ page, browser }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  await page.goto(route);
+  const tittles = page.locator('[data-tittle]');
+  await expect(tittles).toHaveCount(2);
+  const scales = () => tittles.evaluateAll(nodes => nodes.map(node => new DOMMatrix(getComputedStyle(node).transform).a));
+  // Hidden at the start of the scene, both planted by its end.
+  await expect.poll(scales, { timeout: 2000 }).toEqual([0, 0]);
+  await expect.poll(async () => (await scales()).every(scale => scale > .95), { timeout: 9000 }).toBe(true);
+  await expect.poll(() => page.locator('[data-card-part="dot"]').evaluate(el => Number(getComputedStyle(el).opacity)), { timeout: 4000 }).toBeGreaterThan(.9);
+  // Pausing and resuming motion does not replay the scene.
+  await page.getByRole('button', { name: 'Pausar movimento' }).click();
+  await page.getByRole('button', { name: 'Ativar movimento' }).click();
+  expect((await scales()).every(scale => scale > .95)).toBe(true);
+  // Without motion the red tittles are simply there.
+  const reduced = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
+  const still = await reduced.newPage();
+  await still.goto(route);
+  await expect(still.locator('[data-tittle]').first()).toBeVisible();
+  await expect(still.locator('[data-hero-dot]')).toBeHidden();
+  await reduced.close();
 });
 
 test('Cover uses the approved original portrait', async ({ page }) => {

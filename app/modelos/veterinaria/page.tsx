@@ -152,7 +152,7 @@ export default function TocaPage() {
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><TocaMark size={28} />Toca Hospital Veterinário</p>
       <nav aria-label="Rodapé"><a href="#especialidades">Especialidades</a><a href="#percurso">O hospital</a><a href={book}>Agendar consulta</a></nav>
-      <p className={styles.credit}>© 2026 Toca Hospital Veterinário. Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
+      <p className={styles.credit}>© 2026 Toca Hospital Veterinário. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }

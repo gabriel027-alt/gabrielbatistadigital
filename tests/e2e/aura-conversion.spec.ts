@@ -22,12 +22,3 @@ test('Hero detail CTA reaches the first focus rather than returning to the top',
  await expect(page.locator('[data-photo-copy]').first()).toBeVisible();
 });
 
-test('Film CTA captures the correct lead context without linking to the Aura landing',async({page})=>{
- await page.goto('/');const card=page.locator('[data-aura-video-project]');
- const link=card.getByRole('link',{name:'Quero um site para minha clínica'});
- const url=new URL((await link.getAttribute('href'))!);
- expect(url.hostname).toBe('wa.me');expect(url.pathname).toBe('/5538998267717');
- expect(url.searchParams.get('text')).toContain('filme do projeto Aura');
- await expect(card.locator('a[href*="/propostas/aura"],a[href*="/conceitos/aura"]')).toHaveCount(0);
- for(const theme of ['Dia','Noite']) { await page.getByRole('button',{name:theme,exact:true}).click();await expect(link).toBeVisible();expect((await new AxeBuilder({page}).include('[data-aura-video-project]').withTags(['wcag2a','wcag2aa']).analyze()).violations).toEqual([]); }
-});

@@ -48,6 +48,6 @@ export default function OrlaPage() {
       </section>
       <BrandInquiry brand="orla" />
     </main>
-    <footer className={styles.footer}><a href="#orla-inicio" aria-label="Orla, voltar ao início">orla</a><div><span>Entre a casa e a paisagem.</span><p>© 2026 Orla Residências.<br />Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p></div></footer>
+    <footer className={styles.footer}><a href="#orla-inicio" aria-label="Orla, voltar ao início">orla</a><div><span>Entre a casa e a paisagem.</span><p>© 2026 Orla Residências.<br />Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p></div></footer>
   </div>;
 }

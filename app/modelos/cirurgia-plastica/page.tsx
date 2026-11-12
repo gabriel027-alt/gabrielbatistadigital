@@ -148,7 +148,7 @@ export default function SutilPage() {
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><SutilMark size={26} />Sutil Cirurgia Plástica</p>
       <nav aria-label="Rodapé"><a href="#cirurgias">Cirurgias</a><a href="#recuperacao">Recuperação</a><a href={book}>Agendar consulta</a></nav>
-      <p className={styles.credit}>© 2026 Sutil Cirurgia Plástica. Site por <Link href="/#modelos">Gabriel Batista Digital</Link>.</p>
+      <p className={styles.credit}>© 2026 Sutil Cirurgia Plástica. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
 }
