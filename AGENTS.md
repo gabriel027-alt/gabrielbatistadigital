@@ -246,3 +246,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - A imagem de compartilhamento (`app/opengraph-image.tsx`, com o retrato vermelho e o nome), o ícone `g.` e a página 404 seguem a homepage editorial.
 - Proteção: `LICENSE` com todos os direitos reservados, `license: UNLICENSED` no package.json, © no rodapé da homepage e mapas de código desligados na produção. O repositório no GitHub deve ser privado; isso é configuração do usuário.
 - Deploy e push só com ordem explícita do usuário.
+- **Fora do ar desde 12/11/2026, por decisão do usuário.** Ele achou a qualidade publicada muito abaixo da vista localmente (miniaturas dos projetos ilegíveis, retrato ampliado no celular, cartão no rosto com escala de 125% no Windows, que equivale a 1536×696). Na produção, tudo redireciona (307) para `/em-breve`, com WhatsApp. Para voltar: `siteOffline` = false em `next.config.js`, só com ordem dele. Conferir sempre também em 1536×696 com DPR 1,25.

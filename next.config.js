@@ -4,6 +4,8 @@
  * and Vercel previews keep them for review and for the test suite. HIDE_REVIEW_ROUTES=1 simulates production.
  */
 const hideReviewRoutes = process.env.VERCEL_ENV === "production" || process.env.HIDE_REVIEW_ROUTES === "1";
+/** Taken offline on 12/11/2026 by the user's decision while the projects are rebuilt. Set to false to publish again. */
+const siteOffline = hideReviewRoutes && true;
 const oldTemplateModels = ["agro", "ciberseguranca", "consultoria", "contabilidade", "dermatologia", "educacao", "energia", "gastronomia", "imoveis", "interiores", "logistica", "medicina", "psicologia", "seguros"];
 
 /** @type {import('next').NextConfig} */
@@ -14,6 +16,8 @@ const nextConfig = {
   // Keep the original source out of the browser in production (this is Next's default; stated so it is not switched on by accident).
   productionBrowserSourceMaps: false,
   async redirects() {
+    // While the site is offline, every production page goes to the holding page (static files keep working).
+    if (siteOffline) return [{ source: "/((?!em-breve|_next|images|icon|favicon|robots\\.txt).*)", destination: "/em-breve", permanent: false }];
     if (!hideReviewRoutes) return [];
     return [
       { source: `/modelos/:slug(${oldTemplateModels.join("|")})`, destination: "/", permanent: false },
