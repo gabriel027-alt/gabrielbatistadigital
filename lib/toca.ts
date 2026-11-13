@@ -54,10 +54,10 @@ export const faq = [
 ] as const;
 
 export const rooms = [
-  { id: "recepcao", number: "01", name: "Recepção", image: "recepcao", alt: "Recepção com bancos de madeira, caminha mostarda e prateleiras para caixas de transporte",
+  { id: "recepcao", number: "01", name: "Recepção", image: "recepcao", focus: "66% 50%", alt: "Recepção com bancos de madeira, caminha mostarda e prateleiras para caixas de transporte",
     text: { cao: "Bancos de madeira, uma caminha e espaço para chegar sem pressa.", gato: "Prateleiras altas para as caixas de transporte, do lado oposto ao dos cães." } },
-  { id: "exames", number: "02", name: "Exames", image: "exames", alt: "Cão deitado num tapete macio sobre a mesa baixa, ao lado do aparelho de ultrassom",
+  { id: "exames", number: "02", name: "Exames", image: "exames", focus: "52% 50%", alt: "Cão deitado num tapete macio sobre a mesa baixa, ao lado do aparelho de ultrassom",
     text: { cao: "Ultrassom e exames num tapete macio, numa mesa baixa.", gato: "Exames com contenção suave e o mínimo de barulho." } },
-  { id: "internacao", number: "03", name: "Internação", image: "internacao", alt: "Gato descansando sobre uma manta numa baia de madeira e vidro",
+  { id: "internacao", number: "03", name: "Internação", image: "internacao", focus: "72% 50%", alt: "Gato descansando sobre uma manta numa baia de madeira e vidro",
     text: { cao: "Baias de madeira e vidro, com a equipe por perto.", gato: "Baias silenciosas, com mantas e a equipe por perto." } },
 ] as const;

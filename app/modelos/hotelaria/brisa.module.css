@@ -160,3 +160,6 @@
   .captions{bottom:190px}
 }
 @media(prefers-reduced-motion:reduce){.scrollHint:after{animation:none}.stay .stayPhoto img{transition:none}}
+
+/* Phones: the motion control becomes a round icon so it never covers the copy (the label stays for screen readers). */
+@media(max-width:700px){.motionToggle{display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;font-size:0;line-height:0}.motionToggle:before{content:"";width:4px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;box-sizing:content-box;padding:0 1px}.motionToggle[aria-pressed=true]:before{width:0;height:0;padding:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent currentColor;margin-left:3px}}

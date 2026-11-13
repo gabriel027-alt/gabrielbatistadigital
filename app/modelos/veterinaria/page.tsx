@@ -64,7 +64,7 @@ export default function TocaPage() {
       <section className={styles.route} id="percurso" aria-labelledby="percurso-titulo" data-toca-route>
         <div className={styles.routeStage}>
           {rooms.map(room => <figure key={room.id} className={styles.room} data-route-room>
-            <Image src={`/images/toca/${room.image}.webp`} alt={room.alt} fill sizes="(max-width:700px) 400vw, 120vw" quality={90} />
+            <Image src={`/images/toca/${room.image}.webp`} alt={room.alt} fill sizes="(max-width:700px) 400vw, 120vw" quality={90} style={{ objectPosition: room.focus }} />
             <figcaption className={styles.caption} data-route-caption>
               <span className={styles.plate}>{room.number}</span>
               <h3>{room.name}</h3>

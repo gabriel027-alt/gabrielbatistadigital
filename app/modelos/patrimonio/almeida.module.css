@@ -131,7 +131,8 @@
   .header{gap:14px}
   .header nav{display:none}
   .headerCta{margin-left:auto}
-  .logo>span{display:none}
+  .logo{font-size:17px;gap:10px}
+  .logo small{display:none}
   .hero{flex-direction:column;align-items:stretch;min-height:0;padding:0}
   .heroImage{position:relative!important;height:300px!important;object-position:72% 40%}
   .hero:after{display:none}
@@ -156,3 +157,6 @@
   .indexNumber{width:30px}
   .leader{display:none}
 }
+
+/* Phones: the motion control becomes a round icon so it never covers the copy (the label stays for screen readers). */
+@media(max-width:700px){.motionToggle{display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;font-size:0;line-height:0}.motionToggle:before{content:"";width:4px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;box-sizing:content-box;padding:0 1px}.motionToggle[aria-pressed=true]:before{width:0;height:0;padding:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent currentColor;margin-left:3px}}
