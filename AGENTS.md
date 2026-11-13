@@ -248,6 +248,13 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Deploy e push só com ordem explícita do usuário.
 - **Fora do ar desde 12/11/2026, por decisão do usuário.** Ele achou a qualidade publicada muito abaixo da vista localmente (miniaturas dos projetos ilegíveis, retrato ampliado no celular, cartão no rosto com escala de 125% no Windows, que equivale a 1536×696). Na produção, tudo redireciona (307) para `/em-breve`, com WhatsApp. Para voltar: `siteOffline` = false em `next.config.js`, só com ordem dele. Conferir sempre também em 1536×696 com DPR 1,25.
 
+## Marcas só em vídeo (13/11/2026)
+
+- Decisão do usuário: quem visita o portfólio não entra nos sites das marcas; cada marca aparece como filme. Na produção, `/modelos` e `/modelos/*` redirecionam (307) para `/`. Localmente continuam acessíveis para revisão, testes e novas gravações. A homepage não tem nenhum link para `/modelos`.
+- Filmes em `public/videos/projects/brands/{id}-desktop.mp4` (1920×1080) e `{id}-mobile.mp4` (1080×1920), sem áudio, gravados do topo ao rodapé por `scripts/capture-brand-films.mjs` com `PROJECT_PREVIEW_URL` apontando para um `next start` local (o servidor de desenvolvimento recarregava no meio da gravação). Coreografia: aproxima cada seção devagar para as animações de entrada aparecerem, descansa nela e atravessa as cenas longas mais devagar.
+- Prévias dos cartões: `{id}-loop.mp4`, 6 s, 960×768, recortadas da cena-assinatura do filme do PC. O player escolhe o filme vertical no celular por `<source media>` (`lib/project-films.ts`, `components/EditorialMedia.tsx`). O contato com Gabriel fica fora do filme, no botão do diálogo.
+- Ao mudar uma marca: regravar os dois filmes e recortar a prévia de novo.
+
 ## Fotos em alta resolução (13/11/2026)
 
 - Problema medido: as fotos geradas tinham 1200–1672 px e apareciam ampliadas até 5× (celular) e 2,8× (PC). Agora nenhuma passa de cerca de 1,4×, exceto o vídeo do avatar do rodapé (1280×818) e os loops da Aura e da Orla.

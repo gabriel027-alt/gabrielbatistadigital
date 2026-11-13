@@ -20,4 +20,22 @@ export const projectFilms = {
     contact: buildWhatsAppUrl("Olá, Gabriel! Vi o filme da Orla no seu portfólio e quero conversar sobre um site para meu negócio imobiliário."),
   },
 } as const;
+
+// Approved brands are shown only as films (the sites themselves are not public): a top-to-bottom walkthrough
+// recorded in Full HD by scripts/capture-brand-films.mjs, with a vertical cut for phones and a short loop for the card.
+const brandFilm = (id: string, name: string, label: string, niche: string) => ({
+  id, name, source: `/videos/projects/brands/${id}-desktop.mp4`, mobileSource: `/videos/projects/brands/${id}-mobile.mp4`,
+  loop: `/videos/projects/brands/${id}-loop.mp4`, label: `${name}: vídeo do site, do início ao fim`,
+  action: `Quero um site para ${label}`,
+  contact: buildWhatsAppUrl(`Olá, Gabriel! Vi o filme da ${name} no seu portfólio e quero conversar sobre um site para ${niche}.`),
+});
+export const brandFilms = {
+  forma: brandFilm("forma", "Forma Odontologia", "minha clínica", "a minha clínica odontológica"),
+  sutil: brandFilm("sutil", "Sutil Cirurgia Plástica", "minha clínica", "a minha clínica de cirurgia plástica"),
+  toca: brandFilm("toca", "Toca Hospital Veterinário", "meu hospital veterinário", "o meu hospital veterinário"),
+  brisa: brandFilm("brisa", "Casa Brisa", "meu hotel", "o meu hotel"),
+  almeida: brandFilm("almeida", "Almeida & Valença", "meu escritório", "o meu escritório"),
+};
+export type FilmId = keyof typeof projectFilms | keyof typeof brandFilms;
+export const films: Record<FilmId, { source: string; mobileSource?: string; captions?: string; loop?: string; label: string; action: string; contact: string }> = { ...projectFilms, ...brandFilms };
 export type ProjectFilm = (typeof projectFilms)[keyof typeof projectFilms];

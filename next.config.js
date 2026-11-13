@@ -1,12 +1,11 @@
 /**
- * In the Vercel production deployment only the homepage and the approved brand pages are public.
+ * In the Vercel production deployment only the homepage is public; the approved brands appear there as films.
  * Review routes (old template models, old concepts, every /propostas page) redirect home there, while local runs
  * and Vercel previews keep them for review and for the test suite. HIDE_REVIEW_ROUTES=1 simulates production.
  */
 const hideReviewRoutes = process.env.VERCEL_ENV === "production" || process.env.HIDE_REVIEW_ROUTES === "1";
 /** Taken offline on 12/11/2026 by the user's decision while the projects are rebuilt. Set to false to publish again. */
 const siteOffline = hideReviewRoutes && true;
-const oldTemplateModels = ["agro", "ciberseguranca", "consultoria", "contabilidade", "dermatologia", "educacao", "energia", "gastronomia", "imoveis", "interiores", "logistica", "medicina", "psicologia", "seguros"];
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -20,7 +19,9 @@ const nextConfig = {
     if (siteOffline) return [{ source: "/((?!em-breve|_next|images|icon|favicon|robots\\.txt).*)", destination: "/em-breve", permanent: false }];
     if (!hideReviewRoutes) return [];
     return [
-      { source: `/modelos/:slug(${oldTemplateModels.join("|")})`, destination: "/", permanent: false },
+      // The approved brands are shown only as films on the homepage (user decision, 13/11/2026), so no model page is public.
+      { source: "/modelos", destination: "/", permanent: false },
+      { source: "/modelos/:path*", destination: "/", permanent: false },
       { source: "/conceitos/:path*", destination: "/", permanent: false },
       { source: "/propostas", destination: "/", permanent: false },
       { source: "/propostas/:path*", destination: "/", permanent: false },

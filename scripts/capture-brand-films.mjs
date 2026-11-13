@@ -1,0 +1,106 @@
+// Records a full walkthrough film of each approved brand page, top to bottom, for the portfolio selection.
+// Usage: node scripts/capture-brand-films.mjs [brand ...] (needs a local server, default http://127.0.0.1:3109).
+// Desktop films are 1920x1080 and phone films 1080x1920, H.264 High at CRF 18, no audio.
+import { chromium } from '@playwright/test';
+import { mkdir, mkdtemp, writeFile, rm } from 'node:fs/promises';
+import { spawnSync } from 'node:child_process';
+import os from 'node:os';
+import path from 'node:path';
+
+const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
+if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
+const brands = { forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
+const formats = {
+  desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
+  mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
+};
+const only = process.argv.slice(2).filter(arg => brands[arg]);
+const formatArg = process.argv.find(arg => arg.startsWith('--format='))?.split('=')[1];
+
+async function record(page, destination, [width, height], action) {
+  const cdp = await page.context().newCDPSession(page);
+  const frames = [];
+  cdp.on('Page.screencastFrame', frame => {
+    frames.push({ data: Buffer.from(frame.data, 'base64'), time: frame.metadata.timestamp });
+    void cdp.send('Page.screencastFrameAck', { sessionId: frame.sessionId }).catch(() => {});
+  });
+  await cdp.send('Page.startScreencast', { format: 'jpeg', quality: 95, maxWidth: width, maxHeight: height, everyNthFrame: 1 });
+  try { await action(); } finally { await cdp.send('Page.stopScreencast'); await cdp.detach(); }
+  if (frames.length < 30) throw new Error('Insufficient rendered frames');
+  const temp = await mkdtemp(path.join(os.tmpdir(), 'brand-film-'));
+  const list = [];
+  for (let i = 0; i < frames.length; i++) {
+    const file = `frame-${String(i).padStart(5, '0')}.jpg`;
+    await writeFile(path.join(temp, file), frames[i].data);
+    list.push(`file '${file}'`, `duration ${i + 1 < frames.length ? Math.max(.001, frames[i + 1].time - frames[i].time) : 1}`);
+  }
+  list.push(`file 'frame-${String(frames.length - 1).padStart(5, '0')}.jpg'`);
+  await writeFile(path.join(temp, 'frames.txt'), list.join('\n') + '\n');
+  await mkdir(path.dirname(destination), { recursive: true });
+  const result = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', path.join(temp, 'frames.txt'), '-an',
+    '-vf', `fps=30,scale=${width}:${height}:flags=lanczos:in_range=full:out_range=tv,format=yuv420p`,
+    '-c:v', 'libx264', '-profile:v', 'high', '-preset', 'slow', '-crf', '18', '-color_range', 'tv', '-movflags', '+faststart', destination], { encoding: 'utf8' });
+  await rm(temp, { recursive: true, force: true });
+  if (result.status !== 0) throw new Error(result.stderr);
+  const seconds = (frames.at(-1).time - frames[0].time);
+  return { frames: frames.length, seconds, fps: frames.length / seconds };
+}
+
+const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || undefined });
+try {
+  for (const [brand, route] of Object.entries(brands)) {
+    if (only.length && !only.includes(brand)) continue;
+    for (const [name, format] of Object.entries(formats)) {
+      if (formatArg && formatArg !== name) continue;
+      const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
+      await page.goto(base + route, { waitUntil: 'networkidle' });
+      // The motion control stays on the site; only the film hides it, with the dev overlay.
+      await page.addStyleTag({ content: 'nextjs-portal{display:none!important}button[aria-pressed]{display:none!important}' });
+      // Warm every image so nothing pops in during the film, then return to the top.
+      const total = await page.evaluate(() => document.documentElement.scrollHeight);
+      for (let y = 0; y < total; y += 600) { await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(40); }
+      await page.evaluate(() => scrollTo(0, 0));
+      await page.waitForTimeout(2500);
+      const destination = `public/videos/projects/brands/${brand}-${name}.mp4`;
+      const stats = await record(page, destination, format.out, async () => {
+        await page.waitForTimeout(2600);
+        // Choreography: glide to each section, rest there so it can be read, and cross long scroll scenes slowly.
+        await page.evaluate(async ({ speed }) => {
+          const end = document.documentElement.scrollHeight - innerHeight;
+          const glide = (to, ms, linear = false) => new Promise(resolve => {
+            const from = scrollY, start = performance.now();
+            const ease = t => linear ? t : t < .5 ? 4 * t ** 3 : 1 - (-2 * t + 2) ** 3 / 2;
+            function tick(now) {
+              const t = Math.min(1, (now - start) / ms);
+              scrollTo({ top: from + (to - from) * ease(t), behavior: 'instant' });
+              if (t < 1) requestAnimationFrame(tick); else resolve();
+            }
+            requestAnimationFrame(tick);
+          });
+          const rest = ms => new Promise(resolve => setTimeout(resolve, ms));
+          const header = document.querySelector('header')?.getBoundingClientRect().height || 0;
+          const sections = [...document.querySelectorAll('main section, main > div > section, footer')]
+            .filter(el => !el.parentElement.closest('section'))
+            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight }))
+            .filter(s => s.top > 40 && s.height > 120)
+            .sort((a, b) => a.top - b.top);
+          for (const s of sections) {
+            const top = Math.min(end, Math.max(scrollY, s.top - header * (s.height > innerHeight * 1.5 ? 0 : 1)));
+            // Hurry to just before the section, then enter slowly: entrance animations play while it comes in.
+            const approach = Math.min(top, Math.max(scrollY, top - innerHeight * .55));
+            if (approach > scrollY + 4) await glide(approach, Math.max(700, (approach - scrollY) / (speed * 1.4) * 1000));
+            if (top > scrollY + 4) await glide(top, Math.max(1100, (top - scrollY) / (speed * .6) * 1000));
+            const scene = s.height > innerHeight * 1.5;
+            await rest(scene ? 900 : 2000);
+            const through = Math.min(end, s.top + s.height - innerHeight);
+            if (through > scrollY + 40) { await glide(through, (through - scrollY) / (scene ? speed * .42 : speed) * 1000, scene); await rest(scene ? 1200 : 700); }
+          }
+          if (end > scrollY + 4) await glide(end, Math.max(900, (end - scrollY) / speed * 1000));
+        }, { speed: format.speed });
+        await page.waitForTimeout(2400);
+      });
+      console.log(`${brand} ${name}: ${stats.frames} frames, ${stats.seconds.toFixed(1)} s, ${stats.fps.toFixed(1)} fps -> ${destination}`);
+      await page.close();
+    }
+  }
+} finally { await browser.close(); }

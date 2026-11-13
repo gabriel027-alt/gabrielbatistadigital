@@ -186,3 +186,7 @@
 .heroTrail path{fill:none;stroke:#e8916a;stroke-width:.09em;stroke-linecap:round;stroke-dasharray:.32 2;stroke-dashoffset:.32}
 .heroGlow{width:.14em;height:.14em;border-radius:50%;border:.018em solid #ef5a4a;box-shadow:0 0 .12em #ef5a4a99;opacity:0}
 .page[data-editorial-animated=true] :is(.heroTrail,.heroGlow){display:block}
+/* Brand films ship a vertical cut for phones: give it a tall frame there instead of the 8:5 letterbox. */
+@media(max-width:700px){.filmDialog>video[data-vertical]{aspect-ratio:9/16;width:auto;height:min(70svh,calc((100vw - 58px)*16/9));max-height:none;margin:0 auto}}
+/* Brand films are 16:9 on larger screens: drop the 8:5 letterbox and let them use more of a short window. */
+@media(min-width:701px){.filmDialog:has(video[data-vertical]){width:min(1400px,calc(100% - 30px))}.filmDialog>video[data-vertical]{aspect-ratio:16/9;max-height:69svh;width:auto;max-width:100%;margin:0 auto}}

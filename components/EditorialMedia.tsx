@@ -4,11 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
 import { useEffect, useRef, useSyncExternalStore } from "react";
-import { projectFilms } from "@/lib/project-films";
+import { films, type FilmId } from "@/lib/project-films";
 import styles from "@/app/editorial.module.css";
 const subscribe = () => () => {};
 
-export function EditorialMedia({ name, image, film, href, compact = false }: { name: string; image: string; film?: "aura" | "orla"; href?: string; compact?: boolean }) {
+export function EditorialMedia({ name, image, film, href, compact = false }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const full = useRef<HTMLVideoElement>(null);
@@ -23,7 +23,7 @@ export function EditorialMedia({ name, image, film, href, compact = false }: { n
     const update = () => {
       const allowed = visible && root.dataset.editorialMotion !== "off" && !reduced.matches && !connection?.saveData && !document.hidden && !document.querySelector('dialog[open]');
       if (allowed) {
-        if (!el.getAttribute("src")) el.src = `/videos/projects/${film}-loop.mp4`;
+        if (!el.getAttribute("src")) el.src = films[film].loop || `/videos/projects/${film}-loop.mp4`;
         void el.play().catch(() => {});
       } else el.pause();
     };
@@ -35,12 +35,12 @@ export function EditorialMedia({ name, image, film, href, compact = false }: { n
   }, [film, hydrated]);
   const visual = <><Image src={image} alt={`Interface do projeto ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? "Ver filme completo" : "Explorar projeto"} <Arrow size={17}/></span></>;
   if (!film) return <Link className={styles.media} href={href || "#editorial-work"}>{visual}</Link>;
-  const data = projectFilms[film];
+  const data = films[film];
   return <>
     {hydrated ? <button ref={trigger} className={styles.media} type="button" aria-label={`Ver filme completo: ${name}`} aria-haspopup="dialog" onClick={() => { dialog.current?.showModal(); document.dispatchEvent(new Event("editorial-modal")); }}>{visual}</button> : <a className={styles.media} href={data.source}>{visual}</a>}
     <dialog ref={dialog} data-lenis-prevent className={styles.filmDialog} aria-label={`Filme do projeto ${name}`} onClose={() => { full.current?.pause(); document.dispatchEvent(new Event("editorial-modal")); trigger.current?.focus(); }}>
       <div className={styles.filmHeader}><span>{name}</span><button type="button" onClick={() => dialog.current?.close()}>Fechar <span aria-hidden="true">×</span></button></div>
-      <video ref={full} controls playsInline preload="none" poster={image} aria-label={data.label}><source src={data.source} type="video/mp4"/><track kind="captions" src={data.captions} srcLang="pt-BR" label="Português"/>Seu navegador não reproduz este vídeo.</video>
+      <video ref={full} controls playsInline preload="none" poster={image} aria-label={data.label} data-vertical={data.mobileSource ? "" : undefined}>{data.mobileSource && <source src={data.mobileSource} media="(max-width: 700px)" type="video/mp4"/>}<source src={data.source} type="video/mp4"/>{data.captions && <track kind="captions" src={data.captions} srcLang="pt-BR" label="Português"/>}Seu navegador não reproduz este vídeo.</video>
       <a className={styles.filmContact} href={data.contact} target="_blank" rel="noopener noreferrer">{data.action} <Arrow size={17}/></a><p>Converse com Gabriel pelo WhatsApp.</p>
     </dialog>
   </>;

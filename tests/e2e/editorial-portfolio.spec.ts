@@ -169,7 +169,14 @@ test('Selection shows the approved brands with the colors measured for each', as
     await expect(page.locator('#editorial-work figcaption h3', { hasText: name })).toBeVisible();
   }
   await expect(page.locator('#editorial-work dl')).toHaveCount(5);
-  await expect(page.locator('#editorial-work a[href="/modelos/veterinaria"]')).toHaveCount(1);
+  // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
+  await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
+  const toca = page.locator('#editorial-work').getByRole('button', { name: 'Ver filme completo: Toca Hospital Veterinário' });
+  await toca.click();
+  const film = page.getByRole('dialog', { name: 'Filme do projeto Toca Hospital Veterinário' }).locator('video');
+  await expect(film.locator('source[media="(max-width: 700px)"]')).toHaveAttribute('src', '/videos/projects/brands/toca-mobile.mp4');
+  await expect(film.locator('source:not([media])')).toHaveAttribute('src', '/videos/projects/brands/toca-desktop.mp4');
+  await page.keyboard.press('Escape');
   const images = await page.locator('[data-sample-row] img').evaluateAll(nodes => nodes.map(node => (node as HTMLImageElement).getAttribute('src')));
   expect(new Set(images).size).toBe(images.length);
   await expect(page.locator('body')).not.toContainText(/Vanguard|Chronos|catálogo de 20/);

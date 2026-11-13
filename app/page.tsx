@@ -9,6 +9,7 @@ import { Arrow } from "@/components/ui/icons";
 import { EditorialAvatarLoop } from "@/components/EditorialAvatarLoop";
 import { EditorialMotion } from "@/components/EditorialMotion";
 import { EditorialMedia } from "@/components/EditorialMedia";
+import type { FilmId } from "@/lib/project-films";
 import styles from "./editorial.module.css";
 
 /** Monumental words (name, section titles, contact); Manrope stays for reading. Mono only for real brand data. */
@@ -24,26 +25,26 @@ const contact = buildWhatsAppUrl("Olá, Gabriel! Vi seu portfólio e quero conve
 const sample = (id: string, view: "hero" | "cena") => `/images/projects/brands/${id}-${view}.webp`;
 const kit = (id: string) => brandKits.find(item => item.id === id);
 
-type Work = { name: string; sector: string; image: string; film?: "aura" | "orla"; href?: string; kit?: string };
+type Work = { name: string; sector: string; image: string; film?: FilmId; kit?: string };
 const brands: Work[] = [
-  { name: "Forma Odontologia", sector: "Odontologia estética", image: sample("forma", "hero"), href: "/modelos/odontologia", kit: "forma" },
-  { name: "Sutil Cirurgia Plástica", sector: "Cirurgia plástica", image: sample("sutil", "hero"), href: "/modelos/cirurgia-plastica", kit: "sutil" },
-  { name: "Toca Hospital Veterinário", sector: "Hospital veterinário", image: sample("toca", "hero"), href: "/modelos/veterinaria", kit: "toca" },
-  { name: "Casa Brisa", sector: "Hotel boutique", image: sample("brisa", "hero"), href: "/modelos/hotelaria", kit: "brisa" },
-  { name: "Almeida & Valença", sector: "Família e sucessões", image: sample("almeida", "hero"), href: "/modelos/patrimonio", kit: "almeida" },
+  { name: "Forma Odontologia", sector: "Odontologia estética", image: sample("forma", "hero"), film: "forma", kit: "forma" },
+  { name: "Sutil Cirurgia Plástica", sector: "Cirurgia plástica", image: sample("sutil", "hero"), film: "sutil", kit: "sutil" },
+  { name: "Toca Hospital Veterinário", sector: "Hospital veterinário", image: sample("toca", "hero"), film: "toca", kit: "toca" },
+  { name: "Casa Brisa", sector: "Hotel boutique", image: sample("brisa", "hero"), film: "brisa", kit: "brisa" },
+  { name: "Almeida & Valença", sector: "Família e sucessões", image: sample("almeida", "hero"), film: "almeida", kit: "almeida" },
 ];
 const films: Work[] = [
   { name: "Aura", sector: "Harmonização facial", image: "/images/projects/aura-film-poster.webp", film: "aura" },
   { name: "Orla", sector: "Residências", image: "/images/projects/orla-film-poster.jpg", film: "orla" },
 ];
 const works = [...films, ...brands];
-const scene = (id: string, name: string, href: string): Work => ({ name, sector: "", image: sample(id, "cena"), href });
+const scene = (id: "forma" | "sutil" | "toca" | "brisa" | "almeida", name: string): Work => ({ name, sector: "", image: sample(id, "cena"), film: id });
 // Each service shows the projects that explain it best; no project image repeats across the rows.
 const rows = [
   { title: "Sites & landing pages", text: "Os tratamentos, as dúvidas que mais aparecem e o caminho até o agendamento, numa página que o paciente entende sem esforço.", items: [brands[0], brands[4], brands[2]] },
-  { title: "Identidade na interface", text: "Cores tiradas das suas próprias fotos e uma tipografia escolhida para a sua marca, para o site não parecer o do concorrente.", items: [brands[1], brands[3], scene("forma", "Forma Odontologia", "/modelos/odontologia#planejamento")] },
-  { title: "Movimento & interação", text: "A rolagem mostra o espaço, o tratamento ou a recuperação. Um roteiro curto prepara a primeira conversa.", items: [scene("brisa", "Casa Brisa", "/modelos/hotelaria"), scene("toca", "Toca Hospital Veterinário", "/modelos/veterinaria#percurso"), scene("sutil", "Sutil Cirurgia Plástica", "/modelos/cirurgia-plastica#recuperacao")] },
-  { title: "Design & desenvolvimento", text: "Eu desenho e programo o site, e confiro cada página no celular e no computador.", items: [films[0], films[1], scene("almeida", "Almeida & Valença", "/modelos/patrimonio")] },
+  { title: "Identidade na interface", text: "Cores tiradas das suas próprias fotos e uma tipografia escolhida para a sua marca, para o site não parecer o do concorrente.", items: [brands[1], brands[3], scene("forma", "Forma Odontologia")] },
+  { title: "Movimento & interação", text: "A rolagem mostra o espaço, o tratamento ou a recuperação. Um roteiro curto prepara a primeira conversa.", items: [scene("brisa", "Casa Brisa"), scene("toca", "Toca Hospital Veterinário"), scene("sutil", "Sutil Cirurgia Plástica")] },
+  { title: "Design & desenvolvimento", text: "Eu desenho e programo o site, e confiro cada página no celular e no computador.", items: [films[0], films[1], scene("almeida", "Almeida & Valença")] },
 ];
 // Between the two words of the name: a peach card where "g." assembles in a loop (same story as the scroll scene).
 // View box framed around the assembled letter; the stem is painted first so the bowl sits on top of it.
@@ -76,14 +77,14 @@ export default function HomePage() {
       </section>
       <section className={styles.services} data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>O que eu construo</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>Sua clínica tem um jeito próprio de atender.<br/>Vamos dar forma a ele.</h2>
-        {rows.map(row => <article key={row.title} className={styles.service}><div className={styles.serviceCopy}><h3>{row.title}</h3><p>{row.text}</p></div><div className={styles.samples} data-sample-row role="region" aria-label={`Exemplos de ${row.title}`} tabIndex={0}>{row.items.map(work => <EditorialMedia key={work.image} name={work.name} image={work.image} film={work.film} href={work.href} compact />)}</div></article>)}
+        {rows.map(row => <article key={row.title} className={styles.service}><div className={styles.serviceCopy}><h3>{row.title}</h3><p>{row.text}</p></div><div className={styles.samples} data-sample-row role="region" aria-label={`Exemplos de ${row.title}`} tabIndex={0}>{row.items.map(work => <EditorialMedia key={work.image} name={work.name} image={work.image} film={work.film} compact />)}</div></article>)}
       </section>
       <section className={styles.work} data-editorial-theme="paper">
         <details id="editorial-work" className={styles.workFolder}>
           <summary><span className={styles.workWord} aria-hidden="true">Projetos</span><span className={styles.folderCaption}>Veja os projetos de perto.</span><span className={styles.folder} data-folder aria-hidden="true"><span className={styles.folderBack}/><span className={styles.folderSheet}>forma / sutil / toca / brisa</span><span className={styles.folderFront}><span>g.</span></span></span><span className={styles.folderAction}>Abrir seleção <Arrow size={18}/></span></summary>
           <div className={styles.selectedGrid}>{works.map(work => {
             const data = work.kit ? kit(work.kit) : undefined;
-            return <figure key={work.name}><EditorialMedia name={work.name} image={work.image} film={work.film} href={work.href}/><figcaption><div><h3>{work.name}</h3><span>{work.sector}</span></div>
+            return <figure key={work.name}><EditorialMedia name={work.name} image={work.image} film={work.film}/><figcaption><div><h3>{work.name}</h3><span>{work.sector}</span></div>
               {data && <dl className={styles.spec}><div><dt>Fonte</dt><dd>{data.typography.display}</dd></div><div><dt>Cores medidas nas fotos</dt><dd className={styles.swatches}>{Object.values(data.palette).map(hex => <span key={hex} style={{ background: hex }} title={hex}><i>{hex}</i></span>)}</dd></div></dl>}
             </figcaption></figure>;
           })}</div>
