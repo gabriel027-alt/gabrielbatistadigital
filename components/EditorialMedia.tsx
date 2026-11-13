@@ -33,7 +33,7 @@ export function EditorialMedia({ name, image, film, href, compact = false }: { n
     reduced.addEventListener("change", update); document.addEventListener("visibilitychange", update); document.addEventListener("editorial-modal", update);
     return () => { observer.disconnect(); mutations.disconnect(); reduced.removeEventListener("change", update); document.removeEventListener("visibilitychange", update); document.removeEventListener("editorial-modal", update); el.pause(); };
   }, [film, hydrated]);
-  const visual = <><Image src={image} alt={`Interface do projeto ${name}`} fill sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? "Ver filme completo" : "Explorar projeto"} <Arrow size={17}/></span></>;
+  const visual = <><Image src={image} alt={`Interface do projeto ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? "Ver filme completo" : "Explorar projeto"} <Arrow size={17}/></span></>;
   if (!film) return <Link className={styles.media} href={href || "#editorial-work"}>{visual}</Link>;
   const data = projectFilms[film];
   return <>

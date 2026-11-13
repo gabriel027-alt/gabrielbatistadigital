@@ -9,6 +9,8 @@ const oldTemplateModels = ["agro", "ciberseguranca", "consultoria", "contabilida
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  // 90 for the portrait and project samples, which are shown large on Full HD screens.
+  images: { qualities: [75, 90] },
   // Keep the original source out of the browser in production (this is Next's default; stated so it is not switched on by accident).
   productionBrowserSourceMaps: false,
   async redirects() {

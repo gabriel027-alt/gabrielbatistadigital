@@ -225,5 +225,5 @@ test('The brand dot plants the tittle on each i of the name and lands in the car
 test('Cover uses the approved original portrait', async ({ page }) => {
   await page.goto(route);
   await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('alt', 'Retrato frontal de Gabriel Batista com luz vermelha');
-  await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('src', /gabriel-approved-red/);
+  await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('src', /gabriel-hero-wide/);
 });
