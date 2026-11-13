@@ -61,7 +61,7 @@ export default function SutilPage() {
       <section className={styles.recovery} id="recuperacao" aria-labelledby="recuperacao-titulo" data-sutil-recovery>
         <div className={styles.recoveryStage}>
           <figure className={styles.recoveryPhoto} data-recovery-photo>
-            <Image src="/images/sutil/recuperacao.webp" alt="Poltrona de recuperação ao lado da janela, com uma manta sálvia e um copo d'água" fill sizes="(max-width:900px) 150vw, 46vw" />
+            <Image src="/images/sutil/recuperacao.webp" alt="Poltrona de recuperação ao lado da janela, com uma manta sálvia e um copo d'água" fill quality={90} sizes="(max-width:900px) 150vw, 100vw" />
             <span className={styles.light} data-recovery-light aria-hidden="true" />
           </figure>
           <div className={styles.recoveryCopy}>

@@ -9,7 +9,7 @@ if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Erro
 const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || '/usr/bin/chromium' });
 try {
   for (const brand of ['aura', 'orla']) {
-    const page = await browser.newPage({ viewport: { width: 1280, height: 800 } });
+    const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1.5 });
     await page.goto(`${base}/propostas/${brand}`);
     await page.waitForLoadState('networkidle');
     // The motion pause control stays on the site; it is only hidden in the recorded film.
@@ -72,10 +72,10 @@ try {
       chapter('Encerramento da marca');
       await travel(await page.locator('footer').last().evaluate(el => el.getBoundingClientRect().top + scrollY), 1100);
       await page.waitForTimeout(1100);
-    }, { width: 1280, height: 800 });
+    }, { width: 1920, height: 1200 });
     const metadata = JSON.parse(execFileSync(process.env.FFPROBE || 'ffprobe', ['-v', 'error', '-show_entries', 'format=duration:stream=width,height', '-of', 'json', destination], { encoding: 'utf8' }));
     const bytes = await readFile(destination);
-    const manifest = { title: `${brand === 'aura' ? 'Aura' : 'Orla'} — filme do projeto`, source: `/propostas/${brand}`, durationSeconds: Number(metadata.format.duration), width: 1280, height: 800, codec: 'H.264 Baseline', audio: false, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex'), captureViewport: '1280x800', patientResults: false, localInteractionsOnly: true, chapters, ending: 'Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film.' };
+    const manifest = { title: `${brand === 'aura' ? 'Aura' : 'Orla'} — filme do projeto`, source: `/propostas/${brand}`, durationSeconds: Number(metadata.format.duration), width: 1920, height: 1200, codec: 'H.264 High', audio: false, bytes: bytes.length, sha256: createHash('sha256').update(bytes).digest('hex'), captureViewport: '1280x800', patientResults: false, localInteractionsOnly: true, chapters, ending: 'Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film.' };
     await writeFile(destination.replace('.mp4', '.json'), JSON.stringify(manifest, null, 2) + '\n');
     const stamp = s => { const ms = Math.round(s * 1000); return `${String(Math.floor(ms / 60000)).padStart(2, '0')}:${String(Math.floor(ms / 1000) % 60).padStart(2, '0')}.${String(ms % 1000).padStart(3, '0')}`; };
     const cues = chapters.map((c, i) => `${stamp(c.seconds)} --> ${stamp(Math.min(i + 1 < chapters.length ? chapters[i + 1].seconds : manifest.durationSeconds, manifest.durationSeconds))}\n${c.label}`);

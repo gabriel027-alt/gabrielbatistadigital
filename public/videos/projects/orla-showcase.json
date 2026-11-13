@@ -1,36 +1,36 @@
 {
   "title": "Orla — filme do projeto",
   "source": "/propostas/orla",
-  "durationSeconds": 21.833333,
-  "width": 1280,
-  "height": 800,
-  "codec": "H.264 Baseline",
+  "durationSeconds": 22,
+  "width": 1920,
+  "height": 1200,
+  "codec": "H.264 High",
   "audio": false,
-  "bytes": 3998894,
-  "sha256": "8456d2f24783e038d55f6a85b55445eb202c3a5422bff7959eaaec760bd87878",
+  "bytes": 12059739,
+  "sha256": "1c0d53f5a5cd663e49ba38b6620290cf2b13029a1b7a6feba909f147ebf5ba5d",
   "captureViewport": "1280x800",
   "patientResults": false,
   "localInteractionsOnly": true,
   "chapters": [
     {
       "label": "Abertura",
-      "seconds": 0.00001780000000144355
+      "seconds": 0.000008300000001327135
     },
     {
       "label": "Experiência pelo scroll",
-      "seconds": 1.6071342000000004
+      "seconds": 1.614573000000004
     },
     {
       "label": "CTA e escolhas",
-      "seconds": 11.200092600000003
+      "seconds": 11.218701400000006
     },
     {
       "label": "Resumo revisável",
-      "seconds": 17.1248508
+      "seconds": 17.27229060000001
     },
     {
       "label": "Encerramento da marca",
-      "seconds": 19.458589800000002
+      "seconds": 19.616646300000006
     }
   ],
   "ending": "Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film."

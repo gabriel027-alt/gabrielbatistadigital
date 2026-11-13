@@ -190,3 +190,7 @@
 @media(max-width:700px){.filmDialog>video[data-vertical]{aspect-ratio:9/16;width:auto;height:min(70svh,calc((100vw - 58px)*16/9));max-height:none;margin:0 auto}}
 /* Brand films are 16:9 on larger screens: drop the 8:5 letterbox and let them use more of a short window. */
 @media(min-width:701px){.filmDialog:has(video[data-vertical]){width:min(1400px,calc(100% - 30px))}.filmDialog>video[data-vertical]{aspect-ratio:16/9;max-height:69svh;width:auto;max-width:100%;margin:0 auto}}
+
+/* Touch targets of at least 44px (Web Interface Guidelines): the hit area grows into the empty space around each link, so nothing moves on screen; the menu links themselves become 44px tall. */
+.logo,.navContact,.footerBottom a{padding-block:15px;margin-block:-15px}
+.nav nav a{min-height:44px;display:inline-flex;align-items:center}

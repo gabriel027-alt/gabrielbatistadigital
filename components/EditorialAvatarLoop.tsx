@@ -174,7 +174,7 @@ export function EditorialAvatarLoop() {
 
   return <>
     <div ref={host} className={styles.footerPhoto} data-avatar-scene>
-      <Image src={editorialAvatar.poster} alt="Personagem de Gabriel atrás de um monitor, em um estúdio com guitarra e discos na parede" fill sizes="100vw" />
+      <Image src={editorialAvatar.poster} alt="Personagem de Gabriel atrás de um monitor, em um estúdio com guitarra e discos na parede" fill quality={90} sizes="(max-width:700px) 400vw, 120vw" />
       <video ref={video} className={styles.avatarVideo} data-avatar-loop muted loop playsInline preload="none" aria-hidden="true" disablePictureInPicture
         onPlaying={() => { if (video.current) video.current.dataset.ready = "true"; }}
         onError={() => { if (video.current) delete video.current.dataset.ready; }} />

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import styles from "../not-found.module.css";
 
@@ -8,6 +8,8 @@ export const metadata: Metadata = {
   description: "Sites para clínicas e negócios de alto ticket.",
   robots: { index: false, follow: false },
 };
+
+export const viewport: Viewport = { themeColor: "#201714" };
 
 const contact = buildWhatsAppUrl("Olá, Gabriel! Quero conversar sobre um site para a minha clínica.");
 

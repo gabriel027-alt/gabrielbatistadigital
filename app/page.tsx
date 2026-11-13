@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { ArtDirectedImage } from "@/components/ArtDirectedImage";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { linePath, shapes, transformOf, view, type ShapeId } from "@/lib/gb-shapes";
@@ -20,6 +20,8 @@ const display = Bricolage_Grotesque({ subsets: ["latin", "latin-ext"], weight: "
 const nameWord = (text: string) => [...text].map((letter, index) => letter === "i" ? <span key={index} className={styles.iSlot}>ı<span className={styles.tittle} data-tittle /></span> : letter);
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400"], variable: "--gb-mono", display: "swap" });
 
+// The phone browser bar takes the colour of the dark hero.
+export const viewport: Viewport = { themeColor: "#201714" };
 export const metadata: Metadata = { title: { absolute: "Gabriel Batista | Sites para clínicas e negócios de alto ticket" }, description: "Design e desenvolvimento de sites com marca própria para clínicas e negócios de alto ticket, do primeiro contato ao agendamento.", alternates: { canonical: "/" } };
 const contact = buildWhatsAppUrl("Olá, Gabriel! Vi seu portfólio e quero conversar sobre um site para a minha clínica.");
 const sample = (id: string, view: "hero" | "cena") => `/images/projects/brands/${id}-${view}.webp`;
