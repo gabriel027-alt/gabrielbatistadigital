@@ -147,7 +147,7 @@
 .hook{overflow:clip}
 
 /* Hero card (12/11/2026): a solid peach card fills the gap between the words, as the reference's card does; "g." assembles inside it. */
-.heroSample{width:16vw;height:11vw;overflow:visible;border-radius:0;transform:rotate(-7deg)}
+.heroSample{width:14vw;height:9.6vw;overflow:visible;border-radius:0;transform:rotate(-7deg);align-self:flex-end;margin-bottom:-1.6vw}
 .heroCard{display:block;width:100%;height:100%;overflow:hidden;border-radius:.9vw;background:linear-gradient(135deg,#ffd6bb 0%,#ffbc95 55%,#f1a179 100%);box-shadow:0 1.6vw 3.4vw #0000007a,inset 0 0 0 1px #ffffff45;transform-origin:50% 60%}
 .heroCard svg{display:block;width:100%;height:100%}
 
@@ -167,7 +167,7 @@
   /* A fixed grid, not wrapping: the breathing name changes width and would push the card between lines. */
   .heroBottom h1{position:relative;width:auto;height:auto;overflow:visible;clip-path:none;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:3vw;row-gap:1vw;font-size:21vw;line-height:.88;margin:0}
   .heroBottom h1 [data-hero-word]:first-of-type{grid-column:1;grid-row:1}
-  .heroSample{display:block;order:0;grid-column:2;grid-row:1;width:27vw;height:18vw;transform:rotate(-7deg)}
+  .heroSample{display:block;order:0;grid-column:2;grid-row:1;width:27vw;height:18vw;transform:rotate(-7deg);align-self:center;margin-bottom:0}
   .heroSample + [data-hero-word]{grid-column:1 / -1;grid-row:2;justify-self:end}
   .heroCard{border-radius:2.2vw}
   .heroBottom>p{margin-top:12px;font-size:13px;text-align:right;max-width:none}

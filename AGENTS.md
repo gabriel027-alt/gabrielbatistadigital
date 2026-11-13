@@ -247,3 +247,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Proteção: `LICENSE` com todos os direitos reservados, `license: UNLICENSED` no package.json, © no rodapé da homepage e mapas de código desligados na produção. O repositório no GitHub deve ser privado; isso é configuração do usuário.
 - Deploy e push só com ordem explícita do usuário.
 - **Fora do ar desde 12/11/2026, por decisão do usuário.** Ele achou a qualidade publicada muito abaixo da vista localmente (miniaturas dos projetos ilegíveis, retrato ampliado no celular, cartão no rosto com escala de 125% no Windows, que equivale a 1536×696). Na produção, tudo redireciona (307) para `/em-breve`, com WhatsApp. Para voltar: `siteOffline` = false em `next.config.js`, só com ordem dele. Conferir sempre também em 1536×696 com DPR 1,25.
+
+## Fotos em alta resolução (13/11/2026)
+
+- Problema medido: as fotos geradas tinham 1200–1672 px e apareciam ampliadas até 5× (celular) e 2,8× (PC). Agora nenhuma passa de cerca de 1,4×, exceto o vídeo do avatar do rodapé (1280×818) e os loops da Aura e da Orla.
+- Ferramenta, com download autorizado pelo usuário: Real-ESRGAN ncnn-vulkan v0.2.5.0 (xinntao, BSD-3), modelo realesrgan-x4plus. Fica fora do repositório, em `%LOCALAPPDATA%\realesrgan`. Usa a GTX 1650 e leva cerca de 40 s por foto. Não faz parte do site nem do build.
+- Retrato de Gabriel: o usuário escolheu a **mistura** (65% Real-ESRGAN + 35% original ampliado), que preserva a textura da pele. Não usar a versão pura da IA no rosto dele. Hero: `gabriel-hero-wide.webp` (PC) e `gabriel-hero-mobile.webp`. Sobre: `gabriel-sobre.webp` e `gabriel-sobre-mobile.webp`. Os recortes de celular vêm por `components/ArtDirectedImage.tsx`.
+- Fotos das marcas: 4× com 20% do original, lado maior limitado a 4800 px, sobrescritas no mesmo caminho. Fotos de tela cheia pedem `sizes="(max-width:700px) 400vw, 120vw"` e `quality={90}`, porque no celular uma foto horizontal cobre a tela vertical. Ao trocar uma foto, ampliar e medir de novo.

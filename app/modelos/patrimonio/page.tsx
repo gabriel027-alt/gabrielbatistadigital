@@ -36,7 +36,7 @@ export default function AlmeidaPage() {
 
     <main id="almeida-conteudo">
       <section className={styles.hero} id="almeida-inicio" aria-labelledby="almeida-titulo">
-        <Image className={styles.heroImage} src="/images/models/people/patrimonio.webp" alt="Advogada conversa com uma cliente, em seu escritório com estante de livros e luminária de latão" fill sizes="100vw" preload />
+        <Image className={styles.heroImage} src="/images/models/people/patrimonio.webp" alt="Advogada conversa com uma cliente, em seu escritório com estante de livros e luminária de latão" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
         <div className={styles.heroCopy}>
           <p className={styles.section}>Família e sucessões</p>
           <h1 id="almeida-titulo">Inventário e planejamento sucessório conduzidos com clareza.</h1>
@@ -96,7 +96,7 @@ export default function AlmeidaPage() {
 
       <section className={styles.office} id="escritorio" aria-labelledby="escritorio-titulo">
         <figure className={styles.officePhoto}>
-          <Image src="/images/models/patrimonio.webp" alt="Mesa de nogueira do escritório, com pastas de couro, estante de livros e luz da tarde" fill sizes="(max-width:900px) 92vw, 46vw" />
+          <Image src="/images/models/patrimonio.webp" alt="Mesa de nogueira do escritório, com pastas de couro, estante de livros e luz da tarde" fill sizes="(max-width:900px) 150vw, 110vw" />
         </figure>
         <div className={styles.officeCopy}>
           <p className={styles.section}>Quem vai cuidar do seu processo</p>

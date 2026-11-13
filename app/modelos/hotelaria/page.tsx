@@ -44,7 +44,7 @@ export default function BrisaPage() {
       {/* Brand signature: one continuous camera move, frame by frame with the scroll. */}
       <section className={styles.tour} id="brisa-inicio" aria-labelledby="brisa-titulo" data-brisa-tour>
         <div className={styles.stage} data-tour-stage>
-          <Image className={styles.poster} src="/images/casa-brisa/chegada.webp" alt={stillAlt.chegada} fill sizes="100vw" preload />
+          <Image className={styles.poster} src="/images/casa-brisa/chegada.webp" alt={stillAlt.chegada} fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
           <canvas className={styles.canvas} data-tour-canvas aria-hidden="true" />
           <div className={styles.hero} data-tour-hero>
             <p className={styles.kicker}>Hotel boutique entre a baía e o campo</p>
@@ -71,7 +71,7 @@ export default function BrisaPage() {
         <ol className={styles.stills}>
           {chapters.slice(1).map(chapter => <li key={chapter.id}>
             <figure>
-              <Image src={`/images/casa-brisa/${chapter.still}.webp`} alt={stillAlt[chapter.still]} width={1280} height={720} sizes="(max-width:900px) 100vw, 60vw" />
+              <Image src={`/images/casa-brisa/${chapter.still}.webp`} alt={stillAlt[chapter.still]} width={1280} height={720} sizes="(max-width:900px) 150vw, 60vw" />
               <figcaption><h2>{chapter.title}</h2><p>{chapter.text}</p></figcaption>
             </figure>
           </li>)}
@@ -98,7 +98,7 @@ export default function BrisaPage() {
         </div>
         <div className={styles.stayCards}>
           {stays.map(stay => <article key={stay.title} className={styles.stay}>
-            <div className={styles.stayPhoto}><Image src={`/images/casa-brisa/${stay.still}.webp`} alt={stillAlt[stay.still]} fill sizes="(max-width:900px) 92vw, 30vw" /></div>
+            <div className={styles.stayPhoto}><Image src={`/images/casa-brisa/${stay.still}.webp`} alt={stillAlt[stay.still]} fill sizes="(max-width:900px) 150vw, 30vw" /></div>
             <h3>{stay.title}</h3>
             <p>{stay.text}</p>
             <a className={styles.textLink} href={book}>Consultar datas</a>
@@ -107,7 +107,7 @@ export default function BrisaPage() {
       </section>
 
       <section className={styles.booking} id="reserva" aria-labelledby="reserva-titulo">
-        <Image className={styles.bookingImage} src="/images/casa-brisa/casa.webp" alt="" fill sizes="100vw" />
+        <Image className={styles.bookingImage} src="/images/casa-brisa/casa.webp" alt="" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} />
         <div className={styles.bookingInner}>
           <h2 id="reserva-titulo">Como funciona <em>a reserva</em></h2>
           <ol>{bookingSteps.map((step, index) => <li key={step.title}><span>{String(index + 1).padStart(2, "0")}</span><strong>{step.title}</strong><p>{step.text}</p></li>)}</ol>

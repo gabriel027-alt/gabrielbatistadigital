@@ -35,8 +35,8 @@ export default function TocaPage() {
 
     <main id="toca-conteudo">
       <section className={styles.hero} id="toca-inicio" aria-labelledby="toca-titulo">
-        <Image className={styles.heroImage} data-only="cao" src="/images/toca/hero-cao.webp" alt="Veterinária ajoelhada no chão acaricia um cão caramelo" fill sizes="100vw" preload />
-        <Image className={styles.heroImage} data-only="gato" src="/images/toca/hero-gato.webp" alt="Veterinária sentada no chão com um gato cinza no colo, sobre uma manta mostarda" fill sizes="100vw" />
+        <Image className={styles.heroImage} data-only="cao" src="/images/toca/hero-cao.webp" alt="Veterinária ajoelhada no chão acaricia um cão caramelo" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
+        <Image className={styles.heroImage} data-only="gato" src="/images/toca/hero-gato.webp" alt="Veterinária sentada no chão com um gato cinza no colo, sobre uma manta mostarda" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} />
         <div className={styles.heroCopy}>
           <p className={styles.kicker}>Hospital veterinário para cães e gatos</p>
           <h1 id="toca-titulo">O cuidado começa <em>na altura deles.</em></h1>
@@ -64,7 +64,7 @@ export default function TocaPage() {
       <section className={styles.route} id="percurso" aria-labelledby="percurso-titulo" data-toca-route>
         <div className={styles.routeStage}>
           {rooms.map(room => <figure key={room.id} className={styles.room} data-route-room>
-            <Image src={`/images/toca/${room.image}.webp`} alt={room.alt} fill sizes="100vw" />
+            <Image src={`/images/toca/${room.image}.webp`} alt={room.alt} fill sizes="(max-width:700px) 400vw, 120vw" quality={90} />
             <figcaption className={styles.caption} data-route-caption>
               <span className={styles.plate}>{room.number}</span>
               <h3>{room.name}</h3>
@@ -102,7 +102,7 @@ export default function TocaPage() {
 
       <section className={styles.about} id="veterinaria" aria-labelledby="veterinaria-titulo">
         <figure className={styles.aboutPhoto}>
-          <Image src="/images/toca/retrato.webp" alt="Veterinária de pijama cirúrgico verde em pé no corredor do hospital" fill sizes="(max-width:900px) 92vw, 40vw" />
+          <Image src="/images/toca/retrato.webp" alt="Veterinária de pijama cirúrgico verde em pé no corredor do hospital" fill sizes="(max-width:900px) 150vw, 40vw" />
           <figcaption><span className={styles.plate}>Toca</span>Atende cães e gatos</figcaption>
         </figure>
         <div className={styles.aboutCopy}>

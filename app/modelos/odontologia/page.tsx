@@ -35,7 +35,7 @@ export default function FormaPage() {
 
     <main id="forma-conteudo">
       <section className={styles.hero} id="forma-inicio" aria-labelledby="forma-titulo">
-        <Image className={styles.heroImage} src="/images/models/people/odontologia.webp" alt="Dentista conversa com uma paciente sentada na cadeira do consultório" fill sizes="100vw" preload />
+        <Image className={styles.heroImage} src="/images/models/people/odontologia.webp" alt="Dentista conversa com uma paciente sentada na cadeira do consultório" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
         <div className={styles.heroCopy}>
           <p className={styles.kicker}>Odontologia estética e implantes</p>
           <h1 id="forma-titulo">Um sorriso planejado <em>com calma e precisão.</em></h1>
@@ -76,7 +76,7 @@ export default function FormaPage() {
 
       <section className={styles.about} id="sobre" aria-labelledby="sobre-titulo">
         <figure className={styles.aboutPhoto}>
-          <Image src="/images/models/people/odontologia-retrato.webp" alt="Dentista explica as alternativas de tratamento a uma paciente" fill sizes="(max-width:900px) 92vw, 44vw" />
+          <Image src="/images/models/people/odontologia-retrato.webp" alt="Dentista explica as alternativas de tratamento a uma paciente" fill sizes="(max-width:900px) 150vw, 44vw" />
           <figcaption className={styles.seal}><FormaMark size={26} />A primeira consulta é uma conversa.</figcaption>
         </figure>
         <div className={styles.aboutCopy}>
@@ -114,7 +114,7 @@ export default function FormaPage() {
       </section>
 
       <section className={styles.visit} id="primeira-consulta" aria-labelledby="consulta-titulo">
-        <Image className={styles.visitImage} src="/images/models/odontologia.webp" alt="" fill sizes="100vw" />
+        <Image className={styles.visitImage} src="/images/models/odontologia.webp" alt="" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} />
         <div className={styles.visitInner}>
           <h2 id="consulta-titulo">Como é a <em>primeira consulta</em></h2>
           <p>Uma conversa para entender o que você quer, examinar com cuidado e mostrar os caminhos possíveis.</p>

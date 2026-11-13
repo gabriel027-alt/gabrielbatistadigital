@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ArtDirectedImage } from "@/components/ArtDirectedImage";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { linePath, shapes, transformOf, view, type ShapeId } from "@/lib/gb-shapes";
 import { GbShape, GbShapeDefs } from "@/components/GbShape";
@@ -61,7 +61,7 @@ export default function HomePage() {
     <svg className={styles.defs} aria-hidden="true" focusable="false"><GbShapeDefs /></svg>
     <main id="editorial-main">
       <section id="editorial-start" className={styles.hero} data-editorial-theme="photo">
-        <div className={styles.heroPhoto} data-hero-photo><Image src="/images/hero/gabriel-hero-wide.webp" alt="Retrato frontal de Gabriel Batista com luz vermelha" fill preload quality={90} sizes="(max-width:700px) 1800px, 100vw" /></div>
+        <div className={styles.heroPhoto} data-hero-photo><ArtDirectedImage alt="Retrato frontal de Gabriel Batista com luz vermelha" preload desktop={{ src: "/images/hero/gabriel-hero-wide.webp", sizes: "130vw" }} mobile={{ src: "/images/hero/gabriel-hero-mobile.webp", sizes: "150vw" }} /></div>
         {/* The brand dot is born as the tittle of "Design": it soaks the phrase in red ink, then drips onto the name. */}
         <p className={styles.heroOffer} data-hero-offer><span className={styles.sr}>Design & desenvolvimento web</span><span aria-hidden="true">Des<span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.offerTittle}`} data-offer-tittle /></span>gn &<br/>desenvolvimento web</span><span className={styles.offerInk} data-offer-ink aria-hidden="true" /></p>
         <div className={styles.heroBottom}><h1 data-hero-wordmark><span className={styles.sr}>Gabriel Batista</span><span aria-hidden="true" data-hero-word>{nameWord("Gabriel")}</span><span className={styles.heroSample} data-hero-sample aria-hidden="true"><span className={styles.heroCard} data-hero-card><svg viewBox={cardView}>{cardParts.map(shape => <g key={shape.id} transform={transformOf(shape.final)}><g data-card-part={shape.id}><GbShape id={shape.id} tone="dark" /></g></g>)}</svg></span></span><span aria-hidden="true" data-hero-word>{nameWord("Batista")}</span><span className={styles.heroDot} data-hero-dot aria-hidden="true" /><svg className={styles.heroTrail} aria-hidden="true" focusable="false"><path data-hero-trail pathLength={1} /></svg><span className={styles.heroGlow} data-hero-glow aria-hidden="true" /><span className={styles.heroGlow} data-hero-wave aria-hidden="true" /></h1><p>Sites para clínicas e negócios de alto ticket</p></div>
@@ -90,7 +90,7 @@ export default function HomePage() {
         </details>
       </section>
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
-        <div className={styles.aboutPhoto} data-about-photo><Image src="/images/hero/gabriel-approved-red.png" alt="Gabriel Batista" fill sizes="(max-width:700px) 1800px, 100vw" /></div>
+        <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt="Gabriel Batista" desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>
         <div className={styles.aboutStatement}><h2 id="editorial-about-title" data-kinetic>Uma boa ideia<br/>precisa funcionar.</h2><p>Inclusive no celular de quem procura a sua clínica.</p></div>
         <div className={styles.aboutPrinciples}><p>Sou Gabriel Batista.<br/>Eu mesmo desenho e programo o seu site.</p><h3>Quem desenha<br/>é quem programa.</h3><ul><li>Entender o negócio antes de desenhar a página.</li><li>Dar à marca uma linguagem própria.</li><li>Deixar claro, em cada parte da página, o próximo passo do paciente.</li><li>Conferir a experiência no navegador e no celular.</li></ul><a href={contact} target="_blank" rel="noopener noreferrer" className={styles.photoLink}>Conversar sobre o meu site <Arrow size={22}/></a></div>
       </section>

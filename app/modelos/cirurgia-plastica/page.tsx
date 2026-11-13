@@ -35,7 +35,7 @@ export default function SutilPage() {
 
     <main id="sutil-conteudo">
       <section className={styles.hero} id="sutil-inicio" aria-labelledby="sutil-titulo">
-        <Image className={styles.heroImage} src="/images/sutil/consulta.webp" alt="Cirurgiã conversa com uma paciente à mesa do consultório" fill sizes="100vw" preload />
+        <Image className={styles.heroImage} src="/images/sutil/consulta.webp" alt="Cirurgiã conversa com uma paciente à mesa do consultório" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
         <div className={styles.heroCopy}>
           <p className={styles.kicker}>Cirurgia plástica</p>
           <h1 id="sutil-titulo">A decisão mais importante <em>vem antes da cirurgia.</em></h1>
@@ -61,7 +61,7 @@ export default function SutilPage() {
       <section className={styles.recovery} id="recuperacao" aria-labelledby="recuperacao-titulo" data-sutil-recovery>
         <div className={styles.recoveryStage}>
           <figure className={styles.recoveryPhoto} data-recovery-photo>
-            <Image src="/images/sutil/recuperacao.webp" alt="Poltrona de recuperação ao lado da janela, com uma manta sálvia e um copo d'água" fill sizes="(max-width:900px) 100vw, 46vw" />
+            <Image src="/images/sutil/recuperacao.webp" alt="Poltrona de recuperação ao lado da janela, com uma manta sálvia e um copo d'água" fill sizes="(max-width:900px) 150vw, 46vw" />
             <span className={styles.light} data-recovery-light aria-hidden="true" />
           </figure>
           <div className={styles.recoveryCopy}>
@@ -86,7 +86,7 @@ export default function SutilPage() {
 
       <section className={styles.about} id="cirurgia" aria-labelledby="cirurgia-titulo">
         <figure className={styles.aboutPhoto}>
-          <Image src="/images/sutil/retrato.webp" alt="Cirurgiã plástica de jaleco branco e blusa sálvia, em pé no consultório" fill sizes="(max-width:900px) 92vw, 40vw" />
+          <Image src="/images/sutil/retrato.webp" alt="Cirurgiã plástica de jaleco branco e blusa sálvia, em pé no consultório" fill sizes="(max-width:900px) 150vw, 40vw" />
           <figcaption><SutilMark size={22} />Cada plano começa por ouvir.</figcaption>
         </figure>
         <div className={styles.aboutCopy}>
