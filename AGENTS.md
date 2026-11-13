@@ -239,3 +239,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - o brilho vermelho da moldura aparece só nas seções de foto;
   - no celular, o WhatsApp fica no menu inferior.
 - Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. CSS global limpo em 12/11/2026: as regras sem classe usada em lugar nenhum saíram (de cerca de 164 KB para 46 KB), e `signature.css` e `landing.css` foram removidos. A conferência foi feita pixel a pixel nas 34 rotas, no computador e no celular, mais a suíte completa. Antes de reintroduzir uma classe global antiga, procure-a no histórico do git.
+
+## Preparação para o deploy (12/11/2026)
+
+- Na produção da Vercel (`VERCEL_ENV=production`, ou `HIDE_REVIEW_ROUTES=1` para simular), só a homepage e as cinco marcas aprovadas (`/modelos/odontologia`, `cirurgia-plastica`, `veterinaria`, `hotelaria` e `patrimonio`) são públicas. Os modelos antigos do template, `/conceitos/*` e todo `/propostas/*` redirecionam (307) para `/` (`next.config.js`). Localmente e nas prévias, tudo continua acessível para revisão e testes.
+- A imagem de compartilhamento (`app/opengraph-image.tsx`, com o retrato vermelho e o nome), o ícone `g.` e a página 404 seguem a homepage editorial.
+- Proteção: `LICENSE` com todos os direitos reservados, `license: UNLICENSED` no package.json, © no rodapé da homepage e mapas de código desligados na produção. O repositório no GitHub deve ser privado; isso é configuração do usuário.
+- Deploy e push só com ordem explícita do usuário.
