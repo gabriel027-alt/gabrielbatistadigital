@@ -18,7 +18,6 @@ test.describe("phones down to 320px", () => {
   test("the homepage never scrolls sideways and every control outside running text is at least 44px tall", async ({ page }) => {
     await page.goto("/");
     await walk(page);
-    await page.evaluate(() => { (document.querySelector("#editorial-work") as HTMLDetailsElement).open = true; });
     expect(await page.evaluate(() => document.documentElement.scrollWidth - innerWidth)).toBeLessThanOrEqual(0);
     const small = await page.evaluate(() => [...document.querySelectorAll<HTMLElement>("a[href],button,summary")]
       .filter(el => !el.closest("dialog:not([open])") && el.getClientRects().length && getComputedStyle(el).visibility !== "hidden")

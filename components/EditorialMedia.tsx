@@ -8,7 +8,8 @@ import { films, type FilmId } from "@/lib/project-films";
 import styles from "@/app/editorial.module.css";
 const subscribe = () => () => {};
 
-export function EditorialMedia({ name, image, film, href, compact = false }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean }) {
+/** `decorative`: a visual copy (the second lap of the projects strip) that stays clickable but out of the tab order. */
+export function EditorialMedia({ name, image, film, href, compact = false, decorative = false }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean; decorative?: boolean }) {
   const video = useRef<HTMLVideoElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
   const full = useRef<HTMLVideoElement>(null);
@@ -34,10 +35,11 @@ export function EditorialMedia({ name, image, film, href, compact = false }: { n
     return () => { observer.disconnect(); mutations.disconnect(); reduced.removeEventListener("change", update); document.removeEventListener("visibilitychange", update); document.removeEventListener("editorial-modal", update); el.pause(); };
   }, [film, hydrated]);
   const visual = <><Image src={image} alt={`Interface do projeto ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? "Ver filme completo" : "Explorar projeto"} <Arrow size={17}/></span></>;
-  if (!film) return <Link className={styles.media} href={href || "#editorial-work"}>{visual}</Link>;
+  const tab = decorative ? -1 : undefined;
+  if (!film) return <Link className={styles.media} href={href || "#editorial-work"} tabIndex={tab}>{visual}</Link>;
   const data = films[film];
   return <>
-    {hydrated ? <button ref={trigger} className={styles.media} type="button" aria-label={`Ver filme completo: ${name}`} aria-haspopup="dialog" onClick={() => { dialog.current?.showModal(); document.dispatchEvent(new Event("editorial-modal")); }}>{visual}</button> : <a className={styles.media} href={data.source}>{visual}</a>}
+    {hydrated ? <button ref={trigger} className={styles.media} type="button" tabIndex={tab} aria-label={`Ver filme completo: ${name}`} aria-haspopup="dialog" onClick={() => { dialog.current?.showModal(); document.dispatchEvent(new Event("editorial-modal")); }}>{visual}</button> : <a className={styles.media} href={data.source} tabIndex={tab}>{visual}</a>}
     <dialog ref={dialog} data-lenis-prevent className={styles.filmDialog} aria-label={`Filme do projeto ${name}`} onClose={() => { full.current?.pause(); document.dispatchEvent(new Event("editorial-modal")); trigger.current?.focus(); }}>
       <div className={styles.filmHeader}><span>{name}</span><button type="button" onClick={() => dialog.current?.close()}>Fechar <span aria-hidden="true">×</span></button></div>
       <video ref={full} controls playsInline preload="none" poster={image} aria-label={data.label} data-vertical={data.mobileSource ? "" : undefined}>{data.mobileSource && <source src={data.mobileSource} media="(max-width: 700px)" type="video/mp4"/>}<source src={data.source} type="video/mp4"/>{data.captions && <track kind="captions" src={data.captions} srcLang="pt-BR" label="Português"/>}Seu navegador não reproduz este vídeo.</video>

@@ -8,7 +8,7 @@ import Lenis from "lenis";
 import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
-import { linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
+import { lineEnds, linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
 const subscribe = () => () => {};
 
 export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -32,7 +32,6 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
       const tick = (seconds: number) => lenis.raf(seconds * 1000);
       lenis.on("scroll", ScrollTrigger.update); gsap.ticker.add(tick);
       const ctx = gsap.context(() => {
-        const desktop = innerWidth > 700;
         const splits: SplitText[] = [];
         // SVG attributes written by hand are not reverted by GSAP; these put the static monogram back.
         const restore: (() => void)[] = [];
@@ -53,7 +52,151 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             yPercent: 0, rotationX: 0, opacity: 1, stagger: .08, ease: "power2.out",
             scrollTrigger: { trigger: title, start: "top 90%", end: "bottom 55%", scrub: .65 },
           });
+          // The red tittles sit outside the split words: they appear with the end of the reveal, not before their letters.
+          const titleDots = title.querySelectorAll("[data-hook-tittle]");
+          if (titleDots.length) gsap.fromTo(titleDots, { opacity: 0, scale: .4 }, { opacity: 1, scale: 1, ease: "back.out(2)", scrollTrigger: { trigger: title, start: "top 62%", end: "bottom 52%", scrub: .65 } });
         });
+        // The brand dot never appears from nowhere: between scenes a carrier dot travels, on a low arc, from the dot it
+        // leaves to the dot it becomes, both read live from the page. The two ends hide while it is on its way.
+        const carry = (from: () => Element | null, to: () => Element | null, start: () => number, end: () => number, onLand?: (landed: boolean) => void) => {
+          const carrier = document.createElement("span");
+          carrier.className = styles.carrier; node.append(carrier);
+          const place = (progress: number) => {
+            const a = from(), b = to();
+            if (!a || !b) return;
+            const flying = progress > .001 && progress < .999;
+            (a as HTMLElement).style.visibility = progress >= .999 ? "hidden" : flying ? "hidden" : "";
+            (b as HTMLElement).style.visibility = progress >= .999 ? "" : "hidden";
+            carrier.style.visibility = flying ? "visible" : "hidden";
+            onLand?.(progress >= .999);
+            if (!flying) return;
+            const p = .5 - Math.cos(Math.PI * progress) / 2;
+            const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
+            const size = ra.width + (rb.width - ra.width) * p;
+            const x = ra.left + ra.width / 2 + (rb.left + rb.width / 2 - ra.left - ra.width / 2) * p;
+            const y = ra.top + ra.height / 2 + (rb.top + rb.height / 2 - ra.top - ra.height / 2) * p - Math.sin(Math.PI * progress) * innerHeight * .08;
+            carrier.style.width = carrier.style.height = `${size}px`;
+            carrier.style.transform = `translate(${x - size / 2}px, ${y - size / 2}px)`;
+          };
+          ScrollTrigger.create({ start, end, invalidateOnRefresh: true, onUpdate: self => place(self.progress), onRefresh: self => place(self.progress) });
+          restore.push(() => { carrier.remove(); [from(), to()].forEach(el => el && ((el as HTMLElement).style.visibility = "")); });
+        };
+        const trackRange = (el: HTMLElement, at: number) => el.getBoundingClientRect().top + scrollY + (el.offsetHeight - innerHeight) * at;
+        // The palm scene starts while its stage is still entering (top at 70% of the screen), so the hand rises as the
+        // phrase leaves, with no empty screen between them. Scroll position of a given progress of that scene:
+        const sceneAt = (el: HTMLElement, at: number) => { const top = el.getBoundingClientRect().top + scrollY, start = top - innerHeight * .7, end = top + el.offsetHeight - innerHeight; return start + (end - start) * at; };
+        // "O próximo clique", one stage and one timeline: Gabriel's open hand rises from the bottom; the red tittle of
+        // "clique" lands in its palm; the dot rises above the hand and bursts, and the pieces of "g." come out of that
+        // spark with the peach line, drift, then assemble above the palm. The copy closes the scene. Reversible.
+        const creation = node.querySelector<HTMLElement>("[data-creation-track]");
+        const field = creation?.querySelector<SVGSVGElement>("[data-gb-shapes] svg");
+        const line = field?.querySelector<SVGPathElement>("[data-gb-line]");
+        if (creation && field && line) {
+          const stage = creation.querySelector<HTMLElement>("[data-fusion-stage]")!, palm = creation.querySelector<HTMLElement>("[data-palm]")!;
+          const box = field.parentElement as HTMLElement, copy = creation.querySelector<HTMLElement>("[data-palm-copy]")!;
+          const body = creation.querySelector<HTMLElement>("[data-palm-body]")!, gShadow = creation.querySelector<HTMLElement>("[data-g-shadow]")!;
+          const dot = creation.querySelector<HTMLElement>("[data-creation-dot]")!, ring = creation.querySelector("[data-creation-ring]");
+          const groups = shapes.map(shape => field.querySelector<SVGGElement>(`[data-gb-shape="${shape.id}"]`)!);
+          const dotIndex = shapes.findIndex(shape => shape.id === "dot");
+          // The assembled "g." spans x 570–890 and y 350–775 of the view box. It floats just above the palm, to the right
+          // of the thumb (which ends 57% across the photo), below the navigation or the copy when the copy sits on top
+          // (phones), and inside the screen. Layout values only, no transforms.
+          const G = { x: 730, y: 562, h: 425, w: 320 };
+          const birth = { x: G.x, y: G.y - 40 }, rise = { x: 0, y: 0 }, size = { ratio: 1 };
+          const measure = () => {
+            const H = stage.clientHeight, Wst = stage.clientWidth;
+            const palmY = palm.offsetTop + palm.offsetHeight * .43, thumbRight = palm.offsetLeft + palm.offsetWidth * .57;
+            const copyAbove = copy.offsetTop + copy.offsetHeight < palm.offsetTop;
+            const top = copyAbove ? copy.offsetTop + copy.offsetHeight + 20 : Math.min(84, H * .12);
+            const bottom = palmY - palm.offsetHeight * .05;
+            const gh = Math.max(110, Math.min(bottom - top, H * .4, Wst * .5 * G.h / G.w));
+            const gw = gh * G.w / G.h, F = gh / (G.h / 1000), W = F * 1.44;
+            const cx = Math.min(Math.max(thumbRight + gw / 2 + 8, gw / 2 + 16), Wst - gw / 2 - 28), cy = bottom - gh / 2;
+            Object.assign(box.style, { width: `${W}px`, height: `${F}px`, left: `${cx - W * G.x / 1440}px`, top: `${cy - F * G.y / 1000}px` });
+            // The soft shadow the floating "g." casts on the hand, just under it.
+            Object.assign(gShadow.style, { width: `${gw * .95}px`, height: `${gw * .2}px`, left: `${cx - gw * .475}px`, top: `${palmY - gw * .1}px` });
+            // The palm dot rises to the spark point (the birth of the pieces) and grows to the size of the field's dot.
+            const dotX = palm.offsetLeft + body.offsetLeft + dot.offsetLeft + dot.offsetWidth / 2, dotY = palm.offsetTop + body.offsetTop + dot.offsetTop + dot.offsetHeight / 2;
+            rise.x = cx - dotX + (birth.x - G.x) * F / 1000; rise.y = cy - dotY + (birth.y - G.y) * F / 1000;
+            size.ratio = 52 * F / 1000 / Math.max(1, dot.offsetWidth);
+          };
+          measure();
+          ScrollTrigger.addEventListener("refreshInit", measure);
+          const poses: Pose[] = shapes.map((shape, i) => ({ x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }));
+          const ends = { start: { ...birth }, end: { ...birth } };
+          const draw = { value: 0 }, spark = { value: 0 };
+          const render = () => {
+            groups.forEach((group, i) => group.setAttribute("transform", transformOf(poses[i])));
+            groups[dotIndex].style.opacity = String(spark.value);
+            line.setAttribute("d", pathThrough([ends.start, ...poses, ends.end]));
+            line.style.strokeDashoffset = String(1 - draw.value);
+          };
+          // The scatter and drift poses of the old full-screen field are scaled around the spark so they stay near the hand.
+          const near = (pose: Pose, k: number): Pose => ({ ...pose, x: birth.x + (pose.x - birth.x) * k, y: birth.y + (pose.y - birth.y) * k });
+          const motion = gsap.timeline({ defaults: { ease: "none", lazy: false }, onUpdate: render, scrollTrigger: { trigger: creation, start: "top 70%", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true, onRefresh: render } });
+          const shadow = creation.querySelector("[data-palm-shadow]"), glow = creation.querySelector("[data-palm-glow]");
+          // 1. The hand rises and opens; the carrier (below) brings the dot into the palm by .2.
+          motion.fromTo(palm, { yPercent: 70, rotation: 7, opacity: .4 }, { yPercent: 0, rotation: 0, opacity: 1, ease: "power2.out", duration: .2 }, 0)
+            .fromTo(dot, { x: 0, y: 0, scale: 1, opacity: 1 }, { x: 0, y: 0, scale: 1, opacity: 1, duration: .001 }, 0)
+            .fromTo(shadow, { opacity: 0, scale: .5 }, { opacity: 1, scale: 1, duration: .02 }, .19)
+            .fromTo(glow, { opacity: 0 }, { opacity: 0, duration: .001 }, 0)
+            .fromTo(gShadow, { opacity: 0, scale: .5 }, { opacity: 0, scale: .5, duration: .001 }, 0)
+          // 2. The landing: the hand gives a little under the weight, the dot pulses and lights the palm red.
+            .to(palm, { yPercent: 2, duration: .03, ease: "power1.out" }, .2).to(palm, { yPercent: 0, duration: .04, ease: "power1.inOut" }, .23)
+            .to(dot, { keyframes: [{ scale: 1.35, duration: .02 }, { scale: 1, duration: .03 }] }, .21)
+            .fromTo(ring, { scale: 1, opacity: .9 }, { scale: 6, opacity: 0, ease: "power2.out", duration: .08, immediateRender: false }, .21)
+            .to(glow, { keyframes: [{ opacity: 1, duration: .02 }, { opacity: .55, duration: .06 }] }, .21)
+            .to(shadow, { opacity: 0, scale: .4, duration: .05 }, .29)
+            .to(glow, { opacity: .25, duration: .08 }, .3)
+          // 3. The dot rises out of the palm to the spark point and grows to the size of the dot of "g.".
+            .to(dot, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio, ease: "power2.inOut", duration: .1 }, .29)
+          // 4. The spark: the dot hands over to the dot of "g." and the other pieces burst out of it.
+            .to(dot, { opacity: 0, duration: .02 }, .4)
+            .fromTo(spark, { value: 0 }, { value: 1, duration: .02 }, .4)
+            .to(glow, { keyframes: [{ opacity: .8, duration: .02 }, { opacity: 0, duration: .12 }] }, .4)
+            .to(gShadow, { opacity: 1, scale: 1, duration: .14, ease: "power2.out" }, .76)
+            .fromTo(ring, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio, opacity: .9 }, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio * 9, opacity: 0, ease: "power2.out", duration: .1, immediateRender: false }, .4);
+          shapes.forEach((shape, i) => {
+            motion.fromTo(poses[i], { x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }, { ...near(shape.scatter, .55), ease: "power3.out", duration: .16 }, .41)
+              .to(poses[i], { ...near(shape.drift, .5), duration: .18, ease: "sine.inOut" }, .57)
+              .to(poses[i], { ...shape.final, duration: .16, ease: "power2.inOut" }, .74 + i * .006);
+          });
+          motion.fromTo(ends.start, { ...birth }, { ...lineEnds.start, ease: "power3.out", duration: .16 }, .41)
+            .fromTo(ends.end, { ...birth }, { ...lineEnds.end, ease: "power3.out", duration: .16 }, .41)
+            .fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
+            .to(draw, { value: .8, duration: .18 }, .57)
+            .to(draw, { value: 1, duration: .14 }, .76)
+          // 5. The copy.
+            .fromTo(copy, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .08, ease: "power2.out" }, .88)
+            .to({}, { duration: .001 }, .999);
+          render();
+          // The hand is alive: a slow breath, and on a computer it leans a little toward the pointer.
+          gsap.to(body, { y: -5, rotation: .6, transformOrigin: "80% 100%", duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+          const lean = gsap.quickTo(body, "x", { duration: 1.2, ease: "power3.out" });
+          const follow = (event: MouseEvent) => lean((event.clientX / innerWidth - .5) * 18);
+          if (matchMedia("(pointer: fine)").matches) addEventListener("mousemove", follow);
+          restore.push(() => {
+            removeEventListener("mousemove", follow);
+            ScrollTrigger.removeEventListener("refreshInit", measure);
+            box.removeAttribute("style"); gShadow.removeAttribute("style");
+            groups.forEach((group, i) => { group.setAttribute("transform", transformOf(shapes[i].final)); group.style.opacity = ""; });
+            line.setAttribute("d", linePath(shapes.map(shape => shape.final))); line.style.strokeDashoffset = "";
+          });
+          // The tittle of "clique" detaches as the phrase leaves and lands in the palm as the hand settles.
+          carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,
+            () => { const t = node.querySelector("[data-hook-tittle=carry]")!; return t.getBoundingClientRect().top + scrollY - innerHeight * .3; },
+            () => sceneAt(creation, .2));
+          // The dot of the finished "g." drops onto the folder's tab.
+          const work = node.querySelector<HTMLElement>("[data-work-track]");
+          if (work) {
+            carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), () => trackRange(work, .25));
+            // After the projects, the dot leaves the folder and becomes the full stop of "Vamos conversar", which stays lit.
+            const panel = node.querySelector<HTMLElement>("[data-contact-panel]"), stop = node.querySelector<HTMLElement>("[data-contact-dot]");
+            if (panel && stop) carry(() => node.querySelector("[data-pasta-dot]"), () => stop, () => trackRange(work, 1), () => panel.getBoundingClientRect().top + scrollY - innerHeight * .45,
+              landed => { stop.dataset.lit = String(landed); });
+            restore.push(() => { if (stop) delete stop.dataset.lit; });
+          }
+        }
         // Title: the two words of the name breathe in opposite directions (narrow ↔ wide), as in the reference.
         const words = gsap.utils.toArray<HTMLElement>("[data-hero-word]");
         // The hero loops start paused: on arrival the brand dot plays its scene first, then they begin.
@@ -217,61 +360,36 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           }
           restore.push(() => { gsap.set(tittles, { clearProps: "transform" }); gsap.set(dot, { clearProps: "opacity" }); });
         } else startLoops(false);
-        // The monogram, taken apart: the shapes drift, one line threads them, then the scroll assembles "gb/".
-        const field = node.querySelector<SVGSVGElement>("[data-gb-shapes] svg");
-        const line = field?.querySelector<SVGPathElement>("[data-gb-line]");
-        if (field && line) {
-          const groups = shapes.map(shape => field.querySelector<SVGGElement>(`[data-gb-shape="${shape.id}"]`)!);
-          const poses: Pose[] = shapes.map(shape => ({ ...shape.scatter }));
-          const draw = { value: 0 };
-          const render = () => {
-            groups.forEach((group, i) => group.setAttribute("transform", transformOf(poses[i])));
-            line.setAttribute("d", linePath(poses));
-            line.style.strokeDashoffset = String(1 - draw.value);
-          };
-          // Drift while the field enters; the CSS track then holds it centred (sticky) while the monogram assembles.
-          // No ScrollTrigger pin: pinning added and removed space whenever motion was paused and resumed.
-          const fieldBox = node.querySelector<HTMLElement>("[data-gb-shapes]")!;
-          const holdStart = () => `top ${(innerHeight - fieldBox.offsetHeight) / 2}px`;
-          const holdEnd = () => `bottom ${(innerHeight + fieldBox.offsetHeight) / 2}px`;
-          // One timeline for both phases (two timelines on the same values fought each other after the hold).
-          // The drift share is the distance before the field sticks, over the whole distance to the end of the hold.
-          const track = node.querySelector<HTMLElement>("[data-gb-track]")!;
-          const enter = (innerHeight + fieldBox.offsetHeight) / 2;
-          const total = track.offsetHeight + (innerHeight - fieldBox.offsetHeight) / 2;
-          const split = Math.min(.8, Math.max(.2, enter / total));
-          // lazy:false: the values must be applied before onUpdate redraws the SVG, or a jump renders stale poses.
-          const motion = gsap.timeline({ defaults: { ease: "none", lazy: false }, onUpdate: render, scrollTrigger: { trigger: track, start: "top bottom", end: holdEnd, scrub: .8, invalidateOnRefresh: true, onRefresh: render } });
-          shapes.forEach((shape, i) => {
-            motion.fromTo(poses[i], { ...shape.scatter }, { ...shape.drift, duration: split }, 0)
-              .to(poses[i], { ...shape.final, duration: (1 - split) * .8, ease: "power2.inOut" }, split + i * .012);
-          });
-          motion.fromTo(draw, { value: 0 }, { value: .75, duration: split }, 0)
-            .to(draw, { value: 1, duration: (1 - split) * .5 }, split)
-            .to({}, { duration: .001 }, .999);
-          void holdStart;
-          render();
-          restore.push(() => { groups.forEach((group, i) => group.setAttribute("transform", transformOf(shapes[i].final))); line.setAttribute("d", linePath(shapes.map(shape => shape.final))); line.style.strokeDashoffset = ""; });
-        }
         gsap.utils.toArray<HTMLElement>("[data-shape]").forEach((shape, index) => {
           gsap.fromTo(shape, { y: 150, rotation: index % 2 ? -32 : 22, scale: .85 }, {
             y: Number(shape.dataset.shape) * 1.6, rotation: index % 2 ? 30 : -25, scale: 1.08, ease: "none",
             scrollTrigger: { trigger: "[data-hook]", start: "top bottom", end: "bottom top", scrub: .8 },
           });
         });
-        if (desktop) gsap.utils.toArray<HTMLElement>("[data-sample-row]").forEach(row => {
-          const cards = [...row.children];
-          const fold = gsap.timeline({ scrollTrigger: { trigger: row, start: "top 96%", end: "bottom 30%", scrub: .65 } });
-          fold.fromTo(row, { rotationX: 65, y: 120 }, { rotationX: 0, y: 0, duration: 1, ease: "power2.out" }, 0);
-          const center = (cards.length - 1) / 2;
-          cards.forEach((card, index) => {
-            // Normalised so the outer cards always fold as far as the outer cards of the original five-card rows.
-            const distance = (index - center) * (2 / Math.max(center, 1));
-            fold.fromTo(card, { xPercent: distance * -24, yPercent: Math.abs(distance) * 20, rotationY: distance * -14, rotationZ: distance * 7, scale: .82 },
-              { xPercent: 0, yPercent: 0, rotationY: 0, rotationZ: 0, scale: 1, ease: "power2.out", duration: .85 }, .08 * Math.abs(distance));
-          });
-        });
-        gsap.fromTo("[data-folder]", { rotation: -12, y: 90, scale: .72 }, { rotation: 0, y: 0, scale: 1, ease: "back.out(1.4)", scrollTrigger: { trigger: "#editorial-work", start: "top 90%", end: "center 60%", scrub: .8 } });
+        // The folder: closed and large at the centre, the brand dot drops onto its tab like a click, the cover opens
+        // and the strip of projects is pulled out of it sideways while the folder settles below. Reversible.
+        const work = node.querySelector<HTMLElement>("[data-work-track]");
+        if (work) {
+          const stage = work.querySelector<HTMLElement>("[data-work-stage]")!, pasta = work.querySelector<HTMLElement>("[data-pasta]")!;
+          const strip = work.querySelector<HTMLElement>("[data-strip]")!;
+          const centre = (el: HTMLElement) => el.offsetTop + el.offsetHeight / 2;
+          // Offsets measured on the final (CSS) layout: the folder starts at the middle of the stage, the strip inside the folder.
+          const toMiddle = () => stage.clientHeight / 2 - centre(pasta);
+          const intoFolder = () => centre(pasta) - centre(strip);
+          gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: work, start: "top top", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true } })
+            .fromTo(pasta, { y: toMiddle, scale: 2.3, rotation: -8 }, { y: toMiddle, scale: 2.1, rotation: 0, duration: .2, ease: "power2.out" }, 0)
+            .fromTo("[data-pasta-front]", { rotationX: -8 }, { rotationX: -8, duration: .01 }, 0)
+            .fromTo("[data-pasta-sheet]", { y: 0 }, { y: 0, duration: .01 }, 0)
+            .to("[data-pasta-dot]", { keyframes: [{ scaleX: 1.35, scaleY: .7, duration: .03 }, { scaleX: 1, scaleY: 1, duration: .05 }] }, .26)
+            .fromTo("[data-pasta-ring]", { scale: 1, opacity: .9 }, { scale: 6, opacity: 0, duration: .14, ease: "power2.out", immediateRender: false }, .26)
+            .to("[data-pasta-front]", { rotationX: -52, duration: .14, ease: "power2.inOut" }, .3)
+            .to("[data-pasta-sheet]", { y: () => -pasta.offsetHeight * .84 * .22, duration: .14, ease: "power2.inOut" }, .32)
+            .fromTo(strip, { y: intoFolder, scaleY: .35, clipPath: "inset(0% 50% 0% 50%)", opacity: 0 }, { y: 0, scaleY: 1, clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: .34, ease: "power2.inOut" }, .4)
+            .to(pasta, { y: 0, scale: 1, duration: .34, ease: "power2.inOut" }, .4)
+            .fromTo("[data-work-word]", { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .3, ease: "power2.out" }, .45)
+            .fromTo("[data-work-note]", { opacity: 0 }, { opacity: 1, duration: .12 }, .66)
+            .to({}, { duration: .2 }, .8);
+        }
         gsap.to("[data-about-photo]", { scale: 1.14, yPercent: 7, ease: "none", scrollTrigger: { trigger: "#editorial-about", start: "top bottom", end: "bottom top", scrub: .8 } });
         gsap.fromTo("[data-contact-panel]", { scale: .9, borderRadius: 100 }, { scale: 1, borderRadius: 40, ease: "none", scrollTrigger: { trigger: "#editorial-contact", start: "top 95%", end: "center 65%", scrub: .65 } });
         // SplitText owns generated word wrappers and restores accessible original markup.

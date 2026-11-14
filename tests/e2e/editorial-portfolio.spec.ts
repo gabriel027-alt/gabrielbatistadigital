@@ -2,6 +2,9 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const route = "/";
+// The projects strip: the first lap is the real list; the second is a decorative copy for the endless loop.
+const projects = '#editorial-work ul:not([aria-hidden])';
+const toEndOfFolder = (page: import("@playwright/test").Page) => page.locator('[data-work-track]').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY + (el as HTMLElement).offsetHeight - innerHeight, behavior: 'instant' }));
 
 test("Editorial reconstruction retains a complete readable mobile and motion-reduced experience", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -14,9 +17,10 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
-  await page.locator('#editorial-work > summary').click();
-  await expect(page.locator('#editorial-work')).toHaveAttribute('open','');
-  await expect(page.locator('#editorial-work figure')).toHaveCount(7);
+  // Without motion the folder is open and the strip is a single row scrolled by hand (no repeated copy).
+  await expect(page.locator(`${projects} > li`)).toHaveCount(7);
+  await expect(page.locator('#editorial-work ul[aria-hidden]')).toBeHidden();
+  expect(await page.locator('[data-strip]').evaluate(el => getComputedStyle(el).overflowX)).toBe('auto');
   expect(videos).toEqual([]);
   const audit = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   expect(audit.violations).toEqual([]);
@@ -28,14 +32,14 @@ test("Visible loops load locally, pause with the control and open a full film wi
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated','true');
   expect(await page.locator('video[data-editorial-loop][src]').count()).toBe(0);
   await expect(page.getByRole('link', { name: 'clique' })).toHaveCount(1);
-  const row = page.locator('[data-sample-row]').filter({ has: page.locator('video[data-editorial-loop="aura"]') });
-  await row.scrollIntoViewIfNeeded();
-  const loop = row.locator('video[data-editorial-loop="aura"]');
-  await expect(loop).toHaveAttribute('src','/videos/projects/aura-loop.mp4');
-  await expect.poll(() => loop.evaluate(el => (el as HTMLVideoElement).paused)).toBe(false);
+  await toEndOfFolder(page);
+  // The strip keeps moving, so whichever loops are on screen play; they all stop with the motion control.
+  const playing = () => page.locator('#editorial-work video[data-editorial-loop][src]').evaluateAll(nodes => nodes.filter(node => !(node as HTMLVideoElement).paused).length);
+  await expect.poll(playing).toBeGreaterThan(0);
+  expect(await page.locator('#editorial-work video[data-editorial-loop][src]').first().getAttribute('src')).toMatch(/^\/videos\/projects\/.*-loop\.mp4$/);
   await page.getByRole('button',{name:'Pausar movimento'}).click();
-  await expect.poll(() => loop.evaluate(el => (el as HTMLVideoElement).paused)).toBe(true);
-  const opener = row.getByRole('button',{name:'Ver filme completo: Aura'});
+  await expect.poll(playing).toBe(0);
+  const opener = page.locator(projects).getByRole('button',{name:'Ver filme completo: Aura'});
   await opener.click();
   const dialog = page.getByRole('dialog',{name:'Filme do projeto Aura'});
   await expect(dialog).toBeVisible();
@@ -49,7 +53,8 @@ test("Visible loops load locally, pause with the control and open a full film wi
 test("Data saving suppresses teaser downloads", async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(navigator,'connection',{value:{saveData:true},configurable:true}));
   await page.goto(route);
-  await page.locator('[data-sample-row]').first().scrollIntoViewIfNeeded();
+  await toEndOfFolder(page);
+  await page.waitForTimeout(800);
   expect(await page.locator('video[data-editorial-loop][src]').count()).toBe(0);
 });
 
@@ -57,8 +62,8 @@ test("No JavaScript retains original content, projects and contact without scrip
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const page=await context.newPage();
   await page.goto(route);
-  await page.locator('#editorial-work > summary').click();
-  await expect(page.locator('#editorial-work figure')).toHaveCount(7);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(7);
+  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(7);
   await expect(page.getByRole('heading',{name:'Uma boa ideia precisa funcionar.'})).toBeVisible();
   await expect(page.locator('a[href*="wa.me"]').first()).toHaveAttribute('href',/5538998267717/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -72,28 +77,33 @@ test("Editorial motion preview decodes in the browser",async({page})=>{
  await video.evaluate(el=>(el as HTMLVideoElement).play());await expect.poll(()=>video.evaluate(el=>(el as HTMLVideoElement).currentTime)).toBeGreaterThan(.3);
 });
 
-test('Scroll unfolds the gallery reversibly and pause restores readable geometry', async ({ page }) => {
+test('The dot opens the folder, the strip comes out reversibly and pause restores readable geometry', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(route);
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
-  const row = page.locator('[data-sample-row]').first();
-  const move = async (offset: number) => {
-    await row.evaluate((el, offset) => scrollTo({ top: el.getBoundingClientRect().top + scrollY - offset, behavior: 'instant' }), offset);
-    await page.waitForTimeout(1100);
+  const track = page.locator('[data-work-track]');
+  const move = async (fraction: number) => {
+    await track.evaluate((el, f) => scrollTo({ top: el.getBoundingClientRect().top + scrollY + ((el as HTMLElement).offsetHeight - innerHeight) * f, behavior: 'instant' }), fraction);
+    await page.waitForTimeout(1300);
   };
-  const transform = () => row.evaluate(el => getComputedStyle(el).transform);
-  await move(880);
-  const folded = await transform();
-  await move(300);
-  const unfolded = await transform();
-  expect(unfolded).not.toBe(folded);
-  await move(880);
-  expect(await transform()).toBe(folded);
+  const state = () => page.evaluate(() => ({
+    strip: Number(getComputedStyle(document.querySelector('[data-strip]')!).opacity),
+    // The dot reaches the tab from the "g." above (a carrier dot travels between them), so it is hidden until it lands.
+    dot: getComputedStyle(document.querySelector('[data-pasta-dot]')!).visibility,
+  }));
+  // Closed folder, dot not landed yet; then the strip is out; back at the start everything is put away again.
+  await move(0);
+  expect(await state()).toEqual({ strip: 0, dot: 'hidden' });
+  await move(1);
+  expect(await state()).toEqual({ strip: 1, dot: 'visible' });
+  await move(0);
+  expect(await state()).toEqual({ strip: 0, dot: 'hidden' });
   await page.getByRole('button', { name: 'Pausar movimento' }).click();
   await expect(page.locator('[data-editorial]')).not.toHaveAttribute('data-editorial-animated', 'true');
-  expect(await transform()).toBe('none');
-  await expect(page.locator('[data-hook] h2')).toHaveCount(1);
-  await expect(page.locator('[data-hook] h2 a')).toBeVisible();
+  expect(await page.locator('[data-strip]').evaluate(el => getComputedStyle(el).transform)).toBe('none');
+  expect((await state()).strip).toBe(1);
+  await expect(page.locator('[data-hook] > h2')).toHaveCount(1);
+  await expect(page.locator('[data-hook] > h2 a')).toBeVisible();
   await page.getByRole('button', { name: 'Ativar movimento' }).click();
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
 });
@@ -163,21 +173,22 @@ test('Scrolling the opening never puts the name or the sample over the face', as
 });
 
 test('Selection shows the approved brands with the colors measured for each', async ({ page }) => {
+  // A still strip: a moving one never settles for a click.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(route);
-  await page.locator('#editorial-work > summary').click();
-  for (const name of ['Forma Odontologia', 'Sutil Cirurgia Plástica', 'Toca Hospital Veterinário', 'Casa Brisa', 'Almeida & Valença']) {
-    await expect(page.locator('#editorial-work figcaption h3', { hasText: name })).toBeVisible();
+  for (const name of ['Forma Odontologia', 'Sutil Cirurgia Plástica', 'Toca Hospital Veterinário', 'Casa Brisa', 'Almeida & Valença', 'Aura', 'Orla']) {
+    await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
-  await expect(page.locator('#editorial-work dl')).toHaveCount(5);
+  await expect(page.locator(`${projects} dl`)).toHaveCount(5);
   // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
   await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
-  const toca = page.locator('#editorial-work').getByRole('button', { name: 'Ver filme completo: Toca Hospital Veterinário' });
+  const toca = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Toca Hospital Veterinário' });
   await toca.click();
   const film = page.getByRole('dialog', { name: 'Filme do projeto Toca Hospital Veterinário' }).locator('video');
   await expect(film.locator('source[media="(max-width: 700px)"]')).toHaveAttribute('src', '/videos/projects/brands/toca-mobile.mp4');
   await expect(film.locator('source:not([media])')).toHaveAttribute('src', '/videos/projects/brands/toca-desktop.mp4');
   await page.keyboard.press('Escape');
-  const images = await page.locator('[data-sample-row] img').evaluateAll(nodes => nodes.map(node => (node as HTMLImageElement).getAttribute('src')));
+  const images = await page.locator(`${projects} img`).evaluateAll(nodes => nodes.map(node => (node as HTMLImageElement).getAttribute('src')));
   expect(new Set(images).size).toBe(images.length);
   await expect(page.locator('body')).not.toContainText(/Vanguard|Chronos|catálogo de 20/);
 });
@@ -227,6 +238,31 @@ test('The brand dot plants the tittle on each i of the name and lands in the car
   await expect(still.locator('[data-tittle]').first()).toBeVisible();
   await expect(still.locator('[data-hero-dot]')).toBeHidden();
   await reduced.close();
+});
+
+test('The red tittle of "clique" travels into the open palm and back with the scroll', async ({ page }) => {
+  await page.setViewportSize({ width: 1536, height: 696 });
+  await page.goto(route);
+  await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+  const at = async (fraction: number) => {
+    await page.locator('[data-creation-track]').evaluate((el, f) => scrollTo({ top: el.getBoundingClientRect().top + scrollY + ((el as HTMLElement).offsetHeight - innerHeight) * f, behavior: 'instant' }), fraction);
+    await page.waitForTimeout(1200);
+  };
+  const seen = () => page.evaluate(() => ({
+    tittle: getComputedStyle(document.querySelector('[data-hook-tittle=carry]')!).visibility,
+    palm: getComputedStyle(document.querySelector('[data-creation-dot]')!).visibility,
+  }));
+  await page.locator('[data-hook] > h2').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 200, behavior: 'instant' }));
+  await page.waitForTimeout(1200);
+  expect(await seen()).toEqual({ tittle: 'visible', palm: 'hidden' });
+  await at(.26);
+  expect(await seen()).toEqual({ tittle: 'hidden', palm: 'visible' });
+  await page.locator('[data-hook] > h2').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 200, behavior: 'instant' }));
+  await page.waitForTimeout(1200);
+  expect(await seen()).toEqual({ tittle: 'visible', palm: 'hidden' });
+  // Without motion, the dot simply rests in the palm and the phrase keeps its red tittles.
+  await page.getByRole('button', { name: 'Pausar movimento' }).click();
+  expect(await seen()).toEqual({ tittle: 'visible', palm: 'visible' });
 });
 
 test('Cover uses the approved original portrait', async ({ page }) => {

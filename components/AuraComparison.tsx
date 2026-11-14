@@ -9,6 +9,10 @@ export function AuraComparison() {
   const id=useId();
   const sectionRef=useRef<HTMLElement>(null);
   const current=useRef(50), manual=useRef(false), dragging=useRef(false), frame=useRef(0);
+  // The page scrolls smoothly: a scroll that was already gliding when the visitor took the slider keeps firing events.
+  // Only a scroll that starts after a pause (a new gesture) gives control back to the scroll choreography.
+  const lastScroll=useRef(0), inherited=useRef(false);
+  const takeOver=()=>{manual.current=true;inherited.current=performance.now()-lastScroll.current<150;};
   useEffect(()=>{
     const section=sectionRef.current, parent=section?.closest<HTMLElement>("[data-motion]");
     if(!section || !parent) return;
@@ -31,7 +35,12 @@ export function AuraComparison() {
       target=progress<.4 ? 50*(1-ease(progress/.3)) : 100*ease((progress-.4)/.5);
       if(!frame.current) frame.current=requestAnimationFrame(tick);
     };
-    const onScroll=()=>{if(dragging.current)return;manual.current=false;update();};
+    const onScroll=()=>{
+      const now=performance.now(), gliding=now-lastScroll.current<150;lastScroll.current=now;
+      if(dragging.current)return;
+      if(manual.current&&inherited.current&&gliding)return;
+      inherited.current=false;manual.current=false;update();
+    };
     const release=()=>{dragging.current=false;};
     const sync=()=>{
       enabled=!media.matches && parent.dataset.motion!=="off";
@@ -44,7 +53,7 @@ export function AuraComparison() {
     media.addEventListener("change",sync);addEventListener("scroll",onScroll,{passive:true});addEventListener("resize",update);sync();
     return()=>{removeEventListener("pointerup",release);removeEventListener("pointercancel",release);stop();resize.disconnect();motion.disconnect();media.removeEventListener("change",sync);removeEventListener("scroll",onScroll);removeEventListener("resize",update);delete section.dataset.comparisonAnimated;};
   },[]);
-  const adjust=(value:number)=>{manual.current=true;cancelAnimationFrame(frame.current);frame.current=0;current.current=value;setPosition(value);};
+  const adjust=(value:number)=>{takeOver();cancelAnimationFrame(frame.current);frame.current=0;current.current=value;setPosition(value);};
   return <section id="aura-comparacao" ref={sectionRef} className={styles.section} aria-labelledby={`${id}-title`} data-aura-comparator>
     <div className={styles.stage} data-comparison-stage>
     <div className={styles.copy}>
@@ -59,7 +68,7 @@ export function AuraComparison() {
         </div>
         <span className={styles.afterLabel} style={{visibility:position>1 ? "visible" : "hidden"}}>Depois</span><span className={styles.beforeLabel} style={{visibility:position<99 ? "visible" : "hidden"}}>Antes</span>
         <div className={styles.divider} style={{left:`${position}%`}} aria-hidden="true"><span>↔</span></div>
-        <input id={id} className={styles.slider} type="range" min="0" max="100" step="0.1" value={position} onChange={e=>adjust(Number(e.target.value))} onPointerDown={()=>{dragging.current=true;manual.current=true;cancelAnimationFrame(frame.current);frame.current=0;}} onPointerUp={()=>{dragging.current=false;}} onPointerCancel={()=>{dragging.current=false;}} onBlur={()=>{dragging.current=false;}} aria-label="Comparar antes e depois" aria-valuetext={`${position}% da versão depois visível`} />
+        <input id={id} className={styles.slider} type="range" min="0" max="100" step="0.1" value={position} onChange={e=>adjust(Number(e.target.value))} onPointerDown={()=>{dragging.current=true;takeOver();cancelAnimationFrame(frame.current);frame.current=0;}} onPointerUp={()=>{dragging.current=false;}} onPointerCancel={()=>{dragging.current=false;}} onBlur={()=>{dragging.current=false;}} aria-label="Comparar antes e depois" aria-valuetext={`${position}% da versão depois visível`} />
       </div>
       <label className={styles.hint} htmlFor={id}>Continue o scroll ou ajuste a linha com o mouse, toque ou teclado.</label>
       <noscript><p className={styles.hint}>Comparação estática: depois à esquerda, antes à direita.</p></noscript>
