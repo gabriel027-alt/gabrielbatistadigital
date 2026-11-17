@@ -92,6 +92,8 @@ export default function HomePage() {
             and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
         <div className={styles.fusionTrack} data-creation-track data-gb-track>
           <div className={styles.fusionStage} data-fusion-stage>
+            {/* On its way from "clique" to the palm the dot hops on what the hand does: each word gives and stays lit. */}
+            <ol className={`${styles.hops} ${styles.hopsCraft}`} data-hops="craft" aria-hidden="true"><li>Estratégia</li><li>Design</li><li>Código</li></ol>
             <figure className={styles.palm} data-palm role="img" aria-label="A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.">
               <div className={styles.palmBody} data-palm-body>
               <Image src="/images/editorial/mao-palma-braco.webp" alt="" width={5800} height={2701} quality={90} sizes="(max-width:700px) 200vw, 150vw" data-palm-hand />
@@ -116,6 +118,8 @@ export default function HomePage() {
       <section className={styles.work} id="editorial-work" data-editorial-theme="paper" aria-labelledby="editorial-work-title">
         <div className={styles.workTrack} data-work-track>
           <div className={styles.workStage} data-work-stage>
+            {/* On its way from the "g." to the folder the dot hops on what each project is; they go into the folder. */}
+            <ol className={`${styles.hops} ${styles.hopsWork}`} data-hops="work" aria-hidden="true"><li>Marca</li><li>Site</li><li>Filme</li></ol>
             <h2 id="editorial-work-title" className={styles.projectsWord} data-work-word>Projetos</h2>
             <div className={styles.strip} data-strip>
               <div className={styles.stripTrack}>

@@ -58,9 +58,14 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
         });
         // The brand dot never appears from nowhere: between scenes a carrier dot travels, on a low arc, from the dot it
         // leaves to the dot it becomes, both read live from the page. The two ends hide while it is on its way.
-        const carry = (from: () => Element | null, to: () => Element | null, start: () => number, end: () => number, onLand?: (landed: boolean) => void) => {
+        // On the way it may hop on key words (`stops`): it lands on top of each one, the word gives under it and stays
+        // lit behind it, so the empty stretch between two scenes tells what happens in between. Reversible with the scroll.
+        const carry = (from: () => Element | null, to: () => Element | null, start: () => number, end: () => number, onLand?: (landed: boolean) => void, stops: () => HTMLElement[] = () => []) => {
           const carrier = document.createElement("span");
           carrier.className = styles.carrier; node.append(carrier);
+          const centreOf = (el: Element) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height / 2, w: r.width }; };
+          // A word's landing spot: on top of its letters (the cap line sits about a fifth down the line box).
+          const onTopOf = (el: Element, size: number) => { const r = el.getBoundingClientRect(); return { x: r.left + r.width / 2, y: r.top + r.height * .2 - size * .5, w: size }; };
           const place = (progress: number) => {
             const a = from(), b = to();
             if (!a || !b) return;
@@ -69,14 +74,32 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             (b as HTMLElement).style.visibility = progress >= .999 ? "" : "hidden";
             carrier.style.visibility = flying ? "visible" : "hidden";
             onLand?.(progress >= .999);
+            const words = stops();
+            const legs = words.length + 1;
+            // Each word: lit once the dot has reached it, pressed while the dot sits on it.
+            words.forEach((word, i) => {
+              const at = (i + 1) / legs;
+              word.style.setProperty("--lit", progress >= at - .5 / legs / 3 ? "1" : "0");
+              word.style.setProperty("--hit", Math.max(0, 1 - Math.abs(progress - at) * legs * 3.2).toFixed(3));
+            });
             if (!flying) return;
-            const p = .5 - Math.cos(Math.PI * progress) / 2;
-            const ra = a.getBoundingClientRect(), rb = b.getBoundingClientRect();
-            const size = ra.width + (rb.width - ra.width) * p;
-            const x = ra.left + ra.width / 2 + (rb.left + rb.width / 2 - ra.left - ra.width / 2) * p;
-            const y = ra.top + ra.height / 2 + (rb.top + rb.height / 2 - ra.top - ra.height / 2) * p - Math.sin(Math.PI * progress) * innerHeight * .08;
+            const ra = centreOf(a), rb = centreOf(b);
+            const points = [ra, ...words.map(word => onTopOf(word, ra.w + (rb.w - ra.w) * .5)), rb];
+            // Which hop, and how far along it. Each hop eases in and out and arcs in proportion to its length.
+            const leg = Math.min(legs - 1, Math.floor(progress * legs));
+            const t = progress * legs - leg;
+            const p = .5 - Math.cos(Math.PI * t) / 2;
+            const P = points[leg], Q = points[leg + 1];
+            const span = Math.hypot(Q.x - P.x, Q.y - P.y);
+            const lift = legs > 1 ? Math.min(innerHeight * .14, span * .45) : innerHeight * .08;
+            const size = ra.w + (rb.w - ra.w) * (.5 - Math.cos(Math.PI * progress) / 2);
+            const x = P.x + (Q.x - P.x) * p;
+            const y = P.y + (Q.y - P.y) * p - Math.sin(Math.PI * t) * lift;
+            // A squash on each landing, a stretch in the air.
+            const land = legs > 1 ? Math.max(0, 1 - Math.min(t, 1 - t) * 9) : 0;
+            const sx = 1 + land * .35 - Math.sin(Math.PI * t) * .1, sy = 1 - land * .3 + Math.sin(Math.PI * t) * .14;
             carrier.style.width = carrier.style.height = `${size}px`;
-            carrier.style.transform = `translate(${x - size / 2}px, ${y - size / 2}px)`;
+            carrier.style.transform = `translate(${x - size / 2}px, ${y - size / 2}px) scale(${sx.toFixed(3)}, ${sy.toFixed(3)})`;
           };
           ScrollTrigger.create({ start, end, invalidateOnRefresh: true, onUpdate: self => place(self.progress), onRefresh: self => place(self.progress) });
           restore.push(() => { carrier.remove(); [from(), to()].forEach(el => el && ((el as HTMLElement).style.visibility = "")); });
@@ -144,6 +167,8 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             .fromTo(shadow, { opacity: 0, scale: .5 }, { opacity: 1, scale: 1, duration: .02 }, .19)
             .fromTo(glow, { opacity: 0 }, { opacity: 0, duration: .001 }, 0)
             .fromTo(gShadow, { opacity: 0, scale: .5 }, { opacity: 0, scale: .5, duration: .001 }, 0)
+          // The words the dot hopped on (Estratégia, Design, Código) step aside once it is in the palm.
+            .fromTo("[data-hops=craft]", { opacity: 1, y: 0 }, { opacity: 0, y: -30, duration: .05, ease: "power1.in" }, .22)
           // 2. The landing: the hand gives a little under the weight, the dot pulses and lights the palm red.
             .to(palm, { yPercent: 2, duration: .03, ease: "power1.out" }, .2).to(palm, { yPercent: 0, duration: .04, ease: "power1.inOut" }, .23)
             .to(dot, { keyframes: [{ scale: 1.35, duration: .02 }, { scale: 1, duration: .03 }] }, .21)
@@ -188,11 +213,11 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           // The tittle of "clique" detaches as the phrase leaves and lands in the palm as the hand settles.
           carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,
             () => { const t = node.querySelector("[data-hook-tittle=carry]")!; return t.getBoundingClientRect().top + scrollY - innerHeight * .3; },
-            () => sceneAt(creation, .2));
+            () => sceneAt(creation, .2), undefined, () => [...node.querySelectorAll<HTMLElement>("[data-hops=craft] li")]);
           // The dot of the finished "g." drops onto the folder's tab.
           const work = node.querySelector<HTMLElement>("[data-work-track]");
           if (work) {
-            carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), () => trackRange(work, .25));
+            carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), () => trackRange(work, .25), undefined, () => [...node.querySelectorAll<HTMLElement>("[data-hops=work] li")]);
             // After the projects, the dot leaves the folder and becomes the full stop of "Vamos conversar", which stays lit.
             const panel = node.querySelector<HTMLElement>("[data-contact-panel]"), stop = node.querySelector<HTMLElement>("[data-contact-dot]");
             if (panel && stop) carry(() => node.querySelector("[data-pasta-dot]"), () => stop, () => trackRange(work, 1), () => panel.getBoundingClientRect().top + scrollY - innerHeight * .45,
@@ -409,6 +434,8 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             .fromTo("[data-pasta-sheet]", { y: 0 }, { y: 0, duration: .01 }, 0)
             .to("[data-pasta-dot]", { keyframes: [{ scaleX: 1.35, scaleY: .7, duration: .03 }, { scaleX: 1, scaleY: 1, duration: .05 }] }, .26)
             .fromTo("[data-pasta-ring]", { scale: 1, opacity: .9 }, { scale: 6, opacity: 0, duration: .14, ease: "power2.out", immediateRender: false }, .26)
+            // The words the dot hopped on (Marca, Site, Filme) go into the folder as it opens.
+            .fromTo("[data-hops=work] li", { opacity: 1, x: 0, y: 0, scale: 1 }, { opacity: 0, x: (i: number, el: Element) => { const f = pasta.getBoundingClientRect(), r = el.getBoundingClientRect(); return f.left + f.width / 2 - r.left - r.width / 2; }, y: (i: number, el: Element) => { const f = pasta.getBoundingClientRect(), r = el.getBoundingClientRect(); return f.top + f.height / 2 - r.top - r.height / 2; }, scale: .3, duration: .1, ease: "power2.in", stagger: .015 }, .28)
             .to("[data-pasta-front]", { rotationX: -52, duration: .14, ease: "power2.inOut" }, .3)
             .to("[data-pasta-sheet]", { y: () => -pasta.offsetHeight * .84 * .22, duration: .14, ease: "power2.inOut" }, .32)
             .fromTo(strip, { y: intoFolder, scaleY: .35, clipPath: "inset(0% 50% 0% 50%)", opacity: 0 }, { y: 0, scaleY: 1, clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: .34, ease: "power2.inOut" }, .4)

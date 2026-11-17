@@ -283,3 +283,17 @@
 @keyframes heroShow{to{opacity:1}}
 /* Projects (16/11/2026): larger cards, legible also at 125% scaling (1536x696), and the title whole above them, no longer
    half hidden behind the strip. Phones keep their own sizes. */
+/* Key words the brand dot hops on between two scenes (EditorialMotion `carry` stops): pale until the dot reaches them,
+   then lit in copper with a red line under; pressed while it sits on them. Only with motion: without it they would
+   only be loose words over the scene, so they are not shown. */
+.hops{display:none;position:absolute;inset:0;z-index:4;margin:0;padding:0;list-style:none;pointer-events:none}
+.page[data-editorial-animated=true] .hops{display:block}
+.hops li{position:absolute;font-family:var(--display);font-weight:500;letter-spacing:-.05em;line-height:.95;font-size:clamp(34px,4.4vw,74px);color:color-mix(in srgb,var(--copper) calc(var(--lit,0)*100%),#dccbbf);translate:0 calc(var(--hit,0)*.12em);scale:calc(1 + var(--hit,0)*.05) calc(1 - var(--hit,0)*.06);transform-origin:50% 100%;transition:color .3s var(--ease)}
+.hops li:after{content:"";position:absolute;left:0;bottom:-.06em;height:.07em;width:calc(var(--lit,0)*100%);border-radius:1em;background:#c4372b;transition:width .4s var(--ease)}
+.hopsCraft li:nth-child(1){left:10%;top:20%}.hopsCraft li:nth-child(2){right:12%;top:34%}.hopsCraft li:nth-child(3){left:7%;top:47%}
+.hopsWork li:nth-child(1){left:10%;top:18%}.hopsWork li:nth-child(2){right:11%;top:28%}.hopsWork li:nth-child(3){left:14%;top:66%}
+@media(max-width:700px){
+  .hops li{font-size:11vw}
+  .hopsCraft li:nth-child(1){left:7%;top:18%}.hopsCraft li:nth-child(2){right:8%;top:30%}.hopsCraft li:nth-child(3){left:14%;top:42%}
+  .hopsWork li:nth-child(1){left:7%;top:15%}.hopsWork li:nth-child(2){right:8%;top:25%}.hopsWork li:nth-child(3){left:10%;top:78%}
+}

@@ -324,3 +324,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - O cartão nunca encosta no queixo, inclusive a 125% (1536×696).
 - As nuvens do topo passam para as da costura (mesma paleta de entardecer, clareando até o creme), e a moldura vermelha apaga com a chegada do papel (`--hero-glow`).
 - Sem movimento (reduzido, pausado, economia de dados ou sem WebGL), fica só a foto e as seções se encontram como antes. No celular, o topo parado mostra pouca nuvem porque o retrato ocupa a tela; o peso vem da transição.
+- Trechos vazios (16/11/2026): nos dois voos do ponto que atravessavam a tela vazia, ele agora salta por palavras-chave escolhidas pelo usuário (`carry` com `stops` em `EditorialMotion`):
+  - do "clique" à palma: Estratégia, Design e Código. Elas saem quando o ponto pousa na mão;
+  - do "g." à pasta: Marca, Site e Filme. Elas entram na pasta quando ela abre;
+  - cada palavra afunda quando o ponto pousa e fica acesa, em cobre e com traço vermelho, depois que ele passa. Tudo volta ao rolar para cima;
+  - sem movimento, as palavras não aparecem (`.hops`);
+  - o caminho continua até o ponto final de "Vamos conversar".
