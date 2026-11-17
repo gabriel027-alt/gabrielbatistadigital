@@ -198,11 +198,70 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           const work = node.querySelector<HTMLElement>("[data-work-track]");
           if (work) {
             carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), () => trackRange(work, .25));
-            // After the projects, the dot leaves the folder and becomes the full stop of "Vamos conversar", which stays lit.
+            // After the projects, the dot reads with the visitor on its way to the conversation: it runs along the top
+            // rule of the services (down their left edge on phones), drawing it peach and underlining each title as it
+            // passes; then it underlines "Quem desenha é quem programa." and becomes the full stop of "Vamos conversar",
+            // which stays lit. One dot all the way: a single trigger decides where it rests or flies.
             const panel = node.querySelector<HTMLElement>("[data-contact-panel]"), stop = node.querySelector<HTMLElement>("[data-contact-dot]");
-            if (panel && stop) carry(() => node.querySelector("[data-pasta-dot]"), () => stop, () => trackRange(work, 1), () => panel.getBoundingClientRect().top + scrollY - innerHeight * .45,
-              landed => { stop.dataset.lit = String(landed); });
-            restore.push(() => { if (stop) delete stop.dataset.lit; });
+            const list = node.querySelector<HTMLElement>("[data-read-list]"), about = node.querySelector<HTMLElement>("[data-read-about]");
+            const pasta = node.querySelector<HTMLElement>("[data-pasta-dot]");
+            const listDot = list?.querySelector<HTMLElement>("[data-read-dot]"), aboutDot = about?.querySelector<HTMLElement>("[data-read-dot]");
+            if (panel && stop && list && about && pasta && listDot && aboutDot) {
+              const top = (el: HTMLElement) => el.getBoundingClientRect().top + scrollY;
+              // Read from when the rule is near the bottom of the screen until the list is still well in view, so the dot
+              // never waits under the navigation.
+              const listStart = () => top(list) - innerHeight * .85, listEnd = () => top(list) + list.offsetHeight - innerHeight * .62;
+              const aboutStart = () => top(about) + about.offsetHeight - innerHeight * .8, aboutEnd = () => top(about) + about.offsetHeight - innerHeight * .5;
+              const stops = [pasta, listDot, aboutDot, stop];
+              const flights: [() => number, () => number][] = [
+                [() => trackRange(work, 1), listStart],
+                [listEnd, aboutStart],
+                [aboutEnd, () => top(panel) - innerHeight * .45],
+              ];
+              const carrier = document.createElement("span");
+              carrier.className = styles.carrier; node.append(carrier);
+              const place = () => {
+                const y = scrollY;
+                let rest = stops.length - 1, flight = -1, progress = 0;
+                for (let i = 0; i < flights.length; i++) {
+                  const s = flights[i][0](), e = flights[i][1]();
+                  if (y < s) { rest = i; break; }
+                  if (y < e) { rest = -1; flight = i; progress = (y - s) / Math.max(1, e - s); break; }
+                }
+                stops.forEach((el, i) => { el.style.visibility = i === rest ? "visible" : "hidden"; });
+                stop.dataset.lit = String(rest === stops.length - 1);
+                carrier.style.visibility = flight >= 0 ? "visible" : "hidden";
+                if (flight < 0) return;
+                const p = .5 - Math.cos(Math.PI * progress) / 2;
+                const ra = stops[flight].getBoundingClientRect(), rb = stops[flight + 1].getBoundingClientRect();
+                const size = ra.width + (rb.width - ra.width) * p;
+                const x = ra.left + ra.width / 2 + (rb.left + rb.width / 2 - ra.left - ra.width / 2) * p;
+                const yy = ra.top + ra.height / 2 + (rb.top + rb.height / 2 - ra.top - ra.height / 2) * p - Math.sin(Math.PI * progress) * innerHeight * .08;
+                carrier.style.width = carrier.style.height = `${size}px`;
+                carrier.style.transform = `translate(${x - size / 2}px, ${yy - size / 2}px)`;
+              };
+              ScrollTrigger.create({ start: flights[0][0], end: flights[flights.length - 1][1], invalidateOnRefresh: true, onUpdate: place, onRefresh: place });
+              // Reading: the dot runs along the rule; each title is underlined while the dot crosses its column (its row
+              // on phones).
+              const items = [...list.querySelectorAll<HTMLElement>("[data-read-item]")];
+              const read = (p: number) => {
+                list.style.setProperty("--read", p.toFixed(4));
+                const vertical = innerWidth <= 560, size = vertical ? list.offsetHeight : list.offsetWidth;
+                items.forEach(item => {
+                  const a = (vertical ? item.offsetTop : item.offsetLeft) / size, b = a + (vertical ? item.offsetHeight : item.offsetWidth) / size;
+                  item.style.setProperty("--u", Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
+                });
+              };
+              ScrollTrigger.create({ start: listStart, end: listEnd, invalidateOnRefresh: true, onUpdate: self => read(self.progress), onRefresh: self => read(self.progress) });
+              const underline = (p: number) => { about.style.setProperty("--read", p.toFixed(4)); about.style.setProperty("--u", p.toFixed(4)); };
+              ScrollTrigger.create({ start: aboutStart, end: aboutEnd, invalidateOnRefresh: true, onUpdate: self => underline(self.progress), onRefresh: self => underline(self.progress) });
+              restore.push(() => {
+                carrier.remove();
+                stops.forEach(el => { el.style.visibility = ""; });
+                delete stop.dataset.lit;
+                [list, about, ...items].forEach(el => { el.style.removeProperty("--read"); el.style.removeProperty("--u"); });
+              });
+            }
           }
         }
         // Title: the two words of the name breathe in opposite directions (narrow ↔ wide), as in the reference.
