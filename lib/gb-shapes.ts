@@ -1,8 +1,8 @@
 /**
  * Gabriel Batista's own geometric shapes: the letter "g" taken apart (the bowl, the stem, the hook) and the red dot
- * that is also the dot of the "Gabriel • Batista" logo. On the homepage the scroll assembles "g." above Gabriel's palm,
- * drawn by one peach line that starts at the palm and ends at the dot. (A bar and an orb that once travelled with the line
- * were dropped on 16/11/2026: they meant nothing and broke the harmony; GbShape can still draw them.)
+ * that is also the dot of the "Gabriel • Batista" logo. On the homepage the red dot rises from Gabriel's palm and writes
+ * "g." above it in one stroke, then hops into place as the full stop: "do primeiro traço ao último clique". (A bar, an
+ * orb and a peach line that once tied flying pieces together were dropped on 16/11/2026; GbShape can still draw them.)
  * Coordinates live in a 1440 × 1000 view box.
  */
 export type ShapeId = "bowl" | "stem" | "hook" | "dot" | "bar" | "orb";
@@ -32,6 +32,34 @@ export function pathThrough(points: { x: number; y: number }[]) {
   return d;
 }
 
-/** The line through the pieces in drawing order, ending at the dot. */
-export const linePath = (poses: Pose[]) => pathThrough(poses);
+/**
+ * The "g." written in one stroke, as a hand writes it: the bowl anticlockwise from its upper right, up to the top of
+ * the stem, down the stem, round the hook. Each piece is revealed by a brush along its own centre line (the masks in
+ * the creation scene), and the red dot is the pen tip. Final poses: bowl (675, 470), stem x 745, hook (675, 670), all
+ * with a centre-line radius of 70.
+ */
+export type Stroked = "bowl" | "stem" | "hook";
+const R = 70, A0 = -Math.PI / 6, STEM_X = 745, STEM_TOP = 385, STEM_END = 670;
+const bowlStart = { x: 675 + R * Math.cos(A0), y: 470 + R * Math.sin(A0) };
+export const brushes: Record<Stroked, string> = {
+  bowl: `M${bowlStart.x.toFixed(1)} ${bowlStart.y.toFixed(1)}A70 70 0 0 0 ${(1350 - bowlStart.x).toFixed(1)} ${(940 - bowlStart.y).toFixed(1)}A70 70 0 0 0 ${bowlStart.x.toFixed(1)} ${bowlStart.y.toFixed(1)}`,
+  stem: "M745 340L745 700",
+  hook: "M745 670A70 70 0 0 1 605 670",
+};
+
+/** Where the pen is at u (0–1 of the whole stroke) and how much of each piece it has written. */
+export function writeAt(u: number) {
+  const L1 = 2 * Math.PI * R, conn = Math.hypot(STEM_X - bowlStart.x, STEM_TOP - bowlStart.y), L3 = STEM_END - STEM_TOP, L4 = Math.PI * R;
+  let d = Math.min(1, Math.max(0, u)) * (L1 + conn + L3 + L4);
+  const out = { x: bowlStart.x, y: bowlStart.y, bowl: 0, stem: 0, hook: 0 };
+  if (d <= L1) { const a = A0 - d / R; return { ...out, x: 675 + R * Math.cos(a), y: 470 + R * Math.sin(a), bowl: d / L1 }; }
+  out.bowl = 1; d -= L1;
+  if (d <= conn) { const k = d / conn; return { ...out, x: bowlStart.x + (STEM_X - bowlStart.x) * k, y: bowlStart.y + (STEM_TOP - bowlStart.y) * k }; }
+  d -= conn;
+  // The stem's brush starts above its rounded top (y 340) and runs to 700: the cap appears as the pen touches down.
+  if (d <= L3) return { ...out, x: STEM_X, y: STEM_TOP + d, stem: (STEM_TOP + d - 340) / 360 };
+  out.stem = 1; d -= L3;
+  const k = Math.min(1, d / L4), a = k * Math.PI;
+  return { ...out, x: 675 + R * Math.cos(a), y: 670 + R * Math.sin(a), hook: k };
+}
 export const transformOf = (pose: Pose) => `translate(${pose.x.toFixed(1)} ${pose.y.toFixed(1)}) rotate(${pose.r.toFixed(2)}) scale(${pose.s.toFixed(3)})`;

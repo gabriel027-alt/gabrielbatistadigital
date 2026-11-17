@@ -8,7 +8,7 @@ import Lenis from "lenis";
 import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
-import { linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
+import { pathThrough, shapes, transformOf, writeAt, type Stroked } from "@/lib/gb-shapes";
 const subscribe = () => () => {};
 
 export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -90,8 +90,7 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
         // spark with the peach line, drift, then assemble above the palm. The copy closes the scene. Reversible.
         const creation = node.querySelector<HTMLElement>("[data-creation-track]");
         const field = creation?.querySelector<SVGSVGElement>("[data-gb-shapes] svg");
-        const line = field?.querySelector<SVGPathElement>("[data-gb-line]");
-        if (creation && field && line) {
+        if (creation && field) {
           const stage = creation.querySelector<HTMLElement>("[data-fusion-stage]")!, palm = creation.querySelector<HTMLElement>("[data-palm]")!;
           const box = field.parentElement as HTMLElement, copy = creation.querySelector<HTMLElement>("[data-palm-copy]")!;
           const body = creation.querySelector<HTMLElement>("[data-palm-body]")!, gShadow = creation.querySelector<HTMLElement>("[data-g-shadow]")!;
@@ -102,7 +101,7 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           // of the thumb (which ends 57% across the photo), below the navigation or the copy when the copy sits on top
           // (phones), and inside the screen. Layout values only, no transforms.
           const G = { x: 730, y: 562, h: 425, w: 320 };
-          const birth = { x: G.x, y: G.y - 40 }, rise = { x: 0, y: 0 }, size = { ratio: 1 };
+          const start = writeAt(0), birth = { x: start.x, y: start.y }, rise = { x: 0, y: 0 }, size = { ratio: 1 };
           const measure = () => {
             const H = stage.clientHeight, Wst = stage.clientWidth;
             const palmY = palm.offsetTop + palm.offsetHeight * .43, thumbRight = palm.offsetLeft + palm.offsetWidth * .57;
@@ -121,22 +120,29 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             // The palm dot rises to the spark point (the birth of the pieces) and grows to the size of the field's dot.
             const dotX = palm.offsetLeft + body.offsetLeft + dot.offsetLeft + dot.offsetWidth / 2, dotY = palm.offsetTop + body.offsetTop + dot.offsetTop + dot.offsetHeight / 2;
             rise.x = cx - dotX + (birth.x - G.x) * F / 1000; rise.y = cy - dotY + (birth.y - G.y) * F / 1000;
-            size.ratio = 52 * F / 1000 / Math.max(1, dot.offsetWidth);
+            size.ratio = 52 * .82 * F / 1000 / Math.max(1, dot.offsetWidth);
           };
           measure();
           ScrollTrigger.addEventListener("refreshInit", measure);
-          const poses: Pose[] = shapes.map((shape, i) => ({ x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }));
-          // The line is the hand's first stroke: it starts at the spark above the palm, runs through the bowl, the hook
-          // and the stem as they gather, and ends at the dot; once the letter is whole the stroke has become it and fades.
-          const draw = { value: 0 }, spark = { value: 0 };
+          // The dot writes "g." in one stroke: each piece shows through a brush that follows the pen along its centre
+          // line. Then the pen lifts and hops into place as the full stop, with a soft click ring: the last click.
+          const brushPaths = Object.fromEntries([...field.querySelectorAll<SVGPathElement>("[data-gb-brush]")].map(path => [path.dataset.gbBrush!, path])) as Record<Stroked, SVGPathElement>;
+          const click = field.querySelector<SVGCircleElement>("[data-gb-click]");
+          const final = shapes[dotIndex].final, end = writeAt(1);
+          const pen = { u: 0, hop: 0, s: .82 }, spark = { value: 0 };
           const render = () => {
-            groups.forEach((group, i) => group.setAttribute("transform", transformOf(poses[i])));
+            const at = writeAt(pen.u);
+            // Before the hop the dot is the pen tip; the hop is a low arc from the end of the hook to the full stop.
+            const h = pen.hop, x = pen.hop > 0 ? end.x + (final.x - end.x) * h : at.x, y = pen.hop > 0 ? end.y + (final.y - end.y) * h - Math.sin(Math.PI * h) * 120 : at.y;
+            groups[dotIndex].setAttribute("transform", transformOf({ x, y, r: 0, s: pen.s }));
             groups[dotIndex].style.opacity = String(spark.value);
-            line.setAttribute("d", pathThrough([birth, ...poses]));
-            line.style.strokeDashoffset = String(1 - draw.value);
+            // Round brush ends: the leading edge reads as a brush tip, and an unwritten piece hides its starting cap.
+            (["bowl", "stem", "hook"] as Stroked[]).forEach(id => {
+              const p = Math.min(1, Math.max(0, at[id]));
+              brushPaths[id].setAttribute("stroke-dasharray", `${p.toFixed(4)} 2`);
+              brushPaths[id].setAttribute("stroke-opacity", p > 0 ? "1" : "0");
+            });
           };
-          // The scatter and drift poses of the old full-screen field are scaled around the spark so they stay near the hand.
-          const near = (pose: Pose, k: number): Pose => ({ ...pose, x: birth.x + (pose.x - birth.x) * k, y: birth.y + (pose.y - birth.y) * k });
           const motion = gsap.timeline({ defaults: { ease: "none", lazy: false }, onUpdate: render, scrollTrigger: { trigger: creation, start: "top 70%", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true, onRefresh: render } });
           const shadow = creation.querySelector("[data-palm-shadow]"), glow = creation.querySelector("[data-palm-glow]");
           // 1. The hand rises and opens; the carrier (below) brings the dot into the palm by .2.
@@ -158,18 +164,16 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             .to(dot, { opacity: 0, duration: .02 }, .4)
             .fromTo(spark, { value: 0 }, { value: 1, duration: .02 }, .4)
             .to(glow, { keyframes: [{ opacity: .8, duration: .02 }, { opacity: 0, duration: .12 }] }, .4)
-            .to(gShadow, { opacity: 1, scale: 1, duration: .14, ease: "power2.out" }, .76)
-            .fromTo(ring, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio, opacity: .9 }, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio * 9, opacity: 0, ease: "power2.out", duration: .1, immediateRender: false }, .4);
-          shapes.forEach((shape, i) => {
-            motion.fromTo(poses[i], { x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }, { ...near(shape.scatter, .55), ease: "power3.out", duration: .16 }, .41)
-              .to(poses[i], { ...near(shape.drift, .5), duration: .18, ease: "sine.inOut" }, .57)
-              .to(poses[i], { ...shape.final, duration: .16, ease: "power2.inOut" }, .74 + i * .006);
-          });
-          motion.fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
-            .to(draw, { value: .8, duration: .18 }, .57)
-            .to(draw, { value: 1, duration: .14 }, .76)
-            .fromTo(line, { opacity: 1 }, { opacity: 0, duration: .06, ease: "power1.in" }, .89)
-          // 5. The copy.
+            .to(gShadow, { opacity: 1, scale: 1, duration: .14, ease: "power2.out" }, .7)
+            .fromTo(ring, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio, opacity: .9 }, { x: () => rise.x, y: () => rise.y, scale: () => size.ratio * 4, opacity: 0, ease: "power2.out", duration: .06, immediateRender: false }, .4)
+          // 5. The writing: one continuous stroke, slow at the start and the end like a hand.
+            .fromTo(pen, { u: 0, hop: 0, s: .82 }, { u: 1, duration: .3, ease: "sine.inOut" }, .41)
+          // 6. The last click: the pen lifts, hops to the full stop, lands a touch big and settles; a soft ring answers.
+            .to(pen, { hop: 1, duration: .07, ease: "power1.inOut" }, .72)
+            .to(pen, { keyframes: [{ s: 1.18, duration: .015 }, { s: 1, duration: .03, ease: "power2.out" }] }, .79);
+          if (click) motion.fromTo(click, { scale: 1, opacity: 0, transformOrigin: "50% 50%" }, { keyframes: [{ opacity: .9, duration: .005 }, { scale: 3.4, opacity: 0, duration: .07, ease: "power2.out" }], immediateRender: false }, .79);
+          motion
+          // 7. The copy.
             .fromTo(copy, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .08, ease: "power2.out" }, .88)
             .to({}, { duration: .001 }, .999);
           render();
@@ -183,7 +187,8 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             ScrollTrigger.removeEventListener("refreshInit", measure);
             box.removeAttribute("style"); gShadow.removeAttribute("style");
             groups.forEach((group, i) => { group.setAttribute("transform", transformOf(shapes[i].final)); group.style.opacity = ""; });
-            line.setAttribute("d", linePath(shapes.map(shape => shape.final))); line.style.strokeDashoffset = ""; gsap.set(line, { clearProps: "opacity" });
+            Object.values(brushPaths).forEach(path => { path.removeAttribute("stroke-dasharray"); path.removeAttribute("stroke-opacity"); });
+            if (click) gsap.set(click, { clearProps: "all" });
           });
           // The tittle of "clique" detaches as the phrase leaves and lands in the palm as the hand settles.
           carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,

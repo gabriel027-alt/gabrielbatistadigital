@@ -203,17 +203,16 @@ test('The pointer stretches the name and the monogram shapes assemble with the s
   await expect.poll(async () => { await page.mouse.move(60, 450); await page.waitForTimeout(400); const [left, right] = await widths(); return left - right; }, { timeout: 12000 }).toBeGreaterThan(15);
   await expect.poll(async () => { await page.mouse.move(1380, 450); await page.waitForTimeout(400); const [left, right] = await widths(); return right - left; }).toBeGreaterThan(15);
   await expect(page.locator('[data-hero-sample] img')).toHaveCount(0);
-  // The shapes: apart before the hold, assembled into the monogram at its end, apart again on the way back.
-  const bowl = page.locator('[data-gb-shape="bowl"]');
-  const finalTransform = 'translate(675.0 470.0) rotate(0.00) scale(1.000)';
+  // The dot writes the monogram with the scroll: unwritten before the hold, whole at its end, unwritten on the way back.
+  const bowl = page.locator('[data-gb-brush="bowl"]'), hook = page.locator('[data-gb-brush="hook"]');
   const track = await page.locator('[data-gb-track]').evaluate(el => ({ top: el.getBoundingClientRect().top + scrollY, height: (el as HTMLElement).offsetHeight }));
   const go = (y: number) => page.evaluate(top => scrollTo({ top, behavior: 'instant' }), y);
   await go(track.top - 700);
-  await expect.poll(() => bowl.getAttribute('transform')).not.toBe(finalTransform);
+  await expect.poll(() => bowl.getAttribute('stroke-dasharray')).toBe('0.0000 2');
   await go(track.top + track.height - 900);
-  await expect.poll(() => bowl.getAttribute('transform')).toBe(finalTransform);
+  await expect.poll(() => hook.getAttribute('stroke-dasharray')).toBe('1.0000 2');
   await go(track.top - 700);
-  await expect.poll(() => bowl.getAttribute('transform')).not.toBe(finalTransform);
+  await expect.poll(() => bowl.getAttribute('stroke-dasharray')).toBe('0.0000 2');
 });
 
 test('The brand dot plants the tittle on each i of the name and lands in the card, once per visit', async ({ page, browser }) => {

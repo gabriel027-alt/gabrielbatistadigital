@@ -9,7 +9,8 @@ const ring = "M-105 0A105 105 0 1 0 105 0A105 105 0 1 0 -105 0ZM-35 0A35 35 0 1 
 const halfRing = "M-105 0A105 105 0 0 0 105 0L35 0A35 35 0 0 1 -35 0Z";
 
 /** tone "dark": deeper copper and red, for the shapes drawn on the peach hero card. */
-export function GbShape({ id, tone = "light" }: { id: ShapeId; tone?: "light" | "dark" }) {
+/** bare: without the soft shadow, for a piece revealed by a mask (the shadow is then cast by the group around it). */
+export function GbShape({ id, tone = "light", bare = false }: { id: ShapeId; tone?: "light" | "dark"; bare?: boolean }) {
   const fill = `url(#gb-${tone === "dark" ? "dark" : "fill"}-${id})`;
   const gloss = "url(#gb-gloss)";
   const shapes: Record<ShapeId, (paint: string) => ReactNode> = {
@@ -20,7 +21,7 @@ export function GbShape({ id, tone = "light" }: { id: ShapeId; tone?: "light" | 
     bar: paint => <rect x="-30" y="-165" width="60" height="330" rx="30" fill={paint} />,
     orb: paint => <circle r="105" fill={paint} />,
   };
-  return <g filter="url(#gb-soft)">{shapes[id](fill)}{id !== "dot" && id !== "hook" && shapes[id](gloss)}</g>;
+  return <g filter={bare ? undefined : "url(#gb-soft)"}>{shapes[id](fill)}{id !== "dot" && id !== "hook" && shapes[id](gloss)}</g>;
 }
 
 /** Shared gradients: peach, cream, copper and the portrait red, lit from the top left. */
@@ -47,6 +48,6 @@ export function GbShapeDefs() {
       <stop offset="0" stopColor={a} /><stop offset=".55" stopColor={b} /><stop offset="1" stopColor={c} />
     </linearGradient>)}
     <radialGradient id="gb-gloss" cx=".32" cy=".26" r=".55"><stop offset="0" stopColor="#fff" stopOpacity=".55" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></radialGradient>
-    <filter id="gb-soft" x="-40%" y="-40%" width="180%" height="190%"><feDropShadow dx="0" dy="26" stdDeviation="22" floodColor="#8a2219" floodOpacity=".16" /></filter>
+    <filter id="gb-soft" x="-80%" y="-60%" width="260%" height="320%"><feDropShadow dx="0" dy="26" stdDeviation="22" floodColor="#8a2219" floodOpacity=".16" /></filter>
   </defs>;
 }
