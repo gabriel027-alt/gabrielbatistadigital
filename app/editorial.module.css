@@ -122,8 +122,8 @@
 
 
 
-.gbBrush{fill:none;stroke:#fff;stroke-width:92;stroke-linecap:round}
-.gbClick{fill:none;stroke:#e8916a;stroke-width:4;opacity:0;transform-box:fill-box;transform-origin:center}
+.gbLine{fill:none;stroke:#e8916a;stroke-width:6;stroke-linecap:round;stroke-dasharray:1;stroke-dashoffset:0}
+@media(max-width:700px){.gbLine{stroke-width:8}}
 /* overflow:hidden on the hook disabled the sticky shapes field; clip crops the same without creating a scroll container. */
 .hook{overflow:clip}
 
@@ -286,4 +286,5 @@
 /* The points forming the hand (components/HandParticles.tsx): over the page, under the brand dot and the menu. */
 .handParticles{position:fixed;inset:0;width:100vw;height:100vh;z-index:39;pointer-events:none;visibility:hidden}
 /* The g. line is a stroke drawn by the scroll; without motion the letter shows whole, without it. */
-.page:not([data-editorial-animated=true]) .gbClick{visibility:hidden}
+.page:not([data-editorial-animated=true]) .gbLine,.page:not([data-editorial-animated=true]) .gbPiece{visibility:hidden}
+.gbGlyph{transform-box:fill-box;transform-origin:50% 60%}
