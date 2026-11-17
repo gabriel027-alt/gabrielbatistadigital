@@ -106,15 +106,18 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           const birth = { x: G.x, y: G.y - 40 }, rise = { x: 0, y: 0 }, size = { ratio: 1 };
           const measure = () => {
             const H = stage.clientHeight, Wst = stage.clientWidth;
-            const palmY = palm.offsetTop + palm.offsetHeight * .43, thumbRight = palm.offsetLeft + palm.offsetWidth * .57;
+            const palmY = palm.offsetTop + palm.offsetHeight * .43;
             const copyAbove = copy.offsetTop + copy.offsetHeight < palm.offsetTop;
             const top = copyAbove ? copy.offsetTop + copy.offsetHeight + 20 : Math.min(84, H * .12);
             // Phones (copy on top) have height to spare: the "g." floats above the thumb tip, centred on the palm.
             // Computers: just above the palm, to the right of the thumb.
-            const bottom = copyAbove ? palm.offsetTop + palm.offsetHeight * .06 - 16 : palmY - palm.offsetHeight * .05;
+            const bottom = copyAbove ? palm.offsetTop + palm.offsetHeight * .06 - 16 : palm.offsetTop + palm.offsetHeight * .3;
             const gh = Math.max(110, Math.min(bottom - top, H * (copyAbove ? .3 : .4), Wst * (copyAbove ? .42 : .5) * G.h / G.w));
             const gw = gh * G.w / G.h, F = gh / (G.h / 1000), W = F * 1.44;
-            const anchor = copyAbove ? palm.offsetLeft + palm.offsetWidth * .56 : thumbRight + gw / 2 + 8;
+            // Computers: over the cup of the palm, between the fingers and the thumb (which starts about 48% across),
+            // as if held, nearer the middle of the screen than beside the thumb.
+            const thumbLeft = palm.offsetLeft + palm.offsetWidth * .48;
+            const anchor = copyAbove ? palm.offsetLeft + palm.offsetWidth * .56 : Math.min(palm.offsetLeft + palm.offsetWidth * .37, thumbLeft - gw / 2 - 12);
             const cx = Math.min(Math.max(anchor, gw / 2 + 16), Wst - gw / 2 - 28), cy = bottom - gh / 2;
             Object.assign(box.style, { width: `${W}px`, height: `${F}px`, left: `${cx - W * G.x / 1440}px`, top: `${cy - F * G.y / 1000}px` });
             // The soft shadow the floating "g." casts on the hand, just under it.
