@@ -324,3 +324,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - O cartão nunca encosta no queixo, inclusive a 125% (1536×696).
 - As nuvens do topo passam para as da costura (mesma paleta de entardecer, clareando até o creme), e a moldura vermelha apaga com a chegada do papel (`--hero-glow`).
 - Sem movimento (reduzido, pausado, economia de dados ou sem WebGL), fica só a foto e as seções se encontram como antes. No celular, o topo parado mostra pouca nuvem porque o retrato ocupa a tela; o peso vem da transição.
+- Os pontinhos como fio do site (16/11/2026, ideia aprovada pelo usuário): as palavras-chave saltadas pelo ponto foram rejeitadas, por serem repetitivas e soltas (revert `902b2c8`). No lugar, os mesmos pontinhos que formam Gabriel no topo atravessam a página: você → sua mão → seus projetos → a conversa.
+  - Passo 1, feito: do "clique" à palma, eles chovem de cima, na luz quente, e formam a mão. A foto aparece por baixo quando o ponto pousa (`components/HandParticles.tsx`). Segue a rolagem; os pontos escuros da manga foram clareados para não parecerem sujeira.
+  - Próximos, aguardando aprovação do passo 1: os cartões dos projetos se formando dos pontinhos, nas cores de cada projeto, e alguns pontinhos em volta do ponto final de "Vamos conversar".

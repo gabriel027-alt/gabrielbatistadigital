@@ -283,3 +283,5 @@
 @keyframes heroShow{to{opacity:1}}
 /* Projects (16/11/2026): larger cards, legible also at 125% scaling (1536x696), and the title whole above them, no longer
    half hidden behind the strip. Phones keep their own sizes. */
+/* The points forming the hand (components/HandParticles.tsx): over the page, under the brand dot and the menu. */
+.handParticles{position:fixed;inset:0;width:100vw;height:100vh;z-index:39;pointer-events:none;visibility:hidden}

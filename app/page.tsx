@@ -12,6 +12,7 @@ import { EditorialMotion } from "@/components/EditorialMotion";
 import { EditorialMedia } from "@/components/EditorialMedia";
 import { HeroClouds } from "@/components/HeroClouds";
 import { CloudTransition } from "@/components/CloudTransition";
+import { HandParticles } from "@/components/HandParticles";
 import type { FilmId } from "@/lib/project-films";
 import styles from "./editorial.module.css";
 
@@ -92,6 +93,8 @@ export default function HomePage() {
             and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
         <div className={styles.fusionTrack} data-creation-track data-gb-track>
           <div className={styles.fusionStage} data-fusion-stage>
+            {/* The points that formed him at the top pour down from "clique" with the dot and form his hand. */}
+            <HandParticles />
             <figure className={styles.palm} data-palm role="img" aria-label="A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.">
               <div className={styles.palmBody} data-palm-body>
               <Image src="/images/editorial/mao-palma-braco.webp" alt="" width={5800} height={2701} quality={90} sizes="(max-width:700px) 200vw, 150vw" data-palm-hand />
