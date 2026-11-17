@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ArtDirectedImage } from "@/components/ArtDirectedImage";
 import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { editorialAvatar, footerMusic } from "@/lib/editorial-avatar";
 import styles from "@/app/editorial.module.css";
@@ -67,6 +67,7 @@ export function EditorialAvatarLoop() {
     if (!node || !film) return;
     const root = node.closest<HTMLElement>("[data-editorial]");
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+    const phone = matchMedia(editorialAvatar.mobileQuery);
     const connection = (navigator as Navigator & { connection?: Connection }).connection;
     let visible = false;
     let disposed = false;
@@ -90,7 +91,9 @@ export function EditorialAvatarLoop() {
       const token = ++request;
       updateMusic.current();
       if (!allowed()) { film.pause(); return; }
-      if (!film.getAttribute("src")) film.src = editorialAvatar.src;
+      // Phones get their own film; turning a tablet or resizing across the line swaps it, poster first.
+      const wanted = phone.matches ? editorialAvatar.mobileSrc : editorialAvatar.src;
+      if (film.getAttribute("src") !== wanted) { delete film.dataset.ready; film.src = wanted; }
       void film.play().then(() => {
         if (disposed || (token !== request && !allowed())) film.pause();
       }).catch(() => { /* The poster is already present for playback failures. */ });
@@ -103,6 +106,7 @@ export function EditorialAvatarLoop() {
     const mutations = new MutationObserver(update);
     if (root) mutations.observe(root, { attributes: true, attributeFilter: ["data-editorial-motion"] });
     reduced.addEventListener("change", update);
+    phone.addEventListener("change", update);
     connection?.addEventListener?.("change", update);
     document.addEventListener("visibilitychange", update);
     document.addEventListener("editorial-modal", update);
@@ -110,6 +114,7 @@ export function EditorialAvatarLoop() {
       disposed = true;
       observer.disconnect(); mutations.disconnect();
       reduced.removeEventListener("change", update);
+      phone.removeEventListener("change", update);
       connection?.removeEventListener?.("change", update);
       document.removeEventListener("visibilitychange", update);
       document.removeEventListener("editorial-modal", update);
@@ -174,7 +179,8 @@ export function EditorialAvatarLoop() {
 
   return <>
     <div ref={host} className={styles.footerPhoto} data-avatar-scene>
-      <Image src={editorialAvatar.poster} alt="Personagem de Gabriel atrás de um monitor, em um estúdio com guitarra e discos na parede" fill quality={90} sizes="(max-width:700px) 400vw, 120vw" />
+      <ArtDirectedImage alt="Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento"
+        desktop={{ src: editorialAvatar.poster, sizes: "120vw" }} mobile={{ src: editorialAvatar.mobilePoster, sizes: "100vw" }} />
       <video ref={video} className={styles.avatarVideo} data-avatar-loop muted loop playsInline preload="none" aria-hidden="true" disablePictureInPicture
         onPlaying={() => { if (video.current) video.current.dataset.ready = "true"; }}
         onError={() => { if (video.current) delete video.current.dataset.ready; }} />

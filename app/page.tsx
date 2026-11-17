@@ -10,6 +10,8 @@ import { Arrow } from "@/components/ui/icons";
 import { EditorialAvatarLoop } from "@/components/EditorialAvatarLoop";
 import { EditorialMotion } from "@/components/EditorialMotion";
 import { EditorialMedia } from "@/components/EditorialMedia";
+import { HeroClouds } from "@/components/HeroClouds";
+import { CloudTransition } from "@/components/CloudTransition";
 import type { FilmId } from "@/lib/project-films";
 import styles from "./editorial.module.css";
 
@@ -74,11 +76,16 @@ export default function HomePage() {
     <svg className={styles.defs} aria-hidden="true" focusable="false"><GbShapeDefs /></svg>
     <main id="editorial-main">
       <section id="editorial-start" className={styles.hero} data-editorial-theme="photo">
-        <div className={styles.heroPhoto} data-hero-photo><ArtDirectedImage alt="Retrato frontal de Gabriel Batista com luz vermelha" preload desktop={{ src: "/images/hero/gabriel-hero-wide.webp", sizes: "130vw" }} mobile={{ src: "/images/hero/gabriel-hero-mobile.webp", sizes: "150vw" }} /></div>
+        {/* Before the first paint: with motion allowed, the portrait waits hidden so the points can form it
+            (components/HeroClouds.tsx). Without JS, with reduced motion or saved data, it shows as usual; and the CSS
+            shows it after 3 s whatever happens. */}
+        <script dangerouslySetInnerHTML={{ __html: "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(navigator.connection&&navigator.connection.saveData))document.documentElement.dataset.heroAssemble=''}catch(e){}" }} />
+        <div className={styles.heroPhoto} data-hero-photo><ArtDirectedImage alt="Retrato frontal de Gabriel Batista com luz vermelha" preload desktop={{ src: "/images/hero/gabriel-hero-wide.webp", sizes: "130vw" }} mobile={{ src: "/images/hero/gabriel-hero-mobile.webp", sizes: "150vw" }} /><HeroClouds /></div>
         {/* The brand dot is born as the tittle of "Design": it soaks the phrase in red ink, then drips onto the name. */}
         <p className={styles.heroOffer} data-hero-offer><span className={styles.sr}>Design & desenvolvimento web</span><span aria-hidden="true">Des<span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.offerTittle}`} data-offer-tittle /></span>gn &<br/>desenvolvimento web</span><span className={styles.offerInk} data-offer-ink aria-hidden="true" /></p>
         <div className={styles.heroBottom}><h1 data-hero-wordmark><span className={styles.sr}>Gabriel Batista</span><span aria-hidden="true" data-hero-word>{nameWord("Gabriel")}</span><span className={styles.heroSample} data-hero-sample aria-hidden="true"><span className={styles.heroCard} data-hero-card><svg viewBox={cardView}>{cardParts.map(shape => <g key={shape.id} transform={transformOf(shape.final)}><g data-card-part={shape.id}><GbShape id={shape.id} tone="dark" /></g></g>)}</svg></span></span><span aria-hidden="true" data-hero-word>{nameWord("Batista")}</span><span className={styles.heroDot} data-hero-dot aria-hidden="true" /><svg className={styles.heroTrail} aria-hidden="true" focusable="false"><path data-hero-trail pathLength={1} /></svg><span className={styles.heroGlow} data-hero-glow aria-hidden="true" /><span className={styles.heroGlow} data-hero-wave aria-hidden="true" /></h1><p>Sites para clínicas e negócios de alto ticket</p></div>
       </section>
+      <CloudTransition from="#editorial-start" />
       <section className={styles.hook} data-editorial-theme="paper" data-hook>
         <h2 data-kinetic aria-label="Do primeiro olhar ao próximo clique, e dele até a sua agenda.">Do pr{redI()}meiro olhar<br/>ao próximo <a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label="Começar um projeto" aria-label="clique"><span>cl{redI(true)}que</span> <Arrow size={42}/></a>,<br/>e dele até a sua agenda.</h2>
         {/* "O próximo clique", one stage: the red tittle of "clique" falls into Gabriel's open palm; the dot rises, bursts,
@@ -87,7 +94,7 @@ export default function HomePage() {
           <div className={styles.fusionStage} data-fusion-stage>
             <figure className={styles.palm} data-palm role="img" aria-label="A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.">
               <div className={styles.palmBody} data-palm-body>
-              <Image src="/images/editorial/mao-palma-manga.webp" alt="" width={4000} height={2251} quality={90} sizes="(max-width:700px) 190vw, 90vw" data-palm-hand />
+              <Image src="/images/editorial/mao-palma-braco.webp" alt="" width={5800} height={2701} quality={90} sizes="(max-width:700px) 200vw, 150vw" data-palm-hand />
               <span className={styles.palmRing} data-creation-ring aria-hidden="true" />
               <span className={styles.palmGlow} data-palm-glow aria-hidden="true" />
               <span className={styles.palmShadow} data-palm-shadow aria-hidden="true" />

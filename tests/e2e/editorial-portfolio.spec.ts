@@ -193,15 +193,15 @@ test('Selection shows the approved brands with the colors measured for each', as
   await expect(page.locator('body')).not.toContainText(/Vanguard|Chronos|catálogo de 20/);
 });
 
-test('The name breathes and the monogram shapes assemble with the scroll and come apart on the way back', async ({ page }) => {
+test('The pointer stretches the name and the monogram shapes assemble with the scroll and come apart on the way back', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(route);
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
-  // The two words of the name change width over time, in opposite directions.
-  const widths = () => page.locator('[data-hero-word]').evaluateAll(words => words.map(word => getComputedStyle(word).getPropertyValue('--wdth').trim()));
-  const first = await widths();
-  // The breathing starts after the brand dot's arrival scene (about five seconds).
-  await expect.poll(widths, { timeout: 10000 }).not.toEqual(first);
+  // As in the reference, the name rests still and the pointer stretches it: toward the left "Gabriel" widens,
+  // toward the right "Batista" does. It answers once the brand dot's arrival scene is over (about five seconds).
+  const widths = () => page.locator('[data-hero-word]').evaluateAll(words => words.map(word => parseFloat(getComputedStyle(word).getPropertyValue('--wdth'))));
+  await expect.poll(async () => { await page.mouse.move(60, 450); await page.waitForTimeout(400); const [left, right] = await widths(); return left - right; }, { timeout: 12000 }).toBeGreaterThan(15);
+  await expect.poll(async () => { await page.mouse.move(1380, 450); await page.waitForTimeout(400); const [left, right] = await widths(); return right - left; }).toBeGreaterThan(15);
   await expect(page.locator('[data-hero-sample] img')).toHaveCount(0);
   // The shapes: apart before the hold, assembled into the monogram at its end, apart again on the way back.
   const bowl = page.locator('[data-gb-shape="bowl"]');

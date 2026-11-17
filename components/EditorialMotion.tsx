@@ -108,10 +108,13 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             const palmY = palm.offsetTop + palm.offsetHeight * .43, thumbRight = palm.offsetLeft + palm.offsetWidth * .57;
             const copyAbove = copy.offsetTop + copy.offsetHeight < palm.offsetTop;
             const top = copyAbove ? copy.offsetTop + copy.offsetHeight + 20 : Math.min(84, H * .12);
-            const bottom = palmY - palm.offsetHeight * .05;
-            const gh = Math.max(110, Math.min(bottom - top, H * .4, Wst * .5 * G.h / G.w));
+            // Phones (copy on top) have height to spare: the "g." floats above the thumb tip, centred on the palm.
+            // Computers: just above the palm, to the right of the thumb.
+            const bottom = copyAbove ? palm.offsetTop + palm.offsetHeight * .06 - 16 : palmY - palm.offsetHeight * .05;
+            const gh = Math.max(110, Math.min(bottom - top, H * (copyAbove ? .3 : .4), Wst * (copyAbove ? .42 : .5) * G.h / G.w));
             const gw = gh * G.w / G.h, F = gh / (G.h / 1000), W = F * 1.44;
-            const cx = Math.min(Math.max(thumbRight + gw / 2 + 8, gw / 2 + 16), Wst - gw / 2 - 28), cy = bottom - gh / 2;
+            const anchor = copyAbove ? palm.offsetLeft + palm.offsetWidth * .56 : thumbRight + gw / 2 + 8;
+            const cx = Math.min(Math.max(anchor, gw / 2 + 16), Wst - gw / 2 - 28), cy = bottom - gh / 2;
             Object.assign(box.style, { width: `${W}px`, height: `${F}px`, left: `${cx - W * G.x / 1440}px`, top: `${cy - F * G.y / 1000}px` });
             // The soft shadow the floating "g." casts on the hand, just under it.
             Object.assign(gShadow.style, { width: `${gw * .95}px`, height: `${gw * .2}px`, left: `${cx - gw * .475}px`, top: `${palmY - gw * .1}px` });
@@ -201,11 +204,24 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
         const words = gsap.utils.toArray<HTMLElement>("[data-hero-word]");
         // The hero loops start paused: on arrival the brand dot plays its scene first, then they begin.
         const loops: { play: () => void }[] = [];
+        // As in the reference, the name stays still and the pointer stretches it: toward the left "Gabriel" widens,
+        // toward the right "Batista" does. Touch screens have no pointer to follow, so there the name rests.
         if (words.length === 2) {
-          gsap.set(words[0], { "--wdth": 100 }); gsap.set(words[1], { "--wdth": 76 });
-          const breathe = gsap.timeline({ paused: true, repeat: -1, yoyo: true, repeatDelay: .7, defaults: { duration: 1.5, ease: "editorial-flow" } })
-            .to(words[0], { "--wdth": 76 }, 0).to(words[1], { "--wdth": 100 }, 0);
-          loops.push({ play: () => breathe.play() });
+          gsap.set(words, { "--wdth": 88 });
+          if (matchMedia("(pointer: fine)").matches) {
+            const left = gsap.quickTo(words[0], "--wdth", { duration: .9, ease: "power3.out" });
+            const right = gsap.quickTo(words[1], "--wdth", { duration: .9, ease: "power3.out" });
+            let live = false;
+            const stretch = (event: MouseEvent) => {
+              if (!live) return;
+              const t = Math.min(1, Math.max(0, event.clientX / innerWidth));
+              left(76 + (1 - t) * 24);
+              right(76 + t * 24);
+            };
+            addEventListener("mousemove", stretch);
+            loops.push({ play: () => { live = true; } });
+            restore.push(() => removeEventListener("mousemove", stretch));
+          }
         }
         // Between the words: "g." assembles inside the peach card, holds, comes apart and starts again.
         const part = (id: string) => node.querySelector<SVGGElement>(`[data-card-part="${id}"]`);
@@ -225,12 +241,10 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             // Hold the assembled letter, then let it fall apart.
             .to(pieces, { y: 460, rotation: (index: number) => [-60, 30, 80, 0][index], opacity: 0, duration: .55, ease: "power2.in", stagger: .06 }, "+=1.6");
         }
-        if (card && words.length === 2) {
-          // The card leans with the breathing name.
-          const tilt = gsap.timeline({ paused: true, repeat: -1, yoyo: true, repeatDelay: .7 }).fromTo(card, { rotation: -2 }, { rotation: 3, duration: 1.5, ease: "editorial-flow" });
-          loops.push({ play: () => tilt.play() });
-        }
+        // The card stays straight, as in the reference.
         const startLoops = (fromAssembled: boolean) => {
+          // The name is signed: the clouds may rise now (components/HeroClouds.tsx waits for this).
+          document.documentElement.dataset.heroSigned = "";
           loops.forEach(loop => loop.play());
           if (cardLoop) { if (fromAssembled) cardLoop.play(assembledAt); else cardLoop.play(0); }
         };
@@ -256,7 +270,18 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           gsap.set(fly, { transformOrigin: "50% 100%" });
           // Marked as played when it starts: pausing mid-scene and resuming shows the final state instead of replaying.
           dotSceneDone.current = true;
-          const scene = gsap.timeline({ delay: .45, onComplete: () => startLoops(true) });
+          // The story is told in order: first he is formed by the points (HeroClouds), then the dot is born and signs
+          // the name, then the clouds rise. The scene waits for "formed", or 3.5 s at most.
+          const scene = gsap.timeline({ paused: true, onComplete: () => startLoops(true) });
+          const html = document.documentElement;
+          let begun = false;
+          const begin = () => { if (begun) return; begun = true; window.removeEventListener("gb:hero-formed", begin); gsap.delayedCall(.3, () => scene.play()); };
+          if (html.dataset.heroFormed !== undefined || html.dataset.heroAssemble === undefined && html.dataset.heroForming === undefined) gsap.delayedCall(.15, begin);
+          else {
+            window.addEventListener("gb:hero-formed", begin);
+            gsap.delayedCall(3.5, begin);
+            restore.push(() => window.removeEventListener("gb:hero-formed", begin));
+          }
           let current = { x: tittleA.x, y: tittleA.y };
           const land = () => scene.to(fly, { scaleX: 1.5, scaleY: .55, duration: .07, ease: "power2.out" }).to(fly, { scaleX: 1, scaleY: 1, duration: .3, ease: "elastic.out(1,.4)" });
           const hop = (to: { x: number; y: number }, apex: number, duration: number) => {
@@ -334,6 +359,8 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
               .to(fly, { y: lift.y - r, scaleX: .85, scaleY: 1.2, duration: .35, ease: "power2.out" })
               // Charging: the dot clenches and swells faster each time while a red glow pulses out of it.
               .addLabel("charge")
+              // As the dot gathers its energy for the lap, the clouds begin to rise behind him.
+              .call(() => { document.documentElement.dataset.heroSigned = ""; }, undefined, "charge")
               .to(fly, { keyframes: [{ scale: .75, duration: .14 }, { scale: 1.2, duration: .14 }, { scale: .72, duration: .11 }, { scale: 1.25, duration: .11 }, { scale: .7, duration: .08 }, { scale: 1.3, duration: .08 }], ease: "sine.inOut" }, "charge")
               .to(fly, { x: `+=${r * .12}`, duration: .04, repeat: 9, yoyo: true, ease: "none" }, "charge+=.2")
               .fromTo(glow, { scale: .6, opacity: .9 }, { scale: 2.6, opacity: 0, duration: .32, ease: "power1.out", repeat: 2 }, "charge")

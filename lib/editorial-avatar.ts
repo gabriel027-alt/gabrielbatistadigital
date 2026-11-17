@@ -1,7 +1,11 @@
 /** Own avatar loop; only used by the editorial review route. */
 export const editorialAvatar = {
-  src: "/videos/editorial/gabriel-avatar-loop-v11.mp4",
-  poster: "/images/editorial/gabriel-avatar-loop-v11.webp",
+  src: "/videos/editorial/gabriel-avatar-loop-v26.mp4",
+  poster: "/images/editorial/gabriel-avatar-loop-v26.webp",
+  /** Phones see a narrow middle slice, so they get a film whose board is recomposed for that slice. */
+  mobileSrc: "/videos/editorial/gabriel-avatar-loop-v26-mobile.mp4",
+  mobilePoster: "/images/editorial/gabriel-avatar-loop-v26-mobile.webp",
+  mobileQuery: "(max-width: 700px)",
   duration: 334 / 30,
 } as const;
 

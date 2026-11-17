@@ -15,7 +15,7 @@
 
 /* Reference top-glow: a fixed compositing layer, independent of the film. */
 .frameGlow{position:fixed;inset:0;z-index:45;pointer-events:none;box-shadow:inset 0 2px 30px #ff3434a6,inset 0 2px 130px 8px #c710304d}
-@media(max-width:479px){.frameGlow{box-shadow:inset 0 2px 30px #ff34348c,inset 0 1px 80px 3px #c710303d}}
+@media(max-width:479px){.frameGlow{box-shadow:inset 0 1px 14px #ff34348c,inset 0 1px 44px 1px #c710303d}}
 
 .avatarVideo{opacity:0;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;pointer-events:none}
 
@@ -128,7 +128,7 @@
 .hook{overflow:clip}
 
 /* Hero card (12/11/2026): a solid peach card fills the gap between the words, as the reference's card does; "g." assembles inside it. */
-.heroSample{width:14vw;height:9.6vw;overflow:visible;border-radius:0;transform:rotate(-7deg);align-self:flex-end;margin-bottom:-1.6vw}
+.heroSample{width:14vw;height:9.6vw;overflow:visible;border-radius:0;transform:none;align-self:flex-end;margin-bottom:.4vw}
 .heroCard{display:block;width:100%;height:100%;overflow:hidden;border-radius:.9vw;background:linear-gradient(135deg,#ffd6bb 0%,#ffbc95 55%,#f1a179 100%);box-shadow:0 1.6vw 3.4vw #0000007a,inset 0 0 0 1px #ffffff45;transform-origin:50% 60%}
 .heroCard svg{display:block;width:100%;height:100%}
 
@@ -148,7 +148,7 @@
   /* A fixed grid, not wrapping: the breathing name changes width and would push the card between lines. */
   .heroBottom h1{position:relative;width:auto;height:auto;overflow:visible;clip-path:none;display:grid;grid-template-columns:1fr auto;align-items:center;column-gap:3vw;row-gap:1vw;font-size:21vw;line-height:.88;margin:0}
   .heroBottom h1 [data-hero-word]:first-of-type{grid-column:1;grid-row:1}
-  .heroSample{display:block;order:0;grid-column:2;grid-row:1;width:27vw;height:18vw;transform:rotate(-7deg);align-self:center;margin-bottom:0}
+  .heroSample{display:block;order:0;grid-column:2;grid-row:1;width:27vw;height:18vw;transform:none;align-self:center;margin-bottom:0}
   .heroSample + [data-hero-word]{grid-column:1 / -1;grid-row:2;justify-self:end}
   .heroCard{border-radius:2.2vw}
   .heroBottom>p{margin-top:12px;font-size:13px;text-align:right;max-width:none}
@@ -181,8 +181,8 @@
 .fusionTrack{position:relative;height:400vh}
 .fusionStage{position:sticky;top:0;height:100svh;display:grid;place-items:center;overflow:clip}
 /* The palm (14/11/2026): Gabriel's open hand rises from the bottom of the stage; the brand dot rests in its palm. */
-.palm{--pw:min(100vw,118svh);position:absolute;bottom:0;left:calc(50% - var(--pw) * .55);width:var(--pw);aspect-ratio:4000/2251;margin:0;z-index:1}
-.palm img{display:block;width:100%;height:auto}
+.palm{--pw:min(100vw,118svh);position:absolute;bottom:-3svh;left:calc(50% - var(--pw) * .55);width:var(--pw);aspect-ratio:4000/2251;margin:0;z-index:1}
+.palm img{position:absolute;left:0;top:0;display:block;width:145%;max-width:none;height:auto}
 .palmDot,.palmRing{position:absolute;left:56%;top:43%;width:3.4%;height:auto;aspect-ratio:1;margin:-1.7% 0 0 -1.7%}
 .palmDot{display:block;z-index:2}
 .palmRing{border-radius:50%;border:2px solid var(--peach);box-shadow:0 0 18px #ef5a4a99;opacity:0;z-index:1}
@@ -193,11 +193,11 @@
 .hookTittle{width:.17em;height:.17em;margin-left:-.085em;top:.06em}
 /* The dot that travels between scenes (created by the motion script; fixed to the viewport). */
 .carrier{position:fixed;left:0;top:0;z-index:40;pointer-events:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ef5a4a 0%,#c4372b 55%,#7a1a12 100%);box-shadow:0 2px 6px #0004;visibility:hidden}
-@media(max-width:700px){.palm{--pw:178vw}.palmCopy{left:6vw;right:6vw;top:13svh;bottom:auto;max-width:none}.palmCopy h2{font-size:30px}.palmRing{border-width:1.5px}}
+@media(max-width:700px){.palm{--pw:130vw;left:calc(12px - var(--pw) * .1)}.palmCopy{left:6vw;right:6vw;top:13svh;bottom:auto;max-width:none}.palmCopy h2{font-size:30px}.palmRing{border-width:1.5px}}
 /* Depth in the palm: the hand breathes as one body with its dot, the dot casts a contact shadow, the palm takes the dot's
    red light, and the floating "g." casts a soft shadow on the hand. */
-.palmBody{position:relative}
-.palmGlow{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 56% 43%,#ff3b2b8c 0%,#ff3b2b33 9%,#ff3b2b00 20%);-webkit-mask:url(/images/editorial/mao-palma-manga.webp) 0 0/100% 100% no-repeat;mask:url(/images/editorial/mao-palma-manga.webp) 0 0/100% 100% no-repeat}
+.palmBody{position:absolute;inset:0}
+.palmGlow{position:absolute;inset:0;pointer-events:none;opacity:0;background:radial-gradient(circle at 56% 43%,#ff3b2b8c 0%,#ff3b2b33 9%,#ff3b2b00 20%);-webkit-mask:url(/images/editorial/mao-palma-braco.webp) 0 0/145% 120% no-repeat;mask:url(/images/editorial/mao-palma-braco.webp) 0 0/145% 120% no-repeat}
 .palmShadow{position:absolute;left:56%;top:45.6%;width:5.6%;height:2%;margin:-1% 0 0 -2.8%;border-radius:50%;background:radial-gradient(closest-side,#3a0c06a6,#3a0c0600);pointer-events:none}
 .gShadow{position:absolute;left:0;top:0;width:120px;height:26px;z-index:2;border-radius:50%;background:radial-gradient(closest-side,#4a140a59,#4a140a00);opacity:0;pointer-events:none}
 /* The dot ends its journey as the full stop of "Vamos conversar" and stays lit. */
@@ -269,3 +269,15 @@
 .serviceItem p{margin:0;font-size:13px;line-height:1.6;max-width:34ch;color:var(--soft)}
 @media(max-width:900px){.serviceList{grid-template-columns:1fr 1fr;gap:0 6vw}.serviceItem{padding:24px 0 28px}}
 @media(max-width:560px){.serviceList{grid-template-columns:1fr;margin:0 6vw 60px}}
+/* Clouds behind Gabriel and dust under the pointer in the hero (components/HeroClouds.tsx); below the gradient and the name. */
+.heroClouds{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
+/* The same clouds as a transition when the hero leaves (components/CloudTransition.tsx): fixed, under the menu. */
+.cloudTransition{position:fixed;inset:0;width:100vw;height:100vh;z-index:35;pointer-events:none;visibility:hidden}
+/* On computers the name is one group: Gabriel, the straight g. card and Batista together in the middle, the line under it,
+   all low enough that the card never reaches his chin (also at 125% scaling, 1536x696). */
+@media(min-width:701px){.heroBottom{bottom:2.5%}.heroBottom h1{justify-content:center;gap:2.4vw}.heroBottom>p{text-align:center;margin-top:1.4vw}}
+/* The red frame glow fades with the hero as the paper arrives (--hero-glow, set by CloudTransition). */
+.page[data-editorial-theme=photo] .frameGlow{opacity:var(--hero-glow,1)}
+/* The portrait waits hidden while the points form it (components/HeroClouds.tsx); shown after 3 s regardless. */
+:global(html[data-hero-assemble]) .heroPhoto img{opacity:0;animation:heroShow 0s 3s forwards}
+@keyframes heroShow{to{opacity:1}}

@@ -1,4 +1,24 @@
-# Loop do rodapé conduzido pela referência (v11)
+# Loop do rodapé conduzido pela referência (v26)
+
+> **v26, cenário de estrategista (15/11/2026).** Mesma figura e mesmo movimento da v25, em `render_studio.py`.
+> - Fundo: `base-estrategista.webp`, gerado pelo usuário. Foi alinhado pela tampa do notebook (borda em MONITOR_Y, mesma largura do notebook anterior).
+> - A cabeça e os ombros desenhados pelo gerador foram preenchidos. A borda do quadro e a linha vermelha da tampa foram refeitas linha a linha.
+> - O vapor pintado na imagem foi trocado pela parede ao lado.
+> - O celular tem filme próprio (`--mobile`): o quadro é recomposto com recortes do próprio quadro, sobre o fundo dele sem os traços de giz.
+> - O ponto vermelho no quadro foi testado e retirado (`SHOW_DOT`).
+> - O cenário desenhado por código (primeira tentativa do mesmo arquivo, no histórico do git) e `base-notebook.webp` ficam como registro.
+> - Uso:
+>   - `render_studio.py --out DIR --video --break-shake-both [--mobile]`;
+>   - `upscale_loop.py DIR/frames DIR [1248x2408]`.
+
+> **v25 aprovada (15/11/2026).** `render_collar.py --out DIR --video --break-shake-both` sobre a v11, depois `upscale_loop.py DIR/frames DIR` (Real-ESRGAN x4, 65 % IA + 35 % original, 2560×1636).
+> - Roupa: os ombros da camiseta vêm de `base-gola.png`, imagem gerada pelo usuário, deslocados (−16,5, −18) e recortados por polígono. A camisa segue o pescoço (`neck_follow`), então não "flutua". Rosto, queixo e monitor da v11 não mudam.
+> - Movimento medido na gravação do rodapé de referência que o usuário enviou (distância entre os olhos como régua): balanço 13,3 % e sobe-e-desce 16,9 %, contra 20,3 % e 22,3 % na v11 (`SWAY_SCALE`, `BOB_SCALE`); 17 batidas por loop, cerca de 91 BPM.
+> - `hit()`: "uma pausa súbita e seca no ponto mais baixo do movimento". Descida acelerada, parada de cerca de 0,16 s, volta suave; fundo 1,9× mais baixo e aceno de 3,4°.
+> - `break_shake(both_sides=True)`: na paradinha, a cabeça inteira desliza 3,4× mais, centrada, para a direita e a esquerda; o giro do rosto só 1,3×. Com mais giro do que deslize, o usuário disse que "a face se mexe, a cabeça não".
+> - Rejeitados, mantidos atrás de flags: `--groove`, `--accent-break`, `--break-ticks`, `--hit-tilt` e `--break-shake` (só esquerda). `render_monitor.py` (monitor mais alto) não foi usado.
+
+> **v12 rejeitada (15/11/2026).** O usuário achou que a v11 parecia "sem camisa" e gerou no ChatGPT duas versões com roupa: `base-com-roupa.png`, com jaqueta, e `base-camiseta.png`, só com camiseta. `render_clothed.py` montou essa roupa sob a cabeça da v11. A sala veio da imagem com jaqueta, que tem o monitor 31 px mais baixo. A camiseta foi encaixada pelo rosto, porque essa imagem veio em outro tamanho e com a sala redesenhada. Comparando com a v11, o usuário disse que a v11 "ainda está melhor", e que na v12 o pescoço e o queixo ficaram "tudo bugados". O motivo: o queixo da v7 foi completado por código e se escondia atrás do monitor; com o monitor mais baixo, ele aparece, assim como a emenda entre os estilos do rosto e do corpo. **A v11 continua no site.** Os scripts e as imagens ficam só como registro; não tentar vestir o avatar de novo sem pedido.
 
 > A v11 corrige a vesguice notada pelo usuário: os canais de íris de cada olho discordavam em até 1,6 px, em íris de cerca de 7 px de raio. Agora um só olhar, a média dos dois, é aplicado aos dois olhos, parado por 37 quadros e com saltos rápidos, limitado a ±1,7 px e ±0,6 px (`GAZE_*`). A tabela abaixo fica superada nesse ponto: íris não seguem mais cada canal. O sombreado usa só formas amplas da malha, o que retira um brilho assimétrico sob um dos olhos.
 

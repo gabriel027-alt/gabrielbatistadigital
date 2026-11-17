@@ -121,7 +121,20 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 ## Avatar do rodapé editorial: loop v11
 
 - v1 (LivePortrait), v2 (coreografia autoral de esquivas), v3 (corpo com ombros, queixo em V) e v6 (mandíbula alargada e sombra escura no pescoço) foram rejeitadas. O usuário aprovou com entusiasmo a direção da v4: movimento da gravação do rodapé de Juan Mora, boca fechada e cabeça atrás do monitor. A v5 acrescentou sobrancelhas paradas e vapor no café. A v7, aprovada pelo usuário no rosto e no queixo, mantém o contorno original da imagem aprovada, continua a própria linha da mandíbula, sobe a cabeça 14 px e usa as cores originais do pescoço. A v8, com gola e ombros desenhados por código, foi rejeitada por parecer irreal (ombros em linha reta e mancha laranja no pescoço). O usuário decidiu que basta o trapézio, sem ombros nem jaqueta: a v9, aprovada, só abre o pescoço em curva, em pele, até o monitor. A v10 corrige a piscada, com pálpebra e linha de cílios lisas. A v11, aprovada pelo usuário, corrige a vesguice que ele notou: as duas íris compartilham o mesmo olhar, que fixa e salta. Não voltar a usar canais de íris independentes. Não recolocar roupa ou ombros pintados por código; se ele quiser mais corpo, usar imagem gerada a partir de base-para-gpt.png, aproveitando só pescoço e ombros. Não alterar o formato do rosto, nem esticar pixels da boca, nem escurecer o pescoço, nem reanimar sobrancelhas.
-- gabriel-avatar-loop-v11.mp4 vem de docs/research/avatar-motion-github/reference-loop/: trajetória medida (só números, sem pixels da gravação) em render 2,5D sem modelo. Não anunciar como 3D real ou rig. A atuação dos olhos da referência não é reproduzida: o olhar é discreto e autoral a partir do movimento médio. No celular, o recorte do vídeo deixa a caneca e o vapor fora da tela.
+- v12, com roupa (jaqueta ou camiseta preta, de imagens geradas pelo usuário), montada sob a cabeça da v11, foi rejeitada em 15/11/2026: o pescoço e o queixo pareceram "bugados" e a v11 "ainda está melhor". A v13 (decote desenhado por código) também foi rejeitada.
+- v25, aprovada em 15/11/2026 (`render_collar.py --video --break-shake-both`): rosto da v11 intacto, monitor no lugar e ombros de camiseta preta recortados de `base-gola.png` (imagem gerada pelo usuário), presos ao pescoço. Movimento:
+  - balanço e sobe-e-desce reduzidos à gravação de referência dele (13 % e 17 % da distância entre os olhos);
+  - o "hit": descida acelerada, parada seca e funda no fundo da batida e volta suave;
+  - na paradinha (3,6–6,2 s do loop), o "não-não": a cabeça inteira desliza para a direita e para a esquerda (cerca de 6 e 8 px), com giro do rosto discreto.
+  - Rejeitados, atrás de flags: groove com quique, acento da paradinha ("diagonal pra frente"), estalos com mergulho no fim da paradinha, giro de 8°, desvio e tombada a cada batida, e "não-não" com mais giro do que deslize.
+  - Não desenhar roupa por código, não pôr chamas ou efeitos nos olhos (desaconselhado em 15/11/2026, o público são donos de clínica) e não alterar o rosto.
+- v26, cenário de estrategista (15/11/2026), `render_studio.py`: a mesma figura e o mesmo movimento da v25, num escritório gerado pelo usuário (`base-estrategista.webp`). O cenário tem quadro-negro com funil, fluxograma, gráfico de crescimento e jornada, poucos livros, plantas, caderno com caneta e caneca, e o notebook gamer cinza sem logo no lugar do monitor.
+  - O cenário foi alinhado pela tampa do notebook, na altura do antigo monitor (MONITOR_Y), que continua escondendo o queixo.
+  - Saíram sofá, discos, guitarra e luminária. Um cenário desenhado por código foi preterido, por parecer ilustração.
+  - Sem ponto vermelho no quadro: o ponto da homepage é um só e termina em "Vamos conversar", logo acima do rodapé.
+  - O celular tem filme próprio (`-mobile`, 1248×2408), com o quadro recomposto para a faixa central: jornada acima da cabeça, funil à esquerda e gráfico à direita. `EditorialAvatarLoop` escolhe o filme por `(max-width: 700px)`, e o pôster usa `ArtDirectedImage`.
+- No site: `gabriel-avatar-loop-v26.mp4` e `-v26-mobile.mp4`, com os pôsteres `.webp`. A v25 e a v11 estão no histórico do git.
+- gabriel-avatar-loop-v11.mp4 (e a v25, que parte dela) vem de docs/research/avatar-motion-github/reference-loop/: trajetória medida (só números, sem pixels da gravação) em render 2,5D sem modelo. Não anunciar como 3D real ou rig. A atuação dos olhos da referência não é reproduzida: o olhar é discreto e autoral a partir do movimento médio. No celular, o recorte do vídeo deixa a caneca e o vapor fora da tela.
 - As capas de bandas foram trocadas por arte própria. Não reintroduzir capas, logotipos ou marcas de terceiros no cenário.
 - Música do rodapé: DESLIGADA por padrão, por decisão do usuário, na versão para prospectar clínicas (letras explícitas, aviso do Spotify e prévias de 30 s). Religar com NEXT_PUBLIC_FOOTER_MUSIC=on no .env.local e novo build. Quando ligada: player oficial do Spotify (lib/editorial-avatar.ts: os álbuns Significant Other, Gold Cobra e Results May Vary, escolhidos por ele, em revezamento automático e por botão). Só carrega após o clique; não há autoplay nem conteúdo do Spotify antes disso. O site não transmite a conta do usuário aos visitantes: sem login no Spotify, o player toca prévias curtas. Não hospedar arquivos de música comercial sem licença. O instrumental gerado (make_groove.py) foi retirado do site.
 
@@ -273,3 +286,41 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Projetos: a pasta (preta, no tom da manga) se abre quando o ponto pousa na aba. A faixa infinita com os sete filmes sai de dentro dela; os cartões abrem o filme completo, e a faixa para sob o mouse ou o foco. Os serviços ficaram só em texto. A grade antiga, o `<details>` e as fileiras de amostras foram removidos.
 - Sem movimento (reduzido, pausado ou sem JS): os pingos ficam nos "i", o ponto fica na palma e no "Vamos conversar". A pasta aparece aberta e a faixa vira uma fileira rolada à mão, sem a cópia decorativa. Os títulos com pingos sobrepostos têm `aria-label` com o texto inteiro.
 - O comparador da Aura (`AuraComparison`) só devolve o controle à rolagem quando um novo gesto de rolagem começa depois de uma pausa. A rolagem suave que já estava em andamento desfazia o ajuste manual, e era isso que deixava `aura-showcase.spec.ts` instável.
+
+## Topo: nuvens e transição (16/11/2026)
+
+- Aprovado pelo usuário: depois da cena do ponto, um mar de cúmulos ao entardecer sobe atrás de Gabriel (`components/HeroClouds.tsx`, shader em `lib/cloud-shader.ts`). Os cúmulos têm sombras cinza-malva, corpo cinza quente e topos com a luz quente do retrato. O mouse ou o dedo abre e curva as nuvens.
+- A poeira no rosto foi retirada por ser desconexa (16/11/2026). No lugar, ideia dele:
+  - na chegada, milhares de pontinhos com as cores da própria foto se juntam e formam a foto do topo de uma vez, e a foto surge por baixo;
+  - depois ele fica parado, e só os pontinhos se mexem: saem do contorno dele e preenchem o espaço ao redor, até os cantos;
+    - são cerca de 1900 no PC e 900 no celular, com tamanhos e brilhos variados;
+    - ele pediu que nunca passem pelo rosto: onde cruzam a silhueta ficam invisíveis, como se passassem por trás dele (`behindOnly`);
+  - o mouse empurra os pontinhos;
+  - a foto fica escondida desde a primeira pintura por um script mínimo em `app/page.tsx` (`data-hero-assemble`). Ela aparece sozinha em 3 s se algo falhar e não é escondida sem JS, com movimento reduzido ou economia de dados;
+  - a foto é só lida, nunca alterada;
+  - é a foto do topo, não o avatar do rodapé.
+- A chegada conta a história em ordem, por decisão dele (16/11/2026):
+  1. os pontinhos formam Gabriel ("quem faz");
+  2. então o ponto nasce em "Design" e assina o nome ("a marca"). Ele espera o sinal `gb:hero-formed` / `data-hero-formed`, no máximo 3,5 s;
+  3. as nuvens sobem quando o ponto pega energia para a volta no cartão ("o cenário", `data-hero-signed`).
+  - Medição em produção: formado em ~2,6 s, nuvens em ~8 s.
+  - Não voltar a rodar as três ao mesmo tempo: o olho só segue uma, e o fio da página é o ponto.
+- Desempenho medido em produção (16/11/2026):
+  - os shaders compilam em segundo plano (`KHR_parallel_shader_compile`), e o da transição só depois da chegada;
+  - os pontinhos leem uma cópia de 720 px da foto;
+  - as nuvens ignoram o céu vazio.
+  - Resultado: de 32 para 55–62 quadros por segundo no PC, e a trava da chegada caiu de 2,3 s para 0,7 s. Não reintroduzir compilação síncrona nem upload da foto inteira.
+- Transição curta para "Do primeiro olhar…" (`components/CloudTransition.tsx`): a borda de cima da seção creme vira um topo de cúmulos creme, que sobe junto com a rolagem. Abaixo da costura não se desenha nada, para o texto aparecer. A pedido dele, nada de imersão prolongada nem tela inteira de nuvem.
+- Máscaras da silhueta sem margem (`docs/research/hero-relight/person_mask.py`): ele pediu "não deixe contorno em mim".
+- Rejeitados nesta rodada:
+  - tinta vermelha recortada, porque lembrava sangue;
+  - blocos de fundo e blocos pretos no rosto;
+  - névoa vinho;
+  - formas do "g." em vermelho, que pareciam hemácias;
+  - nuvem vermelha.
+- Não usar vermelho em formas orgânicas ou arredondadas: o público são donos de clínica. Bordas sem degrau: luz misturada entre gomos e nada de ruído mais fino que um pixel.
+- No PC, "Gabriel", o cartão "g." e "Batista" ficam juntos no centro, com a linha de baixo centralizada abaixo do cartão. O celular mantém a grade de duas linhas.
+  - Como no Juan, o cartão é reto e o nome não respira sozinho: o mouse à esquerda estica "Gabriel" e à direita estica "Batista". No toque, o nome fica parado.
+  - O cartão nunca encosta no queixo, inclusive a 125% (1536×696).
+- As nuvens do topo passam para as da costura (mesma paleta de entardecer, clareando até o creme), e a moldura vermelha apaga com a chegada do papel (`--hero-glow`).
+- Sem movimento (reduzido, pausado, economia de dados ou sem WebGL), fica só a foto e as seções se encontram como antes. No celular, o topo parado mostra pouca nuvem porque o retrato ocupa a tela; o peso vem da transição.

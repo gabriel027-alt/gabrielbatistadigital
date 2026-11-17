@@ -1,7 +1,9 @@
 import { test, expect } from "@playwright/test";
 
 const route = "/";
-const src = "/videos/editorial/gabriel-avatar-loop-v11.mp4";
+const src = "/videos/editorial/gabriel-avatar-loop-v26.mp4";
+const mobileSrc = "/videos/editorial/gabriel-avatar-loop-v26-mobile.mp4";
+const anyFilm = "/videos/editorial/gabriel-avatar-loop";
 const albums = ["spotify:album:3HCCUaRSjHSFOe4fqE0BiP", "spotify:album:6zr7fFAGz7kdayP8p3pbss", "spotify:album:3oUoQ0UH7Rv06x1kpSjS36"];
 const lastTrack = "spotify:track:2ZozYdvhnrCPeE7SvbxxLS";
 const music = albums[0];
@@ -62,12 +64,14 @@ for (const mode of ["reduced", "saveData", "noJS"] as const) {
     if (mode === "saveData") await context.addInitScript(() => Object.defineProperty(navigator, "connection", { value: { saveData: true }, configurable: true }));
     const page = await context.newPage();
     const requests: string[] = [];
-    page.on("request", request => { if (request.url().includes(src)) requests.push(request.url()); });
+    page.on("request", request => { if (request.url().includes(anyFilm)) requests.push(request.url()); });
     await page.goto(route);
     await page.locator("#editorial-footer").scrollIntoViewIfNeeded();
     const poster = page.locator("[data-avatar-scene] img");
     await expect(poster).toBeVisible();
     await expect.poll(() => poster.evaluate(el => (el as HTMLImageElement).naturalWidth)).toBeGreaterThan(0);
+    // The phone's poster is the tall one made for its slice of the scene.
+    expect(await poster.evaluate(el => (el as HTMLImageElement).currentSrc)).toContain("v26-mobile");
     await expect(page.locator("[data-avatar-loop]")).not.toHaveAttribute("src");
     expect(requests).toEqual([]);
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -200,12 +204,12 @@ test("A failed footer film keeps the poster visible", async ({ page }) => {
 
 
 test("Direct footer link reaches and starts the film on desktop and mobile", async ({ browser }) => {
-  for (const viewport of [{ width: 1440, height: 900 }, { width: 390, height: 844 }]) {
+  for (const [viewport, expected] of [[{ width: 1440, height: 900 }, src], [{ width: 390, height: 844 }, mobileSrc]] as const) {
     const context = await browser.newContext({ viewport });
     const page = await context.newPage();
     await page.goto(`${route}#editorial-footer`);
     const film = page.locator("[data-avatar-loop]");
-    await expect(film).toHaveAttribute("src", src);
+    await expect(film).toHaveAttribute("src", expected);
     await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).currentTime)).toBeGreaterThan(.2);
     const top = await page.locator("#editorial-footer").evaluate(el => el.getBoundingClientRect().top);
     expect(Math.abs(top)).toBeLessThan(50);

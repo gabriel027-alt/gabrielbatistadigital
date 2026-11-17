@@ -4,10 +4,13 @@
 
 A cena usa **uma mão só, a de Gabriel**, aberta com a palma para cima, com a manga da jaqueta preta cobrindo o pulso e sem pulseira. O arquivo de origem é `mao-palma-manga.png`. Foi gerado pelo usuário no ChatGPT e escolhido por ele.
 
-O arquivo publicado é `public/images/editorial/mao-palma-manga.webp`, com 4000 × 2251 px. Ele foi preparado assim:
+O arquivo publicado é `public/images/editorial/mao-palma-braco.webp`, com 5800 × 2701 px. Ele foi preparado assim:
 - ampliado com o Real-ESRGAN, na mistura de 65% IA e 35% original (a mesma do retrato);
 - com o creme do fundo levado ao papel do site (#faf6ef);
-- recortado com alfa suave pela distância ao fundo, com os buracos da silhueta preenchidos.
+- recortado com alfa suave pela distância ao fundo, com os buracos da silhueta preenchidos;
+- com a manga continuada além da foto, 45% à direita e 20% abaixo. A continuação segue a direção do próprio braço (inclinação medida de 0,44) e espelha a textura do tecido. Assim o braço sai pela borda da tela, e não termina num corte reto, que foi a reclamação do usuário.
+
+No CSS, a caixa `.palm` continua com as proporções da foto original (4000 × 2251). A imagem estendida transborda dela (`width: 145%`), então as frações abaixo valem para a mão, não para o arquivo.
 
 Ao trocar a imagem, refaça o recorte e confira estas posições:
 - o centro da palma, em 56% × 43% da foto (`.palmDot`, `.palmShadow`, `.palmGlow`);
