@@ -8,7 +8,7 @@ import Lenis from "lenis";
 import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
-import { linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
+import { lineEnds, linePath, onLine, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
 const subscribe = () => () => {};
 
 export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -101,7 +101,8 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           // The assembled "g." spans x 570–890 and y 350–775 of the view box. It floats just above the palm, to the right
           // of the thumb (which ends 57% across the photo), below the navigation or the copy when the copy sits on top
           // (phones), and inside the screen. Layout values only, no transforms.
-          const G = { x: 730, y: 562, h: 425, w: 320 };
+          // Measured with the frame that ends around the letter (440 × 520), so the frame clears the thumb too.
+          const G = { x: 729, y: 562, h: 520, w: 440 };
           const birth = { x: G.x, y: G.y - 40 }, rise = { x: 0, y: 0 }, size = { ratio: 1 };
           const measure = () => {
             const H = stage.clientHeight, Wst = stage.clientWidth;
@@ -126,13 +127,12 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           measure();
           ScrollTrigger.addEventListener("refreshInit", measure);
           const poses: Pose[] = shapes.map((shape, i) => ({ x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }));
-          // The line is the hand's first stroke: it starts at the spark above the palm, runs through the bowl, the hook
-          // and the stem as they gather, and ends at the dot; once the letter is whole the stroke has become it and fades.
+          const ends = { start: { ...birth }, end: { ...birth } };
           const draw = { value: 0 }, spark = { value: 0 };
           const render = () => {
             groups.forEach((group, i) => group.setAttribute("transform", transformOf(poses[i])));
             groups[dotIndex].style.opacity = String(spark.value);
-            line.setAttribute("d", pathThrough([birth, ...poses]));
+            line.setAttribute("d", pathThrough([ends.start, ...poses.filter((_, i) => onLine(shapes[i].id)), ends.end]));
             line.style.strokeDashoffset = String(1 - draw.value);
           };
           // The scatter and drift poses of the old full-screen field are scaled around the spark so they stay near the hand.
@@ -163,20 +163,14 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           shapes.forEach((shape, i) => {
             motion.fromTo(poses[i], { x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }, { ...near(shape.scatter, .55), ease: "power3.out", duration: .16 }, .41)
               .to(poses[i], { ...near(shape.drift, .5), duration: .18, ease: "sine.inOut" }, .57)
-              .to(poses[i], { ...shape.final, duration: .15, ease: "power2.inOut" }, .7 + i * .006);
+              // The frame closes around the letter just after the pieces meet.
+              .to(poses[i], { ...shape.final, duration: shape.id === "frame" ? .14 : .16, ease: "power2.inOut" }, shape.id === "frame" ? .78 : .74 + i * .006);
           });
-          // 5. The fusion: once the loose pieces meet, the seams close and they become one letter, the whole "g"
-          // (one fill and one light), with a small settle; the line that brought them together fades into it.
-          const pieces = shapes.map((shape, i) => i === dotIndex ? null : groups[i]).filter(Boolean) as SVGGElement[];
-          const glyph = field.querySelector<SVGGElement>("[data-gb-glyph]");
-          motion.fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
+          motion.fromTo(ends.start, { ...birth }, { ...lineEnds.start, ease: "power3.out", duration: .16 }, .41)
+            .fromTo(ends.end, { ...birth }, { ...lineEnds.end, ease: "power3.out", duration: .16 }, .41)
+            .fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
             .to(draw, { value: .8, duration: .18 }, .57)
-            .to(draw, { value: 1, duration: .13 }, .72)
-            // The line goes as the pieces close in, before it can loop through them.
-            .fromTo(line, { opacity: 1 }, { opacity: 0, duration: .06, ease: "power1.in" }, .79)
-            .fromTo(pieces, { opacity: 1 }, { opacity: 0, duration: .03, ease: "power1.in" }, .87);
-          if (glyph) motion.fromTo(glyph, { opacity: 0, scale: 1, transformOrigin: "50% 60%" }, { keyframes: [{ opacity: 1, scale: 1.035, duration: .03, ease: "power1.out" }, { scale: 1, duration: .04, ease: "power2.out" }] }, .87);
-          motion
+            .to(draw, { value: 1, duration: .14 }, .76)
           // 5. The copy.
             .fromTo(copy, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .08, ease: "power2.out" }, .88)
             .to({}, { duration: .001 }, .999);
@@ -191,9 +185,7 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             ScrollTrigger.removeEventListener("refreshInit", measure);
             box.removeAttribute("style"); gShadow.removeAttribute("style");
             groups.forEach((group, i) => { group.setAttribute("transform", transformOf(shapes[i].final)); group.style.opacity = ""; });
-            line.setAttribute("d", linePath(shapes.map(shape => shape.final))); line.style.strokeDashoffset = ""; gsap.set(line, { clearProps: "opacity" });
-            gsap.set(pieces, { clearProps: "opacity" });
-            if (glyph) gsap.set(glyph, { clearProps: "opacity,transform" });
+            line.setAttribute("d", linePath(shapes.filter(shape => onLine(shape.id)).map(shape => shape.final))); line.style.strokeDashoffset = "";
           });
           // The tittle of "clique" detaches as the phrase leaves and lands in the palm as the hand settles.
           carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,

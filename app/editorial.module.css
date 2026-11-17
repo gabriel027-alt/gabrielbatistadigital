@@ -285,6 +285,3 @@
    half hidden behind the strip. Phones keep their own sizes. */
 /* The points forming the hand (components/HandParticles.tsx): over the page, under the brand dot and the menu. */
 .handParticles{position:fixed;inset:0;width:100vw;height:100vh;z-index:39;pointer-events:none;visibility:hidden}
-/* The g. line is a stroke drawn by the scroll; without motion the letter shows whole, without it. */
-.page:not([data-editorial-animated=true]) .gbLine,.page:not([data-editorial-animated=true]) .gbPiece{visibility:hidden}
-.gbGlyph{transform-box:fill-box;transform-origin:50% 60%}

@@ -2,8 +2,8 @@ import type { Metadata, Viewport } from "next";
 import Image from "next/image";
 import { ArtDirectedImage } from "@/components/ArtDirectedImage";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
-import { linePath, shapes, transformOf, view, type ShapeId } from "@/lib/gb-shapes";
-import { GbGlyph, GbShape, GbShapeDefs } from "@/components/GbShape";
+import { linePath, onLine, shapes, transformOf, view, type ShapeId } from "@/lib/gb-shapes";
+import { GbShape, GbShapeDefs } from "@/components/GbShape";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { brandKits } from "@/lib/brand-kits";
 import { Arrow } from "@/components/ui/icons";
@@ -67,8 +67,8 @@ const cardView = "379 321 700 482";
 const cardOrder: ShapeId[] = ["stem", "bowl", "hook", "dot"];
 const cardParts = cardOrder.map(id => shapes.find(shape => shape.id === id)!);
 // Paint order: the line passes behind the stem and in front of the rest.
-const backShapes = shapes.filter(shape => shape.id === "stem");
-const frontShapes = shapes.filter(shape => shape.id !== "stem");
+const backShapes = shapes.filter(shape => shape.id === "frame" || shape.id === "stem");
+const frontShapes = shapes.filter(shape => shape.id !== "frame" && shape.id !== "stem");
 
 export default function HomePage() {
   return <EditorialMotion className={`${display.variable} ${mono.variable}`}>
@@ -106,11 +106,9 @@ export default function HomePage() {
             </figure>
             <span className={styles.gShadow} data-g-shadow aria-hidden="true" />
             <div className={styles.fusionField} data-gb-shapes aria-hidden="true"><svg viewBox={`0 0 ${view.w} ${view.h}`} preserveAspectRatio="xMidYMid meet">
-              {backShapes.map(shape => <g key={shape.id} className={styles.gbPiece} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
-              <path className={styles.gbLine} data-gb-line d={linePath(shapes.map(shape => shape.final))} pathLength={1} />
-              {frontShapes.map(shape => <g key={shape.id} className={shape.id === "dot" ? undefined : styles.gbPiece} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
-              {/* Where the loose pieces meet, they fuse into one letter: the whole "g". */}
-              <g className={styles.gbGlyph} filter="url(#gb-soft)" data-gb-glyph><GbGlyph /></g>
+              {backShapes.map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
+              <path className={styles.gbLine} data-gb-line d={linePath(shapes.filter(shape => onLine(shape.id)).map(shape => shape.final))} pathLength={1} />
+              {frontShapes.map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
             </svg></div>
             <div className={styles.palmCopy} data-palm-copy><h2>Feito à mão, do primeiro traço ao último clique.</h2><p>Sem modelo pronto: cada site nasce da marca da sua clínica.</p></div>
           </div>
