@@ -55,6 +55,13 @@ const services = [
   { title: "Movimento & interação", text: "A rolagem mostra o espaço, o tratamento ou a recuperação. Um roteiro curto prepara a primeira conversa." },
   { title: "Design & desenvolvimento", text: "Eu desenho e programo o site, e confiro cada página no celular e no computador." },
 ];
+// Around the site: how the patient finds the clinic and gets to the calendar. Described as work done, with no numbers,
+// results or clients (there are none to show yet).
+const support = [
+  { title: "Google Ads & Instagram", text: "Configuro e acompanho campanhas no Google e no Instagram que levam quem procura o tratamento até o site." },
+  { title: "Google Meu Negócio & Maps", text: "Deixo o perfil da clínica completo e atualizado, com horários, fotos e caminho, para quem busca por perto." },
+  { title: "Automação no WhatsApp", text: "Uma primeira resposta automática tira as dúvidas mais comuns e encaminha o paciente até o agendamento." },
+];
 /** One project of the strip; the second lap of the loop is a decorative copy, clickable but hidden from assistive tech. */
 const project = (work: Work, decorative = false) => {
   const data = work.kit ? kit(work.kit) : undefined;
@@ -144,6 +151,7 @@ export default function HomePage() {
       <section className={styles.services} data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>O que eu construo</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>Sua clínica tem um jeito próprio de atender.<br/>Vamos dar forma a ele.</h2>
         <div className={styles.serviceList} data-read-list>{services.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}<span className={styles.readTrack} aria-hidden="true"><span className={styles.readFill} data-read-fill /><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot /></span></div>
+        <div className={`${styles.serviceList} ${styles.serviceMore}`} data-read-list><div className={styles.serviceLabel}><h3>Depois do site</h3><p>Para a clínica ser encontrada e o paciente chegar até a agenda.</p></div>{support.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}<span className={styles.readTrack} aria-hidden="true"><span className={styles.readFill} data-read-fill /><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot /></span></div>
       </section>
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
         <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt="Gabriel Batista" desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>

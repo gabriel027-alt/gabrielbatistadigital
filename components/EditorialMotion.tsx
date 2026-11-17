@@ -203,19 +203,25 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             // passes; then it underlines "Quem desenha é quem programa." and becomes the full stop of "Vamos conversar",
             // which stays lit. One dot all the way: a single trigger decides where it rests or flies.
             const panel = node.querySelector<HTMLElement>("[data-contact-panel]"), stop = node.querySelector<HTMLElement>("[data-contact-dot]");
-            const list = node.querySelector<HTMLElement>("[data-read-list]"), about = node.querySelector<HTMLElement>("[data-read-about]");
+            // The lists are the site services and then "Depois do site"; the dot reads one rule after the other.
+            const lists = [...node.querySelectorAll<HTMLElement>("[data-read-list]")], about = node.querySelector<HTMLElement>("[data-read-about]");
             const pasta = node.querySelector<HTMLElement>("[data-pasta-dot]");
-            const listDot = list?.querySelector<HTMLElement>("[data-read-dot]"), aboutDot = about?.querySelector<HTMLElement>("[data-read-dot]");
-            if (panel && stop && list && about && pasta && listDot && aboutDot) {
+            const listDots = lists.map(list => list.querySelector<HTMLElement>("[data-read-dot]")), aboutDot = about?.querySelector<HTMLElement>("[data-read-dot]");
+            if (panel && stop && lists.length && about && pasta && listDots.every(Boolean) && aboutDot) {
               const top = (el: HTMLElement) => el.getBoundingClientRect().top + scrollY;
-              // Read from when the rule is near the bottom of the screen until the list is still well in view, so the dot
-              // never waits under the navigation.
-              const listStart = () => top(list) - innerHeight * .85, listEnd = () => top(list) + list.offsetHeight - innerHeight * .62;
+              // Read from when the first rule is near the bottom of the screen until its list is still well in view, so
+              // the dot never waits under the navigation; each next rule starts right after a short hop down.
+              const readStart: (() => number)[] = [], readEnd: (() => number)[] = [];
+              lists.forEach((list, k) => {
+                readStart[k] = k === 0 ? () => top(list) - innerHeight * .85 : () => readEnd[k - 1]() + 90;
+                readEnd[k] = () => Math.max(readStart[k]() + 150, top(list) + list.offsetHeight - innerHeight * .62);
+              });
               const aboutStart = () => top(about) + about.offsetHeight - innerHeight * .8, aboutEnd = () => top(about) + about.offsetHeight - innerHeight * .5;
-              const stops = [pasta, listDot, aboutDot, stop];
+              const stops = [pasta, ...listDots as HTMLElement[], aboutDot, stop];
               const flights: [() => number, () => number][] = [
-                [() => trackRange(work, 1), listStart],
-                [listEnd, aboutStart],
+                [() => trackRange(work, 1), readStart[0]],
+                ...lists.slice(1).map((_, k) => [readEnd[k], readStart[k + 1]] as [() => number, () => number]),
+                [readEnd[lists.length - 1], aboutStart],
                 [aboutEnd, () => top(panel) - innerHeight * .45],
               ];
               const carrier = document.createElement("span");
@@ -243,23 +249,26 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
               ScrollTrigger.create({ start: flights[0][0], end: flights[flights.length - 1][1], invalidateOnRefresh: true, onUpdate: place, onRefresh: place });
               // Reading: the dot runs along the rule; each title is underlined while the dot crosses its column (its row
               // on phones).
-              const items = [...list.querySelectorAll<HTMLElement>("[data-read-item]")];
-              const read = (p: number) => {
-                list.style.setProperty("--read", p.toFixed(4));
-                const vertical = innerWidth <= 560, size = vertical ? list.offsetHeight : list.offsetWidth;
-                items.forEach(item => {
-                  const a = (vertical ? item.offsetTop : item.offsetLeft) / size, b = a + (vertical ? item.offsetHeight : item.offsetWidth) / size;
-                  item.style.setProperty("--u", Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
-                });
-              };
-              ScrollTrigger.create({ start: listStart, end: listEnd, invalidateOnRefresh: true, onUpdate: self => read(self.progress), onRefresh: self => read(self.progress) });
+              const items = lists.flatMap(list => [...list.querySelectorAll<HTMLElement>("[data-read-item]")]);
+              lists.forEach((list, k) => {
+                const own = [...list.querySelectorAll<HTMLElement>("[data-read-item]")];
+                const read = (p: number) => {
+                  list.style.setProperty("--read", p.toFixed(4));
+                  const vertical = innerWidth <= 560, size = vertical ? list.offsetHeight : list.offsetWidth;
+                  own.forEach(item => {
+                    const a = (vertical ? item.offsetTop : item.offsetLeft) / size, b = a + (vertical ? item.offsetHeight : item.offsetWidth) / size;
+                    item.style.setProperty("--u", Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
+                  });
+                };
+                ScrollTrigger.create({ start: readStart[k], end: readEnd[k], invalidateOnRefresh: true, onUpdate: self => read(self.progress), onRefresh: self => read(self.progress) });
+              });
               const underline = (p: number) => { about.style.setProperty("--read", p.toFixed(4)); about.style.setProperty("--u", p.toFixed(4)); };
               ScrollTrigger.create({ start: aboutStart, end: aboutEnd, invalidateOnRefresh: true, onUpdate: self => underline(self.progress), onRefresh: self => underline(self.progress) });
               restore.push(() => {
                 carrier.remove();
                 stops.forEach(el => { el.style.visibility = ""; });
                 delete stop.dataset.lit;
-                [list, about, ...items].forEach(el => { el.style.removeProperty("--read"); el.style.removeProperty("--u"); });
+                [...lists, about, ...items].forEach(el => { el.style.removeProperty("--read"); el.style.removeProperty("--u"); });
               });
             }
           }

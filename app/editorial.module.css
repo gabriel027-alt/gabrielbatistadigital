@@ -203,6 +203,12 @@
 /* The dot ends its journey as the full stop of "Vamos conversar" and stays lit. */
 .contactDot{display:inline-block;width:.26em;height:.26em;margin-left:.07em;border-radius:50%;vertical-align:baseline;background:radial-gradient(circle at 35% 30%,#ef5a4a 0%,#c4372b 55%,#7a1a12 100%)}
 .contactDot[data-lit=true]{animation:contactLit 2.2s ease-out infinite}
+/* "Depois do site": the services around the site, in the same four columns; the first holds the group's name. */
+.serviceMore{margin-top:-40px}
+.serviceLabel{padding:28px 0 0}
+.serviceLabel h3{margin:0 0 14px;font-family:var(--display);font-size:clamp(22px,2vw,32px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--copper)}
+.serviceLabel p{margin:0;font-size:13px;line-height:1.6;max-width:28ch;color:var(--soft)}
+@media(max-width:560px){.serviceMore{margin-top:-20px}.serviceLabel{padding:24px 0 8px}}
 /* The brand dot as a reading cursor (EditorialMotion): it runs along the top rule of the services, drawing it peach and
    underlining each title as it passes, then underlines "Quem desenha é quem programa." Hidden without motion. */
 .serviceList{position:relative}
