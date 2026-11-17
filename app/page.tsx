@@ -13,6 +13,7 @@ import { EditorialMedia } from "@/components/EditorialMedia";
 import { HeroClouds } from "@/components/HeroClouds";
 import { CloudTransition } from "@/components/CloudTransition";
 import { HandParticles } from "@/components/HandParticles";
+import { WorkParticles } from "@/components/WorkParticles";
 import type { FilmId } from "@/lib/project-films";
 import styles from "./editorial.module.css";
 
@@ -133,6 +134,8 @@ export default function HomePage() {
               <span className={styles.pastaRing} data-pasta-ring/>
               <span className={`${styles.tittle} ${styles.pastaDot}`} data-pasta-dot/>
             </div>
+            {/* The same points pour out of the opening folder and form each project card, in its own colours. */}
+            <WorkParticles />
             <p className={styles.workNote} data-work-note>Clique num projeto para ver o filme.</p>
           </div>
         </div>
