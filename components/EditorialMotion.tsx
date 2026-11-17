@@ -8,7 +8,7 @@ import Lenis from "lenis";
 import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
-import { lineEnds, linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
+import { linePath, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
 const subscribe = () => () => {};
 
 export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
@@ -126,12 +126,13 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           measure();
           ScrollTrigger.addEventListener("refreshInit", measure);
           const poses: Pose[] = shapes.map((shape, i) => ({ x: birth.x, y: birth.y, r: shape.scatter.r - 60, s: i === dotIndex ? 1 : .02 }));
-          const ends = { start: { ...birth }, end: { ...birth } };
+          // The line is the hand's first stroke: it starts at the spark above the palm, runs through the bowl, the hook
+          // and the stem as they gather, and ends at the dot; once the letter is whole the stroke has become it and fades.
           const draw = { value: 0 }, spark = { value: 0 };
           const render = () => {
             groups.forEach((group, i) => group.setAttribute("transform", transformOf(poses[i])));
             groups[dotIndex].style.opacity = String(spark.value);
-            line.setAttribute("d", pathThrough([ends.start, ...poses, ends.end]));
+            line.setAttribute("d", pathThrough([birth, ...poses]));
             line.style.strokeDashoffset = String(1 - draw.value);
           };
           // The scatter and drift poses of the old full-screen field are scaled around the spark so they stay near the hand.
@@ -164,11 +165,10 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
               .to(poses[i], { ...near(shape.drift, .5), duration: .18, ease: "sine.inOut" }, .57)
               .to(poses[i], { ...shape.final, duration: .16, ease: "power2.inOut" }, .74 + i * .006);
           });
-          motion.fromTo(ends.start, { ...birth }, { ...lineEnds.start, ease: "power3.out", duration: .16 }, .41)
-            .fromTo(ends.end, { ...birth }, { ...lineEnds.end, ease: "power3.out", duration: .16 }, .41)
-            .fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
+          motion.fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
             .to(draw, { value: .8, duration: .18 }, .57)
             .to(draw, { value: 1, duration: .14 }, .76)
+            .fromTo(line, { opacity: 1 }, { opacity: 0, duration: .06, ease: "power1.in" }, .89)
           // 5. The copy.
             .fromTo(copy, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .08, ease: "power2.out" }, .88)
             .to({}, { duration: .001 }, .999);
@@ -183,7 +183,7 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             ScrollTrigger.removeEventListener("refreshInit", measure);
             box.removeAttribute("style"); gShadow.removeAttribute("style");
             groups.forEach((group, i) => { group.setAttribute("transform", transformOf(shapes[i].final)); group.style.opacity = ""; });
-            line.setAttribute("d", linePath(shapes.map(shape => shape.final))); line.style.strokeDashoffset = "";
+            line.setAttribute("d", linePath(shapes.map(shape => shape.final))); line.style.strokeDashoffset = ""; gsap.set(line, { clearProps: "opacity" });
           });
           // The tittle of "clique" detaches as the phrase leaves and lands in the palm as the hand settles.
           carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,
