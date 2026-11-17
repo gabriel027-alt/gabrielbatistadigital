@@ -14,6 +14,7 @@ import { HeroClouds } from "@/components/HeroClouds";
 import { CloudTransition } from "@/components/CloudTransition";
 import { HandParticles } from "@/components/HandParticles";
 import { WorkParticles } from "@/components/WorkParticles";
+import { TalkParticles } from "@/components/TalkParticles";
 import type { FilmId } from "@/lib/project-films";
 import styles from "./editorial.module.css";
 
@@ -149,7 +150,7 @@ export default function HomePage() {
         <div className={styles.aboutStatement}><h2 id="editorial-about-title" data-kinetic>Uma boa ideia<br/>precisa funcionar.</h2><p>Inclusive no celular de quem procura a sua clínica.</p></div>
         <div className={styles.aboutPrinciples}><p>Sou Gabriel Batista.<br/>Eu mesmo desenho e programo o seu site.</p><h3>Quem desenha<br/>é quem programa.</h3><ul><li>Entender o negócio antes de desenhar a página.</li><li>Dar à marca uma linguagem própria.</li><li>Deixar claro, em cada parte da página, o próximo passo do paciente.</li><li>Conferir a experiência no navegador e no celular.</li></ul><a href={contact} target="_blank" rel="noopener noreferrer" className={styles.photoLink}>Conversar sobre o meu site <Arrow size={22}/></a></div>
       </section>
-      <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar"><div><h2>O próximo site pode ser<br/>o da sua clínica.</h2><p>Conte como a sua clínica atende hoje e o que você quer que o site resolva.</p></div><span className={styles.contactAction}><Arrow size={42}/><span>Vamos conversar<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span></span></a></section>
+      <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar"><TalkParticles /><div><h2>O próximo site pode ser<br/>o da sua clínica.</h2><p>Conte como a sua clínica atende hoje e o que você quer que o site resolva.</p></div><span className={styles.contactAction}><Arrow size={42}/><span>Vamos conversar<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span></span></a></section>
     </main>
     <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>Sites para clínicas e negócios de alto ticket</span><p><a href={contact} target="_blank" rel="noopener noreferrer">Conversar pelo WhatsApp</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>© 2026 Gabriel Batista Digital. Todos os direitos reservados.</span><a href="#editorial-start">Voltar ao início</a></div></footer>
   </EditorialMotion>;
