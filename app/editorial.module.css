@@ -219,6 +219,12 @@
 /* The points that gather around the lit full stop (components/TalkParticles.tsx): behind the words of the panel. */
 .contact>a{position:relative}
 .contact>a>div,.contactAction{position:relative;z-index:1}
+/* The call itself, its arrow right after the lit full stop, and a quiet line under it saying where the click goes. */
+.contactAction{flex-direction:column;align-items:flex-end;justify-content:center;gap:10px}
+.contactGo{display:inline-flex;align-items:center;gap:.3em}
+.contactGo svg{flex:none;width:.7em;height:.7em}
+.contactWhere{font-family:var(--font-manrope),Arial,sans-serif;font-size:13px;font-weight:500;letter-spacing:0;color:var(--ink)}
+@media(max-width:700px){.contactAction{gap:6px}.contactWhere{font-size:12px}}
 .talkParticles{position:absolute;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
 @keyframes contactLit{0%{box-shadow:0 0 0 0 #ef5a4a80}70%,100%{box-shadow:0 0 0 .45em #ef5a4a00}}
 @media(prefers-reduced-motion:reduce){.contactDot[data-lit=true]{animation:none}}
