@@ -9,8 +9,7 @@ const ring = "M-105 0A105 105 0 1 0 105 0A105 105 0 1 0 -105 0ZM-35 0A35 35 0 1 
 const halfRing = "M-105 0A105 105 0 0 0 105 0L35 0A35 35 0 0 1 -35 0Z";
 
 /** tone "dark": deeper copper and red, for the shapes drawn on the peach hero card. */
-/** bare: without the soft shadow, for a piece revealed by a mask (the shadow is then cast by the group around it). */
-export function GbShape({ id, tone = "light", bare = false }: { id: ShapeId; tone?: "light" | "dark"; bare?: boolean }) {
+export function GbShape({ id, tone = "light" }: { id: ShapeId; tone?: "light" | "dark" }) {
   const fill = `url(#gb-${tone === "dark" ? "dark" : "fill"}-${id})`;
   const gloss = "url(#gb-gloss)";
   const shapes: Record<ShapeId, (paint: string) => ReactNode> = {
@@ -21,7 +20,29 @@ export function GbShape({ id, tone = "light", bare = false }: { id: ShapeId; ton
     bar: paint => <rect x="-30" y="-165" width="60" height="330" rx="30" fill={paint} />,
     orb: paint => <circle r="105" fill={paint} />,
   };
-  return <g filter={bare ? undefined : "url(#gb-soft)"}>{shapes[id](fill)}{id !== "dot" && id !== "hook" && shapes[id](gloss)}</g>;
+  return <g filter="url(#gb-soft)">{shapes[id](fill)}{id !== "dot" && id !== "hook" && shapes[id](gloss)}</g>;
+}
+
+/**
+ * The whole "g" as one letter, in view-box coordinates where the pieces end up (bowl centre 675 470, stem x 710–780,
+ * hook centre 675 670): one fill and one light across the letter, so it reads as a single glyph and not as parts
+ * touching. The stem's top is rounded level with the top of the bowl, it flows straight into the hook, and the hook
+ * ends in a round terminal. The shadow is cast by whatever group holds it.
+ */
+// One path, non-zero fill: every outline runs anticlockwise on screen except the counter of the bowl, so the parts
+// merge without seams and only the counter stays open.
+const glyph = [
+  "M570 470A105 105 0 1 0 780 470A105 105 0 1 0 570 470Z",
+  "M640 470A35 35 0 1 1 710 470A35 35 0 1 1 640 470Z",
+  "M710 672L780 672L780 400A35 35 0 0 0 710 400Z",
+  "M570 670A105 105 0 0 0 780 670L710 670A35 35 0 0 1 640 670Z",
+  "M640 670A35 35 0 0 0 570 670Z",
+].join("");
+export function GbGlyph() {
+  return <g>
+    <path d={glyph} fill="url(#gb-glyph)" />
+    <path d={glyph} fill="url(#gb-glyph-light)" />
+  </g>;
 }
 
 /** Shared gradients: peach, cream, copper and the portrait red, lit from the top left. */
@@ -47,6 +68,10 @@ export function GbShapeDefs() {
     {Object.entries(fills).map(([id, [a, b, c]]) => <linearGradient key={id} id={`gb-fill-${id}`} x1="0" y1="0" x2="1" y2="1">
       <stop offset="0" stopColor={a} /><stop offset=".55" stopColor={b} /><stop offset="1" stopColor={c} />
     </linearGradient>)}
+    <linearGradient id="gb-glyph" gradientUnits="userSpaceOnUse" x1="560" y1="360" x2="800" y2="780">
+      <stop offset="0" stopColor="#ffe6d3" /><stop offset=".45" stopColor="#f6a67c" /><stop offset="1" stopColor="#c45f3a" />
+    </linearGradient>
+    <radialGradient id="gb-glyph-light" gradientUnits="userSpaceOnUse" cx="630" cy="420" r="230"><stop offset="0" stopColor="#fff" stopOpacity=".4" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></radialGradient>
     <radialGradient id="gb-gloss" cx=".32" cy=".26" r=".55"><stop offset="0" stopColor="#fff" stopOpacity=".55" /><stop offset="1" stopColor="#fff" stopOpacity="0" /></radialGradient>
     <filter id="gb-soft" x="-80%" y="-60%" width="260%" height="320%"><feDropShadow dx="0" dy="26" stdDeviation="22" floodColor="#8a2219" floodOpacity=".16" /></filter>
   </defs>;

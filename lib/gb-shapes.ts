@@ -39,7 +39,7 @@ export function pathThrough(points: { x: number; y: number }[]) {
  * with a centre-line radius of 70.
  */
 export type Stroked = "bowl" | "stem" | "hook";
-const R = 70, A0 = -Math.PI / 6, STEM_X = 745, STEM_TOP = 385, STEM_END = 670;
+const R = 70, A0 = -Math.PI / 6, STEM_X = 745, STEM_TOP = 400, STEM_END = 670;
 const bowlStart = { x: 675 + R * Math.cos(A0), y: 470 + R * Math.sin(A0) };
 export const brushes: Record<Stroked, string> = {
   bowl: `M${bowlStart.x.toFixed(1)} ${bowlStart.y.toFixed(1)}A70 70 0 0 0 ${(1350 - bowlStart.x).toFixed(1)} ${(940 - bowlStart.y).toFixed(1)}A70 70 0 0 0 ${bowlStart.x.toFixed(1)} ${bowlStart.y.toFixed(1)}`,

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { ArtDirectedImage } from "@/components/ArtDirectedImage";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { brushes, shapes, transformOf, view, type ShapeId, type Stroked } from "@/lib/gb-shapes";
-import { GbShape, GbShapeDefs } from "@/components/GbShape";
+import { GbGlyph, GbShape, GbShapeDefs } from "@/components/GbShape";
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import { brandKits } from "@/lib/brand-kits";
 import { Arrow } from "@/components/ui/icons";
@@ -67,8 +67,6 @@ const cardView = "379 321 700 482";
 const cardOrder: ShapeId[] = ["stem", "bowl", "hook", "dot"];
 const cardParts = cardOrder.map(id => shapes.find(shape => shape.id === id)!);
 // Paint order: the line passes behind the stem and in front of the rest.
-const backShapes = shapes.filter(shape => shape.id === "stem");
-const frontShapes = shapes.filter(shape => shape.id !== "stem");
 
 export default function HomePage() {
   return <EditorialMotion className={`${display.variable} ${mono.variable}`}>
@@ -107,12 +105,12 @@ export default function HomePage() {
             <span className={styles.gShadow} data-g-shadow aria-hidden="true" />
             <div className={styles.fusionField} data-gb-shapes aria-hidden="true"><svg viewBox={`0 0 ${view.w} ${view.h}`} preserveAspectRatio="xMidYMid meet">
               {/* Each piece shows through a brush along its centre line, so the dot can write the letter. */}
-              <defs>{(Object.keys(brushes) as Stroked[]).map(id => <mask key={id} id={`gb-brush-${id}`} maskUnits="userSpaceOnUse" x="-200" y="-200" width="1840" height="1400">
-                <path className={styles.gbBrush} data-gb-brush={id} d={brushes[id]} pathLength={1} />
-              </mask>)}</defs>
-              {[...backShapes, ...frontShapes].map(shape => shape.id === "dot"
-                ? <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>
-                : <g key={shape.id} filter="url(#gb-soft)"><g mask={`url(#gb-brush-${shape.id})`}><g data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} bare /></g></g></g>)}
+              <defs><mask id="gb-brush" maskUnits="userSpaceOnUse" x="-200" y="-200" width="1840" height="1400">
+                {(Object.keys(brushes) as Stroked[]).map(id => <path key={id} className={styles.gbBrush} data-gb-brush={id} d={brushes[id]} pathLength={1} />)}
+              </mask></defs>
+              {/* One letter, written by the dot through one brush; the dot is the full stop. */}
+              <g filter="url(#gb-soft)"><g mask="url(#gb-brush)" data-gb-glyph><GbGlyph /></g></g>
+              {shapes.filter(shape => shape.id === "dot").map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
               <circle className={styles.gbClick} data-gb-click cx={shapes.find(shape => shape.id === "dot")!.final.x} cy={shapes.find(shape => shape.id === "dot")!.final.y} r="26" />
             </svg></div>
             <div className={styles.palmCopy} data-palm-copy><h2>Feito à mão, do primeiro traço ao último clique.</h2><p>Sem modelo pronto: cada site nasce da marca da sua clínica.</p></div>

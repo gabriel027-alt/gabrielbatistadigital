@@ -95,8 +95,9 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
           const box = field.parentElement as HTMLElement, copy = creation.querySelector<HTMLElement>("[data-palm-copy]")!;
           const body = creation.querySelector<HTMLElement>("[data-palm-body]")!, gShadow = creation.querySelector<HTMLElement>("[data-g-shadow]")!;
           const dot = creation.querySelector<HTMLElement>("[data-creation-dot]")!, ring = creation.querySelector("[data-creation-ring]");
-          const groups = shapes.map(shape => field.querySelector<SVGGElement>(`[data-gb-shape="${shape.id}"]`)!);
+          // The letter is one glyph (written through the brush mask); only the dot moves as its own piece.
           const dotIndex = shapes.findIndex(shape => shape.id === "dot");
+          const groups: Record<number, SVGGElement> = { [dotIndex]: field.querySelector<SVGGElement>('[data-gb-shape="dot"]')! };
           // The assembled "g." spans x 570–890 and y 350–775 of the view box. It floats just above the palm, to the right
           // of the thumb (which ends 57% across the photo), below the navigation or the copy when the copy sits on top
           // (phones), and inside the screen. Layout values only, no transforms.
@@ -186,7 +187,7 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
             removeEventListener("mousemove", follow);
             ScrollTrigger.removeEventListener("refreshInit", measure);
             box.removeAttribute("style"); gShadow.removeAttribute("style");
-            groups.forEach((group, i) => { group.setAttribute("transform", transformOf(shapes[i].final)); group.style.opacity = ""; });
+            groups[dotIndex].setAttribute("transform", transformOf(shapes[dotIndex].final)); groups[dotIndex].style.opacity = "";
             Object.values(brushPaths).forEach(path => { path.removeAttribute("stroke-dasharray"); path.removeAttribute("stroke-opacity"); });
             if (click) gsap.set(click, { clearProps: "all" });
           });
