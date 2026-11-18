@@ -79,16 +79,27 @@ export function HandParticles() {
     const u = (name: string) => gl.getUniformLocation(program, name);
     const buffer = gl.createBuffer();
     let count = 0;
-    let ready = false;
+    let ready = false, fallback = !("createImageBitmap" in window);
 
     // Where each point belongs: opaque pixels of a small copy of the hand photo, with their colours.
+    // The photo is large: it is decoded and scaled down off the main thread first (createImageBitmap), so reading it
+    // does not stall the scroll as the hand scene arrives.
+    let small: ImageBitmap | null = null, asking = false;
     const plant = () => {
       if (ready || !img.complete || !img.naturalWidth) return;
       const w = 520, h = Math.round(img.naturalHeight * w / img.naturalWidth);
+      if (!small) {
+        if (!asking && "createImageBitmap" in window) {
+          asking = true;
+          createImageBitmap(img, { resizeWidth: w, resizeHeight: h, resizeQuality: "medium" }).then(bitmap => { small = bitmap; wake(); }, () => { asking = false; small = null; fallback = true; wake(); });
+        }
+        if (!fallback) return;
+      }
       const c = document.createElement("canvas");
       c.width = w; c.height = h;
       const g = c.getContext("2d", { willReadFrequently: true })!;
-      g.drawImage(img, 0, 0, w, h);
+      g.drawImage(small ?? img, 0, 0, w, h);
+      small?.close(); small = null; asking = false;
       const { data } = g.getImageData(0, 0, w, h);
       const inside: number[] = [];
       for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (data[(y * w + x) * 4 + 3] > 200) inside.push(x, y);

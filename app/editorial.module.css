@@ -108,6 +108,8 @@
   .floatFour{width:40vw;left:4%;top:56%}
   .floatFive{display:none}
 }
+/* Four links since "Serviços" joined (17/11/2026): on the narrowest phones they tighten so the motion control keeps its room. */
+@media(max-width:380px){.nav nav{gap:2px;padding:4px}.nav nav a{padding:11px 8px;font-size:10.5px}}
 @media(prefers-reduced-motion:reduce){.frameGlow{transition:none}}
 
 /* Authored shapes (12/11/2026): the "gb/" monogram taken apart, one line threading them. */
@@ -209,6 +211,10 @@
 .serviceLabel h3{margin:0 0 14px;font-family:var(--display);font-size:clamp(22px,2vw,32px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--copper)}
 .serviceLabel p{margin:0;font-size:13px;line-height:1.6;max-width:28ch;color:var(--soft)}
 @media(max-width:560px){.serviceMore{margin-top:-20px}.serviceLabel{padding:24px 0 8px}}
+/* "Como funciona": four steps in the same columns, numbered, read by the dot like the services. */
+.stepsTitle{margin:0 4vw 0;font-family:var(--display);font-size:clamp(22px,2vw,32px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--copper);padding-bottom:24px}
+.stepNum{display:block;margin-bottom:8px;font-family:var(--font-manrope),Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--copper)}
+@media(max-width:560px){.stepsTitle{margin:0 6vw;padding-bottom:16px}}
 /* "Sob medida": one quiet line under the lists that opens the conversation for what is not on them. */
 .serviceCustom{display:flex;align-items:center;justify-content:space-between;gap:24px;margin:-50px 4vw 90px;padding:22px 0;border-top:1px solid #20171426;font-size:15px;line-height:1.55;color:var(--ink);text-decoration:none}
 .serviceCustom span{max-width:80ch}
@@ -252,7 +258,7 @@
 /* Projects (14/11/2026): the brand dot drops onto the folder's tab like a click, the folder opens and the projects
    come out as an endless strip of films. The CSS is the final state, so without motion the folder sits open below the strip. */
 .work{position:relative}
-.workTrack{position:relative;height:300vh}
+.workTrack{position:relative;height:250vh}
 .workStage{position:sticky;top:0;height:100svh;overflow:clip;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(12px,2.2svh,24px);padding-top:clamp(48px,8svh,90px)}
 .projectsWord{position:relative;z-index:1;margin:0;text-align:center;font-size:min(12.5vw,19svh);line-height:.8;font-weight:500;letter-spacing:-.06em;color:#c96f4b;pointer-events:none}
 .strip{position:relative;z-index:2;width:100%;overflow:hidden;padding:6px 0}
@@ -283,7 +289,7 @@
 .pastaDot{display:block;z-index:4}
 .pastaRing{border-radius:50%;border:2px solid var(--peach);box-shadow:0 0 14px #ef5a4a99;opacity:0}
 @media(max-width:700px){
-  .workTrack{height:260vh}
+  .workTrack{height:215vh}
   .projectsWord{font-size:24vw}
   .stripList{gap:12px;padding-right:12px}
   .stripItem{width:72vw}

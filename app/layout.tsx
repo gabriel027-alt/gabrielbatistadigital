@@ -45,6 +45,10 @@ const organization = {
   "@type": "Organization",
   name: siteConfig.brand,
   url: siteConfig.domain,
+  description: siteConfig.description,
+  founder: { "@type": "Person", name: "Gabriel Batista" },
+  areaServed: { "@type": "Country", name: "Brasil" },
+  knowsAbout: ["Design de sites", "Desenvolvimento web", "Landing pages", "Google Meu Negócio", "Google Ads", "Automação de WhatsApp"],
   telephone: `+${siteConfig.whatsappNumber}`,
   contactPoint: {
     "@type": "ContactPoint",

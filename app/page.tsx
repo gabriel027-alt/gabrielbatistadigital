@@ -57,6 +57,12 @@ const services = [
 ];
 // Around the site: how the patient finds the clinic and gets to the calendar. Described as work done, with no numbers,
 // results or clients (there are none to show yet).
+const steps = [
+  { title: "Conversa", text: "Você conta como a clínica atende hoje, quem são os pacientes e o que o site precisa resolver." },
+  { title: "Proposta", text: "Eu proponho as páginas, o conteúdo e o que mais faz sentido para a clínica, com o investimento de cada parte." },
+  { title: "Design & programação", text: "Desenho a partir das fotos e da marca da clínica e programo o site. Você acompanha o andamento antes de ir ao ar." },
+  { title: "No ar", text: "O site é publicado conferido no celular e no computador, pronto para receber os pacientes." },
+];
 const support = [
   { title: "Google Meu Negócio & Maps", text: "Deixo o perfil da clínica completo e atualizado, com horários, fotos e caminho, para quem busca por perto." },
   { title: "Google Ads & Instagram", text: "Configuro e acompanho campanhas no Google e no Instagram que levam quem procura o tratamento até o site." },
@@ -82,7 +88,7 @@ const frontShapes = shapes.filter(shape => shape.id !== "frame" && shape.id !== 
 export default function HomePage() {
   return <EditorialMotion className={`${display.variable} ${mono.variable}`}>
     <a className={styles.skip} href="#editorial-main">Pular para o conteúdo</a>
-    <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label="Navegação do portfólio"><a href="#editorial-about">Sobre</a><a href="#editorial-work">Projetos</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer">Conversar</a></nav><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar">Conversar <Arrow size={15}/></a></header>
+    <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label="Navegação do portfólio"><a href="#editorial-work">Projetos</a><a href="#editorial-services">Serviços</a><a href="#editorial-about">Sobre</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer">Conversar</a></nav><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar">Conversar <Arrow size={15}/></a></header>
     <svg className={styles.defs} aria-hidden="true" focusable="false"><GbShapeDefs /></svg>
     <main id="editorial-main">
       <section id="editorial-start" className={styles.hero} data-editorial-theme="photo">
@@ -148,12 +154,15 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className={styles.services} data-editorial-theme="paper" aria-labelledby="editorial-services-title">
+      <section className={styles.services} id="editorial-services" data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>O que eu construo</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>Sua clínica tem um jeito próprio de atender.<br/>Vamos dar forma a ele.</h2>
         <div className={styles.serviceList} data-read-list>{services.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}<span className={styles.readTrack} aria-hidden="true"><span className={styles.readFill} data-read-fill /><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot /></span></div>
         <div className={`${styles.serviceList} ${styles.serviceMore}`} data-read-list><div className={styles.serviceLabel}><h3>Depois do site</h3><p>Para a clínica ser encontrada e o paciente chegar até a agenda.</p></div>{support.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}<span className={styles.readTrack} aria-hidden="true"><span className={styles.readFill} data-read-fill /><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot /></span></div>
         {/* For what is not on the list: an invitation to talk, not a promise (no CRM or dashboard delivered yet). */}
         <a className={styles.serviceCustom} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label="Vamos conversar"><span><strong>Sob medida.</strong> Precisa de algo que não está aqui, como um painel com os números da clínica, um CRM ou uma integração entre sistemas? Me conte o problema, e eu digo se e como posso resolver.</span><Arrow size={20}/></a>
+        {/* How it works, read by the dot like the lists above. Process only: no deadlines or prices until Gabriel sets them. */}
+        <h3 className={styles.stepsTitle} id="editorial-steps">Como funciona</h3>
+        <div className={styles.serviceList} data-read-list>{steps.map((item, i) => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}<span className={styles.readTrack} aria-hidden="true"><span className={styles.readFill} data-read-fill /><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot /></span></div>
       </section>
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
         <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt="Gabriel Batista" desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>

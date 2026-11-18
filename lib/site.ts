@@ -3,7 +3,7 @@ export const siteConfig = {
   domain: "https://gabrielbatistadigital.com.br",
   language: "pt-BR",
   description:
-    "Sites que fazem sua marca ser percebida. Design com personalidade e desenvolvimento por Gabriel Batista.",
+    "Design e desenvolvimento de sites com marca própria para clínicas e negócios de alto ticket, do primeiro contato ao agendamento.",
   whatsappNumber: "5538998267717",
   whatsappBaseUrl: "https://wa.me/5538998267717",
   contactUrl: "https://wa.me/5538998267717",

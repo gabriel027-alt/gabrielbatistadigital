@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
-import { useEffect, useRef, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
 import { films, type FilmId } from "@/lib/project-films";
 import styles from "@/app/editorial.module.css";
 const subscribe = () => () => {};
@@ -15,6 +15,8 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
   const full = useRef<HTMLVideoElement>(null);
   const trigger = useRef<HTMLButtonElement>(null);
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
+  // The full film's poster is the full-size picture: asked for only once the film is opened, not on arrival.
+  const [opened, setOpened] = useState(false);
   useEffect(() => {
     const el = video.current, root = el?.closest<HTMLElement>("[data-editorial]");
     if (!el || !root || !film) return;
@@ -39,10 +41,10 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
   if (!film) return <Link className={styles.media} href={href || "#editorial-work"} tabIndex={tab}>{visual}</Link>;
   const data = films[film];
   return <>
-    {hydrated ? <button ref={trigger} className={styles.media} type="button" tabIndex={tab} aria-label={`Ver filme completo: ${name}`} aria-haspopup="dialog" onClick={() => { dialog.current?.showModal(); document.dispatchEvent(new Event("editorial-modal")); }}>{visual}</button> : <a className={styles.media} href={data.source} tabIndex={tab}>{visual}</a>}
+    {hydrated ? <button ref={trigger} className={styles.media} type="button" tabIndex={tab} aria-label={`Ver filme completo: ${name}`} aria-haspopup="dialog" onClick={() => { setOpened(true); dialog.current?.showModal(); document.dispatchEvent(new Event("editorial-modal")); }}>{visual}</button> : <a className={styles.media} href={data.source} tabIndex={tab}>{visual}</a>}
     <dialog ref={dialog} data-lenis-prevent className={styles.filmDialog} aria-label={`Filme do projeto ${name}`} onClose={() => { full.current?.pause(); document.dispatchEvent(new Event("editorial-modal")); trigger.current?.focus(); }}>
       <div className={styles.filmHeader}><span>{name}</span><button type="button" onClick={() => dialog.current?.close()}>Fechar <span aria-hidden="true">×</span></button></div>
-      <video ref={full} controls playsInline preload="none" poster={image} aria-label={data.label} data-vertical={data.mobileSource ? "" : undefined}>{data.mobileSource && <source src={data.mobileSource} media="(max-width: 700px)" type="video/mp4"/>}<source src={data.source} type="video/mp4"/>{data.captions && <track kind="captions" src={data.captions} srcLang="pt-BR" label="Português"/>}Seu navegador não reproduz este vídeo.</video>
+      <video ref={full} controls playsInline preload="none" poster={opened ? image : undefined} aria-label={data.label} data-vertical={data.mobileSource ? "" : undefined}>{data.mobileSource && <source src={data.mobileSource} media="(max-width: 700px)" type="video/mp4"/>}<source src={data.source} type="video/mp4"/>{data.captions && <track kind="captions" src={data.captions} srcLang="pt-BR" label="Português"/>}Seu navegador não reproduz este vídeo.</video>
       <a className={styles.filmContact} href={data.contact} target="_blank" rel="noopener noreferrer">{data.action} <Arrow size={17}/></a><p>Converse com Gabriel pelo WhatsApp.</p>
     </dialog>
   </>;
