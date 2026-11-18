@@ -85,4 +85,15 @@ export const brandKits: BrandKit[] = [
     signatureMotion: "Chave Cão / Gato que muda a página e portas do hospital que se abrem sala a sala com a rolagem",
     hero: "Veterinária ajoelhada com o cão (ou sentada com o gato), título sobre a parede clara e a chave Cão / Gato", status: "aprovado",
   },
+  {
+    id: "lume", route: "/modelos/psicologia", niche: "Psicologia",
+    concept: "O peso sai dos ombros.", mark: "Uma janela num traço só, que se abre e deixa entrar a luz",
+    // Starting palette from the kit (18/11/2026); to be re-measured on the user's photos when they arrive.
+    palette: { linho: "#f4ede3", argila: "#dcc7b1", rosaCha: "#b98478", cacau: "#4a3128", luz: "#fffaf2" },
+    material: "Linho cru com luz de janela filtrada pela cortina", typography: { display: "Young Serif", text: "Public Sans" },
+    photo: "Psicóloga olhando para a câmera, num consultório claro com poltrona e cortina, luz da manhã",
+    signatureGraphic: "Cortina de luz: faixas verticais de luz que atravessam o layout",
+    signatureMotion: "As cobranças se soltam: frases de cobrança pesam sobre o título e caem com a rolagem",
+    hero: "Título de dor coberto por frases de cobrança, que caem até ele ficar limpo", status: "em construção",
+  },
 ];

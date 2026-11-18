@@ -142,6 +142,35 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
 - Sem push nem deploy sem ordem do usuário. O site segue fora do ar.
 - Não commitar os rascunhos dele: `app/propostas.css`, `app/propostas/a/`, `app/propostas/b/`, `HANDOFF-CLAUDE.md`, `.claude/` e `docs/research/juanmora-analysis/`.
 
+## Piloto da Lume, feito antes das fotos (18/11/2026)
+
+**Decisão:** o usuário escolheu montar primeiro a cena, que é de texto, para aprovar o movimento antes de investir nas fotos.
+
+**Arquivos:**
+- `app/modelos/psicologia/`: `page.tsx`, `LumeMotion.tsx`, `LumeMark.tsx` e `lume.module.css`;
+- `lib/lume.ts`;
+- o kit `lume` em `lib/brand-kits.ts`, como "em construção";
+- `psicologia` em `rebuiltModels`.
+
+**O que existe:**
+- **Hero com a cena "As cobranças se soltam":**
+  - na chegada, seis frases pousam sobre o título;
+  - a rolagem, em 260svh, solta uma a uma: elas caem para fora do quadro, o título fica nítido e a luz da cortina entra;
+  - na volta, elas sobem e se encaixam de novo.
+  - O palco desliza sob o cabeçalho e recorta as frases caídas.
+- **"Talvez você esteja aqui porque…":** seis cartões marcáveis. Com algum marcado, o botão vira "Quero falar sobre isso", só por CSS (`:has`), e funciona sem JS.
+- **Ainda é provisório:**
+  - o espaço do retrato, com a faixa de cortina e a legenda "foto a gerar";
+  - a paleta inicial do kit;
+  - os links do menu, que apontam para os sinais.
+
+**Evidência:**
+- `tests/e2e/lume-model.spec.ts` (4 testes, aprovados): ida e volta, movimento reduzido com axe AA, sem JS e 360 px.
+- `brand-kits.spec.ts` e `models.spec.ts` aprovados.
+- Vídeos em `Downloads/lume-piloto/`, fora do repositório:
+  - `lume-piloto-pc.mp4`, em 1536×696;
+  - `lume-piloto-celular.mp4`, em 390×844.
+
 ## Pedidos de imagem para o usuário
 
 Regras para todas as imagens:
