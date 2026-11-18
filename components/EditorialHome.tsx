@@ -15,6 +15,8 @@ import { WorkParticles } from "@/components/WorkParticles";
 import { TalkParticles } from "@/components/TalkParticles";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { ContactTracking } from "@/components/ContactTracking";
+import { ConsentBanner, ConsentPreferences } from "@/components/ConsentBanner";
+import { privacyCopy } from "@/lib/privacy-copy";
 import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
 import type { FilmId } from "@/lib/project-films";
 import styles from "@/app/editorial.module.css";
@@ -59,7 +61,7 @@ const frontShapes = shapes.filter(shape => shape.id !== "frame" && shape.id !== 
 const readTrack = <span className={styles.readTrack} aria-hidden="true"><span className={styles.readFill} data-read-fill /><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot /></span>;
 
 export function EditorialHome({ locale }: { locale: Locale }) {
-  const t = homeCopy[locale], contact = contactUrl(locale);
+  const t = homeCopy[locale], contact = contactUrl(locale), legal = privacyCopy[locale];
   /** One project of the strip; the second lap of the loop is a decorative copy, clickable but hidden from assistive tech. */
   const project = (work: Work, decorative = false) => {
     const data = work.kit ? kit(work.kit) : undefined;
@@ -72,6 +74,8 @@ export function EditorialHome({ locale }: { locale: Locale }) {
     {/* The root layout says pt-BR; the other languages correct it before anything is read. */}
     {/* Counts the clicks on WhatsApp for the analytics tool to come; loads and sends nothing by itself. */}
     <ContactTracking />
+    {/* Cookie consent for Google Analytics and Ads; renders nothing until their IDs are configured (lib/analytics.ts). */}
+    <ConsentBanner copy={legal} />
     {locale !== "pt" && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(localeInfo[locale].html)}` }} />}
     <a className={styles.skip} href="#editorial-main">{t.skip}</a>
     <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label={t.navLabel}><a href="#editorial-work">{t.nav.work}</a><a href="#editorial-services">{t.nav.services}</a><a href="#editorial-about">{t.nav.about}</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer" data-track-place="menu-celular">{t.nav.talk}</a></nav><div className={styles.navEnd}><LanguageSwitch current={locale} label={t.langLabel} /><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="menu">{t.nav.talk} <Arrow size={15}/></a></div></header>
@@ -159,6 +163,6 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       </section>
       <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="contato"><TalkParticles /><div><h2>{t.contactTitle[0]}<br/>{t.contactTitle[1]}</h2><p>{t.contactText}</p></div><span className={styles.contactAction}><span className={styles.contactGo}><span>{t.contactGo}<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span><Arrow size={42}/></span><span className={styles.contactWhere}>{t.contactWhere}</span></span></a></section>
     </main>
-    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><a href="#editorial-start">{t.backTop}</a></div></footer>
+    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><span className={styles.footerLegal}><a href={legal.path}>{legal.footerPrivacy}</a><ConsentPreferences label={legal.footerCookies} className={styles.footerPrefs} /></span><a href="#editorial-start">{t.backTop}</a></div></footer>
   </EditorialMotion>;
 }

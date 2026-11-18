@@ -1,6 +1,6 @@
 # Medição dos cliques no WhatsApp
 
-Preparado em 18/11/2026, antes das campanhas. **Nenhuma ferramenta de estatística está ligada.** O site não carrega script externo e não grava cookie: só registra o clique dentro da própria página, pronto para a ferramenta que você escolher (`components/ContactTracking.tsx`).
+Preparado em 18/11/2026, antes das campanhas. **Escolha do usuário: Google Analytics 4 + Google Ads, com banner de consentimento.** Tudo fica desligado até os IDs serem configurados. Sem os IDs, o site não carrega script externo e não grava cookie: só registra o clique dentro da própria página (`components/ContactTracking.tsx`).
 
 ## O que é registrado em cada clique
 
@@ -18,7 +18,24 @@ O mesmo clique é entregue a quatro destinos, todos opcionais:
 3. `window.plausible("WhatsApp click", { props })`: se o Plausible estiver na página.
 4. Evento `gb:contact` no `document`: para qualquer outra ferramenta, como o `track()` do Vercel Analytics.
 
-## Como ligar cada opção
+## Ligar o Google Analytics e o Google Ads (escolha feita)
+
+1. **GA4:** no Google Analytics, crie uma propriedade e um fluxo da Web para `gabrielbatistadigital.com.br` e copie o ID de medição (`G-…`). Em Administrador › Retenção de dados, escolha o prazo (a política de privacidade remete a essa configuração).
+2. **Google Ads:** em Metas › Conversões, crie uma ação de conversão do tipo site, configurada "manualmente com código", chamada "Clique no WhatsApp", e copie o ID da tag (`AW-…`) e o rótulo da conversão.
+3. Na Vercel (Settings › Environment Variables, ambiente Production), crie as três variáveis e publique de novo:
+   - `NEXT_PUBLIC_GA_ID` = `G-…`
+   - `NEXT_PUBLIC_ADS_ID` = `AW-…`
+   - `NEXT_PUBLIC_ADS_CONVERSION_LABEL` = rótulo da conversão
+4. A partir daí:
+   - o banner aparece nos quatro idiomas. O gtag.js só carrega depois de "Aceitar", e recusar é tão fácil quanto aceitar;
+   - cada clique no WhatsApp vai para o GA4 como `whatsapp_click` (com lugar, idioma e campanha) e conta como conversão no Google Ads;
+   - a personalização de anúncios (remarketing) fica desligada;
+   - "Preferências de cookies", no rodapé, reabre a escolha. Retirar o consentimento apaga os cookies `_ga` e `_gcl`.
+5. Política de privacidade nos quatro idiomas: `/privacidade`, `/pt-pt/privacidade`, `/en/privacy` e `/es/privacidad` (`lib/privacy-copy.ts`). É um texto em linguagem simples, **não é parecer jurídico**: peça a um advogado para revisar antes das campanhas, principalmente para Portugal.
+
+Com o consentimento básico (o Google só carrega após o aceite), quem recusa não é contado. Os números do Analytics e do Ads vão ficar abaixo das visitas e dos cliques reais.
+
+## Outras opções (não escolhidas)
 
 ### A. Sem cookies e sem banner: Plausible ou Vercel Web Analytics
 

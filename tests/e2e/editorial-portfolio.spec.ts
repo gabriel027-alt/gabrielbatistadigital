@@ -312,3 +312,14 @@ test("A click on WhatsApp is recorded with its place, language and campaign, wit
   expect(await page.evaluate(() => document.cookie)).toBe("");
   expect(outside).toEqual([]);
 });
+
+test("Without analytics IDs there is no cookie banner, and the privacy policy exists in the four languages", async ({ page }) => {
+  await page.goto("/");
+  await expect(page.locator("[data-consent-banner]")).toHaveCount(0);
+  await expect(page.locator('footer a[href="/privacidade"]')).toBeAttached();
+  for (const [path, title, lang] of [["/privacidade", "Política de privacidade", "pt-BR"], ["/pt-pt/privacidade", "Política de privacidade", "pt-PT"], ["/en/privacy", "Privacy policy", "en"], ["/es/privacidad", "Política de privacidad", "es"]]) {
+    await page.goto(path);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
+    await expect(page.locator("html")).toHaveAttribute("lang", lang);
+  }
+});

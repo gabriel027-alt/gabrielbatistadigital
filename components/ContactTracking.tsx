@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { analytics } from "@/lib/analytics";
 
 /**
  * Counts the clicks on WhatsApp (18/11/2026), ready for whichever analytics tool Gabriel picks; nothing is loaded or
@@ -36,6 +37,8 @@ export function ContactTracking() {
       const win = window as Win;
       (win.dataLayer = win.dataLayer || []).push({ event: "whatsapp_click", ...payload });
       win.gtag?.("event", "whatsapp_click", payload);
+      // The Google Ads conversion ("WhatsApp click"), when configured. gtag only exists after consent.
+      if (analytics.ads && analytics.adsLabel) win.gtag?.("event", "conversion", { send_to: `${analytics.ads}/${analytics.adsLabel}` });
       win.plausible?.("WhatsApp click", { props: payload });
       document.dispatchEvent(new CustomEvent("gb:contact", { detail: payload }));
     };

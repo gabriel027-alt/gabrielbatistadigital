@@ -358,3 +358,7 @@
 /* Without JavaScript (18/11/2026): the card loops never get a source, and the browser would show their controls over
    the picture; and nothing turns the red frame off on the paper sections. Both stay out. */
 @media (scripting:none){.teaser{display:none}.frameGlow{display:none}}
+/* Footer: privacy policy and, once analytics is configured, the cookie choice (18/11/2026). */
+.footerLegal{display:flex;flex-wrap:wrap;gap:4px 18px}
+.footerPrefs{padding:15px 0;margin-block:-15px;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
+.footerPrefs:hover,.footerLegal a:hover{text-decoration:underline;text-underline-offset:3px}

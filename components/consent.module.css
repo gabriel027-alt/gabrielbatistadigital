@@ -1,0 +1,10 @@
+/* Consent banner: a small card bottom left, the paper and ink of the site; both choices the same size and weight. */
+.banner{position:fixed;z-index:60;left:20px;bottom:20px;max-width:min(420px,calc(100vw - 40px));padding:18px 18px 16px;border-radius:18px;background:#faf6eff5;color:#514b47;box-shadow:0 10px 40px #20171433;backdrop-filter:blur(12px);font:13px/1.55 var(--font-manrope),Arial,sans-serif}
+.banner p{margin:0 0 14px}
+.banner a{color:#994b2b;text-underline-offset:3px}
+.actions{display:flex;gap:8px}
+.actions button{flex:1;min-height:44px;padding:0 16px;border:1px solid #514b47;border-radius:24px;background:transparent;color:#514b47;font:600 13px var(--font-manrope),Arial,sans-serif;cursor:pointer}
+.actions button:hover,.actions button:focus-visible{background:#514b47;color:#faf6ef}
+.actions button:focus-visible{outline:3px solid #8a2219;outline-offset:3px}
+/* Phones: above the floating menu at the bottom. */
+@media(max-width:700px){.banner{left:12px;right:12px;bottom:84px;max-width:none}}
