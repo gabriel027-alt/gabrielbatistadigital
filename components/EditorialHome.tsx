@@ -14,7 +14,7 @@ import { HandParticles } from "@/components/HandParticles";
 import { WorkParticles } from "@/components/WorkParticles";
 import { TalkParticles } from "@/components/TalkParticles";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
-import { contactUrl, homeCopy, type Locale } from "@/lib/i18n";
+import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
 import type { FilmId } from "@/lib/project-films";
 import styles from "@/app/editorial.module.css";
 
@@ -69,7 +69,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
   };
   return <EditorialMotion className={`${display.variable} ${mono.variable}`} labels={t.motion}>
     {/* The root layout says pt-BR; the other languages correct it before anything is read. */}
-    {locale !== "pt" && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(locale)}` }} />}
+    {locale !== "pt" && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(localeInfo[locale].html)}` }} />}
     <a className={styles.skip} href="#editorial-main">{t.skip}</a>
     <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label={t.navLabel}><a href="#editorial-work">{t.nav.work}</a><a href="#editorial-services">{t.nav.services}</a><a href="#editorial-about">{t.nav.about}</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer">{t.nav.talk}</a></nav><div className={styles.navEnd}><LanguageSwitch current={locale} label={t.langLabel} /><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor}>{t.nav.talk} <Arrow size={15}/></a></div></header>
     <svg className={styles.defs} aria-hidden="true" focusable="false"><GbShapeDefs /></svg>

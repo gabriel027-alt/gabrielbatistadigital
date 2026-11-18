@@ -7,15 +7,16 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
  * choice for the switcher. The Spanish is Latin American (celular, computadora), the market chosen on 17/11/2026; it
  * stays "es" for search engines, so Spain still finds it. Same rules in every language: no invented clients, numbers, results, deadlines or prices.
  */
-export const locales = ["pt", "en", "es"] as const;
+export const locales = ["pt", "pt-PT", "en", "es"] as const;
 export type Locale = (typeof locales)[number];
 export const localeInfo: Record<Locale, { path: string; html: string; og: string; name: string }> = {
-  pt: { path: "/", html: "pt-BR", og: "pt_BR", name: "Português" },
+  pt: { path: "/", html: "pt-BR", og: "pt_BR", name: "Português (Brasil)" },
+  "pt-PT": { path: "/pt-pt", html: "pt-PT", og: "pt_PT", name: "Português (Portugal)" },
   en: { path: "/en", html: "en", og: "en_US", name: "English" },
   es: { path: "/es", html: "es", og: "es_LA", name: "Español" },
 };
 /** hreflang alternates shared by the three pages. */
-export const languageAlternates = { "pt-BR": "/", en: "/en", es: "/es", "x-default": "/" };
+export const languageAlternates = { "pt-BR": "/", "pt-PT": "/pt-pt", en: "/en", es: "/es", "x-default": "/" };
 
 type Item = { title: string; text: string };
 export type HomeCopy = {
@@ -84,6 +85,59 @@ const pt: HomeCopy = {
   motion: { pause: "Pausar movimento", resume: "Ativar movimento" },
   media: { interface: "Interface do projeto", watch: "Ver filme completo", explore: "Explorar projeto", watchFull: "Ver filme completo", filmOf: "Filme do projeto", close: "Fechar", noVideo: "Seu navegador não reproduz este vídeo.", talkNote: "Converse com Gabriel pelo WhatsApp." },
   avatarAlt: "Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento",
+};
+
+/**
+ * European Portuguese (17/11/2026), for clinics in Portugal: formal address ("a sua clínica", "conte-me"), the words used
+ * there (telemóvel, marcação, fotografias, portefólio, browser, "tem de"), "Perfil da Empresa no Google". Gabriel speaks
+ * Portuguese, so here he says only that he works from Brazil, remotely.
+ */
+const ptPT: HomeCopy = {
+  metaTitle: "Gabriel Batista | Sites para clínicas e negócios premium",
+  metaDescription: "Design e desenvolvimento de sites com marca própria para clínicas dentárias, de estética, de cirurgia plástica e outros negócios premium, do primeiro contacto à marcação.",
+  ogImageAlt: "Gabriel Batista: sites para clínicas e negócios premium",
+  skip: "Saltar para o conteúdo", navLabel: "Navegação do portefólio",
+  nav: { work: "Projetos", services: "Serviços", about: "Sobre", talk: "Conversar" }, talkCursor: "Vamos conversar",
+  langLabel: "Idioma", contactMessage: "Olá, Gabriel! Vi o seu portefólio e gostava de falar sobre um site para a minha clínica.",
+  heroAlt: "Retrato frontal de Gabriel Batista com luz vermelha",
+  offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
+  tagline: "Sites para clínicas e negócios premium",
+  hook: { label: "Do primeiro olhar ao próximo clique, e daí até à sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e daí até à sua agenda.", cursor: "Começar um projeto" },
+  palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
+  palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelos prontos: cada site nasce da marca da sua clínica.",
+  projects: "Projetos", workNote: "Clique num projeto para ver o filme.", specFont: "Tipo de letra", specColors: "Cores medidas nas fotografias",
+  sectors: { forma: "Medicina dentária estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Direito da família e sucessões", aura: "Harmonização facial", orla: "Imobiliário residencial" },
+  servicesNote: "O que eu construo", servicesTitle: ["A sua clínica tem uma maneira própria de receber os pacientes.", "Vamos dar-lhe forma."],
+  services: [
+    { title: "Sites e landing pages", text: "Os tratamentos, as dúvidas mais frequentes e o caminho até à marcação, numa página que o paciente percebe sem esforço." },
+    { title: "Identidade na interface", text: "Cores retiradas das suas próprias fotografias e um tipo de letra escolhido para a sua marca, para que o site não pareça o da concorrência." },
+    { title: "Movimento e interação", text: "O scroll mostra o espaço, o tratamento ou a recuperação. Um percurso curto prepara a primeira conversa." },
+    { title: "Design e desenvolvimento", text: "Sou eu que desenho e programo o site, e verifico cada página no telemóvel e no computador." },
+  ],
+  supportTitle: "Depois do site", supportText: "Para a clínica ser encontrada e o paciente chegar à marcação.",
+  support: [
+    { title: "Perfil da Empresa no Google e Maps", text: "Deixo o perfil da clínica completo e atualizado, com horários, fotografias e localização, para quem procura perto." },
+    { title: "Google Ads e Instagram", text: "Configuro e acompanho campanhas no Google e no Instagram que levam quem procura o tratamento até ao site." },
+    { title: "Automação no WhatsApp", text: "Uma primeira resposta automática esclarece as dúvidas mais comuns e encaminha o paciente até à marcação." },
+  ],
+  customLead: "À medida.", customText: "Precisa de algo que não está aqui, como um painel com os números da clínica, um CRM ou uma integração entre sistemas? Conte-me o problema e eu digo-lhe se e como o posso resolver.",
+  stepsTitle: "Como funciona",
+  steps: [
+    { title: "Conversa", text: "Conte-me como a clínica funciona hoje, quem são os pacientes e o que o site precisa de resolver." },
+    { title: "Proposta", text: "Proponho as páginas, os conteúdos e o que mais fizer sentido para a clínica, com o investimento de cada parte." },
+    { title: "Design e programação", text: "Desenho a partir das fotografias e da marca da clínica e programo o site. Acompanha o andamento antes de ficar online." },
+    { title: "Online", text: "O site é publicado já verificado no telemóvel e no computador, pronto para receber os pacientes." },
+  ],
+  aboutAlt: "Gabriel Batista", aboutTitle: ["Uma boa ideia", "tem de funcionar."], aboutText: "Também no telemóvel de quem procura a sua clínica.",
+  aboutIntro: ["Sou o Gabriel Batista e trabalho a partir do Brasil.", "Sou eu que desenho e programo o seu site."], aboutClaim: ["Quem desenha", "é quem programa."],
+  principles: ["Perceber o negócio antes de desenhar a página.", "Dar à marca uma linguagem própria.", "Deixar claro, em cada parte da página, o próximo passo do paciente.", "Verificar a experiência no browser e no telemóvel."],
+  aboutLink: "Falar sobre o meu site",
+  contactTitle: ["O próximo site pode ser", "o da sua clínica."], contactText: "Conte-me como a sua clínica funciona hoje e o que quer que o site resolva.",
+  contactGo: "Vamos conversar", contactWhere: "Abre uma conversa no WhatsApp. Trabalho à distância, a partir do Brasil.",
+  footerTalk: "Falar pelo WhatsApp", rights: "© 2026 Gabriel Batista Digital. Todos os direitos reservados.", backTop: "Voltar ao início",
+  motion: { pause: "Pausar movimento", resume: "Ativar movimento" },
+  media: { interface: "Interface do projeto", watch: "Ver filme completo", explore: "Explorar projeto", watchFull: "Ver filme completo", filmOf: "Filme do projeto", close: "Fechar", noVideo: "O seu navegador não reproduz este vídeo.", talkNote: "Fale com o Gabriel pelo WhatsApp." },
+  avatarAlt: "Personagem do Gabriel atrás de um portátil, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento",
 };
 
 const en: HomeCopy = {
@@ -182,5 +236,5 @@ const es: HomeCopy = {
   avatarAlt: "Personaje de Gabriel detrás de una laptop, en una oficina oscura con un pizarrón de estrategia: embudo, diagrama de flujo y gráfico de crecimiento",
 };
 
-export const homeCopy: Record<Locale, HomeCopy> = { pt, en, es };
+export const homeCopy: Record<Locale, HomeCopy> = { pt, "pt-PT": ptPT, en, es };
 export const contactUrl = (locale: Locale) => buildWhatsAppUrl(homeCopy[locale].contactMessage);

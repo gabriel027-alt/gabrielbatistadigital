@@ -271,9 +271,10 @@ test('Cover uses the approved original portrait', async ({ page }) => {
   await expect(page.locator('[data-hero-photo] img')).toHaveAttribute('src', /gabriel-hero-(wide|mobile)/);
 });
 
-test("The homepage is offered in Portuguese, English and Spanish, each at its own address with the others listed", async ({ page }) => {
+test("The homepage is offered in Brazilian and European Portuguese, English and Spanish, each at its own address with the others listed", async ({ page }) => {
   const pages = [
     { path: "/", lang: "pt-BR", title: /Sites para clínicas/, hook: "Do primeiro olhar" },
+    { path: "/pt-pt", lang: "pt-PT", title: /Sites para clínicas e negócios premium/, hook: "Do primeiro olhar ao próximo clique, e daí" },
     { path: "/en", lang: "en", title: /Websites for clinics/, hook: "From first glance" },
     { path: "/es", lang: "es", title: /páginas web para clínicas/, hook: "De la primera mirada" },
   ];
@@ -284,8 +285,8 @@ test("The homepage is offered in Portuguese, English and Spanish, each at its ow
     await expect(page.locator("html")).toHaveAttribute("lang", item.lang);
     await expect(page.locator("[data-hook] h2[data-kinetic]")).toHaveAttribute("aria-label", new RegExp(`^${item.hook}`));
     // Every page lists the three languages for search engines and links to them with a flag.
-    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(4);
-    for (const target of ["/", "/en", "/es"]) await expect(page.locator(`[data-editorial-nav] a[href="${target}"][hreflang]`).first()).toBeAttached();
+    await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(5);
+    for (const target of ["/", "/pt-pt", "/en", "/es"]) await expect(page.locator(`[data-editorial-nav] a[href="${target}"][hreflang]`).first()).toBeAttached();
     await expect(page.locator(`[data-editorial-nav] a[aria-current="true"][href="${item.path}"]`).first()).toBeAttached();
   }
 });
