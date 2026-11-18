@@ -75,7 +75,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
     {/* Counts the clicks on WhatsApp for the analytics tool to come; loads and sends nothing by itself. */}
     <ContactTracking />
     {/* Cookie consent for Google Analytics and Ads; renders nothing until their IDs are configured (lib/analytics.ts). */}
-    <ConsentBanner copy={legal} />
+    <ConsentBanner copy={legal} afterHero />
     {locale !== "pt" && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(localeInfo[locale].html)}` }} />}
     <a className={styles.skip} href="#editorial-main">{t.skip}</a>
     <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label={t.navLabel}><a href="#editorial-work">{t.nav.work}</a><a href="#editorial-services">{t.nav.services}</a><a href="#editorial-about">{t.nav.about}</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer" data-track-place="menu-celular">{t.nav.talk}</a></nav><div className={styles.navEnd}><LanguageSwitch current={locale} label={t.langLabel} /><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="menu">{t.nav.talk} <Arrow size={15}/></a></div></header>

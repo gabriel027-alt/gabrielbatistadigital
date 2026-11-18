@@ -42,19 +42,29 @@ function forgetGoogle() {
   }
 }
 
-export function ConsentBanner({ copy }: { copy: PrivacyCopy }) {
+/**
+ * `afterHero`: on the homepage the question waits until the visitor has scrolled past half of the first screen (or
+ * 25 s), so it never covers the name and the brand dot's arrival scene (18/11/2026). Nothing loads before the answer.
+ */
+export function ConsentBanner({ copy, afterHero = false }: { copy: PrivacyCopy; afterHero?: boolean }) {
   const [open, setOpen] = useState(false);
   useEffect(() => {
     if (!analyticsEnabled) return;
     let choice: string | null = null;
     try { choice = localStorage.getItem(CONSENT_KEY); } catch { /* Storage blocked: ask every visit, load nothing until accepted. */ }
-    if (choice === "granted") loadGoogle();
-    // Shown after the first paint, so the server and the browser render the same page.
-    else if (choice !== "denied") queueMicrotask(() => setOpen(true));
     const reopen = () => setOpen(true);
     document.addEventListener("gb:consent-open", reopen);
-    return () => document.removeEventListener("gb:consent-open", reopen);
-  }, []);
+    let timer = 0;
+    const scrolled = () => { if (scrollY > innerHeight * .5) ask(); };
+    const ask = () => { clearTimeout(timer); removeEventListener("scroll", scrolled); setOpen(true); };
+    if (choice === "granted") loadGoogle();
+    else if (choice !== "denied") {
+      // Shown after the first paint, so the server and the browser render the same page.
+      if (!afterHero) queueMicrotask(ask);
+      else { addEventListener("scroll", scrolled, { passive: true }); timer = window.setTimeout(ask, 25000); }
+    }
+    return () => { document.removeEventListener("gb:consent-open", reopen); removeEventListener("scroll", scrolled); clearTimeout(timer); };
+  }, [afterHero]);
   if (!analyticsEnabled || !open) return null;
   const decide = (granted: boolean) => {
     try { localStorage.setItem(CONSENT_KEY, granted ? "granted" : "denied"); } catch { /* Kept for this page only. */ }
