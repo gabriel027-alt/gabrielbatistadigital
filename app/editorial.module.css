@@ -355,3 +355,6 @@
    half hidden behind the strip. Phones keep their own sizes. */
 /* The points forming the hand (components/HandParticles.tsx): over the page, under the brand dot and the menu. */
 .handParticles{position:fixed;inset:0;width:100vw;height:100vh;z-index:39;pointer-events:none;visibility:hidden}
+/* Without JavaScript (18/11/2026): the card loops never get a source, and the browser would show their controls over
+   the picture; and nothing turns the red frame off on the paper sections. Both stay out. */
+@media (scripting:none){.teaser{display:none}.frameGlow{display:none}}

@@ -290,3 +290,12 @@ test("The homepage is offered in Brazilian and European Portuguese, English and 
     await expect(page.locator(`[data-editorial-nav] a[aria-current="true"][href="${item.path}"]`).first()).toBeAttached();
   }
 });
+
+test("A wrong address answers in the language of its section and leads back to that homepage", async ({ page }) => {
+  for (const [path, title, home] of [["/nao-existe", "Esta página não está por aqui.", "/"], ["/en/missing", "This page isn't here.", "/en"], ["/es/no-existe", "Esta página no está aquí.", "/es"], ["/pt-pt/nao-existe", "Esta página não está aqui.", "/pt-pt"]]) {
+    const response = await page.goto(path);
+    expect(response?.status()).toBe(404);
+    await expect(page.getByRole("heading", { level: 1 })).toHaveText(title);
+    await expect(page.locator(`main a[href="${home}"]`)).toBeVisible();
+  }
+});
