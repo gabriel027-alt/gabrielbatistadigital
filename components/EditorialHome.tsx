@@ -14,6 +14,7 @@ import { HandParticles } from "@/components/HandParticles";
 import { WorkParticles } from "@/components/WorkParticles";
 import { TalkParticles } from "@/components/TalkParticles";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
+import { ContactTracking } from "@/components/ContactTracking";
 import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
 import type { FilmId } from "@/lib/project-films";
 import styles from "@/app/editorial.module.css";
@@ -69,9 +70,11 @@ export function EditorialHome({ locale }: { locale: Locale }) {
   };
   return <EditorialMotion className={`${display.variable} ${mono.variable}`} labels={t.motion}>
     {/* The root layout says pt-BR; the other languages correct it before anything is read. */}
+    {/* Counts the clicks on WhatsApp for the analytics tool to come; loads and sends nothing by itself. */}
+    <ContactTracking />
     {locale !== "pt" && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(localeInfo[locale].html)}` }} />}
     <a className={styles.skip} href="#editorial-main">{t.skip}</a>
-    <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label={t.navLabel}><a href="#editorial-work">{t.nav.work}</a><a href="#editorial-services">{t.nav.services}</a><a href="#editorial-about">{t.nav.about}</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer">{t.nav.talk}</a></nav><div className={styles.navEnd}><LanguageSwitch current={locale} label={t.langLabel} /><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor}>{t.nav.talk} <Arrow size={15}/></a></div></header>
+    <header className={styles.nav} data-editorial-nav><a className={styles.logo} href="#editorial-start">Gabriel<span aria-hidden="true">•</span>Batista</a><nav aria-label={t.navLabel}><a href="#editorial-work">{t.nav.work}</a><a href="#editorial-services">{t.nav.services}</a><a href="#editorial-about">{t.nav.about}</a><a className={styles.navWhats} href={contact} target="_blank" rel="noopener noreferrer" data-track-place="menu-celular">{t.nav.talk}</a></nav><div className={styles.navEnd}><LanguageSwitch current={locale} label={t.langLabel} /><a className={styles.navContact} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="menu">{t.nav.talk} <Arrow size={15}/></a></div></header>
     <svg className={styles.defs} aria-hidden="true" focusable="false"><GbShapeDefs /></svg>
     <main id="editorial-main">
       <section id="editorial-start" className={styles.hero} data-editorial-theme="photo">
@@ -86,7 +89,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       </section>
       <CloudTransition from="#editorial-start" />
       <section className={styles.hook} data-editorial-theme="paper" data-hook>
-        <h2 data-kinetic aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} aria-label={t.hook.clickLabel}><span>{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
+        <h2 data-kinetic aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique" aria-label={t.hook.clickLabel}><span>{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
         {/* "O próximo clique", one stage: the red tittle of "clique" falls into Gabriel's open palm; the dot rises, bursts,
             and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
         <div className={styles.fusionTrack} data-creation-track data-gb-track>
@@ -144,7 +147,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
             numbers, results or clients (there are none to show yet). */}
         <div className={`${styles.serviceList} ${styles.serviceMore}`} data-read-list><div className={styles.serviceLabel}><h3>{t.supportTitle}</h3><p>{t.supportText}</p></div>{t.support.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
         {/* For what is not on the list: an invitation to talk, not a promise (no CRM or dashboard delivered yet). */}
-        <a className={styles.serviceCustom} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor}><span><strong>{t.customLead}</strong> {t.customText}</span><Arrow size={20}/></a>
+        <a className={styles.serviceCustom} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="sob-medida"><span><strong>{t.customLead}</strong> {t.customText}</span><Arrow size={20}/></a>
         {/* How it works, read by the dot like the lists above. Process only: no deadlines or prices until Gabriel sets them. */}
         <h3 className={styles.stepsTitle} id="editorial-steps">{t.stepsTitle}</h3>
         <div className={`${styles.serviceList} ${styles.stepsList}`} data-read-list>{t.steps.map((item, i) => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
@@ -152,10 +155,10 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
         <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt={t.aboutAlt} desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>
         <div className={styles.aboutStatement}><h2 id="editorial-about-title" data-kinetic>{t.aboutTitle[0]}<br/>{t.aboutTitle[1]}</h2><p>{t.aboutText}</p></div>
-        <div className={styles.aboutPrinciples}><p>{t.aboutIntro[0]}<br/>{t.aboutIntro[1]}</p><h3 className={styles.readAbout} data-read-about><span className={styles.readLine}>{t.aboutClaim[0]}<br/>{t.aboutClaim[1]}</span><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot aria-hidden="true" /></h3><ul>{t.principles.map(item => <li key={item}>{item}</li>)}</ul><a href={contact} target="_blank" rel="noopener noreferrer" className={styles.photoLink}>{t.aboutLink} <Arrow size={22}/></a></div>
+        <div className={styles.aboutPrinciples}><p>{t.aboutIntro[0]}<br/>{t.aboutIntro[1]}</p><h3 className={styles.readAbout} data-read-about><span className={styles.readLine}>{t.aboutClaim[0]}<br/>{t.aboutClaim[1]}</span><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot aria-hidden="true" /></h3><ul>{t.principles.map(item => <li key={item}>{item}</li>)}</ul><a href={contact} target="_blank" rel="noopener noreferrer" className={styles.photoLink} data-track-place="sobre">{t.aboutLink} <Arrow size={22}/></a></div>
       </section>
-      <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor}><TalkParticles /><div><h2>{t.contactTitle[0]}<br/>{t.contactTitle[1]}</h2><p>{t.contactText}</p></div><span className={styles.contactAction}><span className={styles.contactGo}><span>{t.contactGo}<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span><Arrow size={42}/></span><span className={styles.contactWhere}>{t.contactWhere}</span></span></a></section>
+      <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="contato"><TalkParticles /><div><h2>{t.contactTitle[0]}<br/>{t.contactTitle[1]}</h2><p>{t.contactText}</p></div><span className={styles.contactAction}><span className={styles.contactGo}><span>{t.contactGo}<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span><Arrow size={42}/></span><span className={styles.contactWhere}>{t.contactWhere}</span></span></a></section>
     </main>
-    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><a href="#editorial-start">{t.backTop}</a></div></footer>
+    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><a href="#editorial-start">{t.backTop}</a></div></footer>
   </EditorialMotion>;
 }

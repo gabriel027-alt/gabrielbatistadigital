@@ -253,6 +253,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - no celular, o WhatsApp fica no menu inferior.
 - Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. CSS global limpo em 12/11/2026: as regras sem classe usada em lugar nenhum saíram (de cerca de 164 KB para 46 KB), e `signature.css` e `landing.css` foram removidos. A conferência foi feita pixel a pixel nas 34 rotas, no computador e no celular, mais a suíte completa. Antes de reintroduzir uma classe global antiga, procure-a no histórico do git.
 
+## Medição dos cliques no WhatsApp (18/11/2026)
+
+- Preparada a pedido do usuário, antes das campanhas, mas **sem nenhuma ferramenta ligada**. `components/ContactTracking.tsx` registra cada clique em link do WhatsApp com o lugar (`data-track-place`), o idioma, a página e a campanha (utm_*, gclid, fbclid, guardados na sessão). O registro vai para `dataLayer`, `gtag`, `plausible` e o evento `gb:contact`, quando existirem. Não carrega script externo e não grava cookie (há teste para isso).
+- A escolha da ferramenta é dele, em `docs/MEDICAO-CONTATO.md`. Sem cookies (Plausible, Vercel), não precisa de banner. Com GA4/Google Ads, precisa de banner de consentimento (RGPD para Portugal e Europa; LGPD no Brasil). Não ligar nenhuma ferramenta sem a ordem dele. Ao criar um novo link do WhatsApp, dar a ele um `data-track-place`.
+
 ## Posicionamento (17/11/2026)
 
 - A partir de um vídeo sobre posicionamento enviado pelo usuário (quatro perguntas: que problema e de quem, qual critério de comparação, por que você é melhor nele, o que prova): o critério escolhido é **identidade da clínica em vez de modelo pronto**. O topo deixou a categoria ("Sites para clínicas e negócios de alto ticket") e diz "Sites com a identidade da sua clínica, não de um modelo pronto." O título da página continua com a categoria, por busca.

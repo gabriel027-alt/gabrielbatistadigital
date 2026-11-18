@@ -48,7 +48,7 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
     <dialog ref={dialog} data-lenis-prevent className={styles.filmDialog} aria-label={`${t.filmOf} ${name}`} onClose={() => { full.current?.pause(); document.dispatchEvent(new Event("editorial-modal")); trigger.current?.focus(); }}>
       <div className={styles.filmHeader}><span>{name}</span><button type="button" onClick={() => dialog.current?.close()}>{t.close} <span aria-hidden="true">×</span></button></div>
       <video ref={full} controls playsInline preload="none" poster={opened ? image : undefined} aria-label={data.label} data-vertical={data.mobileSource ? "" : undefined}>{data.mobileSource && <source src={data.mobileSource} media="(max-width: 700px)" type="video/mp4"/>}<source src={data.source} type="video/mp4"/>{data.captions && <track kind="captions" src={data.captions} srcLang="pt-BR" label="Português"/>}{t.noVideo}</video>
-      <a className={styles.filmContact} href={data.contact} target="_blank" rel="noopener noreferrer">{data.action} <Arrow size={17}/></a><p>{t.talkNote}</p>
+      <a className={styles.filmContact} href={data.contact} target="_blank" rel="noopener noreferrer" data-track-place={`filme-${film}`}>{data.action} <Arrow size={17}/></a><p>{t.talkNote}</p>
     </dialog>
   </>;
 }

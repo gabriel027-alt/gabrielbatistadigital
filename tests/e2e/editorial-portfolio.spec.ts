@@ -299,3 +299,16 @@ test("A wrong address answers in the language of its section and leads back to t
     await expect(page.locator(`main a[href="${home}"]`)).toBeVisible();
   }
 });
+
+test("A click on WhatsApp is recorded with its place, language and campaign, without loading any analytics", async ({ page }) => {
+  await page.setViewportSize({ width: 1440, height: 900 });
+  const outside: string[] = [];
+  page.on("request", request => { const url = new URL(request.url()); if (!["localhost", "127.0.0.1"].includes(url.hostname)) outside.push(url.hostname); });
+  await page.goto("/en?utm_source=google&utm_campaign=test-clinics");
+  await page.evaluate(() => addEventListener("click", event => event.preventDefault()));
+  await page.locator('[data-track-place="contato"]').evaluate((link: HTMLElement) => link.click());
+  const pushed = await page.evaluate(() => (window as Window & { dataLayer?: Record<string, string>[] }).dataLayer?.at(-1));
+  expect(pushed).toMatchObject({ event: "whatsapp_click", place: "contato", language: "en", page: "/en", utm_source: "google", utm_campaign: "test-clinics" });
+  expect(await page.evaluate(() => document.cookie)).toBe("");
+  expect(outside).toEqual([]);
+});
