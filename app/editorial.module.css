@@ -110,6 +110,8 @@
 }
 /* Four links since "Serviços" joined (17/11/2026): on the narrowest phones they tighten so the motion control keeps its room. */
 @media(max-width:380px){.nav nav{gap:2px;padding:4px}.nav nav a{padding:11px 8px;font-size:10.5px}}
+/* Spanish words are longer ("Proyectos", "Sobre mí"): on the narrowest phones the links tighten once more. */
+@media(max-width:340px){.nav nav a{padding:11px 6px;min-width:44px;justify-content:center}}
 @media(prefers-reduced-motion:reduce){.frameGlow{transition:none}}
 
 /* Authored shapes (12/11/2026): the "gb/" monogram taken apart, one line threading them. */
