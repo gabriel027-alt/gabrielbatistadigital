@@ -117,7 +117,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       <section className={styles.work} id="editorial-work" data-editorial-theme="paper" aria-labelledby="editorial-work-title">
         <div className={styles.workTrack} data-work-track>
           <div className={styles.workStage} data-work-stage>
-            <h2 id="editorial-work-title" className={styles.projectsWord} data-work-word>{t.projects}</h2>
+            <h2 id="editorial-work-title" className={styles.projectsWord} data-work-word>{t.projects}</h2><p className={styles.workProof} data-work-note>{t.workProof}</p>
             <div className={styles.strip} data-strip>
               <div className={styles.stripTrack}>
                 <ul className={styles.stripList}>{works.map(work => project(work))}</ul>

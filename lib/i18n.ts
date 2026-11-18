@@ -26,7 +26,7 @@ export type HomeCopy = {
   heroAlt: string; offer: { label: string; before: string; after: string; line2: string }; tagline: string;
   hook: { label: string; first: [string, string]; lead: string; click: [string, string]; clickLabel: string; tail: string; cursor: string };
   palmLabel: string; palmTitle: string; palmText: string;
-  projects: string; workNote: string; specFont: string; specColors: string; sectors: Record<string, string>;
+  projects: string; workProof: string; workNote: string; specFont: string; specColors: string; sectors: Record<string, string>;
   servicesNote: string; servicesTitle: [string, string]; services: Item[];
   supportTitle: string; supportText: string; support: Item[];
   customLead: string; customText: string;
@@ -48,11 +48,11 @@ const pt: HomeCopy = {
   langLabel: "Idioma", contactMessage: "Olá, Gabriel! Vi seu portfólio e quero conversar sobre um site para a minha clínica.",
   heroAlt: "Retrato frontal de Gabriel Batista com luz vermelha",
   offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
-  tagline: "Sites para clínicas e negócios de alto ticket",
+  tagline: "Sites com a identidade da sua clínica, não de um modelo pronto.",
   hook: { label: "Do primeiro olhar ao próximo clique, e dele até a sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e dele até a sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelo pronto: cada site nasce da marca da sua clínica.",
-  projects: "Projetos", workNote: "Clique num projeto para ver o filme.", specFont: "Fonte", specColors: "Cores medidas nas fotos",
+  projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotos.", workNote: "Clique num projeto para ver o filme.", specFont: "Fonte", specColors: "Cores medidas nas fotos",
   sectors: { forma: "Odontologia estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Família e sucessões", aura: "Harmonização facial", orla: "Residências" },
   servicesNote: "O que eu construo", servicesTitle: ["Sua clínica tem um jeito próprio de atender.", "Vamos dar forma a ele."],
   services: [
@@ -76,7 +76,7 @@ const pt: HomeCopy = {
     { title: "No ar", text: "O site é publicado conferido no celular e no computador, pronto para receber os pacientes." },
   ],
   aboutAlt: "Gabriel Batista", aboutTitle: ["Uma boa ideia", "precisa funcionar."], aboutText: "Inclusive no celular de quem procura a sua clínica.",
-  aboutIntro: ["Sou Gabriel Batista.", "Eu mesmo desenho e programo o seu site."], aboutClaim: ["Quem desenha", "é quem programa."],
+  aboutIntro: ["Sou Gabriel Batista.", "Eu mesmo desenho e programo, por isso nenhum site sai de um modelo."], aboutClaim: ["Quem desenha", "é quem programa."],
   principles: ["Entender o negócio antes de desenhar a página.", "Dar à marca uma linguagem própria.", "Deixar claro, em cada parte da página, o próximo passo do paciente.", "Conferir a experiência no navegador e no celular."],
   aboutLink: "Conversar sobre o meu site",
   contactTitle: ["O próximo site pode ser", "o da sua clínica."], contactText: "Conte como a sua clínica atende hoje e o que você quer que o site resolva.",
@@ -101,11 +101,11 @@ const ptPT: HomeCopy = {
   langLabel: "Idioma", contactMessage: "Olá, Gabriel! Vi o seu portefólio e gostava de falar sobre um site para a minha clínica.",
   heroAlt: "Retrato frontal de Gabriel Batista com luz vermelha",
   offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
-  tagline: "Sites para clínicas e negócios premium",
+  tagline: "Sites com a identidade da sua clínica, não de um modelo pronto.",
   hook: { label: "Do primeiro olhar ao próximo clique, e daí até à sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e daí até à sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelos prontos: cada site nasce da marca da sua clínica.",
-  projects: "Projetos", workNote: "Clique num projeto para ver o filme. Marcas brasileiras, com sites em português do Brasil.", specFont: "Tipo de letra", specColors: "Cores medidas nas fotografias",
+  projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotografias.", workNote: "Clique num projeto para ver o filme. Marcas brasileiras, com sites em português do Brasil.", specFont: "Tipo de letra", specColors: "Cores medidas nas fotografias",
   sectors: { forma: "Medicina dentária estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Direito da família e sucessões", aura: "Harmonização facial", orla: "Imobiliário residencial" },
   servicesNote: "O que faço", servicesTitle: ["Cada clínica recebe os pacientes à sua maneira.", "Vamos dar-lhe forma."],
   services: [
@@ -129,7 +129,7 @@ const ptPT: HomeCopy = {
     { title: "Online", text: "O site é publicado depois de verificado no telemóvel e no computador, pronto para receber os pacientes." },
   ],
   aboutAlt: "Gabriel Batista", aboutTitle: ["Uma boa ideia", "tem de funcionar."], aboutText: "Também no telemóvel de quem procura a sua clínica.",
-  aboutIntro: ["Sou o Gabriel Batista e trabalho a partir do Brasil.", "Sou eu que desenho e programo o seu site."], aboutClaim: ["Quem desenha", "é quem programa."],
+  aboutIntro: ["Sou o Gabriel Batista e trabalho a partir do Brasil.", "Sou eu que desenho e programo, por isso nenhum site sai de um modelo."], aboutClaim: ["Quem desenha", "é quem programa."],
   principles: ["Perceber o negócio antes de desenhar a página.", "Dar à marca uma linguagem própria.", "Deixar claro, em cada parte da página, o próximo passo do paciente.", "Verificar a experiência no browser e no telemóvel."],
   aboutLink: "Falar sobre o meu site",
   contactTitle: ["O próximo site pode ser", "o da sua clínica."], contactText: "Diga-me como a sua clínica funciona hoje e o que quer que o site resolva.",
@@ -149,11 +149,11 @@ const en: HomeCopy = {
   langLabel: "Language", contactMessage: "Hi Gabriel! I saw your portfolio and I'd like to talk about a website for my clinic.",
   heroAlt: "Front portrait of Gabriel Batista in red light",
   offer: { label: "Web design & development", before: "Web des", after: "gn &", line2: "development" },
-  tagline: "Websites for clinics and premium practices",
+  tagline: "Websites with your clinic's identity, not a template's.",
   hook: { label: "From first glance to the next click, and from there to your calendar.", first: ["From f", "rst glance"], lead: "to the next ", click: ["cl", "ck"], clickLabel: "click", tail: "and from there to your calendar.", cursor: "Start a project" },
   palmLabel: "Gabriel's open hand, palm up, holding the brand's red dot.",
   palmTitle: "Handmade, from the first stroke to the last click.", palmText: "No ready-made template: every website is born from your clinic's brand.",
-  projects: "Projects", workNote: "Click a project to watch its film. Brazilian brands: the sites are in Portuguese.", specFont: "Typeface", specColors: "Colors measured from the photos",
+  projects: "Projects", workProof: "No two alike: each brand gets the colors of its own photos.", workNote: "Click a project to watch its film. Brazilian brands: the sites are in Portuguese.", specFont: "Typeface", specColors: "Colors measured from the photos",
   sectors: { forma: "Cosmetic dentistry", sutil: "Plastic surgery", toca: "Veterinary hospital", brisa: "Boutique hotel", almeida: "Family and estate law", aura: "Facial aesthetics", orla: "Residences" },
   servicesNote: "What I build", servicesTitle: ["Your clinic has its own way of caring for patients.", "Let's give it shape."],
   services: [
@@ -177,7 +177,7 @@ const en: HomeCopy = {
     { title: "Launch", text: "The site goes live checked on phone and desktop, ready to welcome patients." },
   ],
   aboutAlt: "Gabriel Batista", aboutTitle: ["A good idea", "has to work."], aboutText: "Especially on the phone of someone looking for your clinic.",
-  aboutIntro: ["I'm Gabriel Batista, based in Brazil.", "I design and code your website myself."], aboutClaim: ["The designer", "is the developer."],
+  aboutIntro: ["I'm Gabriel Batista, based in Brazil.", "I design and code everything myself, so no site comes from a template."], aboutClaim: ["The designer", "is the developer."],
   principles: ["Understand the business before designing the page.", "Give the brand a language of its own.", "Make the patient's next step clear in every part of the page.", "Check the experience in the browser and on the phone."],
   aboutLink: "Talk about my website",
   contactTitle: ["The next website could be", "your clinic's."], contactText: "Tell me how your clinic works today and what you want the website to solve.",
@@ -197,11 +197,11 @@ const es: HomeCopy = {
   langLabel: "Idioma", contactMessage: "¡Hola, Gabriel! Vi tu portafolio y quiero conversar sobre un sitio web para mi clínica.",
   heroAlt: "Retrato frontal de Gabriel Batista con luz roja",
   offer: { label: "Diseño & desarrollo web", before: "D", after: "seño &", line2: "desarrollo web" },
-  tagline: "Páginas web para clínicas y negocios premium",
+  tagline: "Páginas web con la identidad de tu clínica, no de una plantilla.",
   hook: { label: "De la primera mirada al próximo clic, y de ahí a tu agenda.", first: ["De la pr", "mera mirada"], lead: "al próximo ", click: ["cl", "c"], clickLabel: "clic", tail: "y de ahí a tu agenda.", cursor: "Empezar un proyecto" },
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",
   palmTitle: "Hecho a mano, del primer trazo al último clic.", palmText: "Sin plantillas: cada sitio nace de la marca de tu clínica.",
-  projects: "Proyectos", workNote: "Haz clic en un proyecto para ver su video. Marcas brasileñas: los sitios están en portugués.", specFont: "Tipografía", specColors: "Colores medidos en las fotos",
+  projects: "Proyectos", workProof: "Ninguno se parece a otro: cada marca tiene los colores de sus propias fotos.", workNote: "Haz clic en un proyecto para ver su video. Marcas brasileñas: los sitios están en portugués.", specFont: "Tipografía", specColors: "Colores medidos en las fotos",
   sectors: { forma: "Odontología estética", sutil: "Cirugía plástica", toca: "Hospital veterinario", brisa: "Hotel boutique", almeida: "Derecho de familia y sucesiones", aura: "Armonización facial", orla: "Residencias" },
   servicesNote: "Lo que construyo", servicesTitle: ["Tu clínica tiene su propia forma de atender.", "Démosle forma."],
   services: [
@@ -225,7 +225,7 @@ const es: HomeCopy = {
     { title: "Lanzamiento", text: "El sitio se publica revisado en el celular y en la computadora, listo para recibir pacientes." },
   ],
   aboutAlt: "Gabriel Batista", aboutTitle: ["Una buena idea", "tiene que funcionar."], aboutText: "También en el celular de quien busca tu clínica.",
-  aboutIntro: ["Soy Gabriel Batista, desde Brasil.", "Yo mismo diseño y programo tu sitio."], aboutClaim: ["Quien diseña", "es quien programa."],
+  aboutIntro: ["Soy Gabriel Batista, desde Brasil.", "Yo mismo diseño y programo, por eso ningún sitio sale de una plantilla."], aboutClaim: ["Quien diseña", "es quien programa."],
   principles: ["Entender el negocio antes de diseñar la página.", "Darle a la marca un lenguaje propio.", "Dejar claro, en cada parte de la página, el siguiente paso del paciente.", "Revisar la experiencia en el navegador y en el celular."],
   aboutLink: "Hablar sobre mi sitio",
   contactTitle: ["El próximo sitio puede ser", "el de tu clínica."], contactText: "Cuéntame cómo atiende hoy tu clínica y qué quieres que resuelva el sitio.",

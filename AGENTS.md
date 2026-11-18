@@ -253,6 +253,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - no celular, o WhatsApp fica no menu inferior.
 - Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. CSS global limpo em 12/11/2026: as regras sem classe usada em lugar nenhum saíram (de cerca de 164 KB para 46 KB), e `signature.css` e `landing.css` foram removidos. A conferência foi feita pixel a pixel nas 34 rotas, no computador e no celular, mais a suíte completa. Antes de reintroduzir uma classe global antiga, procure-a no histórico do git.
 
+## Posicionamento (17/11/2026)
+
+- A partir de um vídeo sobre posicionamento enviado pelo usuário (quatro perguntas: que problema e de quem, qual critério de comparação, por que você é melhor nele, o que prova): o critério escolhido é **identidade da clínica em vez de modelo pronto**. O topo deixou a categoria ("Sites para clínicas e negócios de alto ticket") e diz "Sites com a identidade da sua clínica, não de um modelo pronto." O título da página continua com a categoria, por busca.
+- A prova são os projetos e o próprio site, nunca clientes ou depoimentos inventados: logo abaixo de "Projetos", "Nenhum se parece com o outro: cada marca tem as cores das próprias fotos." O motivo vem unido no "Sobre": "Eu mesmo desenho e programo, por isso nenhum site sai de um modelo." Valem os mesmos ajustes nos quatro idiomas.
+
 ## Idiomas: português, inglês e espanhol (17/11/2026)
 
 - Pedido do usuário para campanhas no exterior (ele pretende usar a ClickBank). A homepage existe em `/` (português), `/en` (inglês) e `/es` (espanhol), cada uma com endereço próprio, título, descrição, canonical e hreflang (`lib/home-metadata.ts`), e as três no sitemap. Ninguém é redirecionado pelo idioma do navegador.
