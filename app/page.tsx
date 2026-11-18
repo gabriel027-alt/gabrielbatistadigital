@@ -58,8 +58,8 @@ const services = [
 // Around the site: how the patient finds the clinic and gets to the calendar. Described as work done, with no numbers,
 // results or clients (there are none to show yet).
 const support = [
-  { title: "Google Ads & Instagram", text: "Configuro e acompanho campanhas no Google e no Instagram que levam quem procura o tratamento até o site." },
   { title: "Google Meu Negócio & Maps", text: "Deixo o perfil da clínica completo e atualizado, com horários, fotos e caminho, para quem busca por perto." },
+  { title: "Google Ads & Instagram", text: "Configuro e acompanho campanhas no Google e no Instagram que levam quem procura o tratamento até o site." },
   { title: "Automação no WhatsApp", text: "Uma primeira resposta automática tira as dúvidas mais comuns e encaminha o paciente até o agendamento." },
 ];
 /** One project of the strip; the second lap of the loop is a decorative copy, clickable but hidden from assistive tech. */
