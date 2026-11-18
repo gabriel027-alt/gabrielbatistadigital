@@ -362,3 +362,16 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - "Vamos conversar" (17/11/2026, ajuste pedido pelo usuário, aguardando aprovação do resultado): a seta ↗ vem logo depois do ponto aceso (antes ficava solta na ponta oposta), e uma linha pequena embaixo diz "Abre uma conversa no WhatsApp". Não prometer prazo de resposta.
   - O sublinhado de cada linha do título do "Sobre" foi descartado: o título quebra em quatro linhas e os quatro sublinhados ficavam fora do passo do ponto.
   - Desempenho medido em produção em 17/11/2026, rolando cada cena (PC 1536×696 a 125%; celular com CPU 4× mais lenta): mão 94 e 91 qps, pasta 92 e 98, conversa 109 e 92. A pior parada é na cena da mão (325 ms no PC), que já existia antes dos passos 2 e 3.
+
+## Quatro projetos novos por registro (18/11/2026)
+
+- Decisão do usuário: as marcas atuais ficaram todas no registro editorial calmo, e quatro projetos novos vão para a frente da seleção, um por registro do portfólio da evopixel. São eles:
+  - Lume Psicologia, resposta direta;
+  - Arrimo Advocacia Previdenciária, autoridade forte;
+  - Paddock Automóveis, vitrine escura com catálogo;
+  - Talhão Advocacia do Agro, regional.
+- Ficam Casa Brisa, Aura, Orla e uma marca editorial; as outras saem da homepage, sem apagar código.
+- Kits, regras e pedidos de foto em `docs/NOVOS-PROJETOS-REGISTROS.md`.
+- Copy de dor e autoqualificação é permitida, mas sem OAB/CRP, nome do profissional, números, depoimentos ou promessa de resultado.
+- Não copiar textos nem layouts da evopixel. Carros sem logotipo nem modelo reconhecível.
+- Um piloto primeiro, com hero e movimento-assinatura em vídeo; os outros só depois da aprovação dele.
