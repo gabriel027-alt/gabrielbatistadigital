@@ -20,7 +20,11 @@ O mesmo clique é entregue a quatro destinos, todos opcionais:
 
 ## Ligar o Google Analytics e o Google Ads (escolha feita)
 
-Estado em 18/11/2026: propriedade GA4 criada, com ID de métrica **`G-WRGB672YF4`** (fluxo "Site"). Falta colocá-lo na Vercel (passo 3) e criar a conversão no Google Ads (passo 2).
+Estado em 18/11/2026:
+- propriedade GA4 criada, com ID de métrica **`G-WRGB672YF4`** (fluxo "Site"), já na Vercel como `NEXT_PUBLIC_GA_ID` (Production);
+- por escolha do usuário, o GA4 foi vinculado à conta **Pianoforall** do Google Ads (862-910-9129), que ele já usa. As contas novas forçavam o assistente de primeira campanha;
+- a conversão vem por **importação do GA4**: no Analytics, marcar `whatsapp_click` como evento-chave; no Ads, importá-lo em Metas › Conversões. Com isso, `NEXT_PUBLIC_ADS_ID` e o rótulo não são necessários;
+- como a conta é compartilhada com outro negócio, a conversão "whatsapp_click" deve ser **meta só das campanhas do portfólio** (metas específicas da campanha), e não meta padrão da conta.
 
 1. **GA4:** no Google Analytics, crie uma propriedade e um fluxo da Web para `gabrielbatistadigital.com.br` e copie o ID de medição (`G-…`). Em Administrador › Retenção de dados, escolha o prazo (a política de privacidade remete a essa configuração).
 2. **Google Ads:** em Metas › Conversões, crie uma ação de conversão do tipo site, configurada "manualmente com código", chamada "Clique no WhatsApp", e copie o ID da tag (`AW-…`) e o rótulo da conversão.
