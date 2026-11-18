@@ -11,7 +11,7 @@ import styles from "@/app/editorial.module.css";
 import { lineEnds, linePath, onLine, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
 const subscribe = () => () => {};
 
-export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function EditorialMotion({ children, className = "", labels = { pause: "Pausar movimento", resume: "Ativar movimento" } }: { children: ReactNode; className?: string; labels?: { pause: string; resume: string } }) {
   const root = useRef<HTMLDivElement>(null);
   const initialAnchorHandled = useRef(false);
   // The brand dot's arrival scene plays once per visit, not again after pausing and resuming motion.
@@ -549,6 +549,6 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
   },[paused]);
   return <div ref={root} className={`${styles.page} ${className}`} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo" data-editorial-nav-over="editorial-start">
     {children}<div className={styles.frameGlow} aria-hidden="true"/><div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
-    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}><span className={styles.motionLabel}>{paused ? "Ativar movimento" : "Pausar movimento"}</span></button>}
+    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}><span className={styles.motionLabel}>{paused ? labels.resume : labels.pause}</span></button>}
   </div>;
 }

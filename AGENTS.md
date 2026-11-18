@@ -253,6 +253,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - no celular, o WhatsApp fica no menu inferior.
 - Não reintroduzir projetos antigos (Vanguard conceito, Entre, Chronos, Raiz) nem o catálogo na homepage sem pedido. CSS global limpo em 12/11/2026: as regras sem classe usada em lugar nenhum saíram (de cerca de 164 KB para 46 KB), e `signature.css` e `landing.css` foram removidos. A conferência foi feita pixel a pixel nas 34 rotas, no computador e no celular, mais a suíte completa. Antes de reintroduzir uma classe global antiga, procure-a no histórico do git.
 
+## Idiomas: português, inglês e espanhol (17/11/2026)
+
+- Pedido do usuário para campanhas no exterior (ele pretende usar a ClickBank). A homepage existe em `/` (português), `/en` (inglês) e `/es` (espanhol), cada uma com endereço próprio, título, descrição, canonical e hreflang (`lib/home-metadata.ts`), e as três no sitemap. Ninguém é redirecionado pelo idioma do navegador.
+- A página virou `components/EditorialHome.tsx` com o idioma como parâmetro. Todos os textos ficam em `lib/i18n.ts`; os do diálogo dos filmes, em `lib/film-copy.ts`. Ao mudar um texto, mudar nos três idiomas. Os filmes mostram os sites das marcas como são, em português.
+- As palavras com pingo vermelho mantêm um "i" real em todo idioma: "Design/Diseño"; "primeiro/first/primera"; "clique/click/clic". "Vamos conversar" vira "Let's talk" e "Hablemos", e o ponto continua sendo o ponto final.
+- Seletor por bandeiras, escolha do usuário: Brasil, EUA e Espanha (`components/LanguageSwitch.tsx`). No PC, as três bandeiras numa pílula ao lado de "Conversar"; no celular, a bandeira atual no canto de cima abre as outras duas. São grupos, não `<nav>`, porque o cabeçalho estiliza todo `<nav>` como o menu principal. Cada cópia de bandeira tem o próprio id de recorte.
+- O layout raiz diz `pt-BR`; em `/en` e `/es`, um script mínimo corrige o `lang` antes da leitura. As mesmas regras valem em todo idioma: sem clientes, números, resultados, prazos ou preços inventados. A tradução foi feita aqui e deve ser conferida pelo usuário antes das campanhas.
+
 ## Preparação para o deploy (12/11/2026)
 
 - Na produção da Vercel (`VERCEL_ENV=production`, ou `HIDE_REVIEW_ROUTES=1` para simular), só a homepage e as cinco marcas aprovadas (`/modelos/odontologia`, `cirurgia-plastica`, `veterinaria`, `hotelaria` e `patrimonio`) são públicas. Os modelos antigos do template, `/conceitos/*` e todo `/propostas/*` redirecionam (307) para `/` (`next.config.js`). Localmente e nas prévias, tudo continua acessível para revisão e testes.

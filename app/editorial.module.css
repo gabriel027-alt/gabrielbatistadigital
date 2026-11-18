@@ -205,6 +205,26 @@
 /* The dot ends its journey as the full stop of "Vamos conversar" and stays lit. */
 .contactDot{display:inline-block;width:.26em;height:.26em;margin-left:.07em;border-radius:50%;vertical-align:baseline;background:radial-gradient(circle at 35% 30%,#ef5a4a 0%,#c4372b 55%,#7a1a12 100%)}
 .contactDot[data-lit=true]{animation:contactLit 2.2s ease-out infinite}
+/* Language switcher (components/LanguageSwitch.tsx): three round flags in a pill on computers, the current flag that
+   opens the other two on phones. */
+.navEnd{justify-self:end;display:flex;align-items:center;gap:18px}
+.navEnd .navContact{justify-self:auto}
+.flag{display:block;width:24px;height:24px}
+.langPill{display:flex;gap:2px;padding:4px;border-radius:30px;background:#faf6ef24;backdrop-filter:blur(12px);border:1px solid #ffbc9533}
+.page[data-editorial-theme=paper] .langPill{background:#20171410;border-color:#2017141f}
+.langLink{display:grid;place-items:center;width:34px;height:34px;border-radius:50%;opacity:.55;transition:opacity .2s,background .2s}
+.langLink:hover,.langLink:focus-visible{opacity:1}
+.langLink[aria-current=true]{opacity:1;background:#faf6ef}
+.langMenu{display:none;position:relative}
+.langMenu summary{list-style:none;display:grid;place-items:center;width:44px;height:44px;border-radius:50%;cursor:pointer}
+.langMenu summary::-webkit-details-marker{display:none}
+.langList{position:absolute;right:0;top:46px;display:grid;gap:4px;padding:4px;border-radius:24px;background:#faf6eff0;box-shadow:0 3px 25px #20171420}
+.langMenu .langLink{width:44px;height:44px;opacity:1}
+@media(max-width:700px){
+  .navEnd{position:absolute;right:4vw;top:12px;pointer-events:auto}
+  .langPill{display:none}
+  .langMenu{display:block}
+}
 /* "Depois do site": the services around the site, in the same four columns; the first holds the group's name. */
 .serviceMore{margin-top:-40px}
 .serviceLabel{padding:28px 0 0}

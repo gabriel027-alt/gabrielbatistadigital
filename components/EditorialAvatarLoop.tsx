@@ -43,7 +43,7 @@ function loadSpotifyApi() {
 }
 
 /** The poster remains usable without JS, motion, bandwidth or video playback. */
-export function EditorialAvatarLoop() {
+export function EditorialAvatarLoop({ alt = "Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento" }: { alt?: string }) {
   const host = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const slot = useRef<HTMLDivElement>(null);
@@ -179,7 +179,7 @@ export function EditorialAvatarLoop() {
 
   return <>
     <div ref={host} className={styles.footerPhoto} data-avatar-scene>
-      <ArtDirectedImage alt="Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento"
+      <ArtDirectedImage alt={alt}
         desktop={{ src: editorialAvatar.poster, sizes: "120vw" }} mobile={{ src: editorialAvatar.mobilePoster, sizes: "100vw" }} />
       <video ref={video} className={styles.avatarVideo} data-avatar-loop muted loop playsInline preload="none" aria-hidden="true" disablePictureInPicture
         onPlaying={() => { if (video.current) video.current.dataset.ready = "true"; }}
