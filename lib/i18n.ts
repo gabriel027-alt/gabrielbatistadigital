@@ -3,15 +3,16 @@ import { buildWhatsAppUrl } from "@/lib/whatsapp";
 /**
  * The homepage in three languages (17/11/2026): Portuguese at "/", English at "/en", Spanish at "/es". Each is a real
  * page with its own address, so campaigns abroad land straight in the visitor's language and search engines see every
- * version (hreflang). Nobody is redirected by browser language. Flags (Brazil, United States, Spain) are the user's
- * choice for the switcher. Same rules in every language: no invented clients, numbers, results, deadlines or prices.
+ * version (hreflang). Nobody is redirected by browser language. Flags (Brazil, United States, Mexico) are the user's
+ * choice for the switcher. The Spanish is Latin American (celular, computadora), the market chosen on 17/11/2026; it
+ * stays "es" for search engines, so Spain still finds it. Same rules in every language: no invented clients, numbers, results, deadlines or prices.
  */
 export const locales = ["pt", "en", "es"] as const;
 export type Locale = (typeof locales)[number];
 export const localeInfo: Record<Locale, { path: string; html: string; og: string; name: string }> = {
   pt: { path: "/", html: "pt-BR", og: "pt_BR", name: "Português" },
   en: { path: "/en", html: "en", og: "en_US", name: "English" },
-  es: { path: "/es", html: "es", og: "es_ES", name: "Español" },
+  es: { path: "/es", html: "es", og: "es_LA", name: "Español" },
 };
 /** hreflang alternates shared by the three pages. */
 export const languageAlternates = { "pt-BR": "/", en: "/en", es: "/es", "x-default": "/" };
@@ -134,39 +135,39 @@ const en: HomeCopy = {
 };
 
 const es: HomeCopy = {
-  metaTitle: "Gabriel Batista | Sitios web para clínicas y negocios premium",
-  metaDescription: "Diseño y desarrollo web para clínicas dentales, estéticas, de cirugía plástica y otros negocios premium: marca propia, del primer contacto a la cita.",
-  ogImageAlt: "Gabriel Batista: sitios web para clínicas y negocios premium",
+  metaTitle: "Gabriel Batista | Diseño de páginas web para clínicas y negocios premium",
+  metaDescription: "Diseño y desarrollo de páginas web para clínicas dentales, estéticas, de cirugía plástica y otros negocios premium: marca propia, del primer contacto a la cita.",
+  ogImageAlt: "Gabriel Batista: páginas web para clínicas y negocios premium",
   skip: "Saltar al contenido", navLabel: "Navegación del portafolio",
   nav: { work: "Proyectos", services: "Servicios", about: "Sobre mí", talk: "Hablemos" }, talkCursor: "Hablemos",
   langLabel: "Idioma", contactMessage: "¡Hola, Gabriel! Vi tu portafolio y quiero conversar sobre un sitio web para mi clínica.",
   heroAlt: "Retrato frontal de Gabriel Batista con luz roja",
   offer: { label: "Diseño & desarrollo web", before: "D", after: "seño &", line2: "desarrollo web" },
-  tagline: "Sitios web para clínicas y negocios premium",
+  tagline: "Páginas web para clínicas y negocios premium",
   hook: { label: "De la primera mirada al próximo clic, y de ahí a tu agenda.", first: ["De la pr", "mera mirada"], lead: "al próximo ", click: ["cl", "c"], clickLabel: "clic", tail: "y de ahí a tu agenda.", cursor: "Empezar un proyecto" },
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",
   palmTitle: "Hecho a mano, del primer trazo al último clic.", palmText: "Sin plantillas: cada sitio nace de la marca de tu clínica.",
   projects: "Proyectos", workNote: "Haz clic en un proyecto para ver su video. Marcas brasileñas: los sitios están en portugués.", specFont: "Tipografía", specColors: "Colores medidos en las fotos",
-  sectors: { forma: "Odontología estética", sutil: "Cirugía plástica", toca: "Hospital veterinario", brisa: "Hotel boutique", almeida: "Familia y sucesiones", aura: "Armonización facial", orla: "Residencias" },
+  sectors: { forma: "Odontología estética", sutil: "Cirugía plástica", toca: "Hospital veterinario", brisa: "Hotel boutique", almeida: "Derecho de familia y sucesiones", aura: "Armonización facial", orla: "Residencias" },
   servicesNote: "Lo que construyo", servicesTitle: ["Tu clínica tiene su propia forma de atender.", "Démosle forma."],
   services: [
-    { title: "Sitios & landing pages", text: "Los tratamientos, las dudas más frecuentes y el camino hasta la cita, en una página que el paciente entiende sin esfuerzo." },
+    { title: "Páginas web y landing pages", text: "Los tratamientos, las dudas más frecuentes y el camino hasta la cita, en una página que el paciente entiende sin esfuerzo." },
     { title: "Diseño con identidad propia", text: "Colores tomados de tus propias fotos y una tipografía elegida para tu marca, para que el sitio no parezca el de la competencia." },
-    { title: "Movimiento & interacción", text: "El scroll muestra el espacio, el tratamiento o la recuperación. Un recorrido corto prepara la primera conversación." },
-    { title: "Diseño & desarrollo", text: "Yo mismo diseño y programo el sitio, y reviso cada página en el celular y en la computadora." },
+    { title: "Movimiento e interacción", text: "El scroll muestra el espacio, el tratamiento o la recuperación. Un recorrido corto prepara la primera conversación." },
+    { title: "Hecho por una sola persona", text: "Yo mismo diseño y programo el sitio, y reviso cada página en el celular y en la computadora." },
   ],
   supportTitle: "Después del sitio", supportText: "Para que encuentren la clínica y el paciente llegue a la agenda.",
   support: [
-    { title: "Perfil de Empresa de Google & Maps", text: "Dejo el perfil de la clínica completo y actualizado, con horarios, fotos y cómo llegar, para quien busca cerca." },
-    { title: "Google Ads & Instagram", text: "Configuro y sigo campañas en Google e Instagram que llevan a quien busca el tratamiento hasta el sitio." },
+    { title: "Perfil de Empresa en Google y Maps", text: "Dejo el perfil de la clínica completo y actualizado, con horarios, fotos y cómo llegar, para quien busca cerca." },
+    { title: "Google Ads e Instagram", text: "Configuro y gestiono campañas en Google e Instagram que llevan a quien busca el tratamiento hasta el sitio." },
     { title: "Automatización en WhatsApp", text: "Una primera respuesta automática resuelve las dudas más comunes y lleva al paciente hasta la cita." },
   ],
   customLead: "A medida.", customText: "¿Necesitas algo que no está aquí, como un panel con los números de la clínica, un CRM o una integración entre sistemas? Cuéntame el problema y te digo si puedo resolverlo y cómo.",
   stepsTitle: "Cómo funciona",
   steps: [
     { title: "Conversación", text: "Me cuentas cómo atiende hoy la clínica, quiénes son los pacientes y qué tiene que resolver el sitio." },
-    { title: "Propuesta", text: "Propongo las páginas, el contenido y lo que más tenga sentido para la clínica, con la inversión de cada parte." },
-    { title: "Diseño & programación", text: "Diseño a partir de las fotos y la marca de la clínica y programo el sitio. Sigues el avance antes de publicarlo." },
+    { title: "Propuesta", text: "Propongo las páginas, el contenido y lo que tenga más sentido para la clínica, con la inversión de cada parte." },
+    { title: "Diseño y programación", text: "Diseño a partir de las fotos y la marca de la clínica y programo el sitio. Sigues el avance antes de publicarlo." },
     { title: "Lanzamiento", text: "El sitio se publica revisado en el celular y en la computadora, listo para recibir pacientes." },
   ],
   aboutAlt: "Gabriel Batista", aboutTitle: ["Una buena idea", "tiene que funcionar."], aboutText: "También en el celular de quien busca tu clínica.",

@@ -275,7 +275,7 @@ test("The homepage is offered in Portuguese, English and Spanish, each at its ow
   const pages = [
     { path: "/", lang: "pt-BR", title: /Sites para clínicas/, hook: "Do primeiro olhar" },
     { path: "/en", lang: "en", title: /Websites for clinics/, hook: "From first glance" },
-    { path: "/es", lang: "es", title: /Sitios web para clínicas/, hook: "De la primera mirada" },
+    { path: "/es", lang: "es", title: /páginas web para clínicas/, hook: "De la primera mirada" },
   ];
   for (const item of pages) {
     await page.setViewportSize({ width: 1440, height: 900 });
