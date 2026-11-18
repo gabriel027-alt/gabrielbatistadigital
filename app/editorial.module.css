@@ -182,7 +182,7 @@
 
 /* "O próximo clique" (14/11/2026): two hands painted in oil reach for the brand dot. Cut out by the painting's flat
    paper colour (soft alpha), so the hands sit on the page with no frame. */
-.fusionTrack{position:relative;height:400vh}
+.fusionTrack{position:relative;height:340vh}
 .fusionStage{position:sticky;top:0;height:100svh;display:grid;place-items:center;overflow:clip}
 /* The palm (14/11/2026): Gabriel's open hand rises from the bottom of the stage; the brand dot rests in its palm. */
 .palm{--pw:min(100vw,118svh);position:absolute;bottom:-3svh;left:calc(50% - var(--pw) * .55);width:var(--pw);aspect-ratio:4000/2251;margin:0;z-index:1}
@@ -275,7 +275,7 @@
 .page[data-editorial-animated=true] .fusionField{visibility:visible}
 .fusionField svg{display:block;width:100%;height:100%;overflow:visible}
 
-@media(max-width:700px){.fusionTrack{height:340vh}}
+@media(max-width:700px){.fusionTrack{height:290vh}}
 @media(prefers-reduced-motion:reduce){.fusionTrack{height:auto}.fusionStage{position:relative}}
 /* Projects (14/11/2026): the brand dot drops onto the folder's tab like a click, the folder opens and the projects
    come out as an endless strip of films. The CSS is the final state, so without motion the folder sits open below the strip. */
@@ -333,6 +333,10 @@
 .serviceItem p{margin:0;font-size:13px;line-height:1.6;max-width:34ch;color:var(--soft)}
 @media(max-width:900px){.serviceList{grid-template-columns:1fr 1fr;gap:0 6vw}.serviceItem{padding:24px 0 28px}}
 @media(max-width:560px){.serviceList{grid-template-columns:1fr;margin:0 6vw 60px}}
+/* Phones (17/11/2026): the services had grown to three screens of small text. Tighter rows, and the four steps in a
+   2 x 2 grid; the dot still reads down the left edge, row by row. The creation scene was also shortened by about 15%
+   (400vh to 340vh on computers, 340vh to 290vh on phones). */
+@media(max-width:560px){.serviceItem{padding:16px 0 18px}.serviceItem h3{margin-bottom:8px;font-size:20px}.serviceItem p{font-size:12.5px;line-height:1.5}.serviceLabel{padding:18px 0 4px}.stepsList{grid-template-columns:1fr 1fr;gap:0 5vw}.stepsList .serviceItem h3{font-size:18px}.serviceCustom{padding:18px 0}}
 /* Clouds behind Gabriel and dust under the pointer in the hero (components/HeroClouds.tsx); below the gradient and the name. */
 .heroClouds{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 /* The same clouds as a transition when the hero leaves (components/CloudTransition.tsx): fixed, under the menu. */

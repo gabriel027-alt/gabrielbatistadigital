@@ -147,7 +147,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         <a className={styles.serviceCustom} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor}><span><strong>{t.customLead}</strong> {t.customText}</span><Arrow size={20}/></a>
         {/* How it works, read by the dot like the lists above. Process only: no deadlines or prices until Gabriel sets them. */}
         <h3 className={styles.stepsTitle} id="editorial-steps">{t.stepsTitle}</h3>
-        <div className={styles.serviceList} data-read-list>{t.steps.map((item, i) => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
+        <div className={`${styles.serviceList} ${styles.stepsList}`} data-read-list>{t.steps.map((item, i) => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
       </section>
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
         <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt={t.aboutAlt} desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>
