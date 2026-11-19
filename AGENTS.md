@@ -395,3 +395,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - A faixa começa só quando a pasta termina de abrir e segura o primeiro projeto por 3,2 s. Antes ela corria escondida durante o topo, e a Lume chegava cortada. Voltar pela pasta reinicia essa apresentação; hover, foco, pausa, movimento reduzido e conteúdo sem JS continuam válidos.
 - Conferência visual em PC 1536×696 com DPR 1,25 e celular 390×844, por `scripts/capture-lume-homepage-review.mjs`. Capturas e vídeo curto fora do repositório, em `/workspace/entrega-gbd/lume-homepage/` neste ambiente Linux. A integração aguarda a avaliação visual do usuário; teste aprovado não é aprovação estética.
 - Sem push, sem deploy e sem alterar o modo fora do ar. Arrimo só começa depois da aprovação desta etapa, pelos pedidos de fotografia já definidos.
+
+
+## Arrimo: piloto para avaliação (19/11/2026)
+
+- Autorizado pelo usuário depois da Lume; entrada confirmada em `revisao-site`, commit `9b990b3`.
+- Piloto somente em `/modelos/previdenciario`: hero e assinatura “O tempo se soma”. Não montar o restante nem incluir na homepage antes da aprovação visual.
+- Fotos recebidas em `public/images/arrimo/`, preservadas. Hero e mãos entram no piloto; oficina e atendimento ficam para a página completa. Sem nome do advogado, OAB, números de contribuição ou promessa de concessão.
+- Barlow Condensed e Barlow; preto e carvão medidos no hero, papel, ouro velho e vermelho de carimbo. Marca A por duas vigas de apoio.
+- Scroll reversível: registros chegam à régua, lacunas aparecem em vermelho, ligações em ouro e carimbo NEGADO → EM ANÁLISE. Pausa, movimento reduzido e sem JS apresentam o conteúdo completo. Usa `useBrandMotion`.
+- Registro em `scripts/capture-arrimo-pilot.mjs`: PC 1536×696 com DPR 1,25 e celular 390×844; ida e volta. Arquivos de avaliação fora do repositório em `/workspace/entrega-gbd/arrimo-piloto/`.
+- Build e lint dos arquivos alterados aprovados; 11 testes de Arrimo, kits e regressão da Lume passaram. Lint geral tem pendências anteriores registradas na etapa da Lume. Sem push e sem deploy. Próximo passo é a avaliação visual, não a página completa.

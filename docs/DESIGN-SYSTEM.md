@@ -379,3 +379,11 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 - `tests/e2e/toca-model.spec.ts`, com 5 testes: chave Cão / Gato, portas de ida e volta, movimento reduzido com axe AA, esqueleto e roteiro, celular.
 - Suíte completa: 106 aprovados e 4 ignorados. Uma falha intermitente em `visual-review` passou ao repetir.
 - Vídeo em `Downloads/toca-percurso-scroll.mp4`, fora do repositório.
+
+## Arrimo: autoridade forte, piloto (19/11/2026)
+
+- Kit `arrimo` em `lib/brand-kits.ts`; piloto em `/modelos/previdenciario`. Barlow Condensed 600/700 nos títulos e Barlow 400/500/600 na leitura.
+- Foto jornalística em preto e branco, luz dura e textura documental. Sem recolorir as fotos: preto #080808 e carvão #1f1f1f medidos no hero. Papel #efefef, ouro velho #b49a62 e vermelho de carimbo #943c35 nos grafismos.
+- Marca A de duas vigas; botões retangulares, títulos condensados em caixa alta. Hero sem moldura; mãos discretas no fundo da cena. Cartões da régua representam documentos, não quadros de fotografia.
+- Assinatura: régua horizontal no PC e vertical no celular. Registros entram, lacunas vermelhas ganham ligações em ouro e o carimbo NEGADO vira EM ANÁLISE. Scroll reversível via GSAP e `useBrandMotion`; pausa e movimento reduzido mostram o estado documental completo.
+- Piloto aguardando aprovação visual. Não reutilizar a noite/manhã da Lume nem ampliar esta página antes da avaliação.

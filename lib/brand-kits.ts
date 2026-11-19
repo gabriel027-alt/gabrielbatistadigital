@@ -21,6 +21,17 @@ export type BrandKit = {
 
 export const brandKits: BrandKit[] = [
   {
+    id: "arrimo", route: "/modelos/previdenciario", niche: "Advocacia previdenciária",
+    concept: "Cada ano trabalhado conta.", mark: "Duas vigas se apoiam e uma travessa forma o A da Arrimo",
+    palette: { preto: "#080808", carvao: "#1f1f1f", papel: "#efefef", ouro: "#b49a62", carimbo: "#943c35" },
+    material: "Papel de registros de trabalho, tinta de carimbo e fotografia documental em preto e branco",
+    typography: { display: "Barlow Condensed", text: "Barlow" },
+    photo: "Retrato frontal de autoridade com luz dura; mãos calejadas com documentos, preto e branco de fotojornalismo",
+    signatureGraphic: "Régua dos períodos de trabalho, com lacunas e carimbo de análise",
+    signatureMotion: "O tempo se soma: vínculos entram, lacunas recebem ligações em ouro e NEGADO vira EM ANÁLISE",
+    hero: "Retrato preto e branco à direita, título condensado de autoridade sobre o carvão à esquerda", status: "em construção",
+  },
+  {
     id: "vanguard", route: "/propostas/vanguard", niche: "Arquitetura",
     concept: "A rolagem é o lápis.", mark: "Logotipo em caixa baixa com complemento",
     palette: { papel: "#dddbd5", tinta: "#1d1c1a", linha: "#2a2926", cinza: "#57554f", luz: "#f4f1ea" },

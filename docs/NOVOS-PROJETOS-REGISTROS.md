@@ -437,3 +437,13 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - **Paleta:** as fotos são neutras, então a cor vem só dos grafismos do kit (ouro velho e vermelho de carimbo). Medir os cinzas no hero para o carvão do palco.
 - **Próximo passo:** piloto da Arrimo, com hero e "O tempo se soma" (régua de contribuição com lacunas em vermelho preenchidas em ouro, e o carimbo "NEGADO" que vira "EM ANÁLISE"), seguindo o caminho da Lume. Gravar o vídeo de ida e volta e esperar a aprovação.
 - **Proibido:** OAB, nome do advogado (só com pedido do usuário, como na Lume), números, anos de contribuição exigidos e promessa de concessão.
+
+## Arrimo: passo 2, piloto (19/11/2026)
+
+- Entrada confirmada: `revisao-site` em `9b990b3`. Hero e cena implementados em `/modelos/previdenciario`, sem montar o resto.
+- Hero: foto recebida dissolvida no carvão, título “O INSS negou? Isso ainda não é o fim.” e chamada “Entender a análise” para a cena. Não há contato de advogado inventado.
+- “O tempo se soma”: registros de trabalho com carteira, atividade rural e atividade especial chegam a uma régua. Lacunas em vermelho recebem ligações em ouro; o carimbo passa de NEGADO para EM ANÁLISE. O texto explica leitura documental, sem afirmar concessão. Tudo reverte ao subir.
+- Cinzas medidos no hero: #080808 e #1f1f1f predominantes; papel #efefef. Ouro #b49a62 e carimbo #943c35 vêm da direção gráfica do kit. Fotografias permanecem em preto e branco e não foram novamente ampliadas.
+- Pausa, movimento reduzido e ausência de JS mantêm todos os registros e a conclusão legíveis. Verificação: build, lint dos arquivos alterados e 11 testes passaram, incluindo ida/volta, pausa, axe AA, sem JS e encaixe nos dois tamanhos.
+- Captura por `scripts/capture-arrimo-pilot.mjs`: PC 1536×696 com DPR 1,25 e celular 390×844. Filmes locais em `/workspace/entrega-gbd/arrimo-piloto/`, H.264 sem áudio.
+- **Onde parar:** aguardar aprovação visual dos filmes. Oficina, atendimento, triagem, demais seções e integração da Arrimo na homepage ficam para depois. Sem push, sem main e sem deploy.
