@@ -420,3 +420,20 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Verificações: build e TypeScript aprovados; 30 testes de Lume, filmes, idiomas, homepage e kits aprovados; lint dos arquivos alterados limpo. O teste do nome agora espera a conclusão real da abertura (`data-hero-signed`), em vez de tentar interagir antes dela.
 - O lint **geral** ainda encontra 3 erros e 2 avisos anteriores em `ArtDirectedImage`, `ConsentBanner`, `HandParticles`, `LanguageSwitch` e `NotFoundCopy`. Esses arquivos estão idênticos ao commit de entrada `b508883`; não foram alterados nesta etapa.
 - **Onde parar agora:** aguardar a avaliação visual desta integração. Depois da aprovação, entregar os pedidos de foto da Arrimo pela direção já definida, antes de construir o piloto. Sem push, sem deploy, site continua fora do ar.
+
+## Arrimo: fotos recebidas (19/11/2026)
+
+- **As quatro fotos:** o usuário gerou as quatro pedidas.
+- **Conferência:**
+  - preto e branco puro (saturação média 0);
+  - nenhum texto legível na carteira nem nos papéis;
+  - o mesmo advogado no hero e no atendimento.
+- **Tratamento:** ampliadas pelo Real-ESRGAN 4× com 20% do original, com o lado maior em 4800 px e gravadas em tons de cinza.
+- **Onde estão:** em `public/images/arrimo/`:
+  - `hero.webp`: advogado de braços cruzados à direita, luz dura, o lado esquerdo escuro para o título;
+  - `maos.webp`: mãos calejadas com a carteira de trabalho;
+  - `oficina.webp`: serralheiro de costas, sol pela porta;
+  - `atendimento.webp`: o advogado explicando um documento a um casal de idosos.
+- **Paleta:** as fotos são neutras, então a cor vem só dos grafismos do kit (ouro velho e vermelho de carimbo). Medir os cinzas no hero para o carvão do palco.
+- **Próximo passo:** piloto da Arrimo, com hero e "O tempo se soma" (régua de contribuição com lacunas em vermelho preenchidas em ouro, e o carimbo "NEGADO" que vira "EM ANÁLISE"), seguindo o caminho da Lume. Gravar o vídeo de ida e volta e esperar a aprovação.
+- **Proibido:** OAB, nome do advogado (só com pedido do usuário, como na Lume), números, anos de contribuição exigidos e promessa de concessão.
