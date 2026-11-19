@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import type { CSSProperties } from "react";
+import Image from "next/image";
 import Link from "next/link";
 import { Public_Sans, Young_Serif } from "next/font/google";
 import { signs, weights } from "@/lib/lume";
@@ -38,7 +39,7 @@ export default function LumePage() {
       {/* Signature: the demands weigh on the headline and fall away with the scroll. */}
       <section className={styles.hero} id="lume-inicio" aria-labelledby="lume-titulo" data-lume-hero>
         <div className={styles.stage}>
-          <span className={styles.curtain} data-lume-curtain aria-hidden="true" />
+          <span className={styles.lamp} data-lume-lamp aria-hidden="true" />
           <div className={styles.copy}>
             <p className={styles.lead}>Psicologia para mulheres que cuidam de todo mundo e não conseguem parar.</p>
             <div className={styles.titleBox}>
@@ -53,9 +54,10 @@ export default function LumePage() {
               <a className={styles.textLink} href="#lume-sinais">Ver se é pra você</a>
             </div>
           </div>
-          <figure className={styles.portrait} aria-hidden="true" data-lume-portrait>
-            <span className={styles.portraitLight} />
-            <figcaption>Retrato da psicóloga no consultório (foto a gerar)</figcaption>
+          {/* The same kitchen at 23h and at 7h: the morning comes in as the demands fall. */}
+          <figure className={styles.scene} data-lume-scene>
+            <Image src="/images/lume/cozinha-noite.webp" alt="Uma mulher à mesa da cozinha às onze da noite, com a mão na testa, diante do notebook, de contas e de uma lancheira infantil" fill sizes="(max-width:900px) 200vw, 70vw" quality={88} preload />
+            <Image className={styles.morning} data-lume-morning src="/images/lume/cozinha-manha.webp" alt="A mesma cozinha de manhã, com a mesa arrumada; ela segura um café e olha pela janela" fill sizes="(max-width:900px) 200vw, 70vw" quality={88} />
           </figure>
         </div>
       </section>

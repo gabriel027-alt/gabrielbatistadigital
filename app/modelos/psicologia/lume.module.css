@@ -1,49 +1,60 @@
-/* Lume Psicologia. Starting palette from the kit (linen, clay, tea rose, cocoa, window light); re-measure on the photos.
-   Brand layer: the window mark, the curtain light and the demands that fall away from the headline. */
-.page{--linho:#f4ede3;--argila:#dcc7b1;--rosa:#b98478;--rosa-texto:#8a564b;--cacau:#4a3128;--luz:#fffaf2;--suave:#6b5248;--linha:#e2d4c4;
-  --fibra:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9 .35' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .29 0 0 0 0 .19 0 0 0 0 .16 0 0 0 .07 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
-  background:var(--linho) var(--fibra);color:var(--cacau);font-family:var(--lume-sans),system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:clip}
+/* Lume Psicologia. Palette measured on the user's photos (19/11/2026, k-means): the kitchen at night (#201a15, walnut under
+   tungsten #553b2a, screen blue #a0beeb), the same kitchen in the morning (concrete greys, cool daylight #ced3d5) and the
+   studio portrait (clay backdrop #b26a58, cocoa silk #391910). Material: film grain over tungsten and morning light.
+   Brand layer: the window mark, the pendant's light, and the demands that fall away while night turns into morning.
+   --dawn (0 night → 1 morning) drives the stage, the header and the text; static pages show the morning (1). */
+.page{--noite:#1f1914;--manha:#eceeed;--luz:#f7f8f7;--cacau:#3d1d13;--argila:#b26a58;--argila-escura:#8f4c3d;--papel:#e2cdb4;--linha:#d6d9d8;
+  --dawn:1;
+  --tinta:color-mix(in srgb,var(--cacau) calc(var(--dawn) * 100%),#f3e8dc);
+  --suave:color-mix(in srgb,#584640 calc(var(--dawn) * 100%),#cbbdb0);
+  --chamada:color-mix(in srgb,var(--argila-escura) calc(var(--dawn) * 100%),#e0a58f);
+  --grao:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .11 0 0 0 0 .07 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
+  background:var(--manha) var(--grao);color:var(--cacau);font-family:var(--lume-sans),system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:clip}
 .page *{box-sizing:border-box}
 .page h1,.page h2{font-family:var(--lume-display),Georgia,serif;font-weight:400;letter-spacing:-.01em;text-wrap:balance;color:var(--cacau)}
-.page :is(a,button,input):focus-visible{outline:2px solid var(--cacau);outline-offset:4px}
-.skip{position:absolute;left:16px;top:-80px;z-index:40;padding:12px 16px;background:var(--cacau);color:var(--linho)}
+.page :is(a,button,input):focus-visible{outline:2px solid var(--argila);outline-offset:4px}
+.skip{position:absolute;left:16px;top:-80px;z-index:40;padding:12px 16px;background:var(--cacau);color:var(--manha)}
 .skip:focus{top:12px}
 
-.header{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:40px;padding:12px 5vw;background:#f4ede3e6;backdrop-filter:blur(10px)}
-.logo{display:flex;align-items:center;gap:10px;color:var(--cacau);text-decoration:none}
+/* The header lives in the same room: dark at night, daylight in the morning. */
+.header{position:sticky;top:0;z-index:30;display:flex;align-items:center;gap:40px;padding:12px 5vw;
+  background:color-mix(in srgb,color-mix(in srgb,var(--manha) calc(var(--dawn) * 100%),var(--noite)) 90%,transparent);backdrop-filter:blur(10px);color:var(--tinta)}
+.logo{display:flex;align-items:center;gap:10px;color:var(--tinta);text-decoration:none}
 .logo span{display:flex;flex-direction:column;font-family:var(--lume-display),serif;font-size:24px;line-height:1}
 .logo small{font-size:12px;font-family:var(--lume-sans),sans-serif;color:var(--suave);margin-top:4px}
 .header nav{display:flex;gap:28px;margin-left:auto;font-size:15px}
-.header nav a{color:var(--cacau);text-decoration:none;padding:10px 0}
+.header nav a{color:var(--tinta);text-decoration:none;padding:10px 0}
 .header nav a:hover{text-decoration:underline;text-underline-offset:6px}
-.headerCta,.primary{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 28px;border-radius:999px;background:var(--cacau);color:var(--luz);font-size:15px;font-weight:600;text-decoration:none;transition:background-color .2s,transform .2s}
+.headerCta,.primary{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:13px 28px;border-radius:999px;background:var(--argila-escura);color:#fff;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .2s,transform .2s}
 .headerCta{min-height:44px;padding:10px 22px}
-.headerCta:hover,.primary:hover{background:#2f1e18;transform:translateY(-1px)}
-.textLink{display:inline-flex;align-items:center;min-height:44px;color:var(--cacau);font-weight:600;text-decoration:underline;text-decoration-color:var(--rosa);text-decoration-thickness:2px;text-underline-offset:7px}
+.headerCta:hover,.primary:hover{background:#74392d;transform:translateY(-1px)}
+.textLink{display:inline-flex;align-items:center;min-height:44px;color:var(--tinta);font-weight:600;text-decoration:underline;text-decoration-color:var(--argila);text-decoration-thickness:2px;text-underline-offset:7px}
 
-/* Hero. Static by default (clean title, demands struck through below it); a sticky scene with motion. */
-.hero{--lume-light:1;position:relative}
-.stage{position:relative;display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:5vw;align-items:center;min-height:calc(100svh - 68px);padding:56px 5vw 64px;
-  background:color-mix(in srgb,var(--linho) calc(var(--lume-light) * 100%),var(--argila))}
-.curtain{position:absolute;inset:0;z-index:0;pointer-events:none;
-  background:repeating-linear-gradient(90deg,#fffaf200 0 6vw,#fffaf2b3 6vw 9vw,#fffaf200 9vw 13vw,#fffaf266 13vw 14vw,#fffaf200 14vw 19vw);
-  -webkit-mask-image:linear-gradient(90deg,#0000 0%,#0006 35%,#000 100%);mask-image:linear-gradient(90deg,#0000 0%,#0006 35%,#000 100%);mix-blend-mode:soft-light}
-.copy{position:relative;z-index:2}
-.lead{margin:0 0 26px;max-width:34ch;font-size:clamp(17px,1.35vw,20px);font-weight:500;color:var(--rosa-texto)}
+/* Hero. Static by default (morning, clean title, demands struck through below it); a sticky scene with motion. */
+.hero{position:relative}
+.stage{position:relative;display:grid;grid-template-columns:minmax(0,6fr) minmax(0,6fr);gap:4vw;align-items:center;min-height:calc(100svh - 68px);padding:56px 5vw 64px;
+  background:color-mix(in srgb,var(--manha) calc(var(--dawn) * 100%),var(--noite)) var(--grao)}
+/* The pendant's light: a warm pool over the title at night that goes out when the morning comes. */
+.lamp{position:absolute;inset:0;z-index:0;pointer-events:none;opacity:0;
+  background:radial-gradient(ellipse 46% 62% at 24% 30%,#a8724a59 0%,#a8724a1f 45%,#a8724a00 75%)}
+.copy{position:relative;z-index:2;color:var(--tinta)}
+.lead{margin:0 0 26px;max-width:34ch;font-size:clamp(17px,1.35vw,20px);font-weight:500;color:var(--chamada)}
 .titleBox{position:relative}
-.titleBox h1{margin:0;font-size:clamp(40px,min(5.6vw,9.6svh),96px);line-height:1.02;max-width:13ch}
+.titleBox h1{margin:0;font-size:clamp(40px,min(5.2vw,9.6svh),92px);line-height:1.02;max-width:13ch;color:var(--tinta)}
 .weights{display:flex;flex-wrap:wrap;gap:6px 18px;margin:22px 0 0;padding:0;list-style:none;font-size:15px;color:var(--suave)}
-.weights li{text-decoration:line-through;text-decoration-color:var(--rosa);text-decoration-thickness:2px}
+.weights li{text-decoration:line-through;text-decoration-color:var(--argila);text-decoration-thickness:2px}
 .sub{margin:30px 0 32px;max-width:46ch;font-size:clamp(17px,1.25vw,19px);color:var(--suave)}
 .actions{display:flex;flex-wrap:wrap;align-items:center;gap:22px}
 
-/* Portrait slot: waits for the user's photo of the psychologist in her room. */
-.portrait{position:relative;z-index:1;align-self:stretch;min-height:440px;margin:0;border-radius:6px;overflow:hidden;
-  background:linear-gradient(180deg,#e9dccd,#d8c2ab)}
-.portraitLight{position:absolute;inset:0;background:repeating-linear-gradient(90deg,#fffaf200 0 22px,#fffaf28c 22px 40px,#fffaf200 40px 58px);opacity:calc(.25 + var(--lume-light) * .6)}
-.portrait figcaption{position:absolute;left:24px;right:24px;bottom:22px;font-size:13px;color:var(--suave)}
+/* The same kitchen at 23h and at 7h, one over the other, same framing. */
+.scene{position:relative;z-index:1;align-self:stretch;min-height:440px;margin:0;border-radius:4px;overflow:hidden;background:var(--noite)}
+.scene img{object-fit:cover;object-position:66% 50%}
+.morning{opacity:1}
 
-.page[data-brand-animated=true] .hero{--lume-light:0;height:260svh}
+.page[data-brand-animated=true]{--dawn:0}
+.page[data-brand-animated=true] .lamp{opacity:1}
+.page[data-brand-animated=true] .morning{opacity:0}
+.page[data-brand-animated=true] .hero{height:270svh}
 /* The stage slides under the sticky header (68px) from the start, so nothing jumps when it sticks; it clips the
    fallen demands so they never land on the next section. */
 .page[data-brand-animated=true] .hero{margin-top:-68px}
@@ -52,8 +63,8 @@
 .page[data-brand-animated=true] .sub{margin:3svh 0 3svh}
 .page[data-brand-animated=true] .weights{position:absolute;inset:0;z-index:2;display:block;margin:0;pointer-events:none}
 .page[data-brand-animated=true] .weights li{position:absolute;top:var(--top);left:var(--left);transform:rotate(var(--turn));white-space:nowrap;
-  padding:10px 18px 11px;border-radius:4px;background:var(--argila) var(--fibra);color:var(--cacau);font-size:clamp(15px,1.45vw,23px);font-weight:600;text-decoration:none;
-  box-shadow:0 1px 0 #fffaf2 inset,0 22px 34px -16px #4a3128a6,0 3px 6px #4a31282e}
+  padding:10px 18px 11px;border-radius:3px;background:var(--papel) var(--grao);color:var(--cacau);font-size:clamp(15px,1.4vw,22px);font-weight:600;text-decoration:none;
+  box-shadow:0 1px 0 #fff6e8 inset,0 22px 34px -16px #000000b3,0 3px 6px #00000047}
 
 /* "Talvez você esteja aqui porque…": the visitor marks what sounds like her; the call to action answers. */
 .signs{padding:120px 5vw 110px;background:var(--luz)}
@@ -61,12 +72,12 @@
 .signsHead h2{margin:0 0 12px;font-size:clamp(36px,4vw,60px);line-height:1.06}
 .signsHead p{margin:0;color:var(--suave)}
 .signList{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:0;padding:0;list-style:none}
-.signList label{position:relative;display:flex;gap:16px;align-items:flex-start;min-height:120px;padding:24px 24px 26px;border:1px solid var(--linha);border-radius:18px;background:var(--linho);cursor:pointer;
+.signList label{position:relative;display:flex;gap:16px;align-items:flex-start;min-height:120px;padding:24px 24px 26px;border:1px solid var(--linha);border-radius:16px;background:var(--manha);cursor:pointer;
   font-size:18px;line-height:1.45;transition:background-color .25s,color .25s,border-color .25s}
-.signList input{appearance:none;flex:none;width:26px;height:26px;margin:1px 0 0;border:2px solid var(--rosa);border-radius:50%;background:transparent;cursor:pointer;display:grid;place-content:center}
+.signList input{appearance:none;flex:none;width:26px;height:26px;margin:1px 0 0;border:2px solid var(--argila);border-radius:50%;background:transparent;cursor:pointer;display:grid;place-content:center}
 .signList input:checked{background:var(--luz);border-color:var(--luz)}
 .signList input:checked:after{content:"";width:7px;height:12px;margin-top:-3px;border:solid var(--cacau);border-width:0 2.5px 2.5px 0;transform:rotate(45deg)}
-.signList label:hover{border-color:var(--rosa)}
+.signList label:hover{border-color:var(--argila)}
 .signList label:has(input:checked){background:var(--cacau);border-color:var(--cacau);color:var(--luz)}
 .signsEnd{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:24px;margin-top:40px}
 .signsNote{margin:0;max-width:52ch;color:var(--suave)}
@@ -74,18 +85,20 @@
 .signs:has(input:checked) [data-when=none]{display:none}
 .signs:has(input:checked) [data-when=some]{display:inline}
 
-.footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:36px 5vw;background:var(--cacau);color:var(--linho)}
+.footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:36px 5vw;background:var(--cacau);color:var(--manha)}
 .footerBrand{display:flex;align-items:center;gap:10px;margin:0;font-family:var(--lume-display),serif;font-size:22px}
-.credit{margin:0;font-size:14px;color:#e8dccd}
-.credit a{color:var(--luz);text-decoration:underline;text-underline-offset:4px}
-.motionToggle{position:fixed;right:18px;bottom:18px;z-index:35;min-height:44px;padding:10px 18px;border:1px solid var(--linha);border-radius:999px;background:#fffaf2f0;color:var(--cacau);font:600 13px var(--lume-sans),sans-serif;cursor:pointer}
+.credit{margin:0;font-size:14px;color:#e3d6cc}
+.credit a{color:#fff;text-decoration:underline;text-underline-offset:4px}
+.motionToggle{position:fixed;right:18px;bottom:18px;z-index:35;min-height:44px;padding:10px 18px;border:1px solid var(--linha);border-radius:999px;background:#f7f8f7f0;color:var(--cacau);font:600 13px var(--lume-sans),sans-serif;cursor:pointer}
 
 @media (max-width:900px){
   .header{gap:16px}
   .header nav{display:none}
   .headerCta{margin-left:auto}
-  .stage{grid-template-columns:1fr;gap:28px;align-content:start;padding:28px 6vw 48px}
-  .portrait{order:-1;min-height:0;height:26svh;border-radius:6px}
+  .stage{grid-template-columns:1fr;gap:26px;align-content:start;padding:28px 6vw 48px}
+  .scene{order:-1;min-height:0;height:30svh}
+  .scene img{object-position:62% 50%}
+  .lamp{background:radial-gradient(ellipse 80% 40% at 30% 58%,#a8724a59 0%,#a8724a1f 45%,#a8724a00 75%)}
   .titleBox h1{font-size:clamp(40px,11.5vw,64px)}
   .page[data-brand-animated=true] .stage{padding-top:calc(68px + 2svh);min-height:0}
   /* On phones the demands stack down the title in a loose zigzag, so each one stays readable. */

@@ -244,6 +244,35 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
 - A sessão online e o consultório vazio saem: repetem a Sutil e o esquema de janela.
 - O rosto da psicóloga fica, como referência para o retrato de estúdio.
 
+## Lume: noite → manhã na cena (19/11/2026)
+
+**As fotos:** o usuário gerou as três pedidas.
+- **Alinhamento:** conferido por sobreposição de bordas. Pendente, torneira, geladeira e cadeiras caem no mesmo lugar.
+- **Tratamento:** ampliadas pelo Real-ESRGAN 4× com 20% do original, com o lado maior em 4800 px.
+- **Onde estão:** em `public/images/lume/` (`cozinha-noite`, `cozinha-manha` e `retrato`). O retrato fica guardado para a seção da psicóloga.
+
+**Paleta medida por k-means:**
+- noite #1f1914, madeira sob tungstênio #553b2a e tela #a0beeb;
+- manhã nos cinzas #746e67 a #ced3d5;
+- fundo do retrato #b26a58 e seda #391910.
+
+**Tokens:**
+- noite #1f1914, manhã #eceeed, luz #f7f8f7;
+- argila #b26a58 e argila escura #8f4c3d (botões, AA com branco);
+- cacau #3d1d13 e papel das frases #e2cdb4.
+
+**A cena:**
+- Na chegada, a cozinha às 23h aparece ao lado do título, com o palco escuro e a luz do pendente sobre o título.
+- As frases caem. Por volta de 60% da rolagem, a cozinha das 7h aparece por cima da das 23h, no mesmo enquadramento.
+- Ao mesmo tempo, o pendente apaga, e o palco, o cabeçalho e o texto passam para a luz da manhã (`--dawn` na raiz).
+- Na volta, a noite retorna.
+- Sem movimento, a página mostra a manhã.
+- A cortina de luz saiu do kit, porque a regra nova proíbe cortina. No lugar, o elemento-assinatura é o cone do pendente.
+
+**Evidência:**
+- `lume-model.spec.ts` (4) e `brand-kits.spec.ts` aprovados.
+- Vídeos em `Downloads/lume-piloto/`: `lume-noite-manha-pc.mp4` (1536×696) e `-celular.mp4` (390×844).
+
 ## Pedidos de imagem para o usuário
 
 > Os pedidos da Lume abaixo foram substituídos pela seção "Direção de fotografia por marca". Os das outras marcas seguem a tabela daquela seção quando forem refeitos.
