@@ -273,6 +273,16 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
 - `lume-model.spec.ts` (4) e `brand-kits.spec.ts` aprovados.
 - Vídeos em `Downloads/lume-piloto/`: `lume-noite-manha-pc.mp4` (1536×696) e `-celular.mp4` (390×844).
 
+**Foto fundida ao ambiente (19/11/2026):**
+- **O problema:** o usuário achou que a foto em quadro tinha "cara de imagem colada".
+- **O que mudou:**
+  - sem moldura e sem cantos, a foto vai até as bordas e se dissolve num palco da cor dela mesma (#271a13 à noite, `--sala` #d5d4cf de manhã);
+  - a foto da manhã está clareada em 14%;
+  - um só grão cobre o texto e a foto;
+  - o brilho do pendente passa sobre o título;
+  - no celular, a foto vai de ponta a ponta, sob o cabeçalho, e se dissolve para baixo.
+- **Aprovação:** o usuário aprovou a cena noite → manhã em 19/11/2026.
+
 ## Pedidos de imagem para o usuário
 
 > Os pedidos da Lume abaixo foram substituídos pela seção "Direção de fotografia por marca". Os das outras marcas seguem a tabela daquela seção quando forem refeitos.

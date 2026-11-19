@@ -377,4 +377,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Um piloto primeiro, com hero e movimento-assinatura em vídeo; os outros só depois da aprovação dele.
 - Piloto: Lume (`/modelos/psicologia`).
   - Movimento "As cobranças se soltam" aprovado em 19/11/2026.
-  - O retrato e a paleta seguem provisórios até as fotos do usuário; ao chegarem, medir a paleta nelas.
+  - A cena noite → manhã foi aprovada em 19/11/2026:
+    - a cozinha às 23h vira 7h enquanto as cobranças caem;
+    - a foto se dissolve no palco, da cor dela, sem moldura;
+    - a paleta foi medida nas fotos do usuário.
+  - Não voltar à foto em quadro nem à cortina de luz.
+  - Cada marca segue a regra de direção de fotografia (`docs/DESIGN-SYSTEM.md`).
