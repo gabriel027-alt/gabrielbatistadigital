@@ -121,7 +121,7 @@ const content: Record<Brand, Content> = {
         { key: "periodo", label: "Qual período cabe na sua semana?", options: ["Manhã", "Hora do almoço", "Tarde", "Início da noite"] },
       ],
     ],
-    next: "A psicóloga confirma um horário com você e explica como funcionam as sessões, o sigilo e os valores antes de qualquer compromisso.",
+    next: "A Helena confirma um horário com você e explica como funcionam as sessões, o sigilo e os valores antes de qualquer compromisso.",
     invitation: "A primeira conversa", stepNames: ["Como começar", "Quando"], stepTitles: ["Do seu jeito.", "Onde e quando cabe melhor?"],
     summaryTitle: "Sua primeira conversa, preparada.", noscript: "Para agendar, pense em como prefere começar, se presencial ou online, e no melhor período da semana.",
   },

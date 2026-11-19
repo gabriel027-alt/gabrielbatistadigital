@@ -307,6 +307,17 @@ Abaixo dos sinais vêm três seções e o roteiro.
 - Os testes da Sutil e da Toca, que usam o mesmo `BrandInquiry`, passaram.
 - Vídeos `Downloads/lume-piloto/lume-pagina-pc.mp4` e `-celular.mp4`.
 
+**Aprovação e nome (19/11/2026):**
+- O usuário aprovou a página. Disse que ainda não ficava claro quem é a psicóloga e qual é o nome dela.
+- **Decisão dele:** a persona da marca tem nome, Helena Prado.
+- **Onde o nome aparece:**
+  - no hero, logo abaixo da chamada, em "Com Helena Prado, psicóloga clínica", com a miniatura do retrato e um link para a seção;
+  - na seção, como título ("Helena Prado"), seguido de "Psicóloga clínica, fundadora da Lume" e do texto em primeira pessoa;
+  - no menu, como "Quem atende";
+  - no resumo do roteiro, em "A Helena confirma…".
+- **O que continua fora:** CRP, abordagem e formação inventadas.
+- **Retrato:** todas as bordas se dissolvem na seção (no celular, só a de cima e a de baixo), para o sombreado do fundo não desenhar um quadro.
+
 ## Pedidos de imagem para o usuário
 
 > Os pedidos da Lume abaixo foram substituídos pela seção "Direção de fotografia por marca". Os das outras marcas seguem a tabela daquela seção quando forem refeitos.

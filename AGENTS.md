@@ -382,4 +382,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
     - a foto se dissolve no palco, da cor dela, sem moldura;
     - a paleta foi medida nas fotos do usuário.
   - Não voltar à foto em quadro nem à cortina de luz.
+  - Página completa: semana com uma hora acesa, a psicóloga sobre o fundo do próprio retrato, dúvidas e roteiro local. Aprovada em 19/11/2026.
+  - Nome da psicóloga: **Helena Prado**, persona da marca, por decisão do usuário (19/11/2026), que pediu deixar claro quem atende. Está em `lib/lume.ts` e aparece desde o topo.
+  - Nunca acompanha CRP nem abordagem inventada. A exceção de nome vale só para a Lume; as outras marcas seguem sem nome até ele pedir.
   - Cada marca segue a regra de direção de fotografia (`docs/DESIGN-SYSTEM.md`).

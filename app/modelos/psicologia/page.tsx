@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Public_Sans, Young_Serif } from "next/font/google";
 import { BrandInquiry } from "@/components/BrandInquiry";
-import { faq, howItWorks, signs, week, weights } from "@/lib/lume";
+import { faq, howItWorks, psychologist, signs, week, weights } from "@/lib/lume";
 import { LumeMark } from "./LumeMark";
 import { LumeMotion } from "./LumeMotion";
 import styles from "./lume.module.css";
@@ -33,7 +33,7 @@ export default function LumePage() {
     <LumeMotion />
     <header className={styles.header}>
       <a className={styles.logo} href="#lume-inicio" aria-label="Lume Psicologia, início"><LumeMark size={30} /><span>Lume<small>Psicologia</small></span></a>
-      <nav aria-label="Navegação principal"><a href="#lume-sinais">É pra você?</a><a href="#como-funciona">Como funciona</a><a href="#psicologa">A psicóloga</a><a href="#duvidas">Dúvidas</a></nav>
+      <nav aria-label="Navegação principal"><a href="#lume-sinais">É pra você?</a><a href="#como-funciona">Como funciona</a><a href="#psicologa">Quem atende</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar conversa</a>
     </header>
 
@@ -55,6 +55,11 @@ export default function LumePage() {
               <a className={styles.primary} href={book}>Agendar uma primeira conversa</a>
               <a className={styles.textLink} href="#lume-sinais">Ver se é pra você</a>
             </div>
+            {/* Who listens, from the first screen. */}
+            <a className={styles.signature} href="#psicologa" data-lume-after>
+              <span className={styles.thumb}><Image src="/images/lume/retrato.webp" alt="" fill sizes="56px" /></span>
+              <span>Com <strong>{psychologist.name}</strong>, {psychologist.role.toLowerCase()}</span>
+            </a>
           </div>
           {/* The same kitchen at 23h and at 7h: the morning comes in as the demands fall. */}
           <figure className={styles.scene} data-lume-scene>
@@ -94,11 +99,13 @@ export default function LumePage() {
       {/* The psychologist stands on the section itself: its colour is her studio backdrop. */}
       <section className={styles.about} id="psicologa" aria-labelledby="psicologa-titulo">
         <figure className={styles.portrait}>
-          <Image src="/images/lume/retrato.webp" alt="A psicóloga da Lume, de camisa de seda cacau, olhando para a câmera" fill sizes="(max-width:900px) 130vw, 46vw" quality={88} />
+          <Image src="/images/lume/retrato.webp" alt={`${psychologist.name}, psicóloga da Lume, de camisa de seda cacau, olhando para a câmera`} fill sizes="(max-width:900px) 130vw, 46vw" quality={88} />
         </figure>
         <div className={styles.aboutCopy}>
-          <h2 id="psicologa-titulo">Quem escuta você.</h2>
-          <p>Sou psicóloga clínica e atendo mulheres adultas que seguram a casa, o trabalho e as pessoas ao redor, e que se esqueceram de si no meio disso.</p>
+          <p className={styles.aboutLead}>Quem escuta você</p>
+          <h2 id="psicologa-titulo">{psychologist.name}</h2>
+          <p className={styles.role}>{psychologist.role}, fundadora da Lume</p>
+          <p>Sou a {psychologist.first}. Atendo mulheres adultas que seguram a casa, o trabalho e as pessoas ao redor, e que se esqueceram de si no meio disso.</p>
           <p>Na terapia, a gente olha com calma para o que pesa: a culpa de parar, o cansaço que não passa, a dificuldade de dizer não. Sem julgamento e no seu tempo.</p>
           <ul className={styles.facts}>
             <li>Mulheres adultas</li>
@@ -119,7 +126,7 @@ export default function LumePage() {
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><LumeMark size={24} />Lume Psicologia</p>
-      <nav aria-label="Rodapé"><a href="#como-funciona">Como funciona</a><a href="#psicologa">A psicóloga</a><a href={book}>Agendar conversa</a></nav>
+      <nav aria-label="Rodapé"><a href="#como-funciona">Como funciona</a><a href="#psicologa">Quem atende</a><a href={book}>Agendar conversa</a></nav>
       <p className={styles.credit}>© 2026 Lume Psicologia. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;
