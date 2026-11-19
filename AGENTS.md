@@ -406,3 +406,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Scroll reversível: registros chegam à régua, lacunas aparecem em vermelho, ligações em ouro e carimbo NEGADO → EM ANÁLISE. Pausa, movimento reduzido e sem JS apresentam o conteúdo completo. Usa `useBrandMotion`.
 - Registro em `scripts/capture-arrimo-pilot.mjs`: PC 1536×696 com DPR 1,25 e celular 390×844; ida e volta. Arquivos de avaliação fora do repositório em `/workspace/entrega-gbd/arrimo-piloto/`.
 - Build e lint dos arquivos alterados aprovados; 11 testes de Arrimo, kits e regressão da Lume passaram. Lint geral tem pendências anteriores registradas na etapa da Lume. Sem push e sem deploy. Próximo passo é a avaliação visual, não a página completa.
+
+
+## Arrimo: piloto aprovado e página completa (19/11/2026)
+
+- Piloto aprovado explicitamente pelo usuário. Envio autorizado somente de `af4befe` para `revisao-site`, realizado e conferido; main permaneceu em `e2fc444`. Nenhum deploy.
+- Página completa autorizada: quatro situações antes da régua, quatro áreas em cartazes, documentos para a primeira conversa, escritório com `atendimento.webp`, dúvidas e roteiro local `BrandInquiry` da Arrimo. Não incluir na homepage nesta etapa.
+- Hero e assinatura aprovados preservados; a régua continua reversível. Cartazes ganham uma linha de ouro vinculada ao scroll; sem JS/pausa/movimento reduzido, a linha fica completa.
+- `oficina.webp` abre o cartaz de aposentadorias e `atendimento.webp` ocupa o fundo do escritório, com composição própria de celular. Fotografias originais não alteradas.
+- Roteiro só organiza assunto, momento do pedido e se é para si ou familiar; sem dados pessoais, arquivos, senhas, envio ou promessa de agendamento. Dúvidas em details/summary nativos.
+- Captura de revisão por `scripts/capture-arrimo-page.mjs`, PC 1536×696 DPR 1,25 e celular 390×844. Vídeos da página inteira e roteiro em `/workspace/entrega-gbd/arrimo-completa/`. Esta ampliação aguarda aprovação visual; manter local até autorização específica para push.
+- Verificação desta ampliação: build e lint dos arquivos alterados limpos, 12 testes aprovados e axe AA limpo no roteiro em 360×800. Não confundir com aprovação visual da página completa.

@@ -6,6 +6,9 @@ import styles from "./arrimo.module.css";
 
 function build(root: HTMLElement) {
   gsap.fromTo("[data-arrimo-arrival]", { y: 28, opacity: 0 }, { y: 0, opacity: 1, duration: .8, stagger: .09, ease: "power2.out" });
+  gsap.utils.toArray<HTMLElement>("[data-arrimo-poster]", root).forEach(poster => {
+    gsap.fromTo(poster.querySelector("[data-arrimo-poster-rule]"), { scaleX: 0 }, { scaleX: 1, ease: "none", scrollTrigger: { trigger: poster, start: "top 85%", end: "bottom 55%", scrub: .4 } });
+  });
   const scene = root.querySelector<HTMLElement>("[data-arrimo-scene]");
   if (!scene) return;
   const cards = gsap.utils.toArray<HTMLElement>("[data-arrimo-period]", root);

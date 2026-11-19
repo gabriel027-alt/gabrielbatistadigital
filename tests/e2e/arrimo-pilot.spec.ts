@@ -80,3 +80,29 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
     await context.close();
   });
 }
+
+test("Full Arrimo journey keeps choices local, supports editing and returns focus", async ({ page }) => {
+  await page.goto(route);
+  for (const name of ["Isso é pra você?", "Onde a Arrimo atua.", "O que levar para a primeira conversa.", "Antes do pedido, a sua história.", "Antes de seguir, suas dúvidas."]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
+  await expect(page.locator('#arrimo-situacoes article')).toHaveCount(4);
+  await expect(page.locator('[data-arrimo-poster]')).toHaveCount(4);
+  await expect(page.locator('#arrimo-documentos li')).toHaveCount(4);
+  await page.locator("summary").filter({ hasText: "O BPC é uma aposentadoria?" }).click();
+  await expect(page.getByText("Não. O BPC é um benefício assistencial", { exact: false })).toBeVisible();
+  const launch = page.getByRole("button", { name: "Preparar minha conversa", exact: true });
+  await launch.click();
+  const dialog = page.getByRole("dialog");
+  await page.getByRole("radio", { name: "Benefício negado", exact: true }).check();
+  await page.getByRole("button", { name: "Continuar", exact: true }).click();
+  await page.getByRole("radio", { name: "Recebi uma negativa", exact: true }).check();
+  await page.getByRole("radio", { name: "Para alguém da família", exact: true }).check();
+  await page.getByRole("button", { name: "Ver meu resumo", exact: true }).click();
+  await expect(dialog).toContainText("Benefício negado");
+  await expect(dialog).toContainText("Para alguém da família");
+  await page.getByRole("button", { name: "Ajustar escolhas", exact: true }).click();
+  await expect(page.getByRole("radio", { name: "Benefício negado", exact: true })).toBeChecked();
+  await page.keyboard.press("Escape");
+  await expect(dialog).not.toBeVisible();
+  await expect(launch).toBeFocused();
+  expect(await page.locator('input[type="file"],input[type="email"],input[type="tel"]').count()).toBe(0);
+});

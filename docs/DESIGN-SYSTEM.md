@@ -387,3 +387,10 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 - Marca A de duas vigas; botões retangulares, títulos condensados em caixa alta. Hero sem moldura; mãos discretas no fundo da cena. Cartões da régua representam documentos, não quadros de fotografia.
 - Assinatura: régua horizontal no PC e vertical no celular. Registros entram, lacunas vermelhas ganham ligações em ouro e o carimbo NEGADO vira EM ANÁLISE. Scroll reversível via GSAP e `useBrandMotion`; pausa e movimento reduzido mostram o estado documental completo.
 - Piloto aguardando aprovação visual. Não reutilizar a noite/manhã da Lume nem ampliar esta página antes da avaliação.
+
+
+### Arrimo: extensão aprovada do piloto (19/11/2026)
+
+O usuário aprovou o piloto e pediu o restante. A autoridade continua na tipografia condensada e na tinta do documento: situações em linhas abertas, assuntos em cartazes grandes, checklist sobre papel e escritório fotográfico em preto e branco. A oficina entra no cartaz de aposentadorias; o atendimento domina o escritório, com gradiente de leitura apenas na área do texto. No celular, a foto antecede o texto na mesma superfície.
+
+A assinatura da régua não mudou. As linhas na base dos cartazes acompanham o scroll e se recolhem na volta; a alternativa estática mantém a linha inteira. Sem efeitos de entrada repetidos em todas as seções. O roteiro compartilhado recebe as fontes e as cores próprias da Arrimo, com perguntas previdenciárias e sem campos pessoais. Revisão visual da página completa pendente; aprovação técnica não substitui a decisão do usuário.

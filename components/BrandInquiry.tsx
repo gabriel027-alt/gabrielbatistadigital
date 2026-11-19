@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react"
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -14,6 +14,18 @@ type Content = {
 };
 const subscribe = () => () => {};
 const content: Record<Brand, Content> = {
+  arrimo: {
+    name: "Arrimo", title: "Vamos organizar a primeira conversa.",
+    intro: "Comece pelo assunto e pelo momento do pedido. Não é preciso incluir dados pessoais ou documentos neste roteiro.", action: "Preparar minha conversa",
+    steps: [
+      [{ key: "assunto", label: "Qual assunto você quer entender?", options: ["Aposentadoria", "Benefício por incapacidade", "BPC / LOAS", "Benefício negado", "Ainda não sei"] }],
+      [{ key: "momento", label: "Em que momento você está?", options: ["Ainda não fiz um pedido", "Aguardo uma decisão do INSS", "Recebi uma negativa", "Quero entender uma decisão ou benefício"] },
+       { key: "pessoa", label: "Para quem procura orientação?", options: ["Para mim", "Para alguém da família"] }],
+    ],
+    next: "Separe os registros que já tem e as dúvidas que quer esclarecer. Os documentos e a decisão do INSS precisam ser analisados antes de definir qualquer encaminhamento. Não compartilhe senhas.",
+    invitation: "O próximo passo começa pela sua história.", stepNames: ["O assunto", "O momento"], stepTitles: ["Por onde começamos?", "Vamos entender o ponto de partida."],
+    summaryTitle: "Sua conversa, organizada.", noscript: "Separe o assunto, a situação do pedido e os documentos disponíveis para a primeira conversa.",
+  },
   aura: {
     name: "Aura", title: "O que você gostaria de valorizar?",
     intro: "Comece pela região que desperta seu interesse e pela dúvida que você quer esclarecer.", action: "Quero uma avaliação",

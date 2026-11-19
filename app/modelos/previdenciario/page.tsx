@@ -2,7 +2,9 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { Barlow, Barlow_Condensed } from "next/font/google";
-import { periods, stages } from "@/lib/arrimo";
+import { Arrow } from "@/components/ui/icons";
+import { BrandInquiry } from "@/components/BrandInquiry";
+import { documents, faq, practiceAreas, situations, periods, stages } from "@/lib/arrimo";
 import { ArrimoMark } from "./ArrimoMark";
 import { ArrimoMotion } from "./ArrimoMotion";
 import styles from "./arrimo.module.css";
@@ -21,7 +23,7 @@ export default function ArrimoPage() {
     <ArrimoMotion />
     <header className={styles.header}>
       <a className={styles.logo} href="#arrimo-inicio" aria-label="Arrimo Advocacia Previdenciária, início"><ArrimoMark /><span>Arrimo<small>Advocacia Previdenciária</small></span></a>
-      <nav aria-label="Navegação principal"><a href="#arrimo-tempo">Como a análise começa <span aria-hidden="true">↓</span></a></nav>
+      <nav aria-label="Navegação principal"><a href="#arrimo-areas">Atuação</a><a href="#arrimo-escritorio">O escritório</a><a href="#arrimo-interesse">Preparar conversa ↓</a></nav>
     </header>
     <main id="arrimo-conteudo">
       <section id="arrimo-inicio" className={styles.hero} aria-labelledby="arrimo-titulo">
@@ -34,6 +36,11 @@ export default function ArrimoPage() {
           <p className={styles.heroNote} data-arrimo-arrival>Cada ano trabalhado conta.</p>
         </div>
         <span className={styles.heroRule} aria-hidden="true" />
+      </section>
+
+      <section className={styles.situations} id="arrimo-situacoes" aria-labelledby="situacoes-titulo">
+        <div className={styles.sectionHead}><h2 id="situacoes-titulo">Isso é pra você?</h2><p>Histórias diferentes. Um começo em comum: entender o que aconteceu e o que os documentos mostram.</p></div>
+        <div className={styles.situationGrid}>{situations.map(item => <article key={item.title}><h3>{item.title}</h3><p>{item.text}</p><a href="#arrimo-interesse">Quero entender meu caso <span aria-hidden="true"><Arrow size={18} /></span></a></article>)}</div>
       </section>
 
       <section id="arrimo-tempo" className={styles.scene} data-arrimo-scene aria-labelledby="arrimo-tempo-titulo">
@@ -67,6 +74,24 @@ export default function ArrimoPage() {
           </div>
         </div>
       </section>
+      <section className={styles.areas} id="arrimo-areas" aria-labelledby="areas-titulo">
+        <div className={styles.sectionHead}><h2 id="areas-titulo">Onde a Arrimo atua.</h2><p>Da preparação do pedido à leitura de uma negativa, cada assunto pede uma análise própria.</p></div>
+        <div className={styles.posters}>{practiceAreas.map(area => <article key={area.title} className={styles.poster} data-arrimo-poster>
+          {area.image && <figure className={styles.workshop}><Image src="/images/arrimo/oficina.webp" alt="Trabalhador de costas em uma oficina de serralheria, iluminada pelo sol da porta" fill sizes="(max-width:760px) 120vw, 60vw" quality={90} /></figure>}
+          <span className={styles.posterTag}>{area.tag}</span><h3>{area.title}</h3><p>{area.text}</p><a href="#arrimo-interesse">Conversar sobre este assunto <span aria-hidden="true"><Arrow size={18} /></span></a><i className={styles.posterRule} data-arrimo-poster-rule aria-hidden="true" />
+        </article>)}</div>
+      </section>
+      <section className={styles.documents} id="arrimo-documentos" aria-labelledby="documentos-titulo">
+        <div className={styles.documentIntro}><h2 id="documentos-titulo">O que levar para a primeira conversa.</h2><p>Comece pelo que você já tem. A lista ajuda a organizar os registros; os documentos necessários dependem do seu caso.</p><a href="#arrimo-interesse" className={styles.darkButton}>Preparar minha conversa <span aria-hidden="true"><Arrow size={18} /></span></a></div>
+        <ul className={styles.checklist}>{documents.map(item => <li key={item.title}><span aria-hidden="true">✓</span><div><h3>{item.title}</h3><p>{item.text}</p></div></li>)}</ul>
+        <p className={styles.documentNote}>Guarde os originais. Não compartilhe senhas do Meu INSS ou de outros serviços.</p>
+      </section>
+      <section className={styles.office} id="arrimo-escritorio" aria-labelledby="escritorio-titulo">
+        <figure><Image src="/images/arrimo/atendimento.webp" alt="Advogado da Arrimo explicando um documento a um casal de idosos à mesa do escritório" fill sizes="(max-width:760px) 150vw, 100vw" quality={90} /></figure>
+        <div className={styles.officeCopy}><p className={styles.field}>O escritório</p><h2 id="escritorio-titulo">Antes do pedido, a sua história.</h2><p>Uma carteira, uma decisão, um período que ficou de fora. Por trás de cada documento existe uma vida de trabalho.</p><p>O trabalho da Arrimo começa por ouvir, organizar os registros e explicar os caminhos possíveis, com os limites de cada um.</p><a className={styles.primary} href="#arrimo-interesse">Preparar a primeira conversa <span aria-hidden="true"><Arrow size={18} /></span></a></div>
+      </section>
+      <section className={styles.faq} id="arrimo-duvidas" aria-labelledby="duvidas-titulo"><h2 id="duvidas-titulo">Antes de seguir, suas dúvidas.</h2><div>{faq.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></section>
+      <BrandInquiry brand="arrimo" />
     </main>
     <footer className={styles.footer}>
       <span className={styles.footerMark}><ArrimoMark size={24} />Arrimo</span>

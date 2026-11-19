@@ -323,7 +323,7 @@ Abaixo dos sinais vêm três seções e o roteiro.
 **Lume:** completa e aprovada, com o nome da Helena Prado. Commits até `4f8fb12`. Sem push e sem deploy.
 
 **Próximos passos, em ordem:**
-1. **Filmes da Lume para a homepage — implementado localmente em 19/11/2026, aguardando avaliação visual:**
+1. **Filmes da Lume para a homepage — aprovados e enviados em 19/11/2026 (`8a692b9`):**
    - **Ferramenta:** `scripts/capture-brand-films.mjs`, com `PROJECT_PREVIEW_URL` apontando para um `next start` local.
    - **Arquivos a gerar:**
      - `public/videos/projects/brands/lume-desktop.mp4` (1920×1080) e `lume-mobile.mp4` (1080×1920);
@@ -332,9 +332,11 @@ Abaixo dos sinais vêm três seções e o roteiro.
      - registrar em `lib/project-films.ts`, com textos nos quatro idiomas (`lib/film-copy.ts`);
      - pôr a Lume na frente da faixa.
    - **Escolha explícita do usuário em 19/11/2026:** fica **Sutil Cirurgia Plástica** como amostra editorial. A faixa passa a mostrar Lume, Sutil, Casa Brisa, Aura e Orla, nessa ordem. Forma, Toca e Almeida saem apenas da homepage; seu código e filmes ficam.
-2. **Arrimo (previdenciário):**
-   - Pedir as fotos ao usuário pela tabela "Direção de fotografia por marca": P&B de fotojornalismo, mãos e documentos, retrato de autoridade em luz dura.
-   - Depois, o mesmo caminho da Lume: piloto (hero e "O tempo se soma") → vídeo → aprovação → página.
+2. **Arrimo (previdenciário) — página completa em avaliação visual:**
+   - As quatro fotos foram recebidas em `public/images/arrimo/` (`9b990b3`).
+   - Piloto aprovado e enviado por ordem do usuário (`af4befe`), só para `revisao-site` em 19/11/2026.
+   - Página completa montada localmente: situações, cartazes, documentos, escritório, dúvidas e roteiro. Vídeos de revisão em `/workspace/entrega-gbd/arrimo-completa/`.
+   - **Onde parar agora:** aguardar avaliação visual desta ampliação, sem enviá-la nem incluir a Arrimo na faixa por conta própria.
 3. **Paddock e Talhão,** depois, um de cada vez. No Paddock, confirmar antes com o usuário as especificações com preço "Consulte".
 
 **Regras que não mudam:**
@@ -447,3 +449,16 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Pausa, movimento reduzido e ausência de JS mantêm todos os registros e a conclusão legíveis. Verificação: build, lint dos arquivos alterados e 11 testes passaram, incluindo ida/volta, pausa, axe AA, sem JS e encaixe nos dois tamanhos.
 - Captura por `scripts/capture-arrimo-pilot.mjs`: PC 1536×696 com DPR 1,25 e celular 390×844. Filmes locais em `/workspace/entrega-gbd/arrimo-piloto/`, H.264 sem áudio.
 - **Onde parar:** aguardar aprovação visual dos filmes. Oficina, atendimento, triagem, demais seções e integração da Arrimo na homepage ficam para depois. Sem push, sem main e sem deploy.
+
+
+## Arrimo: ampliação após aprovação (19/11/2026)
+
+- O usuário aprovou o piloto e autorizou enviar `af4befe` somente para `revisao-site`. Enviado; main conferida sem mudança, sem deploy. A autorização de envio valeu para esse commit, não para a ampliação abaixo.
+- A sequência completa segue o kit: hero → “Isso é pra você?” (negativa, proximidade da aposentadoria, incapacidade, familiar buscando BPC) → régua aprovada → cartazes (aposentadorias, incapacidade, BPC/LOAS e negativa) → lista documental → escritório → dúvidas → roteiro.
+- Conteúdo central em `lib/arrimo.ts`. CNIS, carteira, decisão e documentos específicos aparecem como preparação, sem transformar a lista em requisito universal nem apresentar conclusão jurídica. Dúvidas distinguem BPC de aposentadoria e não prometem concessão.
+- Cartazes grandes alternam papel, carvão e ouro, com foto da oficina no primeiro. Uma linha de ouro cresce pela leitura e reverte na volta. A foto do atendimento se dissolve no carvão e tem enquadramento vertical próprio. Sem novas imagens, dependências ou alterações nas fotos recebidas.
+- `BrandInquiry` ganhou `arrimo`: assunto → momento e pessoa → resumo editável. Escolhas em memória, nenhuma coleta de arquivo ou conexão externa. Links repetidos abrem o mesmo roteiro, com foco devolvido na saída. Não inventar nome, OAB, endereço, prazos ou resultados.
+- Filmes de revisão da página inteira, incluindo roteiro: `scripts/capture-arrimo-page.mjs`, em PC 1536×696 a 125% (DPR 1,25) e celular 390×844. Entrega local em `/workspace/entrega-gbd/arrimo-completa/`.
+- **Onde parar:** avaliação visual da página completa. Não iniciar Paddock/Talhão nem integrar a Arrimo na faixa sem a próxima decisão. Esta ampliação não foi enviada ao GitHub nem publicada.
+
+- Verificação da ampliação: build e lint dos arquivos alterados aprovados; 12 testes de Arrimo, Lume e kits aprovados. Axe AA também sem violações no roteiro aberto em 360×800. O lint geral mantém as pendências anteriores da etapa da Lume, fora do escopo.
