@@ -164,6 +164,14 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
   - a paleta inicial do kit;
   - os links do menu, que apontam para os sinais.
 
+**Aprovação:** em 19/11/2026, o usuário aprovou o movimento da cena das cobranças.
+- O retrato e a paleta continuam pendentes das fotos dele.
+- O próximo passo é a página completa da Lume:
+  - como funciona;
+  - a psicóloga;
+  - dúvidas;
+  - roteiro local `BrandInquiry`.
+
 **Evidência:**
 - `tests/e2e/lume-model.spec.ts` (4 testes, aprovados): ida e volta, movimento reduzido com axe AA, sem JS e 360 px.
 - `brand-kits.spec.ts` e `models.spec.ts` aprovados.

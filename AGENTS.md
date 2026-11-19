@@ -375,3 +375,6 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Copy de dor e autoqualificação é permitida, mas sem OAB/CRP, nome do profissional, números, depoimentos ou promessa de resultado.
 - Não copiar textos nem layouts da evopixel. Carros sem logotipo nem modelo reconhecível.
 - Um piloto primeiro, com hero e movimento-assinatura em vídeo; os outros só depois da aprovação dele.
+- Piloto: Lume (`/modelos/psicologia`).
+  - Movimento "As cobranças se soltam" aprovado em 19/11/2026.
+  - O retrato e a paleta seguem provisórios até as fotos do usuário; ao chegarem, medir a paleta nelas.
