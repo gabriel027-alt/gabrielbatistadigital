@@ -40,6 +40,12 @@ function build(root: HTMLElement) {
     .fromTo(root, { "--dawn": 0 }, { "--dawn": 1, duration: .2, ease: "power1.inOut" }, .6)
     .fromTo("[data-lume-after]", { opacity: .55 }, { opacity: 1, duration: .2, stagger: .05 }, .72)
     .to({}, { duration: .08 });
+
+  // Further down, the hour of the week that is hers lights up as the week comes into view (and dims on the way back).
+  gsap.fromTo("[data-lume-hour]", { opacity: .08, scaleY: .15 }, {
+    opacity: 1, scaleY: 1, ease: "none",
+    scrollTrigger: { trigger: "[data-lume-week]", start: "top 82%", end: "top 42%", scrub: .5 },
+  });
 }
 
 export function LumeMotion() {

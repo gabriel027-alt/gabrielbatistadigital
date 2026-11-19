@@ -4,7 +4,7 @@ import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react"
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -109,6 +109,21 @@ const content: Record<Brand, Content> = {
     next: "A equipe confirma o horário e orienta a chegada. Gatos aguardam na área separada, longe dos cães.",
     invitation: "A visita começa antes da chegada.", stepNames: ["O animal", "A visita"], stepTitles: ["Quem vem com você?", "Do que ele precisa?"],
     summaryTitle: "Visita preparada.", noscript: "Para agendar, pense no animal, no motivo da visita e no melhor período.",
+  },
+  // No clinical questions: only how and when she prefers to start.
+  lume: {
+    name: "Lume Psicologia", title: "Vamos marcar a primeira conversa.",
+    intro: "Três escolhas rápidas, sem precisar contar nada agora. O resto, você conta na conversa.", action: "Agendar uma primeira conversa",
+    steps: [
+      [{ key: "comeco", label: "Como você prefere começar?", options: ["Com uma conversa para tirar dúvidas", "Já quero começar a terapia", "Ainda estou pensando"] }],
+      [
+        { key: "formato", label: "Presencial ou online?", options: ["Presencial", "Online", "Tanto faz"] },
+        { key: "periodo", label: "Qual período cabe na sua semana?", options: ["Manhã", "Hora do almoço", "Tarde", "Início da noite"] },
+      ],
+    ],
+    next: "A psicóloga confirma um horário com você e explica como funcionam as sessões, o sigilo e os valores antes de qualquer compromisso.",
+    invitation: "A primeira conversa", stepNames: ["Como começar", "Quando"], stepTitles: ["Do seu jeito.", "Onde e quando cabe melhor?"],
+    summaryTitle: "Sua primeira conversa, preparada.", noscript: "Para agendar, pense em como prefere começar, se presencial ou online, e no melhor período da semana.",
   },
 };
 

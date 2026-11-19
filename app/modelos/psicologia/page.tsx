@@ -3,7 +3,8 @@ import type { CSSProperties } from "react";
 import Image from "next/image";
 import Link from "next/link";
 import { Public_Sans, Young_Serif } from "next/font/google";
-import { signs, weights } from "@/lib/lume";
+import { BrandInquiry } from "@/components/BrandInquiry";
+import { faq, howItWorks, signs, week, weights } from "@/lib/lume";
 import { LumeMark } from "./LumeMark";
 import { LumeMotion } from "./LumeMotion";
 import styles from "./lume.module.css";
@@ -19,11 +20,12 @@ export const metadata: Metadata = {
   alternates: { canonical: "/modelos/psicologia" },
 };
 
-const book = "#lume-sinais";
+const book = "#lume-interesse";
 
 /**
- * Pilot unit (18/11/2026): hero with the signature scene ("as cobranças se soltam") and the self-check.
- * The portrait slot waits for the user's photos; the rest of the page comes after the pilot is approved.
+ * Lume Psicologia (docs/NOVOS-PROJETOS-REGISTROS.md): the demands fall away while the kitchen turns from 23h to 7h,
+ * the self-check, a week with one hour that is hers, the psychologist on her own clay backdrop, questions and the
+ * local booking journey. No name, CRP, numbers, testimonials or promise of outcome.
  */
 export default function LumePage() {
   return <div className={`${styles.page} ${display.variable} ${sans.variable}`} data-model="lume">
@@ -31,7 +33,7 @@ export default function LumePage() {
     <LumeMotion />
     <header className={styles.header}>
       <a className={styles.logo} href="#lume-inicio" aria-label="Lume Psicologia, início"><LumeMark size={30} /><span>Lume<small>Psicologia</small></span></a>
-      <nav aria-label="Navegação principal"><a href="#lume-sinais">É pra você?</a><a href="#lume-sinais">Como funciona</a><a href="#lume-sinais">Dúvidas</a></nav>
+      <nav aria-label="Navegação principal"><a href="#lume-sinais">É pra você?</a><a href="#como-funciona">Como funciona</a><a href="#psicologa">A psicóloga</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar conversa</a>
     </header>
 
@@ -77,10 +79,47 @@ export default function LumePage() {
           <a className={styles.primary} href={book}><span data-when="none">Agendar uma primeira conversa</span><span data-when="some">Quero falar sobre isso</span></a>
         </div>
       </section>
+
+      {/* How it works, read along a week: one hour of it lights up like the pendant did. */}
+      <section className={styles.how} id="como-funciona" aria-labelledby="como-titulo">
+        <h2 id="como-titulo">Uma hora da semana só sua.</h2>
+        <div className={styles.week} aria-hidden="true" data-lume-week>
+          {week.map((day, i) => <div key={day} className={styles.day}><span>{day}</span>{i === 3 && <i className={styles.hour} data-lume-hour />}</div>)}
+        </div>
+        <ul className={styles.howList}>
+          {howItWorks.map(item => <li key={item.title}><h3>{item.title}</h3><p>{item.text}</p></li>)}
+        </ul>
+      </section>
+
+      {/* The psychologist stands on the section itself: its colour is her studio backdrop. */}
+      <section className={styles.about} id="psicologa" aria-labelledby="psicologa-titulo">
+        <figure className={styles.portrait}>
+          <Image src="/images/lume/retrato.webp" alt="A psicóloga da Lume, de camisa de seda cacau, olhando para a câmera" fill sizes="(max-width:900px) 130vw, 46vw" quality={88} />
+        </figure>
+        <div className={styles.aboutCopy}>
+          <h2 id="psicologa-titulo">Quem escuta você.</h2>
+          <p>Sou psicóloga clínica e atendo mulheres adultas que seguram a casa, o trabalho e as pessoas ao redor, e que se esqueceram de si no meio disso.</p>
+          <p>Na terapia, a gente olha com calma para o que pesa: a culpa de parar, o cansaço que não passa, a dificuldade de dizer não. Sem julgamento e no seu tempo.</p>
+          <ul className={styles.facts}>
+            <li>Mulheres adultas</li>
+            <li>Presencial e online</li>
+            <li>Sessões semanais</li>
+          </ul>
+          <a className={styles.darkButton} href={book}>Agendar uma primeira conversa</a>
+        </div>
+      </section>
+
+      <section className={styles.faq} id="duvidas" aria-labelledby="duvidas-titulo">
+        <h2 id="duvidas-titulo">Antes de marcar, pergunte o que quiser.</h2>
+        <div className={styles.faqList}>{faq.map(item => <details key={item.q}><summary>{item.q}</summary><p>{item.a}</p></details>)}</div>
+      </section>
+
+      <BrandInquiry brand="lume" />
     </main>
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><LumeMark size={24} />Lume Psicologia</p>
+      <nav aria-label="Rodapé"><a href="#como-funciona">Como funciona</a><a href="#psicologa">A psicóloga</a><a href={book}>Agendar conversa</a></nav>
       <p className={styles.credit}>© 2026 Lume Psicologia. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;

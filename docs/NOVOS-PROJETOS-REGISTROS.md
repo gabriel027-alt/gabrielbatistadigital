@@ -283,6 +283,30 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
   - no celular, a foto vai de ponta a ponta, sob o cabeçalho, e se dissolve para baixo.
 - **Aprovação:** o usuário aprovou a cena noite → manhã em 19/11/2026.
 
+## Lume: página completa (19/11/2026)
+
+Abaixo dos sinais vêm três seções e o roteiro.
+
+**"Uma hora da semana só sua."**
+- Uma semana de sete dias, em que uma hora acende com a luz do pendente quando a semana entra na tela.
+- Quatro pontos: a primeira conversa, cerca de 50 minutos por semana, o sigilo (Código de Ética Profissional do Psicólogo) e o próprio ritmo.
+
+**"Quem escuta você."**
+- O retrato de estúdio fica sobre uma seção da mesma cor do fundo dele (#b26a58), sem moldura.
+- O texto é em primeira pessoa, sem nome, sem CRP e sem abordagem inventada.
+- A tinta é #1e0c07, com contraste AA sobre a argila.
+
+**Dúvidas:** cinco perguntas (online, primeira conversa, "preciso estar muito mal?", sigilo, duração).
+
+**Roteiro `BrandInquiry` "lume":**
+- Pergunta como começar, o formato e o período, sem nenhuma pergunta clínica.
+- O resumo não afirma agendamento feito.
+
+**Evidência:**
+- `lume-model.spec.ts` (5 testes): ida e volta, axe, sem JS, esqueleto e roteiro, 360 px.
+- Os testes da Sutil e da Toca, que usam o mesmo `BrandInquiry`, passaram.
+- Vídeos `Downloads/lume-piloto/lume-pagina-pc.mp4` e `-celular.mp4`.
+
 ## Pedidos de imagem para o usuário
 
 > Os pedidos da Lume abaixo foram substituídos pela seção "Direção de fotografia por marca". Os das outras marcas seguem a tabela daquela seção quando forem refeitos.

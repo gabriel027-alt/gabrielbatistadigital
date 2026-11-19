@@ -13,6 +13,23 @@ export const weights = [
   { text: "Não parar nunca", top: 2, left: 64, turn: -4 },
 ];
 
+/** How therapy works, read along a week with one hour that is hers. Practice described, no promise of outcome. */
+export const howItWorks = [
+  { title: "A primeira conversa", text: "Você conta o que está pesando e tira as dúvidas sobre o processo. Ela serve para as duas decidirem se faz sentido seguir juntas." },
+  { title: "Uma hora por semana", text: "As sessões costumam durar cerca de 50 minutos, no mesmo dia e horário, presencial ou online, como for melhor para a sua rotina." },
+  { title: "O que você fala fica aqui", text: "O sigilo é um dever da psicóloga, previsto no Código de Ética Profissional do Psicólogo. Você escolhe o que e quando contar." },
+  { title: "No seu ritmo", text: "Não existe prazo fixo. A frequência e os objetivos são conversados e revistos juntas ao longo do caminho." },
+];
+export const week = ["Seg", "Ter", "Qua", "Qui", "Sex", "Sáb", "Dom"];
+
+export const faq = [
+  { q: "Terapia online funciona do mesmo jeito?", a: "A escuta e o cuidado são os mesmos. Você só precisa de um lugar reservado, onde possa falar à vontade, e de uma conexão estável. Muitas mulheres preferem o online por caber melhor na rotina." },
+  { q: "Como é a primeira conversa?", a: "É um encontro para você contar, do seu jeito, o que te trouxe até aqui e perguntar o que quiser sobre o processo. Não é preciso preparar nada nem saber dar nome ao que sente." },
+  { q: "Preciso estar muito mal para começar?", a: "Não. Muita gente procura terapia porque quer entender o próprio cansaço, organizar a vida ou parar de se cobrar tanto. Você não precisa esperar chegar ao limite." },
+  { q: "O que eu falar fica só entre nós?", a: "Sim. O sigilo é um dever profissional da psicóloga. As raras situações em que a lei e o Código de Ética preveem exceções são explicadas na primeira conversa." },
+  { q: "Quanto tempo dura a terapia?", a: "Depende de cada pessoa e do que ela busca. O processo é revisto juntas de tempos em tempos, e você pode falar sobre isso sempre que quiser." },
+];
+
 /** "Talvez você esteja aqui porque…": the visitor marks what sounds like her. */
 export const signs = [
   "Você vive cansada, mesmo depois de dormir.",

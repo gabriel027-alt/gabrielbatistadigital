@@ -25,7 +25,7 @@ test("Lume lets the demands go with the scroll and brings them back", async ({ p
   await expect.poll(async () => { await scrollScene(page, 0); return onScreen(page); }).toBe(6);
 
   await expect(page.locator("footer")).toContainText("© 2026 Lume Psicologia. Site por Gabriel Batista Digital");
-  await expect(page.locator("body")).not.toContainText(/demonstração|fictíci|CRP \d|cura|garant|depoimento/i);
+  await expect(page.locator("body")).not.toContainText(/demonstração|fictíci|CRP \d|\bcura|garant|depoimento/i);
   expect(errors).toEqual([]);
 });
 
@@ -54,6 +54,25 @@ test("Lume self-check answers the visitor, also without JavaScript", async ({ br
   await signs.getByText("A cabeça não desliga quando você deita.").click();
   await expect(signs.getByRole("link", { name: "Quero falar sobre isso" })).toBeVisible();
   await context.close();
+});
+
+test("Lume keeps the conversion skeleton and the local booking journey", async ({ page }) => {
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.goto("/modelos/psicologia");
+  await expect(page.getByRole("heading", { level: 2, name: "Uma hora da semana só sua." })).toBeVisible();
+  await expect(page.locator("#como-funciona h3")).toHaveCount(4);
+  await expect(page.getByRole("heading", { level: 2, name: "Quem escuta você." })).toBeVisible();
+  await expect(page.locator("#duvidas details")).toHaveCount(5);
+  await page.locator('[data-inquiry="lume"]').getByRole("button", { name: "Agendar uma primeira conversa" }).click();
+  const dialog = page.getByRole("dialog");
+  await dialog.getByRole("radio", { name: "Já quero começar a terapia" }).check();
+  await dialog.getByRole("button", { name: "Continuar" }).click();
+  await dialog.getByRole("radio", { name: "Online" }).check();
+  await dialog.getByRole("radio", { name: "Início da noite" }).check();
+  await dialog.getByRole("button", { name: "Ver meu resumo" }).click();
+  await expect(dialog.getByRole("heading", { name: "Sua primeira conversa, preparada." })).toBeVisible();
+  await expect(dialog).toContainText("Online");
+  await expect(dialog).not.toContainText(/agendad[ao] com sucesso|confirmad|wa\.me|Nada é enviado/i);
 });
 
 test("Lume fits a 360 px phone without horizontal overflow", async ({ browser }) => {

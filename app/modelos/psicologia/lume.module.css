@@ -11,6 +11,7 @@
   --grao:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='f'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .24 0 0 0 0 .11 0 0 0 0 .07 0 0 0 .06 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23f)'/%3E%3C/svg%3E");
   background:var(--manha) var(--grao);color:var(--cacau);font-family:var(--lume-sans),system-ui,sans-serif;font-size:17px;line-height:1.6;overflow-x:clip}
 .page *{box-sizing:border-box}
+.page section[id]{scroll-margin-top:68px}
 .page h1,.page h2{font-family:var(--lume-display),Georgia,serif;font-weight:400;letter-spacing:-.01em;text-wrap:balance;color:var(--cacau)}
 .page :is(a,button,input):focus-visible{outline:2px solid var(--argila);outline-offset:4px}
 .skip{position:absolute;left:16px;top:-80px;z-index:40;padding:12px 16px;background:var(--cacau);color:var(--manha)}
@@ -89,6 +90,47 @@
 .signs:has(input:checked) [data-when=none]{display:none}
 .signs:has(input:checked) [data-when=some]{display:inline}
 
+/* How it works: a week of seven days, one hour of it lit with the pendant's warm light. */
+.how{padding:120px 5vw 110px;background:var(--sala) var(--grao)}
+.how h2{margin:0 0 56px;max-width:14ch;font-size:clamp(38px,4.6vw,72px);line-height:1.04}
+.week{display:grid;grid-template-columns:repeat(7,minmax(0,1fr));height:190px;border-top:1px solid #3d1d1333;border-bottom:1px solid #3d1d1333}
+.day{position:relative;border-left:1px solid #3d1d1326;padding:14px 0 0 14px}
+.day:last-child{border-right:1px solid #3d1d1326}
+.day span{font-size:13px;font-weight:600;color:var(--suave)}
+.hour{position:absolute;left:10%;right:10%;top:44%;height:30%;border-radius:4px;background:#e9b58e;transform-origin:50% 100%;
+  box-shadow:0 0 0 1px #c08a5a,0 0 46px 12px #e9b58e8c}
+.howList{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:4vw;margin:56px 0 0;padding:0;list-style:none}
+.howList h3{margin:0 0 10px;font-family:var(--lume-display),Georgia,serif;font-weight:400;font-size:24px;line-height:1.15;color:var(--cacau)}
+.howList p{margin:0;color:var(--suave)}
+
+/* The psychologist: the section is the colour of her studio backdrop, so she stands in it with no frame. */
+.about{--ink:#1e0c07;display:grid;grid-template-columns:minmax(0,46fr) minmax(0,54fr);align-items:end;gap:5vw;padding:0 5vw 0 0;background:#b26a58;color:var(--ink)}
+.portrait{position:relative;margin:0;min-height:min(92svh,860px);
+  -webkit-mask-image:linear-gradient(180deg,#000 82%,#0000 100%);mask-image:linear-gradient(180deg,#000 82%,#0000 100%)}
+.portrait img{object-fit:cover;object-position:50% 20%}
+.aboutCopy{align-self:center;padding:96px 0}
+.aboutCopy h2{margin:0 0 26px;font-size:clamp(40px,4.6vw,74px);line-height:1.02;color:var(--ink)}
+.aboutCopy p{margin:0 0 16px;max-width:44ch;font-size:18px}
+.facts{display:flex;flex-wrap:wrap;gap:10px;margin:28px 0 34px;padding:0;list-style:none}
+.facts li{padding:8px 16px;border:1px solid #1e0c0759;border-radius:999px;font-size:14px;font-weight:600}
+.darkButton{display:inline-flex;align-items:center;min-height:50px;padding:13px 28px;border-radius:999px;background:var(--ink);color:#f7eee8;font-weight:600;font-size:15px;text-decoration:none;transition:transform .2s}
+.darkButton:hover{transform:translateY(-1px)}
+.about :is(a):focus-visible{outline-color:var(--ink)}
+
+.faq{padding:120px 5vw 110px;background:var(--luz)}
+.faq h2{margin:0 0 44px;max-width:16ch;font-size:clamp(36px,4vw,60px);line-height:1.06}
+.faqList{max-width:860px}
+.faqList details{border-top:1px solid var(--linha)}
+.faqList details:last-child{border-bottom:1px solid var(--linha)}
+.faqList summary{display:flex;justify-content:space-between;gap:24px;align-items:center;min-height:64px;padding:18px 0;cursor:pointer;list-style:none;font-family:var(--lume-display),Georgia,serif;font-size:22px;line-height:1.25;color:var(--cacau)}
+.faqList summary::-webkit-details-marker{display:none}
+.faqList summary:after{content:"+";flex:none;font-family:var(--lume-sans),sans-serif;font-size:26px;color:var(--argila-escura);transition:transform .2s}
+.faqList details[open] summary:after{transform:rotate(45deg)}
+.faqList p{margin:0 0 24px;max-width:62ch;color:var(--suave)}
+
+.footer nav{display:flex;flex-wrap:wrap;gap:24px}
+.footer nav a{color:var(--manha);text-decoration:none;font-size:14px;padding:10px 0}
+.footer nav a:hover{text-decoration:underline}
 .footer{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px;padding:36px 5vw;background:var(--cacau);color:var(--manha)}
 .footerBrand{display:flex;align-items:center;gap:10px;margin:0;font-family:var(--lume-display),serif;font-size:22px}
 .credit{margin:0;font-size:14px;color:#e3d6cc}
@@ -116,9 +158,20 @@
   .page[data-brand-animated=true] .weights li:nth-child(4){top:49%;left:40%}
   .page[data-brand-animated=true] .weights li:nth-child(5){top:66%;left:6%}
   .page[data-brand-animated=true] .weights li:nth-child(6){top:83%;left:36%}
+  .how,.faq{padding:84px 6vw}
+  .week{height:150px}
+  .day{padding:10px 0 0 6px}
+  .day span{font-size:11px}
+  .howList{grid-template-columns:1fr 1fr;gap:32px 6vw}
+  .about{grid-template-columns:1fr;padding:0;gap:0}
+  .portrait{min-height:0;height:72svh}
+  .aboutCopy{padding:8px 6vw 84px}
   .signList{grid-template-columns:1fr}
   .signList label{min-height:0}
   .signs{padding:84px 6vw}
+}
+@media (max-width:560px){
+  .howList{grid-template-columns:1fr}
 }
 @media (max-width:420px){
   .lead{margin-bottom:18px}
