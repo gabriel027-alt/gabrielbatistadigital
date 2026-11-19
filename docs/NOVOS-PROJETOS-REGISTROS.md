@@ -179,7 +179,74 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
   - `lume-piloto-pc.mp4`, em 1536×696;
   - `lume-piloto-celular.mp4`, em 390×844.
 
+## Direção de fotografia por marca (19/11/2026)
+
+**Pedido do usuário:** "cuidado pra não dirigir sempre as mesmas direções de criação de imagens". Cada projeto precisa de enredo, roteiro e cinematografia próprios.
+
+**O que foi conferido** (folha de contato com Forma, Sutil, Toca, Almeida, Casa Brisa e as quatro fotos da Lume):
+- **Mesmo esquema em cinco marcas** (Forma, Sutil, Toca, Almeida e Lume): uma profissional num consultório, em três quartos, com luz lateral de janela. Parece banco de imagem.
+- **Uma quase duplicada:** o "consultório vazio" da Lume é a mesma cena da `recuperacao.webp` da Sutil (poltrona, mesinha, copo d'água e cortina).
+- **Problemas das fotos da Lume:**
+  - um laranja de fim de tarde forte em todas, quando o pedido falava em luz da manhã;
+  - planta, estante e cortina repetidas;
+  - resolução de 1122 a 1672 px, que precisaria de ampliação.
+- **O que está bom:** o rosto é consistente entre as quatro.
+
+**Regra nova:** a foto também tem kit. Cada marca define seis parâmetros, e nenhum par de marcas pode repetir mais de dois:
+
+| Parâmetro | O que define |
+| --- | --- |
+| Enredo | O que a foto conta (quem, fazendo o quê, em que momento da história) |
+| Luz e hora | Fonte, hora, temperatura |
+| Lente e distância | Grande angular, normal, tele; perto ou longe |
+| Enquadramento | Câmera parada, aérea, frontal, de costas, detalhe |
+| Tratamento | Cor, grão, contraste, P&B |
+| Lugar | Onde acontece |
+
+**Proibido como padrão** (são os vícios de IA e já estão usados):
+- luz de janela filtrada por cortina;
+- planta alta, estante de livros e mesinha com copo d'água;
+- golden hour alaranjada;
+- profissional em três quartos sorrindo para a câmera num consultório.
+
+| Marca | Enredo | Luz e hora | Lente | Enquadramento | Tratamento | Lugar |
+| --- | --- | --- | --- | --- | --- | --- |
+| Lume | Dor → alívio: a mesma cozinha às 23h e às 7h; depois, quem cuida | Tungstênio pontual e brilho frio de tela à noite; dia nublado neutro de manhã; no retrato, octabox frontal | 35 mm na cozinha; 85 mm no retrato | Câmera fixa em tripé, a mulher de costas; retrato frontal | Documental com grão de filme, sem laranja; retrato em cor de revista | Cozinha de apartamento comum; estúdio com fundo de papel argila |
+| Arrimo | O trabalho de uma vida | Luz dura de flash ou de sol | 50 mm e macro | Detalhe de mãos e documentos; retrato frontal de autoridade | **P&B** de fotojornalismo, alto contraste, grão grosso; cor só nos grafismos | Casa simples, oficina, estúdio carvão |
+| Paddock | O produto é o herói | Estúdio escuro com faixas de softbox | 70–100 mm | Três quartos de frente, fixo, sempre igual entre os carros | Publicidade automotiva, limpo, reflexos controlados | Estúdio preto infinito |
+| Talhão | A propriedade inteira, vista de cima | Sol a pino do meio-dia, céu limpo, sombras curtas e duras | Aérea zenital; 24 mm no chão | Zenital gráfico; retrato ambiental amplo | Cor saturada e alto contraste, sem dourado | Lavoura, estrada de terra, sede de fazenda |
+
+**Lume, como a foto entra na cena aprovada** (proposta, aguarda o usuário):
+- A cozinha às 23h fica atrás das frases que pesam.
+- Enquanto elas caem, a mesma cozinha às 7h aparece no mesmo enquadramento.
+- O movimento aprovado não muda: a foto só dá o enredo da "luz que entra".
+
+**Novos pedidos da Lume** (substituem os quatro antigos):
+1. **Cozinha, 23h (16:9):**
+   - Fotografia documental realista, câmera fixa em tripé na altura dos olhos, 35 mm.
+   - Cozinha de apartamento brasileiro comum às 23h.
+   - Mulher de cerca de 35 anos, cabelo preso de qualquer jeito, moletom, sentada à mesa de costas em três quartos (rosto não visível), ombros caídos, mão na testa.
+   - Na mesa: notebook aberto iluminando, celular aceso, contas e papéis, lancheira infantil e caneca. Louça acumulada na pia.
+   - Única luz: um pendente de tungstênio sobre a mesa e o brilho frio das telas. O resto em penumbra.
+   - Grão de filme (Portra 800), sombras profundas, sem tom laranja geral. Sem texto legível nem logotipos.
+2. **A mesma cozinha, 7h (16:9, com a foto 1 anexada):**
+   - Mesma cozinha, mesma câmera, mesmo enquadramento.
+   - Manhã nublada clara, luz do dia neutra pela janela, sem sol direto.
+   - Mesa organizada, só uma caneca com vapor e o celular virado para baixo. Pia limpa.
+   - A mesma mulher na mesma cadeira, postura ereta e relaxada, olhando pela janela, rosto não identificável.
+   - Cores frescas, grão fino (Portra 400).
+3. **A psicóloga em estúdio (4:5, com a foto atual dela anexada só para o rosto):**
+   - Fundo de papel contínuo argila rosada, sem cenário, sem plantas, sem objetos.
+   - Camisa de seda cacau, cabelo solto. Do peito para cima, de frente, olhar direto, expressão serena e firme.
+   - Octabox frontal levemente acima, sem luz de janela. 85 mm, nitidez de revista, pele com textura natural.
+
+**Destino das quatro fotos atuais:**
+- A sessão online e o consultório vazio saem: repetem a Sutil e o esquema de janela.
+- O rosto da psicóloga fica, como referência para o retrato de estúdio.
+
 ## Pedidos de imagem para o usuário
+
+> Os pedidos da Lume abaixo foram substituídos pela seção "Direção de fotografia por marca". Os das outras marcas seguem a tabela daquela seção quando forem refeitos.
 
 Regras para todas as imagens:
 - fotografia realista;

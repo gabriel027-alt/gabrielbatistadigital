@@ -65,6 +65,22 @@ Aprendido com os sites de cliente da evopixel e com o vídeo da skill. Toda marc
 - dúvidas de quem está decidindo;
 - chamadas repetidas com textos diferentes e um roteiro local.
 
+## Direção de fotografia (regra de 19/11/2026)
+
+**Pedido do usuário:** a fotografia não pode seguir sempre a mesma direção. Cada marca precisa de enredo, roteiro e cinematografia próprios.
+
+**O que foi conferido:** Forma, Sutil, Toca, Almeida e a primeira leva da Lume repetiam a mesma foto: profissional no consultório, em três quartos, com luz lateral de janela.
+
+**A regra:** antes de pedir imagens, preencher seis parâmetros (enredo, luz e hora, lente, enquadramento, tratamento, lugar). Nenhum par de marcas pode repetir mais de dois.
+
+**Proibido como padrão:**
+- cortina filtrando luz de janela;
+- planta alta, estante e copo d'água;
+- golden hour alaranjada;
+- profissional em três quartos sorrindo num consultório.
+
+A tabela e os primeiros usos estão em `docs/NOVOS-PROJETOS-REGISTROS.md`.
+
 ## Régua de qualidade
 
 O peso dos critérios segue a avaliação do Awwwards: design 40%, usabilidade 30%, criatividade 20%, conteúdo 10%.
