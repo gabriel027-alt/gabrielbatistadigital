@@ -18,7 +18,7 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   // Without motion the folder is open and the strip is a single row scrolled by hand (no repeated copy).
-  await expect(page.locator(`${projects} > li`)).toHaveCount(7);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(5);
   await expect(page.locator('#editorial-work ul[aria-hidden]')).toBeHidden();
   expect(await page.locator('[data-strip]').evaluate(el => getComputedStyle(el).overflowX)).toBe('auto');
   expect(videos).toEqual([]);
@@ -62,8 +62,8 @@ test("No JavaScript retains original content, projects and contact without scrip
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const page=await context.newPage();
   await page.goto(route);
-  await expect(page.locator(`${projects} > li`)).toHaveCount(7);
-  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(7);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(5);
+  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(5);
   await expect(page.getByRole('heading',{name:'Uma boa ideia precisa funcionar.'})).toBeVisible();
   await expect(page.locator('a[href*="wa.me"]').first()).toHaveAttribute('href',/5538998267717/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -96,6 +96,8 @@ test('The dot opens the folder, the strip comes out reversibly and pause restore
   expect(await state()).toEqual({ strip: 0, dot: 'hidden' });
   await move(1);
   expect(await state()).toEqual({ strip: 1, dot: 'visible' });
+  // The strip must not have run ahead while it was hidden; the first selected project opens fully on screen.
+  expect(await page.locator(`${projects} > li`).first().evaluate(el => el.getBoundingClientRect().left)).toBeGreaterThanOrEqual(-2);
   await move(0);
   expect(await state()).toEqual({ strip: 0, dot: 'hidden' });
   await page.getByRole('button', { name: 'Pausar movimento' }).click();
@@ -176,17 +178,17 @@ test('Selection shows the approved brands with the colors measured for each', as
   // A still strip: a moving one never settles for a click.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(route);
-  for (const name of ['Forma Odontologia', 'Sutil Cirurgia Plástica', 'Toca Hospital Veterinário', 'Casa Brisa', 'Almeida & Valença', 'Aura', 'Orla']) {
+  for (const name of ['Lume Psicologia', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Aura', 'Orla']) {
     await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
-  await expect(page.locator(`${projects} dl`)).toHaveCount(5);
+  await expect(page.locator(`${projects} dl`)).toHaveCount(3);
   // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
   await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
-  const toca = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Toca Hospital Veterinário' });
-  await toca.click();
-  const film = page.getByRole('dialog', { name: 'Filme do projeto Toca Hospital Veterinário' }).locator('video');
-  await expect(film.locator('source[media="(max-width: 700px)"]')).toHaveAttribute('src', '/videos/projects/brands/toca-mobile.mp4');
-  await expect(film.locator('source:not([media])')).toHaveAttribute('src', '/videos/projects/brands/toca-desktop.mp4');
+  const sutil = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Sutil Cirurgia Plástica' });
+  await sutil.click();
+  const film = page.getByRole('dialog', { name: 'Filme do projeto Sutil Cirurgia Plástica' }).locator('video');
+  await expect(film.locator('source[media="(max-width: 700px)"]')).toHaveAttribute('src', '/videos/projects/brands/sutil-mobile.mp4');
+  await expect(film.locator('source:not([media])')).toHaveAttribute('src', '/videos/projects/brands/sutil-desktop.mp4');
   await page.keyboard.press('Escape');
   const images = await page.locator(`${projects} img`).evaluateAll(nodes => nodes.map(node => (node as HTMLImageElement).getAttribute('src')));
   expect(new Set(images).size).toBe(images.length);
@@ -194,11 +196,13 @@ test('Selection shows the approved brands with the colors measured for each', as
 });
 
 test('The pointer stretches the name and the monogram shapes assemble with the scroll and come apart on the way back', async ({ page }) => {
+  test.setTimeout(45000);
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(route);
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
   // As in the reference, the name rests still and the pointer stretches it: toward the left "Gabriel" widens,
-  // toward the right "Batista" does. It answers once the brand dot's arrival scene is over (about five seconds).
+  // The portrait forms before the dot signs the name. Pointer interaction starts only after that whole sequence.
+  await expect(page.locator('html')).toHaveAttribute('data-hero-signed', '', { timeout: 20000 });
   const widths = () => page.locator('[data-hero-word]').evaluateAll(words => words.map(word => parseFloat(getComputedStyle(word).getPropertyValue('--wdth'))));
   await expect.poll(async () => { await page.mouse.move(60, 450); await page.waitForTimeout(400); const [left, right] = await widths(); return left - right; }, { timeout: 12000 }).toBeGreaterThan(15);
   await expect.poll(async () => { await page.mouse.move(1380, 450); await page.waitForTimeout(400); const [left, right] = await widths(); return right - left; }).toBeGreaterThan(15);

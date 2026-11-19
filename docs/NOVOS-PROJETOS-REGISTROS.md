@@ -323,7 +323,7 @@ Abaixo dos sinais vêm três seções e o roteiro.
 **Lume:** completa e aprovada, com o nome da Helena Prado. Commits até `4f8fb12`. Sem push e sem deploy.
 
 **Próximos passos, em ordem:**
-1. **Filmes da Lume para a homepage:**
+1. **Filmes da Lume para a homepage — implementado localmente em 19/11/2026, aguardando avaliação visual:**
    - **Ferramenta:** `scripts/capture-brand-films.mjs`, com `PROJECT_PREVIEW_URL` apontando para um `next start` local.
    - **Arquivos a gerar:**
      - `public/videos/projects/brands/lume-desktop.mp4` (1920×1080) e `lume-mobile.mp4` (1080×1920);
@@ -331,7 +331,7 @@ Abaixo dos sinais vêm três seções e o roteiro.
    - **Na homepage:**
      - registrar em `lib/project-films.ts`, com textos nos quatro idiomas (`lib/film-copy.ts`);
      - pôr a Lume na frente da faixa.
-   - **O que sai da homepage:** Forma, Sutil, Toca e Almeida, mantendo uma delas como amostra do registro editorial. A escolha é do usuário; o código fica.
+   - **Escolha explícita do usuário em 19/11/2026:** fica **Sutil Cirurgia Plástica** como amostra editorial. A faixa passa a mostrar Lume, Sutil, Casa Brisa, Aura e Orla, nessa ordem. Forma, Toca e Almeida saem apenas da homepage; seu código e filmes ficam.
 2. **Arrimo (previdenciário):**
    - Pedir as fotos ao usuário pela tabela "Direção de fotografia por marca": P&B de fotojornalismo, mãos e documentos, retrato de autoridade em luz dura.
    - Depois, o mesmo caminho da Lume: piloto (hero e "O tempo se soma") → vídeo → aprovação → página.
@@ -408,3 +408,15 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 2. **Campo, 16:9:** advogada brasileira de cerca de 40 anos, camisa clara de manga dobrada e calça jeans, em pé à beira de uma lavoura de soja ao entardecer, olhando para a câmera. Uma caminhonete sem marca ao fundo, desfocada. 2880×1620.
 3. **Colheita, 3:2:** colheitadeira sem marca trabalhando numa lavoura ao entardecer, com poeira dourada contra a luz. 2400×1600.
 4. **Mesa, 3:2:** a mesma advogada na varanda de uma sede de fazenda, conversando com um produtor de chapéu (de costas), com papéis sobre a mesa de madeira. 2400×1600.
+
+## Lume nos filmes e na faixa (19/11/2026)
+
+- **Implementado localmente, ainda sujeito à avaliação visual do usuário.** A página aprovada da Lume, a Helena Prado e suas fotos não foram alteradas.
+- Filmes em `public/videos/projects/brands/`: `lume-desktop.mp4` (1920×1080, 34,8 s), `lume-mobile.mp4` (1080×1920, 47,03 s) e `lume-loop.mp4` (960×768, 6 s). H.264, 30 fps de saída e sem áudio. Metadados, tamanhos e hashes em `lume-manifest.json`.
+- A prévia recaptura a cena no formato do cartão, sem deformar a imagem nem cortar a chamada: noite → manhã → noite. O pôster é `public/images/projects/brands/lume-hero.webp`.
+- **Escolha do usuário:** fica a Sutil. Ordem da faixa nos quatro idiomas: **Lume, Sutil, Casa Brisa, Aura, Orla**. Forma, Toca e Almeida saíram só da homepage; seus arquivos permanecem.
+- Ajuste de chegada: o movimento da faixa só começa quando a pasta abre por completo, com 3,2 s para ler o primeiro cartão. Antes ela corria escondida durante o topo, e a Lume chegava cortada. O retorno do scroll reinicia essa apresentação. Pausa, hover, foco, movimento reduzido e sem JS continuam funcionando.
+- Conferência por `scripts/capture-lume-homepage-review.mjs`, em 1536×696 com DPR 1,25 e 390×844. Quadros, abertura do filme nos dois formatos e vídeo curto de ida/volta em `/workspace/entrega-gbd/lume-homepage/`. Sem estouro lateral nem erro de JavaScript nesses percursos.
+- Verificações: build e TypeScript aprovados; 30 testes de Lume, filmes, idiomas, homepage e kits aprovados; lint dos arquivos alterados limpo. O teste do nome agora espera a conclusão real da abertura (`data-hero-signed`), em vez de tentar interagir antes dela.
+- O lint **geral** ainda encontra 3 erros e 2 avisos anteriores em `ArtDirectedImage`, `ConsentBanner`, `HandParticles`, `LanguageSwitch` e `NotFoundCopy`. Esses arquivos estão idênticos ao commit de entrada `b508883`; não foram alterados nesta etapa.
+- **Onde parar agora:** aguardar a avaliação visual desta integração. Depois da aprovação, entregar os pedidos de foto da Arrimo pela direção já definida, antes de construir o piloto. Sem push, sem deploy, site continua fora do ar.

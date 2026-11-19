@@ -1,0 +1,77 @@
+{
+  "brand": "Lume Psicologia",
+  "date": "2026-11-19",
+  "route": "/modelos/psicologia",
+  "recordedFrom": "local next start, production build",
+  "files": [
+    {
+      "file": "/videos/projects/brands/lume-desktop.mp4",
+      "bytes": 5863863,
+      "sha256": "62b7035ff5a04a538d1efcb1aca61a17b18cab49393562e7131a5cb740b1af2a",
+      "captureViewport": [
+        1920,
+        1080
+      ],
+      "deviceScaleFactor": 1,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "34.800000",
+        "nb_frames": "1044"
+      },
+      "audioStreams": 0
+    },
+    {
+      "file": "/videos/projects/brands/lume-mobile.mp4",
+      "bytes": 15433019,
+      "sha256": "dc548a1699bc6684e3c1391b19fc0650bd1ab08eac9aa911d6510c60eb8520a1",
+      "captureViewport": [
+        432,
+        768
+      ],
+      "deviceScaleFactor": 2.5,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "47.033333",
+        "nb_frames": "1411"
+      },
+      "audioStreams": 0
+    },
+    {
+      "file": "/videos/projects/brands/lume-loop.mp4",
+      "bytes": 1075200,
+      "sha256": "8829dea4d741cae02fd9b05607429faa99ce74ec4832dd04e952760e1983cfb6",
+      "captureViewport": [
+        960,
+        768
+      ],
+      "deviceScaleFactor": 1,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 960,
+        "height": 768,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "6.000000",
+        "nb_frames": "180"
+      },
+      "audioStreams": 0
+    }
+  ],
+  "teaser": "same signature scene reframed at 960x768; night to morning and reverse over 6 seconds",
+  "poster": "/images/projects/brands/lume-hero.webp",
+  "loopSeamMeanAbsoluteRGB": 0.9566953305844907
+}

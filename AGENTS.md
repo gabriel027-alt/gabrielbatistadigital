@@ -386,3 +386,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Nome da psicóloga: **Helena Prado**, persona da marca, por decisão do usuário (19/11/2026), que pediu deixar claro quem atende. Está em `lib/lume.ts` e aparece desde o topo.
   - Nunca acompanha CRP nem abordagem inventada. A exceção de nome vale só para a Lume; as outras marcas seguem sem nome até ele pedir.
   - Cada marca segue a regra de direção de fotografia (`docs/DESIGN-SYSTEM.md`).
+
+## Lume na seleção: filmes e amostra editorial (19/11/2026)
+
+- Passo 1 implementado localmente: a Lume abre a faixa da homepage, com setor, diálogo do filme, chamada e mensagem de WhatsApp nos quatro idiomas. A página aprovada da Lume e suas fotografias não foram alteradas.
+- **Escolha explícita do usuário:** a amostra editorial que fica é a **Sutil Cirurgia Plástica**. Ordem atual: Lume, Sutil, Casa Brisa, Aura e Orla. Forma, Toca e Almeida saem apenas da homepage; páginas, filmes e registros permanecem no repositório.
+- Filmes por `scripts/capture-brand-films.mjs lume`: PC 1920×1080, celular 1080×1920 e prévia de 6 s em 960×768, em `public/videos/projects/brands/lume-{desktop,mobile,loop}.mp4`. A prévia recaptura a cena no formato do cartão para preservar texto e foto: noite → manhã → noite, sem esticar a imagem. Pôster em `public/images/projects/brands/lume-hero.webp`; metadados e hashes em `lume-manifest.json`.
+- A faixa começa só quando a pasta termina de abrir e segura o primeiro projeto por 3,2 s. Antes ela corria escondida durante o topo, e a Lume chegava cortada. Voltar pela pasta reinicia essa apresentação; hover, foco, pausa, movimento reduzido e conteúdo sem JS continuam válidos.
+- Conferência visual em PC 1536×696 com DPR 1,25 e celular 390×844, por `scripts/capture-lume-homepage-review.mjs`. Capturas e vídeo curto fora do repositório, em `/workspace/entrega-gbd/lume-homepage/` neste ambiente Linux. A integração aguarda a avaliação visual do usuário; teste aprovado não é aprovação estética.
+- Sem push, sem deploy e sem alterar o modo fora do ar. Arrimo só começa depois da aprovação desta etapa, pelos pedidos de fotografia já definidos.

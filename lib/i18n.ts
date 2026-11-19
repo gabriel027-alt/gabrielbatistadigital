@@ -53,7 +53,7 @@ const pt: HomeCopy = {
   palmLabel: "A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelo pronto: cada site nasce da marca da sua clínica.",
   projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotos.", workNote: "Clique num projeto para ver o filme.", specFont: "Fonte", specColors: "Cores medidas nas fotos",
-  sectors: { forma: "Odontologia estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Família e sucessões", aura: "Harmonização facial", orla: "Residências" },
+  sectors: { lume: "Psicologia", forma: "Odontologia estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Família e sucessões", aura: "Harmonização facial", orla: "Residências" },
   servicesNote: "O que eu construo", servicesTitle: ["Sua clínica tem um jeito próprio de atender.", "Vamos dar forma a ele."],
   services: [
     { title: "Sites & landing pages", text: "Os tratamentos, as dúvidas que mais aparecem e o caminho até o agendamento, numa página que o paciente entende sem esforço." },
@@ -106,7 +106,7 @@ const ptPT: HomeCopy = {
   palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelos prontos: cada site nasce da marca da sua clínica.",
   projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotografias.", workNote: "Clique num projeto para ver o filme. Marcas brasileiras, com sites em português do Brasil.", specFont: "Tipo de letra", specColors: "Cores medidas nas fotografias",
-  sectors: { forma: "Medicina dentária estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Direito da família e sucessões", aura: "Harmonização facial", orla: "Imobiliário residencial" },
+  sectors: { lume: "Psicologia", forma: "Medicina dentária estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Direito da família e sucessões", aura: "Harmonização facial", orla: "Imobiliário residencial" },
   servicesNote: "O que faço", servicesTitle: ["Cada clínica recebe os pacientes à sua maneira.", "Vamos dar-lhe forma."],
   services: [
     { title: "Sites e landing pages", text: "Os tratamentos, as dúvidas mais frequentes e o caminho até à marcação, numa página que o paciente percebe sem esforço." },
@@ -154,7 +154,7 @@ const en: HomeCopy = {
   palmLabel: "Gabriel's open hand, palm up, holding the brand's red dot.",
   palmTitle: "Handmade, from the first stroke to the last click.", palmText: "No ready-made template: every website is born from your clinic's brand.",
   projects: "Projects", workProof: "No two alike: each brand gets the colors of its own photos.", workNote: "Click a project to watch its film. Brazilian brands: the sites are in Portuguese.", specFont: "Typeface", specColors: "Colors measured from the photos",
-  sectors: { forma: "Cosmetic dentistry", sutil: "Plastic surgery", toca: "Veterinary hospital", brisa: "Boutique hotel", almeida: "Family and estate law", aura: "Facial aesthetics", orla: "Residences" },
+  sectors: { lume: "Psychology", forma: "Cosmetic dentistry", sutil: "Plastic surgery", toca: "Veterinary hospital", brisa: "Boutique hotel", almeida: "Family and estate law", aura: "Facial aesthetics", orla: "Residences" },
   servicesNote: "What I build", servicesTitle: ["Your clinic has its own way of caring for patients.", "Let's give it shape."],
   services: [
     { title: "Websites & landing pages", text: "The treatments, the questions patients ask most and the path to booking, on a page they understand without effort." },
@@ -202,7 +202,7 @@ const es: HomeCopy = {
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",
   palmTitle: "Hecho a mano, del primer trazo al último clic.", palmText: "Sin plantillas: cada sitio nace de la marca de tu clínica.",
   projects: "Proyectos", workProof: "Ninguno se parece a otro: cada marca tiene los colores de sus propias fotos.", workNote: "Haz clic en un proyecto para ver su video. Marcas brasileñas: los sitios están en portugués.", specFont: "Tipografía", specColors: "Colores medidos en las fotos",
-  sectors: { forma: "Odontología estética", sutil: "Cirugía plástica", toca: "Hospital veterinario", brisa: "Hotel boutique", almeida: "Derecho de familia y sucesiones", aura: "Armonización facial", orla: "Residencias" },
+  sectors: { lume: "Psicología", forma: "Odontología estética", sutil: "Cirugía plástica", toca: "Hospital veterinario", brisa: "Hotel boutique", almeida: "Derecho de familia y sucesiones", aura: "Armonización facial", orla: "Residencias" },
   servicesNote: "Lo que construyo", servicesTitle: ["Tu clínica tiene su propia forma de atender.", "Démosle forma."],
   services: [
     { title: "Páginas web y landing pages", text: "Los tratamientos, las dudas más frecuentes y el camino hasta la cita, en una página que el paciente entiende sin esfuerzo." },

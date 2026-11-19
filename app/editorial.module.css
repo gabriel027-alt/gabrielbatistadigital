@@ -285,6 +285,7 @@
 .projectsWord{position:relative;z-index:1;margin:0;text-align:center;font-size:min(12.5vw,19svh);line-height:.8;font-weight:500;letter-spacing:-.06em;color:#c96f4b;pointer-events:none}
 .strip{position:relative;z-index:2;width:100%;overflow:hidden;padding:6px 0}
 .stripTrack{display:flex;width:max-content;animation:stripRun 80s linear infinite}
+.page[data-editorial-animated=true] .strip:not([data-strip-ready]) .stripTrack{animation-name:none}
 .strip:hover .stripTrack,.strip:focus-within .stripTrack{animation-play-state:paused}
 .stripList{display:flex;gap:20px;margin:0;padding:0 20px 0 0;list-style:none}
 .stripItem{flex:none;width:clamp(240px,min(24vw,50svh),470px)}
@@ -293,7 +294,7 @@
 .stripCaption h3{margin:0;font-size:clamp(16px,1.35vw,22px);font-weight:500;letter-spacing:-.04em;color:var(--ink)}
 .stripCaption .spec{justify-items:end}
 .stripCaption .swatches span{width:13px;height:13px}
-@keyframes stripRun{to{transform:translateX(-50%)}}
+@keyframes stripRun{0%,4%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 /* Paused or reduced: the strip stops and becomes a row the visitor scrolls by hand. */
 .page[data-editorial-motion=off] .stripTrack{animation:none}
 .page[data-editorial-motion=off] .strip{overflow-x:auto;scroll-snap-type:x proximity}

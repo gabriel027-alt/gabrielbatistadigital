@@ -476,7 +476,12 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           // Offsets measured on the final (CSS) layout: the folder starts at the middle of the stage, the strip inside the folder.
           const toMiddle = () => stage.clientHeight / 2 - centre(pasta);
           const intoFolder = () => centre(pasta) - centre(strip);
-          gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: work, start: "top top", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true } })
+          // Start the selection with its first project, rather than advancing the hidden marquee during the hero.
+          restore.push(() => strip.removeAttribute("data-strip-ready"));
+          gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: {
+            trigger: work, start: "top top", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true,
+            onUpdate: self => strip.toggleAttribute("data-strip-ready", self.progress >= .98),
+          } })
             .fromTo(pasta, { y: toMiddle, scale: 2.3, rotation: -8 }, { y: toMiddle, scale: 2.1, rotation: 0, duration: .2, ease: "power2.out" }, 0)
             .fromTo("[data-pasta-front]", { rotationX: -8 }, { rotationX: -8, duration: .01 }, 0)
             .fromTo("[data-pasta-sheet]", { y: 0 }, { y: 0, duration: .01 }, 0)

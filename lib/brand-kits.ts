@@ -94,6 +94,6 @@ export const brandKits: BrandKit[] = [
     photo: "Documental em câmera fixa: a mesma cozinha às 23h e às 7h; retrato de estúdio sobre fundo argila",
     signatureGraphic: "O cone de luz do pendente, que apaga quando a manhã chega",
     signatureMotion: "As cobranças se soltam: frases de cobrança caem com a rolagem enquanto a noite vira manhã",
-    hero: "Título de dor coberto por frases de cobrança ao lado da cozinha às 23h, que vira 7h", status: "em construção",
+    hero: "Título de dor coberto por frases de cobrança ao lado da cozinha às 23h, que vira 7h", status: "aprovado",
   },
 ];

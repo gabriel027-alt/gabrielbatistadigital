@@ -9,10 +9,12 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
+const brands = { lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
+  // Reframe the same signature scene at the card's aspect ratio, avoiding stretched faces or clipped copy.
+  loop: { viewport: { width: 960, height: 768 }, scale: 1, mobile: false, out: [960, 768] },
 };
 const only = process.argv.slice(2).filter(arg => brands[arg]);
 const formatArg = process.argv.find(arg => arg.startsWith('--format='))?.split('=')[1];
@@ -39,7 +41,8 @@ async function record(page, destination, [width, height], action) {
   await mkdir(path.dirname(destination), { recursive: true });
   const result = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-f', 'concat', '-safe', '0', '-i', path.join(temp, 'frames.txt'), '-an',
     '-vf', `fps=30,scale=${width}:${height}:flags=lanczos:in_range=full:out_range=tv,format=yuv420p`,
-    '-c:v', 'libx264', '-profile:v', 'high', '-preset', 'slow', '-crf', '18', '-color_range', 'tv', '-movflags', '+faststart', destination], { encoding: 'utf8' });
+    '-c:v', 'libx264', '-profile:v', 'high', '-preset', 'slow', '-crf', '18', '-color_range', 'tv', '-movflags', '+faststart',
+    ...(destination.endsWith('-loop.mp4') ? ['-t', '6'] : []), destination], { encoding: 'utf8' });
   await rm(temp, { recursive: true, force: true });
   if (result.status !== 0) throw new Error(result.stderr);
   const seconds = (frames.at(-1).time - frames[0].time);
@@ -51,6 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
+      if (name === 'loop' && brand !== 'lume') continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -61,6 +65,31 @@ try {
       for (let y = 0; y < total; y += 600) { await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(40); }
       await page.evaluate(() => scrollTo(0, 0));
       await page.waitForTimeout(2500);
+      if (brand === 'lume' && name === 'loop') {
+        await mkdir('public/images/projects/brands', { recursive: true });
+        const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/lume-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
+        if (poster.status !== 0) throw new Error(poster.stderr);
+        const stats = await record(page, 'public/videos/projects/brands/lume-loop.mp4', format.out, async () => {
+          await page.evaluate(async () => {
+            const hero = document.querySelector('[data-lume-hero]');
+            const end = hero.getBoundingClientRect().top + scrollY + hero.offsetHeight - innerHeight;
+            const start = performance.now();
+            await new Promise(resolve => {
+              function tick(now) {
+                const elapsed = Math.min(6, (now - start) / 1000);
+                // Night → morning → night: the original scroll timeline, reversible, with a continuous loop seam.
+                const progress = elapsed < .25 ? 0 : elapsed < 2.5 ? (elapsed - .25) / 2.25 : elapsed < 3 ? 1 : elapsed < 5.25 ? 1 - (elapsed - 3) / 2.25 : 0;
+                scrollTo({ top: Math.max(0, end) * progress, behavior: 'instant' });
+                if (elapsed < 6) requestAnimationFrame(tick); else resolve();
+              }
+              requestAnimationFrame(tick);
+            });
+          });
+        });
+        console.log(`${brand} loop: ${stats.frames} frames -> 6 s, public/videos/projects/brands/lume-loop.mp4`);
+        await page.close();
+        continue;
+      }
       const destination = `public/videos/projects/brands/${brand}-${name}.mp4`;
       const stats = await record(page, destination, format.out, async () => {
         await page.waitForTimeout(2600);
@@ -81,8 +110,8 @@ try {
           const header = document.querySelector('header')?.getBoundingClientRect().height || 0;
           const sections = [...document.querySelectorAll('main section, main > div > section, footer')]
             .filter(el => !el.parentElement.closest('section'))
-            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight }))
-            .filter(s => s.top > 40 && s.height > 120)
+            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight, signature: el.hasAttribute('data-lume-hero') }))
+            .filter(s => (s.top > 40 || s.signature) && s.height > 120)
             .sort((a, b) => a.top - b.top);
           for (const s of sections) {
             const top = Math.min(end, Math.max(scrollY, s.top - header * (s.height > innerHeight * 1.5 ? 0 : 1)));

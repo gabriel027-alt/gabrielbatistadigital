@@ -40,11 +40,9 @@ const kit = (id: string) => brandKits.find(item => item.id === id);
 
 type Work = { id: FilmId; name: string; image: string; kit?: string };
 const works: Work[] = [
-  { id: "forma", name: "Forma Odontologia", image: sample("forma", "hero"), kit: "forma" },
+  { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "sutil", name: "Sutil Cirurgia Plástica", image: sample("sutil", "hero"), kit: "sutil" },
-  { id: "toca", name: "Toca Hospital Veterinário", image: sample("toca", "hero"), kit: "toca" },
   { id: "brisa", name: "Casa Brisa", image: sample("brisa", "hero"), kit: "brisa" },
-  { id: "almeida", name: "Almeida & Valença", image: sample("almeida", "hero"), kit: "almeida" },
   { id: "aura", name: "Aura", image: "/images/projects/aura-film-poster.webp" },
   { id: "orla", name: "Orla", image: "/images/projects/orla-film-poster.jpg" },
 ];
