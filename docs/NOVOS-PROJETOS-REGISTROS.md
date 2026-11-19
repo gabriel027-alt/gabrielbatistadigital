@@ -318,6 +318,38 @@ Abaixo dos sinais vêm três seções e o roteiro.
 - **O que continua fora:** CRP, abordagem e formação inventadas.
 - **Retrato:** todas as bordas se dissolvem na seção (no celular, só a de cima e a de baixo), para o sombreado do fundo não desenhar um quadro.
 
+## Onde parar e de onde seguir (19/11/2026, passagem para o Codex)
+
+**Lume:** completa e aprovada, com o nome da Helena Prado. Commits até `4f8fb12`. Sem push e sem deploy.
+
+**Próximos passos, em ordem:**
+1. **Filmes da Lume para a homepage:**
+   - **Ferramenta:** `scripts/capture-brand-films.mjs`, com `PROJECT_PREVIEW_URL` apontando para um `next start` local.
+   - **Arquivos a gerar:**
+     - `public/videos/projects/brands/lume-desktop.mp4` (1920×1080) e `lume-mobile.mp4` (1080×1920);
+     - a prévia `lume-loop.mp4` (6 s, 960×768), recortada da cena noite → manhã.
+   - **Na homepage:**
+     - registrar em `lib/project-films.ts`, com textos nos quatro idiomas (`lib/film-copy.ts`);
+     - pôr a Lume na frente da faixa.
+   - **O que sai da homepage:** Forma, Sutil, Toca e Almeida, mantendo uma delas como amostra do registro editorial. A escolha é do usuário; o código fica.
+2. **Arrimo (previdenciário):**
+   - Pedir as fotos ao usuário pela tabela "Direção de fotografia por marca": P&B de fotojornalismo, mãos e documentos, retrato de autoridade em luz dura.
+   - Depois, o mesmo caminho da Lume: piloto (hero e "O tempo se soma") → vídeo → aprovação → página.
+3. **Paddock e Talhão,** depois, um de cada vez. No Paddock, confirmar antes com o usuário as especificações com preço "Consulte".
+
+**Regras que não mudam:**
+- sem push nem deploy sem ordem;
+- o site segue fora do ar;
+- sem CRP, OAB, números, depoimentos ou promessa de resultado;
+- foto em quadro não volta;
+- conferir em 1536×696 com DPR 1,25 e no celular, com vídeo de ida e volta.
+
+**Armadilhas desta máquina:**
+- No PowerShell, `$W` e `$w` são a mesma variável.
+- Em listas de pares de texto, `'a' + "`n" + 'b'` quebra por precedência da vírgula.
+- O `next start` iniciado com `Start-Process cmd` morre sozinho; rodar em segundo plano pela própria ferramenta.
+- Os testes precisam de `PLAYWRIGHT_CHROMIUM_EXECUTABLE` apontando para o Chrome instalado e de `npm run build` antes, porque usam `next start` na porta 3107.
+
 ## Pedidos de imagem para o usuário
 
 > Os pedidos da Lume abaixo foram substituídos pela seção "Direção de fotografia por marca". Os das outras marcas seguem a tabela daquela seção quando forem refeitos.
