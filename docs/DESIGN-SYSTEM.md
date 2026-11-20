@@ -394,3 +394,10 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 O usuário aprovou o piloto e pediu o restante. A autoridade continua na tipografia condensada e na tinta do documento: situações em linhas abertas, assuntos em cartazes grandes, checklist sobre papel e escritório fotográfico em preto e branco. A oficina entra no cartaz de aposentadorias; o atendimento domina o escritório, com gradiente de leitura apenas na área do texto. No celular, a foto antecede o texto na mesma superfície.
 
 A assinatura da régua não mudou. As linhas na base dos cartazes acompanham o scroll e se recolhem na volta; a alternativa estática mantém a linha inteira. Sem efeitos de entrada repetidos em todas as seções. O roteiro compartilhado recebe as fontes e as cores próprias da Arrimo, com perguntas previdenciárias e sem campos pessoais. Revisão visual da página completa pendente; aprovação técnica não substitui a decisão do usuário.
+
+
+### Arrimo: documentos e carimbo central (20/11/2026)
+
+Revisão solicitada pelo usuário: lacunas devem interromper a régua, em vez de pequenos marcadores entre cartões. Campo vazio com borda tracejada vermelha → preenchimento ouro, com texto correspondente. Os vínculos são folhas de registro envelhecidas em cinzas quentes, com alturas e rotações próprias; não caixas brancas iguais. A fotografia das mãos foi retirada do fundo.
+
+A cena já chega com régua e primeiro documento. No clímax, os documentos recuam, o carimbo ocupa o centro, NEGADO é riscado e desaparece, e só depois EM ANÁLISE desce de escala 1,15 para 1 com tremida. Sem sobreposição dos dois rótulos. Toda a sequência é reversível; fallback completo em fluxo normal. Hero aprovado permanece intacto.

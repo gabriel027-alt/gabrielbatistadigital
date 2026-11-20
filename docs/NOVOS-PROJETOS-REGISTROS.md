@@ -462,3 +462,16 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - **Onde parar:** avaliação visual da página completa. Não iniciar Paddock/Talhão nem integrar a Arrimo na faixa sem a próxima decisão. Esta ampliação não foi enviada ao GitHub nem publicada.
 
 - Verificação da ampliação: build e lint dos arquivos alterados aprovados; 12 testes de Arrimo, Lume e kits aprovados. Axe AA também sem violações no roteiro aberto em 360×800. O lint geral mantém as pendências anteriores da etapa da Lume, fora do escopo.
+
+
+## Arrimo: revisão da régua e do carimbo (20/11/2026)
+
+- Pedido do usuário aplicado sobre a página completa `e1de5bb`. O hero está aprovado e foi preservado: JSX conferido idêntico por SHA-256 (`759acd611c10533dea9cc8a51e98130c10883f0946025214ad3bb027dd9a6cda`), sem alteração de suas regras CSS, foto ou movimento.
+- As lacunas agora são interrupções reais e largas da régua, com fundo vazio e contorno tracejado vermelho de carimbo. Cada preenchimento é animado separadamente, do vazio ao ouro, com rótulos “Registro ausente” → “Registro localizado”. Sem anos ou exigência de contribuição.
+- Documentos em cinzas quentes distintos, borda de encadernação, papel pautado/textura discreta, alturas e rotações diferentes. A foto das mãos saiu da cena; nenhum fundo fotográfico apagado permanece.
+- O primeiro documento e a régua estão visíveis desde o início. Os outros registros entram logo nos primeiros trechos do scroll.
+- Clímax: documentos recuam em opacidade e o carimbo sobe para o centro do palco. NEGADO recebe um risco, desaparece completamente e há um intervalo antes da descida de EM ANÁLISE, de escala 1,15 para 1, com tremida curta. Longe do botão de pausa nos dois formatos. Tudo reverte pelo scroll.
+- Movimento reduzido, pausa e ausência de JS mostram os registros completos e o carimbo final, em fluxo legível. A cena pertence à página completa em `/modelos/previdenciario`; demais seções mantidas.
+- Vídeos de ida/volta por `scripts/capture-arrimo-pilot.mjs`, PC 1536×696 com DPR 1,25 e celular 390×844, em `/workspace/entrega-gbd/arrimo-cena-revisada/`.
+- Envio desta revisão para `revisao-site` autorizado explicitamente pelo usuário; inclui a ampliação `e1de5bb` em sua base. Main e deploy continuam fora do escopo. Avaliação estética continua sendo do usuário.
+- Verificação desta revisão: build e lint dos arquivos alterados aprovados; 12 testes passaram, incluindo lacunas inicialmente vazias, risco completo, intervalo sem rótulos sobrepostos, ida/volta, centro do carimbo separado da explicação e da pausa, axe AA, sem JS e roteiro completo.

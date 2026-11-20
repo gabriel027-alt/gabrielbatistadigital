@@ -17,21 +17,38 @@ function build(root: HTMLElement) {
     defaults: { ease: "none" },
     scrollTrigger: { trigger: scene, start: "top top", end: "bottom bottom", scrub: .55, invalidateOnRefresh: true },
   });
-  timeline.fromTo("[data-arrimo-rule]", { "--draw": 0 }, { "--draw": 1, duration: .36 }, 0);
-  cards.forEach((card, i) => {
-    timeline.fromTo(card, { y: 64, rotation: i % 2 ? 5 : -5, opacity: 0 }, { y: 0, rotation: 0, opacity: 1, duration: .21, ease: "power2.out" }, .04 + i * .1);
+  gsap.set("[data-arrimo-bridge]", { "--draw": 0 });
+  gsap.set("[data-arrimo-found]", { opacity: 0 });
+  // The ruler and first record already exist at progress zero: no empty introduction.
+  timeline.fromTo("[data-arrimo-rule]", { opacity: 1 }, { opacity: 1, duration: .01 }, 0);
+  cards.slice(1).forEach((card, i) => {
+    timeline.fromTo(card, { y: 34, opacity: 0 }, { y: 0, opacity: 1, duration: .15, ease: "power2.out" }, .02 + i * .12);
   });
-  timeline.fromTo("[data-arrimo-gap]", { opacity: 0 }, { opacity: 1, duration: .12, stagger: .04 }, .32)
-    .fromTo("[data-arrimo-bridge]", { "--draw": 0 }, { "--draw": 1, duration: .25, stagger: .07 }, .54)
-    .to("[data-arrimo-gap]", { opacity: .2, duration: .19 }, .69)
-    .fromTo("[data-arrimo-denied]", { opacity: 1, scale: 1, rotation: -9 }, { opacity: 0, scale: 1.12, rotation: -4, duration: .16 }, .76)
-    .fromTo("[data-arrimo-review]", { opacity: 0, scale: 1.14, rotation: -4 }, { opacity: 1, scale: 1, rotation: -4, duration: .18, ease: "power2.out" }, .79)
-    .fromTo("[data-arrimo-hands]", { scale: 1.06 }, { scale: 1, duration: 1 }, 0)
-    .to({}, { duration: .03 }, .97);
-  timeline.fromTo(phases[0], { opacity: 1, y: 0 }, { opacity: 0, y: -10, duration: .1 }, .3)
-    .fromTo(phases[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .1 }, .34)
-    .to(phases[1], { opacity: 0, y: -10, duration: .1 }, .7)
-    .fromTo(phases[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .12 }, .75);
+  gsap.utils.toArray<HTMLElement>("[data-arrimo-bridge]", root).forEach((bridge, i) => {
+    timeline.fromTo(bridge, { "--draw": 0 }, { "--draw": 1, duration: .22, immediateRender: true }, .38 + i * .06);
+  });
+  gsap.utils.toArray<HTMLElement>("[data-arrimo-missing]", root).forEach((label, i) => {
+    timeline.fromTo(label, { opacity: 1 }, { opacity: 0, duration: .07, immediateRender: true }, .41 + i * .06);
+  });
+  gsap.utils.toArray<HTMLElement>("[data-arrimo-found]", root).forEach((label, i) => {
+    timeline.fromTo(label, { opacity: 0 }, { opacity: 1, duration: .07, immediateRender: true }, .49 + i * .06);
+  });
+  timeline.fromTo("[data-arrimo-gap]", { opacity: 1 }, { opacity: 1, duration: .01 }, 0)
+    .to(phases[0].parentElement, { y: () => root.clientWidth < 760 ? 0 : 92, duration: .08 }, .6)
+    .to("[data-arrimo-ruler]", { opacity: .22, duration: .08 }, .6)
+    .fromTo("[data-arrimo-decision]", { y: 0, "--focus": 0 }, { y: () => root.clientWidth < 760 ? -250 : -190, "--focus": 1, duration: .08, ease: "power2.inOut" }, .6)
+    // Cross out, remove, then stamp. These intervals never overlap.
+    .fromTo("[data-arrimo-strike]", { scaleX: 0 }, { scaleX: 1, duration: .07 }, .68)
+    .fromTo("[data-arrimo-denied]", { opacity: 1 }, { opacity: 0, duration: .055 }, .76)
+    .fromTo("[data-arrimo-review]", { opacity: 0, y: -42, scale: 1.15, rotation: -4 }, { opacity: 1, y: 0, scale: 1, rotation: -4, duration: .065, ease: "power3.in" }, .85)
+    .to("[data-arrimo-review]", { x: -3, rotation: -5, duration: .015 }, .915)
+    .to("[data-arrimo-review]", { x: 2, rotation: -3, duration: .015 }, .93)
+    .to("[data-arrimo-review]", { x: 0, rotation: -4, duration: .02 }, .945)
+    .to({}, { duration: .035 }, .965);
+  timeline.fromTo(phases[0], { opacity: 1, y: 0 }, { opacity: 0, y: -10, duration: .06 }, .27)
+    .fromTo(phases[1], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .04 }, .29)
+    .to(phases[1], { opacity: 0, y: -10, duration: .06 }, .65)
+    .fromTo(phases[2], { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: .06 }, .73);
 }
 
 export function ArrimoMotion() {

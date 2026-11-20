@@ -44,10 +44,15 @@ try {
       await glide(position(0), 1500);
       await page.waitForTimeout(800);
       await page.screenshot({ path: path.join(out, `${device.name}-inicio.png`), scale: 'css' });
-      await glide(position(.48), device.mobile ? 3600 : 3000);
+      await glide(position(.36), device.mobile ? 3600 : 3000);
       await page.waitForTimeout(1000);
       await page.screenshot({ path: path.join(out, `${device.name}-lacunas.png`), scale: 'css' });
-      await glide(position(1), device.mobile ? 4400 : 4000);
+      await glide(position(.74), 3000);
+      await page.waitForTimeout(500);
+      await page.screenshot({ path: path.join(out, `${device.name}-riscado.png`), scale: 'css' });
+      await glide(position(.82), 700);
+      await page.waitForTimeout(350);
+      await glide(position(1), 1800);
       await page.waitForTimeout(1500);
       await page.screenshot({ path: path.join(out, `${device.name}-analise.png`), scale: 'css' });
       await glide(position(0), 5200);

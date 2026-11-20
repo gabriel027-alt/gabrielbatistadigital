@@ -45,19 +45,24 @@ export default function ArrimoPage() {
 
       <section id="arrimo-tempo" className={styles.scene} data-arrimo-scene aria-labelledby="arrimo-tempo-titulo">
         <div className={styles.stage}>
-          <figure className={styles.hands}><Image data-arrimo-hands src="/images/arrimo/maos.webp" alt="Mãos de um trabalhador segurando uma carteira de trabalho e documentos" fill sizes="(max-width:760px) 150vw, 60vw" quality={90} /></figure>
           <div className={styles.sceneHead}>
             <h2 id="arrimo-tempo-titulo"><span>O tempo</span>{" "}<span>se soma.</span></h2>
             <p className={styles.sceneIntro}>A vida de trabalho nem sempre aparece inteira em um registro. Quando há uma negativa, a leitura começa pelos documentos.</p>
           </div>
 
-          <div className={styles.ruler}>
-            <span className={styles.rule} aria-hidden="true"><i data-arrimo-rule /></span>
+          <div className={styles.ruler} data-arrimo-ruler>
+            <div className={styles.rule} aria-hidden="true">
+              <i data-arrimo-rule />
+              {[0, 1].map(i => <span key={i} className={styles.gap} data-gap-index={i}>
+                <i data-arrimo-gap /><b data-arrimo-bridge />
+                <span className={styles.gapMissing} data-arrimo-missing>Registro ausente</span>
+                <span className={styles.gapFound} data-arrimo-found>Registro localizado</span>
+              </span>)}
+            </div>
             <ol className={styles.periods}>
-              {periods.map((period, i) => <li key={period.title} className={styles.period} data-arrimo-period>
+              {periods.map((period) => <li key={period.title} className={styles.period} data-arrimo-period>
                 <p className={styles.record}>{period.record}</p><h3>{period.title}</h3><p className={styles.periodDetail}>{period.detail}</p>
                 <span className={styles.documentLines} aria-hidden="true" /><span className={styles.node} aria-hidden="true" />
-                {i < periods.length - 1 && <span className={styles.gap} aria-hidden="true"><i data-arrimo-gap /><b data-arrimo-bridge /></span>}
               </li>)}
             </ol>
           </div>
@@ -66,9 +71,9 @@ export default function ArrimoPage() {
             <ol className={styles.phases} aria-label="Etapas da análise">
               {stages.map(stage => <li key={stage.title} data-arrimo-phase><h3>{stage.title}</h3><p>{stage.text}</p></li>)}
             </ol>
-            <div className={styles.decision} role="img" aria-label="Da negativa à análise dos documentos">
+            <div className={styles.decision} data-arrimo-decision role="img" aria-label="Da negativa à análise dos documentos">
               <span className={styles.decisionLabel}>Leitura dos documentos</span>
-              <span className={styles.denied} data-arrimo-denied aria-hidden="true">Negado</span>
+              <span className={styles.denied} data-arrimo-denied aria-hidden="true">Negado<i className={styles.strike} data-arrimo-strike /></span>
               <span className={styles.review} data-arrimo-review>Em análise</span>
             </div>
           </div>

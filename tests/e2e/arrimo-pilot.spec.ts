@@ -17,8 +17,15 @@ test("Arrimo joins the periods, reviews the gaps and reverses the whole scene", 
   await sceneAt(page, 0);
   await expect.poll(() => opacity(page, '[data-arrimo-denied]')).toBe(1);
   await expect.poll(() => opacity(page, '[data-arrimo-review]')).toBe(0);
-  await sceneAt(page, .48);
+  await expect(page.locator("[data-arrimo-period]").first()).toHaveCSS("opacity", "1");
+  for (const bridge of await page.locator('[data-arrimo-bridge]').all()) await expect.poll(() => bridge.evaluate(el => Number(getComputedStyle(el).getPropertyValue('--draw')))).toBe(0);
+  await sceneAt(page, .32);
   await expect.poll(() => opacity(page, '[data-arrimo-gap]')).toBe(1);
+  await sceneAt(page, .755);
+  await expect.poll(() => page.locator('[data-arrimo-strike]').evaluate(el => new DOMMatrix(getComputedStyle(el).transform).a)).toBeGreaterThan(.9);
+  await sceneAt(page, .82);
+  await expect.poll(() => opacity(page, '[data-arrimo-denied]')).toBe(0);
+  await expect.poll(() => opacity(page, '[data-arrimo-review]')).toBe(0);
   await sceneAt(page, 1);
   await expect.poll(() => opacity(page, '[data-arrimo-review]')).toBe(1);
   await expect.poll(() => opacity(page, '[data-arrimo-denied]')).toBe(0);
@@ -77,6 +84,13 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
     expect(bounds.top).toBeGreaterThanOrEqual(bounds.header - 1);
     expect(bounds.bottom).toBeLessThanOrEqual(bounds.height - 8);
     expect(bounds.overflow).toBeLessThanOrEqual(0);
+    const stamp = await page.locator('[data-arrimo-review]').boundingBox();
+    const pause = await page.getByRole('button', { name: 'Pausar animações' }).boundingBox();
+    expect(Math.abs(stamp!.x + stamp!.width / 2 - device.width / 2)).toBeLessThan(12);
+    expect(Math.abs(stamp!.y + stamp!.height / 2 - device.height / 2)).toBeLessThan(device.height * .2);
+    expect(stamp!.y + stamp!.height).toBeLessThan(pause!.y - 50);
+    const explanation = await page.locator('[data-arrimo-phase]').last().boundingBox();
+    expect(explanation!.y).toBeGreaterThan(stamp!.y + stamp!.height + 10);
     await context.close();
   });
 }
