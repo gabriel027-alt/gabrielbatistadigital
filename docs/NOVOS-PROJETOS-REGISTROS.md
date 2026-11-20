@@ -498,3 +498,17 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Quadros de revisão em 1536×696 com DPR 1,25 e 390×844 por `scripts/capture-arrimo-homepage-review.mjs`, em `/workspace/entrega-gbd/arrimo-homepage/`.
 - Envio para `revisao-site` autorizado pelo usuário nesta etapa. Sem main nem deploy. Paddock/Talhão não começam nesta entrega.
 - Verificação técnica: build e lint dos arquivos alterados aprovados; 27 testes pertinentes passaram (13 da Arrimo/Lume/kits e 14 de filmes/homepage/idiomas), incluindo reprodução real dos MP4s horizontal/vertical, ordem da faixa, pausa, carregamento tardio, economia de dados e sem JS. Filmes H.264, saída a 30 fps, sem áudio: PC 53,57 s; celular 71,53 s; prévia exatamente 6 s. Dimensões, tamanhos e SHA-256 em `arrimo-manifest.json`.
+
+## Paddock: fotos recebidas (20/11/2026)
+
+- **As fotos:** o usuário gerou sete das oito pedidas.
+  - Hero: sedã grafite, 16:9, com o lado esquerdo vazio.
+  - Estoque, 4:3: picape preta, hatch vinho, SUV branco (saiu prata-claro), sedã verde, SUV azul-petróleo e cupê prata.
+  - Falta a foto 8 (interior).
+- **Conferência:**
+  - mesmo estúdio preto, mesma faixa de softbox, mesmo ângulo e mesmo chão com reflexo;
+  - sem logotipo, emblema ou placa visíveis.
+- **Observação:** todos os carros saíram com a mesma "cara" (grade hexagonal e faróis iguais), como uma linha de um único fabricante. Para uma loja de seminovos de várias marcas, isso pode chamar atenção. A decisão de regerar ou aceitar é do usuário.
+- **Tratamento:** ampliadas pelo Real-ESRGAN 4× com 20% do original. O hero tem até 4800 px e o estoque, 3200 px.
+- **Onde estão:** em `public/images/paddock/`.
+- **Decisão pendente:** especificações (ano, km, câmbio) com preço "Consulte". Recomendado; aguarda confirmação do usuário.
