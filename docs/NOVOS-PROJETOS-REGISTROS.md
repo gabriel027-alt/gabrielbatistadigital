@@ -567,3 +567,18 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 **O que fica e o que sai:**
 - O piloto escuro (c206234) e os quadros `public/videos/paddock/` ficam no histórico até as fotos novas chegarem; depois são substituídos.
 - As fotos do estoque podem ser regeradas a partir dos desenhos atuais ("o mesmo carro da imagem anexada, agora na baia").
+## Paddock: fotos do laudo (20/11/2026)
+
+- **Fotos:** o usuário gerou as quatro, no estúdio escuro com luz de inspeção só no instrumento. Estão em `public/images/paddock/laudo/`, em 1536×1024:
+  - `pintura.webp`: medidor de espessura com o visor mostrando só um sinal de conferido e uma barra;
+  - `pneu.webp`: profundímetro no sulco;
+  - `por-baixo.webp`: lanterna na suspensão, com o carro no elevador;
+  - `diagnostico.webp`: tablet com gráficos e três sinais de conferido, sem números.
+- **Ressalvas:**
+  - `por-baixo` é mais clara que as outras e tem o braço amarelo do elevador. Escurecer na página ou aceitar.
+  - O tablet tem gráficos azul, verde e roxo, que podem servir de acento de cor da marca.
+- **Sem ampliação:** a GPU falhou na leva anterior. Para cartões de até cerca de 800 px, 1536 px bastam.
+- **Direção da página, revista com o usuário:** os quadros do topo (`public/videos/paddock/`) e as fotos do estoque ficam.
+  - O escuro passa a significar a dúvida sobre o seminovo, e a luz, o laudo.
+  - Título: "Todo seminovo parece perfeito no escuro. Nós acendemos a luz."
+  - A faixa de luz do tour vira a linha de leitura que deixa as marcações do laudo.
