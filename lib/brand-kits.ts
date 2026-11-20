@@ -20,6 +20,12 @@ export type BrandKit = {
 };
 
 export const brandKits: BrandKit[] = [
+  { id: "paddock", route: "/modelos/automoveis", niche: "Automóveis", concept: "A luz apresenta o carro.", mark: "Duas linhas de pista formando um P",
+    palette: { asfalto: "#010101", grafite: "#1a1a1a", aco: "#3e3f3f", reflexo: "#6a6b6b", prata: "#a5a5a5" },
+    material: "Verniz automotivo, prata de lataria e reflexos de softbox", typography: { display: "Unbounded", text: "Sora" },
+    photo: "Produto em estúdio escuro, carros sem logotipo em três quartos de frente e piso refletivo",
+    signatureGraphic: "Duas linhas de pista e faixa diagonal de softbox", signatureMotion: "Tour em canvas: farol, roda e lateral, carro inteiro; reversível pela rolagem",
+    hero: "Plano contínuo do farol à carroceria nos 223 quadros fornecidos", status: "em construção" },
   {
     id: "arrimo", route: "/modelos/previdenciario", niche: "Advocacia previdenciária",
     concept: "Cada ano trabalhado conta.", mark: "Duas vigas se apoiam e uma travessa forma o A da Arrimo",

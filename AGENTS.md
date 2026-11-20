@@ -453,3 +453,16 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Quadros de revisão em 1536×696 com DPR 1,25 e 390×844 por `scripts/capture-arrimo-homepage-review.mjs`, em `/workspace/entrega-gbd/arrimo-homepage/`.
 - Envio para `revisao-site` autorizado pelo usuário nesta etapa. Sem main nem deploy. Paddock/Talhão não começam nesta entrega.
 - Verificação técnica: build e lint dos arquivos alterados aprovados; 27 testes pertinentes passaram (13 da Arrimo/Lume/kits e 14 de filmes/homepage/idiomas), incluindo reprodução real dos MP4s horizontal/vertical, ordem da faixa, pausa, carregamento tardio, economia de dados e sem JS. Filmes H.264, saída a 30 fps, sem áudio: PC 53,57 s; celular 71,53 s; prévia exatamente 6 s. Dimensões, tamanhos e SHA-256 em `arrimo-manifest.json`.
+
+
+## Paddock: piloto do tour e estoque (20/11/2026)
+
+- Entrada confirmada em `revisao-site`, commit `ca6b773`. Pedido autorizado: somente hero/tour e catálogo antes da avaliação visual. Página em `/modelos/automoveis`, dados em `lib/paddock.ts`, kit `paddock` em `lib/brand-kits.ts`.
+- **Autorização explícita do usuário:** ano, km e câmbio ilustrativos, com preço “Consulte”. Não pedir confirmação de novo. Não criar marca/modelo de fabricante, potência, garantia, condições de financiamento ou resultado comercial. Todos os seis carros são nomeados pela carroceria/cor.
+- Unbounded e Sora; paleta medida por agrupamento RGB em amostra do hero fornecido: #010101 (74%), #1a1a1a (15,8%), #3e3f3f (6%), #6a6b6b (2,6%), #a5a5a5 (1,6%). Texto branco de softbox. Sem dourado; fotos originais preservadas.
+- `PaddockTour.tsx` adapta o carregamento progressivo e canvas da `BrisaTour.tsx`, sobre `useBrandMotion`. São 223 quadros, busca do mais próximo já decodificado, carregamento principal com seis pedidos simultâneos e limpeza de observadores/GSAP. PC usa `d`, celular usa `m`. Capítulos verdadeiros: farol; roda/lateral; carro inteiro. O scroll distribui 55% ao farol, 27% à lateral e 18% à revelação, sem descartar quadros.
+- **Limitação observada e solução do piloto:** os quadros `m` já cortam as extremidades do carro no último plano. Para cumprir “carro inteiro”, os últimos 15 quadros horizontais recebidos complementam o final do celular, com reenquadramento no mesmo canvas e dissolvência curta. Não é uma reconstrução nem nova geração; não anunciar que os recortes verticais mostram o carro inteiro sozinhos.
+- Pausa, movimento reduzido e sem JS mostram fotografias dos três capítulos em fluxo legível. O catálogo usa as seis fotos recebidas, botões de carroceria com estado pressionado e contagem real; transição nativa quando disponível, troca direta no modo reduzido. Sem JS, os carros ficam todos visíveis e os filtros desativados.
+- Captura por `scripts/capture-paddock-pilot.mjs`, em PC 1536×696/DPR 1,25 e celular 390×844: ida e volta, estoque e filtro SUV. Quadros e MP4s em `/workspace/entrega-gbd/paddock-piloto/`.
+- Build e lint dos arquivos alterados aprovados; seis testes passaram (tour nos dois sentidos e formatos, filtro, axe AA, sem JS e identidade do kit). Testes não são aprovação estética.
+- **Onde parar:** esperar a avaliação visual do usuário antes de ficha dos carros, como funciona, loja, dúvidas, roteiro, filmes finais ou homepage. Não iniciar Talhão. Commit local, sem push, sem main e sem deploy nesta etapa.

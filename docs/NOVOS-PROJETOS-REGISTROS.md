@@ -120,7 +120,7 @@ O texto desta seção serve para qualquer agente que continue o trabalho, Claude
 - O usuário aprovou os quatro kits.
 - O piloto é a **Lume Psicologia**.
 - Ainda não há código das quatro marcas.
-- A decisão do Paddock (especificações com preço "Consulte") continua pendente.
+- Paddock: especificações ilustrativas (ano, km, câmbio) e preço “Consulte” autorizados pelo usuário em 20/11/2026.
 
 **Passos:**
 1. **Aguardar as quatro fotos da Lume,** geradas pelo usuário com os pedidos abaixo. Não gerar nem baixar imagens por conta própria.
@@ -511,7 +511,7 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - **Observação:** todos os carros saíram com a mesma "cara" (grade hexagonal e faróis iguais), como uma linha de um único fabricante. Para uma loja de seminovos de várias marcas, isso pode chamar atenção. A decisão de regerar ou aceitar é do usuário.
 - **Tratamento:** ampliadas pelo Real-ESRGAN 4× com 20% do original. O hero tem até 4800 px e o estoque, 3200 px.
 - **Onde estão:** em `public/images/paddock/`.
-- **Decisão pendente:** especificações (ano, km, câmbio) com preço "Consulte". Recomendado; aguarda confirmação do usuário.
+- **Decisão do usuário em 20/11/2026:** especificações ilustrativas (ano, km, câmbio), com preço “Consulte”, autorizadas para o piloto.
 ## Paddock: quadros do topo (20/11/2026)
 
 - **Origem:** dois vídeos gerados pelo usuário no Gemini.
@@ -528,3 +528,15 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
   - capítulos com legendas curtas e verdadeiras: farol, roda e lateral, o carro inteiro;
   - depois, o catálogo com as fotos de `public/images/paddock/`;
   - especificações com preço "Consulte" (recomendado; confirmar com o usuário).
+
+## Paddock: piloto do tour e estoque (20/11/2026)
+
+- Entrada confirmada em `revisao-site`, commit `ca6b773`. Pedido autorizado: somente hero/tour e catálogo antes da avaliação visual. Página em `/modelos/automoveis`, dados em `lib/paddock.ts`, kit `paddock` em `lib/brand-kits.ts`.
+- **Autorização explícita do usuário:** ano, km e câmbio ilustrativos, com preço “Consulte”. Não pedir confirmação de novo. Não criar marca/modelo de fabricante, potência, garantia, condições de financiamento ou resultado comercial. Todos os seis carros são nomeados pela carroceria/cor.
+- Unbounded e Sora; paleta medida por agrupamento RGB em amostra do hero fornecido: #010101 (74%), #1a1a1a (15,8%), #3e3f3f (6%), #6a6b6b (2,6%), #a5a5a5 (1,6%). Texto branco de softbox. Sem dourado; fotos originais preservadas.
+- `PaddockTour.tsx` adapta o carregamento progressivo e canvas da `BrisaTour.tsx`, sobre `useBrandMotion`. São 223 quadros, busca do mais próximo já decodificado, carregamento principal com seis pedidos simultâneos e limpeza de observadores/GSAP. PC usa `d`, celular usa `m`. Capítulos verdadeiros: farol; roda/lateral; carro inteiro. O scroll distribui 55% ao farol, 27% à lateral e 18% à revelação, sem descartar quadros.
+- **Limitação observada e solução do piloto:** os quadros `m` já cortam as extremidades do carro no último plano. Para cumprir “carro inteiro”, os últimos 15 quadros horizontais recebidos complementam o final do celular, com reenquadramento no mesmo canvas e dissolvência curta. Não é uma reconstrução nem nova geração; não anunciar que os recortes verticais mostram o carro inteiro sozinhos.
+- Pausa, movimento reduzido e sem JS mostram fotografias dos três capítulos em fluxo legível. O catálogo usa as seis fotos recebidas, botões de carroceria com estado pressionado e contagem real; transição nativa quando disponível, troca direta no modo reduzido. Sem JS, os carros ficam todos visíveis e os filtros desativados.
+- Captura por `scripts/capture-paddock-pilot.mjs`, em PC 1536×696/DPR 1,25 e celular 390×844: ida e volta, estoque e filtro SUV. Quadros e MP4s em `/workspace/entrega-gbd/paddock-piloto/`.
+- Build e lint dos arquivos alterados aprovados; seis testes passaram (tour nos dois sentidos e formatos, filtro, axe AA, sem JS e identidade do kit). Testes não são aprovação estética.
+- **Onde parar:** esperar a avaliação visual do usuário antes de ficha dos carros, como funciona, loja, dúvidas, roteiro, filmes finais ou homepage. Não iniciar Talhão. Commit local, sem push, sem main e sem deploy nesta etapa.

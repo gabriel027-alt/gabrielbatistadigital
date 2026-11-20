@@ -408,3 +408,10 @@ A cena já chega com régua e primeiro documento. No clímax, os documentos recu
 Ricardo Teles foi nomeado pelo usuário como persona da Arrimo, sem outras credenciais. A miniatura vem do próprio hero; o escritório usa a foto recebida, alinhada ao topo para não cortar o rosto, e apresentação em primeira pessoa. O resumo local explica o que o Ricardo confirma após a análise.
 
 A pausa ocupa espaço reservado no cabeçalho nos dois formatos, sem cobrir a leitura. O nome acessível permanece completo mesmo com o rótulo compacto no celular. NEGADO e EM ANÁLISE têm verificação geométrica de enquadramento em 1536×696 com DPR 1,25 e 390×844. Não recolocar a pausa sobre os parágrafos das seções.
+
+
+## Paddock: produto, prata e luz (20/11/2026)
+
+Piloto em `/modelos/automoveis`, Unbounded e Sora. Paleta medida no hero: asfalto #010101, grafite #1a1a1a, aço #3e3f3f, reflexo #6a6b6b e prata #a5a5a5. Sem ouro velho da Arrimo, sem cor de CTA importada da agência. O reflexo automotivo já vem nas imagens; não desenhar uma falsa luz sobre a lataria.
+
+A assinatura é o próprio tour recebido, em canvas com scroll reversível: farol → roda/lateral → conjunto. No último plano do celular, os 15 quadros horizontais complementam o recorte vertical recebido, que corta as extremidades, para mostrar o carro inteiro. Stock em fotografias amplas, sem caixas ou fichas decorativas, carroceria filtrável e dados ilustrativos autorizados. Preço “Consulte”. Sem novas fotos ou especificações de motor. Piloto aguarda avaliação visual antes do restante da página.
