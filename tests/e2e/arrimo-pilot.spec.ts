@@ -131,3 +131,10 @@ test("Full Arrimo journey keeps choices local, supports editing and returns focu
   await expect(launch).toBeFocused();
   expect(await page.locator('input[type="file"],input[type="email"],input[type="tel"]').count()).toBe(0);
 });
+
+
+test("Office anchor leaves its label below the sticky header", async ({ page }) => {
+  await page.goto(route);
+  await page.getByRole("link", { name: "Com Ricardo Teles, advogado previdenciarista" }).click();
+  await expect.poll(() => page.locator('#arrimo-escritorio > div > p').first().evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThan(98);
+});

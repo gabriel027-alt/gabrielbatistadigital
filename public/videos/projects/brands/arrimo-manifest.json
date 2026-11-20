@@ -1,0 +1,75 @@
+{
+  "brand": "Arrimo Advocacia Previdenciária",
+  "date": "2026-11-20",
+  "route": "/modelos/previdenciario",
+  "recordedFrom": "local next start, production build",
+  "loop": "6 seconds, 960×768; the stamp already centered: NEGADO → EM ANÁLISE → NEGADO; original scroll progress .66 → 1 → .66",
+  "files": [
+    {
+      "file": "/videos/projects/brands/arrimo-desktop.mp4",
+      "bytes": 7220292,
+      "sha256": "7d7c342e37a892e4bb94593ab1a6a979c00ff7d4b7deed7ddcb7e9e6299931bd",
+      "captureViewport": [
+        1920,
+        1080
+      ],
+      "deviceScaleFactor": 1,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "53.566667",
+        "nb_frames": "1607"
+      },
+      "audio": false
+    },
+    {
+      "file": "/videos/projects/brands/arrimo-mobile.mp4",
+      "bytes": 17152673,
+      "sha256": "f049fb5c5b1c3bd9a38d765118a7f7dc7325a2d383b7b9bd900bfd5c3b5c4be4",
+      "captureViewport": [
+        432,
+        768
+      ],
+      "deviceScaleFactor": 2.5,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "71.533333",
+        "nb_frames": "2146"
+      },
+      "audio": false
+    },
+    {
+      "file": "/videos/projects/brands/arrimo-loop.mp4",
+      "bytes": 458143,
+      "sha256": "b77c8b28fe14a4575984ab1c059c83b899c5aaf4dd91a9f5fd9cd24589c4e89c",
+      "captureViewport": [
+        960,
+        768
+      ],
+      "deviceScaleFactor": 1,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 960,
+        "height": 768,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "6.000000",
+        "nb_frames": "180"
+      },
+      "audio": false
+    }
+  ]
+}

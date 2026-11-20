@@ -29,7 +29,7 @@ export const brandKits: BrandKit[] = [
     photo: "Retrato frontal de autoridade com luz dura; mãos calejadas com documentos, preto e branco de fotojornalismo",
     signatureGraphic: "Régua dos períodos de trabalho, com lacunas e carimbo de análise",
     signatureMotion: "O tempo se soma: vínculos entram, lacunas recebem ligações em ouro e NEGADO vira EM ANÁLISE",
-    hero: "Retrato preto e branco à direita, título condensado de autoridade sobre o carvão à esquerda", status: "em construção",
+    hero: "Retrato preto e branco à direita, título condensado de autoridade sobre o carvão à esquerda", status: "aprovado",
   },
   {
     id: "vanguard", route: "/propostas/vanguard", niche: "Arquitetura",

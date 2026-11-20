@@ -275,3 +275,7 @@
 }
 
 @media(max-width:760px){.scene .decision{top:0}}
+
+/* Keep the office label below the sticky header when arriving from an anchor. */
+.office{scroll-margin-top:100px}
+@media(max-width:760px){.office{scroll-margin-top:90px}}

@@ -9,7 +9,7 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
+const brands = { arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
@@ -54,7 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && brand !== 'lume') continue;
+      if (name === 'loop' && !['lume', 'arrimo'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -65,6 +65,31 @@ try {
       for (let y = 0; y < total; y += 600) { await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(40); }
       await page.evaluate(() => scrollTo(0, 0));
       await page.waitForTimeout(2500);
+      if (brand === 'arrimo' && name === 'loop') {
+        await mkdir('public/images/projects/brands', { recursive: true });
+        const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/arrimo-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
+        if (poster.status !== 0) throw new Error(poster.stderr);
+        const bounds = await page.locator('[data-arrimo-scene]').evaluate(el => ({ top: el.getBoundingClientRect().top + scrollY, distance: el.offsetHeight - innerHeight }));
+        await page.evaluate(({top,distance}) => scrollTo({top:top+distance*.66,behavior:'instant'}), bounds);
+        await page.waitForTimeout(1000);
+        const stats = await record(page, 'public/videos/projects/brands/arrimo-loop.mp4', format.out, async () => {
+          await page.evaluate(async ({top,distance}) => {
+            const start=performance.now();
+            await new Promise(resolve => {
+              function tick(now) {
+                const t=Math.min(6,(now-start)/1000);
+                // The approved scene, reframed for the card: NEGADO → EM ANÁLISE → NEGADO.
+                const p=t<.2? .66 : t<2.5? .66+.34*(t-.2)/2.3 : t<3.1?1:t<5.25?1-.34*(t-3.1)/2.15:.66;
+                scrollTo({top:top+distance*p,behavior:'instant'});
+                if(t<6)requestAnimationFrame(tick);else resolve();
+              }
+              requestAnimationFrame(tick);
+            });
+          },bounds);
+        });
+        console.log(`${brand} loop: ${stats.frames} frames -> 6 s`);
+        await page.close();continue;
+      }
       if (brand === 'lume' && name === 'loop') {
         await mkdir('public/images/projects/brands', { recursive: true });
         const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/lume-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });

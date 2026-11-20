@@ -332,11 +332,11 @@ Abaixo dos sinais vêm três seções e o roteiro.
      - registrar em `lib/project-films.ts`, com textos nos quatro idiomas (`lib/film-copy.ts`);
      - pôr a Lume na frente da faixa.
    - **Escolha explícita do usuário em 19/11/2026:** fica **Sutil Cirurgia Plástica** como amostra editorial. A faixa passa a mostrar Lume, Sutil, Casa Brisa, Aura e Orla, nessa ordem. Forma, Toca e Almeida saem apenas da homepage; seu código e filmes ficam.
-2. **Arrimo (previdenciário) — página completa em avaliação visual:**
+2. **Arrimo (previdenciário) — aprovada pelo usuário em 20/11/2026:**
    - As quatro fotos foram recebidas em `public/images/arrimo/` (`9b990b3`).
    - Piloto aprovado e enviado por ordem do usuário (`af4befe`), só para `revisao-site` em 19/11/2026.
    - Página completa montada localmente: situações, cartazes, documentos, escritório, dúvidas e roteiro. Vídeos de revisão em `/workspace/entrega-gbd/arrimo-completa/`.
-   - **Onde parar agora:** aguardar avaliação visual desta ampliação, sem enviá-la nem incluir a Arrimo na faixa por conta própria.
+   - Filmes e inclusão na faixa autorizados, na ordem Lume, Arrimo, Sutil, Casa Brisa, Aura, Orla. Depois desta entrega, aguardar o próximo pedido para iniciar Paddock.
 3. **Paddock e Talhão,** depois, um de cada vez. No Paddock, confirmar antes com o usuário as especificações com preço "Consulte".
 
 **Regras que não mudam:**
@@ -486,3 +486,15 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Capturas: `scripts/capture-arrimo-ricardo-review.mjs`, PC 1536×696 DPR 1,25 e celular 390×844. Quadros de hero, NEGADO, risco, EM ANÁLISE, escritório e resumo em `/workspace/entrega-gbd/arrimo-ricardo/`.
 - O usuário autorizou enviar estes ajustes somente para `revisao-site`. Sem main e sem deploy; nenhuma próxima marca iniciada. A aprovação visual final continua sendo do usuário.
 - Verificação: build e lint dos arquivos alterados aprovados; 12 testes passaram (Arrimo, Lume e kits), incluindo os dois carimbos inteiros, retorno/pausa, sem JS, axe e roteiro com o nome. Capturas nos dois formatos sem erro de JavaScript nem estouro lateral.
+
+
+## Arrimo aprovada e filmes na seleção (20/11/2026)
+
+- **Aprovação explícita do usuário em 20/11/2026:** a página completa da Arrimo, Ricardo Teles e a coreografia da régua/carimbo estão aprovados. Não voltar a tratar a página como piloto pendente. O kit `arrimo` passa a aprovado.
+- Ajuste pontual pedido: margem de chegada do escritório em 100 px no PC e 90 px no celular, para manter o rótulo abaixo do cabeçalho fixo. Conteúdo e fotos aprovados preservados.
+- Filmes pelo mesmo `scripts/capture-brand-films.mjs arrimo`: `arrimo-desktop.mp4` 1920×1080 e `arrimo-mobile.mp4` 1080×1920. Prévia `arrimo-loop.mp4`: 6 s em 960×768, recapturando o enquadramento do cartão na própria cena, NEGADO → EM ANÁLISE → NEGADO. Não deformar nem recortar textos do filme horizontal para caber no cartão.
+- Capa em `public/images/projects/brands/arrimo-hero.webp`; filmes e manifesto em `public/videos/projects/brands/`. Registro em `lib/project-films.ts`, textos de diálogo e WhatsApp em `lib/film-copy.ts`, setor nos quatro idiomas em `lib/i18n.ts`. A marca continua só em português.
+- **Ordem aprovada:** Lume, Arrimo, Sutil, Casa Brisa, Aura, Orla. Site da marca segue local para revisão; na homepage abre apenas o filme. Contato de Gabriel fica fora do filme. Preservados pausa, movimento reduzido, sem JS e carregamento tardio dos vídeos.
+- Quadros de revisão em 1536×696 com DPR 1,25 e 390×844 por `scripts/capture-arrimo-homepage-review.mjs`, em `/workspace/entrega-gbd/arrimo-homepage/`.
+- Envio para `revisao-site` autorizado pelo usuário nesta etapa. Sem main nem deploy. Paddock/Talhão não começam nesta entrega.
+- Verificação técnica: build e lint dos arquivos alterados aprovados; 27 testes pertinentes passaram (13 da Arrimo/Lume/kits e 14 de filmes/homepage/idiomas), incluindo reprodução real dos MP4s horizontal/vertical, ordem da faixa, pausa, carregamento tardio, economia de dados e sem JS. Filmes H.264, saída a 30 fps, sem áudio: PC 53,57 s; celular 71,53 s; prévia exatamente 6 s. Dimensões, tamanhos e SHA-256 em `arrimo-manifest.json`.
