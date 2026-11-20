@@ -20,3 +20,8 @@
 .paddock{--q-bg:#e9eef0;--q-ink:#010101;--q-accent:#8bf2dc;--q-border:#66706c;font-family:var(--paddock-body),sans-serif}.paddock .dialog{--q-bg:#010101;--q-ink:#eceeed;--q-accent:#8bf2dc;--q-border:#62758d;font-family:var(--paddock-body),sans-serif;color-scheme:dark}.paddock :is(.launch,.primary){color:#101820}.paddock .invitation h2,.paddock .body h3{font-family:var(--paddock-display),sans-serif;font-weight:500;letter-spacing:-.035em}.paddock .dialogHeader>span{letter-spacing:-.03em}.paddock .back{color:var(--q-ink)}
 
 .paddock :is(.back,.dialogHeader button){background:#8bf2dc;color:#010101;padding:10px 14px}.paddock .steps li{opacity:1}.paddock .dialog .options label:has(input:checked){background:#8bf2dc;color:#010101}.paddock .dialog .options input{accent-color:#010101}
+
+/* Paddock: only the main invitation uses mint; auxiliary controls stay neutral. */
+.paddock :is(.back,.dialogHeader button){background:transparent;color:var(--q-ink);border:1px solid var(--q-border)}
+.paddock .dialog .primary{background:transparent;color:var(--q-ink);border:1px solid var(--q-border)}
+.paddock .dialog .options label:has(input:checked){background:transparent;color:var(--q-ink);border-color:var(--q-ink)}

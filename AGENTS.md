@@ -498,3 +498,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Evidência desta entrega: build de produção, tipagem e lint dos arquivos alterados aprovados. Foram verificados 53 cenários pertinentes (Paddock, regressões de Lume/Arrimo, kits, homepage, idiomas e filmes). Na rodada simultânea à codificação, dois testes existentes de tempo/navegação da homepage falharam; passaram na repetição isolada, sem mudança no código dessas animações. Não tratar essa instabilidade como prova de ausência de risco de desempenho.
 - Player real conferido nos quatro idiomas: PC 1920×1080 (66,6 s), celular 1080×1920 (94,4 s), H.264 High/30 fps, sem áudio. Prévia com exatamente 6 s, recapturada em uma janela 16:9 dentro do cartão 960×768 para o carro caber inteiro; não esticar nem alterar o tour da página. Quadros da faixa, do player e da marca nos dois formatos, sem erros de JS nem estouro lateral; o usuário continua responsável pela avaliação estética.
+
+
+## Paddock: aprovação e dois retoques de acabamento (20/11/2026)
+
+- **Aprovação explícita do usuário em 20/11/2026.** Preservar proposta, conteúdo, fotografias, seções e coreografia; somente moderar a menta e retirar a caixa alta dos rótulos acima dos títulos.
+- Menta nas chamadas principais (hero, laudo do carro, avaliação do usado, convite ao roteiro e visita), linha de leitura e pontos. Abas do tour em contorno neutro, com sublinhado menta somente na ativa. Pausa, filtros e controles auxiliares em contorno neutro. Faixas do usado e da loja em cinza de epóxi. Rótulos preservados quando úteis, em caixa normal.
+- Brilho da pintura no estoque preservado para hover/foco e toque. Conferir os dois gestos em vídeo, além de quadros em PC 1536×696/DPR 1,25 e celular 390×844. Filmes desktop/mobile e prévia de 6 s regravados por `scripts/capture-brand-films.mjs paddock`, pois o acabamento aparece neles.
+- Envio autorizado somente para `revisao-site`; sem main, sem deploy e sem próxima marca.
+
+- Conferência de acabamento: build e nove testes do Paddock aprovados, incluindo axe AA na página/ficha/roteiro, tour reversível, movimento reduzido e sem JS. Em vídeo, os seis cartões foram acionados com mouse no PC e toque no celular; cada sombra computada correspondeu ao RGB do próprio carro e o toque manteve `data-lit` ativo. Capturas sem erro de JavaScript ou estouro lateral, em `/workspace/entrega-gbd/paddock-acabamento/`.
+
+- Verificação final após os dois retoques: 13 testes passaram, incluindo reprodução real dos filmes nos quatro idiomas. Desktop 1920×1080 (66,6 s), celular 1080×1920 (93,97 s) e prévia 960×768 (6 s), H.264/30 fps, sem áudio; manifesto atualizado com os hashes. As mudanças de interface ficam nos dois CSS da Paddock, sem alterar dados, conteúdo, fotografias, tour ou composição das seções.

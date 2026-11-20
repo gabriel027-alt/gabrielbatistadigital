@@ -7,8 +7,8 @@
   "files": [
     {
       "file": "/videos/projects/brands/paddock-desktop.mp4",
-      "bytes": 14225206,
-      "sha256": "701a24f991d19a5088b800db3e0e564432ad6b65b7b44d8565b6c69fb6f45751",
+      "bytes": 13561202,
+      "sha256": "83caf6de3c741787cbeb73574014673ba3043f821ccdc5947c8bfe4689d7b890",
       "captureViewport": [
         1920,
         1080
@@ -29,8 +29,8 @@
     },
     {
       "file": "/videos/projects/brands/paddock-mobile.mp4",
-      "bytes": 22064763,
-      "sha256": "8d5da7e6b1dc48a448f3039975d463b5180c0b4521cc7ce88690b92dbc3caead",
+      "bytes": 21310197,
+      "sha256": "6da2df9156a8f9c2639170e83843df1b4daa112e2e7e2080bd9c31aa720258d2",
       "captureViewport": [
         432,
         768
@@ -44,15 +44,15 @@
         "height": 1920,
         "pix_fmt": "yuv420p",
         "r_frame_rate": "30/1",
-        "duration": "94.400000",
-        "nb_frames": "2832"
+        "duration": "93.966667",
+        "nb_frames": "2819"
       },
       "audio": false
     },
     {
       "file": "/videos/projects/brands/paddock-loop.mp4",
-      "bytes": 1244399,
-      "sha256": "1cceaedabfe58963558f6cca81e90364b60e9536bdb6b9ca4bc0266ce85094cf",
+      "bytes": 1260244,
+      "sha256": "23e53927782c22c5a3f19853b22da2b68abcdd44089c4ef30359e8084e55385e",
       "captureViewport": [
         960,
         768
@@ -71,5 +71,6 @@
       },
       "audio": false
     }
-  ]
+  ],
+  "finishing": "Mint limited to primary calls, tour reading line and dots; neutral outlined tabs/pause, epoxy bands and sentence-case labels. Approved by user 2026-11-20."
 }
