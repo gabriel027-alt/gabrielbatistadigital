@@ -540,3 +540,30 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Captura por `scripts/capture-paddock-pilot.mjs`, em PC 1536×696/DPR 1,25 e celular 390×844: ida e volta, estoque e filtro SUV. Quadros e MP4s em `/workspace/entrega-gbd/paddock-piloto/`.
 - Build e lint dos arquivos alterados aprovados; seis testes passaram (tour nos dois sentidos e formatos, filtro, axe AA, sem JS e identidade do kit). Testes não são aprovação estética.
 - **Onde parar:** esperar a avaliação visual do usuário antes de ficha dos carros, como funciona, loja, dúvidas, roteiro, filmes finais ou homepage. Não iniciar Talhão. Commit local, sem push, sem main e sem deploy nesta etapa.
+
+## Paddock repaginado: "seminovos com o laudo aberto" (20/11/2026)
+
+**Por que mudou:** o usuário avaliou o piloto (c206234) como clichê: "não se entende a proposta, precisa repaginar tudo".
+
+**Diagnóstico:**
+- Carro em estúdio escuro com faixa de luz é o comercial de qualquer montadora.
+- "A luz apresenta" não dizia o que a loja vende nem por que confiar nela.
+- O kit tinha nascido da imagem, e não do problema do cliente.
+
+**Proposta aprovada pelo usuário:** "Paddock: seminovos com o laudo aberto".
+- O medo de quem compra seminovo premium (carro batido, quilometragem mexida, leilão, revisões faltando) vira a proposta.
+- A loja mostra cada carro por dentro antes do preço.
+
+| Campo | Kit novo |
+| --- | --- |
+| Conceito | Você vê o laudo antes de ver o preço. |
+| Promessa | Transparência: cada carro tem a ficha do que foi conferido. Sem números de laudo, aprovações ou clientes inventados. |
+| Foto | Baia de inspeção clara, como um laboratório: túnel de LED branco frio, piso de epóxi cinza-claro, luz alta e difusa, sem grão. Macro 100 mm nos instrumentos; 35 mm frontal e simétrico no túnel. É o oposto do estúdio preto. |
+| Movimento-assinatura | **O carro atravessa o túnel de inspeção pela rolagem.** Uma linha de leitura passa por ele e deixa marcações no lugar: "Pintura medida peça por peça", "Quilometragem conferida", "Revisões documentadas", "Sem passagem por leilão". Ida e volta. |
+| Estoque | Cada carro traz a ficha do laudo, com a lista do que foi conferido. O botão "Ver o laudo deste carro" abre a ficha, e de lá sai o roteiro local com o carro escolhido. Preço "Consulte". |
+| Seções | Hero do túnel → "O que conferimos" (instrumentos em macro) → estoque com laudo → "Como compramos" (só entram carros que passam; os outros a loja recusa) → avaliação do seu usado pela mesma inspeção → a loja → dúvidas → roteiro. |
+| Paleta | Medir nas fotos novas. O ponto de partida é branco de epóxi, cinza de concreto, preto do pneu e um acento tirado da tela do scanner. Nem preto com dourado (Arrimo), nem estúdio preto. |
+
+**O que fica e o que sai:**
+- O piloto escuro (c206234) e os quadros `public/videos/paddock/` ficam no histórico até as fotos novas chegarem; depois são substituídos.
+- As fotos do estoque podem ser regeradas a partir dos desenhos atuais ("o mesmo carro da imagem anexada, agora na baia").
