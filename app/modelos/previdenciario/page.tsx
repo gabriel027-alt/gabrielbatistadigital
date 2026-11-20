@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Barlow, Barlow_Condensed } from "next/font/google";
 import { Arrow } from "@/components/ui/icons";
 import { BrandInquiry } from "@/components/BrandInquiry";
-import { documents, faq, practiceAreas, situations, periods, stages } from "@/lib/arrimo";
+import { lawyer, documents, faq, practiceAreas, situations, periods, stages } from "@/lib/arrimo";
 import { ArrimoMark } from "./ArrimoMark";
 import { ArrimoMotion } from "./ArrimoMotion";
 import styles from "./arrimo.module.css";
@@ -27,12 +27,16 @@ export default function ArrimoPage() {
     </header>
     <main id="arrimo-conteudo">
       <section id="arrimo-inicio" className={styles.hero} aria-labelledby="arrimo-titulo">
-        <figure className={styles.heroPhoto}><Image src="/images/arrimo/hero.webp" alt="Advogado da Arrimo, de braços cruzados, em um retrato preto e branco com luz lateral" fill sizes="(max-width:760px) 200vw, 120vw" quality={90} preload /></figure>
+        <figure className={styles.heroPhoto}><Image src="/images/arrimo/hero.webp" alt="Ricardo Teles, de braços cruzados, em um retrato preto e branco com luz lateral" fill sizes="(max-width:760px) 200vw, 120vw" quality={90} preload /></figure>
         <div className={styles.heroCopy}>
           <p className={styles.field} data-arrimo-arrival>Direito previdenciário</p>
           <h1 id="arrimo-titulo" data-arrimo-arrival><span>O INSS negou?</span>{" "}<span>Isso ainda</span>{" "}<span>não é o fim.</span></h1>
           <p className={styles.intro} data-arrimo-arrival>Antes de escolher um caminho, é preciso entender a negativa e conferir os documentos da sua história.</p>
           <a className={styles.primary} href="#arrimo-tempo" data-arrimo-arrival>Entender a análise <span aria-hidden="true">↓</span></a>
+          <a className={styles.signature} href="#arrimo-escritorio" data-arrimo-arrival>
+            <span className={styles.thumb}><Image src="/images/arrimo/hero.webp" alt="" fill sizes="52px" quality={90} /></span>
+            <span>Com <strong>{lawyer.name}</strong>, {lawyer.role}</span>
+          </a>
           <p className={styles.heroNote} data-arrimo-arrival>Cada ano trabalhado conta.</p>
         </div>
         <span className={styles.heroRule} aria-hidden="true" />
@@ -92,8 +96,8 @@ export default function ArrimoPage() {
         <p className={styles.documentNote}>Guarde os originais. Não compartilhe senhas do Meu INSS ou de outros serviços.</p>
       </section>
       <section className={styles.office} id="arrimo-escritorio" aria-labelledby="escritorio-titulo">
-        <figure><Image src="/images/arrimo/atendimento.webp" alt="Advogado da Arrimo explicando um documento a um casal de idosos à mesa do escritório" fill sizes="(max-width:760px) 150vw, 100vw" quality={90} /></figure>
-        <div className={styles.officeCopy}><p className={styles.field}>O escritório</p><h2 id="escritorio-titulo">Antes do pedido, a sua história.</h2><p>Uma carteira, uma decisão, um período que ficou de fora. Por trás de cada documento existe uma vida de trabalho.</p><p>O trabalho da Arrimo começa por ouvir, organizar os registros e explicar os caminhos possíveis, com os limites de cada um.</p><a className={styles.primary} href="#arrimo-interesse">Preparar a primeira conversa <span aria-hidden="true"><Arrow size={18} /></span></a></div>
+        <figure><Image src="/images/arrimo/atendimento.webp" alt="Ricardo Teles explicando um documento a um casal de idosos à mesa do escritório" fill sizes="(max-width:760px) 150vw, 100vw" quality={90} /></figure>
+        <div className={styles.officeCopy}><p className={styles.field}>O escritório</p><h2 id="escritorio-titulo">{lawyer.name}</h2><p>Sou o Ricardo, advogado previdenciarista. Meu trabalho começa por ouvir a sua história e entender o que os documentos mostram.</p><p>Organizo os registros e explico os caminhos possíveis, com os limites de cada um. Antes de definir um encaminhamento, preciso compreender o seu caso.</p><a className={styles.primary} href="#arrimo-interesse">Preparar a primeira conversa <span aria-hidden="true"><Arrow size={18} /></span></a></div>
       </section>
       <section className={styles.faq} id="arrimo-duvidas" aria-labelledby="duvidas-titulo"><h2 id="duvidas-titulo">Antes de seguir, suas dúvidas.</h2><div>{faq.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></section>
       <BrandInquiry brand="arrimo" />

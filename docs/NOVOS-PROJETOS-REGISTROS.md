@@ -475,3 +475,14 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Vídeos de ida/volta por `scripts/capture-arrimo-pilot.mjs`, PC 1536×696 com DPR 1,25 e celular 390×844, em `/workspace/entrega-gbd/arrimo-cena-revisada/`.
 - Envio desta revisão para `revisao-site` autorizado explicitamente pelo usuário; inclui a ampliação `e1de5bb` em sua base. Main e deploy continuam fora do escopo. Avaliação estética continua sendo do usuário.
 - Verificação desta revisão: build e lint dos arquivos alterados aprovados; 12 testes passaram, incluindo lacunas inicialmente vazias, risco completo, intervalo sem rótulos sobrepostos, ida/volta, centro do carimbo separado da explicação e da pausa, axe AA, sem JS e roteiro completo.
+
+
+## Arrimo: Ricardo Teles, exceção autorizada (20/11/2026)
+
+- **Decisão explícita do usuário:** o advogado da Arrimo se chama **Ricardo Teles**, persona da marca. O nome e o papel “advogado previdenciarista” estão autorizados; assim como Helena Prado na Lume, isso é uma exceção à regra anterior de manter as demais marcas sem nome. Não autoriza OAB, formação, anos de experiência, números ou resultados inventados. As outras marcas continuam sem nome até pedido próprio.
+- Fonte em `lib/arrimo.ts` (`lawyer`). Abaixo do botão do hero: miniatura do próprio `hero.webp`, “Com Ricardo Teles, advogado previdenciarista” e link para `#arrimo-escritorio`. Título do escritório com o nome e texto em primeira pessoa. No resumo do `BrandInquiry`: “O Ricardo confirma…” os documentos e os próximos passos após análise. Nenhum agendamento ou envio foi acrescentado.
+- A foto `atendimento.webp` permanece intacta; só o enquadramento CSS passou a priorizar o topo, preservando a cabeça inteira no PC e no celular.
+- A pausa ganhou lugar reservado no cabeçalho, com rótulo compacto no celular e nome acessível completo. Não flutua mais sobre texto das seções. O carimbo tem margem inferior adicional no PC e mantém a coreografia aprovada.
+- Capturas: `scripts/capture-arrimo-ricardo-review.mjs`, PC 1536×696 DPR 1,25 e celular 390×844. Quadros de hero, NEGADO, risco, EM ANÁLISE, escritório e resumo em `/workspace/entrega-gbd/arrimo-ricardo/`.
+- O usuário autorizou enviar estes ajustes somente para `revisao-site`. Sem main e sem deploy; nenhuma próxima marca iniciada. A aprovação visual final continua sendo do usuário.
+- Verificação: build e lint dos arquivos alterados aprovados; 12 testes passaram (Arrimo, Lume e kits), incluindo os dois carimbos inteiros, retorno/pausa, sem JS, axe e roteiro com o nome. Capturas nos dois formatos sem erro de JavaScript nem estouro lateral.

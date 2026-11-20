@@ -401,3 +401,10 @@ A assinatura da régua não mudou. As linhas na base dos cartazes acompanham o s
 Revisão solicitada pelo usuário: lacunas devem interromper a régua, em vez de pequenos marcadores entre cartões. Campo vazio com borda tracejada vermelha → preenchimento ouro, com texto correspondente. Os vínculos são folhas de registro envelhecidas em cinzas quentes, com alturas e rotações próprias; não caixas brancas iguais. A fotografia das mãos foi retirada do fundo.
 
 A cena já chega com régua e primeiro documento. No clímax, os documentos recuam, o carimbo ocupa o centro, NEGADO é riscado e desaparece, e só depois EM ANÁLISE desce de escala 1,15 para 1 com tremida. Sem sobreposição dos dois rótulos. Toda a sequência é reversível; fallback completo em fluxo normal. Hero aprovado permanece intacto.
+
+
+### Arrimo: nome e controles sem sobreposição (20/11/2026)
+
+Ricardo Teles foi nomeado pelo usuário como persona da Arrimo, sem outras credenciais. A miniatura vem do próprio hero; o escritório usa a foto recebida, alinhada ao topo para não cortar o rosto, e apresentação em primeira pessoa. O resumo local explica o que o Ricardo confirma após a análise.
+
+A pausa ocupa espaço reservado no cabeçalho nos dois formatos, sem cobrir a leitura. O nome acessível permanece completo mesmo com o rótulo compacto no celular. NEGADO e EM ANÁLISE têm verificação geométrica de enquadramento em 1536×696 com DPR 1,25 e 390×844. Não recolocar a pausa sobre os parágrafos das seções.

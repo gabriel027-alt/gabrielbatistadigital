@@ -1,4 +1,5 @@
-/** Arrimo pilot: informative legal copy, no professional identity, qualifying years or outcome claims. */
+/** Ricardo Teles is the brand persona named by the user; no invented credentials or outcomes. */
+export const lawyer = { name: "Ricardo Teles", role: "advogado previdenciarista" };
 export const periods = [
   { title: "Trabalho com carteira", record: "Vínculos e registros", detail: "O que consta na carteira e nos registros da vida profissional." },
   { title: "Atividade rural", record: "Documentos do campo", detail: "Os documentos que ajudam a compreender a atividade rural, quando ela faz parte da história." },

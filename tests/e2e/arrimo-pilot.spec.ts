@@ -73,6 +73,13 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
     const context = await browser.newContext({ viewport: { width: device.width, height: device.height }, deviceScaleFactor: device.scale, isMobile: device.width < 760, hasTouch: device.width < 760 });
     const page = await context.newPage();
     await page.goto(route);
+    await sceneAt(page, 0);
+    await expect.poll(() => opacity(page, '[data-arrimo-denied]')).toBe(1);
+    const denied = await page.locator('[data-arrimo-denied]').boundingBox();
+    expect(denied!.y).toBeGreaterThan(74);
+    expect(denied!.y + denied!.height).toBeLessThan(device.height - 12);
+    expect(denied!.x).toBeGreaterThan(8);
+    expect(denied!.x + denied!.width).toBeLessThan(device.width - 8);
     await sceneAt(page, 1);
     await expect.poll(() => opacity(page, '[data-arrimo-review]')).toBe(1);
     const bounds = await page.evaluate(() => {
@@ -88,7 +95,7 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
     const pause = await page.getByRole('button', { name: 'Pausar animações' }).boundingBox();
     expect(Math.abs(stamp!.x + stamp!.width / 2 - device.width / 2)).toBeLessThan(12);
     expect(Math.abs(stamp!.y + stamp!.height / 2 - device.height / 2)).toBeLessThan(device.height * .2);
-    expect(stamp!.y + stamp!.height).toBeLessThan(pause!.y - 50);
+    expect(stamp!.y).toBeGreaterThan(pause!.y + pause!.height + 20);
     const explanation = await page.locator('[data-arrimo-phase]').last().boundingBox();
     expect(explanation!.y).toBeGreaterThan(stamp!.y + stamp!.height + 10);
     await context.close();
@@ -97,7 +104,10 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
 
 test("Full Arrimo journey keeps choices local, supports editing and returns focus", async ({ page }) => {
   await page.goto(route);
-  for (const name of ["Isso é pra você?", "Onde a Arrimo atua.", "O que levar para a primeira conversa.", "Antes do pedido, a sua história.", "Antes de seguir, suas dúvidas."]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
+  for (const name of ["Isso é pra você?", "Onde a Arrimo atua.", "O que levar para a primeira conversa.", "Ricardo Teles", "Antes de seguir, suas dúvidas."]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Com Ricardo Teles, advogado previdenciarista" })).toHaveAttribute("href", "#arrimo-escritorio");
+  await expect(page.locator('#arrimo-escritorio')).toContainText("Sou o Ricardo");
+  await expect(page.locator('body')).not.toContainText(/OAB\s*\d|anos de experiência|formado em/i);
   await expect(page.locator('#arrimo-situacoes article')).toHaveCount(4);
   await expect(page.locator('[data-arrimo-poster]')).toHaveCount(4);
   await expect(page.locator('#arrimo-documentos li')).toHaveCount(4);
@@ -111,6 +121,7 @@ test("Full Arrimo journey keeps choices local, supports editing and returns focu
   await page.getByRole("radio", { name: "Recebi uma negativa", exact: true }).check();
   await page.getByRole("radio", { name: "Para alguém da família", exact: true }).check();
   await page.getByRole("button", { name: "Ver meu resumo", exact: true }).click();
+  await expect(dialog).toContainText("O Ricardo confirma");
   await expect(dialog).toContainText("Benefício negado");
   await expect(dialog).toContainText("Para alguém da família");
   await page.getByRole("button", { name: "Ajustar escolhas", exact: true }).click();

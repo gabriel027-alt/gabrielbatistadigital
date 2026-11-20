@@ -54,5 +54,5 @@ function build(root: HTMLElement) {
 export function ArrimoMotion() {
   const { paused, available, toggle } = useBrandMotion('[data-model="arrimo"]', build);
   if (!available) return null;
-  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle}>{paused ? "Ativar animações" : "Pausar animações"}</button>;
+  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle} aria-label={paused ? "Ativar animações" : "Pausar animações"}><span className={styles.motionFull}>{paused ? "Ativar animações" : "Pausar animações"}</span><span className={styles.motionShort} aria-hidden="true">{paused ? "Ativar" : "Pausar"}</span></button>;
 }

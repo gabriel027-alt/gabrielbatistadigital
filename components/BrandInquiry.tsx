@@ -22,7 +22,7 @@ const content: Record<Brand, Content> = {
       [{ key: "momento", label: "Em que momento você está?", options: ["Ainda não fiz um pedido", "Aguardo uma decisão do INSS", "Recebi uma negativa", "Quero entender uma decisão ou benefício"] },
        { key: "pessoa", label: "Para quem procura orientação?", options: ["Para mim", "Para alguém da família"] }],
     ],
-    next: "Separe os registros que já tem e as dúvidas que quer esclarecer. Os documentos e a decisão do INSS precisam ser analisados antes de definir qualquer encaminhamento. Não compartilhe senhas.",
+    next: "O Ricardo confirma quais documentos precisam ser reunidos e esclarece os próximos passos após analisar o seu caso. Separe os registros que já tem e as dúvidas que quer esclarecer. Não compartilhe senhas.",
     invitation: "O próximo passo começa pela sua história.", stepNames: ["O assunto", "O momento"], stepTitles: ["Por onde começamos?", "Vamos entender o ponto de partida."],
     summaryTitle: "Sua conversa, organizada.", noscript: "Separe o assunto, a situação do pedido e os documentos disponíveis para a primeira conversa.",
   },
