@@ -415,3 +415,10 @@ A pausa ocupa espaço reservado no cabeçalho nos dois formatos, sem cobrir a le
 Piloto em `/modelos/automoveis`, Unbounded e Sora. Paleta medida no hero: asfalto #010101, grafite #1a1a1a, aço #3e3f3f, reflexo #6a6b6b e prata #a5a5a5. Sem ouro velho da Arrimo, sem cor de CTA importada da agência. O reflexo automotivo já vem nas imagens; não desenhar uma falsa luz sobre a lataria.
 
 A assinatura é o próprio tour recebido, em canvas com scroll reversível: farol → roda/lateral → conjunto. No último plano do celular, os 15 quadros horizontais complementam o recorte vertical recebido, que corta as extremidades, para mostrar o carro inteiro. Stock em fotografias amplas, sem caixas ou fichas decorativas, carroceria filtrável e dados ilustrativos autorizados. Preço “Consulte”. Sem novas fotos ou especificações de motor. Piloto aguarda avaliação visual antes do restante da página.
+
+
+## Paddock repaginado: laudo antes do preço (20/11/2026)
+
+O usuário rejeitou o piloto de estúdio como clichê e aprovou a proposta “seminovos com o laudo aberto”. Mantêm-se Unbounded, Sora, o tour e as fotos recebidas; o sentido muda de apresentação do produto para leitura da inspeção. A linha atravessa o carro e deixa as quatro marcações pedidas, reversíveis. O laudo vem antes do preço em cada cartão.
+
+Acentos do tablet: azul #3b5578, verde #8bf2dc, roxo #afa0f9. Instrumentos em fotos escuras sobre uma seção de papel cinza frio; compra/critério em azul profundo. A imagem de suspensão recebe bordas escuras via CSS. Não criar laudo numerado, selo de aprovação, porcentagem, depoimento, endereço ou credencial. Ficha e roteiro são fluxos locais com carro pré-selecionado, editável e retorno de foco. A pausa fica no cabeçalho, sem encobrir textos. A página completa aguarda avaliação visual.

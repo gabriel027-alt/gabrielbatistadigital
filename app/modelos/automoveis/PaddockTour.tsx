@@ -27,6 +27,8 @@ function build(root: HTMLElement) {
   const stage = root.querySelector<HTMLElement>("[data-tour-stage]");
   const hero = root.querySelector<HTMLElement>("[data-tour-hero]");
   const captions = gsap.utils.toArray<HTMLElement>("[data-tour-caption]", root);
+  const proofLinks = gsap.utils.toArray<SVGElement>("[data-proof-link]", root);
+  const proof = gsap.utils.toArray<HTMLElement>("[data-inspection-mark]", root);
   const marks = gsap.utils.toArray<HTMLElement>("[data-tour-mark]", root);
 
 
@@ -89,14 +91,18 @@ function build(root: HTMLElement) {
   const render = () => {
     draw();
     const progress = state.frame / (tourFrames - 1);
-    const heroOpacity = Math.max(0, 1 - progress / .045);
+    const heroOpacity = Math.max(0, Math.min(1, 1 - (progress - .08) / .1));
     stage?.style.setProperty("--hero", heroOpacity.toFixed(3));
-    if (hero) { hero.style.opacity = String(heroOpacity); hero.style.visibility = progress > .05 ? "hidden" : "visible"; }
-    const current = progress < .05 ? -1 : chapterAt(state.frame);
+    if (hero) { hero.style.opacity = String(heroOpacity); hero.style.visibility = progress > .18 ? "hidden" : "visible"; }
+    const current = progress < .18 ? -1 : chapterAt(state.frame);
     if (current !== active) {
       active = current;
       captions.forEach((caption, i) => caption.toggleAttribute("data-active", i === current));
     }
+    stage?.style.setProperty("--scan", String(10 + progress * 82));
+    stage?.style.setProperty("--scan-opacity", String(progress > .18 && progress < .98 ? 1 : 0));
+    proof.forEach((item,i) => item.toggleAttribute("data-checked", progress >= [.22,.45,.79,.95][i]));
+    proofLinks.forEach(item => item.toggleAttribute("data-checked", progress >= [.22,.45,.79,.95][Number(item.dataset.proofIndex)]));
     const mark = chapterAt(state.frame);
     marks.forEach((item, i) => item.toggleAttribute("data-active", i === mark));
 
@@ -160,6 +166,9 @@ function build(root: HTMLElement) {
     jumps.forEach(off => off());
     captions.forEach(caption => caption.removeAttribute("data-active"));
     marks.forEach(item => item.removeAttribute("data-active"));
+    proof.forEach(item => item.removeAttribute("data-checked"));
+    proofLinks.forEach(item => item.removeAttribute("data-checked"));
+    stage?.style.removeProperty("--scan"); stage?.style.removeProperty("--scan-opacity");
     stage?.removeAttribute("data-tour-ready");
     stage?.style.removeProperty("--hero");
     if (stage) { delete stage.dataset.tourFrame; delete stage.dataset.tourLoaded; delete stage.dataset.tourWideLoaded; }
@@ -170,5 +179,5 @@ function build(root: HTMLElement) {
 export function PaddockTour() {
   const { paused, available, toggle } = useBrandMotion('[data-model="paddock"]', build);
   if (!available) return null;
-  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle}>{paused ? "Ativar o tour" : "Pausar o tour"}</button>;
+  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle} aria-label={paused ? "Ativar o tour" : "Pausar o tour"}><span className={styles.motionLabel}>{paused ? "Ativar o tour" : "Pausar o tour"}</span><svg className={styles.motionIcon} width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">{paused ? <path d="m3 1 9 6-9 6z" fill="currentColor"/> : <path d="M3 1v12M11 1v12" stroke="currentColor" strokeWidth="3"/>}</svg></button>;
 }

@@ -1,10 +1,11 @@
 "use client";
 
 import { useEffect, useId, useRef, useState, useSyncExternalStore } from "react";
+import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -14,6 +15,16 @@ type Content = {
 };
 const subscribe = () => () => {};
 const content: Record<Brand, Content> = {
+  paddock: {
+    name: "Paddock", title: "Antes da proposta, o laudo aberto.",
+    intro: "Escolha o carro e o que deseja esclarecer. Se tem um usado para avaliar, a conversa começa pela mesma inspeção.", action: "Preparar minha conversa",
+    steps: [
+      [{ key: "carro", label: "Qual carro você quer conhecer?", options: [...cars.map(car => car.name), "Quero avaliar meu usado"] }],
+      [{ key: "interesse", label: "O que você quer conversar?", options: ["Ver os registros do laudo", "Avaliar meu usado para troca", "Consultar preço e condições"] }],
+    ],
+    next: "O carro escolhido e sua dúvida orientam a primeira conversa. Os registros da inspeção, a condição atual, a disponibilidade e os valores precisam ser confirmados antes de uma proposta. Este resumo não reserva o carro.",
+    invitation: "Sem pular a inspeção.", stepNames: ["O carro", "A conversa"], stepTitles: ["Por qual carro começamos?", "Vamos abrir a conversa."], summaryTitle: "O seu ponto de partida.", noscript: "Escolha o carro no estoque e anote as dúvidas sobre os registros do laudo ou a avaliação do seu usado.",
+  },
   arrimo: {
     name: "Arrimo", title: "Vamos organizar a primeira conversa.",
     intro: "Comece pelo assunto e pelo momento do pedido. Não é preciso incluir dados pessoais ou documentos neste roteiro.", action: "Preparar minha conversa",
@@ -139,11 +150,11 @@ const content: Record<Brand, Content> = {
   },
 };
 
-export function BrandInquiry({ brand }: { brand: Brand }) {
+export function BrandInquiry({ brand, initialAnswers = {} }: { brand: Brand; initialAnswers?: Record<string, string> }) {
   const data = content[brand];
   const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   const [step, setStep] = useState(0);
-  const [answers, setAnswers] = useState<Record<string, string>>({});
+  const [answers, setAnswers] = useState<Record<string, string>>(() => initialAnswers);
   const [completed, setCompleted] = useState(false);
   const dialog = useRef<HTMLDialogElement>(null);
   const heading = useRef<HTMLHeadingElement>(null);
@@ -157,13 +168,15 @@ export function BrandInquiry({ brand }: { brand: Brand }) {
       const anchor = (event.target as Element).closest<HTMLAnchorElement>(`a[href="#${sectionId}"]`);
       if (!anchor || event.button !== 0 || event.metaKey || event.ctrlKey || event.shiftKey || event.altKey) return;
       event.preventDefault();
-      opener.current = anchor;
+      opener.current = anchor.dataset.inquiryReturn ? document.querySelector<HTMLElement>(anchor.dataset.inquiryReturn) || anchor : anchor;
+      const car = anchor.dataset.inquiryCar;
+      if (brand === "paddock" && car) { setAnswers(previous => ({ ...previous, carro: car })); setStep(0); setCompleted(false); }
       dialog.current?.showModal();
       heading.current?.focus();
     };
     document.addEventListener("click", open);
     return () => document.removeEventListener("click", open);
-  }, [sectionId]);
+  }, [sectionId, brand]);
 
   useEffect(() => {
     if (dialog.current?.open) heading.current?.focus();
