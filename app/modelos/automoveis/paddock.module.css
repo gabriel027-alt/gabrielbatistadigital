@@ -38,3 +38,35 @@
 
 .header{position:fixed;padding-right:180px;background:#010101f2;backdrop-filter:blur(8px)}.motionToggle{top:18px;bottom:auto;right:20px}.motionIcon{display:none}
 @media(max-width:700px){.header{padding-right:78px}.motionToggle{top:15px;right:12px;min-width:44px;padding:10px}.motionLabel{display:none}.motionIcon{display:block}}
+
+/* Approved checklist: black / epoxy / mint. The car's own paint supplies the stock glow. */
+.page{--blue:#8bf2dc;--purple:#8bf2dc;--silver:#b8bcbf}.stage{background:var(--asphalt)}
+.page :is(button,.primary){background:var(--green);color:#010101!important;border-color:var(--green)}
+.primary{background:var(--green);color:#010101!important}.marks button[data-active],.filters button[aria-pressed=true]{box-shadow:inset 0 -3px #010101;border-color:var(--green)}
+.marks{gap:12px}.marks button{padding-inline:16px}.motionToggle{background:var(--green);color:#010101}
+.scanLine{background:var(--green);width:3px;box-shadow:0 0 18px #8bf2dc80}.scanLine span{color:var(--green)}
+.inspectionLinks polyline{stroke-width:2;opacity:.85;stroke:var(--green)!important}.inspectionLinks circle{fill:var(--green);stroke:var(--green)!important;filter:drop-shadow(0 0 5px #8bf2dc)}
+.page[data-brand-animated=true] .proofMarks li{background:#010101ed;border-color:var(--green)!important;font-size:13px}
+.page[data-brand-animated=true] .captions{opacity:1;bottom:128px}.captions p{color:#d3d7d5}.captions h2{font-size:21px}
+.inspection{color:#010101}.sectionHead>p:first-child,.inspectionLabel{color:#37443f}.inspectionGrid article>div>p:last-child{color:#37443f}
+.buying{background:var(--asphalt)}.decisionFlow article{border-color:#626c67}.decisionFlow p{color:#c6ceca}
+.trade{background:var(--green);color:#010101}.trade .eyebrow{color:#24372f}.trade .primary{border:1px solid #010101}
+.reportDialog{background:var(--asphalt);border-color:#626c67}.reportTop,.reportNote{border-color:#626c67}.reportButton{padding:12px 16px;background:var(--green)}.reportTop button{padding:8px 14px}
+.cars>li{position:relative;isolation:isolate;transition:box-shadow .25s,border-color .25s}.cars>li:is(:hover,:focus-within,[data-lit]){border-color:var(--car-accent);box-shadow:0 8px 50px -15px var(--car-accent)}
+.cars figure{aspect-ratio:16/9}.cars figure img{object-position:50% 52%;transform:scale(1.06)}.carCopy{padding:20px 12px 0}
+.carDetail{font-size:14px!important;color:var(--white)!important;margin:10px 0!important}.warranty{font-size:12px;line-height:1.8;margin-top:20px!important;color:inherit}
+.shop{display:grid;grid-template-columns:1fr 1fr;gap:9vw;background:var(--paper);color:#010101;padding:100px 5vw;scroll-margin-top:100px}.shop h2{font-size:clamp(29px,3.5vw,51px);margin-top:17px}.shop>div>p{font-size:16px;line-height:1.8;margin-bottom:20px}.shop .warranty{font-size:12px}
+.page:not([data-brand-animated=true]) .stage{height:auto;min-height:660px}.page:not([data-brand-animated=true]) .proofMarks{display:none}.page:not([data-brand-animated=true]) .stills{display:grid;grid-template-columns:1.5fr 1fr;align-items:center;gap:40px;padding:30px 0 60px;margin:0 5vw!important}.stills ul{list-style:none;padding:0;margin-top:24px!important;display:grid;gap:14px}.stills li{font-size:14px;color:var(--green)}
+@media(max-width:700px){
+ .shop{grid-template-columns:1fr;padding:65px 6vw;gap:30px}.shop h2{font-size:30px}
+ .page[data-brand-animated=true] .canvas,.page[data-brand-animated=true] .poster{top:130px;bottom:265px;height:calc(100% - 395px);width:100%;inset-inline:0}
+ .page[data-brand-animated=true] .captions{top:88px;bottom:auto;left:6vw;right:6vw;width:auto}.captions h2{font-size:16px}.captions p{display:block;font-size:11px;max-width:none}
+ .page[data-brand-animated=true] .proofMarks{inset:auto 6vw 92px;display:grid;grid-template-columns:1fr 1fr;gap:10px;height:150px;align-content:end}
+ .page[data-brand-animated=true] .proofMarks li{position:relative;inset:auto!important;max-width:none;font-size:11px;padding:9px 8px 9px 12px;min-height:56px;display:flex;align-items:center}
+ .page[data-brand-animated=true] .marks{bottom:18px;gap:6px}.marks button{padding:8px 9px;font-size:10px}
+ .mobileLinks{display:none}.inspectionLinks{top:130px;height:calc(100% - 395px)}.desktopLinks{display:block}.inspectionLinks polyline{opacity:.55}
+ .page:not([data-brand-animated=true]) .stage{min-height:590px}.page:not([data-brand-animated=true]) .stills{grid-template-columns:1fr;gap:22px}.stills h2{font-size:25px}.stills p{font-size:14px}
+}
+
+.stage[data-tour-ready] .poster{opacity:0}
+@media(max-width:700px){.inspectionLinks .desktopLinks{display:none}.inspectionLinks .mobileLinks{display:block}}

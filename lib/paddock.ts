@@ -1,17 +1,17 @@
 /** Pilot. Year, mileage and transmission are illustrative specifications explicitly authorized by the user. */
 export const tourFrames = 223;
 export const chapters = [
-  { id: "farol", progress: 0, from: 1, to: 168, title: "O farol acende.", text: "A luz acompanha o contorno do farol.", still: 120 },
-  { id: "lateral", progress: .55, from: 169, to: 208, title: "A roda. A lateral.", text: "O reflexo percorre a roda e a porta.", still: 195 },
-  { id: "inteiro", progress: .82, from: 209, to: 223, title: "O desenho inteiro.", text: "O carro aparece por completo no estúdio.", still: 223 },
+  { id: "farol", progress: 0, from: 1, to: 168, title: "Primeiro, a luz.", text: "", still: 120 },
+  { id: "lateral", progress: .55, from: 169, to: 208, title: "Pintura e rodagem.", text: "", still: 195 },
+  { id: "inteiro", progress: .82, from: 209, to: 223, title: "O laudo aberto.", text: "Tudo o que foi conferido, antes do preço.", still: 223 },
 ] as const;
 export const cars = [
-  { id: "suv-branco", name: "SUV Prata-claro", body: "SUV", year: "2023", km: "28.000 km", gear: "Automático" },
-  { id: "sedan-verde", name: "Sedã Verde", body: "Sedã", year: "2022", km: "41.000 km", gear: "Automático" },
-  { id: "cupe-prata", name: "Cupê Prata", body: "Cupê", year: "2023", km: "19.000 km", gear: "Automático" },
-  { id: "picape-preta", name: "Picape Preta", body: "Picape", year: "2021", km: "52.000 km", gear: "Automático" },
-  { id: "suv-azul", name: "SUV Azul-petróleo", body: "SUV", year: "2024", km: "16.000 km", gear: "Automático" },
-  { id: "hatch-vinho", name: "Hatch Vinho", body: "Hatch", year: "2022", km: "34.000 km", gear: "Manual" },
+  { id: "suv-branco", name: "SUV Prata-claro", body: "SUV", year: "2023", km: "28.000 km", gear: "Automático", detail: "Pneus dianteiros novos", accent: "#b8c3cf" },
+  { id: "sedan-verde", name: "Sedã Verde", body: "Sedã", year: "2022", km: "41.000 km", gear: "Automático", detail: "Revisões na rede", accent: "#46785b" },
+  { id: "cupe-prata", name: "Cupê Prata", body: "Cupê", year: "2023", km: "19.000 km", gear: "Automático", detail: "Dono único", accent: "#91a5b1" },
+  { id: "picape-preta", name: "Picape Preta", body: "Picape", year: "2021", km: "52.000 km", gear: "Automático", detail: "Pneus traseiros novos", accent: "#57616e" },
+  { id: "suv-azul", name: "SUV Azul-petróleo", body: "SUV", year: "2024", km: "16.000 km", gear: "Automático", detail: "Manual e chave reserva", accent: "#367a97" },
+  { id: "hatch-vinho", name: "Hatch Vinho", body: "Hatch", year: "2022", km: "34.000 km", gear: "Manual", detail: "Histórico de manutenção organizado", accent: "#9d3e5d" },
 ];
 export const bodies = ["Todos", "SUV", "Sedã", "Cupê", "Picape", "Hatch"];
 
@@ -33,5 +33,6 @@ export const faq = [
   { q: "O que faz um carro ficar fora do estoque?", a: "A inspeção e o histórico orientam a compra. Se o carro não passa nos critérios da Paddock, a loja recusa. A proposta é explicar a seleção antes da negociação." },
   { q: "Um laudo significa que o seminovo não terá desgaste?", a: "Não. Um seminovo tem uso e desgaste. A inspeção ajuda a compreender sua condição no momento da avaliação; não é promessa de ausência de manutenção futura." },
   { q: "Vocês avaliam meu usado para troca?", a: "Seu carro passa pelo mesmo roteiro de inspeção: pintura, diagnóstico, histórico e condição atual. A avaliação depende dessa leitura, antes de qualquer proposta." },
-  { q: "Como consulto o preço e as condições?", a: "Escolha o carro e prepare a conversa pelo roteiro. A disponibilidade, o preço e as condições precisam ser confirmados antes de qualquer decisão. Preencher o roteiro não reserva o veículo." },
+  { q: "Como consulto o preço e as condições?", a: "Escolha o carro e prepare a conversa pelo roteiro. A disponibilidade, o preço e as condições precisam ser confirmados antes de qualquer decisão. O roteiro organiza os pontos da conversa." },
 ];
+export const legalWarranty = "Garantia legal de 90 dias para vícios aparentes (Código de Defesa do Consumidor)";

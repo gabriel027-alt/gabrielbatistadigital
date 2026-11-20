@@ -22,7 +22,7 @@ const content: Record<Brand, Content> = {
       [{ key: "carro", label: "Qual carro você quer conhecer?", options: [...cars.map(car => car.name), "Quero avaliar meu usado"] }],
       [{ key: "interesse", label: "O que você quer conversar?", options: ["Ver os registros do laudo", "Avaliar meu usado para troca", "Consultar preço e condições"] }],
     ],
-    next: "O carro escolhido e sua dúvida orientam a primeira conversa. Os registros da inspeção, a condição atual, a disponibilidade e os valores precisam ser confirmados antes de uma proposta. Este resumo não reserva o carro.",
+    next: "O carro escolhido e sua dúvida orientam a primeira conversa. Os registros da inspeção, a condição atual, a disponibilidade e os valores precisam ser confirmados antes de uma proposta. O roteiro reúne os pontos que você quer esclarecer.",
     invitation: "Sem pular a inspeção.", stepNames: ["O carro", "A conversa"], stepTitles: ["Por qual carro começamos?", "Vamos abrir a conversa."], summaryTitle: "O seu ponto de partida.", noscript: "Escolha o carro no estoque e anote as dúvidas sobre os registros do laudo ou a avaliação do seu usado.",
   },
   arrimo: {

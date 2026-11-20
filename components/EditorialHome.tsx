@@ -42,6 +42,7 @@ type Work = { id: FilmId; name: string; image: string; kit?: string };
 const works: Work[] = [
   { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "arrimo", name: "Arrimo Advocacia Previdenciária", image: sample("arrimo", "hero"), kit: "arrimo" },
+  { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },
   { id: "sutil", name: "Sutil Cirurgia Plástica", image: sample("sutil", "hero"), kit: "sutil" },
   { id: "brisa", name: "Casa Brisa", image: sample("brisa", "hero"), kit: "brisa" },
   { id: "aura", name: "Aura", image: "/images/projects/aura-film-poster.webp" },

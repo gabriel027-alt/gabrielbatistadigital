@@ -1,0 +1,75 @@
+{
+  "brand": "Paddock — Seminovos com o laudo aberto",
+  "date": "2026-11-20",
+  "route": "/modelos/automoveis",
+  "recordedFrom": "local next start, production build",
+  "loop": "6 seconds, 960×768; original tour .5 → 1 → .5, with four checks; 960×540 canvas reframed inside the card, without changing the page tour",
+  "files": [
+    {
+      "file": "/videos/projects/brands/paddock-desktop.mp4",
+      "bytes": 14225206,
+      "sha256": "701a24f991d19a5088b800db3e0e564432ad6b65b7b44d8565b6c69fb6f45751",
+      "captureViewport": [
+        1920,
+        1080
+      ],
+      "deviceScaleFactor": 1,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1920,
+        "height": 1080,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "66.600000",
+        "nb_frames": "1998"
+      },
+      "audio": false
+    },
+    {
+      "file": "/videos/projects/brands/paddock-mobile.mp4",
+      "bytes": 22064763,
+      "sha256": "8d5da7e6b1dc48a448f3039975d463b5180c0b4521cc7ce88690b92dbc3caead",
+      "captureViewport": [
+        432,
+        768
+      ],
+      "deviceScaleFactor": 2.5,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 1080,
+        "height": 1920,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "94.400000",
+        "nb_frames": "2832"
+      },
+      "audio": false
+    },
+    {
+      "file": "/videos/projects/brands/paddock-loop.mp4",
+      "bytes": 1244399,
+      "sha256": "1cceaedabfe58963558f6cca81e90364b60e9536bdb6b9ca4bc0266ce85094cf",
+      "captureViewport": [
+        960,
+        768
+      ],
+      "deviceScaleFactor": 1,
+      "video": {
+        "codec_name": "h264",
+        "profile": "High",
+        "codec_type": "video",
+        "width": 960,
+        "height": 768,
+        "pix_fmt": "yuv420p",
+        "r_frame_rate": "30/1",
+        "duration": "6.000000",
+        "nb_frames": "180"
+      },
+      "audio": false
+    }
+  ]
+}

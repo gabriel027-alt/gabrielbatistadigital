@@ -9,7 +9,7 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
+const brands = { paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
@@ -54,17 +54,43 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && !['lume', 'arrimo'].includes(brand)) continue;
+      if (name === 'loop' && !['lume', 'arrimo', 'paddock'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
       // The motion control stays on the site; only the film hides it, with the dev overlay.
-      await page.addStyleTag({ content: 'nextjs-portal{display:none!important}button[aria-pressed]{display:none!important}' });
+      await page.addStyleTag({ content: brand === 'paddock' ? 'nextjs-portal{display:none!important}button[aria-label="Pausar o tour"],button[aria-label="Ativar o tour"]{display:none!important}' : 'nextjs-portal{display:none!important}button[aria-pressed]{display:none!important}' });
       // Warm every image so nothing pops in during the film, then return to the top.
       const total = await page.evaluate(() => document.documentElement.scrollHeight);
       for (let y = 0; y < total; y += 600) { await page.evaluate(v => scrollTo(0, v), y); await page.waitForTimeout(40); }
+      if(brand === 'paddock') {
+        const scene=await page.locator('[data-paddock-tour]').evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:el.offsetHeight-innerHeight}));
+        // Capture-only warm pass: normal visitors still fetch only nearby frames/photos.
+        for(let p=0;p<=1.001;p+=.025){await page.evaluate(({scene,p})=>scrollTo(0,scene.top+scene.travel*p),{scene,p});await page.waitForTimeout(220);}
+        await page.locator('#paddock-estoque').scrollIntoViewIfNeeded();
+        for(const card of await page.locator('[data-paddock-cars]>li').all()){await card.scrollIntoViewIfNeeded();await page.waitForTimeout(150);}
+        await page.locator('[data-paddock-cars] img:not(noscript img)').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode().catch(()=>{}))));
+      }
       await page.evaluate(() => scrollTo(0, 0));
       await page.waitForTimeout(2500);
+      if (brand === 'paddock' && name === 'loop') {
+        await mkdir('public/images/projects/brands',{recursive:true});
+        const poster=spawnSync('ffmpeg',['-v','error','-y','-i','pipe:0','-frames:v','1','-c:v','libwebp','-quality','90','public/images/projects/brands/paddock-hero.webp'],{input:await page.screenshot(),encoding:'utf8'});
+        if(poster.status!==0)throw new Error(poster.stderr);
+        // Card-only framing: keep the full-width car at 16:9 inside the 5:4 preview.
+        // The approved website tour and its portrait composition stay untouched.
+        await page.addStyleTag({content:'[data-tour-canvas]{top:82px!important;height:540px!important;bottom:auto!important}[data-tour-stage]>svg{top:82px!important;height:540px!important}[data-inspection-mark][data-proof-index="2"]{top:52%!important}[data-inspection-mark][data-proof-index="3"]{top:50%!important}'});
+        await page.waitForTimeout(200);
+        const bounds=await page.locator('[data-paddock-tour]').evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,distance:el.offsetHeight-innerHeight}));
+        await page.evaluate(({top,distance})=>scrollTo(0,top+distance*.5),bounds);await page.waitForTimeout(700);
+        const stats=await record(page,'public/videos/projects/brands/paddock-loop.mp4',format.out,async()=>{
+          await page.evaluate(async ({top,distance})=>{
+            const start=performance.now();await new Promise(resolve=>{
+              function tick(now){const t=Math.min(6,(now-start)/1000);const p=t<.3?.5:t<2.5?.5+.5*(t-.3)/2.2:t<3.3?1:t<5.6?1-.5*(t-3.3)/2.3:.5;scrollTo({top:top+distance*p,behavior:'instant'});if(t<6)requestAnimationFrame(tick);else resolve();}requestAnimationFrame(tick);
+            });
+          },bounds);
+        });console.log(`${brand} loop: ${stats.frames} frames -> 6 s`);await page.close();continue;
+      }
       if (brand === 'arrimo' && name === 'loop') {
         await mkdir('public/images/projects/brands', { recursive: true });
         const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/arrimo-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
@@ -119,7 +145,7 @@ try {
       const stats = await record(page, destination, format.out, async () => {
         await page.waitForTimeout(2600);
         // Choreography: glide to each section, rest there so it can be read, and cross long scroll scenes slowly.
-        await page.evaluate(async ({ speed }) => {
+        await page.evaluate(async ({ speed, brand }) => {
           const end = document.documentElement.scrollHeight - innerHeight;
           const glide = (to, ms, linear = false) => new Promise(resolve => {
             const from = scrollY, start = performance.now();
@@ -135,7 +161,7 @@ try {
           const header = document.querySelector('header')?.getBoundingClientRect().height || 0;
           const sections = [...document.querySelectorAll('main section, main > div > section, footer')]
             .filter(el => !el.parentElement.closest('section'))
-            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight, signature: el.hasAttribute('data-lume-hero') }))
+            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight, id:el.id, signature: el.hasAttribute('data-lume-hero') || el.hasAttribute('data-paddock-tour') }))
             .filter(s => (s.top > 40 || s.signature) && s.height > 120)
             .sort((a, b) => a.top - b.top);
           for (const s of sections) {
@@ -147,10 +173,21 @@ try {
             const scene = s.height > innerHeight * 1.5;
             await rest(scene ? 900 : 2000);
             const through = Math.min(end, s.top + s.height - innerHeight);
-            if (through > scrollY + 40) { await glide(through, (through - scrollY) / (scene ? speed * .42 : speed) * 1000, scene); await rest(scene ? 1200 : 700); }
+            if (through > scrollY + 40) { await glide(through, (brand === "paddock" ? Math.min(18000,(through - scrollY) / (scene ? speed * .42 : speed) * 1000) : (through - scrollY) / (scene ? speed * .42 : speed) * 1000), scene); await rest(scene ? 1200 : 700); }
+            if(s.id === 'paddock-estoque') {
+              const trigger=document.getElementById('laudo-sedan-verde');trigger?.click();await rest(1700);
+              const report=document.querySelector('dialog[open]');report?.scrollTo({top:report.scrollHeight,behavior:'smooth'});await rest(1000);
+              report?.querySelector('a[data-inquiry-car]')?.click();await rest(800);
+              const inquiry=document.querySelector('[data-inquiry="paddock"] dialog');
+              const button=text=>[...inquiry.querySelectorAll('button')].find(b=>b.textContent.trim()===text);
+              button('Continuar')?.click();await rest(400);
+              [...inquiry.querySelectorAll('label')].find(l=>l.textContent.includes('Ver os registros do laudo'))?.click();await rest(300);
+              button('Ver meu resumo')?.click();await rest(2000);button('Voltar ao site')?.click();await rest(500);
+              await glide(Math.min(end,s.top+s.height-innerHeight),1000);
+            }
           }
           if (end > scrollY + 4) await glide(end, Math.max(900, (end - scrollY) / speed * 1000));
-        }, { speed: format.speed });
+        }, { speed: format.speed, brand });
         await page.waitForTimeout(2400);
       });
       console.log(`${brand} ${name}: ${stats.frames} frames, ${stats.seconds.toFixed(1)} s, ${stats.fps.toFixed(1)} fps -> ${destination}`);

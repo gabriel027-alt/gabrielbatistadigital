@@ -21,11 +21,11 @@ export type BrandKit = {
 
 export const brandKits: BrandKit[] = [
   { id: "paddock", route: "/modelos/automoveis", niche: "Automóveis", concept: "Você vê o laudo antes de ver o preço.", mark: "Duas linhas de pista formando um P",
-    palette: { pneu: "#010101", epoxi: "#e9eef0", azul: "#3b5578", verde: "#8bf2dc", roxo: "#afa0f9" },
+    palette: { pneu: "#010101", epoxi: "#e9eef0", menta: "#8bf2dc", aco: "#b8bcbf", softbox: "#eceeed" },
     material: "Instrumentos de inspeção, registros do laudo e linhas do tablet de diagnóstico", typography: { display: "Unbounded", text: "Sora" },
     photo: "Macros de pintura, pneu, suspensão e scanner iluminados durante a inspeção de carros sem logotipo",
     signatureGraphic: "Linha de leitura com marcações de pintura, quilometragem, revisões e histórico", signatureMotion: "A dúvida no escuro dá lugar ao laudo: a leitura deixa verificações no carro e se desfaz no retorno",
-    hero: "Todo seminovo parece perfeito no escuro. Nós acendemos a luz.", status: "em construção" },
+    hero: "Todo seminovo parece perfeito no escuro. Nós acendemos a luz.", status: "aprovado" },
   {
     id: "arrimo", route: "/modelos/previdenciario", niche: "Advocacia previdenciária",
     concept: "Cada ano trabalhado conta.", mark: "Duas vigas se apoiam e uma travessa forma o A da Arrimo",
