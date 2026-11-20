@@ -512,3 +512,19 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - **Tratamento:** ampliadas pelo Real-ESRGAN 4× com 20% do original. O hero tem até 4800 px e o estoque, 3200 px.
 - **Onde estão:** em `public/images/paddock/`.
 - **Decisão pendente:** especificações (ano, km, câmbio) com preço "Consulte". Recomendado; aguarda confirmação do usuário.
+## Paddock: quadros do topo (20/11/2026)
+
+- **Origem:** dois vídeos gerados pelo usuário no Gemini.
+  - `Car_headlight_turning_on` (15 s): plano contínuo do farol acendendo. Usado de 1 s em diante.
+  - `Sedan_car_lighting_reveal_animation` (8 s), só de 3,42 s em diante: roda, faixa de luz correndo pela porta e dissolvência até o carro inteiro.
+  - O vídeo `Filming_commercial` (4 s) foi descartado: rápido demais, e o carro muda de frente.
+- **Montagem:** 12 quadros por segundo, 223 no total (168 do farol e 55 da lateral e da revelação).
+  - O segundo trecho foi neutralizado para o tom frio do primeiro (canais ×1,18, ×1,12 e ×1,23).
+  - A passagem entre os dois trechos é pelo escuro: 8 quadros apagam e 8 acendem.
+- **Formatos:** `public/videos/paddock/d/0001..0223.webp` (1280×720, 4,5 MB) e `m/` (405×720, recorte vertical centrado no carro, 1,7 MB). É o formato da Casa Brisa.
+- **Resolução:** a ampliação pela GPU falhou nesta máquina. A partir do quadro 73 o Real-ESRGAN gravou imagens pretas, também ao refazer. Ficaram os originais de 1280×720, como no tour aprovado da Casa Brisa.
+- **Próximo passo** (Codex):
+  - montar o hero do Paddock em canvas quadro a quadro pela rolagem, seguindo `BrisaTour.tsx`;
+  - capítulos com legendas curtas e verdadeiras: farol, roda e lateral, o carro inteiro;
+  - depois, o catálogo com as fotos de `public/images/paddock/`;
+  - especificações com preço "Consulte" (recomendado; confirmar com o usuário).
