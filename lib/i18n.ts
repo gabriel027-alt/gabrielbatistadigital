@@ -24,6 +24,8 @@ export type HomeCopy = {
   skip: string; navLabel: string; nav: { work: string; services: string; about: string; talk: string }; talkCursor: string;
   langLabel: string; contactMessage: string;
   heroAlt: string; offer: { label: string; before: string; after: string; line2: string }; tagline: string;
+  /** Interaction hint under the offer (docs/DESIGN-SYSTEM.md, "dica de interação"): "role" on computers, "deslize" on phones. */
+  scrollHint: { desktop: string; phone: string };
   hook: { label: string; first: [string, string]; lead: string; click: [string, string]; clickLabel: string; tail: string; cursor: string };
   palmLabel: string; palmTitle: string; palmText: string;
   projects: string; workProof: string; workNote: string; specFont: string; specColors: string; sectors: Record<string, string>;
@@ -49,6 +51,7 @@ const pt: HomeCopy = {
   heroAlt: "Retrato frontal de Gabriel Batista com luz vermelha",
   offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
   tagline: "Sites com a identidade da sua clínica, não de um modelo pronto.",
+  scrollHint: { desktop: "Role para ver como eu crio", phone: "Deslize para ver como eu crio" },
   hook: { label: "Do primeiro olhar ao próximo clique, e dele até a sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e dele até a sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelo pronto: cada site nasce da marca da sua clínica.",
@@ -102,6 +105,7 @@ const ptPT: HomeCopy = {
   heroAlt: "Retrato frontal de Gabriel Batista com luz vermelha",
   offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
   tagline: "Sites com a identidade da sua clínica, não de um modelo pronto.",
+  scrollHint: { desktop: "Desça para ver como crio", phone: "Deslize para ver como crio" },
   hook: { label: "Do primeiro olhar ao próximo clique, e daí até à sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e daí até à sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelos prontos: cada site nasce da marca da sua clínica.",
@@ -150,6 +154,7 @@ const en: HomeCopy = {
   heroAlt: "Front portrait of Gabriel Batista in red light",
   offer: { label: "Web design & development", before: "Web des", after: "gn &", line2: "development" },
   tagline: "Websites with your clinic's identity, not a template's.",
+  scrollHint: { desktop: "Scroll to see how I build", phone: "Swipe to see how I build" },
   hook: { label: "From first glance to the next click, and from there to your calendar.", first: ["From f", "rst glance"], lead: "to the next ", click: ["cl", "ck"], clickLabel: "click", tail: "and from there to your calendar.", cursor: "Start a project" },
   palmLabel: "Gabriel's open hand, palm up, holding the brand's red dot.",
   palmTitle: "Handmade, from the first stroke to the last click.", palmText: "No ready-made template: every website is born from your clinic's brand.",
@@ -198,6 +203,7 @@ const es: HomeCopy = {
   heroAlt: "Retrato frontal de Gabriel Batista con luz roja",
   offer: { label: "Diseño & desarrollo web", before: "D", after: "seño &", line2: "desarrollo web" },
   tagline: "Páginas web con la identidad de tu clínica, no de una plantilla.",
+  scrollHint: { desktop: "Desplázate para ver cómo creo", phone: "Desliza para ver cómo creo" },
   hook: { label: "De la primera mirada al próximo clic, y de ahí a tu agenda.", first: ["De la pr", "mera mirada"], lead: "al próximo ", click: ["cl", "c"], clickLabel: "clic", tail: "y de ahí a tu agenda.", cursor: "Empezar un proyecto" },
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",
   palmTitle: "Hecho a mano, del primer trazo al último clic.", palmText: "Sin plantillas: cada sitio nace de la marca de tu clínica.",

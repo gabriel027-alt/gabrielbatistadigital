@@ -363,3 +363,17 @@
 .footerLegal{display:flex;flex-wrap:wrap;gap:4px 18px}
 .footerPrefs{padding:15px 0;margin-block:-15px;border:0;background:none;color:inherit;font:inherit;cursor:pointer}
 .footerPrefs:hover,.footerLegal a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* Interaction hint under the offer (docs/DESIGN-SYSTEM.md, "dica de interação"). Only with motion running, and only after
+   the dot has signed the name, so it never competes with the arrival scene. Without motion the page reads as a list. */
+.heroHint{display:none;position:absolute;left:4vw;top:calc(20% + 2.2 * clamp(20px,2.2vw,34px) + 22px);z-index:2;margin:0;font-size:14px;font-weight:600;letter-spacing:-.01em;color:var(--peach,#ffc6a5);text-shadow:0 2px 12px #000a;pointer-events:none}
+.page[data-editorial-animated=true] .heroHint{display:block}
+.heroHintInner{display:inline-flex;align-items:center;gap:8px;opacity:0;transform:translateY(6px);transition:opacity .6s ease 2.2s,transform .6s ease 2.2s}
+:global(html[data-hero-signed]) .heroHintInner{opacity:.92;transform:none}
+.hintPhone{display:none}
+.hintArrow{display:inline-block;animation:hintNudge 1.6s ease-in-out infinite}
+@keyframes hintNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@media(max-width:700px){.heroHint{top:134px;left:6vw;font-size:12.5px}.hintDesktop{display:none}.hintPhone{display:inline}}
+/* "Click a project to watch its film": the strip's instruction, readable at a glance (it was a pale footnote). */
+.workNote{font-size:13px;font-weight:600;color:var(--ink)}
+.workNote::before{content:"";display:inline-block;width:0;height:0;margin-right:9px;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent var(--copper);vertical-align:1px}
