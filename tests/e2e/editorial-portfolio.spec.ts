@@ -278,7 +278,7 @@ test('Cover uses the approved original portrait', async ({ page }) => {
 test("The homepage is offered in Brazilian and European Portuguese, English and Spanish, each at its own address with the others listed", async ({ page }) => {
   const pages = [
     { path: "/", lang: "pt-BR", title: /Sites para clínicas/, hook: "Do primeiro olhar" },
-    { path: "/pt-pt", lang: "pt-PT", title: /Sites para clínicas e negócios premium/, hook: "Do primeiro olhar ao próximo clique, e daí" },
+    { path: "/pt-pt", lang: "pt-PT", title: /Sites para clínicas, escritórios e negócios premium/, hook: "Do primeiro olhar ao próximo clique, e daí" },
     { path: "/en", lang: "en", title: /Websites for clinics/, hook: "From first glance" },
     { path: "/es", lang: "es", title: /páginas web para clínicas/, hook: "De la primera mirada" },
   ];
