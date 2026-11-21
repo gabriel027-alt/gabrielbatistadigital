@@ -510,3 +510,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Conferência de acabamento: build e nove testes do Paddock aprovados, incluindo axe AA na página/ficha/roteiro, tour reversível, movimento reduzido e sem JS. Em vídeo, os seis cartões foram acionados com mouse no PC e toque no celular; cada sombra computada correspondeu ao RGB do próprio carro e o toque manteve `data-lit` ativo. Capturas sem erro de JavaScript ou estouro lateral, em `/workspace/entrega-gbd/paddock-acabamento/`.
 
 - Verificação final após os dois retoques: 13 testes passaram, incluindo reprodução real dos filmes nos quatro idiomas. Desktop 1920×1080 (66,6 s), celular 1080×1920 (93,97 s) e prévia 960×768 (6 s), H.264/30 fps, sem áudio; manifesto atualizado com os hashes. As mudanças de interface ficam nos dois CSS da Paddock, sem alterar dados, conteúdo, fotografias, tour ou composição das seções.
+
+## Dica de interação nas cenas das marcas (21/11/2026)
+
+- Regra do design system (camada 1): toda cena guiada pela rolagem traz `components/brand/ScrollHint.tsx`, na voz da marca ("Role…" no PC, "Deslize…" no celular). Só aparece com movimento ligado e some quando a cena começa (`fadeHints` em `useBrandMotion`). Aplicada em Lume, Arrimo, Sutil, Toca, Forma e Almeida; Talhão e Paddock já tinham a sua. Na Toca, a chave Cão/Gato diz "Escolha para ver a visita dele."
+- Filmes da Lume, da Arrimo e da Sutil regravados com a dica. Para gravar sem o navegador do Playwright instalado: `PLAYWRIGHT_CHROMIUM_EXECUTABLE` apontando para o Chrome.
