@@ -9,7 +9,7 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
+const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
@@ -54,7 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && !['lume', 'arrimo', 'paddock'].includes(brand)) continue;
+      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -91,7 +91,31 @@ try {
           },bounds);
         });console.log(`${brand} loop: ${stats.frames} frames -> 6 s`);await page.close();continue;
       }
-      if (brand === 'arrimo' && name === 'loop') {
+      if (brand === 'talhao' && name === 'loop') {
+        await mkdir('public/images/projects/brands', { recursive: true });
+        // Card-only: at 960 px the header links wrap onto two lines; the brand and its call stay.
+        await page.addStyleTag({ content: 'header nav{display:none!important}' }); await page.waitForTimeout(200);
+        const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/talhao-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
+        if (poster.status !== 0) throw new Error(poster.stderr);
+        const bounds = await page.locator('[data-talhao-hero]').evaluate(el => ({ top: el.getBoundingClientRect().top + scrollY, distance: el.offsetHeight - innerHeight }));
+        const stats = await record(page, 'public/videos/projects/brands/talhao-loop.mp4', format.out, async () => {
+          await page.evaluate(async ({top,distance}) => {
+            const start=performance.now();
+            await new Promise(resolve => {
+              function tick(now) {
+                const t=Math.min(6,(now-start)/1000);
+                // The farm from above: the first plots light up one by one, then the scroll returns to the whole map.
+                const p=t<.3?0:t<3.2?.52*(t-.3)/2.9:t<3.7?.52:t<5.7?.52-.52*(t-3.7)/2:0;
+                scrollTo({top:top+distance*p,behavior:'instant'});
+                if(t<6)requestAnimationFrame(tick);else resolve();
+              }
+              requestAnimationFrame(tick);
+            });
+          },bounds);
+        });
+        console.log(`${brand} loop: ${stats.frames} frames -> 6 s`);
+        await page.close();continue;
+      }      if (brand === 'arrimo' && name === 'loop') {
         await mkdir('public/images/projects/brands', { recursive: true });
         const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/arrimo-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
         if (poster.status !== 0) throw new Error(poster.stderr);
@@ -161,7 +185,7 @@ try {
           const header = document.querySelector('header')?.getBoundingClientRect().height || 0;
           const sections = [...document.querySelectorAll('main section, main > div > section, footer')]
             .filter(el => !el.parentElement.closest('section'))
-            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight, id:el.id, signature: el.hasAttribute('data-lume-hero') || el.hasAttribute('data-paddock-tour') }))
+            .map(el => ({ top: el.getBoundingClientRect().top + scrollY, height: el.offsetHeight, id:el.id, signature: el.hasAttribute('data-lume-hero') || el.hasAttribute('data-paddock-tour') || el.hasAttribute('data-talhao-hero') }))
             .filter(s => (s.top > 40 || s.signature) && s.height > 120)
             .sort((a, b) => a.top - b.top);
           for (const s of sections) {
