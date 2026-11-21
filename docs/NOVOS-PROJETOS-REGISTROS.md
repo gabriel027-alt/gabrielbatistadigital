@@ -625,3 +625,30 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Conferência de acabamento: build e nove testes do Paddock aprovados, incluindo axe AA na página/ficha/roteiro, tour reversível, movimento reduzido e sem JS. Em vídeo, os seis cartões foram acionados com mouse no PC e toque no celular; cada sombra computada correspondeu ao RGB do próprio carro e o toque manteve `data-lit` ativo. Capturas sem erro de JavaScript ou estouro lateral, em `/workspace/entrega-gbd/paddock-acabamento/`.
 
 - Verificação final após os dois retoques: 13 testes passaram, incluindo reprodução real dos filmes nos quatro idiomas. Desktop 1920×1080 (66,6 s), celular 1080×1920 (93,97 s) e prévia 960×768 (6 s), H.264/30 fps, sem áudio; manifesto atualizado com os hashes. As mudanças de interface ficam nos dois CSS da Paddock, sem alterar dados, conteúdo, fotografias, tour ou composição das seções.
+
+## Talhão: proposta e fotos (20/11/2026)
+
+**Proposta, revista pela lição do Paddock** (nascer do problema, não da imagem):
+- **O problema:** o produtor perde a safra para o clima, e a dívida do crédito rural segue vencendo. Vêm a execução e a penhora da máquina ou da terra.
+- **A proposta:** "Safra frustrada não precisa virar terra perdida."
+  - As regras do crédito rural preveem caminhos, como a prorrogação e a renegociação, quando a safra se frustra por causa alheia ao produtor.
+  - O escritório mostra quais caminhos existem, sem prometer resultado.
+- **Assinatura:** sobre o mapa zenital da fazenda, os contornos dos talhões se desenham pela rolagem, e cada talhão acende com uma situação: dívida de custeio, máquina penhorada, arrendamento, terra em garantia.
+
+**Fotos do usuário** (meio-dia, céu limpo, sem dourado), em `public/images/talhao/`:
+- `mapa-zenital.webp`: talhões, pivô e sede. É a base da cena e já parece um mapa.
+- `advogada-campo.webp`: advogada à direita, entre as fileiras de soja.
+- `lavoura.webp`: a estrada de terra roxa entre a soja e a palha.
+- `terra.webp`: mãos com terra roxa.
+- `colheitadeira.webp`: a máquina parada no galpão. Tem faixa amarela, sem logotipo visível; conferir no tamanho real.
+- **Falta:** a conversa na varanda (pedido 4).
+
+**Vídeo** (`gemini_generated_video_760a58a0`, 10 s, sem cortes):
+- A câmera parte da lavoura no nível do olhar e desce até as fileiras de soja vistas de cima.
+- Não é a descida zenital sobre o mapa pedida. Serve como capítulo "chegar perto da terra", e não como hero.
+- **Formato:** 100 quadros a 10 por segundo.
+  - PC: `public/videos/talhao/d/`, 960×540, 8,9 MB.
+  - Celular: `public/videos/talhao/m/`, 405×720, 4,9 MB.
+- Folhagem comprime mal; por isso a resolução é menor.
+
+**Pendente com o usuário:** a foto da conversa e um nome para a advogada (opcional, como Helena e Ricardo).
