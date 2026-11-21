@@ -92,6 +92,51 @@ function build(root: HTMLElement) {
   });
   tl.to(map, { scale: 1, x: 0, y: 0, duration: 1 - END - .02, ease: "power1.inOut" }, END);
   mark(0);
+
+  return fieldFilm(root);
+}
+
+/**
+ * Close to the ground: the field film (public/videos/talhao/{d,m}, 100 frames) runs with the scroll, from the dirt
+ * road down into the soy rows, and back. Frames load only when the section is two screens away.
+ */
+const FIELD_FRAMES = 100;
+function fieldFilm(root: HTMLElement) {
+  const field = root.querySelector<HTMLElement>("[data-talhao-field]");
+  const canvas = root.querySelector<HTMLCanvasElement>("[data-field-canvas]");
+  const ctx = canvas?.getContext("2d");
+  if (!field || !canvas || !ctx) return;
+  const set = matchMedia("(max-width: 700px)").matches ? "m" : "d";
+  const frames: HTMLImageElement[] = [];
+  let current = 0;
+  const draw = () => {
+    const img = frames[current];
+    if (!img?.complete || !img.naturalWidth) return;
+    const w = canvas.clientWidth, h = canvas.clientHeight, dpr = Math.min(devicePixelRatio, 2);
+    if (canvas.width !== Math.round(w * dpr)) { canvas.width = Math.round(w * dpr); canvas.height = Math.round(h * dpr); }
+    const s = Math.max(canvas.width / img.naturalWidth, canvas.height / img.naturalHeight);
+    const dw = img.naturalWidth * s, dh = img.naturalHeight * s;
+    ctx.drawImage(img, (canvas.width - dw) / 2, (canvas.height - dh) / 2, dw, dh);
+    field.dataset.ready = "true";
+  };
+  const load = () => {
+    for (let i = 1; i <= FIELD_FRAMES; i++) {
+      const img = new Image();
+      img.decoding = "async";
+      img.src = `/videos/talhao/${set}/${String(i).padStart(4, "0")}.webp`;
+      if (i === 1 || i - 1 === current) img.onload = draw;
+      frames.push(img);
+    }
+  };
+  const io = new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { io.disconnect(); load(); } }, { rootMargin: "200% 0px" });
+  io.observe(field);
+  gsap.timeline({ scrollTrigger: { trigger: field, start: "top top", end: "bottom bottom", scrub: .4, onUpdate: self => {
+    const next = Math.min(FIELD_FRAMES - 1, Math.round(self.progress * (FIELD_FRAMES - 1)));
+    if (next !== current) { current = next; draw(); }
+  } } }).to({}, { duration: 1 });
+  const resize = () => { canvas.width = 0; draw(); };
+  addEventListener("resize", resize);
+  return () => { io.disconnect(); removeEventListener("resize", resize); delete field.dataset.ready; };
 }
 
 export function TalhaoMotion() {

@@ -684,3 +684,24 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - Vídeos em `Downloads/talhao-piloto/` (`talhao-piloto-pc.mp4` em 1536×696 e `-celular.mp4`).
 
 **Próximo passo:** aguardar a aprovação do usuário; depois, o resto da página (vídeo da lavoura, a Marina, como o caso é analisado, dúvidas).
+**Página completa (20/11/2026):** depois do piloto aprovado ("Aprovado, seguir"), vieram as seções e os ajustes abaixo.
+- **"De perto, não é um número no contrato."** O filme da lavoura anda com a rolagem em canvas: são 100 quadros, carregados só a duas telas de distância. Sem movimento, fica a foto `lavoura.webp`.
+- **"Antes de qualquer caminho, a leitura do seu caso."** A colheitadeira parada e quatro passos ao longo de uma estrada tracejada em terra roxa:
+  1. a conversa;
+  2. a leitura dos contratos;
+  3. os caminhos que a lei prevê;
+  4. a decisão é sua.
+  Sem prazos nem resultados.
+- **"Marina Couto, advogada do agro":** a foto da varanda e o texto em primeira pessoa, com os temas "Crédito rural", "Contratos agrários" e "Atendimento na fazenda ou online". Sem OAB nem formação.
+- **Dúvidas (cinco):** prorrogação descrita como prevista "em algumas situações", penhora com defesas que dependem do caso, documentos, conversa na fazenda e honorários "explicados por escrito antes de qualquer contratação".
+- **Roteiro local `talhao`:** a situação, o formato e quando conversar.
+- **Ajustes da revisão:**
+  - o parágrafo da legenda ficou mais curto;
+  - a assinatura da Marina ficou maior e leva à seção dela;
+  - no celular, a folha da legenda ficou mais baixa (título curto, a situação da vez e o botão);
+  - o menu tem "Situações", "Como analisa", "A Marina" e "Dúvidas".
+- **Evidência:**
+  - `talhao-model.spec.ts` (4 testes) e `brand-kits.spec.ts` aprovados;
+  - página percorrida no PC a 125% e no celular, sem erros e sem rolagem lateral;
+  - vídeos `Downloads/talhao-piloto/talhao-pagina-{pc,celular}.mp4`.
+- **Falta:** aprovação do usuário; depois, gravar os filmes do Talhão e colocá-lo na homepage.
