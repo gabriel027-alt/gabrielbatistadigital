@@ -117,3 +117,5 @@
 }
 .short{display:none}
 @media(max-width:700px){.long{display:none}.short{display:inline}}
+/* Aura's cover is wider than the card: anchored left, where its headline is (4th card, see lib/clinics.ts order). */
+.grid li:nth-child(4) :global(img){object-position:left top}

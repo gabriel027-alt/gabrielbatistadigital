@@ -10,10 +10,11 @@ import type { FilmId } from "@/lib/project-films";
  */
 export const clinicsContact = buildWhatsAppUrl("Olá, Gabriel! Vi a página para clínicas e quero conversar sobre o site da minha clínica.");
 
-export const clinicProjects: { id: FilmId; name: string; sector: string; image: string; teaser?: boolean }[] = [
+/** Each card shows the top of its site (the hero), as the user asked (21/11/2026); the full film opens on click. */
+export const clinicProjects: { id: FilmId; name: string; sector: string; image: string }[] = [
   { id: "lume", name: "Lume Psicologia", sector: "Psicologia", image: "/images/projects/brands/lume-hero.webp" },
   { id: "sutil", name: "Sutil Cirurgia Plástica", sector: "Cirurgia plástica", image: "/images/projects/brands/sutil-hero.webp" },
-  { id: "forma", name: "Forma Odontologia", sector: "Odontologia estética", image: "/images/projects/brands/forma-hero.webp", teaser: false },
+  { id: "forma", name: "Forma Odontologia", sector: "Odontologia estética", image: "/images/projects/brands/forma-hero.webp" },
   { id: "aura", name: "Aura", sector: "Harmonização facial", image: "/images/projects/aura-film-poster.webp" },
 ];
 

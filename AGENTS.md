@@ -565,3 +565,4 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Um só canal: WhatsApp com mensagem pronta ("Vi a página para clínicas…"), lugares `clinicas-menu`, `clinicas-topo`, `clinicas-investimento` e `clinicas-final`; os filmes usam o diálogo da homepage, com o botão do WhatsApp fora do filme. Banner de consentimento e preferências de cookies como na homepage.
 - O cartão da Forma mostra a foto do topo (`teaser={false}` em `EditorialMedia`): o loop dela começa no quadro vazio do planejamento.
 - No sitemap; não está na lista de redirecionamentos da produção, então fica pública quando o site voltar ao ar. Testes em `tests/e2e/clinics-page.spec.ts`.
+- Ajuste pedido pelo usuário (21/11/2026): os cartões da página de clínicas mostram o topo (hero) de cada site, parado; o filme completo abre no clique. Antes, o da Sutil tocava a prévia da cena de recuperação. A capa da Aura fica ancorada à esquerda, onde está o título.

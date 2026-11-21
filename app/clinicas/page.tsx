@@ -50,7 +50,7 @@ export default function ClinicsPage() {
         <div className={styles.sectionHead}><h2 id="clinicas-projetos-titulo">{t.projectsTitle}</h2><p>{t.projectsNote}</p></div>
         <ul className={styles.grid}>
           {clinicProjects.map(project => <li key={project.id}>
-            <EditorialMedia name={project.name} image={project.image} film={project.id} compact teaser={project.teaser !== false} />
+            <EditorialMedia name={project.name} image={project.image} film={project.id} compact teaser={false} />
             <div className={styles.caption}><h3>{project.name}</h3><span>{project.sector}</span></div>
           </li>)}
         </ul>
