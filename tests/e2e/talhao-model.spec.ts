@@ -55,6 +55,8 @@ test("Talhão keeps the local conversation journey, also readable without JavaSc
   await page.goto("/modelos/agro");
   await expect(page.getByRole("heading", { level: 2, name: "Antes de qualquer caminho, a leitura do seu caso." })).toBeVisible();
   await expect(page.locator("#como-analisa li")).toHaveCount(4);
+  await expect(page.getByRole("heading", { level: 2, name: "É hora de conversar se…" })).toBeVisible();
+  await expect(page.locator("#sinais li")).toHaveCount(6);
   await expect(page.getByRole("heading", { level: 2, name: "Marina Couto" })).toBeVisible();
   await expect(page.locator("#duvidas details")).toHaveCount(5);
   await page.locator('[data-inquiry="talhao"]').getByRole("button", { name: "Conversar sobre a minha fazenda" }).click();

@@ -705,3 +705,17 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
   - página percorrida no PC a 125% e no celular, sem erros e sem rolagem lateral;
   - vídeos `Downloads/talhao-piloto/talhao-pagina-{pc,celular}.mp4`.
 - **Falta:** aprovação do usuário; depois, gravar os filmes do Talhão e colocá-lo na homepage.
+**Revisão final (20/11/2026),** a pedido do usuário ("faça a 1 e a 2 e finaliza com a 3, 4 e 5"):
+1. **"É hora de conversar se…"**, logo depois do mapa: seis sinais concretos marcados como num caderno de campo (notificação do banco, parcela antes da colheita, safra perdida, penhora, arrendamento vencendo, aditivo assinado), com a colheitadeira parada ao lado e "Quanto antes a situação é olhada, mais caminhos costumam estar abertos". Sem promessa. No menu, virou "É pra você?".
+2. **Título do topo maior** (até 58 px) e a lista das situações mais leve, em texto simples.
+3. **Filme da lavoura:**
+   - a frase acompanha a câmera, de "Da estrada de terra até a última fileira," para "é a terra que você trabalhou safra após safra.";
+   - a caixa ficou menor;
+   - uma queda de luz nas bordas disfarça a falta de nitidez dos quadros.
+4. **"Como analisa":** a colheitadeira saiu, e entraram as mãos com a terra roxa.
+5. **Rodapé com atalhos:** Situações, A Marina, Conversar.
+
+**Evidência:**
+- `talhao-model.spec.ts` (4 testes) e `brand-kits.spec.ts` aprovados;
+- página percorrida no PC a 125% e no celular, sem erros e sem rolagem lateral;
+- vídeos `Downloads/talhao-piloto/talhao-final-{pc,celular}.mp4`.

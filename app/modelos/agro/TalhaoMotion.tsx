@@ -131,12 +131,14 @@ function fieldFilm(root: HTMLElement) {
   const io = new IntersectionObserver(entries => { if (entries.some(e => e.isIntersecting)) { io.disconnect(); load(); } }, { rootMargin: "200% 0px" });
   io.observe(field);
   gsap.timeline({ scrollTrigger: { trigger: field, start: "top top", end: "bottom bottom", scrub: .4, onUpdate: self => {
+    // The sentence follows the camera: the road first, then the ground itself.
+    field.toggleAttribute("data-late", self.progress > .5);
     const next = Math.min(FIELD_FRAMES - 1, Math.round(self.progress * (FIELD_FRAMES - 1)));
     if (next !== current) { current = next; draw(); }
   } } }).to({}, { duration: 1 });
   const resize = () => { canvas.width = 0; draw(); };
   addEventListener("resize", resize);
-  return () => { io.disconnect(); removeEventListener("resize", resize); delete field.dataset.ready; };
+  return () => { io.disconnect(); removeEventListener("resize", resize); delete field.dataset.ready; field.removeAttribute("data-late"); };
 }
 
 export function TalhaoMotion() {

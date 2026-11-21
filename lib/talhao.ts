@@ -5,6 +5,16 @@
  */
 export const lawyer = { name: "Marina Couto", first: "Marina", role: "Advogada do agro" };
 
+/** "É hora de conversar se…": concrete signs a farmer recognises, with no promise attached. */
+export const signs = [
+  "Chegou uma notificação do banco.",
+  "A parcela vence antes da colheita.",
+  "Você perdeu parte da safra para a seca, a chuva ou uma praga.",
+  "Alguém falou em penhorar a máquina ou a terra.",
+  "O contrato de arrendamento ou de parceria está para vencer.",
+  "Você assinou um aditivo e não tem certeza do que mudou.",
+];
+
 /** How a case is read, in order: a real sequence of the work, with no deadlines or outcomes. */
 export const caseSteps = [
   { title: "A conversa", text: "Na fazenda, online ou no escritório. Você conta o que aconteceu com a safra, a dívida e a terra, do seu jeito." },

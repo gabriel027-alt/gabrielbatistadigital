@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { Work_Sans, Zilla_Slab } from "next/font/google";
 import { BrandInquiry } from "@/components/BrandInquiry";
-import { caseSteps, faq, lawyer, mapSize, plots } from "@/lib/talhao";
+import { caseSteps, faq, lawyer, mapSize, plots, signs } from "@/lib/talhao";
 import { TalhaoMark } from "./TalhaoMark";
 import { TalhaoMotion } from "./TalhaoMotion";
 import styles from "./talhao.module.css";
@@ -31,7 +31,7 @@ export default function TalhaoPage() {
     <TalhaoMotion />
     <header className={styles.header}>
       <a className={styles.logo} href="#talhao-inicio" aria-label="Talhão Advocacia do Agro, início"><TalhaoMark size={30} /><span>Talhão<small>Advocacia do agro</small></span></a>
-      <nav aria-label="Navegação principal"><a href="#talhao-inicio">Situações</a><a href="#como-analisa">Como analisa</a><a href="#marina">A {lawyer.first}</a><a href="#duvidas">Dúvidas</a></nav>
+      <nav aria-label="Navegação principal"><a href="#sinais">É pra você?</a><a href="#como-analisa">Como analisa</a><a href="#marina">A {lawyer.first}</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}><span className={styles.ctaLong}>Conversar com a {lawyer.first}</span><span className={styles.ctaShort}>Conversar</span></a>
     </header>
 
@@ -95,6 +95,19 @@ export default function TalhaoPage() {
         </div>
       </section>
 
+      {/* The farmer recognises himself: concrete signs, then the call. */}
+      <section className={styles.signs} id="sinais" aria-labelledby="sinais-titulo">
+        <div className={styles.signsCopy}>
+          <h2 id="sinais-titulo">É hora de conversar se…</h2>
+          <ul className={styles.signList}>{signs.map(sign => <li key={sign}>{sign}</li>)}</ul>
+          <p className={styles.signsNote}>Quanto antes a situação é olhada, mais caminhos costumam estar abertos.</p>
+          <a className={styles.primary} href={book}>Conversar com a {lawyer.first}</a>
+        </div>
+        <figure className={styles.signsImage}>
+          <Image src="/images/talhao/colheitadeira.webp" alt="Colheitadeira parada no galpão da fazenda, com a luz do meio-dia entrando pela porta" fill sizes="(max-width:900px) 100vw, 45vw" />
+        </figure>
+      </section>
+
       {/* Close to the ground: the field film runs with the scroll, from the road down into the soy rows. */}
       <section className={styles.field} aria-labelledby="perto-titulo" data-talhao-field>
         <div className={styles.fieldStage}>
@@ -102,7 +115,8 @@ export default function TalhaoPage() {
           <canvas className={styles.fieldCanvas} data-field-canvas aria-hidden="true" />
           <div className={styles.fieldCopy}>
             <h2 id="perto-titulo">De perto, não é um número no contrato.</h2>
-            <p data-field-line>É a terra que você trabalhou safra após safra.</p>
+            <p className={styles.fieldLine} data-field-line="0">Da estrada de terra até a última fileira,</p>
+            <p className={styles.fieldLine} data-field-line="1">é a terra que você trabalhou safra após safra.</p>
           </div>
         </div>
       </section>
@@ -111,7 +125,7 @@ export default function TalhaoPage() {
         <div className={styles.caseHead}>
           <h2 id="caso-titulo">Antes de qualquer caminho, a leitura do seu caso.</h2>
           <figure className={styles.caseImage}>
-            <Image src="/images/talhao/colheitadeira.webp" alt="Colheitadeira parada no galpão da fazenda, com a luz do meio-dia entrando pela porta" fill sizes="(max-width:900px) 100vw, 46vw" />
+            <Image src="/images/talhao/terra.webp" alt="Mãos de um produtor rural segurando um punhado de terra roxa, com a soja ao fundo" fill sizes="(max-width:900px) 100vw, 46vw" />
           </figure>
         </div>
         <ol className={styles.road}>
@@ -147,6 +161,7 @@ export default function TalhaoPage() {
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><TalhaoMark size={24} />Talhão Advocacia do Agro</p>
+      <nav aria-label="Rodapé"><a href="#talhao-inicio">Situações</a><a href="#marina">A {lawyer.first}</a><a href={book}>Conversar</a></nav>
       <p className={styles.credit}>© 2026 Talhão Advocacia do Agro. Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p>
     </footer>
   </div>;

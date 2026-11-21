@@ -51,12 +51,12 @@
 .legend{position:relative;z-index:2;width:min(500px,40vw);padding:6px 0 0;background:var(--palha)}
 .legend:before{content:"";display:block;width:56px;height:5px;margin-bottom:18px;background:var(--soja)}
 .place{margin:0 0 10px;font-size:14px;font-weight:600;color:var(--soja)}
-.legend h1{margin:0 0 12px;font-size:clamp(30px,2.7vw,42px);line-height:1.04}
+.legend h1{margin:0 0 14px;font-size:clamp(38px,min(3.7vw,8.4svh),58px);line-height:1.02}
 .sub{margin:0 0 18px;font-size:15px;line-height:1.55;color:var(--suave)}
 .steps{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:8px;border-top:1px solid var(--linha);padding-top:14px}
 .steps li{display:grid;grid-template-columns:30px 1fr;gap:10px;align-items:start}
 .stepNo{display:grid;place-items:center;width:26px;height:26px;border-radius:50%;background:var(--tronco);color:#fff;font:700 14px var(--talhao-display),serif}
-.steps strong{display:block;font-family:var(--talhao-display),serif;font-size:18px;line-height:1.25}
+.steps strong{display:block;font-family:var(--talhao-sans),sans-serif;font-weight:600;font-size:15px;line-height:1.3}
 .steps em{display:block;font-style:normal;font-size:14px;line-height:1.45;color:var(--suave)}
 .actions{margin-bottom:14px}
 .signature{display:inline-flex;align-items:center;gap:12px;min-height:44px;color:var(--suave);font-size:14px;text-decoration:none}
@@ -89,9 +89,29 @@
 .fieldStill{object-fit:cover}
 .fieldCanvas{position:absolute;inset:0;width:100%;height:100%;opacity:0}
 .field[data-ready] .fieldCanvas{opacity:1}
-.fieldCopy{position:absolute;left:5vw;bottom:6svh;z-index:2;max-width:560px;padding:22px 26px;border-radius:3px;background:#2a1a10e0;color:var(--palha)}
-.fieldCopy h2{margin:0 0 6px;font-size:clamp(28px,3vw,44px);line-height:1.08;color:#fff}
-.fieldCopy p{margin:0;font-size:17px}
+/* A soft darkening at the edges, like the falloff of a lens, keeps the eye on the rows and hides the frames' softness. */
+.fieldStage:after{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;box-shadow:inset 0 0 18vmax 4vmax #0a0603b3}
+.fieldCopy{position:absolute;left:5vw;bottom:6svh;z-index:2;max-width:460px;padding:18px 22px;border-radius:3px;background:#2a1a10d9;color:var(--palha)}
+.fieldCopy h2{margin:0 0 6px;font-size:clamp(24px,2.4vw,36px);line-height:1.1;color:#fff}
+.fieldCopy p{margin:0;font-size:16px}
+.page[data-brand-animated=true] .fieldLine{transition:opacity .4s}
+.page[data-brand-animated=true] .fieldLine[data-field-line="1"]{opacity:.25}
+.page[data-brand-animated=true] .field[data-late] .fieldLine[data-field-line="0"]{opacity:.45}
+.page[data-brand-animated=true] .field[data-late] .fieldLine[data-field-line="1"]{opacity:1}
+
+/* "É hora de conversar se…": a field notebook of signs, with the stopped machine beside it. */
+.signs{display:grid;grid-template-columns:minmax(0,55fr) minmax(0,45fr);gap:5vw;align-items:center;padding:110px 5vw}
+.signs h2{margin:0 0 28px;font-size:clamp(36px,4vw,60px);line-height:1.04}
+.signList{margin:0 0 24px;padding:0;list-style:none;border-top:2px solid var(--tronco)}
+.signList li{position:relative;padding:16px 0 16px 38px;border-bottom:1px solid var(--linha);font-size:18px;line-height:1.4}
+.signList li:before{content:"";position:absolute;left:4px;top:20px;width:16px;height:16px;border:2px solid var(--terra);border-radius:2px}
+.signList li:after{content:"";position:absolute;left:9px;top:21px;width:6px;height:11px;border:solid var(--terra);border-width:0 3px 3px 0;transform:rotate(45deg)}
+.signsNote{margin:0 0 22px;color:var(--suave)}
+.signsImage{position:relative;margin:0;aspect-ratio:4/5;border-radius:3px;overflow:hidden}
+.signsImage img{object-fit:cover;object-position:40% 50%}
+.footer nav{display:flex;flex-wrap:wrap;gap:22px}
+.footer nav a{color:var(--palha);font-size:14px;text-decoration:none;padding:10px 0}
+.footer nav a:hover{text-decoration:underline}
 .page[data-brand-animated=true] .field{height:300svh}
 .page[data-brand-animated=true] .fieldStage{position:sticky;top:0;height:100svh}
 
@@ -147,7 +167,11 @@
   .motionToggle{padding:0;justify-content:center}
   .hint{bottom:auto;top:14px}
   .header nav{display:none}
-  .caseHead,.lawyer{grid-template-columns:1fr}
+  .caseHead,.lawyer,.signs{grid-template-columns:1fr}
+  .signs{padding:72px 6vw;gap:32px}
+  .signsImage{aspect-ratio:4/3;order:-1}
+  .signList li{font-size:16px}
+  .legend h1{font-size:clamp(28px,8vw,36px)}
   .road{grid-template-columns:1fr;gap:30px;padding:0 0 0 40px}
   .road:before{top:0;bottom:0;left:13px;right:auto;border-top:0;border-left:4px dashed var(--terra)}
   .roadNo{top:0;left:-40px}
