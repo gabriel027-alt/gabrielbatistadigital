@@ -1,0 +1,119 @@
+/* Landing page for clinics (21/11/2026). Same foundation as the homepage (paper, ink, peach, copper, Bricolage for the
+   titles, Manrope for reading), calmer motion: the proof (projects) sits right under the promise. */
+.page{min-height:100vh;background:var(--paper);color:var(--ink);font-family:var(--font-manrope),system-ui,sans-serif}
+.page h1,.page h2,.page h3{font-family:var(--display);font-optical-sizing:auto;font-weight:500;letter-spacing:-.045em;color:#2b211d}
+.page :is(a,button,summary):focus-visible{outline:2px solid var(--copper);outline-offset:4px}
+.skip{position:absolute;left:16px;top:-80px;z-index:40;padding:12px 16px;background:#201714;color:var(--paper)}
+.skip:focus{top:12px}
+
+.header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;padding:16px 5vw;background:#faf6efe6;backdrop-filter:blur(10px)}
+.logo{font-weight:600;color:#2b211d;text-decoration:none;letter-spacing:-.02em}
+.logo span{color:#c4372b;margin:0 4px}
+.headerCall{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:0 18px;border-radius:999px;background:#201714;color:var(--paper);font-size:14px;font-weight:600;text-decoration:none}
+
+.hero{padding:clamp(48px,8vh,96px) 5vw clamp(40px,6vh,72px);max-width:1180px}
+.eyebrow{margin:0 0 18px;font-size:15px;font-weight:600;color:var(--copper)}
+.hero h1{margin:0;font-size:clamp(36px,4.6vw,76px);line-height:1.02;max-width:18ch;text-wrap:balance}
+.sub{margin:22px 0 0;max-width:56ch;font-size:clamp(16px,1.3vw,20px);line-height:1.5}
+.actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:30px}
+.primary,.secondary{display:inline-flex;align-items:center;gap:10px;min-height:52px;padding:0 24px;border-radius:999px;font-size:16px;font-weight:600;text-decoration:none;transition:background-color .2s,transform .2s}
+.primary{background:var(--copper);color:#fff}
+.primary:hover{background:#7f3c22;transform:translateY(-1px)}
+.secondary{border:1px solid #2b211d40;color:#2b211d}
+.secondary:hover{border-color:#2b211d}
+.who{margin:22px 0 0;font-size:14px;color:var(--soft)}
+
+.projects{padding:0 5vw clamp(64px,9vh,110px)}
+.sectionHead{display:flex;flex-wrap:wrap;align-items:baseline;justify-content:space-between;gap:10px 30px;margin-bottom:26px}
+.sectionHead h2{margin:0;font-size:clamp(26px,2.6vw,42px)}
+.sectionHead p{margin:0;font-size:14px;font-weight:600;color:var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:22px;margin:0;padding:0;list-style:none}
+.caption{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-top:12px}
+.caption h3{margin:0;font-size:18px;letter-spacing:-.03em}
+.caption span{font-size:13px;color:var(--soft);text-align:right}
+
+.block{padding:clamp(64px,10vh,120px) 5vw;border-top:1px solid #2b211d1a}
+.block>h2{margin:0 0 40px;font-size:clamp(30px,3.4vw,56px);max-width:20ch;line-height:1.05}
+.why,.steps,.cards,.after{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:34px;margin:0;padding:0;list-style:none}
+.why li>span,.steps li>span{display:block;margin-bottom:14px;font-family:var(--display);font-size:15px;color:var(--copper)}
+.why h3,.steps h3,.cards h3{margin:0 0 10px;font-size:22px}
+.why p,.steps p,.cards p,.after p{margin:0;font-size:16px;line-height:1.55}
+.steps{grid-template-columns:repeat(4,minmax(0,1fr))}
+.dark{background:#201714;color:#ecdcd0;border-top:0}
+.dark h2,.dark h3,.dark h4{color:var(--peach)}
+.cards{grid-template-columns:repeat(4,minmax(0,1fr))}
+.cards li{padding-top:18px;border-top:2px solid #ffbc9566}
+.afterTitle{margin:64px 0 24px;font-size:clamp(22px,2vw,30px)}
+.after li{padding-top:16px;border-top:1px solid #ffbc9533}
+.after h4{margin:0 0 8px;font-family:var(--display);font-size:18px;font-weight:500;letter-spacing:-.03em}
+
+.price{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:5vw}
+.price>h2{margin:0}
+.price ul{margin:16px 0 0;padding-left:20px;font-size:17px;line-height:1.7}
+.price p{margin:0;font-size:17px;line-height:1.55}
+.priceClose{margin:22px 0 26px!important;font-weight:600;color:#2b211d}
+
+.faq{max-width:860px;border-top:1px solid #2b211d26}
+.faq details{border-bottom:1px solid #2b211d26}
+.faq summary{display:flex;justify-content:space-between;gap:20px;padding:20px 0;min-height:44px;font-size:18px;font-weight:600;color:#2b211d;cursor:pointer;list-style:none}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary:after{content:"+";color:var(--copper);font-size:22px;line-height:1}
+.faq details[open] summary:after{content:"–"}
+.faq details p{margin:0 0 22px;max-width:64ch;font-size:16px;line-height:1.6}
+
+.final{padding:clamp(72px,12vh,140px) 5vw;background:var(--peach);color:#2b211d;text-align:center}
+.final h2{margin:0 auto;font-size:clamp(34px,4.4vw,72px);max-width:16ch;line-height:1.02}
+.final>p{margin:18px auto 30px;max-width:48ch;font-size:18px}
+.final .primary{background:#201714}
+.final .primary:hover{background:#000}
+.final .note{margin:14px 0 0;font-size:13px;color:#5a463d}
+
+.footer{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:16px;padding:28px 5vw;background:#201714;color:#cdb9ab;font-size:13px}
+.footer p{margin:0}
+.footer nav{display:flex;flex-wrap:wrap;gap:8px 22px}
+.footer a,.prefs{color:#f3dccb;text-decoration:underline;text-underline-offset:4px;background:none;border:0;padding:0;font:inherit;cursor:pointer;min-height:24px}
+
+@media(max-width:1000px){
+  .grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .cards,.steps{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:700px){
+  .header{padding:12px 6vw}
+  .hero{padding:36px 6vw 40px}
+  .hero h1{font-size:clamp(32px,9vw,42px)}
+  .actions{flex-direction:column;align-items:stretch}
+  .primary,.secondary{justify-content:center}
+  .projects{padding:0 6vw 64px}
+  .grid{gap:26px 14px}
+  .caption{flex-direction:column;gap:2px}
+  .caption h3{font-size:15px}
+  .caption span{text-align:left;font-size:12px}
+  .block{padding:64px 6vw}
+  .block>h2{margin-bottom:28px}
+  .why,.cards,.steps,.after{grid-template-columns:1fr;gap:26px}
+  .price{grid-template-columns:1fr;gap:20px}
+  .final{padding:72px 6vw}
+  .footer{flex-direction:column;align-items:flex-start}
+}
+/* The homepage foundation colours every link on its page: the calls keep their own colours here. */
+.page .headerCall.headerCall{color:var(--paper)}
+.page .primary.primary{color:#fff}
+.page .secondary.secondary{color:#2b211d}
+.page .final .primary.primary{color:var(--paper)}
+.final .note{margin:14px auto 0}
+/* Computers: the promise on the left and the four projects on the right, both in the first screen. */
+@media(min-width:1001px){
+  .top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.95fr);gap:4vw;align-items:center;min-height:calc(100svh - 76px);padding:0 5vw}
+  .top .hero{padding:32px 0}
+  .top .hero h1{font-size:clamp(34px,3.4vw,60px)}
+  .top .projects{padding:32px 0}
+  .top .sectionHead{margin-bottom:16px}
+  .top .sectionHead h2{font-size:clamp(20px,1.6vw,26px)}
+  .top .sectionHead p{font-size:13px}
+  .top .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
+  .top .caption{margin-top:8px}
+  .top .caption h3{font-size:15px}
+  .top .caption span{font-size:12px}
+}
+.short{display:none}
+@media(max-width:700px){.long{display:none}.short{display:inline}}

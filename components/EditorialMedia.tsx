@@ -11,7 +11,8 @@ import styles from "@/app/editorial.module.css";
 const subscribe = () => () => {};
 
 /** `decorative`: a visual copy (the second lap of the projects strip) that stays clickable but out of the tab order. */
-export function EditorialMedia({ name, image, film, href, compact = false, decorative = false, locale = "pt" }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean; decorative?: boolean; locale?: Locale }) {
+/** `teaser={false}`: the card keeps its still (for a film whose short loop starts on an empty frame), the film still opens. */
+export function EditorialMedia({ name, image, film, href, compact = false, decorative = false, locale = "pt", teaser = true }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean; decorative?: boolean; locale?: Locale; teaser?: boolean }) {
   const t = homeCopy[locale].media;
   const video = useRef<HTMLVideoElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -39,7 +40,7 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
     reduced.addEventListener("change", update); document.addEventListener("visibilitychange", update); document.addEventListener("editorial-modal", update);
     return () => { observer.disconnect(); mutations.disconnect(); reduced.removeEventListener("change", update); document.removeEventListener("visibilitychange", update); document.removeEventListener("editorial-modal", update); el.pause(); };
   }, [film, hydrated]);
-  const visual = <><Image src={image} alt={`${t.interface} ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? t.watch : t.explore} <Arrow size={17}/></span></>;
+  const visual = <><Image src={image} alt={`${t.interface} ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && teaser && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? t.watch : t.explore} <Arrow size={17}/></span></>;
   const tab = decorative ? -1 : undefined;
   if (!film) return <Link className={styles.media} href={href || "#editorial-work"} tabIndex={tab}>{visual}</Link>;
   const data = { ...films[film], ...filmText(film, locale) };

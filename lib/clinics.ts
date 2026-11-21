@@ -1,0 +1,74 @@
+import { buildWhatsAppUrl } from "@/lib/whatsapp";
+import type { FilmId } from "@/lib/project-films";
+
+/**
+ * The landing page for clinics (/clinicas, 21/11/2026), built for campaigns: the homepage stays general, this page
+ * speaks to one niche. Decisions (user, 21/11/2026): no price on the page (a range is given in the first conversation),
+ * no delivery time and no reply-time promise until he defines them. Same rules as the homepage: no invented clients,
+ * numbers, results, testimonials or claims about the councils' rules. The projects are the brands made for the
+ * portfolio, shown as films.
+ */
+export const clinicsContact = buildWhatsAppUrl("Olá, Gabriel! Vi a página para clínicas e quero conversar sobre o site da minha clínica.");
+
+export const clinicProjects: { id: FilmId; name: string; sector: string; image: string; teaser?: boolean }[] = [
+  { id: "lume", name: "Lume Psicologia", sector: "Psicologia", image: "/images/projects/brands/lume-hero.webp" },
+  { id: "sutil", name: "Sutil Cirurgia Plástica", sector: "Cirurgia plástica", image: "/images/projects/brands/sutil-hero.webp" },
+  { id: "forma", name: "Forma Odontologia", sector: "Odontologia estética", image: "/images/projects/brands/forma-hero.webp", teaser: false },
+  { id: "aura", name: "Aura", sector: "Harmonização facial", image: "/images/projects/aura-film-poster.webp" },
+];
+
+export const clinicsCopy = {
+  eyebrow: "Sites para clínicas",
+  title: "Um site que faz o paciente certo confiar na sua clínica antes da primeira consulta.",
+  sub: "Com a identidade da sua clínica, não de um modelo pronto. Para estética, odontologia, cirurgia plástica, psicologia e outras especialidades.",
+  talk: "Conversar sobre o site da minha clínica",
+  talkShort: "Conversar sobre a minha clínica",
+  projects: "Ver projetos de clínicas",
+  who: "Eu sou Gabriel Batista. Desenho e programo cada site, e a conversa é direto comigo.",
+  projectsTitle: "Clínicas, cada uma com a sua cara.",
+  projectsNote: "Clique num projeto para ver o filme do site, do início ao fim.",
+  whyTitle: "O que o site da sua clínica precisa fazer",
+  why: [
+    { title: "Passar confiança antes da consulta", text: "O paciente pesquisa antes de marcar. Um site com as suas fotos, as suas cores e o seu jeito de atender mostra a clínica que ele vai encontrar, e não uma página que parece a do concorrente." },
+    { title: "Explicar cada tratamento", text: "O que é, para quem é, o que esperar e as dúvidas que mais aparecem, numa página que o paciente entende sem esforço." },
+    { title: "Levar até a conversa", text: "Em cada parte da página fica claro o próximo passo, até o paciente chamar a clínica ou pedir um horário." },
+  ],
+  includedTitle: "O que entra no site",
+  included: [
+    { title: "Página da clínica", text: "Tratamentos, dúvidas frequentes e o caminho até o agendamento, no celular e no computador." },
+    { title: "Identidade própria", text: "Cores tiradas das fotos da própria clínica e uma tipografia escolhida para a marca." },
+    { title: "Movimento com sentido", text: "Uma cena própria mostra o espaço, o tratamento ou a recuperação, como nos projetos acima." },
+    { title: "Feito e conferido por mim", text: "Eu desenho e programo o site e confiro cada página antes de ir ao ar." },
+  ],
+  afterTitle: "Depois do site, se fizer sentido",
+  after: [
+    { title: "Google Meu Negócio & Maps", text: "O perfil da clínica completo e atualizado, com horários, fotos e caminho, para quem busca por perto." },
+    { title: "Google Ads & Instagram", text: "Campanhas que levam quem procura o tratamento até o site." },
+    { title: "Automação no WhatsApp", text: "Uma primeira resposta automática tira as dúvidas mais comuns e encaminha o paciente até o agendamento." },
+  ],
+  stepsTitle: "Como funciona",
+  steps: [
+    { title: "Conversa", text: "Você conta como a clínica atende hoje, quem são os pacientes e o que o site precisa resolver." },
+    { title: "Proposta", text: "Eu proponho as páginas, o conteúdo e o que mais faz sentido para a clínica, com o investimento de cada parte." },
+    { title: "Design & programação", text: "Desenho a partir das fotos e da marca da clínica e programo o site. Você acompanha o andamento antes de ir ao ar." },
+    { title: "No ar", text: "O site é publicado conferido no celular e no computador, pronto para receber os pacientes." },
+  ],
+  priceTitle: "Investimento",
+  priceLead: "Cada clínica pede um site diferente, por isso não existe preço de tabela. O valor depende de:",
+  priceFactors: ["quantas páginas e tratamentos o site vai explicar;", "se terá uma cena animada própria, como nos projetos acima;", "fotos e textos: se a clínica já tem ou se é preciso organizar;", "o que vem depois do site, como Google, anúncios e WhatsApp."],
+  priceClose: "Na primeira conversa, depois de entender a sua clínica, eu já te passo uma faixa de investimento.",
+  priceCall: "Pedir uma faixa de investimento",
+  faqTitle: "Perguntas frequentes",
+  faq: [
+    { q: "O site é feito a partir de um modelo?", a: "Não. Eu desenho a partir das fotos e da marca da sua clínica e programo o site. Por isso nenhum projeto se parece com o outro." },
+    { q: "Funciona bem no celular?", a: "Sim. Cada página é conferida no celular e no computador antes de ir ao ar." },
+    { q: "Eu acompanho o projeto?", a: "Sim. Você acompanha o andamento e vê o site antes de ele ir ao ar." },
+    { q: "Quanto custa?", a: "Depende do que a clínica precisa: páginas, cena animada, fotos e textos, e o que vem depois do site. Na primeira conversa eu já te passo uma faixa." },
+    { q: "Você também cuida do Google e dos anúncios?", a: "Sim, se fizer sentido para a clínica: perfil no Google Meu Negócio, campanhas no Google e no Instagram e uma primeira resposta automática no WhatsApp. Tudo entra na proposta, com o investimento de cada parte." },
+  ],
+  finalTitle: "Vamos conversar sobre a sua clínica.",
+  finalText: "Conte como a clínica atende hoje e o que você quer que o site resolva.",
+  finalCall: "Conversar no WhatsApp",
+  finalNote: "Abre uma conversa no WhatsApp.",
+  portfolio: "Ver o portfólio completo",
+};

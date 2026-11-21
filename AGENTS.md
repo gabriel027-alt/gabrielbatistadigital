@@ -556,3 +556,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - A dica de rolagem saiu do topo: o botão "Ver projetos ↓" já diz isso. Fica: "Design & desenvolvimento web", promessa, quem é o público, os dois botões e a assinatura.
   - PC: assinatura menor (`clamp(34px,3.4vw,60px)`), que antes ficava 12% sobre o ombro; agora 0% de texto sobre ele em 1536×696 e 1920×954.
   - Celular: a foto ocupa os 58% de cima da tela e se funde no escuro do topo; assinatura, promessa e botões ficam abaixo dela, sem cobrir o rosto. Em telas com até 760 px de altura, a linha do público some para tudo caber acima do menu.
+
+## Página para clínicas (21/11/2026, pedido do usuário, aguardando aprovação)
+
+- `/clinicas` (`app/clinicas/`, textos em `lib/clinics.ts`), só em português, para campanhas. A homepage continua geral.
+- Ordem: resultado no título ("Um site que faz o paciente certo confiar na sua clínica antes da primeira consulta."), quem é o público, WhatsApp e "Ver projetos de clínicas"; no PC, os quatro projetos de saúde (Lume, Sutil, Forma e Aura) dividem a primeira tela com a promessa. Depois: o que o site precisa fazer, o que entra (e "Depois do site"), como funciona, investimento, perguntas e chamada final.
+- **Sem preço, por decisão do usuário (21/11/2026):** a seção "Investimento" explica o que define o valor e diz que a faixa vem na primeira conversa. Sem prazo de entrega nem promessa de tempo de resposta até ele defini-los. Ele tem como referência o mercado (landing page de clínica em torno de R$ 3 mil, com CRM e outros serviços à parte), mas nada disso entra na página.
+- Um só canal: WhatsApp com mensagem pronta ("Vi a página para clínicas…"), lugares `clinicas-menu`, `clinicas-topo`, `clinicas-investimento` e `clinicas-final`; os filmes usam o diálogo da homepage, com o botão do WhatsApp fora do filme. Banner de consentimento e preferências de cookies como na homepage.
+- O cartão da Forma mostra a foto do topo (`teaser={false}` em `EditorialMedia`): o loop dela começa no quadro vazio do planejamento.
+- No sitemap; não está na lista de redirecionamentos da produção, então fica pública quando o site voltar ao ar. Testes em `tests/e2e/clinics-page.spec.ts`.
