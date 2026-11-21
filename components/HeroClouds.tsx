@@ -132,6 +132,10 @@ type Connection = { saveData?: boolean };
 const RISE_FOR = 5;
 /** The sea of clouds behind the portrait. Off since direction A (21/11/2026); true brings it back on computers. */
 const CLOUD_SEA = false;
+/** Arrival speed of the points that form the portrait: 2 = formed in about 0.8 s instead of 1.6 s (21/11/2026). */
+const GATHER_SPEED = 2;
+/** After the arrival the breathing points fade out and the canvas rests (seconds after load), 21/11/2026. */
+const POINTS_REST = 9;
 /** The clouds are drawn at this fraction of the canvas size and scaled up: they are soft, it costs nothing to the eye. */
 const CLOUD_SCALE = .62;
 /** If the images are not in by then, he is not hidden any longer: no gathering, the photo simply shows. */
@@ -404,7 +408,12 @@ export function HeroClouds() {
       const dt = Math.min(50, previous ? now - previous : 16) / 16.7;
       previous = now;
       if (!gatherStart) { gatherStart = html.dataset.heroAssemble !== undefined && gatherCount ? now : -1; if (gatherStart > 0) html.dataset.heroForming = ""; }
-      const g = gatherStart > 0 ? (now - gatherStart) / 1000 : 99;
+      const g = gatherStart > 0 ? (now - gatherStart) / 1000 * GATHER_SPEED : 99;
+      // Resting: with no sea of clouds, once the points have faded the canvas is cleared and stops drawing.
+      const restIn = 1 - Math.min(1, Math.max(0, (now - born) / 1000 - POINTS_REST) / 2);
+      if (!CLOUD_SEA && restIn <= 0 && g > 3) {
+        gl.bindFramebuffer(gl.FRAMEBUFFER, null); gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT); show(); frame = 0; return;
+      }
       // Formed once the points have mostly landed: the dot may be born.
       if (g >= 1.6) formed();
       pen.globalCompositeOperation = "destination-out";
@@ -456,7 +465,7 @@ export function HeroClouds() {
       gl.uniform1f(u(emitProgram, "size"), pointSize);
       gl.uniform1f(u(emitProgram, "aspect"), aspect);
       gl.uniform1f(u(emitProgram, "tint"), .7);
-      gl.uniform1f(u(emitProgram, "emit"), Math.min(1, Math.max(0, (Math.min(g, 99) - 2.1) / 1.2)) * (1 - Math.min(1, gone / .3)));
+      gl.uniform1f(u(emitProgram, "emit"), Math.min(1, Math.max(0, (Math.min(g, 99) - 2.1) / 1.2)) * (1 - Math.min(1, gone / .3)) * (CLOUD_SEA ? 1 : restIn));
       gl.uniform2f(u(emitProgram, "hand"), hand.x, hand.y);
       gl.uniform1f(u(emitProgram, "handOn"), Math.max(0, 1 - (now - hand.at) / 1200));
       points(emitProgram, emitBuffer, emitCount, [["origin", 2], ["seed", 2]]);

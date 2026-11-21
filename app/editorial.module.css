@@ -442,3 +442,31 @@
   .motionControl[aria-pressed=true]:before{width:0;height:0;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent var(--ink)}
 }
 @media(min-width:701px){.motionControl .motionLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}
+
+/* ——— Conversion audit, 21/11/2026 ———
+   The proof comes earlier: the hand scene and the folder are shorter, and the projects sit in a still grid right
+   after the folder (four columns on computers; one card at a time, dragged sideways, on phones). */
+.page[data-editorial-animated=true] .fusionTrack{height:150vh}
+.page[data-editorial-animated=true] .workTrack{height:135vh}
+@media(max-width:700px){
+  .page[data-editorial-animated=true] .fusionTrack{height:140vh}
+  .page[data-editorial-animated=true] .workTrack{height:125vh}
+}
+.projectGrid{position:relative;z-index:2;padding:clamp(8px,2vh,24px) 5vw clamp(70px,11vh,130px)}
+.gridList{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:34px 22px;margin:0;padding:0;list-style:none}
+.gridList .stripItem{width:auto}
+.gridList .media .teaser{transition:opacity .25s}
+@media(max-width:1000px){.gridList{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:700px){
+  .projectGrid{padding:8px 0 64px}
+  .gridList{grid-template-columns:none;grid-auto-flow:column;grid-auto-columns:80vw;gap:14px;overflow-x:auto;scroll-snap-type:x mandatory;padding:0 10vw 8px;scrollbar-width:none}
+  .gridList::-webkit-scrollbar{display:none}
+  .gridList .stripItem{scroll-snap-align:center}
+}
+/* Second pass: the folder opens while its section scrolls by (no pinned stage), so the grid follows at once. */
+.page[data-editorial-animated=true] .fusionTrack{height:120vh}
+.page[data-editorial-animated=true] .workTrack{height:auto}
+.page[data-editorial-animated=true] .workStage{position:relative;height:auto;padding:12vh 0 4vh}
+@media(max-width:700px){.page[data-editorial-animated=true] .fusionTrack{height:115vh}.page[data-editorial-animated=true] .workTrack{height:auto}}
+/* Aura and Orla covers are wider than the card: anchored left, where their headlines are. */
+.gridList li:nth-child(n+7) .media>img{object-position:left top}

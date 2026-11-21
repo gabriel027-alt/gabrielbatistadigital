@@ -10,7 +10,6 @@ import { EditorialMotion } from "@/components/EditorialMotion";
 import { EditorialMedia } from "@/components/EditorialMedia";
 import { HeroClouds } from "@/components/HeroClouds";
 import { HandParticles } from "@/components/HandParticles";
-import { WorkParticles } from "@/components/WorkParticles";
 import { TalkParticles } from "@/components/TalkParticles";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { ContactTracking } from "@/components/ContactTracking";
@@ -62,10 +61,10 @@ const readTrack = <span className={styles.readTrack} aria-hidden="true"><span cl
 
 export function EditorialHome({ locale }: { locale: Locale }) {
   const t = homeCopy[locale], contact = contactUrl(locale), legal = privacyCopy[locale];
-  /** One project of the strip; the second lap of the loop is a decorative copy, clickable but hidden from assistive tech. */
-  const project = (work: Work, decorative = false) => {
+  /** One project of the grid: the top of its site, the film on click and the short preview on hover. */
+  const project = (work: Work) => {
     const data = work.kit ? kit(work.kit) : undefined;
-    return <li key={work.name} className={styles.stripItem}><EditorialMedia name={work.name} image={work.image} film={work.id} compact decorative={decorative} locale={locale}/>
+    return <li key={work.name} className={styles.stripItem}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
       <div className={styles.stripCaption}><div><h3>{work.name}</h3><span>{t.sectors[work.id]}</span></div>
         {data && <dl className={styles.spec}><div><dt className={styles.sr}>{t.specFont}</dt><dd>{data.typography.display}</dd></div><div><dt className={styles.sr}>{t.specColors}</dt><dd className={styles.swatches}>{Object.values(data.palette).map(hex => <span key={hex} style={{ background: hex }} title={hex}><i>{hex}</i></span>)}</dd></div></dl>}
       </div></li>;
@@ -129,18 +128,13 @@ export function EditorialHome({ locale }: { locale: Locale }) {
           </div>
         </div>
       </section>
-      {/* The folder: the brand dot drops onto its tab like a click, the folder opens and the projects come out
-          as an endless strip of films. Without motion the folder is shown open with the strip beside it. */}
+      {/* The folder (shortened 21/11/2026): the brand dot drops onto its tab, the folder opens, and right below it the
+          projects sit in a still grid, each showing the top of its site; the short preview plays only on hover. The
+          endless strip and the points that formed the cards were removed: they delayed and hid the proof. */}
       <section className={styles.work} id="editorial-work" data-editorial-theme="paper" aria-labelledby="editorial-work-title">
         <div className={styles.workTrack} data-work-track>
           <div className={styles.workStage} data-work-stage>
             <h2 id="editorial-work-title" className={styles.projectsWord} data-work-word>{t.projects}</h2><p className={styles.workProof} data-work-note>{t.workProof}</p>
-            <div className={styles.strip} data-strip>
-              <div className={styles.stripTrack}>
-                <ul className={styles.stripList}>{works.map(work => project(work))}</ul>
-                <ul className={`${styles.stripList} ${styles.stripCopy}`} aria-hidden="true">{works.map(work => project(work, true))}</ul>
-              </div>
-            </div>
             <div className={styles.pasta} data-pasta aria-hidden="true">
               <span className={styles.pastaBack}><span className={styles.pastaTab}/></span>
               <span className={styles.pastaSheet} data-pasta-sheet/>
@@ -148,13 +142,13 @@ export function EditorialHome({ locale }: { locale: Locale }) {
               <span className={styles.pastaRing} data-pasta-ring/>
               <span className={`${styles.tittle} ${styles.pastaDot}`} data-pasta-dot/>
             </div>
-            {/* The same points pour out of the opening folder and form each project card, in its own colours. */}
-            <WorkParticles />
             <p className={styles.workNote} data-work-note>{t.workNote}</p>
           </div>
         </div>
-      </section>
-      <section className={styles.services} id="editorial-services" data-editorial-theme="paper" aria-labelledby="editorial-services-title">
+        <div className={styles.projectGrid} data-strip>
+          <ul className={styles.gridList}>{works.map(work => project(work))}</ul>
+        </div>
+      </section>      <section className={styles.services} id="editorial-services" data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>{t.servicesNote}</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>{t.servicesTitle[0]}<br/>{t.servicesTitle[1]}</h2>
         <div className={styles.serviceList} data-read-list>{t.services.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
         {/* Around the site: how the patient finds the clinic and gets to the calendar. Described as work done, with no

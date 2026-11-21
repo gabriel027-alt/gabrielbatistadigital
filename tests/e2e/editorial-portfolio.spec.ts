@@ -2,9 +2,9 @@ import { test, expect } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
 const route = "/";
-// The projects strip: the first lap is the real list; the second is a decorative copy for the endless loop.
+// The projects (21/11/2026): a still grid right after the folder, one list, no decorative copy.
 const projects = '#editorial-work ul:not([aria-hidden])';
-const toEndOfFolder = (page: import("@playwright/test").Page) => page.locator('[data-work-track]').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY + (el as HTMLElement).offsetHeight - innerHeight, behavior: 'instant' }));
+const toGrid = (page: import("@playwright/test").Page) => page.locator('[data-strip]').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - innerHeight * .2, behavior: 'instant' }));
 
 test("Editorial reconstruction retains a complete readable mobile and motion-reduced experience", async ({ page }) => {
   await page.emulateMedia({ reducedMotion: "reduce" });
@@ -21,28 +21,35 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
     await page.setViewportSize({ width, height: 900 });
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
-  // Without motion the folder is open and the strip is a single row scrolled by hand (no repeated copy).
+  // Without motion the folder is open and the projects are one grid (no repeated copy).
   await expect(page.locator(`${projects} > li`)).toHaveCount(8);
-  await expect(page.locator('#editorial-work ul[aria-hidden]')).toBeHidden();
-  expect(await page.locator('[data-strip]').evaluate(el => getComputedStyle(el).overflowX)).toBe('auto');
+  await expect(page.locator('#editorial-work ul[aria-hidden]')).toHaveCount(0);
   expect(videos).toEqual([]);
   const audit = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
   expect(audit.violations).toEqual([]);
 });
 
-test("Visible loops load locally, pause with the control and open a full film with keyboard return", async ({ page }) => {
+test("Previews play only on hover, never with motion paused, and a full film opens with keyboard return", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(route);
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated','true');
   expect(await page.locator('video[data-editorial-loop][src]').count()).toBe(0);
   await expect(page.getByRole('link', { name: 'clique' })).toHaveCount(1);
-  await toEndOfFolder(page);
-  // The strip keeps moving, so whichever loops are on screen play; they all stop with the motion control.
+  await toGrid(page);
+  await page.waitForTimeout(900);
+  // The cards show the top of each site; nothing plays until the pointer is on a card.
   const playing = () => page.locator('#editorial-work video[data-editorial-loop][src]').evaluateAll(nodes => nodes.filter(node => !(node as HTMLVideoElement).paused).length);
-  await expect.poll(playing).toBeGreaterThan(0);
+  expect(await playing()).toBe(0);
+  const first = page.locator(projects).getByRole('button').first();
+  await first.hover();
+  await expect.poll(playing).toBe(1);
   expect(await page.locator('#editorial-work video[data-editorial-loop][src]').first().getAttribute('src')).toMatch(/^\/videos\/projects\/.*-loop\.mp4$/);
-  await page.getByRole('button',{name:'Pausar movimento'}).click();
+  await page.mouse.move(4, 4);
   await expect.poll(playing).toBe(0);
+  await page.getByRole('button',{name:'Pausar movimento'}).click();
+  await first.hover();
+  await page.waitForTimeout(600);
+  expect(await playing()).toBe(0);
   const opener = page.locator(projects).getByRole('button',{name:'Ver filme completo: Aura'});
   await opener.click();
   const dialog = page.getByRole('dialog',{name:'Filme do projeto Aura'});
@@ -57,7 +64,8 @@ test("Visible loops load locally, pause with the control and open a full film wi
 test("Data saving suppresses teaser downloads", async ({ page }) => {
   await page.addInitScript(() => Object.defineProperty(navigator,'connection',{value:{saveData:true},configurable:true}));
   await page.goto(route);
-  await toEndOfFolder(page);
+  await toGrid(page);
+  await page.locator(projects).getByRole('button').first().hover();
   await page.waitForTimeout(800);
   expect(await page.locator('video[data-editorial-loop][src]').count()).toBe(0);
 });
@@ -81,33 +89,31 @@ test("Editorial motion preview decodes in the browser",async({page})=>{
  await video.evaluate(el=>(el as HTMLVideoElement).play());await expect.poll(()=>video.evaluate(el=>(el as HTMLVideoElement).currentTime)).toBeGreaterThan(.3);
 });
 
-test('The dot opens the folder, the strip comes out reversibly and pause restores readable geometry', async ({ page }) => {
+test('The dot opens the folder, the projects follow in a still grid, and pause restores readable geometry', async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   await page.goto(route);
   await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
-  const track = page.locator('[data-work-track]');
-  const move = async (fraction: number) => {
-    await track.evaluate((el, f) => scrollTo({ top: el.getBoundingClientRect().top + scrollY + ((el as HTMLElement).offsetHeight - innerHeight) * f, behavior: 'instant' }), fraction);
+  const work = page.locator('#editorial-work');
+  const at = async (fraction: number) => {
+    await work.evaluate((el, f) => scrollTo({ top: el.getBoundingClientRect().top + scrollY - innerHeight * f, behavior: 'instant' }), fraction);
     await page.waitForTimeout(1300);
   };
-  const state = () => page.evaluate(() => ({
-    strip: Number(getComputedStyle(document.querySelector('[data-strip]')!).opacity),
-    // The dot reaches the tab from the "g." above (a carrier dot travels between them), so it is hidden until it lands.
-    dot: getComputedStyle(document.querySelector('[data-pasta-dot]')!).visibility,
-  }));
-  // Closed folder, dot not landed yet; then the strip is out; back at the start everything is put away again.
-  await move(0);
-  expect(await state()).toEqual({ strip: 0, dot: 'hidden' });
-  await move(1);
-  expect(await state()).toEqual({ strip: 1, dot: 'visible' });
-  // The strip must not have run ahead while it was hidden; the first selected project opens fully on screen.
-  expect(await page.locator(`${projects} > li`).first().evaluate(el => el.getBoundingClientRect().left)).toBeGreaterThanOrEqual(-2);
-  await move(0);
-  expect(await state()).toEqual({ strip: 0, dot: 'hidden' });
+  const dot = () => page.locator('[data-pasta-dot]').evaluate(el => getComputedStyle(el).visibility);
+  // Before the section enters, the dot has not landed on the tab; once the folder is open it has.
+  await at(1.2);
+  expect(await dot()).toBe('hidden');
+  await at(.1);
+  expect(await dot()).toBe('visible');
+  // The grid is still: the first card does not move while the visitor reads.
+  await toGrid(page);
+  await page.waitForTimeout(1200);
+  const first = page.locator(`${projects} > li`).first();
+  const before = await first.evaluate(el => el.getBoundingClientRect().left);
+  await page.waitForTimeout(1200);
+  expect(await first.evaluate(el => el.getBoundingClientRect().left)).toBe(before);
+  expect(await first.evaluate(el => Number(getComputedStyle(el).opacity))).toBe(1);
   await page.getByRole('button', { name: 'Pausar movimento' }).click();
   await expect(page.locator('[data-editorial]')).not.toHaveAttribute('data-editorial-animated', 'true');
-  expect(await page.locator('[data-strip]').evaluate(el => getComputedStyle(el).transform)).toBe('none');
-  expect((await state()).strip).toBe(1);
   await expect(page.locator('[data-hook] > h2')).toHaveCount(1);
   await expect(page.locator('[data-hook] > h2 a')).toBeVisible();
   await page.getByRole('button', { name: 'Ativar movimento' }).click();

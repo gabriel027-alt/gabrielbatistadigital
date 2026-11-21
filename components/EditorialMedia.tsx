@@ -12,7 +12,7 @@ const subscribe = () => () => {};
 
 /** `decorative`: a visual copy (the second lap of the projects strip) that stays clickable but out of the tab order. */
 /** `teaser={false}`: the card keeps its still (for a film whose short loop starts on an empty frame), the film still opens. */
-export function EditorialMedia({ name, image, film, href, compact = false, decorative = false, locale = "pt", teaser = true }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean; decorative?: boolean; locale?: Locale; teaser?: boolean }) {
+export function EditorialMedia({ name, image, film, href, compact = false, decorative = false, locale = "pt", teaser = true }: { name: string; image: string; film?: FilmId; href?: string; compact?: boolean; decorative?: boolean; locale?: Locale; teaser?: boolean | "hover" }) {
   const t = homeCopy[locale].media;
   const video = useRef<HTMLVideoElement>(null);
   const dialog = useRef<HTMLDialogElement>(null);
@@ -23,6 +23,22 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
   const [opened, setOpened] = useState(false);
   useEffect(() => {
     const el = video.current, root = el?.closest<HTMLElement>("[data-editorial]");
+    // "hover": the card shows the top of the site; the short preview plays only while the pointer or the focus is on it.
+    if (teaser === "hover" && el && root && film) {
+      const host = el.parentElement!;
+      const reduced = matchMedia("(prefers-reduced-motion: reduce)");
+      const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
+      el.style.opacity = "0";
+      const on = () => {
+        if (root.dataset.editorialMotion === "off" || reduced.matches || connection?.saveData) return;
+        if (!el.getAttribute("src")) el.src = films[film].loop || `/videos/projects/${film}-loop.mp4`;
+        el.style.opacity = "1"; void el.play().catch(() => {});
+      };
+      const off = () => { el.pause(); el.style.opacity = "0"; };
+      host.addEventListener("pointerenter", on); host.addEventListener("focus", on);
+      host.addEventListener("pointerleave", off); host.addEventListener("blur", off);
+      return () => { host.removeEventListener("pointerenter", on); host.removeEventListener("focus", on); host.removeEventListener("pointerleave", off); host.removeEventListener("blur", off); el.pause(); };
+    }
     if (!el || !root || !film) return;
     let visible = false;
     const reduced = matchMedia("(prefers-reduced-motion: reduce)");
@@ -39,7 +55,7 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
     const mutations = new MutationObserver(update); mutations.observe(root, { attributes: true, attributeFilter: ["data-editorial-motion"] });
     reduced.addEventListener("change", update); document.addEventListener("visibilitychange", update); document.addEventListener("editorial-modal", update);
     return () => { observer.disconnect(); mutations.disconnect(); reduced.removeEventListener("change", update); document.removeEventListener("visibilitychange", update); document.removeEventListener("editorial-modal", update); el.pause(); };
-  }, [film, hydrated]);
+  }, [film, hydrated, teaser]);
   const visual = <><Image src={image} alt={`${t.interface} ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && teaser && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? t.watch : t.explore} <Arrow size={17}/></span></>;
   const tab = decorative ? -1 : undefined;
   if (!film) return <Link className={styles.media} href={href || "#editorial-work"} tabIndex={tab}>{visual}</Link>;

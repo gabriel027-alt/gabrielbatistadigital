@@ -181,8 +181,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             .fromTo(copy, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .08, ease: "power2.out" }, .88)
             .to({}, { duration: .001 }, .999);
           render();
-          // The hand is alive: a slow breath, and on a computer it leans a little toward the pointer.
-          gsap.to(body, { y: -5, rotation: .6, transformOrigin: "80% 100%", duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
+          // On a computer the hand leans a little toward the pointer (the endless breath was removed, 21/11/2026).
           const lean = gsap.quickTo(body, "x", { duration: 1.2, ease: "power3.out" });
           const follow = (event: MouseEvent) => lean((event.clientX / innerWidth - .5) * 18);
           if (matchMedia("(pointer: fine)").matches) addEventListener("mousemove", follow);
@@ -200,7 +199,9 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           // The dot of the finished "g." drops onto the folder's tab.
           const work = node.querySelector<HTMLElement>("[data-work-track]");
           if (work) {
-            carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), () => trackRange(work, .25));
+            // The folder is no longer pinned (21/11/2026): the dot lands on its tab as the section enters.
+            const landAt = () => work.getBoundingClientRect().top + scrollY - innerHeight * .64;
+            carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), landAt);
             // After the projects, the dot reads with the visitor on its way to the conversation: it runs along the top
             // rule of the services (down their left edge on phones), drawing it peach and underlining each title as it
             // passes; then it underlines "Quem desenha é quem programa." and becomes the full stop of "Vamos conversar",
@@ -222,7 +223,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
               const aboutStart = () => top(about) + about.offsetHeight - innerHeight * .8, aboutEnd = () => top(about) + about.offsetHeight - innerHeight * .5;
               const stops = [pasta, ...listDots as HTMLElement[], aboutDot, stop];
               const flights: [() => number, () => number][] = [
-                [() => trackRange(work, 1), readStart[0]],
+                // It leaves the folder only once the project grid has gone by, so it never crosses the cards.
+                [() => { const grid = node.querySelector<HTMLElement>("[data-strip]"); return grid ? Math.min(readStart[0]() - 120, top(grid) + grid.offsetHeight - innerHeight * .9) : top(work); }, readStart[0]],
                 ...lists.slice(1).map((_, k) => [readEnd[k], readStart[k + 1]] as [() => number, () => number]),
                 [readEnd[lists.length - 1], aboutStart],
                 [aboutEnd, () => top(panel) - innerHeight * .45],
@@ -237,7 +239,9 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                   if (y < s) { rest = i; break; }
                   if (y < e) { rest = -1; flight = i; progress = (y - s) / Math.max(1, e - s); break; }
                 }
-                stops.forEach((el, i) => { el.style.visibility = i === rest ? "visible" : "hidden"; });
+                // Before the dot has landed on the folder, the folder's dot stays hidden (the carrier owns it).
+                const landed = rest !== 0 || y >= landAt();
+                stops.forEach((el, i) => { el.style.visibility = i === rest && landed ? "visible" : "hidden"; });
                 stop.dataset.lit = String(rest === stops.length - 1);
                 carrier.style.visibility = flight >= 0 ? "visible" : "hidden";
                 if (flight < 0) return;
@@ -324,7 +328,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           // The name is signed: the clouds may rise now (components/HeroClouds.tsx waits for this).
           document.documentElement.dataset.heroSigned = "";
           loops.forEach(loop => loop.play());
-          if (cardLoop) { if (fromAssembled) cardLoop.play(assembledAt); else cardLoop.play(0); }
+          // Assembled once, then still (21/11/2026): the endless loop only decorated and kept the page moving on its own.
+          if (cardLoop) { if (fromAssembled) cardLoop.seek(assembledAt).pause(); else cardLoop.tweenFromTo(0, assembledAt); }
         };
 
         // The brand dot's scene, once per visit (not again after pausing and resuming): born as the tittle of
@@ -351,6 +356,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           // The story is told in order: first he is formed by the points (HeroClouds), then the dot is born and signs
           // the name, then the clouds rise. The scene waits for "formed", or 3.5 s at most.
           const scene = gsap.timeline({ paused: true, onComplete: () => startLoops(true) });
+          // Twice as fast and without the charge and lap around the card (21/11/2026): about 2.5 s, so the eye returns
+          // to the promise and the calls sooner.
+          scene.timeScale(2);
+          const LAP = false;
           const html = document.documentElement;
           let begun = false;
           const begin = () => { if (begun) return; begun = true; window.removeEventListener("gb:hero-formed", begin); gsap.delayedCall(.3, () => scene.play()); };
@@ -418,7 +427,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           const glow = node.querySelector<HTMLElement>("[data-hero-glow]");
           const wave = node.querySelector<HTMLElement>("[data-hero-wave]");
           const cardBox = card?.getBoundingClientRect();
-          if (trail && glow && wave && card && cardBox) {
+          if (LAP && trail && glow && wave && card && cardBox) {
             const c = { x: cardBox.left + cardBox.width / 2 - box.left, y: cardBox.top + cardBox.height / 2 - box.top };
             const m = em * (arc < 1 ? .08 : .2), hw = cardBox.width / 2 + m, hh = cardBox.height / 2 + m;
             // On phones the card sits above "Batista", right under the chin: rise only a little above the "i".
@@ -477,17 +486,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
         const work = node.querySelector<HTMLElement>("[data-work-track]");
         if (work) {
           const stage = work.querySelector<HTMLElement>("[data-work-stage]")!, pasta = work.querySelector<HTMLElement>("[data-pasta]")!;
-          const strip = work.querySelector<HTMLElement>("[data-strip]")!;
           const centre = (el: HTMLElement) => el.offsetTop + el.offsetHeight / 2;
-          // Offsets measured on the final (CSS) layout: the folder starts at the middle of the stage, the strip inside the folder.
+          // Offsets measured on the final (CSS) layout: the folder starts at the middle of the stage.
           const toMiddle = () => stage.clientHeight / 2 - centre(pasta);
-          const intoFolder = () => centre(pasta) - centre(strip);
-          // Start the selection with its first project, rather than advancing the hidden marquee during the hero.
-          restore.push(() => strip.removeAttribute("data-strip-ready"));
-          gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: {
-            trigger: work, start: "top top", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true,
-            onUpdate: self => strip.toggleAttribute("data-strip-ready", self.progress >= .98),
-          } })
+          gsap.timeline({ defaults: { ease: "none" }, scrollTrigger: { trigger: work, start: "top 80%", end: "top 15%", scrub: .6, invalidateOnRefresh: true } })
             .fromTo(pasta, { y: toMiddle, scale: 2.3, rotation: -8 }, { y: toMiddle, scale: 2.1, rotation: 0, duration: .2, ease: "power2.out" }, 0)
             .fromTo("[data-pasta-front]", { rotationX: -8 }, { rotationX: -8, duration: .01 }, 0)
             .fromTo("[data-pasta-sheet]", { y: 0 }, { y: 0, duration: .01 }, 0)
@@ -495,11 +497,14 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             .fromTo("[data-pasta-ring]", { scale: 1, opacity: .9 }, { scale: 6, opacity: 0, duration: .14, ease: "power2.out", immediateRender: false }, .26)
             .to("[data-pasta-front]", { rotationX: -52, duration: .14, ease: "power2.inOut" }, .3)
             .to("[data-pasta-sheet]", { y: () => -pasta.offsetHeight * .84 * .22, duration: .14, ease: "power2.inOut" }, .32)
-            .fromTo(strip, { y: intoFolder, scaleY: .35, clipPath: "inset(0% 50% 0% 50%)", opacity: 0 }, { y: 0, scaleY: 1, clipPath: "inset(0% 0% 0% 0%)", opacity: 1, duration: .34, ease: "power2.inOut" }, .4)
             .to(pasta, { y: 0, scale: 1, duration: .34, ease: "power2.inOut" }, .4)
             .fromTo("[data-work-word]", { yPercent: 40, opacity: 0 }, { yPercent: 0, opacity: 1, duration: .3, ease: "power2.out" }, .45)
             .fromTo("[data-work-note]", { opacity: 0 }, { opacity: 1, duration: .12 }, .66)
             .to({}, { duration: .2 }, .8);
+          // The projects right below the folder come in quickly, once, as the grid enters (21/11/2026).
+          gsap.utils.toArray<HTMLElement>("[data-strip] li").forEach((item, i) => {
+            gsap.fromTo(item, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .55, delay: (i % 4) * .06, ease: "power2.out", scrollTrigger: { trigger: item, start: "top 94%", once: true } });
+          });
         }
         gsap.to("[data-about-photo]", { scale: 1.14, yPercent: 7, ease: "none", scrollTrigger: { trigger: "#editorial-about", start: "top bottom", end: "bottom top", scrub: .8 } });
         gsap.fromTo("[data-contact-panel]", { scale: .9, borderRadius: 100 }, { scale: 1, borderRadius: 40, ease: "none", scrollTrigger: { trigger: "#editorial-contact", start: "top 95%", end: "center 65%", scrub: .65 } });

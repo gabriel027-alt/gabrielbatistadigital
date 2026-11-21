@@ -574,3 +574,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Marcas** (Lume, Arrimo, Paddock, Talhão, Sutil, Toca, Forma, Almeida e Casa Brisa): o botão visível de pausar saiu. As cenas são movidas pela rolagem e as chegadas duram menos de 5 s, então a WCAG 2.2.2 não exige controle; quem usa "reduzir movimento" continua recebendo a versão parada (`useBrandMotion`). O espaço reservado no cabeçalho da Arrimo, da Paddock e do Talhão foi devolvido. Os testes que clicavam no botão agora usam movimento reduzido e conferem que o botão não existe. Os filmes não mudam (o botão já era escondido na gravação); só o cabeçalho dessas três ficou sem a folga, o que não justifica regravar agora.
 - **Homepage:** mantém um jeito de pausar, porque ali há movimento automático contínuo (pontinhos, cartão "g.", faixa de projetos, prévias, avatar). No PC virou o mesmo ícone redondo do celular, discreto, com o nome lido pelo leitor de tela e como dica ao passar o mouse.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
+
+## Auditoria de conversão da homepage (21/11/2026, aprovada a execução pelo usuário, aguardando aprovação do resultado)
+
+- Régua do usuário: animação só fica se ajudar a converter. Medido antes e depois (PC 1536×696 a 125% / celular 390×844):
+  - primeiro projeto inteiro na tela: de 6,2 para **3,0 telas** no PC e de 5 para **2,5** no celular;
+  - página inteira: de 14,4 para 11,4 telas (PC) e de 12,1 para 9,2 (celular);
+  - nome assinado na chegada: de 7,7 s para ~4,8 s.
+- Passo 1: cena da mão em 120vh (115vh no celular), antes 340/290vh; sem a "respiração" infinita da mão. A pasta não fica mais presa na tela: abre enquanto a seção passa (gatilho de 80% a 15%), e o ponto pousa na aba quando a seção entra (`landAt`).
+- Passo 2: a faixa infinita e os pontinhos que formavam os cartões (`WorkParticles`, não usado) saíram. Os oito projetos ficam numa grade parada logo abaixo da pasta (4 colunas no PC, 2 até 1000 px, um cartão por vez arrastando no celular), com o topo de cada site; a prévia de 6 s toca só com o mouse ou o foco em cima (`teaser="hover"` em `EditorialMedia`) e nunca com o movimento pausado, movimento reduzido ou economia de dados. O ponto só voa da pasta para os serviços depois da grade, para não cruzar os cartões. Capas da Aura e da Orla ancoradas à esquerda.
+- Passo 3: os pontinhos formam o retrato duas vezes mais rápido (`GATHER_SPEED`) e somem por volta de 9–11 s, quando o canvas para de desenhar (`POINTS_REST`). A cena do ponto ficou com metade da duração e sem a carga e a volta no cartão (`LAP = false`); o "g." do cartão monta uma vez e fica parado.
+- Continuam se mexendo sozinhos: o avatar do rodapé e os pontinhos em volta de "Vamos conversar". Por isso o ícone de pausa fica.
+- Testes da homepage reescritos para a grade (sem cópia decorativa, prévia só no hover, pasta com o ponto e grade parada).
