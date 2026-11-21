@@ -66,7 +66,8 @@ test('Nearby loading, distinct car details and neutral shop journey',async({page
 });
 test('Mobile annotations stay below the car and open dialogs meet AA',async({browser})=>{
  const c=await browser.newContext({viewport:{width:390,height:844},isMobile:true,hasTouch:true});const p=await c.newPage();await p.goto(route);await ready(p);await at(p,1);await expect(p.locator('[data-inspection-mark][data-checked]')).toHaveCount(4);
- const bounds=await p.evaluate(()=>({canvas:document.querySelector('[data-tour-canvas]')!.getBoundingClientRect().bottom,labels:[...document.querySelectorAll('[data-inspection-mark]')].map(e=>e.getBoundingClientRect().top)}));expect(Math.min(...bounds.labels)).toBeGreaterThan(bounds.canvas);
+ // The full car is drawn width-fit (1280×720) around the canvas centre; the labels must start below it.
+ const bounds=await p.evaluate(()=>{const r=document.querySelector('[data-tour-canvas]')!.getBoundingClientRect();return{car:r.top+r.height/2+r.width*720/1280/2,labels:[...document.querySelectorAll('[data-inspection-mark]')].map(e=>e.getBoundingClientRect().top)};});expect(Math.min(...bounds.labels)).toBeGreaterThan(bounds.car);
  await p.locator('#laudo-cupe-prata').click();const report=p.getByRole('dialog',{name:'Cupê Prata',exact:true});await expect(report).toContainText('Dono único');
  const audit=await new AxeBuilder({page:p}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(audit.violations.map(v=>v.id)).toEqual([]);
  await report.getByRole('link',{name:'Conversar sobre este carro'}).click();const audit2=await new AxeBuilder({page:p}).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();expect(audit2.violations.map(v=>v.id)).toEqual([]);await c.close();

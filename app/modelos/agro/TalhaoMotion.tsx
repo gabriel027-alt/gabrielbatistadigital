@@ -58,6 +58,8 @@ function build(root: HTMLElement) {
     holes.forEach((h, i) => h.toggleAttribute("data-on", i === index));
     steps.forEach((s, i) => s.toggleAttribute("data-active", i === index || (index === -1 && progress >= END)));
     root.querySelector(`.${styles.legend}`)?.toggleAttribute("data-all", progress >= END);
+    // While a plot is lit, phones show only its situation and the call: the map gets most of the screen.
+    legend?.toggleAttribute("data-reading", index >= 0);
   };
 
   gsap.set("[data-plot-line]", { strokeDashoffset: 1 });

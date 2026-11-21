@@ -86,3 +86,10 @@
 .reportBrief>span,.reportTop,.reportChecks li>span,.decisionFlow span,.buying .sectionHead>p:first-child,.faq summary span,.stills li{color:#c4c9cc}
 .reportBrief li:before{background:#b8bcbf}
 .reportTop button{background:transparent;color:var(--white)!important;border:1px solid #626c67}
+/* Phones with motion (21/11/2026): the tour fills the whole screen, as on the computer, instead of a band between the
+   captions and the marks. The full car is drawn width-fit and centred, so the callout lines keep their own box
+   (same size as before) re-centred on the screen's middle. */
+@media(max-width:700px){
+ .page[data-brand-animated=true] .canvas,.page[data-brand-animated=true] .poster{top:0;bottom:0;height:100%}
+ .page[data-brand-animated=true] .inspectionLinks{top:197.5px}
+}

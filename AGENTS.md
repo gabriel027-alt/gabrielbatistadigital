@@ -539,3 +539,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Títulos de serviço que quebram em duas linhas não recebem sublinhado do ponto (ex.: "Automação no WhatsApp" no PC).
   - No celular, a mão sobe (`bottom:11svh`) e se forma no meio da tela, não embaixo.
   - Pendente, aguardando o usuário esclarecer: "os projetos no mobile não passam por inteiro" e as animações dos projetos no celular.
+- Marcas no celular (21/11/2026, pedido do usuário: "os sites no filme"): as cenas-assinatura da Lume, da Paddock e do Talhão ocupavam uma faixa no alto, com o texto embaixo. Agora, com movimento:
+  - **Lume:** a cozinha ocupa a tela inteira e se funde na cor da sala embaixo, onde fica o texto. O parágrafo secundário do topo some só no celular animado (a mesma informação está em "Como funciona").
+  - **Paddock:** o tour ocupa a tela inteira. O carro inteiro é desenhado ajustado à largura e centralizado, então as linhas das marcações mantêm a mesma caixa, recentralizada (`top:197.5px`). O teste mede o carro, não mais a borda do canvas.
+  - **Talhão:** enquanto um talhão está aceso, a legenda mostra só a situação e o botão (`data-reading`), e o mapa fica com cerca de três quartos da tela.
+  - Filmes de celular dos três regravados (`--format=mobile`). Os filmes de PC e as prévias dos cartões não mudaram.

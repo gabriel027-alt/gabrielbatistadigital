@@ -206,4 +206,7 @@
   .page[data-brand-animated=true] .steps li[data-active]{display:grid}
   .page[data-brand-animated=true] .legend[data-all] .steps li{display:none}
   .page[data-brand-animated=true] .actions{margin-bottom:6px}
+  /* While a plot is lit (21/11/2026): the title steps aside so the legend is a short sheet and the map fills the screen. */
+  .page[data-brand-animated=true] .legend[data-reading] h1{display:none}
+  .page[data-brand-animated=true] .legend[data-reading] .steps{padding-top:0}
 }

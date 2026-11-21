@@ -169,6 +169,14 @@
   .page[data-brand-animated=true] .weights li:nth-child(4){top:49%;left:40%}
   .page[data-brand-animated=true] .weights li:nth-child(5){top:66%;left:6%}
   .page[data-brand-animated=true] .weights li:nth-child(6){top:83%;left:36%}
+  /* With motion (21/11/2026): the kitchen fills the whole screen, as on the computer, instead of a strip on top. It
+     fades into the room's own colour towards the bottom, where the text sits, so the copy reads at 23h and at 7h. */
+  .page[data-brand-animated=true] .scene{position:absolute;inset:0;order:0;width:auto;height:auto;margin:0;
+    -webkit-mask-image:linear-gradient(180deg,#000 0%,#000 27%,#00000080 41%,#0000 60%);mask-image:linear-gradient(180deg,#000 0%,#000 27%,#00000080 41%,#0000 60%)}
+  .page[data-brand-animated=true] .stage{align-content:end;padding-bottom:5svh}
+  /* The secondary paragraph waits for the static page and "Como funciona": on a phone it pushed the copy over her face. */
+  .page[data-brand-animated=true] .sub{display:none}
+  .page[data-brand-animated=true] .actions{margin-top:3svh}
   .how,.faq{padding:84px 6vw}
   .week{height:150px}
   .day{padding:10px 0 0 6px}
