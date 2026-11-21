@@ -719,3 +719,6 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 - `talhao-model.spec.ts` (4 testes) e `brand-kits.spec.ts` aprovados;
 - página percorrida no PC a 125% e no celular, sem erros e sem rolagem lateral;
 - vídeos `Downloads/talhao-piloto/talhao-final-{pc,celular}.mp4`.
+## Talhão na homepage: aprovado (21/11/2026)
+
+- Aprovado pelo usuário: o Talhão entra na faixa depois da Paddock, com filme do PC, do celular e prévia de 6 s. Com isso, os quatro projetos novos por registro estão completos e na seleção.
