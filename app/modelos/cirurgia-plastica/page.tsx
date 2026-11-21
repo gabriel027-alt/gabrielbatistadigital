@@ -35,21 +35,32 @@ export default function SutilPage() {
     </header>
 
     <main id="sutil-conteudo">
-      <section className={styles.hero} id="sutil-inicio" aria-labelledby="sutil-titulo">
+      {/* Hero, 21/11/2026: the brand begins at Dia 0, the conversation. The consultation runs the full width, the text
+          sits on a plaster veil at the bottom, and the recovery ruler (the brand's signature) starts here, lit at Dia 0. */}
+      <section className={styles.hero} id="sutil-inicio" aria-labelledby="sutil-titulo" data-sutil-hero>
         <Image className={styles.heroImage} src="/images/sutil/consulta.webp" alt="Cirurgiã conversa com uma paciente à mesa do consultório" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
         <div className={styles.heroCopy}>
-          <p className={styles.kicker}>Cirurgia plástica</p>
-          <h1 id="sutil-titulo">A decisão mais importante <em>vem antes da cirurgia.</em></h1>
-          <p>Na primeira consulta, você conta o que deseja e a cirurgiã explica cada etapa, inclusive a recuperação, antes de qualquer decisão.</p>
-          <div className={styles.heroActions}>
-            <a className={styles.primary} href={book}>Agendar minha consulta</a>
-            <a className={styles.textLink} href="#recuperacao">Ver como é a recuperação</a>
+          <div>
+            <p className={styles.kicker}>Cirurgia plástica</p>
+            <h1 id="sutil-titulo">A decisão mais importante <em>vem antes da cirurgia.</em></h1>
           </div>
-          <ul className={styles.trust} aria-label="Como atendemos">
-            <li><ModelIcon name="person" />Consulta individual</li>
-            <li><ModelIcon name="document" />Plano por escrito</li>
-            <li><ModelIcon name="calendar" />Retornos acompanhados</li>
-          </ul>
+          <div className={styles.heroSide}>
+            <p>Na primeira consulta, você conta o que deseja e a cirurgiã explica cada etapa, inclusive a recuperação, antes de qualquer decisão.</p>
+            <div className={styles.heroActions}>
+              <a className={styles.primary} href={book}>Agendar minha consulta</a>
+              <a className={styles.textLink} href="#recuperacao">Ver como é a recuperação</a>
+            </div>
+          </div>
+        </div>
+        <div className={styles.dayZero} aria-hidden="true">
+          <div className={styles.dayTicks} data-hero-ticks>{ticks.map(day => <i key={day} style={{ left: `${rulerPosition(day) * 100}%` }} data-week={day % 7 === 0 || day === 1 ? "" : undefined} />)}</div>
+          <span className={styles.dayMarker} data-hero-marker />
+          <ol>
+            <li data-lit>Dia 0 · a conversa</li>
+            <li style={{ left: `${rulerPosition(7) * 100}%` }}>Semana 1</li>
+            <li style={{ left: `${rulerPosition(30) * 100}%` }}>1º mês</li>
+            <li style={{ left: "100%" }}>3 meses</li>
+          </ol>
         </div>
       </section>
 

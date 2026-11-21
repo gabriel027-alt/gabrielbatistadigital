@@ -12,6 +12,11 @@ import styles from "./sutil.module.css";
  * linearly with the scroll while the day climbs with its square. Fully reversible.
  */
 function build(root: HTMLElement) {
+  // Arrival (21/11/2026): the recovery ruler draws itself across the hero and the marker settles on Dia 0, the conversation.
+  gsap.timeline({ delay: .35 })
+    .fromTo("[data-hero-ticks]", { scaleX: 0 }, { scaleX: 1, duration: 1.2, ease: "power2.out" })
+    .fromTo("[data-hero-marker]", { scale: 0 }, { scale: 1, duration: .5, ease: "back.out(3)" }, "-=.35")
+    .fromTo("[data-hero-marker]", { boxShadow: "0 0 0 0px #4a504473" }, { boxShadow: "0 0 0 20px #4a504400", duration: 1.2, repeat: 1, ease: "power1.out" });
   const section = root.querySelector<HTMLElement>("[data-sutil-recovery]");
   if (!section) return;
   const counter = root.querySelector<HTMLElement>("[data-day-count]");
