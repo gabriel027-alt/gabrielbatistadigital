@@ -42,6 +42,22 @@ export default function TalhaoPage() {
             <div className={styles.map} data-talhao-map>
               <Image src="/images/talhao/mapa-zenital.webp" alt="" fill sizes="(max-width:900px) 330vw, 120vw" quality={88} preload />
               <svg className={styles.plots} viewBox={`0 0 ${mapSize.w} ${mapSize.h}`} preserveAspectRatio="none">
+                {/* Spotlight: the farm darkens and only the current plot stays lit (a hole in the shade). */}
+                <defs>
+                  <mask id="talhao-spot" maskUnits="userSpaceOnUse" x="0" y="0" width={mapSize.w} height={mapSize.h}>
+                    <rect width={mapSize.w} height={mapSize.h} fill="#fff" />
+                    {plots.map(plot => plot.shape.kind === "rect"
+                      ? <rect key={plot.id} data-hole={plot.id} x={plot.shape.x} y={plot.shape.y} width={plot.shape.w} height={plot.shape.h} rx="6" fill="#000" />
+                      : <circle key={plot.id} data-hole={plot.id} cx={plot.shape.cx} cy={plot.shape.cy} r={plot.shape.r} fill="#000" />)}
+                  </mask>
+                </defs>
+                <rect className={styles.shade} width={mapSize.w} height={mapSize.h} mask="url(#talhao-spot)" data-talhao-shade />
+                {/* Arrival: every outline is drawn once, quickly, then fades, so the map reads as alive. */}
+                <g className={styles.ghosts} data-talhao-ghosts>
+                  {plots.map(plot => plot.shape.kind === "rect"
+                    ? <rect key={plot.id} x={plot.shape.x} y={plot.shape.y} width={plot.shape.w} height={plot.shape.h} rx="6" pathLength={1} data-ghost />
+                    : <circle key={plot.id} cx={plot.shape.cx} cy={plot.shape.cy} r={plot.shape.r} pathLength={1} data-ghost />)}
+                </g>
                 {plots.map((plot, i) => <g key={plot.id} data-plot={plot.id}>
                   {plot.shape.kind === "rect"
                     ? <rect x={plot.shape.x} y={plot.shape.y} width={plot.shape.w} height={plot.shape.h} rx="6" pathLength={1} data-plot-line />
@@ -53,6 +69,7 @@ export default function TalhaoPage() {
                 </g>)}
               </svg>
             </div>
+            <p className={styles.hint} data-talhao-hint>Role para ver cada talhão <span aria-hidden="true">↓</span></p>
           </div>
 
           {/* The map legend carries the message, the five situations and the call. */}

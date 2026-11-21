@@ -48,24 +48,40 @@ function build(root: HTMLElement) {
 
   const groups = plots.map(plot => root.querySelector<SVGGElement>(`[data-plot="${plot.id}"]`)!);
   const steps = plots.map(plot => root.querySelector<HTMLElement>(`[data-step="${plot.id}"]`)!);
+  const holes = plots.map(plot => root.querySelector<SVGElement>(`[data-hole="${plot.id}"]`)!);
   let active = -2;
   const mark = (progress: number) => {
     const index = progress >= END ? -1 : Math.min(plots.length - 1, Math.floor((progress - START) / STEP));
     if (index === active) return;
     active = index;
     groups.forEach((g, i) => g.toggleAttribute("data-current", i === index));
+    holes.forEach((h, i) => h.toggleAttribute("data-on", i === index));
     steps.forEach((s, i) => s.toggleAttribute("data-active", i === index || (index === -1 && progress >= END)));
     root.querySelector(`.${styles.legend}`)?.toggleAttribute("data-all", progress >= END);
   };
 
   gsap.set("[data-plot-line]", { strokeDashoffset: 1 });
   gsap.set("[data-plot-marker]", { scale: 0, opacity: 0, transformOrigin: "50% 50%" });
+  gsap.set("[data-talhao-shade]", { opacity: 0 });
+
+  // Arrival, once and only from the top: every outline draws itself over the farm and fades, so the map reads as
+  // something that answers the scroll. A visitor who lands mid-page does not see it.
+  gsap.set("[data-ghost]", { strokeDashoffset: 1 });
+  if (scrollY < 10) {
+    gsap.timeline({ delay: .5 })
+      .to("[data-ghost]", { strokeDashoffset: 0, duration: .9, ease: "power2.out", stagger: .12 })
+      .to("[data-talhao-ghosts]", { opacity: 0, duration: .7, ease: "power1.in" }, "+=.5");
+  } else gsap.set("[data-talhao-ghosts]", { opacity: 0 });
 
   const tl = gsap.timeline({
     defaults: { ease: "none" },
     scrollTrigger: { trigger: hero, start: "top top", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true, onUpdate: self => mark(self.progress) },
   });
-  tl.fromTo(map, { scale: 1.12, x: 0, y: 0 }, { scale: 1, duration: START }, 0);
+  tl.fromTo(map, { scale: 1.12, x: 0, y: 0 }, { scale: 1, duration: START }, 0)
+    .to("[data-talhao-hint]", { opacity: 0, duration: START * .6 }, 0)
+    // The farm darkens while the plots are told one by one, and lights up again at the end.
+    .to("[data-talhao-shade]", { opacity: 1, duration: STEP * .4 }, START - .02)
+    .to("[data-talhao-shade]", { opacity: 0, duration: .04 }, END);
   plots.forEach((plot, i) => {
     const t = START + i * STEP;
     const { px, py } = focus(plot);
