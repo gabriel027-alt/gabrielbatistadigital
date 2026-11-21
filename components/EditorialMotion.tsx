@@ -40,7 +40,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
         gsap.timeline({ scrollTrigger: { trigger: "#editorial-start", start: "top top", end: "bottom top", scrub: .65 } })
           // The face must stay clear: no zoom that crops the hair, and the name, sample and offer
           // drift down with the photo and fade before they can reach the face.
-          .to("[data-hero-photo]", { yPercent: 12, scale: 1.02, ease: "none" }, 0)
+          // Direction A: the portrait recedes and darkens under the rising paper sheet; the red frame goes out with it.
+          .to("[data-hero-photo]", { yPercent: 14, scale: .97, opacity: .35, ease: "none" }, 0)
+          .fromTo(node, { "--hero-glow": 1 }, { "--hero-glow": 0, ease: "none", duration: .5 }, 0)
+          .to("[data-hero-pitch]", { yPercent: 18, opacity: 0, ease: "power1.in", duration: .3 }, 0)
           .to("[data-hero-wordmark]", { yPercent: 24, opacity: 0, ease: "power1.in", duration: .4 }, 0)
           .to("[data-hero-sample]", { rotation: 6, yPercent: 30, opacity: 0, ease: "power1.in", duration: .35 }, 0)
           .to("[data-hero-offer]", { yPercent: 40, opacity: 0, ease: "none", duration: .18 }, 0)

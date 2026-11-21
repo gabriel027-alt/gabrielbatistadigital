@@ -26,6 +26,8 @@ export type HomeCopy = {
   heroAlt: string; offer: { label: string; before: string; after: string; line2: string }; tagline: string;
   /** Interaction hint under the offer (docs/DESIGN-SYSTEM.md, "dica de interação"): "role" on computers, "deslize" on phones. */
   scrollHint: { desktop: string; phone: string };
+  /** Direction A (21/11/2026): the promise is the hero's title, with who it is for and two calls; the name is the signature. */
+  hero: { title: string; sub: string; projects: string; talk: string; talkShort: string };
   hook: { label: string; first: [string, string]; lead: string; click: [string, string]; clickLabel: string; tail: string; cursor: string };
   palmLabel: string; palmTitle: string; palmText: string;
   projects: string; workProof: string; workNote: string; specFont: string; specColors: string; sectors: Record<string, string>;
@@ -52,6 +54,7 @@ const pt: HomeCopy = {
   offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
   tagline: "Sites com a identidade da sua marca, para negócios escolhidos pela confiança.",
   scrollHint: { desktop: "Role para ver como eu crio", phone: "Deslize para ver como eu crio" },
+  hero: { title: "Sites com a identidade da sua marca.", sub: "Para clínicas, escritórios e negócios escolhidos pela confiança.", projects: "Ver projetos", talk: "Conversar no WhatsApp", talkShort: "Conversar" },
   hook: { label: "Do primeiro olhar ao próximo clique, e dele até a sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e dele até a sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelo pronto: cada site nasce da sua própria marca.",
@@ -106,6 +109,7 @@ const ptPT: HomeCopy = {
   offer: { label: "Design & desenvolvimento web", before: "Des", after: "gn &", line2: "desenvolvimento web" },
   tagline: "Sites com a identidade da sua marca, para negócios escolhidos pela confiança.",
   scrollHint: { desktop: "Desça para ver como crio", phone: "Deslize para ver como crio" },
+  hero: { title: "Sites com a identidade da sua marca.", sub: "Para clínicas, escritórios e negócios escolhidos pela confiança.", projects: "Ver projetos", talk: "Falar pelo WhatsApp", talkShort: "Falar" },
   hook: { label: "Do primeiro olhar ao próximo clique, e daí até à sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e daí até à sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelos prontos: cada site nasce da sua própria marca.",
@@ -155,6 +159,7 @@ const en: HomeCopy = {
   offer: { label: "Web design & development", before: "Web des", after: "gn &", line2: "development" },
   tagline: "Websites with your brand's identity, for businesses people choose on trust.",
   scrollHint: { desktop: "Scroll to see how I build", phone: "Swipe to see how I build" },
+  hero: { title: "Websites with your brand's identity.", sub: "For clinics, law firms and businesses people choose on trust.", projects: "See projects", talk: "Talk on WhatsApp", talkShort: "Talk" },
   hook: { label: "From first glance to the next click, and from there to your calendar.", first: ["From f", "rst glance"], lead: "to the next ", click: ["cl", "ck"], clickLabel: "click", tail: "and from there to your calendar.", cursor: "Start a project" },
   palmLabel: "Gabriel's open hand, palm up, holding the brand's red dot.",
   palmTitle: "Handmade, from the first stroke to the last click.", palmText: "No ready-made template: every website is born from your own brand.",
@@ -204,6 +209,7 @@ const es: HomeCopy = {
   offer: { label: "Diseño & desarrollo web", before: "D", after: "seño &", line2: "desarrollo web" },
   tagline: "Páginas web con la identidad de tu marca, para negocios que se eligen por confianza.",
   scrollHint: { desktop: "Desplázate para ver cómo creo", phone: "Desliza para ver cómo creo" },
+  hero: { title: "Páginas web con la identidad de tu marca.", sub: "Para clínicas, despachos y negocios que se eligen por confianza.", projects: "Ver proyectos", talk: "Hablar por WhatsApp", talkShort: "Hablar" },
   hook: { label: "De la primera mirada al próximo clic, y de ahí a tu agenda.", first: ["De la pr", "mera mirada"], lead: "al próximo ", click: ["cl", "c"], clickLabel: "clic", tail: "y de ahí a tu agenda.", cursor: "Empezar un proyecto" },
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",
   palmTitle: "Hecho a mano, del primer trazo al último clic.", palmText: "Sin plantillas: cada sitio nace de tu propia marca.",

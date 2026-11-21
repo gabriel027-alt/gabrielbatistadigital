@@ -11,7 +11,11 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
   const videos: string[] = [];
   page.on("request", request => { if (request.url().includes("-loop.mp4")) videos.push(request.url()); });
   await page.goto(route);
-  await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Gabriel Batista");
+  // Direction A (21/11/2026): the promise is the main heading; the name is the signature, still read as text.
+  await expect(page.getByRole("heading", { level: 1 })).toHaveAccessibleName("Sites com a identidade da sua marca.");
+  await expect(page.locator("[data-hero-wordmark]")).toContainText("Gabriel Batista");
+  await expect(page.locator("[data-hero-pitch] a[href='#editorial-work']")).toBeVisible();
+  await expect(page.locator("[data-hero-pitch] a[data-track-place='topo']")).toHaveAttribute("href", /wa.me\/5538998267717/);
   await expect(page.locator('[data-editorial]')).not.toHaveAttribute('data-editorial-animated','true');
   for (const width of [360, 390, 768, 1440]) {
     await page.setViewportSize({ width, height: 900 });
@@ -287,7 +291,7 @@ test("The homepage is offered in Brazilian and European Portuguese, English and 
     await page.goto(item.path);
     await expect(page).toHaveTitle(item.title);
     await expect(page.locator("html")).toHaveAttribute("lang", item.lang);
-    await expect(page.locator("[data-hook] h2[data-kinetic]")).toHaveAttribute("aria-label", new RegExp(`^${item.hook}`));
+    await expect(page.locator("[data-hook] > h2")).toHaveAttribute("aria-label", new RegExp(`^${item.hook}`));
     // Every page lists the three languages for search engines and links to them with a flag.
     await expect(page.locator('link[rel="alternate"][hreflang]')).toHaveCount(5);
     for (const target of ["/", "/pt-pt", "/en", "/es"]) await expect(page.locator(`[data-editorial-nav] a[href="${target}"][hreflang]`).first()).toBeAttached();

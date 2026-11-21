@@ -9,7 +9,6 @@ import { EditorialAvatarLoop } from "@/components/EditorialAvatarLoop";
 import { EditorialMotion } from "@/components/EditorialMotion";
 import { EditorialMedia } from "@/components/EditorialMedia";
 import { HeroClouds } from "@/components/HeroClouds";
-import { CloudTransition } from "@/components/CloudTransition";
 import { HandParticles } from "@/components/HandParticles";
 import { WorkParticles } from "@/components/WorkParticles";
 import { TalkParticles } from "@/components/TalkParticles";
@@ -89,14 +88,24 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         <script dangerouslySetInnerHTML={{ __html: "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(navigator.connection&&navigator.connection.saveData))document.documentElement.dataset.heroAssemble=''}catch(e){}" }} />
         <div className={styles.heroPhoto} data-hero-photo><ArtDirectedImage alt={t.heroAlt} preload desktop={{ src: "/images/hero/gabriel-hero-wide.webp", sizes: "130vw" }} mobile={{ src: "/images/hero/gabriel-hero-mobile.webp", sizes: "150vw" }} /><HeroClouds /></div>
         {/* The brand dot is born as the tittle of "Design": it soaks the phrase in red ink, then drips onto the name. */}
-        <p className={styles.heroOffer} data-hero-offer><span className={styles.sr}>{t.offer.label}</span><span aria-hidden="true">{t.offer.before}<span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.offerTittle}`} data-offer-tittle /></span>{t.offer.after}<br/>{t.offer.line2}</span><span className={styles.offerInk} data-offer-ink aria-hidden="true" /></p>
-        {/* Interaction hint, under the offer once the dot has signed the name; the scroll fades it (EditorialMotion). */}
-        <p className={styles.heroHint} data-home-hint><span className={styles.heroHintInner}><span className={styles.hintDesktop}>{t.scrollHint.desktop}</span><span className={styles.hintPhone}>{t.scrollHint.phone}</span><span className={styles.hintArrow} aria-hidden="true">↓</span></span></p>
-        <div className={styles.heroBottom}><h1 data-hero-wordmark><span className={styles.sr}>Gabriel Batista</span><span aria-hidden="true" data-hero-word>{nameWord("Gabriel")}</span><span className={styles.heroSample} data-hero-sample aria-hidden="true"><span className={styles.heroCard} data-hero-card><svg viewBox={cardView}>{cardParts.map(shape => <g key={shape.id} transform={transformOf(shape.final)}><g data-card-part={shape.id}><GbShape id={shape.id} tone="dark" /></g></g>)}</svg></span></span><span aria-hidden="true" data-hero-word>{nameWord("Batista")}</span><span className={styles.heroDot} data-hero-dot aria-hidden="true" /><svg className={styles.heroTrail} aria-hidden="true" focusable="false"><path data-hero-trail pathLength={1} /></svg><span className={styles.heroGlow} data-hero-glow aria-hidden="true" /><span className={styles.heroGlow} data-hero-wave aria-hidden="true" /></h1><p>{t.tagline}</p></div>
+        <p className={styles.heroOffer} data-hero-offer><span className={styles.sr}>{t.offer.label}</span><span aria-hidden="true">{t.offer.before}<span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.offerTittle}`} data-offer-tittle /></span>{t.offer.after} <br/>{t.offer.line2}</span><span className={styles.offerInk} data-offer-ink aria-hidden="true" /></p>
+        {/* Direction A (21/11/2026): the promise comes first, with who it is for and two calls. The face stays clear. */}
+        <div className={styles.heroPitch} data-hero-pitch>
+          <h1 className={styles.heroTitle}>{t.hero.title}</h1>
+          <p className={styles.heroSub}>{t.hero.sub}</p>
+          <div className={styles.heroActions}>
+            <a className={styles.heroPrimary} href="#editorial-work">{t.hero.projects} <span aria-hidden="true">↓</span></a>
+            <a className={styles.heroSecondary} href={contact} target="_blank" rel="noopener noreferrer" data-track-place="topo"><span className={styles.hintDesktop}>{t.hero.talk}</span><span className={styles.hintPhone}>{t.hero.talkShort}</span> <Arrow size={16}/></a>
+          </div>
+          {/* Interaction hint, once the dot has signed the name; the scroll fades it (EditorialMotion). */}
+          <p className={styles.heroHint} data-home-hint><span className={styles.heroHintInner}><span className={styles.hintDesktop}>{t.scrollHint.desktop}</span><span className={styles.hintPhone}>{t.scrollHint.phone}</span><span className={styles.hintArrow} aria-hidden="true">↓</span></span></p>
+        </div>
+        {/* The name is the signature: the dot plants a tittle on each "i" and lands in the "g." between the words. */}
+        <div className={styles.heroBottom}><p className={styles.heroName} data-hero-wordmark><span className={styles.sr}>Gabriel Batista</span><span aria-hidden="true" data-hero-word>{nameWord("Gabriel")}</span><span className={styles.heroSample} data-hero-sample aria-hidden="true"><span className={styles.heroCard} data-hero-card><svg viewBox={cardView}>{cardParts.map(shape => <g key={shape.id} transform={transformOf(shape.final)}><g data-card-part={shape.id}><GbShape id={shape.id} tone="dark" /></g></g>)}</svg></span></span><span aria-hidden="true" data-hero-word>{nameWord("Batista")}</span><span className={styles.heroDot} data-hero-dot aria-hidden="true" /><svg className={styles.heroTrail} aria-hidden="true" focusable="false"><path data-hero-trail pathLength={1} /></svg><span className={styles.heroGlow} data-hero-glow aria-hidden="true" /><span className={styles.heroGlow} data-hero-wave aria-hidden="true" /></p></div>
       </section>
-      <CloudTransition from="#editorial-start" />
       <section className={styles.hook} data-editorial-theme="paper" data-hook>
-        <h2 data-kinetic aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique"><span aria-hidden="true">{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span><span className={styles.sr}>{t.hook.clickLabel}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
+        {/* Arrives whole (21/11/2026): word by word it read broken while the hero left. */}
+        <h2 aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique"><span aria-hidden="true">{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span><span className={styles.sr}>{t.hook.clickLabel}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
         {/* "O próximo clique", one stage: the red tittle of "clique" falls into Gabriel's open palm; the dot rises, bursts,
             and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
         <div className={styles.fusionTrack} data-creation-track data-gb-track>

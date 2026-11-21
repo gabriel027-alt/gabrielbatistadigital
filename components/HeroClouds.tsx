@@ -130,6 +130,8 @@ type Connection = { saveData?: boolean };
 
 /** How long the clouds take to settle once they begin to rise (after the dot has signed the name). */
 const RISE_FOR = 5;
+/** The sea of clouds behind the portrait. Off since direction A (21/11/2026); true brings it back on computers. */
+const CLOUD_SEA = false;
 /** The clouds are drawn at this fraction of the canvas size and scaled up: they are soft, it costs nothing to the eye. */
 const CLOUD_SCALE = .62;
 /** If the images are not in by then, he is not hidden any longer: no gathering, the photo simply shows. */
@@ -421,7 +423,9 @@ export function HeroClouds() {
       gl.uniform1f(u(cloudProgram, "time"), now / 1000);
       // Phones keep the points and the cream seam of the transition, but not the sea of clouds behind him: on a real
       // phone (Samsung Internet, 21/11/2026) the clouds were drawn over his face once the address bar hid.
-      gl.uniform1f(u(cloudProgram, "intro"), holder.offsetWidth < 700 ? 0 : 1 - (1 - rise) ** 3);
+      // Direction A (21/11/2026): no sea of clouds on any screen, the promise, the calls and the signature sit where
+      // the clouds rose. To bring them back on computers: holder.offsetWidth < 700 ? 0 : 1 - (1 - rise) ** 3.
+      gl.uniform1f(u(cloudProgram, "intro"), CLOUD_SEA && holder.offsetWidth >= 700 ? 1 - (1 - rise) ** 3 : 0);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       fullQuad(cloudProgram);

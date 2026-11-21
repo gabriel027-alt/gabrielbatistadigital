@@ -544,3 +544,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - **Paddock:** o tour ocupa a tela inteira. O carro inteiro é desenhado ajustado à largura e centralizado, então as linhas das marcações mantêm a mesma caixa, recentralizada (`top:197.5px`). O teste mede o carro, não mais a borda do canvas.
   - **Talhão:** enquanto um talhão está aceso, a legenda mostra só a situação e o botão (`data-reading`), e o mapa fica com cerca de três quartos da tela.
   - Filmes de celular dos três regravados (`--format=mobile`). Os filmes de PC e as prévias dos cartões não mudaram.
+
+## Topo: direção A (21/11/2026, escolhida pelo usuário, aguardando aprovação do resultado)
+
+- Diagnóstico aceito por ele: o nome era o maior elemento do topo, não havia botão, e o banco de nuvens cobria o rosto durante a rolagem. Direção A: **a oferta primeiro, o nome como assinatura**.
+- Coluna à esquerda: "Design & desenvolvimento web" (onde o ponto nasce), a promessa como h1 ("Sites com a identidade da sua marca."), "Para clínicas, escritórios e negócios escolhidos pela confiança.", botões **Ver projetos** (#editorial-work) e **Conversar no WhatsApp** (`data-track-place="topo"`; no celular, "Conversar") e a dica de rolagem. Textos em `hero` (`lib/i18n.ts`), nos quatro idiomas.
+- "Gabriel [g.] Batista" virou assinatura (`p.heroName`, as regras CSS antigas de `.heroBottom h1` foram renomeadas): no PC, no pé da coluna; no celular, em uma linha no alto, acima do cabelo, com a oferta e os botões embaixo sobre o degradê do peito. A cena do ponto continua a mesma, medida ao vivo no nome menor. Rosto e peito ficam livres.
+- Saíram o mar de nuvens atrás do retrato (`CLOUD_SEA = false` em `HeroClouds`, volta com `true` no PC) e a costura de nuvens (`CloudTransition` não é mais usada). No lugar, a seção creme sobe como uma folha com cantos arredondados e sombra; o retrato recua e escurece, e a moldura vermelha apaga com a rolagem (`--hero-glow`). "Do primeiro olhar…" chega inteira (sem `data-kinetic`).
+- Testes atualizados: o h1 é a promessa, o nome continua legível como texto, e os dois botões existem.
