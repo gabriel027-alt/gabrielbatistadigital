@@ -47,8 +47,6 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           .to("[data-hero-wordmark]", { yPercent: 24, opacity: 0, ease: "power1.in", duration: .4 }, 0)
           .to("[data-hero-sample]", { rotation: 6, yPercent: 30, opacity: 0, ease: "power1.in", duration: .35 }, 0)
           .to("[data-hero-offer]", { yPercent: 40, opacity: 0, ease: "none", duration: .18 }, 0)
-          // The scroll hint has done its job as soon as the visitor scrolls.
-          .fromTo("[data-home-hint]", { opacity: 1 }, { opacity: 0, ease: "none", duration: .08 }, 0)
           .to({}, { duration: 1 }, 0);
         gsap.utils.toArray<HTMLElement>("[data-kinetic]").forEach(title => {
           const split = SplitText.create(title, { type: "words", wordsClass: "editorial-word", aria: title.querySelector("a") ? "none" : "auto" });

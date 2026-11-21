@@ -397,7 +397,7 @@
 .heroPitch .heroHint{position:relative;left:auto;top:auto;margin-top:16px}
 .heroOffer{top:17%;font-size:clamp(17px,1.35vw,24px)}
 .heroBottom{left:4vw;right:auto;bottom:7%;width:auto}
-.heroBottom .heroName{font-size:clamp(40px,4.4vw,78px);justify-content:flex-start;gap:.22em}
+.heroBottom .heroName{font-size:clamp(34px,3.4vw,60px);justify-content:flex-start;gap:.22em}
 .heroSample{width:1.35em;height:.93em;margin-bottom:0;align-self:center;font-size:inherit}
 .heroCard{border-radius:.12em}
 /* The paper sheet rises over the portrait (instead of the cloud bank): a clean edge and a soft shadow. */
@@ -418,3 +418,18 @@
   .heroPhoto:after{background:linear-gradient(0deg,#170c0bf2 0%,#170c0bb3 30%,transparent 58%),linear-gradient(180deg,#170c0b99 0%,transparent 22%)}
   .hook{border-radius:26px 26px 0 0}
 }
+/* Direction A, second pass (21/11/2026): on phones nothing sits on him. The portrait owns the top of the screen and
+   fades into the hero's own dark; the signature, the promise and the calls sit below it. Measured against his
+   silhouette mask: 0% of the text over him. */
+@media(max-width:700px){
+  .heroPhoto{inset:0 0 auto 0;height:58svh}
+  .heroPhoto img{object-position:50% 16%}
+  .heroPhoto:after{background:linear-gradient(0deg,#201714 0%,#20171400 34%),linear-gradient(180deg,#170c0b8c 0%,transparent 20%)}
+  .heroBottom{top:calc(58svh - 6px)}
+  .heroBottom .heroName{font-size:30px}
+  .heroPitch{top:calc(58svh + 40px);bottom:auto}
+  .heroTitle{font-size:clamp(24px,6.8vw,30px);max-width:15ch}
+  .heroSub{font-size:13px;margin-top:8px}
+  .heroActions{margin-top:14px}
+}
+@media(max-width:700px) and (max-height:760px){.heroSub{display:none}}
