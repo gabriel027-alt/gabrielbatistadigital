@@ -93,3 +93,6 @@
  .page[data-brand-animated=true] .canvas,.page[data-brand-animated=true] .poster{top:0;bottom:0;height:100%}
  .page[data-brand-animated=true] .inspectionLinks{top:197.5px}
 }
+/* No pause button since 21/11/2026: the header gets its full width back. */
+.header.header{padding-right:5vw}
+@media(max-width:700px){.header.header{padding-right:6vw}}

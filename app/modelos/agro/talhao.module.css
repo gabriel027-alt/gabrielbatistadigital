@@ -210,3 +210,9 @@
   .page[data-brand-animated=true] .legend[data-reading] h1{display:none}
   .page[data-brand-animated=true] .legend[data-reading] .steps{padding-top:0}
 }
+/* No pause button since 21/11/2026: the header gets its full width back. */
+.header.header{padding-right:5vw}
+@media(max-width:900px){.header.header{padding-right:6vw}}
+@media(max-width:900px){.headerCta{margin-left:auto}}
+@media(max-width:900px){.header .headerCta{margin-left:auto}}
+@media(max-width:900px){.header nav + .headerCta{margin-left:auto}}

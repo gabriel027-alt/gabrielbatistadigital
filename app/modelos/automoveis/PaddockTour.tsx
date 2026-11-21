@@ -188,7 +188,8 @@ function build(root: HTMLElement) {
 }
 
 export function PaddockTour() {
-  const { paused, available, toggle } = useBrandMotion('[data-model="paddock"]', build);
-  if (!available) return null;
-  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle} aria-label={paused ? "Ativar o tour" : "Pausar o tour"}><span className={styles.motionLabel}>{paused ? "Ativar o tour" : "Pausar o tour"}</span><svg className={styles.motionIcon} width="14" height="14" viewBox="0 0 14 14" aria-hidden="true">{paused ? <path d="m3 1 9 6-9 6z" fill="currentColor"/> : <path d="M3 1v12M11 1v12" stroke="currentColor" strokeWidth="3"/>}</svg></button>;
+  useBrandMotion('[data-model="paddock"]', build);
+  // No visible pause button (21/11/2026): the scenes move with the scroll and arrivals last under 5 s, so WCAG 2.2.2
+  // asks for none; reduced motion still gets the still version automatically (useBrandMotion).
+  return null;
 }

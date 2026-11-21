@@ -52,7 +52,8 @@ function build(root: HTMLElement) {
 }
 
 export function ArrimoMotion() {
-  const { paused, available, toggle } = useBrandMotion('[data-model="arrimo"]', build);
-  if (!available) return null;
-  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle} aria-label={paused ? "Ativar animações" : "Pausar animações"}><span className={styles.motionFull}>{paused ? "Ativar animações" : "Pausar animações"}</span><span className={styles.motionShort} aria-hidden="true">{paused ? "Ativar" : "Pausar"}</span></button>;
+  useBrandMotion('[data-model="arrimo"]', build);
+  // No visible pause button (21/11/2026): the scenes move with the scroll and arrivals last under 5 s, so WCAG 2.2.2
+  // asks for none; reduced motion still gets the still version automatically (useBrandMotion).
+  return null;
 }

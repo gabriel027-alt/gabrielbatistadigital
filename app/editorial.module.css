@@ -433,3 +433,12 @@
   .heroActions{margin-top:14px}
 }
 @media(max-width:700px) and (max-height:760px){.heroSub{display:none}}
+/* Discreet on computers too (21/11/2026): the same round pause/play icon as on phones, light until hovered. The label
+   stays available to assistive technology and as a tooltip. WCAG 2.2.2 keeps it: this page moves on its own. */
+@media(min-width:701px){
+  .motionControl{width:44px;height:44px;min-height:44px;padding:0;display:grid;place-items:center;border-radius:50%;bottom:20px;right:20px;background:#faf6efcc;backdrop-filter:blur(6px);opacity:.72;transition:opacity .2s}
+  .motionControl:hover,.motionControl:focus-visible{opacity:1}
+  .motionControl:before{content:"";width:10px;height:12px;border:solid var(--ink);border-width:0 3px;box-sizing:border-box}
+  .motionControl[aria-pressed=true]:before{width:0;height:0;border-style:solid;border-width:6px 0 6px 10px;border-color:transparent transparent transparent var(--ink)}
+}
+@media(min-width:701px){.motionControl .motionLabel{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}}

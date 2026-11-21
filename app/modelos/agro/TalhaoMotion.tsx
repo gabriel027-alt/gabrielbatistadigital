@@ -144,9 +144,8 @@ function fieldFilm(root: HTMLElement) {
 }
 
 export function TalhaoMotion() {
-  const { paused, available, toggle } = useBrandMotion('[data-model="talhao"]', build);
-  if (!available) return null;
-  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle} aria-label={paused ? "Ativar animações" : "Pausar animações"}>
-    <span aria-hidden="true" className={styles.toggleIcon} /><span aria-hidden="true" className={styles.toggleText}>{paused ? "Ativar animações" : "Pausar animações"}</span>
-  </button>;
+  useBrandMotion('[data-model="talhao"]', build);
+  // No visible pause button (21/11/2026): the scenes move with the scroll and arrivals last under 5 s, so WCAG 2.2.2
+  // asks for none; reduced motion still gets the still version automatically (useBrandMotion).
+  return null;
 }

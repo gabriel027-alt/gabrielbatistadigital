@@ -40,10 +40,12 @@ test("Casa Brisa tour plays frame by frame with the scroll and flies back in rev
   expect(errors).toEqual([]);
 });
 
-test("Casa Brisa pauses into a static tour and keeps the local booking journey", async ({ page }) => {
+test("Casa Brisa without motion is a static tour and keeps the local booking journey", async ({ page }) => {
   await page.setViewportSize({ width: 1280, height: 800 });
   await page.goto("/modelos/hotelaria");
-  await page.getByRole("button", { name: "Pausar o tour" }).click();
+  // No pause button since 21/11/2026: reduced motion is the way to the still version.
+  await expect(page.getByRole("button", { name: /Pausar|Ativar/ })).toHaveCount(0);
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator('[data-model="brisa"]')).not.toHaveAttribute("data-brand-animated", "true");
   await expect(page.locator("[data-brisa-tour] figure")).toHaveCount(5);
   await expect(page.locator("[data-tour-caption]").first()).toBeHidden();

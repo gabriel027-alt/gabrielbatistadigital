@@ -27,7 +27,9 @@ test("Almeida signature: the estate is drawn from the assets down to the heirs, 
   await expect.poll(at(1, visibleStep)).toBe(4);
   await expect.poll(at(-.3, () => dashOffset(page, "[data-tree-branch]"))).toBeGreaterThan(.9);
 
-  await page.getByRole("button", { name: "Pausar animações" }).click();
+  // No pause button since 21/11/2026: reduced motion is the way to the still version.
+  await expect(page.getByRole("button", { name: /Pausar|Ativar/ })).toHaveCount(0);
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator('[data-model="almeida"]')).not.toHaveAttribute("data-brand-animated", "true");
   expect(await opacity(page, "[data-tree-heirs]")).toBe(1);
   expect(errors).toEqual([]);

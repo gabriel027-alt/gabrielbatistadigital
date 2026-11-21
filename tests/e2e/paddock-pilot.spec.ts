@@ -12,7 +12,7 @@ for(const device of [{width:1536,height:696,scale:1.25},{width:390,height:844,sc
   await at(page,.72);await expect.poll(()=>frame(page)).toBeGreaterThan(180);await expect(page.locator('[data-tour-caption][data-active]')).toContainText('Pintura e rodagem.');
   await at(page,1);await expect.poll(()=>frame(page)).toBe(222);await expect(page.locator('[data-tour-caption][data-active]')).toContainText('O laudo aberto.');
   await at(page,0);await expect.poll(()=>frame(page)).toBe(0);
-  await page.getByRole('button',{name:'Pausar o tour'}).click();await expect(page.locator('[data-model="paddock"]')).not.toHaveAttribute('data-brand-animated','true');
+  await expect(page.getByRole('button',{name:/Pausar|Ativar/})).toHaveCount(0);await page.emulateMedia({reducedMotion:'reduce'});await expect(page.locator('[data-model="paddock"]')).not.toHaveAttribute('data-brand-animated','true');
   expect(await page.locator('body').evaluate(()=>document.documentElement.scrollWidth-innerWidth)).toBeLessThanOrEqual(0);expect(errors).toEqual([]);await context.close();
  });
 }

@@ -279,3 +279,6 @@
 /* Keep the office label below the sticky header when arriving from an anchor. */
 .office{scroll-margin-top:100px}
 @media(max-width:760px){.office{scroll-margin-top:90px}}
+/* No pause button since 21/11/2026: the header gets its full width back. */
+.header.header{padding-right:5vw}
+@media(max-width:700px){.header.header{padding-right:6vw}.header.header nav a{max-width:none}}

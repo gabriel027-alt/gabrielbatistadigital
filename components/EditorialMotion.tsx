@@ -560,6 +560,6 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
   },[paused]);
   return <div ref={root} className={`${styles.page} ${className}`} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo" data-editorial-nav-over="editorial-start">
     {children}<div className={styles.frameGlow} aria-hidden="true"/><div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
-    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} onClick={() => setPaused(value => !value)}><span className={styles.motionLabel}>{paused ? labels.resume : labels.pause}</span></button>}
+    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} title={paused ? labels.resume : labels.pause} onClick={() => setPaused(value => !value)}><span className={styles.motionLabel}>{paused ? labels.resume : labels.pause}</span></button>}
   </div>;
 }

@@ -37,17 +37,16 @@ test("Arrimo joins the periods, reviews the gaps and reverses the whole scene", 
   expect(errors).toEqual([]);
 });
 
-test("Pause keeps the full document readable and reduced motion passes axe", async ({ browser }) => {
+test("Without motion the full document stays readable, with no pause button, and passes axe", async ({ browser }) => {
   const context = await browser.newContext({ viewport: { width: 1536, height: 696 }, deviceScaleFactor: 1.25 });
   const page = await context.newPage();
   await page.goto(route);
-  await page.getByRole("button", { name: "Pausar animações" }).click();
+  // No pause button since 21/11/2026: reduced motion is the way to the still version.
+  await expect(page.getByRole("button", { name: /Pausar|Ativar/ })).toHaveCount(0);
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator('[data-model="arrimo"]')).not.toHaveAttribute("data-brand-animated", "true");
   await expect(page.locator('[data-arrimo-phase]')).toHaveCount(3);
   await expect(page.locator('[data-arrimo-review]')).toHaveCSS("opacity", "1");
-  await page.getByRole("button", { name: "Ativar animações" }).click();
-  await expect(page.locator('[data-model="arrimo"]')).toHaveAttribute("data-brand-animated", "true");
-  await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.getByRole("button", { name: /animações/ })).toHaveCount(0);
   const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(audit.violations.map(v => ({ id: v.id, targets: v.nodes.map(n => n.target) }))).toEqual([]);
@@ -92,10 +91,9 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
     expect(bounds.bottom).toBeLessThanOrEqual(bounds.height - 8);
     expect(bounds.overflow).toBeLessThanOrEqual(0);
     const stamp = await page.locator('[data-arrimo-review]').boundingBox();
-    const pause = await page.getByRole('button', { name: 'Pausar animações' }).boundingBox();
     expect(Math.abs(stamp!.x + stamp!.width / 2 - device.width / 2)).toBeLessThan(12);
     expect(Math.abs(stamp!.y + stamp!.height / 2 - device.height / 2)).toBeLessThan(device.height * .2);
-    expect(stamp!.y).toBeGreaterThan(pause!.y + pause!.height + 20);
+    expect(stamp!.y).toBeGreaterThan(bounds.header + 20);
     const explanation = await page.locator('[data-arrimo-phase]').last().boundingBox();
     expect(explanation!.y).toBeGreaterThan(stamp!.y + stamp!.height + 10);
     await context.close();

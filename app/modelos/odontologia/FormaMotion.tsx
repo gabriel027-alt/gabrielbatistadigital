@@ -35,7 +35,8 @@ function build(root: HTMLElement) {
 }
 
 export function FormaMotion() {
-  const { paused, available, toggle } = useBrandMotion('[data-model="forma"]', build);
-  if (!available) return null;
-  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle}>{paused ? "Ativar animações" : "Pausar animações"}</button>;
+  useBrandMotion('[data-model="forma"]', build);
+  // No visible pause button (21/11/2026): the scenes move with the scroll and arrivals last under 5 s, so WCAG 2.2.2
+  // asks for none; reduced motion still gets the still version automatically (useBrandMotion).
+  return null;
 }

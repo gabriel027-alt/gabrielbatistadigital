@@ -26,7 +26,9 @@ test("Forma signature: the smile is measured, outlined and given ceramic, and pl
   await expect.poll(at(1, visibleStep)).toBe(2);
   await expect.poll(at(-.3, () => opacity(page, "[data-plan-ceramic]"))).toBeLessThan(.05);
 
-  await page.getByRole("button", { name: "Pausar animações" }).click();
+  // No pause button since 21/11/2026: reduced motion is the way to the still version.
+  await expect(page.getByRole("button", { name: /Pausar|Ativar/ })).toHaveCount(0);
+  await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator('[data-model="forma"]')).not.toHaveAttribute("data-brand-animated", "true");
   expect(await opacity(page, "[data-plan-ceramic]")).toBe(1);
   expect(errors).toEqual([]);
