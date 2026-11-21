@@ -654,3 +654,33 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 **Pendente com o usuário:** a foto da conversa e um nome para a advogada (opcional, como Helena e Ricardo).
 **Nome (20/11/2026):** a advogada do Talhão passa a se chamar **Marina Couto**, persona da marca, por decisão do usuário. Nunca acompanha número de OAB, formação ou anos de experiência. Aparece como na Lume e na Arrimo: abaixo da chamada do topo, como título da seção do escritório e no resumo do roteiro.
 **Foto da conversa (20/11/2026):** `public/images/talhao/conversa-varanda.webp`, com a Marina à mesa da varanda explicando um documento ao produtor de chapéu, de costas. A luz é de meio-dia, e a calculadora e os papéis não têm nada legível. É a foto da seção do escritório.
+
+## Talhão: piloto montado aqui (20/11/2026)
+
+**Contexto:** depois da renovação do limite, o usuário pediu para seguir por aqui.
+
+**Arquivos:**
+- `app/modelos/agro/`: `page.tsx`, `TalhaoMotion.tsx`, `TalhaoMark.tsx` e `talhao.module.css`;
+- `lib/talhao.ts`;
+- o kit `talhao` em `lib/brand-kits.ts`;
+- o roteiro `talhao` no `BrandInquiry`;
+- `agro` em `rebuiltModels`;
+- a miniatura `public/images/talhao/marina-rosto.webp`.
+
+**Layout:**
+- No PC, o mapa zenital ocupa a direita, de ponta a ponta. À esquerda, no papel cor de palha, fica a legenda do mapa: título "Safra frustrada não precisa virar terra perdida.", texto sobre os caminhos que o crédito rural prevê, as cinco situações numeradas, a chamada e "Com Marina Couto, advogada do agro".
+- No celular, o mapa ocupa a tela e a legenda vira uma folha embaixo, mostrando só a situação ativa.
+
+**A cena "os talhões se acendem"** (620svh, ida e volta):
+- a câmera vai de talhão em talhão: o pivô (safra frustrada), a soja (dívida de custeio), a palha do meio (máquina penhorada), a palha de cima (arrendamento e parceria) e a terra roxa (terra em garantia);
+- o contorno se desenha como mapa de GPS, o pino numerado pousa, e a legenda acende a mesma situação;
+- no fim, a câmera recua com todos os contornos;
+- o limite da câmera considera a folha da legenda no celular;
+- sem movimento ou sem JS, a página mostra todos os contornos e a legenda inteira.
+
+**Evidência:**
+- `tests/e2e/talhao-model.spec.ts` (4 testes, aprovados): a sequência na ida e na volta; axe sem movimento; o roteiro e a página sem JS; 360 px.
+- `brand-kits.spec.ts` aprovado.
+- Vídeos em `Downloads/talhao-piloto/` (`talhao-piloto-pc.mp4` em 1536×696 e `-celular.mp4`).
+
+**Próximo passo:** aguardar a aprovação do usuário; depois, o resto da página (vídeo da lavoura, a Marina, como o caso é analisado, dúvidas).

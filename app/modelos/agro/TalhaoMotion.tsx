@@ -1,0 +1,87 @@
+"use client";
+
+import gsap from "gsap";
+import { useBrandMotion } from "@/components/brand/useBrandMotion";
+import { mapSize, plots } from "@/lib/talhao";
+import styles from "./talhao.module.css";
+
+/**
+ * Talhão's signature motion: "os talhões se acendem". Over the aerial photo of the farm, the scroll travels plot by
+ * plot: the camera leans towards it, its outline is drawn like a GPS harvest map, a numbered pin lands and it lights
+ * up, while the map legend shows the same situation. At the end the camera pulls back with every plot outlined.
+ * Fully reversible. Without motion, CSS shows every outline and the whole legend.
+ */
+const START = .1, STEP = .15, END = START + STEP * plots.length;
+
+function focus(plot: (typeof plots)[number]) {
+  return { px: plot.marker.x / mapSize.w, py: plot.marker.y / mapSize.h };
+}
+
+function build(root: HTMLElement) {
+  const hero = root.querySelector<HTMLElement>("[data-talhao-hero]");
+  const map = root.querySelector<HTMLElement>("[data-talhao-map]");
+  if (!hero || !map) return;
+  const frame = map.parentElement!;
+  const phone = matchMedia("(max-width: 900px)").matches;
+  const scale = phone ? 1.25 : 1.35;
+  // Where the active plot should sit inside the map frame: centred on computers (the map has its own half of the
+  // screen), above the legend sheet on phones.
+  const target = phone ? { x: .5, y: .27 } : { x: .5, y: .5 };
+
+  const legend = root.querySelector<HTMLElement>(`.${styles.legend}`);
+  /**
+   * Translation that brings a map point to the target, clamped so the map edges never show where the map is seen.
+   * On phones the legend sheet covers the bottom of the frame, so the map may rise until its lower edge meets the
+   * sheet: plots at the bottom of the farm can still reach the visible part.
+   */
+  const shift = (px: number, py: number, s: number) => {
+    const w = map.offsetWidth, h = map.offsetHeight, vw = frame.clientWidth, vh = frame.clientHeight;
+    const visibleBottom = phone && legend ? vh - legend.offsetHeight : vh;
+    const x = (target.x - .5) * vw - s * (px - .5) * w;
+    const y = (target.y - .5) * vh - s * (py - .5) * h;
+    const roomX = Math.max(0, (w * s - vw) / 2);
+    return {
+      x: Math.max(-roomX, Math.min(roomX, x)),
+      y: Math.max(visibleBottom - vh / 2 - (h * s) / 2, Math.min((h * s) / 2 - vh / 2, y)),
+    };
+  };
+
+  const groups = plots.map(plot => root.querySelector<SVGGElement>(`[data-plot="${plot.id}"]`)!);
+  const steps = plots.map(plot => root.querySelector<HTMLElement>(`[data-step="${plot.id}"]`)!);
+  let active = -2;
+  const mark = (progress: number) => {
+    const index = progress >= END ? -1 : Math.min(plots.length - 1, Math.floor((progress - START) / STEP));
+    if (index === active) return;
+    active = index;
+    groups.forEach((g, i) => g.toggleAttribute("data-current", i === index));
+    steps.forEach((s, i) => s.toggleAttribute("data-active", i === index || (index === -1 && progress >= END)));
+    root.querySelector(`.${styles.legend}`)?.toggleAttribute("data-all", progress >= END);
+  };
+
+  gsap.set("[data-plot-line]", { strokeDashoffset: 1 });
+  gsap.set("[data-plot-marker]", { scale: 0, opacity: 0, transformOrigin: "50% 50%" });
+
+  const tl = gsap.timeline({
+    defaults: { ease: "none" },
+    scrollTrigger: { trigger: hero, start: "top top", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true, onUpdate: self => mark(self.progress) },
+  });
+  tl.fromTo(map, { scale: 1.12, x: 0, y: 0 }, { scale: 1, duration: START }, 0);
+  plots.forEach((plot, i) => {
+    const t = START + i * STEP;
+    const { px, py } = focus(plot);
+    const g = groups[i];
+    tl.to(map, { scale, x: () => shift(px, py, scale).x, y: () => shift(px, py, scale).y, duration: STEP * .55, ease: "power1.inOut" }, t)
+      .to(g.querySelector("[data-plot-line]"), { strokeDashoffset: 0, duration: STEP * .45 }, t + STEP * .15)
+      .to(g.querySelector("[data-plot-marker]"), { scale: 1, opacity: 1, duration: STEP * .2, ease: "back.out(2)" }, t + STEP * .45);
+  });
+  tl.to(map, { scale: 1, x: 0, y: 0, duration: 1 - END - .02, ease: "power1.inOut" }, END);
+  mark(0);
+}
+
+export function TalhaoMotion() {
+  const { paused, available, toggle } = useBrandMotion('[data-model="talhao"]', build);
+  if (!available) return null;
+  return <button className={styles.motionToggle} type="button" aria-pressed={paused} onClick={toggle} aria-label={paused ? "Ativar animações" : "Pausar animações"}>
+    <span aria-hidden="true" className={styles.toggleIcon} /><span aria-hidden="true" className={styles.toggleText}>{paused ? "Ativar animações" : "Pausar animações"}</span>
+  </button>;
+}

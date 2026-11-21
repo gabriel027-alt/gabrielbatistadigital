@@ -113,4 +113,15 @@ export const brandKits: BrandKit[] = [
     signatureMotion: "As cobranças se soltam: frases de cobrança caem com a rolagem enquanto a noite vira manhã",
     hero: "Título de dor coberto por frases de cobrança ao lado da cozinha às 23h, que vira 7h", status: "aprovado",
   },
+  {
+    id: "talhao", route: "/modelos/agro", niche: "Advocacia do agro",
+    concept: "Safra frustrada não precisa virar terra perdida.", mark: "Um quadrado de lavoura cujas fileiras formam um T",
+    // Measured on the user's photos (20/11/2026): soy, red soil, straw, sky, porch wood.
+    palette: { soja: "#295419", terraRoxa: "#a54c33", palha: "#dbb38c", ceu: "#6cacec", tronco: "#2a1a10" },
+    material: "Terra roxa e palha sob sol do meio-dia", typography: { display: "Zilla Slab", text: "Work Sans" },
+    photo: "Aérea zenital da fazenda e retratos ambientais ao meio-dia, céu limpo, sem dourado",
+    signatureGraphic: "Contornos de talhão como mapa de GPS de colheita, com a legenda do mapa",
+    signatureMotion: "Os talhões se acendem: a câmera passa de talhão em talhão sobre a foto aérea e cada um acende com uma situação",
+    hero: "Foto aérea da fazenda em tela cheia com a legenda do mapa carregando o título", status: "em construção",
+  },
 ];

@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -132,6 +132,21 @@ const content: Record<Brand, Content> = {
     next: "A equipe confirma o horário e orienta a chegada. Gatos aguardam na área separada, longe dos cães.",
     invitation: "A visita começa antes da chegada.", stepNames: ["O animal", "A visita"], stepTitles: ["Quem vem com você?", "Do que ele precisa?"],
     summaryTitle: "Visita preparada.", noscript: "Para agendar, pense no animal, no motivo da visita e no melhor período.",
+  },
+  // Talhão: the situation and how the first conversation happens; no farm data, debts or documents asked here.
+  talhao: {
+    name: "Talhão Advocacia do Agro", title: "Conte o que está acontecendo na fazenda.",
+    intro: "Duas perguntas rápidas, sem números nem documentos agora. O resto, você conta na conversa com a Marina.", action: "Conversar sobre a minha fazenda",
+    steps: [
+      [{ key: "situacao", label: "O que mais pesa hoje?", options: ["A safra frustrou e a parcela vai vencer", "Dívida de custeio ou de investimento", "Uma máquina penhorada ou em execução", "Arrendamento ou parceria", "A terra está em garantia", "Ainda não sei dizer"] }],
+      [
+        { key: "formato", label: "Como prefere a primeira conversa?", options: ["Na fazenda", "Online", "No escritório"] },
+        { key: "quando", label: "Quando você quer conversar?", options: ["Esta semana", "Nas próximas semanas", "Ainda estou me informando"] },
+      ],
+    ],
+    next: "Na primeira conversa, a Marina entende a situação, lê os contratos e explica quais caminhos a lei prevê para o seu caso, com os limites de cada um. Nenhuma decisão é tomada antes disso.",
+    invitation: "A primeira conversa", stepNames: ["A situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como e quando?"],
+    summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense no que mais pesa hoje na fazenda e em como prefere a primeira conversa.",
   },
   // No clinical questions: only how and when she prefers to start.
   lume: {
