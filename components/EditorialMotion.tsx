@@ -56,7 +56,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           });
           // The red tittles sit outside the split words: they appear with the end of the reveal, not before their letters.
           const titleDots = title.querySelectorAll("[data-hook-tittle]");
-          if (titleDots.length) gsap.fromTo(titleDots, { opacity: 0, scale: .4 }, { opacity: 1, scale: 1, ease: "back.out(2)", scrollTrigger: { trigger: title, start: "top 62%", end: "bottom 52%", scrub: .65 } });
+          if (titleDots.length) gsap.fromTo(titleDots, { opacity: 0, scale: .4 }, { opacity: 1, scale: 1, ease: "back.out(2)", scrollTrigger: { trigger: title, start: "top 80%", end: "bottom 58%", scrub: .65 } });
         });
         // The brand dot never appears from nowhere: between scenes a carrier dot travels, on a low arc, from the dot it
         // leaves to the dot it becomes, both read live from the page. The two ends hide while it is on its way.
@@ -259,7 +259,9 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                   const vertical = innerWidth <= 560, size = vertical ? list.offsetHeight : list.offsetWidth;
                   own.forEach(item => {
                     const a = (vertical ? item.offsetTop : item.offsetLeft) / size, b = a + (vertical ? item.offsetHeight : item.offsetWidth) / size;
-                    item.style.setProperty("--u", Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
+                    // A title that breaks onto two lines gets no underline: two stacked lines read as clutter (21/11/2026).
+                    const wraps = (item.querySelector("h3 span")?.getClientRects().length ?? 1) > 1;
+                    item.style.setProperty("--u", wraps ? "0" : Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
                   });
                 };
                 ScrollTrigger.create({ start: readStart[k], end: readEnd[k], invalidateOnRefresh: true, onUpdate: self => read(self.progress), onRefresh: self => read(self.progress) });
@@ -426,6 +428,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             trail.setAttribute("d", pathThrough(lap));
             const flyPath = pathThrough(lap.map(point => ({ x: point.x - r, y: point.y - r })));
             const ring = (el: HTMLElement, at: { x: number; y: number }) => gsap.set(el, { x: at.x - r, y: at.y - r, transformOrigin: "50% 50%" });
+            // fromTo renders its start at once by default: the glow and the wave showed as rings marking the dot's path.
             ring(glow, lift);
             const trace = { head: 0 };
             const segment = .32;
@@ -438,7 +441,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
               .call(() => { document.documentElement.dataset.heroSigned = ""; }, undefined, "charge")
               .to(fly, { keyframes: [{ scale: .75, duration: .14 }, { scale: 1.2, duration: .14 }, { scale: .72, duration: .11 }, { scale: 1.25, duration: .11 }, { scale: .7, duration: .08 }, { scale: 1.3, duration: .08 }], ease: "sine.inOut" }, "charge")
               .to(fly, { x: `+=${r * .12}`, duration: .04, repeat: 9, yoyo: true, ease: "none" }, "charge+=.2")
-              .fromTo(glow, { scale: .6, opacity: .9 }, { scale: 2.6, opacity: 0, duration: .32, ease: "power1.out", repeat: 2 }, "charge")
+              .fromTo(glow, { scale: .6, opacity: .9 }, { scale: 2.6, opacity: 0, duration: .32, ease: "power1.out", repeat: 2, immediateRender: false }, "charge")
               // The dive: one continuous lap, the trail's head follows the dot and its tail fades behind it.
               .addLabel("dive")
               .to(fly, { motionPath: { path: flyPath, autoRotate: false }, duration: .95, ease: "power2.in" }, "dive")
@@ -450,7 +453,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
               .to(dot, { opacity: 1, duration: .06 }, "impact")
               .to(fly, { opacity: 0, duration: .06 }, "impact")
               .call(() => ring(wave, cardDot), undefined, "impact")
-              .fromTo(wave, { scale: .4, opacity: .9 }, { scale: 3.4, opacity: 0, duration: .55, ease: "power2.out" }, "impact")
+              .fromTo(wave, { scale: .4, opacity: .9 }, { scale: 3.4, opacity: 0, duration: .55, ease: "power2.out", immediateRender: false }, "impact")
               .fromTo(card, { scale: 1.09 }, { scale: 1, duration: .6, ease: "elastic.out(1,.45)" }, "impact")
               .to(trace, { head: 1 + segment + .05, duration: .35, ease: "power1.out", onUpdate: drawTrail }, "impact")
               // A round cap could linger at the path's end: hide the trail once it has drained.

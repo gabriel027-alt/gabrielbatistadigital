@@ -197,7 +197,7 @@
 .hookTittle{width:.17em;height:.17em;margin-left:-.085em;top:.06em}
 /* The dot that travels between scenes (created by the motion script; fixed to the viewport). */
 .carrier{position:fixed;left:0;top:0;z-index:40;pointer-events:none;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ef5a4a 0%,#c4372b 55%,#7a1a12 100%);box-shadow:0 2px 6px #0004;visibility:hidden}
-@media(max-width:700px){.palm{--pw:130vw;left:calc(12px - var(--pw) * .1)}.palmCopy{left:6vw;right:6vw;top:13svh;bottom:auto;max-width:none}.palmCopy h2{font-size:30px}.palmRing{border-width:1.5px}}
+@media(max-width:700px){.palm{--pw:130vw;left:calc(12px - var(--pw) * .1);bottom:11svh}.palmCopy{left:6vw;right:6vw;top:13svh;bottom:auto;max-width:none}.palmCopy h2{font-size:30px}.palmRing{border-width:1.5px}}
 /* Depth in the palm: the hand breathes as one body with its dot, the dot casts a contact shadow, the palm takes the dot's
    red light, and the floating "g." casts a soft shadow on the hand. */
 .palmBody{position:absolute;inset:0}

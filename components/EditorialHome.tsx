@@ -31,8 +31,8 @@ import styles from "@/app/editorial.module.css";
 // latin-ext brings the dotless "ı": the red brand dot takes the place of the tittle on both i of the name.
 const display = Bricolage_Grotesque({ subsets: ["latin", "latin-ext"], weight: "variable", axes: ["wdth", "opsz"], variable: "--gb-display", display: "swap" });
 const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400"], variable: "--gb-mono", display: "swap" });
-/** A real "i" whose dot is covered by the red brand dot; `carry` marks the one the scroll picks up and drops into the palm. */
-const redI = (carry = false) => <span className={styles.iSlot}>i<span className={`${styles.tittle} ${styles.hookTittle}`} data-hook-tittle={carry ? "carry" : ""} aria-hidden="true" /></span>;
+/** A dotless "ı" whose only tittle is the red brand dot (a red dot over a brown one looked doubled, 21/11/2026); `carry` marks the one the scroll picks up and drops into the palm. */
+const redI = (carry = false) => <span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.hookTittle}`} data-hook-tittle={carry ? "carry" : ""} aria-hidden="true" /></span>;
 /** Draws a word of the name with a red tittle (the brand dot) over each "i". */
 const nameWord = (text: string) => [...text].map((letter, index) => letter === "i" ? <span key={index} className={styles.iSlot}>ı<span className={styles.tittle} data-tittle /></span> : letter);
 const sample = (id: string, kind: "hero" | "cena") => `/images/projects/brands/${id}-${kind}.webp`;
@@ -96,7 +96,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       </section>
       <CloudTransition from="#editorial-start" />
       <section className={styles.hook} data-editorial-theme="paper" data-hook>
-        <h2 data-kinetic aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique" aria-label={t.hook.clickLabel}><span>{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
+        <h2 data-kinetic aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique"><span aria-hidden="true">{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span><span className={styles.sr}>{t.hook.clickLabel}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
         {/* "O próximo clique", one stage: the red tittle of "clique" falls into Gabriel's open palm; the dot rises, bursts,
             and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
         <div className={styles.fusionTrack} data-creation-track data-gb-track>

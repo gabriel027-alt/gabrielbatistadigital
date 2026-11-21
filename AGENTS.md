@@ -533,3 +533,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - **Mar de nuvens atrás do retrato:** desligado em telas < 700 px (`HeroClouds`, `intro` = 0). No aparelho dele as nuvens apareciam sobre o rosto ao rolar; não reproduzido no Chrome. Ficam os pontinhos e a costura creme (`CloudTransition`). No PC nada mudou.
   - **"Sobre" no celular:** a foto deixou de cobrir a seção inteira (o enquadramento ampliava até os olhos) e passou a ter uma tela de altura, fixa (`sticky`) enquanto o texto rola por cima. Cuidado: `inset:auto` depois de `top:0` anula o `top`.
 - Verificação: emulação 390×844 com a barra de endereço escondendo; 33 testes da homepage e do avatar passaram. Falta o usuário conferir no aparelho dele.
+- Segunda rodada (21/11/2026, pedidos do usuário):
+  - Os anéis de brilho e da onda de choque do ponto apareciam parados antes da cena ("marcações premeditadas"): o `fromTo` do GSAP desenha o início na hora em que é criado. Agora `immediateRender: false`; eles só aparecem na carga e no impacto.
+  - "primeiro" e "clique" usam o "ı" sem pingo: o ponto vermelho é o único pingo (antes ficava sobre o pingo marrom da letra). O link "clique" tem o nome falado em texto oculto, para o nome bater com o visível (axe).
+  - Títulos de serviço que quebram em duas linhas não recebem sublinhado do ponto (ex.: "Automação no WhatsApp" no PC).
+  - No celular, a mão sobe (`bottom:11svh`) e se forma no meio da tela, não embaixo.
+  - Pendente, aguardando o usuário esclarecer: "os projetos no mobile não passam por inteiro" e as animações dos projetos no celular.
