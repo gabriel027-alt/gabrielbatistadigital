@@ -653,3 +653,4 @@ Observação: carros gerados por IA costumam imitar modelos reais. Conferir se n
 
 **Pendente com o usuário:** a foto da conversa e um nome para a advogada (opcional, como Helena e Ricardo).
 **Nome (20/11/2026):** a advogada do Talhão passa a se chamar **Marina Couto**, persona da marca, por decisão do usuário. Nunca acompanha número de OAB, formação ou anos de experiência. Aparece como na Lume e na Arrimo: abaixo da chamada do topo, como título da seção do escritório e no resumo do roteiro.
+**Foto da conversa (20/11/2026):** `public/images/talhao/conversa-varanda.webp`, com a Marina à mesa da varanda explicando um documento ao produtor de chapéu, de costas. A luz é de meio-dia, e a calculadora e os papéis não têm nada legível. É a foto da seção do escritório.
