@@ -419,7 +419,9 @@ export function HeroClouds() {
       gl.viewport(0, 0, cloudSize[0], cloudSize[1]);
       gl.useProgram(cloudProgram);
       gl.uniform1f(u(cloudProgram, "time"), now / 1000);
-      gl.uniform1f(u(cloudProgram, "intro"), 1 - (1 - rise) ** 3);
+      // Phones keep the points and the cream seam of the transition, but not the sea of clouds behind him: on a real
+      // phone (Samsung Internet, 21/11/2026) the clouds were drawn over his face once the address bar hid.
+      gl.uniform1f(u(cloudProgram, "intro"), holder.offsetWidth < 700 ? 0 : 1 - (1 - rise) ** 3);
       gl.clearColor(0, 0, 0, 0);
       gl.clear(gl.COLOR_BUFFER_BIT);
       fullQuad(cloudProgram);

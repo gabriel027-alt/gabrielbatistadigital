@@ -524,3 +524,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Decisão do usuário: a seleção mostra clínicas, advocacias e uma loja de seminovos, então o texto deixou de falar só com clínicas. O critério de comparação continua o mesmo (**identidade própria em vez de modelo pronto**); muda só o público. Topo (ajuste aprovado no mesmo dia): "Sites com a identidade da sua marca, para negócios escolhidos pela confiança." O fio que une os projetos é a decisão por confiança; "sem modelo pronto" aparece logo depois, na cena da mão. "Cliente" substitui "paciente", e a página fala em "negócio".
 - Quem é o público aparece também no rótulo dos serviços ("O que eu construo para clínicas, escritórios e negócios de alto valor"; "lojas" saiu por atrair negócio de ticket baixo) e no título de busca, que mantém "clínicas" em primeiro: "Sites para clínicas, escritórios e negócios de alto ticket". Mesma mudança nos quatro idiomas, na página `/em-breve` e em `siteConfig.description`.
 - Os textos dentro dos filmes e as mensagens de WhatsApp de cada projeto não mudaram. Páginas por nicho para campanhas ficam para depois, quando as campanhas estiverem perto. As regras antigas que mandam falar de "sua clínica" no topo estão substituídas por esta.
+
+## Homepage no celular: correções da gravação do usuário (21/11/2026)
+
+- O usuário gravou a prévia da Vercel no celular (navegador Samsung Internet) e achou o jogo de animações inferior ao do PC. Corrigido:
+  - **Rodapé:** `min-height:100lvh`. Com a barra de endereço escondida, `100svh` ficava mais curto que a tela e mostrava uma faixa pêssego do contato acima do rodapé.
+  - **Ponto de leitura** dos serviços no celular: 10 px, inteiro dentro da tela (antes saía pela borda esquerda).
+  - **Mar de nuvens atrás do retrato:** desligado em telas < 700 px (`HeroClouds`, `intro` = 0). No aparelho dele as nuvens apareciam sobre o rosto ao rolar; não reproduzido no Chrome. Ficam os pontinhos e a costura creme (`CloudTransition`). No PC nada mudou.
+  - **"Sobre" no celular:** a foto deixou de cobrir a seção inteira (o enquadramento ampliava até os olhos) e passou a ter uma tela de altura, fixa (`sticky`) enquanto o texto rola por cima. Cuidado: `inset:auto` depois de `top:0` anula o `top`.
+- Verificação: emulação 390×844 com a barra de endereço escondendo; 33 testes da homepage e do avatar passaram. Falta o usuário conferir no aparelho dele.

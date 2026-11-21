@@ -10,8 +10,8 @@
 
 /* Original approved portrait: no facial filters or regenerated cover. */
 .heroPhoto img{object-position:50% 30%}.heroPhoto:after{background:linear-gradient(0deg,#170c0b80,transparent 38%)}
-.footer{min-height:100svh}.footerPhoto img{object-position:center;filter:none}.footerPhoto:after{z-index:1;background:linear-gradient(0deg,#170c0b66,transparent 55%),linear-gradient(180deg,#170c0b55,transparent 30%)}.footerName,.footerTop,.footerBottom{position:relative;z-index:2}.footerName{margin-top:auto;padding-top:240px}.footerTop>p{margin:0}.footerTop>div{padding:10px 12px;background:#201714b0;border-radius:10px}.footerTop>div p{margin:5px 0 0}
-@media(max-width:700px){.heroPhoto img{object-position:50% center}.heroOffer{top:auto;bottom:23%;max-width:45%;text-shadow:0 2px 12px #000}.heroBottom{top:auto;bottom:23%;text-shadow:0 2px 12px #000}.aboutPhoto img{object-position:50% center}.footer{min-height:100svh}.footerPhoto img{object-position:center;object-fit:cover}.footerName{padding-top:280px}.footerTop>div{font-size:9px}.footerName{font-size:14vw}}
+.footer{min-height:100svh;min-height:100lvh}.footerPhoto img{object-position:center;filter:none}.footerPhoto:after{z-index:1;background:linear-gradient(0deg,#170c0b66,transparent 55%),linear-gradient(180deg,#170c0b55,transparent 30%)}.footerName,.footerTop,.footerBottom{position:relative;z-index:2}.footerName{margin-top:auto;padding-top:240px}.footerTop>p{margin:0}.footerTop>div{padding:10px 12px;background:#201714b0;border-radius:10px}.footerTop>div p{margin:5px 0 0}
+@media(max-width:700px){.heroPhoto img{object-position:50% center}.heroOffer{top:auto;bottom:23%;max-width:45%;text-shadow:0 2px 12px #000}.heroBottom{top:auto;bottom:23%;text-shadow:0 2px 12px #000}.aboutPhoto img{object-position:50% center}.footer{min-height:100svh;min-height:100lvh}.footerPhoto img{object-position:center;object-fit:cover}.footerName{padding-top:280px}.footerTop>div{font-size:9px}.footerName{font-size:14vw}}
 
 /* Reference top-glow: a fixed compositing layer, independent of the film. */
 .frameGlow{position:fixed;inset:0;z-index:45;pointer-events:none;box-shadow:inset 0 2px 30px #ff3434a6,inset 0 2px 130px 8px #c710304d}
@@ -256,7 +256,7 @@
 .readAbout .readLine{background:none;padding:0}
 .readAbout:after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:3px;background:#ffbc95;transform-origin:0 50%;transform:scaleX(var(--read,0))}
 .readAbout .readDot{top:auto;bottom:-17.5px;margin:0 0 0 -7px}
-@media(max-width:560px){.readTrack{left:-3vw;top:0;width:0;height:100%}.readFill{left:-1px;top:0;width:2px;height:100%;transform-origin:50% 0;transform:scaleY(var(--read,0))}.serviceList .readDot{left:0;top:calc(var(--read,0) * 100%)}}
+@media(max-width:560px){.readTrack{left:-3vw;top:0;width:0;height:100%}.serviceList .readDot{width:10px;height:10px;margin:-5px 0 0 -5px}.readFill{left:-1px;top:0;width:2px;height:100%;transform-origin:50% 0;transform:scaleY(var(--read,0))}.serviceList .readDot{left:0;top:calc(var(--read,0) * 100%)}}
 /* The points that gather around the lit full stop (components/TalkParticles.tsx): behind the words of the panel. */
 .contact>a{position:relative}
 .contact>a>div,.contactAction{position:relative;z-index:1}
@@ -377,3 +377,6 @@
 /* "Click a project to watch its film": the strip's instruction, readable at a glance (it was a pale footnote). */
 .workNote{font-size:13px;font-weight:600;color:var(--ink)}
 .workNote::before{content:"";display:inline-block;width:0;height:0;margin-right:9px;border-style:solid;border-width:5px 0 5px 8px;border-color:transparent transparent transparent var(--copper);vertical-align:1px}
+/* Phones (21/11/2026): the about photo covered the whole tall section, so cover-fit zoomed it to his eyes and the
+   statement ran over his mouth. Here it is one screen tall and stays in place while the text scrolls over it. */
+@media(max-width:700px){.aboutPhoto{position:sticky;inset:auto;top:0;width:100%;height:100lvh;margin-bottom:-100lvh}.aboutPhoto img{object-position:50% 22%}}
