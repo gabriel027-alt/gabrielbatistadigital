@@ -8,6 +8,7 @@ import { faq, features, firstConsult, recovery, recoveryDays, rulerPosition, sur
 import { SutilMark } from "./SutilMark";
 import { SutilMotion } from "./SutilMotion";
 import styles from "./sutil.module.css";
+import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Bodoni Moda: high-contrast, precise display with a true italic; Figtree for reading. */
 const display = Bodoni_Moda({ subsets: ["latin"], style: ["normal", "italic"], weight: ["400", "500"], variable: "--sutil-display", display: "swap" });
@@ -59,7 +60,7 @@ export default function SutilPage() {
 
       {/* Brand signature: the recovery, day by day. */}
       <section className={styles.recovery} id="recuperacao" aria-labelledby="recuperacao-titulo" data-sutil-recovery>
-        <div className={styles.recoveryStage}>
+        <div className={styles.recoveryStage}><ScrollHint desktop="Role para avançar os dias da recuperação." phone="Deslize para avançar os dias." />
           <figure className={styles.recoveryPhoto} data-recovery-photo>
             <Image src="/images/sutil/recuperacao.webp" alt="Poltrona de recuperação ao lado da janela, com uma manta sálvia e um copo d'água" fill quality={90} sizes="(max-width:900px) 150vw, 100vw" />
             <span className={styles.light} data-recovery-light aria-hidden="true" />

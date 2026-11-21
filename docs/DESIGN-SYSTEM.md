@@ -34,6 +34,7 @@ Compartilhada por todas as marcas, sem determinar a aparência:
 | Grade e espaço | Grade de 12 colunas, gutter de 5 vw no desktop e 6 vw no celular. Escala de espaço 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 160. |
 | Escala tipográfica | Fluida com `clamp`. Corpo de 16 a 18 px, linha de 60 a 75 caracteres, contraste AA. |
 | Motor de movimento | GSAP/ScrollTrigger, já instalado, em componente cliente por marca. Contrato obrigatório: movimento reduzido mostra o estado final; botão de pausa; sem JS mostra o conteúdo completo; não recalcular o ScrollTrigger a cada imagem carregada; retorno do scroll reversível. |
+| Dica de interação | Regra de 20/11/2026, a pedido do usuário. Toda cena ligada à rolagem tem uma dica na voz da própria marca, por `components/brand/ScrollHint.tsx`. Diz "role" no PC e "deslize" no celular, some nos primeiros 160 px da cena e volta quando a pessoa sobe. Não aparece com movimento reduzido, pausa ou sem JS. Fica dentro do palco da cena, sem cobrir o elemento principal (`desktopAlign`, `phoneTop`). Todo controle clicável (chave, filtro, comparador) diz que é uma escolha, sem depender do mouse. |
 | Conversão | Componente BrandInquiry (roteiro local, sem envio de dados). Botões de chamada em vários pontos, com textos diferentes. |
 | Ícones | `components/ModelIcon.tsx` só como apoio. Ícone nunca é o elemento de identidade. |
 | Verificação | Playwright: formato, roteiro, 360/390/768/1440 sem overflow, axe AA, sem JS. Vídeo da rolagem para ida e volta, no celular e com movimento reduzido. |

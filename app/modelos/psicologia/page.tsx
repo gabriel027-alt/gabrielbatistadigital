@@ -8,6 +8,7 @@ import { faq, howItWorks, psychologist, signs, week, weights } from "@/lib/lume"
 import { LumeMark } from "./LumeMark";
 import { LumeMotion } from "./LumeMotion";
 import styles from "./lume.module.css";
+import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Young Serif: soft, upright, a conversational voice with no italic. Public Sans for reading. */
 const display = Young_Serif({ subsets: ["latin"], weight: "400", variable: "--lume-display", display: "swap" });
@@ -40,7 +41,7 @@ export default function LumePage() {
     <main id="lume-conteudo">
       {/* Signature: the demands weigh on the headline and fall away with the scroll. */}
       <section className={styles.hero} id="lume-inicio" aria-labelledby="lume-titulo" data-lume-hero>
-        <div className={styles.stage}>
+        <div className={styles.stage}><ScrollHint desktop="Role devagar. Deixe as cobranças caírem." phone="Deslize. Deixe as cobranças caírem." tone="light" phoneTop />
           <span className={styles.lamp} data-lume-lamp aria-hidden="true" />
           <div className={styles.copy}>
             <p className={styles.lead}>Psicologia para mulheres que cuidam de todo mundo e não conseguem parar.</p>

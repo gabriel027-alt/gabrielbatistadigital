@@ -20,7 +20,8 @@ export function SpeciesSwitch() {
     if (root) root.dataset.species = value;
   };
   return <div className={styles.switch} role="group" aria-label="Quem vem com você?">
-    <span className={styles.switchLabel}>Quem vem com você?</span>
+    {/* The label says it is a choice, so nobody takes the switch for decoration. */}
+    <span className={styles.switchLabel}>Quem vem com você? Escolha para ver a visita dele.</span>
     <div className={styles.switchTrack} data-value={species}>
       <button type="button" aria-pressed={species === "cao"} onClick={() => choose("cao")}>Cão</button>
       <button type="button" aria-pressed={species === "gato"} onClick={() => choose("gato")}>Gato</button>

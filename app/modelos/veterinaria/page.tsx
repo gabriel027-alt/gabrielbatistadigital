@@ -9,6 +9,7 @@ import { SpeciesSwitch } from "./SpeciesSwitch";
 import { TocaMark } from "./TocaMark";
 import { TocaMotion } from "./TocaMotion";
 import styles from "./toca.module.css";
+import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Fraunces: a soft, warm serif with a true italic; DM Sans for reading. */
 const display = Fraunces({ subsets: ["latin"], style: ["normal", "italic"], weight: ["400", "500", "600"], variable: "--toca-display", display: "swap" });
@@ -62,7 +63,7 @@ export default function TocaPage() {
 
       {/* Brand signature: the route through the hospital, door by door. */}
       <section className={styles.route} id="percurso" aria-labelledby="percurso-titulo" data-toca-route>
-        <div className={styles.routeStage}>
+        <div className={styles.routeStage}><ScrollHint desktop="Role para abrir as portas." phone="Deslize para abrir as portas." />
           {rooms.map(room => <figure key={room.id} className={styles.room} data-route-room>
             <Image src={`/images/toca/${room.image}.webp`} alt={room.alt} fill sizes="(max-width:700px) 400vw, 120vw" quality={90} style={{ objectPosition: room.focus }} />
             <figcaption className={styles.caption} data-route-caption>

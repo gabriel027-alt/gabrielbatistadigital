@@ -9,6 +9,7 @@ import { AlmeidaMotion } from "./AlmeidaMotion";
 import { AlmeidaSeal } from "./AlmeidaSeal";
 import { EstateTree } from "./EstateTree";
 import styles from "./almeida.module.css";
+import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Kit: Cormorant Garamond (the tradition of legal documents) for headings, Source Sans 3 for reading. */
 const serif = Cormorant_Garamond({ subsets: ["latin"], weight: ["500", "600"], style: ["normal", "italic"], variable: "--almeida-serif", display: "swap" });
@@ -67,7 +68,7 @@ export default function AlmeidaPage() {
 
       {/* Brand signature: the estate drawn from the family's assets down to the heirs. */}
       <section className={styles.partition} id="partilha" aria-labelledby="partilha-titulo" data-almeida-partition>
-        <div className={styles.partitionStage}>
+        <div className={styles.partitionStage}><ScrollHint desktop="Role para ver a partilha." phone="Deslize para ver a partilha." tone="light" />
           <div className={styles.partitionText}>
             <p className={styles.section}>Como funciona</p>
             <h2 id="partilha-titulo">A partilha, passo a passo.</h2>

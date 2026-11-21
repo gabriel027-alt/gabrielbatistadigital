@@ -12,7 +12,18 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
  * - refreshes only after fonts load. Images sit in fixed-ratio boxes; refreshing on each image load
  *   made ScrollTrigger restore an older scroll position mid-scroll.
  */
-export function useBrandMotion(rootSelector: string, build: (root: HTMLElement) => void) {
+/**
+ * Interaction hints ([data-scroll-hint], components/brand/ScrollHint.tsx) fade out over the first 160 px of their
+ * own scene, and come back when the visitor returns to its start.
+ */
+function fadeHints(root: HTMLElement) {
+  root.querySelectorAll<HTMLElement>("[data-scroll-hint]").forEach(hint => {
+    const scene = hint.closest("section") ?? hint;
+    gsap.fromTo(hint, { opacity: 1 }, { opacity: 0, ease: "none", scrollTrigger: { trigger: scene, start: "top top", end: "+=160", scrub: true } });
+  });
+}
+
+export function useBrandMotion(rootSelector: string, build: (root: HTMLElement) => void | (() => void)) {
   const [paused, setPaused] = useState(false);
   const [available, setAvailable] = useState(false);
 
@@ -25,7 +36,7 @@ export function useBrandMotion(rootSelector: string, build: (root: HTMLElement) 
       setAvailable(true);
       if (paused) return () => setAvailable(false);
       root.dataset.brandAnimated = "true";
-      const ctx = gsap.context(() => build(root), root);
+      const ctx = gsap.context(() => { const cleanup = build(root); fadeHints(root); return cleanup; }, root);
       let alive = true;
       void document.fonts.ready.then(() => { if (alive) ScrollTrigger.refresh(); });
       return () => {

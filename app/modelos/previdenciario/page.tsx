@@ -8,6 +8,7 @@ import { lawyer, documents, faq, practiceAreas, situations, periods, stages } fr
 import { ArrimoMark } from "./ArrimoMark";
 import { ArrimoMotion } from "./ArrimoMotion";
 import styles from "./arrimo.module.css";
+import { ScrollHint } from "@/components/brand/ScrollHint";
 
 const display = Barlow_Condensed({ subsets: ["latin"], weight: ["600", "700"], variable: "--arrimo-display", display: "swap" });
 const body = Barlow({ subsets: ["latin"], weight: ["400", "500", "600"], variable: "--arrimo-body", display: "swap" });
@@ -48,7 +49,7 @@ export default function ArrimoPage() {
       </section>
 
       <section id="arrimo-tempo" className={styles.scene} data-arrimo-scene aria-labelledby="arrimo-tempo-titulo">
-        <div className={styles.stage}>
+        <div className={styles.stage}><ScrollHint desktop="Role para somar o tempo." phone="Deslize para somar o tempo." tone="light" desktopAlign="right" />
           <div className={styles.sceneHead}>
             <h2 id="arrimo-tempo-titulo"><span>O tempo</span>{" "}<span>se soma.</span></h2>
             <p className={styles.sceneIntro}>A vida de trabalho nem sempre aparece inteira em um registro. Quando há uma negativa, a leitura começa pelos documentos.</p>

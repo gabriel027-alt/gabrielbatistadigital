@@ -9,6 +9,7 @@ import { FormaMark } from "./FormaMark";
 import { FormaMotion } from "./FormaMotion";
 import { SmilePlan } from "./SmilePlan";
 import styles from "./forma.module.css";
+import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Classic serif with a true italic for this brand's headings (approved version, format of the reference dental sites). */
 const serif = Lora({ subsets: ["latin"], style: ["normal", "italic"], weight: ["500"], variable: "--forma-serif", display: "swap" });
@@ -59,7 +60,7 @@ export default function FormaPage() {
 
       {/* Brand signature: the smile planned in proportion, in the colours of the clinic photos. */}
       <section className={styles.plan} id="planejamento" aria-labelledby="planejamento-titulo" data-forma-plan>
-        <div className={styles.planStage}>
+        <div className={styles.planStage}><ScrollHint desktop="Role para desenhar o sorriso." phone="Deslize para desenhar o sorriso." />
           <div className={styles.planText}>
             <p className={styles.kicker}>Planejamento do sorriso</p>
             <h2 id="planejamento-titulo">Antes do tratamento, <em>o desenho.</em></h2>

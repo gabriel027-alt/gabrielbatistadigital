@@ -1,0 +1,11 @@
+/* Shared hint for scroll scenes. Hidden unless motion runs; the brand's fonts come by inheritance. */
+.hint{display:none;position:absolute;left:50%;bottom:3.5svh;z-index:8;transform:translateX(-50%);margin:0;padding:9px 16px;border-radius:999px;
+  background:#1b1714d9;color:#fff;font-size:13px;font-weight:600;line-height:1.2;white-space:nowrap;pointer-events:none;box-shadow:0 8px 24px -10px #0008;backdrop-filter:blur(6px)}
+.light{background:#fffdf8ee;color:#1b1714}
+:global([data-brand-animated="true"]) .hint{display:inline-flex;align-items:center;gap:8px}
+.phone{display:none}
+.arrow{display:inline-block;animation:hintNudge 1.6s ease-in-out infinite}
+@keyframes hintNudge{0%,100%{transform:translateY(0)}50%{transform:translateY(3px)}}
+@media (min-width:701px){.right{left:auto;right:5vw;transform:none}}
+@media (max-width:700px){.desktop{display:none}.phone{display:inline}.hint{font-size:12px;padding:8px 14px}
+  .phoneTop{bottom:auto;top:calc(72px + 2svh)}}
