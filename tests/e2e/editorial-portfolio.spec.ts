@@ -163,6 +163,12 @@ test('Mobile motion control shares the navigation row without covering it, and t
     expect(alphas.length).toBeGreaterThan(0);
     expect(Math.max(...alphas)).toBeLessThanOrEqual(.25);
   }
+  // The other photo sections keep the full frame on phones: the footer shows it strong.
+  await page.locator('#editorial-footer').scrollIntoViewIfNeeded();
+  await expect.poll(async () => {
+    const shadow = await page.locator('[data-frame-glow]').evaluate(el => getComputedStyle(el).boxShadow);
+    return Math.max(...[...shadow.matchAll(/rgba\([^)]*,\s*([\d.]+)\)/g)].map(m => +m[1]));
+  }).toBeGreaterThan(.4);
 });
 
 test('Scrolling the opening never puts the name or the sample over the face', async ({ page }) => {

@@ -87,7 +87,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
         const trackRange = (el: HTMLElement, at: number) => el.getBoundingClientRect().top + scrollY + (el.offsetHeight - innerHeight) * at;
         // The palm scene starts while its stage is still entering (top at 70% of the screen), so the hand rises as the
         // phrase leaves, with no empty screen between them. Scroll position of a given progress of that scene:
-        const sceneAt = (el: HTMLElement, at: number) => { const top = el.getBoundingClientRect().top + scrollY, start = top - innerHeight * .7, end = top + el.offsetHeight - innerHeight; return start + (end - start) * at; };
+        // Phones (22/11/2026): the scene starts with its stage higher (top at 35%), or the dot landed in a palm still
+        // below the screen.
+        const enter = innerWidth <= 700 ? .35 : .7;
+        const sceneAt = (el: HTMLElement, at: number) => { const top = el.getBoundingClientRect().top + scrollY, start = top - innerHeight * enter, end = top + el.offsetHeight - innerHeight; return start + (end - start) * at; };
         // "O próximo clique", one stage and one timeline: Gabriel's open hand rises from the bottom; the red tittle of
         // "clique" lands in its palm; the dot rises above the hand and bursts, and the pieces of "g." come out of that
         // spark with the peach line, drift, then assemble above the palm. The copy closes the scene. Reversible.
@@ -106,7 +109,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           // (phones), and inside the screen. Layout values only, no transforms.
           // Measured with the frame that ends around the letter (440 × 520), so the frame clears the thumb too.
           const G = { x: 729, y: 562, h: 520, w: 440 };
-          const birth = { x: G.x, y: G.y - 40 }, rise = { x: 0, y: 0 }, size = { ratio: 1 };
+          const birth = { x: G.x, y: G.y - 40 }, rise = { x: 0, y: 0 }, size = { ratio: 1 }, lineStart = { ...lineEnds.start };
           const measure = () => {
             const H = stage.clientHeight, Wst = stage.clientWidth;
             const palmY = palm.offsetTop + palm.offsetHeight * .43;
@@ -123,6 +126,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             const anchor = copyAbove ? palm.offsetLeft + palm.offsetWidth * .56 : Math.min(palm.offsetLeft + palm.offsetWidth * .37, thumbLeft - gw / 2 - 12);
             const cx = Math.min(Math.max(anchor, gw / 2 + 16), Wst - gw / 2 - 28), cy = bottom - gh / 2;
             Object.assign(box.style, { width: `${W}px`, height: `${F}px`, left: `${cx - W * G.x / 1440}px`, top: `${cy - F * G.y / 1000}px` });
+            // Phones (copy on top): the line comes in below the copy, never across its letters (22/11/2026).
+            lineStart.y = copyAbove ? Math.max(lineEnds.start.y, (copy.offsetTop + copy.offsetHeight + 24 - (cy - F * G.y / 1000)) * 1000 / F) : lineEnds.start.y;
             // The soft shadow the floating "g." casts on the hand, just under it.
             Object.assign(gShadow.style, { width: `${gw * .95}px`, height: `${gw * .2}px`, left: `${cx - gw * .475}px`, top: `${palmY - gw * .1}px` });
             // The palm dot rises to the spark point (the birth of the pieces) and grows to the size of the field's dot.
@@ -143,7 +148,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           };
           // The scatter and drift poses of the old full-screen field are scaled around the spark so they stay near the hand.
           const near = (pose: Pose, k: number): Pose => ({ ...pose, x: birth.x + (pose.x - birth.x) * k, y: birth.y + (pose.y - birth.y) * k });
-          const motion = gsap.timeline({ defaults: { ease: "none", lazy: false }, onUpdate: render, scrollTrigger: { trigger: creation, start: "top 70%", end: "bottom bottom", scrub: .6, invalidateOnRefresh: true, onRefresh: render } });
+          const motion = gsap.timeline({ defaults: { ease: "none", lazy: false }, onUpdate: render, scrollTrigger: { trigger: creation, start: `top ${enter * 100}%`, end: "bottom bottom", scrub: .6, invalidateOnRefresh: true, onRefresh: render } });
           const shadow = creation.querySelector("[data-palm-shadow]"), glow = creation.querySelector("[data-palm-glow]");
           // 1. The hand rises and opens; the carrier (below) brings the dot into the palm by .2.
           motion.fromTo(palm, { yPercent: 70, rotation: 7, opacity: .4 }, { yPercent: 0, rotation: 0, opacity: 1, ease: "power2.out", duration: .2 }, 0)
@@ -172,7 +177,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
               // The frame closes around the letter just after the pieces meet.
               .to(poses[i], { ...shape.final, duration: shape.id === "frame" ? .14 : .16, ease: "power2.inOut" }, shape.id === "frame" ? .78 : .74 + i * .006);
           });
-          motion.fromTo(ends.start, { ...birth }, { ...lineEnds.start, ease: "power3.out", duration: .16 }, .41)
+          motion.fromTo(ends.start, { ...birth }, { x: () => lineStart.x, y: () => lineStart.y, ease: "power3.out", duration: .16 }, .41)
             .fromTo(ends.end, { ...birth }, { ...lineEnds.end, ease: "power3.out", duration: .16 }, .41)
             .fromTo(draw, { value: 0 }, { value: .5, duration: .16 }, .41)
             .to(draw, { value: .8, duration: .18 }, .57)
@@ -195,8 +200,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             line.setAttribute("d", linePath(shapes.filter(shape => onLine(shape.id)).map(shape => shape.final))); line.style.strokeDashoffset = "";
           });
           // The tittle of "clique" detaches as the phrase leaves and lands in the palm as the hand settles.
+          // Since the scene got shorter (21/11/2026), on phones it reached .2 before the tittle had left, so the dot
+          // jumped into the palm: the fall always gets at least 40% of a screen of scroll (22/11/2026).
           carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,
-            () => { const t = node.querySelector("[data-hook-tittle=carry]")!; return t.getBoundingClientRect().top + scrollY - innerHeight * .3; },
+            () => { const t = node.querySelector("[data-hook-tittle=carry]")!; const own = t.getBoundingClientRect().top + scrollY - innerHeight * .3; return innerWidth <= 700 ? Math.min(own, sceneAt(creation, .2) - innerHeight * .4) : own; },
             () => sceneAt(creation, .2));
           // The dot of the finished "g." drops onto the folder's tab.
           const work = node.querySelector<HTMLElement>("[data-work-track]");
@@ -267,7 +274,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                   own.forEach(item => {
                     const a = (vertical ? item.offsetTop : item.offsetLeft) / size, b = a + (vertical ? item.offsetHeight : item.offsetWidth) / size;
                     // A title that breaks onto two lines gets no underline: two stacked lines read as clutter (21/11/2026).
-                    const wraps = (item.querySelector("h3 span")?.getClientRects().length ?? 1) > 1;
+                    // The title's own line, not the step number before it (the "03 Design & programação" bug, 22/11/2026).
+                    const wraps = (item.querySelector(`.${styles.readLine}`)?.getClientRects().length ?? 1) > 1;
                     item.style.setProperty("--u", wraps ? "0" : Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
                   });
                 };

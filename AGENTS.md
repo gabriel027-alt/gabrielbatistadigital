@@ -589,7 +589,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - O cartão "g." do topo continua montando uma vez e parado, por escolha do usuário: fica perto da promessa e dos botões, e um loop ali competiria com eles.
   - Por isso o botão global de pausa voltou (WCAG 2.2.2): no PC, discreto no canto; no celular, na linha do menu. Não tirá-lo enquanto algo se mover sozinho por mais de 5 s.
   - Tudo continua só desenhando com a cena na tela. Movimento reduzido continua dando a página parada.
-  - Também no celular: a moldura vermelha ficou suave, cerca de 40% da antiga (decisão do usuário em 22/11/2026: sem ela o topo não ficava bom; forte, parecia alerta). Não tirar de novo nem voltar à forte. O "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
+  - Também no celular: a moldura vermelha ficou suave no topo, cerca de 40% da antiga (decisão do usuário em 22/11/2026: sem ela o topo não ficava bom; forte, parecia alerta). Nas outras seções de foto (Sobre, rodapé) ela continua forte, como era; ele sentiu falta dela no rodapé. Não tirar de novo.
+  - Correções no celular, pedidas pelo usuário em 22/11/2026:
+    - o ponto do "clique" cai até a palma sem pular: a cena da mão começa com o palco a 35% da tela (`enter`), a faixa tem 150vh e a queda ganha pelo menos 40% de tela de rolagem; antes ele pousava numa mão ainda abaixo da tela;
+    - a linha pêssego entra abaixo do texto da cena da mão (`lineStart`), sem atravessar as letras;
+    - o sublinhado de "03 Design & programação" lia a quebra de linha do número, não do título; agora mede `.readLine`. O "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
 - Topo no celular, texto sobre o rosto (22/11/2026, reclamação do usuário): no retrato em tela cheia, o título cobria o queixo nos Samsung (360×780, 384×832, 412×915). A medida do "pescoço" pela silhueta errava o ponto. Agora o retrato se ajusta à largura da tela (`height:min(100%,161.3vw)`, proporção 1650×2662), o que sobe o queixo para cerca de 43% da altura, e o texto fica sobre a camiseta. Conferir pelo queixo (cerca de 57,5% da altura da foto), não pela silhueta.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 
