@@ -46,10 +46,6 @@ test("Previews play only on hover, never with motion paused, and a full film ope
   expect(await page.locator('#editorial-work video[data-editorial-loop][src]').first().getAttribute('src')).toMatch(/^\/videos\/projects\/.*-loop\.mp4$/);
   await page.mouse.move(4, 4);
   await expect.poll(playing).toBe(0);
-  await page.getByRole('button',{name:'Pausar movimento'}).click();
-  await first.hover();
-  await page.waitForTimeout(600);
-  expect(await playing()).toBe(0);
   const opener = page.locator(projects).getByRole('button',{name:'Ver filme completo: Aura'});
   await opener.click();
   const dialog = page.getByRole('dialog',{name:'Filme do projeto Aura'});
@@ -112,12 +108,11 @@ test('The dot opens the folder, the projects follow in a still grid, and pause r
   await page.waitForTimeout(1200);
   expect(await first.evaluate(el => el.getBoundingClientRect().left)).toBe(before);
   expect(await first.evaluate(el => Number(getComputedStyle(el).opacity))).toBe(1);
-  await page.getByRole('button', { name: 'Pausar movimento' }).click();
+  // Reduced motion gives the still page with the phrase and its link.
+  await page.emulateMedia({ reducedMotion: 'reduce' });
   await expect(page.locator('[data-editorial]')).not.toHaveAttribute('data-editorial-animated', 'true');
   await expect(page.locator('[data-hook] > h2')).toHaveCount(1);
   await expect(page.locator('[data-hook] > h2 a')).toBeVisible();
-  await page.getByRole('button', { name: 'Ativar movimento' }).click();
-  await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
 });
 
 
@@ -150,17 +145,15 @@ test('Navigation theme follows the section under the logo after reversing near a
   await expect(root).toHaveAttribute('data-editorial-theme', 'photo');
 });
 
-test('Mobile motion control shares the navigation row without covering it', async ({ page }) => {
+test('No page-wide pause button: the phone menu row is free and the top has no red frame', async ({ page }) => {
+  // 22/11/2026: nothing on the homepage moves on its own for more than five seconds; the footer avatar has its own control.
   for (const width of [320, 360, 390]) {
     await page.setViewportSize({ width, height: 800 });
     await page.goto(route);
-    const control = page.getByRole('button', { name: 'Pausar movimento' });
-    await expect(control).toBeVisible();
-    const pill = await page.locator('[data-editorial-nav] nav').boundingBox();
-    const button = await control.boundingBox();
-    expect(pill && button && button.x >= pill.x + pill.width).toBe(true);
-    expect(button!.width).toBeGreaterThanOrEqual(44);
-    expect(button!.height).toBeGreaterThanOrEqual(44);
+    await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
+    await expect(page.getByRole('button', { name: /movimento/ })).toHaveCount(0);
+    await expect(page.locator('[data-editorial-nav] nav')).toBeVisible();
+    expect(await page.locator('[data-frame-glow]').evaluate(el => getComputedStyle(el).display)).toBe('none');
   }
 });
 
@@ -241,10 +234,6 @@ test('The brand dot plants the tittle on each i of the name and lands in the car
   // The scene (ink, drop, hops, charge and lap) lasts about eight seconds; allow for a busy machine.
   await expect.poll(async () => (await scales()).every(scale => scale > .95), { timeout: 15000 }).toBe(true);
   await expect.poll(() => page.locator('[data-card-part="dot"]').evaluate(el => Number(getComputedStyle(el).opacity)), { timeout: 8000 }).toBeGreaterThan(.9);
-  // Pausing and resuming motion does not replay the scene.
-  await page.getByRole('button', { name: 'Pausar movimento' }).click();
-  await page.getByRole('button', { name: 'Ativar movimento' }).click();
-  expect((await scales()).every(scale => scale > .95)).toBe(true);
   // Without motion the red tittles are simply there.
   const reduced = await browser.newContext({ reducedMotion: 'reduce', viewport: { width: 1440, height: 900 } });
   const still = await reduced.newPage();
@@ -275,7 +264,8 @@ test('The red tittle of "clique" travels into the open palm and back with the sc
   await page.waitForTimeout(1200);
   expect(await seen()).toEqual({ tittle: 'visible', palm: 'hidden' });
   // Without motion, the dot simply rests in the palm and the phrase keeps its red tittles.
-  await page.getByRole('button', { name: 'Pausar movimento' }).click();
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.waitForTimeout(600);
   expect(await seen()).toEqual({ tittle: 'visible', palm: 'visible' });
 });
 

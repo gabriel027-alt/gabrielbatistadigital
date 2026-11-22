@@ -134,8 +134,9 @@ const RISE_FOR = 5;
 const CLOUD_SEA = false;
 /** Arrival speed of the points that form the portrait: 2 = formed in about 0.8 s instead of 1.6 s (21/11/2026). */
 const GATHER_SPEED = 2;
-/** After the arrival the breathing points fade out and the canvas rests (seconds after load), 21/11/2026. */
-const POINTS_REST = 9;
+/** After the arrival the breathing points fade out and the canvas rests (seconds after load). 9 s on 21/11/2026; 3 s
+ * (fading out by 5 s) since 22/11/2026, so nothing on the top moves on its own for more than five seconds. */
+const POINTS_REST = 3;
 /** The clouds are drawn at this fraction of the canvas size and scaled up: they are soft, it costs nothing to the eye. */
 const CLOUD_SCALE = .62;
 /** If the images are not in by then, he is not hidden any longer: no gathering, the photo simply shows. */

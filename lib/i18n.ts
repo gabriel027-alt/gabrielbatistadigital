@@ -38,7 +38,7 @@ export type HomeCopy = {
   aboutAlt: string; aboutTitle: [string, string]; aboutText: string; aboutIntro: [string, string]; aboutClaim: [string, string]; principles: string[]; aboutLink: string;
   contactTitle: [string, string]; contactText: string; contactGo: string; contactWhere: string;
   footerTalk: string; rights: string; backTop: string;
-  motion: { pause: string; resume: string };
+  avatarControl: { pause: string; play: string };
   media: { interface: string; watch: string; explore: string; watchFull: string; filmOf: string; close: string; noVideo: string; talkNote: string };
   avatarAlt: string;
 };
@@ -88,7 +88,7 @@ const pt: HomeCopy = {
   contactTitle: ["O próximo site pode ser", "o do seu negócio."], contactText: "Conte como o seu negócio atende hoje e o que você quer que o site resolva.",
   contactGo: "Vamos conversar", contactWhere: "Abre uma conversa no WhatsApp",
   footerTalk: "Conversar pelo WhatsApp", rights: "© 2026 Gabriel Batista Digital. Todos os direitos reservados.", backTop: "Voltar ao início",
-  motion: { pause: "Pausar movimento", resume: "Ativar movimento" },
+  avatarControl: { pause: "Pausar a animação", play: "Ver a animação de novo" },
   media: { interface: "Interface do projeto", watch: "Ver filme completo", explore: "Explorar projeto", watchFull: "Ver filme completo", filmOf: "Filme do projeto", close: "Fechar", noVideo: "Seu navegador não reproduz este vídeo.", talkNote: "Converse com Gabriel pelo WhatsApp." },
   avatarAlt: "Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento",
 };
@@ -143,7 +143,7 @@ const ptPT: HomeCopy = {
   contactTitle: ["O próximo site pode ser", "o do seu negócio."], contactText: "Diga-me como o seu negócio funciona hoje e o que quer que o site resolva.",
   contactGo: "Vamos conversar", contactWhere: "Abre uma conversa no WhatsApp. Trabalho à distância, a partir do Brasil.",
   footerTalk: "Falar pelo WhatsApp", rights: "© 2026 Gabriel Batista Digital. Todos os direitos reservados.", backTop: "Voltar ao início",
-  motion: { pause: "Pausar movimento", resume: "Ativar movimento" },
+  avatarControl: { pause: "Pausar a animação", play: "Ver a animação de novo" },
   media: { interface: "Interface do projeto", watch: "Ver filme completo", explore: "Explorar projeto", watchFull: "Ver filme completo", filmOf: "Filme do projeto", close: "Fechar", noVideo: "O seu navegador não reproduz este vídeo.", talkNote: "Fale com o Gabriel pelo WhatsApp." },
   avatarAlt: "Personagem do Gabriel atrás de um portátil, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento",
 };
@@ -193,7 +193,7 @@ const en: HomeCopy = {
   contactTitle: ["The next website could be", "yours."], contactText: "Tell me how your business works today and what you want the website to solve.",
   contactGo: "Let's talk", contactWhere: "Opens a WhatsApp chat. I'm based in Brazil and reply in writing, in English.",
   footerTalk: "Talk on WhatsApp", rights: "© 2026 Gabriel Batista Digital. All rights reserved.", backTop: "Back to top",
-  motion: { pause: "Pause motion", resume: "Turn motion on" },
+  avatarControl: { pause: "Pause the animation", play: "Play the animation again" },
   media: { interface: "Website of the project", watch: "Watch the full film", explore: "Explore project", watchFull: "Watch the full film", filmOf: "Film of the project", close: "Close", noVideo: "Your browser can't play this video.", talkNote: "Talk to Gabriel on WhatsApp." },
   avatarAlt: "Gabriel's character behind a laptop, in a dark office with a strategy board: funnel, flowchart and growth chart",
 };
@@ -243,7 +243,7 @@ const es: HomeCopy = {
   contactTitle: ["El próximo sitio puede ser", "el de tu negocio."], contactText: "Cuéntame cómo atiende hoy tu negocio y qué quieres que resuelva el sitio.",
   contactGo: "Hablemos", contactWhere: "Abre una conversación en WhatsApp. Estoy en Brasil y respondo por escrito, en español.",
   footerTalk: "Hablar por WhatsApp", rights: "© 2026 Gabriel Batista Digital. Todos los derechos reservados.", backTop: "Volver al inicio",
-  motion: { pause: "Pausar movimiento", resume: "Activar movimiento" },
+  avatarControl: { pause: "Pausar la animación", play: "Ver la animación de nuevo" },
   media: { interface: "Interfaz del proyecto", watch: "Ver el video completo", explore: "Explorar proyecto", watchFull: "Ver el video completo", filmOf: "Video del proyecto", close: "Cerrar", noVideo: "Tu navegador no puede reproducir este video.", talkNote: "Habla con Gabriel por WhatsApp." },
   avatarAlt: "Personaje de Gabriel detrás de una laptop, en una oficina oscura con un pizarrón de estrategia: embudo, diagrama de flujo y gráfico de crecimiento",
 };

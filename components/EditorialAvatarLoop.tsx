@@ -43,12 +43,17 @@ function loadSpotifyApi() {
 }
 
 /** The poster remains usable without JS, motion, bandwidth or video playback. */
-export function EditorialAvatarLoop({ alt = "Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento" }: { alt?: string }) {
+export function EditorialAvatarLoop({ alt = "Personagem de Gabriel atrás de um notebook, num escritório escuro com um quadro de estratégia: funil, fluxograma e gráfico de crescimento", labels = { pause: "Pausar a animação", play: "Ver a animação de novo" } }: { alt?: string; labels?: { pause: string; play: string } }) {
   const host = useRef<HTMLDivElement>(null);
   const video = useRef<HTMLVideoElement>(null);
   const slot = useRef<HTMLDivElement>(null);
   const [musicOpen, setMusicOpen] = useState(false);
   const [musicFailed, setMusicFailed] = useState(false);
+  // One take per arrival (22/11/2026): the 11 s film plays once when the footer comes into view and rests on its last
+  // frame, which matches the poster. The visitor can pause it or play it again here; there is no page-wide pause button.
+  const [filmPlaying, setFilmPlaying] = useState(false);
+  const stoppedByVisitor = useRef(false);
+  const takeDone = useRef(false);
   const controller = useRef<SpotifyController | null>(null);
   const opening = useRef(false);
   const playing = useRef(false);
@@ -91,6 +96,7 @@ export function EditorialAvatarLoop({ alt = "Personagem de Gabriel atrás de um 
       const token = ++request;
       updateMusic.current();
       if (!allowed()) { film.pause(); return; }
+      if (stoppedByVisitor.current || takeDone.current) return;
       // Phones get their own film; turning a tablet or resizing across the line swaps it, poster first.
       const wanted = phone.matches ? editorialAvatar.mobileSrc : editorialAvatar.src;
       if (film.getAttribute("src") !== wanted) { delete film.dataset.ready; film.src = wanted; }
@@ -99,7 +105,10 @@ export function EditorialAvatarLoop({ alt = "Personagem de Gabriel atrás de um 
       }).catch(() => { /* The poster is already present for playback failures. */ });
     };
     const observer = new IntersectionObserver(entries => {
+      const wasVisible = visible;
       visible = entries.some(entry => entry.isIntersecting);
+      // Leaving and coming back gives one more take, unless the visitor stopped it.
+      if (!visible && wasVisible && takeDone.current) { takeDone.current = false; film.currentTime = 0; }
       update();
     }, { threshold: .15 });
     observer.observe(node);
@@ -181,10 +190,24 @@ export function EditorialAvatarLoop({ alt = "Personagem de Gabriel atrás de um 
     <div ref={host} className={styles.footerPhoto} data-avatar-scene>
       <ArtDirectedImage alt={alt}
         desktop={{ src: editorialAvatar.poster, sizes: "120vw" }} mobile={{ src: editorialAvatar.mobilePoster, sizes: "100vw" }} />
-      <video ref={video} className={styles.avatarVideo} data-avatar-loop muted loop playsInline preload="none" aria-hidden="true" disablePictureInPicture
-        onPlaying={() => { if (video.current) video.current.dataset.ready = "true"; }}
+      <video ref={video} className={styles.avatarVideo} data-avatar-loop muted playsInline preload="none" aria-hidden="true" disablePictureInPicture
+        onPlaying={() => { if (video.current) video.current.dataset.ready = "true"; setFilmPlaying(true); }}
+        onPause={() => setFilmPlaying(false)}
+        onEnded={() => { takeDone.current = true; setFilmPlaying(false); }}
         onError={() => { if (video.current) delete video.current.dataset.ready; }} />
     </div>
+    {canPlay && <button type="button" className={styles.avatarControl} data-avatar-control aria-label={filmPlaying ? labels.pause : labels.play} title={filmPlaying ? labels.pause : labels.play}
+        onClick={() => {
+          const film = video.current;
+          if (!film) return;
+          if (filmPlaying) { stoppedByVisitor.current = true; film.pause(); return; }
+          stoppedByVisitor.current = false; takeDone.current = false;
+          if (film.ended) film.currentTime = 0;
+          if (!film.getAttribute("src")) film.src = matchMedia(editorialAvatar.mobileQuery).matches ? editorialAvatar.mobileSrc : editorialAvatar.src;
+          void film.play().catch(() => { /* The poster stays. */ });
+        }}>
+        <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">{filmPlaying ? <path d="M4 3h3v10H4zM9 3h3v10H9z" fill="currentColor"/> : <path d="M5 3l8 5-8 5z" fill="currentColor"/>}</svg>
+      </button>}
     {footerMusic.enabled && canPlay && <div className={styles.music}>
       <div className={styles.musicButtons}>
         <button type="button" className={styles.musicControl} aria-expanded={musicOpen} data-music-control onClick={() => { if (musicOpen) closeMusic(); else void openMusic(); }}>{musicOpen ? "Fechar player" : `Ouvir ${footerMusic.artist}`}</button>

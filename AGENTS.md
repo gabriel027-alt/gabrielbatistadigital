@@ -580,7 +580,15 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Princípio do usuário: o site precisa converter; animação só fica se contribuir para isso, não para diferenciar.
 - **Marcas** (Lume, Arrimo, Paddock, Talhão, Sutil, Toca, Forma, Almeida e Casa Brisa): o botão visível de pausar saiu. As cenas são movidas pela rolagem e as chegadas duram menos de 5 s, então a WCAG 2.2.2 não exige controle; quem usa "reduzir movimento" continua recebendo a versão parada (`useBrandMotion`). O espaço reservado no cabeçalho da Arrimo, da Paddock e do Talhão foi devolvido. Os testes que clicavam no botão agora usam movimento reduzido e conferem que o botão não existe. Os filmes não mudam (o botão já era escondido na gravação); só o cabeçalho dessas três ficou sem a folga, o que não justifica regravar agora.
-- **Homepage:** mantém um jeito de pausar, porque ali há movimento automático contínuo (pontinhos, cartão "g.", faixa de projetos, prévias, avatar). No PC virou o mesmo ícone redondo do celular, discreto, com o nome lido pelo leitor de tela e como dica ao passar o mouse.
+- **Homepage:** ~~mantém um jeito de pausar~~ substituído em 22/11/2026 (pedido do usuário, aguardando aprovação):
+  - O botão global saiu, porque nada se mexe sozinho por mais de 5 s:
+    - os pontinhos do topo descansam aos 3 s e somem até os 5 s (`POINTS_REST = 3`);
+    - os pontinhos de "Vamos conversar" assentam cerca de 2,5 s depois de se juntarem, e o mouse os acorda;
+    - o ponto aceso pulsa duas vezes.
+  - O avatar do rodapé toca **uma vez** (11 s) a cada chegada ao rodapé e para no último quadro, que é igual ao pôster. Ele tem controle próprio (pausar / ver de novo, nos quatro idiomas, `avatarControl` em `lib/i18n.ts`): no PC fica sobre a tampa do notebook; no celular, ao lado do menu.
+  - Movimento reduzido continua dando a página parada.
+  - Também no celular: a moldura vermelha saiu, por parecer alerta (o vermelho fica só no ponto), e o "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
+  - Teste de imobilidade: duas capturas com 1,5 s de diferença, depois dos 6 s, são idênticas no topo e no painel de contato.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
@@ -592,7 +600,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Passo 1: cena da mão em 120vh (115vh no celular), antes 340/290vh; sem a "respiração" infinita da mão. A pasta não fica mais presa na tela: abre enquanto a seção passa (gatilho de 80% a 15%), e o ponto pousa na aba quando a seção entra (`landAt`).
 - Passo 2: a faixa infinita e os pontinhos que formavam os cartões (`WorkParticles`, não usado) saíram. Os oito projetos ficam numa grade parada logo abaixo da pasta (4 colunas no PC, 2 até 1000 px, um cartão por vez arrastando no celular), com o topo de cada site; a prévia de 6 s toca só com o mouse ou o foco em cima (`teaser="hover"` em `EditorialMedia`) e nunca com o movimento pausado, movimento reduzido ou economia de dados. O ponto só voa da pasta para os serviços depois da grade, para não cruzar os cartões. Capas da Aura e da Orla ancoradas à esquerda.
 - Passo 3: os pontinhos formam o retrato duas vezes mais rápido (`GATHER_SPEED`) e somem por volta de 9–11 s, quando o canvas para de desenhar (`POINTS_REST`). A cena do ponto ficou com metade da duração e sem a carga e a volta no cartão (`LAP = false`); o "g." do cartão monta uma vez e fica parado.
-- Continuam se mexendo sozinhos: o avatar do rodapé e os pontinhos em volta de "Vamos conversar". Por isso o ícone de pausa fica.
+- ~~Continuam se mexendo sozinhos: o avatar e os pontinhos de "Vamos conversar"; por isso o ícone de pausa fica.~~ Desde 22/11/2026, os dois param sozinhos e o ícone global saiu (ver "Botão de pausa").
 - Testes da homepage reescritos para a grade (sem cópia decorativa, prévia só no hover, pasta com o ponto e grade parada).
 
 ## Aura: topo reequilibrado (21/11/2026, pedido do usuário, aprovado por ele no mesmo dia)

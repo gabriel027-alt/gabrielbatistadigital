@@ -40,6 +40,9 @@ export function TalkParticles() {
       };
     });
     let gather = 0, last = 0, frame = 0, visible = false, hover = 0, hovering = false;
+    // They settle (22/11/2026): about two and a half seconds after gathering they slow to a still constellation, so
+    // nothing here moves on its own for more than five seconds. The pointer wakes them again.
+    let energy = 1, settled = 0, clock = 0;
     const pointer = { x: 0, y: 0, in: false };
     const lean = { x: 0, y: 0 };
     const allowed = () => !document.hidden && !reduced.matches && root.dataset.editorialMotion !== "off" && root.dataset.editorialAnimated === "true";
@@ -52,6 +55,9 @@ export function TalkParticles() {
       // Gathering takes about a second and a half; scrolling back undoes it twice as fast.
       gather = Math.min(1, Math.max(0, gather + (lit ? dt / 1.5 : -dt / .75)));
       hover += ((hovering ? 1 : 0) - hover) * Math.min(1, dt * 4);
+      settled = gather >= 1 && !hovering ? settled + dt : 0;
+      energy += ((settled < 2.5 ? 1 : 0) - energy) * Math.min(1, dt * 2.5);
+      clock += dt * energy;
       const ratio = Math.min(devicePixelRatio || 1, 2);
       const box = panel.getBoundingClientRect();
       const w = Math.round(box.width * ratio), h = Math.round(box.height * ratio);
@@ -66,11 +72,11 @@ export function TalkParticles() {
         const tx = pointer.in ? Math.max(-1, Math.min(1, (pointer.x - cx) / 300)) * unit * 1.6 : 0;
         const ty = pointer.in ? Math.max(-1, Math.min(1, (pointer.y - cy) / 300)) * unit * 1.6 : 0;
         lean.x += (tx - lean.x) * Math.min(1, dt * 3); lean.y += (ty - lean.y) * Math.min(1, dt * 3);
-        const t = now / 1000, breath = Math.sin(t * Math.PI * 2 / 2.2);
+        const t = clock, breath = Math.sin(t * Math.PI * 2 / 2.2);
         for (const p of points) {
           const k = ease((gather - p.delay) / (1 - p.delay));
           if (k <= 0) continue;
-          p.a += p.w * dt * (1 + hover * 1.4) / Math.sqrt(p.r);
+          p.a += p.w * dt * energy * (1 + hover * 1.4) / Math.sqrt(p.r);
           const r = p.r * unit * (1 + .07 * breath + .05 * Math.sin(t * 1.3 + p.phase));
           const ox = cx + lean.x * (p.r / 5) + Math.cos(p.a) * r, oy = cy + lean.y * (p.r / 5) + Math.sin(p.a) * r * .78;
           const sx = cx + Math.cos(p.from) * p.reach, sy = cy + Math.sin(p.from) * p.reach;
@@ -83,7 +89,8 @@ export function TalkParticles() {
         }
         paint.globalAlpha = 1;
       }
-      if (visible && (gather > 0 || lit)) frame = requestAnimationFrame(draw);
+      const still = gather >= 1 && energy < .01 && Math.abs(lean.x) + Math.abs(lean.y) < .5;
+      if (visible && (gather > 0 || lit) && !still) frame = requestAnimationFrame(draw);
     };
     const wake = () => { if (!frame && visible) { last = 0; frame = requestAnimationFrame(draw); } };
     const seen = new IntersectionObserver(([entry]) => { visible = entry.isIntersecting; if (visible) wake(); });
@@ -93,7 +100,7 @@ export function TalkParticles() {
     const motion = new MutationObserver(wake);
     motion.observe(root, { attributes: true, attributeFilter: ["data-editorial-motion", "data-editorial-animated"] });
     const move = (event: PointerEvent) => { const box = panel.getBoundingClientRect(); pointer.x = event.clientX - box.left; pointer.y = event.clientY - box.top; pointer.in = true; hovering = true; wake(); };
-    const leave = () => { pointer.in = false; hovering = false; };
+    const leave = () => { pointer.in = false; hovering = false; wake(); };
     panel.addEventListener("pointermove", move);
     panel.addEventListener("pointerleave", leave);
     return () => {
