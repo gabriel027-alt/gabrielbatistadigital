@@ -589,6 +589,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Movimento reduzido continua dando a página parada.
   - Também no celular: a moldura vermelha saiu, por parecer alerta (o vermelho fica só no ponto), e o "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
   - Teste de imobilidade: duas capturas com 1,5 s de diferença, depois dos 6 s, são idênticas no topo e no painel de contato.
+- Topo no celular, texto sobre o rosto (22/11/2026, reclamação do usuário): no retrato em tela cheia, o título cobria o queixo nos Samsung (360×780, 384×832, 412×915). A medida do "pescoço" pela silhueta errava o ponto. Agora o retrato se ajusta à largura da tela (`height:min(100%,161.3vw)`, proporção 1650×2662), o que sobe o queixo para cerca de 43% da altura, e o texto fica sobre a camiseta. Conferir pelo queixo (cerca de 57,5% da altura da foto), não pela silhueta.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)

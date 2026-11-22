@@ -470,7 +470,7 @@
    promise (the name is already in the header), with its label above it; the offer at the top and the signature hide. */
 .heroKickerPhone{display:none}
 @media(max-width:700px){
-  .heroPhoto{inset:0;height:auto}
+  .heroPhoto{inset:0 0 auto 0;height:min(100%,161.3vw)}
   .heroPhoto img{object-position:50% 0%}
   .heroPhoto:after{background:linear-gradient(0deg,#201714 0%,#201714f2 18%,#201714a6 34%,#20171400 50%),linear-gradient(180deg,#170c0b99 0%,transparent 16%)}
   .heroOffer,.heroBottom{display:none}
