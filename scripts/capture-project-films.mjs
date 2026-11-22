@@ -8,7 +8,9 @@ const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3115';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
 const browser = await chromium.launch({ headless: true, executablePath: process.env.PLAYWRIGHT_CHROMIUM_EXECUTABLE || '/usr/bin/chromium' });
 try {
-  for (const brand of ['aura', 'orla']) {
+  // Pass aura or orla to record only that film (both when omitted).
+const only = process.argv.slice(2);
+for (const brand of ['aura', 'orla'].filter(name => !only.length || only.includes(name))) {
     const page = await browser.newPage({ viewport: { width: 1280, height: 800 }, deviceScaleFactor: 1.5 });
     await page.goto(`${base}/propostas/${brand}`);
     await page.waitForLoadState('networkidle');
@@ -86,6 +88,12 @@ try {
       await page.locator(`[data-inquiry="${brand}"]`).getByRole('button').waitFor({ state: 'visible', timeout: 20000 });
     await page.waitForTimeout(1000);
       await page.screenshot({ path: 'public/images/projects/orla-film-poster.jpg', type: 'jpeg', quality: 88 });
+    }
+    if (brand === 'aura') {
+      // The card cover: the top of the site, as recorded (webp, 1920×1200 at 1.5×).
+      await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+      await page.waitForTimeout(2500);
+      execFileSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/aura-film-poster.webp'], { input: await page.screenshot({ type: 'png' }) });
     }
     await page.close();
   }

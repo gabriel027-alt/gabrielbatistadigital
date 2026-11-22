@@ -25,12 +25,13 @@ export default function AuraProposal() {
           <figure className={styles.portrait} data-portrait><Image src="/images/aura-sequence/portrait.webp" alt="Retrato editorial feminino, com pele natural e luz em tons de cobre" fill preload sizes="100vw" /></figure>
           <header className={styles.header}>
             <a href="#aura-conteudo" className={styles.brand} aria-label="Aura, início">aura</a>
-            <span className={styles.specialty}>Harmonização facial</span>
             <nav aria-label="Navegação Aura"><a href="#aura-olhar">O olhar</a><a href="#aura-comparacao">Comparar</a><a href="#aura-avaliacao">A abordagem</a><a href="#aura-interesse">Quero uma avaliação</a></nav>
           </header>
           <div className={styles.heroCopy} data-hero-copy>
-            <h1 id="aura-title"><span className={styles.sr}>Sua expressão. Em primeiro plano.</span><Letters text="Sua expressão." hero/><Letters text="Em primeiro" hero/><Letters text="plano." hero/></h1>
-            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><a className={styles.button} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={22}/></a><a className={styles.inquiryLink} href="#aura-interesse">Quero uma avaliação <Arrow size={18}/></a></div>
+            {/* 21/11/2026: three levels (specialty, title, supporting line) instead of a huge title over small text. */}
+            <p className={styles.heroKicker}>Harmonização facial</p>
+            <h1 id="aura-title"><span className={styles.sr}>Sua expressão. Em primeiro plano.</span><Letters text="Sua expressão." hero/><Letters text="Em primeiro plano." hero/></h1>
+            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><div className={styles.heroCalls}><a className={styles.button} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={22}/></a><a className={styles.inquiryLink} href="#aura-interesse">Quero uma avaliação <Arrow size={18}/></a></div></div>
           </div>
           <p className={styles.heroSignature} data-hero-signature>Proporção. Expressão. Identidade.</p>
         </div>

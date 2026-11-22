@@ -28,3 +28,7 @@
 
 /* Talhão (advocacia do agro): palha, terra roxa e madeira, medidos nas fotos. */
 .talhao{--q-bg:#dbb38c;--q-ink:#2a1a10;--q-accent:#a54c33;--q-border:#2a1a1040;font-family:var(--talhao-sans),system-ui,sans-serif}.talhao :is(.launch,.primary){color:#fff;border-radius:3px}.talhao .back{border-radius:3px}.talhao .dialog{--q-bg:#f2e6d2;--q-ink:#2a1a10;--q-accent:#a54c33;--q-border:#2a1a1040;font-family:var(--talhao-sans),system-ui,sans-serif}.talhao .invitation h2,.talhao .body h3{font-family:var(--talhao-display),Georgia,serif;font-weight:700;letter-spacing:-.01em}
+/* Aura (21/11/2026): the bright orange left the brand; its calls take a rose from the portrait's skin, the same family as
+   the hero's call, with the dark ink readable on it. */
+.aura{--q-accent:#d9a28e}
+.aura .dialog{--q-accent:#d9a28e}
