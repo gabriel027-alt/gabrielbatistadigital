@@ -593,7 +593,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Correções no celular, pedidas pelo usuário em 22/11/2026:
     - o ponto do "clique" cai até a palma sem pular: a cena da mão começa com o palco a 35% da tela (`enter`), a faixa tem 150vh e a queda ganha pelo menos 40% de tela de rolagem; antes ele pousava numa mão ainda abaixo da tela;
     - a linha pêssego entra abaixo do texto da cena da mão (`lineStart`), sem atravessar as letras;
-    - o sublinhado de "03 Design & programação" lia a quebra de linha do número, não do título; agora mede `.readLine`. O "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
+    - títulos que quebram em duas linhas (ex.: "03 Design & programação") também são sublinhados, linha após linha (`box-decoration-break:slice`). A entrelinha deles é 1,45; com 1, o sublinhado da primeira linha ficava escondido atrás das letras da segunda. Substitui a regra de 21/11 de não sublinhar títulos que quebram.
+    - a moldura sumia no rodapé porque `--hero-glow` fica em 0 depois do topo; agora ela só vale com o topo na tela. O "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
 - Topo no celular, texto sobre o rosto (22/11/2026, reclamação do usuário): no retrato em tela cheia, o título cobria o queixo nos Samsung (360×780, 384×832, 412×915). A medida do "pescoço" pela silhueta errava o ponto. Agora o retrato se ajusta à largura da tela (`height:min(100%,161.3vw)`, proporção 1650×2662), o que sobe o queixo para cerca de 43% da altura, e o texto fica sobre a camiseta. Conferir pelo queixo (cerca de 57,5% da altura da foto), não pela silhueta.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 

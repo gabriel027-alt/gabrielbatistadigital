@@ -273,10 +273,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                   const vertical = innerWidth <= 560, size = vertical ? list.offsetHeight : list.offsetWidth;
                   own.forEach(item => {
                     const a = (vertical ? item.offsetTop : item.offsetLeft) / size, b = a + (vertical ? item.offsetHeight : item.offsetWidth) / size;
-                    // A title that breaks onto two lines gets no underline: two stacked lines read as clutter (21/11/2026).
-                    // The title's own line, not the step number before it (the "03 Design & programação" bug, 22/11/2026).
-                    const wraps = (item.querySelector(`.${styles.readLine}`)?.getClientRects().length ?? 1) > 1;
-                    item.style.setProperty("--u", wraps ? "0" : Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
+                    // A title on two lines is underlined too, line after line (22/11/2026, the user wants every title read).
+                    item.style.setProperty("--u", Math.min(1, Math.max(0, (p - a) / Math.max(.01, (b - a) * .85))).toFixed(4));
                   });
                 };
                 ScrollTrigger.create({ start: readStart[k], end: readEnd[k], invalidateOnRefresh: true, onUpdate: self => read(self.progress), onRefresh: self => read(self.progress) });

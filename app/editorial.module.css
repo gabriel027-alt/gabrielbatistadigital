@@ -251,7 +251,10 @@
 .readFill{position:absolute;left:0;top:-1px;width:100%;height:2px;background:#e8916a;transform-origin:0 50%;transform:scaleX(var(--read,0))}
 .carrierDot{position:absolute;border-radius:50%;background:radial-gradient(circle at 35% 30%,#ef5a4a 0%,#c4372b 55%,#7a1a12 100%);box-shadow:0 2px 6px #0004}
 .readDot{width:14px;height:14px;left:calc(var(--read,0) * 100%);top:0;margin:-7px 0 0 -7px;visibility:hidden}
-.readLine{background:linear-gradient(#e8916a,#e8916a) 0 100%/calc(var(--u,0) * 100%) 2px no-repeat;-webkit-box-decoration-break:clone;box-decoration-break:clone;padding-bottom:4px}
+.readLine{background:linear-gradient(#e8916a,#e8916a) 0 100%/calc(var(--u,0) * 100%) 2px no-repeat;-webkit-box-decoration-break:slice;box-decoration-break:slice;padding-bottom:4px}
+/* slice (22/11/2026): a title on two lines is underlined as one stroke, the first line and then the second, as the dot reads.
+   The lines open up (1.45) so the first line's underline is not hidden behind the letters of the second. */
+.serviceItem h3 .readLine{line-height:1.45}
 .readAbout{position:relative;display:inline-block}
 .readAbout .readLine{background:none;padding:0}
 .readAbout:after{content:"";position:absolute;left:0;right:0;bottom:-12px;height:3px;background:#ffbc95;transform-origin:0 50%;transform:scaleX(var(--read,0))}
@@ -348,7 +351,10 @@
    all low enough that the card never reaches his chin (also at 125% scaling, 1536x696). */
 @media(min-width:701px){.heroBottom{bottom:2.5%}.heroBottom .heroName{justify-content:center;gap:2.4vw}.heroBottom>p{text-align:center;margin-top:1.4vw}}
 /* The red frame glow fades with the hero as the paper arrives (--hero-glow, set by CloudTransition). */
-.page[data-editorial-theme=photo] .frameGlow{opacity:var(--hero-glow,1)}
+.page[data-editorial-theme=photo] .frameGlow{opacity:1}
+/* --hero-glow stays at 0 once the top has scrolled away, so it only drives the frame over the top: the about and the
+   footer keep the full frame (22/11/2026, the user missed it in the footer). */
+.page[data-editorial-theme=photo][data-editorial-nav-over=editorial-start] .frameGlow{opacity:var(--hero-glow,1)}
 /* The portrait waits hidden while the points form it (components/HeroClouds.tsx); shown after 3 s regardless. */
 :global(html[data-hero-assemble]) .heroPhoto img{opacity:0;animation:heroShow 0s 3s forwards}
 @keyframes heroShow{to{opacity:1}}
