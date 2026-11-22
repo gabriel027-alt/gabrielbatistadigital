@@ -7,7 +7,9 @@ type Source = { src: string; sizes: string };
  * instead of a thin slice of the landscape one stretched several times over.
  */
 export function ArtDirectedImage({ alt, desktop, mobile, preload = false, quality = 90 }: { alt: string; desktop: Source; mobile: Source; preload?: boolean; quality?: number }) {
-  const common = { alt, fill: true, quality, preload };
+  // No preload link (21/11/2026): Next preloaded both crops without a media query, so every screen fetched one it never
+  // showed. An eager, high-priority <img> in the server HTML lets the browser pick the right <source> at once.
+  const common = { alt, fill: true, quality, ...(preload ? { loading: "eager" as const, fetchPriority: "high" as const } : {}) };
   const { props: { srcSet: mobileSet } } = getImageProps({ ...common, ...mobile });
   const { props } = getImageProps({ ...common, ...desktop });
   return <picture>

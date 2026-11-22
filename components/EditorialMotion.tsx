@@ -338,7 +338,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
         const h1 = node.querySelector<HTMLElement>("[data-hero-wordmark]");
         const fly = node.querySelector<HTMLElement>("[data-hero-dot]");
         const tittles = gsap.utils.toArray<HTMLElement>("[data-tittle]");
-        if (!dotSceneDone.current && h1 && fly && tittles.length === 2 && words.length === 2 && cardLoop && dot) {
+        // Phones (21/11/2026) show one voice: the promise. The signature is hidden there, so the dot scene plays on computers only.
+        if (!dotSceneDone.current && innerWidth > 700 && h1 && fly && tittles.length === 2 && words.length === 2 && cardLoop && dot) {
           // Jump heights follow the letter size, so the same scene works on the phone's two-line name.
           const em = parseFloat(getComputedStyle(h1).fontSize);
           const box = h1.getBoundingClientRect();

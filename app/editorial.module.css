@@ -470,3 +470,19 @@
 @media(max-width:700px){.page[data-editorial-animated=true] .fusionTrack{height:115vh}.page[data-editorial-animated=true] .workTrack{height:auto}}
 /* Aura and Orla covers are wider than the card: anchored left, where their headlines are. */
 .gridList li:nth-child(n+7) .media>img{object-position:left top}
+/* ——— Phone top, third pass (21/11/2026) ———
+   Cinematic: the portrait fills the screen and the copy rests on the dark of his shirt, under the chin. One voice: the
+   promise (the name is already in the header), with its label above it; the offer at the top and the signature hide. */
+.heroKickerPhone{display:none}
+@media(max-width:700px){
+  .heroPhoto{inset:0;height:auto}
+  .heroPhoto img{object-position:50% 0%}
+  .heroPhoto:after{background:linear-gradient(0deg,#201714 0%,#201714f2 18%,#201714a6 34%,#20171400 50%),linear-gradient(180deg,#170c0b99 0%,transparent 16%)}
+  .heroOffer,.heroBottom{display:none}
+  .heroPitch{top:auto;bottom:86px}
+  .heroKickerPhone{display:block;margin:0 0 10px;font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:#f0b593}
+  .heroTitle{font-size:clamp(31px,8.8vw,40px);max-width:13ch}
+  .heroSub{font-size:14px}
+}
+@media(max-width:700px) and (max-height:760px){.heroTitle{font-size:clamp(28px,8vw,34px)}.heroKickerPhone{font-size:11px;margin-bottom:8px}}
+@media(max-width:700px) and (max-height:700px){.heroKickerPhone{display:none}}

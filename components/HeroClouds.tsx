@@ -279,7 +279,10 @@ export function HeroClouds() {
         upload(2, small);
         ready |= 2;
       }
-      const base = `/images/hero/${current.includes("mobile") ? "gabriel-hero-mobile" : "gabriel-hero-wide"}`;
+      // Before the photo loads, currentSrc is empty and img.src is the computer crop: decide by the same media query as
+      // the <picture>, so a phone never downloads the computer mask and wall.
+      const phone = img.currentSrc ? img.currentSrc.includes("mobile") : matchMedia("(max-width: 700px)").matches;
+      const base = `/images/hero/${phone ? "gabriel-hero-mobile" : "gabriel-hero-wide"}`;
       if (base === maskBase) return;
       maskBase = base;
       ready &= ~5;

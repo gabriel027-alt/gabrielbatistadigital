@@ -556,6 +556,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - A dica de rolagem saiu do topo: o botão "Ver projetos ↓" já diz isso. Fica: "Design & desenvolvimento web", promessa, quem é o público, os dois botões e a assinatura.
   - PC: assinatura menor (`clamp(34px,3.4vw,60px)`), que antes ficava 12% sobre o ombro; agora 0% de texto sobre ele em 1536×696 e 1920×954.
   - Celular: a foto ocupa os 58% de cima da tela e se funde no escuro do topo; assinatura, promessa e botões ficam abaixo dela, sem cobrir o rosto. Em telas com até 760 px de altura, a linha do público some para tudo caber acima do menu.
+- Terceira passada no celular (22/11/2026, o usuário disse que o topo "não me conquista" e aprovou a proposta; aguarda aprovação do resultado):
+  - O retrato ocupa a tela inteira, como um pôster, e o texto fica sobre a camiseta escura, abaixo do queixo. Medido contra a máscara da silhueta: de 40 a 63 px abaixo do pescoço, em 375×667, 360×740 e 390×844.
+  - Uma só voz: no celular, a assinatura repetida embaixo e o rótulo de oferta saem. O nome fica só no cabeçalho, e "Design & desenvolvimento web" vira um rótulo pequeno acima da promessa (`heroKickerPhone`). Com até 700 px de altura, o rótulo some.
+  - A cena do ponto roda só no PC (`innerWidth > 700`). No celular, os pingos já estão nos "i".
+  - Avisos "preloaded but not used" corrigidos:
+    - `ArtDirectedImage` não usa mais o preload do Next, que baixava os dois recortes; agora é `<img>` com prioridade alta;
+    - o CSS da 404 e de `/em-breve` foi para `globals.css` (`nf-*`), porque o Next pré-carregava esse módulo em toda página;
+    - no celular, `HeroClouds` não baixa mais a máscara e a parede do PC.
 
 ## Página para clínicas (21/11/2026, pedido do usuário, aguardando aprovação)
 

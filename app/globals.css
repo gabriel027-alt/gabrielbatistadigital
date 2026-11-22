@@ -677,3 +677,15 @@ h2 {
 }
 
 /* Product-led service section: real previews and purpose-specific interfaces. */
+
+/* 404 (app/not-found.tsx): here, not in a CSS module, because Next preloaded that module on every page and the browser warned it went unused. */
+.nf-page{min-height:100svh;display:flex;flex-direction:column;justify-content:center;gap:22px;padding:80px 6vw;background:radial-gradient(circle at 30% 40%,#5a1612 0%,#201714 60%);color:#ffbc95;font-family:var(--font-manrope),Arial,sans-serif}
+.nf-code{margin:0;font-size:clamp(90px,18vw,240px);font-weight:600;letter-spacing:-.07em;line-height:.85}
+.nf-code span{color:#c4372b}
+.nf-name{font-size:clamp(44px,7vw,104px);letter-spacing:-.05em}
+.nf-page h1{margin:0;max-width:16ch;font-size:clamp(34px,5vw,72px);font-weight:500;letter-spacing:-.05em;line-height:1;color:#ffbc95}
+.nf-text{margin:0;max-width:44ch;font-size:17px;line-height:1.6;color:#ffd9c0}
+.nf-button{align-self:flex-start;display:inline-flex;align-items:center;min-height:48px;padding:13px 26px;border-radius:999px;background:#ffbc95;color:#201714;font-size:15px;font-weight:700;text-decoration:none}
+.nf-button:hover{background:#ffd2b4}
+.nf-page :focus-visible{outline:3px solid #ffbc95;outline-offset:4px}
+

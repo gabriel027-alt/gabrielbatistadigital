@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useSyncExternalStore } from "react";
-import styles from "@/app/not-found.module.css";
 
 /**
  * The 404's words in the language of the address that was asked for (/en, /es, /pt-pt), with the way back to that
@@ -24,7 +23,7 @@ export function NotFoundCopy() {
   if (typeof document !== "undefined") document.documentElement.lang = t.lang;
   return <>
     <h1>{t.title}</h1>
-    <p className={styles.text}>{t.text}</p>
-    <Link href={t.href} className={styles.button}>{t.back}</Link>
+    <p className="nf-text">{t.text}</p>
+    <Link href={t.href} className="nf-button">{t.back}</Link>
   </>;
 }

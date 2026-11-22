@@ -90,6 +90,8 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         <p className={styles.heroOffer} data-hero-offer><span className={styles.sr}>{t.offer.label}</span><span aria-hidden="true">{t.offer.before}<span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.offerTittle}`} data-offer-tittle /></span>{t.offer.after} <br/>{t.offer.line2}</span><span className={styles.offerInk} data-offer-ink aria-hidden="true" /></p>
         {/* Direction A (21/11/2026): the promise comes first, with who it is for and two calls. The face stays clear. */}
         <div className={styles.heroPitch} data-hero-pitch>
+          {/* Phones only: the label sits above the promise (on computers it is the offer at the top, where the dot is born). */}
+          <p className={styles.heroKickerPhone} aria-hidden="true">{t.offer.label}</p>
           <h1 className={styles.heroTitle}>{t.hero.title}</h1>
           <p className={styles.heroSub}>{t.hero.sub}</p>
           <div className={styles.heroActions}>
