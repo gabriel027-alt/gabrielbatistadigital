@@ -350,8 +350,11 @@ test('A scroll guide comes back whenever the visitor stops: down the page, sidew
     await page.locator(selector).first().evaluate(el => { const r = el.getBoundingClientRect(); scrollTo({ top: r.top + scrollY - Math.max(80, (innerHeight - r.height) / 2), behavior: 'instant' }); });
     await page.waitForTimeout(3000);
   };
+  // From the top on, right above the top's copy, so it covers neither the buttons nor the menu.
   await page.waitForTimeout(6000);
-  await expect(guide).toHaveAttribute('data-scroll-guide', 'off');
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'down');
+  const pill = await guide.boundingBox(), copy = await page.locator('[data-hero-pitch]').boundingBox();
+  expect(pill!.y + pill!.height).toBeLessThanOrEqual(copy!.y);
   await stopAt('[data-strip] ul');
   await expect(guide).toHaveAttribute('data-scroll-guide', 'side');
   await expect(guide).toHaveText('Deslize para o lado');

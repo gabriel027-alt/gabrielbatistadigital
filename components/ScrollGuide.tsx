@@ -10,11 +10,12 @@ type Mode = "down" | "side" | null;
  * for a moment, through almost the whole page, and goes away at the first scroll or touch:
  * - "Deslize para continuar" (phones) / "Role para continuar" (computers), with an arrow down;
  * - over the phone project row, "Deslize para o lado", until the visitor has swiped it once.
- * Not over the top (its "Ver projetos ↓" button already says it), not once the conversation is in view, not over a film.
+ * From the top on (on phones right above the top's copy), not once the conversation is in view, not over a film.
  */
 export function ScrollGuide({ labels }: { labels: { desktop: string; phone: string; side: string } }) {
   const [mode, setMode] = useState<Mode>(null);
   const [phone, setPhone] = useState(false);
+  const [lift, setLift] = useState<number | null>(null);
   const timer = useRef(0);
   useEffect(() => {
     const narrow = matchMedia("(max-width: 700px)");
@@ -29,8 +30,11 @@ export function ScrollGuide({ labels }: { labels: { desktop: string; phone: stri
     const decide = (): Mode => {
       const h = innerHeight;
       if (document.querySelector("dialog[open]")) return null;
+      // Over the top too (22/11/2026, the user's request). On phones its buttons sit just above the menu, so there the
+      // guide rests right above the copy, on the shirt, below the chin.
       const top = document.getElementById("editorial-start")?.getBoundingClientRect();
-      if (top && top.bottom > h * .5) return null;
+      const pitch = document.querySelector("[data-hero-pitch]")?.getBoundingClientRect();
+      setLift(narrow.matches && top && pitch && top.bottom > h * .5 ? Math.round(h - pitch.top + 14) : null);
       const talk = document.getElementById("editorial-contact")?.getBoundingClientRect();
       if (talk && talk.top < h * .9) return null;
       if (narrow.matches && row && !swipedSideways) {
@@ -59,7 +63,7 @@ export function ScrollGuide({ labels }: { labels: { desktop: string; phone: stri
     };
   }, []);
   const text = mode === "side" ? labels.side : phone ? labels.phone : labels.desktop;
-  return <div className={styles.scrollGuide} data-scroll-guide={mode ?? "off"} aria-hidden="true">
+  return <div className={styles.scrollGuide} data-scroll-guide={mode ?? "off"} aria-hidden="true" style={lift === null ? undefined : { bottom: `${lift}px` }}>
     <span>{text}</span>
     <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
       {mode === "side" ? <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
