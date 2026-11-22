@@ -145,14 +145,18 @@ test('Navigation theme follows the section under the logo after reversing near a
   await expect(root).toHaveAttribute('data-editorial-theme', 'photo');
 });
 
-test('No page-wide pause button: the phone menu row is free and the top has only a soft red edge', async ({ page }) => {
-  // 22/11/2026: nothing on the homepage moves on its own for more than five seconds; the footer avatar has its own control.
+test('Mobile motion control shares the navigation row without covering it, and the top has only a soft red edge', async ({ page }) => {
+  // 22/11/2026: the motion is continuous again by the user's choice, so the page-wide pause is back (WCAG 2.2.2).
   for (const width of [320, 360, 390]) {
     await page.setViewportSize({ width, height: 800 });
     await page.goto(route);
-    await expect(page.locator('[data-editorial]')).toHaveAttribute('data-editorial-animated', 'true');
-    await expect(page.getByRole('button', { name: /movimento/ })).toHaveCount(0);
-    await expect(page.locator('[data-editorial-nav] nav')).toBeVisible();
+    const control = page.getByRole('button', { name: 'Pausar movimento' });
+    await expect(control).toBeVisible();
+    const pill = await page.locator('[data-editorial-nav] nav').boundingBox();
+    const button = await control.boundingBox();
+    expect(pill && button && button.x >= pill.x + pill.width).toBe(true);
+    expect(button!.width).toBeGreaterThanOrEqual(44);
+    expect(button!.height).toBeGreaterThanOrEqual(44);
     // Soft red edge on phones (22/11/2026): present, but faint (no alpha above 0.25).
     const shadow = await page.locator('[data-frame-glow]').evaluate(el => getComputedStyle(el).boxShadow);
     const alphas = [...shadow.matchAll(/rgba\([^)]*,\s*([\d.]+)\)/g)].map(m => +m[1]);

@@ -34,7 +34,7 @@ const fakeSpotifyApi = `
     },
   });`;
 
-test("Footer film loads on arrival, plays one take, has its own control and pauses offscreen", async ({ page }) => {
+test("Footer film loads on arrival, pauses offscreen and obeys the motion control", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 900 });
   const requests: string[] = [];
   page.on("request", request => { if (request.url().includes(src)) requests.push(request.url()); });
@@ -48,17 +48,11 @@ test("Footer film loads on arrival, plays one take, has its own control and paus
   await expect(film).toHaveAttribute("data-ready", "true");
   expect(await film.evaluate(el => (el as HTMLVideoElement).muted)).toBe(true);
   expect(await film.evaluate(el => (el as HTMLVideoElement).duration)).toBeCloseTo(334 / 30, 1);
-  // One take: at the end it rests on the last frame instead of looping.
-  expect(await film.evaluate(el => (el as HTMLVideoElement).loop)).toBe(false);
   await film.evaluate(el => { const v = el as HTMLVideoElement; v.currentTime = v.duration - .1; });
-  await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).ended)).toBe(true);
-  const again = page.getByRole("button", { name: "Ver a animação de novo" });
-  await expect(again).toBeVisible();
-  await again.click();
-  await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(false);
-  await page.getByRole("button", { name: "Pausar a animação" }).click();
+  await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).currentTime)).toBeLessThan(2);
+  await page.getByRole("button", { name: "Pausar movimento" }).click();
   await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(true);
-  await page.getByRole("button", { name: "Ver a animação de novo" }).click();
+  await page.getByRole("button", { name: "Ativar movimento" }).click();
   await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(false);
   await page.locator("#editorial-footer").getByRole("link", { name: "Voltar ao início" }).click();
   await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(true);

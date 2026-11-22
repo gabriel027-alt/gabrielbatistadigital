@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, type ReactNode } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
@@ -9,15 +9,15 @@ import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
 import { lineEnds, linePath, onLine, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
+const subscribe = () => () => {};
 
-export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
+export function EditorialMotion({ children, className = "", labels = { pause: "Pausar movimento", resume: "Ativar movimento" } }: { children: ReactNode; className?: string; labels?: { pause: string; resume: string } }) {
   const root = useRef<HTMLDivElement>(null);
   const initialAnchorHandled = useRef(false);
   // The brand dot's arrival scene plays once per visit, not again after pausing and resuming motion.
   const dotSceneDone = useRef(false);
-  // No page-wide pause button since 22/11/2026: nothing on the homepage moves on its own for more than five seconds
-  // (WCAG 2.2.2), and the footer avatar has its own control. Reduced motion still gets the still page.
-  const paused = false;
+  const [paused, setPaused] = useState(false);
+  const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
   useEffect(() => {
     const node = root.current;
     if (!node || paused) return;
@@ -566,5 +566,6 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
   },[paused]);
   return <div ref={root} className={`${styles.page} ${className}`} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo" data-editorial-nav-over="editorial-start">
     {children}<div className={styles.frameGlow} data-frame-glow aria-hidden="true"/><div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
+    {hydrated && <button className={styles.motionControl} type="button" aria-pressed={paused} title={paused ? labels.resume : labels.pause} onClick={() => setPaused(value => !value)}><span className={styles.motionLabel}>{paused ? labels.resume : labels.pause}</span></button>}
   </div>;
 }

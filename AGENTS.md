@@ -580,15 +580,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 
 - Princípio do usuário: o site precisa converter; animação só fica se contribuir para isso, não para diferenciar.
 - **Marcas** (Lume, Arrimo, Paddock, Talhão, Sutil, Toca, Forma, Almeida e Casa Brisa): o botão visível de pausar saiu. As cenas são movidas pela rolagem e as chegadas duram menos de 5 s, então a WCAG 2.2.2 não exige controle; quem usa "reduzir movimento" continua recebendo a versão parada (`useBrandMotion`). O espaço reservado no cabeçalho da Arrimo, da Paddock e do Talhão foi devolvido. Os testes que clicavam no botão agora usam movimento reduzido e conferem que o botão não existe. Os filmes não mudam (o botão já era escondido na gravação); só o cabeçalho dessas três ficou sem a folga, o que não justifica regravar agora.
-- **Homepage:** ~~mantém um jeito de pausar~~ substituído em 22/11/2026 (pedido do usuário, aguardando aprovação):
-  - O botão global saiu, porque nada se mexe sozinho por mais de 5 s:
-    - os pontinhos do topo descansam aos 3 s e somem até os 5 s (`POINTS_REST = 3`);
-    - os pontinhos de "Vamos conversar" assentam cerca de 2,5 s depois de se juntarem, e o mouse os acorda;
-    - o ponto aceso pulsa duas vezes.
-  - O avatar do rodapé toca **uma vez** (11 s) a cada chegada ao rodapé e para no último quadro, que é igual ao pôster. Ele tem controle próprio (pausar / ver de novo, nos quatro idiomas, `avatarControl` em `lib/i18n.ts`): no PC fica sobre a tampa do notebook; no celular, ao lado do menu.
-  - Movimento reduzido continua dando a página parada.
+- **Homepage: movimento contínuo, por decisão do usuário (22/11/2026).** Ele não quer que as animações parem. Por pouco tempo, na mesma data, tudo parava em 5 s e não havia botão global; isso foi desfeito:
+  - os pontinhos do topo flutuam sem parar (`POINTS_REST = Infinity` em `HeroClouds`);
+  - os de "Vamos conversar" orbitam sem parar;
+  - o avatar do rodapé volta a tocar em loop;
+  - o ponto aceso pulsa sem parar.
+  - Por isso o botão global de pausa voltou (WCAG 2.2.2): no PC, discreto no canto; no celular, na linha do menu. Não tirá-lo enquanto algo se mover sozinho por mais de 5 s.
+  - Tudo continua só desenhando com a cena na tela. Movimento reduzido continua dando a página parada.
   - Também no celular: a moldura vermelha ficou suave, cerca de 40% da antiga (decisão do usuário em 22/11/2026: sem ela o topo não ficava bom; forte, parecia alerta). Não tirar de novo nem voltar à forte. O "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.
-  - Teste de imobilidade: duas capturas com 1,5 s de diferença, depois dos 6 s, são idênticas no topo e no painel de contato.
 - Topo no celular, texto sobre o rosto (22/11/2026, reclamação do usuário): no retrato em tela cheia, o título cobria o queixo nos Samsung (360×780, 384×832, 412×915). A medida do "pescoço" pela silhueta errava o ponto. Agora o retrato se ajusta à largura da tela (`height:min(100%,161.3vw)`, proporção 1650×2662), o que sobe o queixo para cerca de 43% da altura, e o texto fica sobre a camiseta. Conferir pelo queixo (cerca de 57,5% da altura da foto), não pela silhueta.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 

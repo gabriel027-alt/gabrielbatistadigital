@@ -69,7 +69,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {data && <dl className={styles.spec}><div><dt className={styles.sr}>{t.specFont}</dt><dd>{data.typography.display}</dd></div><div><dt className={styles.sr}>{t.specColors}</dt><dd className={styles.swatches}>{Object.values(data.palette).map(hex => <span key={hex} style={{ background: hex }} title={hex}><i>{hex}</i></span>)}</dd></div></dl>}
       </div></li>;
   };
-  return <EditorialMotion className={`${display.variable} ${mono.variable}`}>
+  return <EditorialMotion className={`${display.variable} ${mono.variable}`} labels={t.motion}>
     {/* The root layout says pt-BR; the other languages correct it before anything is read. */}
     {/* Counts the clicks on WhatsApp for the analytics tool to come; loads and sends nothing by itself. */}
     <ContactTracking />
@@ -169,6 +169,6 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       </section>
       <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="contato"><TalkParticles /><div><h2>{t.contactTitle[0]}<br/>{t.contactTitle[1]}</h2><p>{t.contactText}</p></div><span className={styles.contactAction}><span className={styles.contactGo}><span>{t.contactGo}<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span><Arrow size={42}/></span><span className={styles.contactWhere}>{t.contactWhere}</span></span></a></section>
     </main>
-    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt} labels={t.avatarControl}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><span className={styles.footerLegal}><a href={legal.path}>{legal.footerPrivacy}</a><ConsentPreferences label={legal.footerCookies} className={styles.footerPrefs} /></span><a href="#editorial-start">{t.backTop}</a></div></footer>
+    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><span className={styles.footerLegal}><a href={legal.path}>{legal.footerPrivacy}</a><ConsentPreferences label={legal.footerCookies} className={styles.footerPrefs} /></span><a href="#editorial-start">{t.backTop}</a></div></footer>
   </EditorialMotion>;
 }
