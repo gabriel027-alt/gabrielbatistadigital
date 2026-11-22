@@ -862,3 +862,10 @@
   .portrait img{object-position:72% 18%}
 }
 .button:hover{background:#efc6b2}
+/* Who receives the visitor, under the calls (21/11/2026). */
+.heroWho{display:inline-block;margin-top:22px;font-size:14px;color:#e9dcd2;text-decoration:none}
+.heroWho strong{color:var(--paper);font-weight:600}
+.heroWho:hover strong{text-decoration:underline;text-underline-offset:5px}
+.endingVoice{margin-top:18px!important;font-style:italic}
+@media(max-width:899px){.heroWho{margin-top:14px;font-size:13px}}
+@media(min-width:900px){.heroCopy{top:19%}.heroOffer p{max-width:520px}}

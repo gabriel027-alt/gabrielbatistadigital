@@ -44,7 +44,7 @@ const content: Record<Brand, Content> = {
       [{ key: "regiao", label: "Por onde você quer começar?", options: ["Lábios", "Maçãs do rosto", "Queixo e contorno", "Nariz", "Quero olhar o rosto inteiro"] }],
       [{ key: "duvida", label: "O que você quer entender primeiro?", options: ["As possibilidades para o meu rosto", "Como funciona a avaliação", "Os cuidados e a recuperação", "Ainda estou conhecendo as opções"] }],
     ],
-    next: "Uma avaliação individual considera suas expectativas, suas características e os limites de cada possibilidade. Essas escolhas ajudam a começar a conversa; não indicam um procedimento.",
+    next: "Na avaliação, a Isadora considera suas expectativas, suas características e os limites de cada possibilidade. Essas escolhas ajudam a começar a conversa; não indicam um procedimento.",
     invitation: "Uma avaliação começa por ouvir.", stepNames: ["Seu interesse", "Sua dúvida"], stepTitles: ["O que chama sua atenção?", "Vamos esclarecer sua dúvida."],
     summaryTitle: "Seu ponto de partida.", noscript: "Para começar, pense na região de interesse e nas dúvidas que deseja esclarecer em uma avaliação individual.",
   },

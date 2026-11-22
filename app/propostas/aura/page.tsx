@@ -16,6 +16,9 @@ export const metadata: Metadata = {
 function Letters({ text, hero = false }: { text: string; hero?: boolean }) {
   return <span aria-hidden="true" className={styles.line}>{text.split(" ").map((word, wordIndex) => <span className={styles.word} key={wordIndex}>{Array.from(word).map((char, index) => <span className={styles.char} data-hero-glyph={hero ? "" : undefined} data-glyph={!hero ? "" : undefined} key={index}>{char}</span>)}{wordIndex < text.split(" ").length - 1 ? "\u00a0" : ""}</span>)}</span>;
 }
+/** The person who receives the visitor (21/11/2026, user's authorization): a brand persona, as Helena (Lume) and Ricardo (Arrimo). */
+const founder = { name: "Isadora Lins", first: "Isadora", role: "fundadora da Aura" };
+
 export default function AuraProposal() {
   return <AuraMotion>
     <a href="#aura-conteudo" className={styles.skip}>Pular para o conteúdo</a>
@@ -31,7 +34,11 @@ export default function AuraProposal() {
             {/* 21/11/2026: three levels (specialty, title, supporting line) instead of a huge title over small text. */}
             <p className={styles.heroKicker}>Harmonização facial</p>
             <h1 id="aura-title"><span className={styles.sr}>Sua expressão. Em primeiro plano.</span><Letters text="Sua expressão." hero/><Letters text="Em primeiro plano." hero/></h1>
-            <div className={styles.heroOffer}><p>Harmonização facial com atenção<br className={styles.desktopBreak}/> ao rosto inteiro.</p><div className={styles.heroCalls}><a className={styles.button} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={22}/></a><a className={styles.inquiryLink} href="#aura-interesse">Quero uma avaliação <Arrow size={18}/></a></div></div>
+            <div className={styles.heroOffer}><p>Uma avaliação individual para entender o que muda, o que se preserva e o que não é indicado, antes de qualquer decisão.</p>
+              {/* 21/11/2026: the evaluation is the main call; looking at the face in detail is the second. */}
+              <div className={styles.heroCalls}><a className={styles.button} href="#aura-interesse">Quero uma avaliação <Arrow size={22}/></a><a className={styles.inquiryLink} href="#aura-olhar">Ver o rosto em detalhe <Arrow size={18}/></a></div>
+              {/* Persona of the brand, named with the user's authorization (21/11/2026): no title, registration or training. */}
+              <a className={styles.heroWho} href="#aura-avaliacao">Avaliação com <strong>{founder.name}</strong>, {founder.role}</a></div>
           </div>
           <p className={styles.heroSignature} data-hero-signature>Proporção. Expressão. Identidade.</p>
         </div>
@@ -42,6 +49,7 @@ export default function AuraProposal() {
         <h2 id="aura-approach-title">A harmonia está<br/>no conjunto.</h2>
         <div className={styles.endingBody}>
           <p>Proporção, expressão e características individuais fazem parte da leitura facial. Cada escolha precisa considerar o que você deseja mudar e o que quer preservar.</p>
+          <p className={styles.endingVoice}>Sou a {founder.first}. Na avaliação, olho o rosto inteiro antes de falar de qualquer região e explico o que muda, o que se preserva e o que não é indicado para você.</p>
           <a className={styles.endingLink} href="#aura-comparacao">Rever a comparação <Arrow size={20}/></a>
         </div>
       </section>
