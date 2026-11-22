@@ -584,7 +584,9 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - os pontinhos do topo flutuam sem parar (`POINTS_REST = Infinity` em `HeroClouds`);
   - os de "Vamos conversar" orbitam sem parar;
   - o avatar do rodapé volta a tocar em loop;
-  - o ponto aceso pulsa sem parar.
+  - o ponto aceso pulsa sem parar;
+  - a mão volta a respirar (sobe 5 px e inclina 0,6°, a cada 3,4 s).
+  - O cartão "g." do topo continua montando uma vez e parado, por escolha do usuário: fica perto da promessa e dos botões, e um loop ali competiria com eles.
   - Por isso o botão global de pausa voltou (WCAG 2.2.2): no PC, discreto no canto; no celular, na linha do menu. Não tirá-lo enquanto algo se mover sozinho por mais de 5 s.
   - Tudo continua só desenhando com a cena na tela. Movimento reduzido continua dando a página parada.
   - Também no celular: a moldura vermelha ficou suave, cerca de 40% da antiga (decisão do usuário em 22/11/2026: sem ela o topo não ficava bom; forte, parecia alerta). Não tirar de novo nem voltar à forte. O "Conversar" do menu fica sem destaque enquanto o topo, que já tem o botão de WhatsApp, está na tela.

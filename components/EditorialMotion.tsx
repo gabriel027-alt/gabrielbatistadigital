@@ -181,7 +181,9 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             .fromTo(copy, { y: 30, opacity: 0 }, { y: 0, opacity: 1, duration: .08, ease: "power2.out" }, .88)
             .to({}, { duration: .001 }, .999);
           render();
-          // On a computer the hand leans a little toward the pointer (the endless breath was removed, 21/11/2026).
+          // The hand is alive: a slow breath (removed on 21/11/2026, back on 22/11/2026 by the user's choice; the pause
+          // button stops it), and on a computer it leans a little toward the pointer.
+          gsap.to(body, { y: -5, rotation: .6, transformOrigin: "80% 100%", duration: 3.4, ease: "sine.inOut", yoyo: true, repeat: -1 });
           const lean = gsap.quickTo(body, "x", { duration: 1.2, ease: "power3.out" });
           const follow = (event: MouseEvent) => lean((event.clientX / innerWidth - .5) * 18);
           if (matchMedia("(pointer: fine)").matches) addEventListener("mousemove", follow);
