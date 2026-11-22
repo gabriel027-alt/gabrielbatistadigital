@@ -500,3 +500,15 @@
 @media(max-width:700px){.page[data-editorial-nav-over=editorial-start] .frameGlow{box-shadow:inset 0 1px 12px #ff34343d,inset 0 1px 40px 1px #c710301c}}
 /* Phones: while the top is on screen its own WhatsApp button leads, so the menu's "Conversar" is a plain link there. */
 @media(max-width:700px){.page[data-editorial-nav-over=editorial-start] .navWhats{background:transparent;color:inherit!important}}
+/* Scroll guide (22/11/2026, the user's request): it comes back whenever the visitor stops, through almost the whole
+   page; down the page, or sideways over the phone project row. Bottom centre; on phones above the menu. */
+.scrollGuide{position:fixed;left:50%;bottom:26px;z-index:55;display:flex;align-items:center;gap:8px;padding:10px 16px;border-radius:30px;background:#faf6efeb;color:var(--ink);box-shadow:0 4px 22px #20171426;backdrop-filter:blur(10px);font-size:12px;font-weight:600;letter-spacing:-.01em;white-space:nowrap;pointer-events:none;opacity:0;transform:translate(-50%,10px);transition:opacity .45s var(--ease),transform .45s var(--ease)}
+.scrollGuide[data-scroll-guide=down],.scrollGuide[data-scroll-guide=side]{opacity:1;transform:translate(-50%,0)}
+.scrollGuide svg{color:var(--copper)}
+.scrollGuide[data-scroll-guide=down] svg{animation:guideDown 1.6s ease-in-out infinite}
+.scrollGuide[data-scroll-guide=side] svg{animation:guideSide 1.6s ease-in-out infinite}
+@keyframes guideDown{0%,100%{transform:translateY(-2px)}50%{transform:translateY(3px)}}
+@keyframes guideSide{0%,100%{transform:translateX(-2px)}50%{transform:translateX(3px)}}
+.page[data-editorial-motion=off] .scrollGuide svg{animation:none}
+@media(prefers-reduced-motion:reduce){.scrollGuide{transition:none}.scrollGuide svg{animation:none!important}}
+@media(max-width:700px){.scrollGuide{bottom:92px}}

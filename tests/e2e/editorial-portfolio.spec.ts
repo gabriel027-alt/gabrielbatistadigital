@@ -341,3 +341,26 @@ test("Without analytics IDs there is no cookie banner, and the privacy policy ex
     await expect(page.locator("html")).toHaveAttribute("lang", lang);
   }
 });
+
+test('A scroll guide comes back whenever the visitor stops: down the page, sideways over the phone project row', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(route);
+  const guide = page.locator('[data-scroll-guide]');
+  const stopAt = async (selector: string) => {
+    await page.locator(selector).first().evaluate(el => { const r = el.getBoundingClientRect(); scrollTo({ top: r.top + scrollY - Math.max(80, (innerHeight - r.height) / 2), behavior: 'instant' }); });
+    await page.waitForTimeout(3000);
+  };
+  await page.waitForTimeout(6000);
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'off');
+  await stopAt('[data-strip] ul');
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'side');
+  await expect(guide).toHaveText('Deslize para o lado');
+  await stopAt('[data-read-list]');
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'down');
+  await expect(guide).toHaveText('Deslize para continuar');
+  // A scroll sends it away (a plain scroll: a wheel would start the smooth scroller and fight the jumps below).
+  await page.evaluate(() => scrollBy({ top: 120, behavior: 'instant' }));
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'off');
+  await stopAt('#editorial-contact');
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'off');
+});

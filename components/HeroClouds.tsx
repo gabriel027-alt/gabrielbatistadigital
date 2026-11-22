@@ -69,7 +69,7 @@ void main(){
   // The breathed-out points pass behind him: over his face or body they are hidden.
   a*=1.-behindOnly*smoothstep(.35,.6,texture2D(person,vAt).r);
   // Lifted toward the warm light of the portrait, so points from dark hair still read as light, not specks.
-  vec3 c=mix(texture2D(photo,vUv).rgb,vec3(1.,.78,.64),tint);
+  vec3 c=mix(texture2D(photo,vUv).rgb,vec3(1.,.737,.584),tint);
   gl_FragColor=vec4(c*a,a);
 }`;
 
@@ -468,7 +468,7 @@ export function HeroClouds() {
       gl.uniform1f(u(emitProgram, "time"), now / 1000);
       gl.uniform1f(u(emitProgram, "size"), pointSize);
       gl.uniform1f(u(emitProgram, "aspect"), aspect);
-      gl.uniform1f(u(emitProgram, "tint"), .7);
+      gl.uniform1f(u(emitProgram, "tint"), 1);
       gl.uniform1f(u(emitProgram, "emit"), Math.min(1, Math.max(0, (Math.min(g, 99) - 2.1) / 1.2)) * (1 - Math.min(1, gone / .3)) * (CLOUD_SEA ? 1 : restIn));
       gl.uniform2f(u(emitProgram, "hand"), hand.x, hand.y);
       gl.uniform1f(u(emitProgram, "handOn"), Math.max(0, 1 - (now - hand.at) / 1200));

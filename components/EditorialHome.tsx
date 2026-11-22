@@ -13,6 +13,7 @@ import { HandParticles } from "@/components/HandParticles";
 import { TalkParticles } from "@/components/TalkParticles";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { ContactTracking } from "@/components/ContactTracking";
+import { ScrollGuide } from "@/components/ScrollGuide";
 import { ConsentBanner, ConsentPreferences } from "@/components/ConsentBanner";
 import { privacyCopy } from "@/lib/privacy-copy";
 import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
@@ -73,6 +74,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
     {/* The root layout says pt-BR; the other languages correct it before anything is read. */}
     {/* Counts the clicks on WhatsApp for the analytics tool to come; loads and sends nothing by itself. */}
     <ContactTracking />
+    <ScrollGuide labels={t.scrollGuide} />
     {/* Cookie consent for Google Analytics and Ads; renders nothing until their IDs are configured (lib/analytics.ts). */}
     <ConsentBanner copy={legal} afterHero />
     {locale !== "pt" && <script dangerouslySetInnerHTML={{ __html: `document.documentElement.lang=${JSON.stringify(localeInfo[locale].html)}` }} />}
