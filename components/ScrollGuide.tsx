@@ -64,10 +64,20 @@ export function ScrollGuide({ labels }: { labels: { desktop: string; phone: stri
   }, []);
   const text = mode === "side" ? labels.side : phone ? labels.phone : labels.desktop;
   return <div className={styles.scrollGuide} data-scroll-guide={mode ?? "off"} aria-hidden="true" style={lift === null ? undefined : { bottom: `${lift}px` }}>
+    {/* The gesture itself, drawn in the site's line (22/11/2026, the user's request): on phones a finger swipes up
+        (or to the left over the project row), pressing with a peach touch; on computers a mouse wheel rolls. */}
+    {phone || mode === "side"
+      ? <svg className={styles.guideFinger} data-gesture={mode === "side" ? "side" : "up"} viewBox="0 0 32 32" width="28" height="28" aria-hidden="true">
+          <g className={styles.guideHand}>
+            {/* The touch: a peach glow under the fingertip while it presses and drags. */}
+            <circle className={styles.guideTouch} cx="12.7" cy="7" r="4.2"/>
+            <path d="M11 16V8.2a1.7 1.7 0 0 1 3.4 0V14m0-1.6a1.7 1.7 0 0 1 3.4 0V15m0-1.4a1.7 1.7 0 0 1 3.4 0v1.6m0-.4a1.7 1.7 0 0 1 3.4 0v3.6c0 4.4-2.9 7.6-7.2 7.6h-1c-2.4 0-4-1-5.4-2.8L6.6 20a1.6 1.6 0 0 1 2.5-2l1.9 2" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          </g>
+        </svg>
+      : <svg className={styles.guideMouse} viewBox="0 0 32 32" width="26" height="26" aria-hidden="true">
+          <rect x="9" y="4" width="14" height="23" rx="7" fill="none" stroke="currentColor" strokeWidth="1.5"/>
+          <rect className={styles.guideWheel} x="15" y="9" width="2" height="5" rx="1" fill="currentColor"/>
+        </svg>}
     <span>{text}</span>
-    <svg viewBox="0 0 16 16" width="14" height="14" aria-hidden="true">
-      {mode === "side" ? <path d="M3 8h9M8.5 4.5 12 8l-3.5 3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
-        : <path d="M8 3v9M4.5 8.5 8 12l3.5-3.5" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>}
-    </svg>
   </div>;
 }
