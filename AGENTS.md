@@ -575,7 +575,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Homepage:** mantém um jeito de pausar, porque ali há movimento automático contínuo (pontinhos, cartão "g.", faixa de projetos, prévias, avatar). No PC virou o mesmo ícone redondo do celular, discreto, com o nome lido pelo leitor de tela e como dica ao passar o mouse.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 
-## Auditoria de conversão da homepage (21/11/2026, aprovada a execução pelo usuário, aguardando aprovação do resultado)
+## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
 
 - Régua do usuário: animação só fica se ajudar a converter. Medido antes e depois (PC 1536×696 a 125% / celular 390×844):
   - primeiro projeto inteiro na tela: de 6,2 para **3,0 telas** no PC e de 5 para **2,5** no celular;
