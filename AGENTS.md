@@ -587,7 +587,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Continuam se mexendo sozinhos: o avatar do rodapé e os pontinhos em volta de "Vamos conversar". Por isso o ícone de pausa fica.
 - Testes da homepage reescritos para a grade (sem cópia decorativa, prévia só no hover, pasta com o ponto e grade parada).
 
-## Aura: topo reequilibrado (21/11/2026, pedido do usuário, aguardando aprovação)
+## Aura: topo reequilibrado (21/11/2026, pedido do usuário, aprovado por ele no mesmo dia)
 
 - Diagnóstico: botão laranja-vivo destoando da foto, salto do título enorme para texto pequeno, "Harmonização facial" solto no cabeçalho, "Quero uma avaliação" sobreposto à assinatura "Proporção. Expressão. Identidade." e, no celular, o título sobre os olhos.
 - Correção: três níveis de texto ("Harmonização facial" como rótulo acima, título em duas linhas, frase de apoio), as duas chamadas lado a lado, e o laranja trocado pelo tom de pele do retrato: `--accent:#e3b39d` no topo e `#d9a28e` no roteiro local (`.aura` e `.aura .dialog` em `BrandInquiry.module.css`), sempre com tinta escura em cima. No celular, o texto fica embaixo, sob o rosto, onde a cena já escurece; a assinatura some ali.
