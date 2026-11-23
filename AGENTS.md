@@ -637,7 +637,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
     - em primeira pessoa em "Quem recebe você";
     - no roteiro local.
     - Sem CRO, formação, anos de experiência, números, depoimentos, prazos ou preços.
-  - Também autorizado: **Beatriz Sallum, oftalmologista**, para a **Nítida** (cirurgia refrativa), a segunda marca estática, já aprovada como proposta e aguardando as fotos do usuário. Mesmas restrições.
+  - Também autorizado: **Beatriz Sallum, oftalmologista**, para a **Nítida** (cirurgia refrativa), a segunda marca estática. Mesmas restrições.
+- **Nítida** (`/modelos/oftalmologia`), **aprovada pelo usuário em 23/11/2026** e posta em segundo na seleção: Cerne, Nítida, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
+  - Assinaturas: títulos como tabela de leitura e foto que foca ao toque (`FocusPhoto`).
+  - Promessa obrigatória: "reduzir ou eliminar a dependência dos óculos, quando os exames indicam". Nunca "nunca mais usar óculos".
+  - Filmes por `scripts/capture-brand-films.mjs nitida`. A prévia mostra a íris focando ao toque.
+  - Setor, benefício e mensagem do WhatsApp nos quatro idiomas.
   - **Aprovada pelo usuário em 23/11/2026.** Entrou em primeiro na seleção: Cerne, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
   - Filmes por `scripts/capture-brand-films.mjs cerne`:
     - `cerne-desktop.mp4` e `cerne-mobile.mp4`;
