@@ -65,6 +65,11 @@ export const clinicsCopy = {
     { q: "Funciona bem no celular?", a: "Sim. Cada página é conferida no celular e no computador antes de ir ao ar." },
     { q: "Eu acompanho o projeto?", a: "Sim. Você acompanha o andamento e vê o site antes de ele ir ao ar." },
     { q: "Quanto custa?", a: "Depende do que a clínica precisa: páginas, cena animada, fotos e textos, e o que vem depois do site. Na primeira conversa eu já te passo uma faixa." },
+    // Gabriel's own answers (22/11/2026): no deadline, material case by case, Vercel with an optional own domain, optional plan.
+    { q: "Quanto tempo leva?", a: "Depende do tamanho do site e do material que já existe. O prazo é combinado na proposta, antes de começar." },
+    { q: "Preciso ter fotos e textos prontos?", a: "Não necessariamente. Dá para usar as fotos que a clínica já tem ou produzir novas, e isso é combinado caso a caso. Os textos são escritos junto com você." },
+    { q: "Onde o site fica hospedado? Posso usar o meu domínio?", a: "O site fica hospedado na Vercel. Ele pode usar o endereço da própria Vercel ou um domínio seu, como um .com.br registrado no Registro.br, se for o seu desejo. Eu faço a configuração." },
+    { q: "E depois que o site vai ao ar?", a: "Para manutenção e ajustes depois da publicação, há um plano mensal opcional, combinado na proposta." },
     { q: "Você também cuida do Google e dos anúncios?", a: "Sim, se fizer sentido para a clínica: perfil no Google Meu Negócio, campanhas no Google e no Instagram e uma primeira resposta automática no WhatsApp. Tudo entra na proposta, com o investimento de cada parte." },
   ],
   finalTitle: "Vamos conversar sobre a sua clínica.",

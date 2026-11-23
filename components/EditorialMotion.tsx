@@ -236,7 +236,9 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                 [() => { const grid = node.querySelector<HTMLElement>("[data-strip]"); return grid ? Math.min(readStart[0]() - 120, top(grid) + grid.offsetHeight - innerHeight * .9) : top(work); }, readStart[0]],
                 ...lists.slice(1).map((_, k) => [readEnd[k], readStart[k + 1]] as [() => number, () => number]),
                 [readEnd[lists.length - 1], aboutStart],
-                [aboutEnd, () => top(panel) - innerHeight * .45],
+                // The questions sit between the about and the conversation (22/11/2026): the dot waits out of sight and
+                // flies only over the last part, so it never rests on an answer being read.
+                [() => Math.max(aboutEnd(), top(panel) - innerHeight * .95), () => top(panel) - innerHeight * .45],
               ];
               const carrier = document.createElement("span");
               carrier.className = styles.carrier; node.append(carrier);
