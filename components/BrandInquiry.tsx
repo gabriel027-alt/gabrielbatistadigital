@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -147,6 +147,21 @@ const content: Record<Brand, Content> = {
     next: "Na primeira conversa, a Marina entende a situação, lê os contratos e explica quais caminhos a lei prevê para o seu caso, com os limites de cada um. Nenhuma decisão é tomada antes disso.",
     invitation: "A primeira conversa", stepNames: ["A situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como e quando?"],
     summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense no que mais pesa hoje na fazenda e em como prefere a primeira conversa.",
+  },
+  // Nítida (refractive surgery): what the person uses today, what bothers most and when; no degree or health data.
+  nitida: {
+    name: "Nítida", title: "Vamos preparar a sua avaliação.",
+    intro: "Três escolhas rápidas, sem precisar saber o seu grau. A recepção responde e marca a avaliação com a Beatriz.", action: "Agendar avaliação",
+    steps: [
+      [{ key: "usa", label: "O que você usa hoje?", options: ["Óculos", "Lentes de contato", "Os dois", "Ainda não sei se preciso"] }],
+      [
+        { key: "incomoda", label: "O que mais atrapalha?", options: ["Acordar sem enxergar", "Mar, piscina e esporte", "A lente incomoda", "Quero só me informar"] },
+        { key: "quando", label: "Para quando você pensa em resolver?", options: ["O quanto antes", "Nos próximos meses", "Ainda estou pesquisando"] },
+      ],
+    ],
+    next: "A recepção marca a avaliação e orienta a pausa da lente de contato antes dos exames. Na avaliação, a Beatriz examina, explica os resultados e diz com clareza se a cirurgia é indicada. Você decide depois.",
+    invitation: "Ver começa por uma avaliação.", stepNames: ["Hoje", "O que atrapalha"], stepTitles: ["Por onde começamos?", "O que você quer resolver?"],
+    summaryTitle: "Sua avaliação, preparada.", noscript: "Para a avaliação, pense no que você usa hoje (óculos ou lentes), no que mais atrapalha e em quando quer resolver.",
   },
   // Cerne (implants): the situation, what bothers most and when; no health data, no exam, no appointment made.
   cerne: {

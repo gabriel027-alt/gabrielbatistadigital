@@ -281,6 +281,35 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar olhos artificiais, com íris perfeitas demais ou brilho exagerado. Se acontecer, gerar de novo pedindo "textura natural da íris, sem brilho artificial".
 
+## Nítida montada (23/11/2026, aguarda a avaliação do usuário)
+
+- **Onde está:** `/modelos/oftalmologia`. Conteúdo em `lib/nitida.ts` e kit `nitida` em `lib/brand-kits.ts` (status: em construção).
+- **Fotos:** as cinco fotos do usuário, ampliadas com o Real-ESRGAN (80% IA e 20% original, lado maior de 4800 px). A primeira ampliação da íris saiu escura e foi refeita.
+- **Paleta medida nas fotos:**
+  - branco óptico #f0f0f1;
+  - névoa #dde2e6;
+  - tinta #24201f;
+  - íris #8e512c;
+  - água #108693, só em grafismos.
+- **Tipografia:** Red Hat Display e Red Hat Text.
+- **Assinaturas:**
+  - **A tabela de leitura:** títulos em maiúsculas com linhas que diminuem.
+  - **O foco ao toque** (`FocusPhoto.tsx`): a foto do mergulho e a da íris começam desfocadas e ficam nítidas ao toque ou com o mouse. Sem JS e com movimento reduzido, já aparecem nítidas.
+  - **O topo:** sai do desfoque na chegada.
+- **Quem atende:**
+  - Beatriz Sallum, oftalmologista, no topo, em primeira pessoa e no roteiro;
+  - a recepção, que responde e marca a avaliação.
+- **Roteiro local:** `BrandInquiry`, marca `nitida`, em três escolhas: o que a pessoa usa hoje, o que atrapalha e para quando. Não pede o grau.
+- **Barra fixa no celular:** `components/brand/StickyCall.tsx`, compartilhada pelas marcas estáticas.
+- **Cuidado de conteúdo:** "reduzir ou eliminar a dependência dos óculos, quando os exames indicam". O teste confere que a página nunca diz "nunca mais usar".
+- **Testes** (`tests/e2e/nitida-model.spec.ts`, 3 testes):
+  - promessa e quem atende;
+  - foco ao toque;
+  - axe AA na página e no roteiro;
+  - sem JS e com movimento reduzido;
+  - barra fixa e roteiro no celular de 360 px.
+  - Os testes da Cerne e dos kits também passaram.
+- **Fora da homepage até a aprovação dele.** Depois disso: capa, filmes e entrada na seleção.
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.

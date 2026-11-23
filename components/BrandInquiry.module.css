@@ -39,3 +39,10 @@
 .cerne .dialog{--q-bg:#efe7dd;--q-ink:#452a1b;--q-accent:#b53621;--q-border:#452a1b40;font-family:var(--cerne-text),Georgia,serif}
 .cerne .invitation h2,.cerne .body h3{font-family:var(--cerne-display),system-ui,sans-serif;font-weight:800;letter-spacing:-.035em}
 .cerne .steps li{opacity:1;color:#7d5f4c}.cerne .steps li[aria-current=step]{color:#452a1b}
+/* Nítida (cirurgia refrativa): branco óptico, névoa e a íris âmbar, medidos nas fotos de 23/11/2026. */
+.nitida{--q-bg:#dde2e6;--q-ink:#24201f;--q-accent:#8e512c;--q-border:#24201f40;font-family:var(--nitida-text),system-ui,sans-serif}
+.nitida :is(.launch,.primary){color:#fff;border-radius:999px;font-family:var(--nitida-display),system-ui,sans-serif;font-weight:700}
+.nitida .back{border-radius:999px}
+.nitida .dialog{--q-bg:#f0f0f1;--q-ink:#24201f;--q-accent:#8e512c;--q-border:#24201f40;font-family:var(--nitida-text),system-ui,sans-serif}
+.nitida .invitation h2,.nitida .body h3{font-family:var(--nitida-display),system-ui,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
+.nitida .steps li{opacity:1;color:#5d5857}.nitida .steps li[aria-current=step]{color:#24201f}

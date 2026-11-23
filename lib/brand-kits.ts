@@ -48,6 +48,18 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // Second static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): refractive surgery, first-person high-key photography.
+    id: "nitida", route: "/modelos/oftalmologia", niche: "Cirurgia refrativa",
+    concept: "Acordar e já ver.", mark: "Dois círculos como uma íris, o de dentro levemente fora do centro",
+    palette: { branco: "#f0f0f1", nevoa: "#dde2e6", tinta: "#24201f", iris: "#8e512c", agua: "#108693" },
+    material: "Vidro e lente, com o reflexo circular de luz no lugar de degradê",
+    typography: { display: "Red Hat Display", text: "Red Hat Text" },
+    photo: "Ponto de vista de quem acorda, em luz branca muito clara; macro da íris; mergulho de olhos abertos; óculos na gaveta",
+    signatureGraphic: "A tabela de leitura: títulos em maiúsculas cujas linhas diminuem como as de um exame de vista",
+    signatureMotion: "Estático: o foco ao toque, fotos que saem do desfoque ao tocar ou passar o mouse",
+    hero: "O quarto ao amanhecer visto da cama, com o despertador e o óculos, e o título na parede branca", status: "em construção",
+  },
+  {
     // First static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): the signature is a composition, not a scroll scene.
     id: "cerne", route: "/modelos/implantes", niche: "Implantes e reabilitação oral",
     concept: "Voltar à mesa.", mark: "Círculo cheio com uma mordida que o transforma num C",
