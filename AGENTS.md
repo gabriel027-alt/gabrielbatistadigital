@@ -627,6 +627,14 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Topo no celular, texto sobre o rosto (22/11/2026, reclamação do usuário): no retrato em tela cheia, o título cobria o queixo nos Samsung (360×780, 384×832, 412×915). A medida do "pescoço" pela silhueta errava o ponto. Agora o retrato se ajusta à largura da tela (`height:min(100%,161.3vw)`, proporção 1650×2662), o que sobe o queixo para cerca de 43% da altura, e o texto fica sobre a camiseta. Conferir pelo queixo (cerca de 57,5% da altura da foto), não pela silhueta.
 - Aura, Orla e Vanguard (propostas) não foram mexidas.
 
+## Projetos estáticos de alto ticket (23/11/2026)
+
+- Decisão do usuário: os próximos projetos de alto ticket são estáticos, sem cena ligada à rolagem. Cada um tem marca e estrutura próprias, no mesmo padrão de qualidade e conversão. Proposta, referências e registro em `docs/PROJETOS-ESTATICOS.md`.
+- **Referências do usuário:** dentistapalamos.com, faynestudio.com.br/novaodonto e rideradian.com. Valem também as galerias (Pinterest, godly, Awwwards, Land-book, Dribbble) e a evopixel como esqueleto de conversão. Aproveitar ideias, nunca copiar texto, layout ou imagem.
+- **Primeiro: Cerne Implantes** (`/modelos/implantes`), reabilitação oral para o público de 50 anos ou mais, aprovada pelo usuário como proposta. Conceito "Voltar à mesa", fotos com flash direto geradas por ele, a mordida como recorte e o cardápio de tratamentos. Página montada, aguardando a avaliação visual dele.
+  - Sem nome do dentista, CRO, números, depoimentos, prazos ou preços.
+  - Fora da homepage até a aprovação.
+
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
 
 - Régua do usuário: animação só fica se ajudar a converter. Medido antes e depois (PC 1536×696 a 125% / celular 390×844):

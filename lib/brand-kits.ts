@@ -48,6 +48,18 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // First static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): the signature is a composition, not a scroll scene.
+    id: "cerne", route: "/modelos/implantes", niche: "Implantes e reabilitação oral",
+    concept: "Voltar à mesa.", mark: "Círculo cheio com uma mordida que o transforma num C",
+    palette: { tinta: "#452a1b", maca: "#b53621", folha: "#778615", linho: "#c8b39f", farinha: "#e3c8af" },
+    material: "Linho de mesa, miolo de pão e a casca vermelha da maçã, sob flash direto",
+    typography: { display: "Schibsted Grotesk", text: "Literata" },
+    photo: "Almoço de família com flash direto, como editorial de gastronomia: mesa vista de cima, mordida na maçã, risada à mesa",
+    signatureGraphic: "A mordida: três marcas de dente em arco recortadas do canto das fotos e dos cartões",
+    signatureMotion: "Estático: o cardápio de tratamentos com o que cada um devolve, e sinais que se acendem ao toque",
+    hero: "Cartão arredondado com a mesa vista de cima, título sobre o linho e a mordida no canto", status: "em construção",
+  },
+  {
     id: "forma", route: "/modelos/odontologia", niche: "Odontologia estética e implantes",
     concept: "O sorriso é uma proporção.", mark: "Incisivo em linha única que forma um F",
     // Harmonised on 2026-11-11: palette and material come from the clinic photos (the user found ice blue clashed with them).

@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -147,6 +147,21 @@ const content: Record<Brand, Content> = {
     next: "Na primeira conversa, a Marina entende a situação, lê os contratos e explica quais caminhos a lei prevê para o seu caso, com os limites de cada um. Nenhuma decisão é tomada antes disso.",
     invitation: "A primeira conversa", stepNames: ["A situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como e quando?"],
     summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense no que mais pesa hoje na fazenda e em como prefere a primeira conversa.",
+  },
+  // Cerne (implants): the situation, what bothers most and when; no health data, no exam, no appointment made.
+  cerne: {
+    name: "Cerne Implantes", title: "Vamos preparar a sua avaliação.",
+    intro: "Três escolhas rápidas sobre o seu caso. Na avaliação, o dentista examina e explica o resto com calma.", action: "Agendar uma avaliação",
+    steps: [
+      [{ key: "situacao", label: "Qual é a sua situação hoje?", options: ["Falta um dente", "Faltam vários dentes", "Uso prótese removível (dentadura ou ponte móvel)", "Ainda não sei dizer"] }],
+      [
+        { key: "incomodo", label: "O que mais incomoda?", options: ["Mastigar", "Sorrir e conversar", "A prótese solta ou machuca", "Quero só me informar"] },
+        { key: "quando", label: "Para quando você quer resolver?", options: ["O quanto antes", "Nos próximos meses", "Ainda estou pesquisando"] },
+      ],
+    ],
+    next: "Na avaliação, o dentista examina, pede a tomografia quando ela é necessária e entrega o plano e o orçamento por escrito. Você decide depois, no seu tempo.",
+    invitation: "Voltar à mesa começa aqui.", stepNames: ["A situação", "O que incomoda"], stepTitles: ["Por onde começamos?", "O que você quer resolver?"],
+    summaryTitle: "Sua avaliação, preparada.", noscript: "Para a avaliação, pense em quantos dentes faltam ou se usa prótese, no que mais incomoda e em quando quer resolver.",
   },
   // No clinical questions: only how and when she prefers to start.
   lume: {

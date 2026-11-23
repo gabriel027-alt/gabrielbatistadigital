@@ -32,3 +32,10 @@
    the hero's call, with the dark ink readable on it. */
 .aura{--q-accent:#d9a28e}
 .aura .dialog{--q-accent:#d9a28e}
+/* Cerne (implantes): miolo de pão, linho e a maçã, medidos nas fotos de 23/11/2026. */
+.cerne{--q-bg:#efe7dd;--q-ink:#452a1b;--q-accent:#b53621;--q-border:#452a1b40;font-family:var(--cerne-text),Georgia,serif}
+.cerne :is(.launch,.primary){color:#fff;border-radius:999px;font-family:var(--cerne-display),system-ui,sans-serif;font-weight:700}
+.cerne .back{border-radius:999px}
+.cerne .dialog{--q-bg:#efe7dd;--q-ink:#452a1b;--q-accent:#b53621;--q-border:#452a1b40;font-family:var(--cerne-text),Georgia,serif}
+.cerne .invitation h2,.cerne .body h3{font-family:var(--cerne-display),system-ui,sans-serif;font-weight:800;letter-spacing:-.035em}
+.cerne .steps li{opacity:1;color:#7d5f4c}.cerne .steps li[aria-current=step]{color:#452a1b}

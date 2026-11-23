@@ -146,6 +146,38 @@ Regras: fotografia realista, sem texto, logotipo ou marca d'água, maior lado co
 
 Observação: imagens geradas tendem a mostrar dentes brancos demais e sorrisos de propaganda. Se acontecer, gerar de novo pedindo dentes naturais e boca relaxada.
 
+## Cerne montada (23/11/2026, aguarda a avaliação do usuário)
+
+- **Fotos:** as cinco foram recebidas e seguiram o pedido (flash direto, mesa, sem consultório).
+  - Os originais estão em `public/images/cerne/original/`.
+  - As versões do site foram ampliadas com Real-ESRGAN (80% IA e 20% original), com o lado maior limitado a 4800 px.
+- **Paleta medida:**
+  - tinta #452a1b (o escuro do almoço);
+  - maçã #b53621;
+  - folha #778615 (a salada);
+  - linho #c8b39f (a toalha);
+  - farinha #e3c8af (o fundo dos retratos).
+  - O papel da página é o miolo do pão (#decfbf) clareado, e #8f2a19 escurece a maçã nos textos pequenos, por contraste.
+- **Página:** `/modelos/implantes`. Conteúdo em `lib/cerne.ts` e kit em `lib/brand-kits.ts` (status: em construção).
+- **Topo:** o texto fica num painel de linho e a mesa ocupa o resto do cartão. Por cima da foto, o título disputava com o pão e o prato.
+- **A mordida:** é um arco limpo tirado do canto, a mesma curva do C do símbolo. A versão com as marcas dos dentes parecia uma nuvem fora do contexto da comida.
+- **Sinais:** uma linha acesa por vez, ao toque ou com o mouse.
+  - No PC, a resposta aparece num cartão sobre a foto da mordida. No celular, aparece embaixo da linha.
+  - Sem JS, todas as respostas ficam abertas.
+- **Barra fixa no celular:** "Agendar avaliação" aparece só depois que os botões do topo saem da tela, e some quando o roteiro entra.
+- **Roteiro local:** `BrandInquiry` com a marca `cerne`, em três escolhas: a situação, o que incomoda e para quando. Sem dado de saúde nem agendamento.
+- **Testes** (`tests/e2e/cerne-model.spec.ts`):
+  - promessa;
+  - sinais;
+  - cardápio;
+  - axe AA na página e no roteiro;
+  - página sem JS;
+  - celular de 360 px sem rolagem lateral;
+  - barra fixa;
+  - roteiro até o resumo.
+- Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript.
+- **Fora da homepage** até o usuário aprovar. Depois disso: capa, filmes e entrada na seleção.
+
 ## Próximos passos
 
 1. O usuário aprova ou ajusta a proposta (nome, conceito, recorte de público).
