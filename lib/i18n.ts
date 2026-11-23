@@ -28,6 +28,8 @@ export type HomeCopy = {
   scrollHint: { desktop: string; phone: string };
   /** Guide that comes back whenever the visitor stops (22/11/2026): down the page, or sideways over the phone project row. */
   scrollGuide: { desktop: string; phone: string; side: string };
+  /** The call right after "Como funciona" (22/11/2026): step 01 is the conversation, so the button starts it. */
+  stepsCta: { label: string; note: string };
   /** Direction A (21/11/2026): the promise is the hero's title, with who it is for and two calls; the name is the signature. */
   hero: { title: string; sub: string; projects: string; talk: string; talkShort: string };
   hook: { label: string; first: [string, string]; lead: string; click: [string, string]; clickLabel: string; tail: string; cursor: string };
@@ -59,6 +61,7 @@ const pt: HomeCopy = {
   tagline: "Sites com a identidade da sua marca, para negócios escolhidos pela confiança.",
   scrollHint: { desktop: "Role para ver como eu crio", phone: "Deslize para ver como eu crio" },
   scrollGuide: { desktop: "Role para continuar", phone: "Deslize para continuar", side: "Deslize para o lado" },
+  stepsCta: { label: "Começar pela conversa", note: "Abre uma conversa no WhatsApp" },
   hero: { title: "Sites com a identidade da sua marca.", sub: "Para clínicas, escritórios e negócios escolhidos pela confiança.", projects: "Ver projetos", talk: "Conversar no WhatsApp", talkShort: "Conversar" },
   hook: { label: "Do primeiro olhar ao próximo clique, e dele até a sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e dele até a sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.",
@@ -116,6 +119,7 @@ const ptPT: HomeCopy = {
   tagline: "Sites com a identidade da sua marca, para negócios escolhidos pela confiança.",
   scrollHint: { desktop: "Desça para ver como crio", phone: "Deslize para ver como crio" },
   scrollGuide: { desktop: "Desça para continuar", phone: "Deslize para continuar", side: "Deslize para o lado" },
+  stepsCta: { label: "Começar pela conversa", note: "Abre uma conversa no WhatsApp" },
   hero: { title: "Sites com a identidade da sua marca.", sub: "Para clínicas, escritórios e negócios escolhidos pela confiança.", projects: "Ver projetos", talk: "Falar pelo WhatsApp", talkShort: "Falar" },
   hook: { label: "Do primeiro olhar ao próximo clique, e daí até à sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e daí até à sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
@@ -168,6 +172,7 @@ const en: HomeCopy = {
   tagline: "Websites with your brand's identity, for businesses people choose on trust.",
   scrollHint: { desktop: "Scroll to see how I build", phone: "Swipe to see how I build" },
   scrollGuide: { desktop: "Scroll to continue", phone: "Swipe to continue", side: "Swipe sideways" },
+  stepsCta: { label: "Start with a conversation", note: "Opens a WhatsApp chat, answered in writing" },
   hero: { title: "Websites with your brand's identity.", sub: "For clinics, law firms and businesses people choose on trust.", projects: "See projects", talk: "Talk on WhatsApp", talkShort: "Talk" },
   hook: { label: "From first glance to the next click, and from there to your calendar.", first: ["From f", "rst glance"], lead: "to the next ", click: ["cl", "ck"], clickLabel: "click", tail: "and from there to your calendar.", cursor: "Start a project" },
   palmLabel: "Gabriel's open hand, palm up, holding the brand's red dot.",
@@ -220,6 +225,7 @@ const es: HomeCopy = {
   tagline: "Páginas web con la identidad de tu marca, para negocios que se eligen por confianza.",
   scrollHint: { desktop: "Desplázate para ver cómo creo", phone: "Desliza para ver cómo creo" },
   scrollGuide: { desktop: "Desplázate para continuar", phone: "Desliza para continuar", side: "Desliza hacia el lado" },
+  stepsCta: { label: "Empezar por la conversación", note: "Abre una conversación en WhatsApp, respondida por escrito" },
   hero: { title: "Páginas web con la identidad de tu marca.", sub: "Para clínicas, despachos y negocios que se eligen por confianza.", projects: "Ver proyectos", talk: "Hablar por WhatsApp", talkShort: "Hablar" },
   hook: { label: "De la primera mirada al próximo clic, y de ahí a tu agenda.", first: ["De la pr", "mera mirada"], lead: "al próximo ", click: ["cl", "c"], clickLabel: "clic", tail: "y de ahí a tu agenda.", cursor: "Empezar un proyecto" },
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",

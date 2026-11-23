@@ -165,6 +165,8 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {/* How it works, read by the dot like the lists above. Process only: no deadlines or prices until Gabriel sets them. */}
         <h3 className={styles.stepsTitle} id="editorial-steps">{t.stepsTitle}</h3>
         <div className={`${styles.serviceList} ${styles.stepsList}`} data-read-list>{t.steps.map((item, i) => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
+        {/* Right where the process is understood, the first step is one tap away (22/11/2026). */}
+        <div className={styles.stepsCta}><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="como-funciona">{t.stepsCta.label} <Arrow size={16}/></a><span>{t.stepsCta.note}</span></div>
       </section>
       <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
         <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt={t.aboutAlt} desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>

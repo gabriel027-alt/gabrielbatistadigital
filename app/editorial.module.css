@@ -529,3 +529,10 @@
 .stripCaption .spec{justify-items:start;margin-top:2px}
 .benefit{margin:0;max-width:36ch;font-size:13.5px;line-height:1.45;letter-spacing:-.005em;color:var(--ink)}
 @media(max-width:700px){.benefit{font-size:14px}}
+
+/* The call after "Como funciona" (22/11/2026): the hero's peach button, with where it leads underneath. */
+.stepsCta{display:flex;align-items:center;gap:18px;flex-wrap:wrap;margin:8px 4vw 100px}
+.stepsCta a{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--peach);color:#201714!important;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .2s,transform .2s}
+.stepsCta a:hover{background:#ffd3b8;transform:translateY(-1px)}
+.stepsCta span{font-size:13px;color:var(--soft)}
+@media(max-width:560px){.stepsCta{margin:4px 6vw 70px;gap:10px}.stepsCta a{min-height:46px;padding:0 20px;font-size:14px}.stepsCta span{flex-basis:100%;font-size:12.5px}}
