@@ -66,6 +66,35 @@ Aprendido com os sites de cliente da evopixel e com o vídeo da skill. Toda marc
 - dúvidas de quem está decidindo;
 - chamadas repetidas com textos diferentes e um roteiro local.
 
+### Clareza: com quem se fala e o que se resolve (regra de 23/11/2026, pedido do usuário)
+
+Até aqui cada marca resolvia isso por pedido avulso. Agora é obrigatório, e entra na régua de qualidade.
+
+1. **Com quem a pessoa vai falar.**
+   - Toda marca de atendimento pessoal (saúde, advocacia, estética) mostra o nome e o papel de quem atende, como persona da marca. O nome só entra com a autorização do usuário.
+   - Esse nome aparece em três pontos:
+     - no topo, logo abaixo da chamada, com a miniatura do mesmo retrato ("Avaliação com Rafael Monteiro, dentista");
+     - em primeira pessoa na seção de quem atende ("Sou o Rafael…");
+     - no resumo do roteiro local ("Na avaliação, o Rafael…").
+   - Quando o negócio não é uma pessoa (loja, hotel, imobiliária), dizer qual equipe responde e como ("A equipe da loja mostra o laudo do carro escolhido").
+   - Nunca inventar registro (CRM, CRO, OAB, CRP, CRMV), formação, anos de experiência, números ou depoimentos.
+2. **O que cada parte resolve.**
+   - Cada serviço ou tratamento diz, numa linha, o que resolve para a pessoa: "Morder sem medo", "o laudo antes do preço".
+   - Sinais e situações em que a pessoa se reconhece levam ao serviço que costuma responder a cada um.
+   - Sempre como orientação, nunca como resultado garantido.
+3. **O que acontece depois do contato.**
+   - O resumo do roteiro e o "Como funciona" dizem o próximo passo concreto: o que é examinado, o que a pessoa recebe (plano, orçamento por escrito) e o que fica para ela decidir.
+   - Nada é confirmado (horário, agendamento, visita) sem atendimento real.
+
+**Estado em 23/11/2026:**
+
+| Situação | Marcas |
+| --- | --- |
+| Com nome | Lume (Helena Prado), Arrimo (Ricardo Teles), Talhão (Marina Couto), Aura (Isadora Lins), Cerne (Rafael Monteiro) |
+| Nome aprovado, página ainda por montar | Nítida (Beatriz Sallum) |
+| Sem nome, pendentes da decisão do usuário | Forma, Sutil, Toca e Almeida |
+| Sem persona: dizem qual equipe responde | Paddock, Casa Brisa e Orla |
+
 ## Direção de fotografia (regra de 19/11/2026)
 
 **Pedido do usuário:** a fotografia não pode seguir sempre a mesma direção. Cada marca precisa de enredo, roteiro e cinematografia próprios.
@@ -90,7 +119,9 @@ Uma marca só é apresentada ao usuário quando:
 - o hero tem uma composição que não existe em outra marca do portfólio;
 - o movimento-assinatura funciona em vídeo de ida e volta, inclusive no celular;
 - nenhuma seção pode ser trocada para outra marca apenas mudando cor e texto (teste da troca);
-- os itens da Camada 1 passam nos testes.
+- os itens da Camada 1 passam nos testes;
+- a pessoa sabe, desde o topo, com quem vai falar, o que cada serviço resolve e o que acontece depois do contato (Camada 3, "Clareza");
+- nas marcas estáticas, a composição-assinatura substitui o movimento-assinatura (`docs/PROJETOS-ESTATICOS.md`).
 
 **Proibições** (traços que denunciavam template nas duas marcas):
 - rótulo com traço acima de todos os títulos;

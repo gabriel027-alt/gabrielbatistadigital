@@ -651,6 +651,8 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Resultado: nenhuma violação, e nenhuma rolagem lateral a 320 px.
   - O axe não substitui teste com leitor de tela nem a revisão humana.
 
+- **Regra do design system** (23/11/2026, pedido do usuário): toda marca deixa claro com quem se fala, o que cada parte resolve e o que acontece depois do contato. Ver a Camada 3, "Clareza", em `docs/DESIGN-SYSTEM.md`. Forma, Sutil, Toca e Almeida ainda estão sem nome e dependem da autorização dele.
+
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
 
 - Régua do usuário: animação só fica se ajudar a converter. Medido antes e depois (PC 1536×696 a 125% / celular 390×844):
