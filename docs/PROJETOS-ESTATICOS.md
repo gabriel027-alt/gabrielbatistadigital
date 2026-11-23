@@ -62,6 +62,42 @@ Valem as mesmas regras das outras marcas:
   - E se eu tiver pouco osso?
 - **Roteiro local:** a situação (falta um dente / vários / uso prótese), o que mais incomoda e para quando a pessoa quer resolver.
 
+### Referências do usuário (23/11/2026) e o que se aproveita
+
+O usuário indicou duas referências, além da evopixel. Elas foram abertas no navegador (texto e capturas da página inicial). Nada é copiado: aproveita-se a ideia, com outra forma, outro texto e outra imagem.
+
+**dentistapalamos.com (Clínica Dr. M. Esteve, Espanha):**
+- **Uma filosofia contada por metáfora.** Lá é o kintsugi, a cerâmica consertada com ouro: "salvar o dente antes de trocá-lo". Na Cerne, a metáfora é "voltar à mesa", numa seção curta de manifesto.
+- **"Sem pressa e sem surpresas".** Diagnóstico explicado, opções e orçamento por escrito antes de começar. Isso descreve o processo, sem número nem resultado, e entra na Cerne como "Antes de vir".
+- **Tratamentos com um objeto em destaque** (lá, renderizações 3D de implante em dourado). Na Cerne, a foto de detalhe do implante sobre o linho.
+- **Não se aproveita:**
+  - a linha de ouro que se desenha pela rolagem (o projeto é estático);
+  - horários, registro profissional, notas do Google, depoimentos e anos de clínica, porque seriam fatos inventados.
+
+**faynestudio.com.br/novaodonto (Nova Odontologia):**
+- **Topo em cartão arredondado,** com a foto recuada das bordas da tela.
+- **Cada tratamento com uma etiqueta do que ele resolve** ("Função e estabilidade", "Harmonia e naturalidade"). Na Cerne, cada item do cardápio diz o que devolve: "Morder sem medo", "Sorrir sem cobrir a boca".
+- **Equipe por papel** (dentista, auxiliar, recepção): mostra que há pessoas cuidando de cada etapa.
+- **Botão fixo de contato.** Na Cerne, uma barra fixa "Agendar avaliação" no celular, que abre o roteiro local da marca (nunca o WhatsApp de Gabriel).
+- **Não se aproveita:**
+  - a foto de banco de imagem da paciente na cadeira com instrumentos;
+  - depoimentos;
+  - o endereço.
+
+**Evopixel:** continua como esqueleto de conversão (promessa e chamada no topo, quem atende, tratamentos, etapas, dúvidas, chamadas repetidas).
+
+**Gramática revista da Cerne:**
+1. **Topo:** cartão arredondado com a foto da mesa e a mordida recortada no canto, onde fica a chamada.
+2. **"Antes de vir":** três pontos sobre a primeira consulta: avaliação com exame de imagem quando necessário, plano e orçamento por escrito, e decisão sem pressa.
+3. **"Isso acontece com você?":** os sinais.
+4. **Manifesto "Voltar à mesa",** com a foto da risada.
+5. **Cardápio de tratamentos,** cada um com o que devolve e a foto de detalhe.
+6. **Como funciona,** em quatro etapas.
+7. **Quem recebe você:** dentista e equipe por papel, sem nome até o usuário decidir.
+8. **Dúvidas.**
+9. **Roteiro local.**
+10. **Barra fixa "Agendar avaliação"** no celular.
+
 ### Parâmetros de fotografia
 
 | Parâmetro | Cerne |
