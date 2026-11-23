@@ -651,7 +651,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Resultado: nenhuma violação, e nenhuma rolagem lateral a 320 px.
   - O axe não substitui teste com leitor de tela nem a revisão humana.
 
-- **Regra do design system** (23/11/2026, pedido do usuário): toda marca deixa claro com quem se fala, o que cada parte resolve e o que acontece depois do contato. Ver a Camada 3, "Clareza", em `docs/DESIGN-SYSTEM.md`. Forma, Sutil, Toca e Almeida ainda estão sem nome e dependem da autorização dele.
+- **Regra do design system** (23/11/2026, pedido do usuário): toda marca deixa claro com quem se fala, o que cada parte resolve e o que acontece depois do contato. Ver a Camada 3, "Clareza", em `docs/DESIGN-SYSTEM.md`. O nome não é obrigatório: quem responde pode ser o profissional com nome (só com a autorização dele) ou o canal de atendimento pelo papel (secretária, recepção, atendente, equipe).
 
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
 

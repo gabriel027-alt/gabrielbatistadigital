@@ -70,14 +70,16 @@ Aprendido com os sites de cliente da evopixel e com o vídeo da skill. Toda marc
 
 Até aqui cada marca resolvia isso por pedido avulso. Agora é obrigatório, e entra na régua de qualidade.
 
-1. **Com quem a pessoa vai falar.**
-   - Toda marca de atendimento pessoal (saúde, advocacia, estética) mostra o nome e o papel de quem atende, como persona da marca. O nome só entra com a autorização do usuário.
-   - Esse nome aparece em três pontos:
-     - no topo, logo abaixo da chamada, com a miniatura do mesmo retrato ("Avaliação com Rafael Monteiro, dentista");
+1. **Com quem a pessoa vai falar.** A pessoa sempre sabe quem responde, mas o nome não é obrigatório (ajuste do usuário em 23/11/2026). Há dois caminhos, escolhidos por marca:
+   - **Com nome:** o profissional, como persona da marca, só com a autorização do usuário. Ele aparece em três pontos:
+     - no topo, abaixo da chamada, com a miniatura do retrato ("Avaliação com Rafael Monteiro, dentista");
      - em primeira pessoa na seção de quem atende ("Sou o Rafael…");
-     - no resumo do roteiro local ("Na avaliação, o Rafael…").
-   - Quando o negócio não é uma pessoa (loja, hotel, imobiliária), dizer qual equipe responde e como ("A equipe da loja mostra o laudo do carro escolhido").
-   - Nunca inventar registro (CRM, CRO, OAB, CRP, CRMV), formação, anos de experiência, números ou depoimentos.
+     - no resumo do roteiro ("Na avaliação, o Rafael…").
+   - **Pelo canal de atendimento:** a secretária, a recepção, a atendente ou a equipe, pelo papel e sem nome. A pessoa precisa saber quem responde ao primeiro contato e quem conduz o atendimento depois ("A recepção responde e marca a avaliação com a cirurgiã", "A equipe da loja mostra o laudo do carro escolhido").
+   - **Nos dois caminhos:**
+     - o topo ou a chamada dizem quem responde;
+     - o resumo do roteiro repete quem responde.
+     - Nunca inventar registro (CRM, CRO, OAB, CRP, CRMV), formação, anos de experiência, números ou depoimentos.
 2. **O que cada parte resolve.**
    - Cada serviço ou tratamento diz, numa linha, o que resolve para a pessoa: "Morder sem medo", "o laudo antes do preço".
    - Sinais e situações em que a pessoa se reconhece levam ao serviço que costuma responder a cada um.
@@ -92,8 +94,7 @@ Até aqui cada marca resolvia isso por pedido avulso. Agora é obrigatório, e e
 | --- | --- |
 | Com nome | Lume (Helena Prado), Arrimo (Ricardo Teles), Talhão (Marina Couto), Aura (Isadora Lins), Cerne (Rafael Monteiro) |
 | Nome aprovado, página ainda por montar | Nítida (Beatriz Sallum) |
-| Sem nome, pendentes da decisão do usuário | Forma, Sutil, Toca e Almeida |
-| Sem persona: dizem qual equipe responde | Paddock, Casa Brisa e Orla |
+| Pelo canal de atendimento (a conferir se o topo e o roteiro já dizem quem responde) | Forma, Sutil, Toca, Almeida, Paddock, Casa Brisa e Orla |
 
 ## Direção de fotografia (regra de 19/11/2026)
 
