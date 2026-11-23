@@ -84,6 +84,16 @@ O usuário indicou duas referências, além da evopixel. Elas foram abertas no n
   - depoimentos;
   - o endereço.
 
+**rideradian.com (Radian, moto elétrica), indicado pelo usuário em 23/11/2026:**
+- O topo nasce no escuro e revela o produto em silhueta. Isso é movimento de rolagem e fica fora dos estáticos.
+- Lista tipográfica de benefícios em letras grandes ("Swap in 30 seconds", "Power, instantly"…): o item ativo fica escuro, os outros em cinza, e a foto ao lado troca.
+- **Na Cerne,** o mesmo princípio vira escolha, sem rolagem. Em "Isso acontece com você?", cada sinal é uma linha grande. Ao tocar ou passar o mouse, a linha acende e mostra ao lado o tratamento que costuma responder a esse sinal. Sem JS, todas aparecem abertas.
+
+**Galerias de referência** (Pinterest, godly.website, Awwwards, Land-book, Dribbble):
+- São a fonte permanente do design system.
+- Para cada marca, escolher exemplos concretos e registrar aqui o que se aproveita, como foi feito acima.
+- O Pinterest pede login. Os outros abrem sem conta.
+
 **Evopixel:** continua como esqueleto de conversão (promessa e chamada no topo, quem atende, tratamentos, etapas, dúvidas, chamadas repetidas).
 
 **Gramática revista da Cerne:**
