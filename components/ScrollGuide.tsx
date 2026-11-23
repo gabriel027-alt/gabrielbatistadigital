@@ -30,11 +30,11 @@ export function ScrollGuide({ labels }: { labels: { desktop: string; phone: stri
     const decide = (): Mode => {
       const h = innerHeight;
       if (document.querySelector("dialog[open]")) return null;
-      // Over the top too (22/11/2026, the user's request). On phones its buttons sit just above the menu, so there the
-      // guide rests right above the copy, on the shirt, below the chin.
+      // Not over the top (23/11/2026, the user's decision, replacing the 22/11 request to show it from the top on): the
+      // guide starts only once the top has mostly left the screen.
       const top = document.getElementById("editorial-start")?.getBoundingClientRect();
-      const pitch = document.querySelector("[data-hero-pitch]")?.getBoundingClientRect();
-      setLift(narrow.matches && top && pitch && top.bottom > h * .5 ? Math.round(h - pitch.top + 14) : null);
+      if (top && top.bottom > h * .35) return null;
+      setLift(null);
       const talk = document.getElementById("editorial-contact")?.getBoundingClientRect();
       if (talk && talk.top < h * .9) return null;
       if (narrow.matches && row && !swipedSideways) {

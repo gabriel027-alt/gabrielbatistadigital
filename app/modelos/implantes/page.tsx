@@ -33,7 +33,7 @@ export default function CernePage() {
   return <div className={`${styles.page} ${display.variable} ${text.variable}`} data-model="cerne" id="cerne-inicio">
     <a className={styles.skip} href="#cerne-conteudo">Pular para o conteúdo</a>
     <header className={styles.header}>
-      <a className={styles.logo} href="#cerne-inicio" aria-label="Cerne Implantes, início"><CerneMark size={30} /><span>Cerne<small>Implantes e reabilitação oral</small></span></a>
+      <a className={styles.logo} href="#cerne-inicio"><CerneMark size={30} /><span>Cerne<small>Implantes e reabilitação oral</small></span></a>
       <nav aria-label="Navegação principal"><a href="#antes-de-vir">Antes de vir</a><a href="#tratamentos">Tratamentos</a><a href="#como-funciona">Como funciona</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar avaliação</a>
     </header>

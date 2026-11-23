@@ -24,7 +24,7 @@ export default function ArrimoPage() {
     <a className={styles.skip} href="#arrimo-conteudo">Pular para o conteúdo</a>
     <ArrimoMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#arrimo-inicio" aria-label="Arrimo Advocacia Previdenciária, início"><ArrimoMark /><span>Arrimo<small>Advocacia Previdenciária</small></span></a>
+      <a className={styles.logo} href="#arrimo-inicio"><ArrimoMark /><span>Arrimo<small>Advocacia Previdenciária</small></span></a>
       <nav aria-label="Navegação principal"><a href="#arrimo-areas">Atuação</a><a href="#arrimo-escritorio">O escritório</a><a href="#arrimo-interesse">Preparar conversa ↓</a></nav>
     </header>
     <main id="arrimo-conteudo">

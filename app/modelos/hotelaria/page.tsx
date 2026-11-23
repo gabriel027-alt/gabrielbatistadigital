@@ -37,7 +37,7 @@ export default function BrisaPage() {
     <a className={styles.skip} href="#brisa-conteudo">Pular para o conteúdo</a>
     <BrisaTour />
     <header className={styles.header}>
-      <a className={styles.logo} href="#brisa-inicio" aria-label="Casa Brisa, início"><BrisaMark size={26} />Casa Brisa</a>
+      <a className={styles.logo} href="#brisa-inicio"><BrisaMark size={26} />Casa Brisa</a>
       <nav aria-label="Navegação principal"><a href="#a-casa">A casa</a><a href="#estadias">Estadias</a><a href="#reserva">Reserva</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Reservar</a>
     </header>

@@ -34,7 +34,7 @@ export default function LumePage() {
     <a className={styles.skip} href="#lume-conteudo">Pular para o conteúdo</a>
     <LumeMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#lume-inicio" aria-label="Lume Psicologia, início"><LumeMark size={30} /><span>Lume<small>Psicologia</small></span></a>
+      <a className={styles.logo} href="#lume-inicio"><LumeMark size={30} /><span>Lume<small>Psicologia</small></span></a>
       <nav aria-label="Navegação principal"><a href="#lume-sinais">É pra você?</a><a href="#como-funciona">Como funciona</a><a href="#psicologa">Quem atende</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar conversa</a>
     </header>

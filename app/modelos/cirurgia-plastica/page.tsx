@@ -30,7 +30,7 @@ export default function SutilPage() {
     <a className={styles.skip} href="#sutil-conteudo">Pular para o conteúdo</a>
     <SutilMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#sutil-inicio" aria-label="Sutil Cirurgia Plástica, início"><SutilMark size={30} /><span>Sutil<small>Cirurgia plástica</small></span></a>
+      <a className={styles.logo} href="#sutil-inicio"><SutilMark size={30} /><span>Sutil<small>Cirurgia plástica</small></span></a>
       <nav aria-label="Navegação principal"><a href="#cirurgia">A cirurgiã</a><a href="#cirurgias">Cirurgias</a><a href="#recuperacao">Recuperação</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar consulta</a>
     </header>

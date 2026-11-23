@@ -31,7 +31,7 @@ export default function AlmeidaPage() {
     <a className={styles.skip} href="#almeida-conteudo">Pular para o conteúdo</a>
     <AlmeidaMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#almeida-inicio" aria-label="Almeida & Valença Advocacia, início"><AlmeidaSeal size={40} className={styles.logoSeal} /><span>Almeida &amp; Valença<small>Advocacia de família e sucessões</small></span></a>
+      <a className={styles.logo} href="#almeida-inicio"><AlmeidaSeal size={40} className={styles.logoSeal} /><span>Almeida &amp; Valença<small>Advocacia de família e sucessões</small></span></a>
       <nav aria-label="Navegação principal"><a href="#inventario">Inventário</a><a href="#partilha">A partilha</a><a href="#atuacao">Atuação</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={talk}>Falar com a advogada</a>
     </header>

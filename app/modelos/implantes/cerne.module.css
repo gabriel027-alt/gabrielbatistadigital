@@ -127,7 +127,7 @@
 .footer a{color:var(--papel)}
 .credit{margin:0 0 0 auto;opacity:.8}
 
-@media(max-width:1000px){.header nav{display:none}.before{grid-template-columns:1fr}.steps ol{grid-template-columns:1fr 1fr}}
+@media(max-width:1000px){.header nav{display:none}.headerCta{margin-left:auto}.before{grid-template-columns:1fr}.steps ol{grid-template-columns:1fr 1fr}}
 @media(max-width:860px){.signsGrid,.menu,.team,.faq{grid-template-columns:1fr}.signsPhoto{order:-1;aspect-ratio:3/2}.menuPhoto{position:relative;top:0;aspect-ratio:3/2}.manifesto{grid-template-columns:1fr}.manifestoPhoto{aspect-ratio:4/3}}
 @media(max-width:700px){
   .page{font-size:18px;padding-bottom:76px;--bite:40px}

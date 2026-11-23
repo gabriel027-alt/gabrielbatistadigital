@@ -19,7 +19,7 @@ export default function OrlaPage() {
     <a className={styles.skip} href="#orla-conteudo">Pular para o conteúdo</a>
     <OrlaMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#orla-inicio" aria-label="Orla, início">orla<span>residências</span></a>
+      <a className={styles.logo} href="#orla-inicio">orla<span>residências</span></a>
       <nav aria-label="Navegação Orla"><a href="#orla-percurso">Os espaços</a><a href="#orla-olhar">Nosso olhar</a><a href="#orla-interesse">Encontrar meu imóvel</a></nav>
     </header>
     <main id="orla-conteudo">

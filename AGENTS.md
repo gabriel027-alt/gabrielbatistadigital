@@ -633,7 +633,18 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - **Referências do usuário:** dentistapalamos.com, faynestudio.com.br/novaodonto e rideradian.com. Valem também as galerias (Pinterest, godly, Awwwards, Land-book, Dribbble) e a evopixel como esqueleto de conversão. Aproveitar ideias, nunca copiar texto, layout ou imagem.
 - **Primeiro: Cerne Implantes** (`/modelos/implantes`), reabilitação oral para o público de 50 anos ou mais, aprovada pelo usuário como proposta. Conceito "Voltar à mesa", fotos com flash direto geradas por ele, a mordida como recorte e o cardápio de tratamentos. Página montada, aguardando a avaliação visual dele.
   - Sem nome do dentista, CRO, números, depoimentos, prazos ou preços.
-  - Fora da homepage até a aprovação.
+  - **Aprovada pelo usuário em 23/11/2026.** Entrou em primeiro na seleção: Cerne, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
+  - Filmes por `scripts/capture-brand-films.mjs cerne`:
+    - `cerne-desktop.mp4` e `cerne-mobile.mp4`;
+    - prévia `cerne-loop.mp4`, em que os sinais acendem um a um e voltam ao primeiro;
+    - capa `cerne-hero.webp`.
+  - Setor, benefício e mensagem do WhatsApp nos quatro idiomas. O site da marca continua só em português.
+- **Guia de rolagem da homepage fora do topo** (23/11/2026, decisão do usuário, substitui o pedido de 22/11 de mostrá-lo desde o topo). Ele só começa quando o topo já saiu quase todo da tela.
+- **Varredura de acessibilidade** (23/11/2026): axe com WCAG 2.0, 2.1 e 2.2 nos níveis A e AA, em 18 páginas, no PC e no celular. As páginas são a homepage nos quatro idiomas, `/clinicas`, `/privacidade`, as dez marcas, a Aura e a Orla.
+  - Corrigido o nome dos logos das marcas: o `aria-label` "…, início" não continha o texto visível (2.5.3).
+  - Corrigido o link de privacidade do rodapé no celular: era coberto pelo "Voltar ao início" (2.5.8). Agora os links do rodapé ficam empilhados com 44 px, sem margem negativa.
+  - Resultado: nenhuma violação, e nenhuma rolagem lateral a 320 px.
+  - O axe não substitui teste com leitor de tela nem a revisão humana.
 
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
 

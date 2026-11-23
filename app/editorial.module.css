@@ -556,3 +556,7 @@
 /* Vertical films on phones (23/11/2026): the dialog takes almost the whole screen, so the film is as large as it can be
    while the header and the call still fit under it. */
 @media(max-width:700px){.filmDialog:has(video[data-vertical]){width:calc(100% - 12px);max-width:none;max-height:calc(100svh - 12px);padding:10px 10px 12px}.filmDialog>video[data-vertical]{height:min(74svh,calc((100vw - 32px)*16/9))}}
+/* WCAG 2.5.8 (23/11/2026 sweep): the privacy link in the footer gets a 24 px tall target, like the cookie button. */
+.footerLegal{row-gap:10px}.footerLegal a{display:inline-flex;align-items:center;min-height:28px}
+/* Phones: the footer links are stacked, so their 44 px touch areas no longer overlap through negative margins. */
+@media(max-width:700px){.footerBottom{gap:0}.footerBottom a{display:inline-flex;align-items:center;min-height:44px;margin-block:0;padding-block:0}.footerLegal{row-gap:0}}

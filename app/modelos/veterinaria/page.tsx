@@ -30,7 +30,7 @@ export default function TocaPage() {
     <a className={styles.skip} href="#toca-conteudo">Pular para o conteúdo</a>
     <TocaMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#toca-inicio" aria-label="Toca Hospital Veterinário, início"><TocaMark size={32} /><span>Toca<small>Hospital veterinário</small></span></a>
+      <a className={styles.logo} href="#toca-inicio"><TocaMark size={32} /><span>Toca<small>Hospital veterinário</small></span></a>
       <nav aria-label="Navegação principal"><a href="#percurso">O hospital</a><a href="#especialidades">Especialidades</a><a href="#veterinaria">A veterinária</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar consulta</a>
     </header>

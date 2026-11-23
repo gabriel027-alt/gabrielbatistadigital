@@ -22,7 +22,7 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   // Without motion the folder is open and the projects are one grid (no repeated copy).
-  await expect(page.locator(`${projects} > li`)).toHaveCount(8);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(9);
   await expect(page.locator('#editorial-work ul[aria-hidden]')).toHaveCount(0);
   expect(videos).toEqual([]);
   const audit = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
@@ -70,8 +70,8 @@ test("No JavaScript retains original content, projects and contact without scrip
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const page=await context.newPage();
   await page.goto(route);
-  await expect(page.locator(`${projects} > li`)).toHaveCount(8);
-  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(8);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(9);
+  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(9);
   await expect(page.getByRole('heading',{name:'Uma boa ideia precisa funcionar.'})).toBeVisible();
   await expect(page.locator('a[href*="wa.me"]').first()).toHaveAttribute('href',/5538998267717/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -195,10 +195,10 @@ test('Selection shows the approved brands with the colors measured for each', as
   // A still strip: a moving one never settles for a click.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(route);
-  for (const name of ['Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Aura', 'Orla']) {
+  for (const name of ['Cerne Implantes', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Aura', 'Orla']) {
     await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
-  await expect(page.locator(`${projects} dl`)).toHaveCount(6);
+  await expect(page.locator(`${projects} dl`)).toHaveCount(7);
   // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
   await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
   const sutil = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Sutil Cirurgia Plástica' });
@@ -350,11 +350,9 @@ test('A scroll guide comes back whenever the visitor stops: down the page, sidew
     await page.locator(selector).first().evaluate(el => { const r = el.getBoundingClientRect(); scrollTo({ top: r.top + scrollY - Math.max(80, (innerHeight - r.height) / 2), behavior: 'instant' }); });
     await page.waitForTimeout(3000);
   };
-  // From the top on, right above the top's copy, so it covers neither the buttons nor the menu.
+  // Never over the top (23/11/2026, the user's decision).
   await page.waitForTimeout(6000);
-  await expect(guide).toHaveAttribute('data-scroll-guide', 'down');
-  const pill = await guide.boundingBox(), copy = await page.locator('[data-hero-pitch]').boundingBox();
-  expect(pill!.y + pill!.height).toBeLessThanOrEqual(copy!.y);
+  await expect(guide).toHaveAttribute('data-scroll-guide', 'off');
   await stopAt('[data-strip] ul');
   await expect(guide).toHaveAttribute('data-scroll-guide', 'side');
   await expect(guide).toHaveText('Deslize para o lado');

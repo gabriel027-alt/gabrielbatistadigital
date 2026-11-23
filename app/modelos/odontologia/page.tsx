@@ -30,7 +30,7 @@ export default function FormaPage() {
     <a className={styles.skip} href="#forma-conteudo">Pular para o conteúdo</a>
     <FormaMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#forma-inicio" aria-label="Forma Odontologia, início"><FormaMark size={28} />Forma<small>Odontologia</small></a>
+      <a className={styles.logo} href="#forma-inicio"><FormaMark size={28} />Forma<small>Odontologia</small></a>
       <nav aria-label="Navegação principal"><a href="#planejamento">Planejamento</a><a href="#sobre">A clínica</a><a href="#tratamentos">Tratamentos</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}>Agendar avaliação</a>
     </header>

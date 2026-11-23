@@ -32,7 +32,7 @@ export default function TalhaoPage() {
     <a className={styles.skip} href="#talhao-conteudo">Pular para o conteúdo</a>
     <TalhaoMotion />
     <header className={styles.header}>
-      <a className={styles.logo} href="#talhao-inicio" aria-label="Talhão Advocacia do Agro, início"><TalhaoMark size={30} /><span>Talhão<small>Advocacia do agro</small></span></a>
+      <a className={styles.logo} href="#talhao-inicio"><TalhaoMark size={30} /><span>Talhão<small>Advocacia do agro</small></span></a>
       <nav aria-label="Navegação principal"><a href="#sinais">É pra você?</a><a href="#como-analisa">Como analisa</a><a href="#marina">A {lawyer.first}</a><a href="#duvidas">Dúvidas</a></nav>
       <a className={styles.headerCta} href={book}><span className={styles.ctaLong}>Conversar com a {lawyer.first}</span><span className={styles.ctaShort}>Conversar</span></a>
     </header>
