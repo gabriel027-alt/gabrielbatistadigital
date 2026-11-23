@@ -6,7 +6,8 @@ import { ContactTracking } from "@/components/ContactTracking";
 import { ConsentBanner, ConsentPreferences } from "@/components/ConsentBanner";
 import { Arrow } from "@/components/ui/icons";
 import { privacyCopy } from "@/lib/privacy-copy";
-import { clinicProjects, clinicsContact, clinicsCopy as t } from "@/lib/clinics";
+import { DiagnosisQuiz } from "@/components/DiagnosisQuiz";
+import { clinicProjects, clinicsContact, clinicsCopy as t, clinicsDiagnosis } from "@/lib/clinics";
 import editorial from "@/app/editorial.module.css";
 import styles from "./clinicas.module.css";
 
@@ -67,6 +68,11 @@ export default function ClinicsPage() {
         <ul className={styles.cards}>{t.included.map(item => <li key={item.title}><h3>{item.title}</h3><p>{item.text}</p></li>)}</ul>
         <h3 className={styles.afterTitle}>{t.afterTitle}</h3>
         <ul className={styles.after}>{t.after.map(item => <li key={item.title}><h4>{item.title}</h4><p>{item.text}</p></li>)}</ul>
+      </section>
+
+      {/* For the owner who does not know which of these the clinic needs first (22/11/2026). */}
+      <section className={styles.block} aria-label="Por onde começar">
+        <DiagnosisQuiz copy={clinicsDiagnosis} business="clinica" place="clinicas-diagnostico" callClassName={styles.primary} className={styles.quiz} />
       </section>
 
       <section className={styles.block} aria-labelledby="clinicas-como">

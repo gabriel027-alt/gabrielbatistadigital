@@ -27,3 +27,14 @@ test("The clinics page fits a 360 px phone and opens a film with the call outsid
   await expect(dialog).toBeVisible();
   await expect(dialog.getByRole("link")).toHaveAttribute("href", /wa\.me\/5538998267717/);
 });
+
+test("On the clinics page the diagnosis asks only the situation and speaks of the clinic", async ({ page }) => {
+  await page.goto("/clinicas");
+  const quiz = page.locator("[data-diagnosis]");
+  await expect(quiz).toHaveAttribute("data-diagnosis-step", "2");
+  await quiz.getByRole("button", { name: "Tenho site, mas ele não parece com a minha clínica" }).click();
+  await expect(page.locator(":focus")).toHaveText("Um site novo, a partir das suas fotos e da sua marca");
+  const talk = quiz.getByRole("link", { name: /Conversar sobre isso/ });
+  await expect(talk).toHaveAttribute("data-track-place", "clinicas-diagnostico");
+  expect(decodeURIComponent((await talk.getAttribute("href"))!.split("text=")[1])).toContain("Vi a página para clínicas");
+});

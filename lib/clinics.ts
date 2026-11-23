@@ -1,5 +1,7 @@
 import { buildWhatsAppUrl } from "@/lib/whatsapp";
 import type { FilmId } from "@/lib/project-films";
+import { homeCopy } from "@/lib/i18n";
+import type { DiagnosisCopy } from "@/components/DiagnosisQuiz";
 
 /**
  * The landing page for clinics (/clinicas, 21/11/2026), built for campaigns: the homepage stays general, this page
@@ -17,6 +19,20 @@ export const clinicProjects: { id: FilmId; name: string; sector: string; image: 
   { id: "forma", name: "Forma Odontologia", sector: "Odontologia estética", image: "/images/projects/brands/forma-hero.webp" },
   { id: "aura", name: "Aura", sector: "Harmonização facial", image: "/images/projects/aura-film-poster.webp" },
 ];
+
+/**
+ * The homepage diagnosis, for clinics (22/11/2026): the business is already known, so only the second question stays,
+ * and the words speak of the clinic and the patient.
+ */
+const forClinics = (text: string) => text.replaceAll("o meu negócio", "a minha clínica").replaceAll("do seu negócio", "da sua clínica").replaceAll("o negócio que o cliente", "a clínica que o paciente").replaceAll("o cliente", "o paciente");
+const home = homeCopy.pt.diagnosis;
+export const clinicsDiagnosis: DiagnosisCopy = {
+  ...home,
+  intro: "Uma pergunta, e eu digo por onde eu começaria na sua clínica.",
+  situations: home.situations.map(item => ({ ...item, label: forClinics(item.label), start: forClinics(item.start), why: forClinics(item.why), msg: forClinics(item.msg) })),
+  greeting: "Olá, Gabriel! Vi a página para clínicas e respondi a pergunta do diagnóstico.",
+  fallback: { lead: "Sob medida.", text: "Precisa de algo que não está aqui, como um painel, um CRM ou uma integração entre sistemas? Me conte o problema, e eu digo se e como posso resolver.", href: clinicsContact },
+};
 
 export const clinicsCopy = {
   eyebrow: "Sites para clínicas",

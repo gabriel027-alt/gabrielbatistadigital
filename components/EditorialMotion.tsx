@@ -226,7 +226,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
               // the dot never waits under the navigation; each next rule starts right after a short hop down.
               const readStart: (() => number)[] = [], readEnd: (() => number)[] = [];
               lists.forEach((list, k) => {
-                readStart[k] = k === 0 ? () => top(list) - innerHeight * .85 : () => readEnd[k - 1]() + 90;
+                // A later list starts only once it is near the bottom of the screen (the diagnosis sits between two lists).
+                readStart[k] = k === 0 ? () => top(list) - innerHeight * .85 : () => Math.max(readEnd[k - 1]() + 90, top(list) - innerHeight * .85);
                 readEnd[k] = () => Math.max(readStart[k]() + 150, top(list) + list.offsetHeight - innerHeight * .62);
               });
               const aboutStart = () => top(about) + about.offsetHeight - innerHeight * .8, aboutEnd = () => top(about) + about.offsetHeight - innerHeight * .5;
@@ -234,7 +235,9 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
               const flights: [() => number, () => number][] = [
                 // It leaves the folder only once the project grid has gone by, so it never crosses the cards.
                 [() => { const grid = node.querySelector<HTMLElement>("[data-strip]"); return grid ? Math.min(readStart[0]() - 120, top(grid) + grid.offsetHeight - innerHeight * .9) : top(work); }, readStart[0]],
-                ...lists.slice(1).map((_, k) => [readEnd[k], readStart[k + 1]] as [() => number, () => number]),
+                // Between lists it waits at the end of the rule it read and flies only over the last stretch, so it never
+                // rests on the diagnosis while someone answers it.
+                ...lists.slice(1).map((_, k) => [() => Math.max(readEnd[k](), readStart[k + 1]() - innerHeight * .4), readStart[k + 1]] as [() => number, () => number]),
                 [readEnd[lists.length - 1], aboutStart],
                 // The questions sit between the about and the conversation (22/11/2026): the dot waits out of sight and
                 // flies only over the last part, so it never rests on an answer being read.

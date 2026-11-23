@@ -367,3 +367,30 @@ test('A scroll guide comes back whenever the visitor stops: down the page, sidew
   await stopAt('#editorial-contact');
   await expect(guide).toHaveAttribute('data-scroll-guide', 'off');
 });
+
+test('The diagnosis suggests where to start and opens the conversation with the answers, without moving the page', async ({ page, browser }) => {
+  await page.setViewportSize({ width: 1536, height: 696 });
+  await page.goto(route);
+  const quiz = page.locator('[data-diagnosis]');
+  await quiz.scrollIntoViewIfNeeded();
+  const before = await quiz.evaluate(el => (el as HTMLElement).offsetHeight);
+  await quiz.getByRole('button', { name: 'Escritório de advocacia' }).click();
+  await expect(quiz).toHaveAttribute('data-diagnosis-step', '2');
+  await quiz.getByRole('button', { name: 'Ainda não tenho site' }).click();
+  await expect(quiz).toHaveAttribute('data-diagnosis-step', '3');
+  await expect(page.locator(':focus')).toHaveText('Um site com a identidade do seu negócio');
+  const talk = quiz.getByRole('link', { name: /Conversar sobre isso/ });
+  await expect(talk).toHaveAttribute('data-track-place', 'diagnostico');
+  const message = decodeURIComponent((await talk.getAttribute('href'))!.split('text=')[1]);
+  expect(message).toContain('Tenho um escritório de advocacia. Ainda não tenho site.');
+  expect(await quiz.evaluate(el => (el as HTMLElement).offsetHeight)).toBe(before);
+  await quiz.getByRole('button', { name: 'Refazer' }).click();
+  await expect(quiz).toHaveAttribute('data-diagnosis-step', '1');
+  expect((await new AxeBuilder({ page }).include('[data-diagnosis]').withTags(['wcag2a', 'wcag2aa']).analyze()).violations).toEqual([]);
+  // Without JavaScript the old "Sob medida" invitation is there instead.
+  const context = await browser.newContext({ javaScriptEnabled: false });
+  const still = await context.newPage();
+  await still.goto(route);
+  await expect(still.locator('[data-diagnosis] a[href*="wa.me"]').filter({ hasText: 'Sob medida.' })).toBeVisible();
+  await context.close();
+});

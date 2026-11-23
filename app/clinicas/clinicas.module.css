@@ -119,3 +119,5 @@
 @media(max-width:700px){.long{display:none}.short{display:inline}}
 /* Aura's cover is wider than the card: anchored left, where its headline is (4th card, see lib/clinics.ts order). */
 .grid li:nth-child(4) :global(img){object-position:left top}
+/* The diagnosis (components/DiagnosisQuiz.tsx) sits in its own block here: the block gives the spacing and the rule. */
+.block .quiz{margin:0;padding:0;border-top:0}

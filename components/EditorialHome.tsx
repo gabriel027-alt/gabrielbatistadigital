@@ -14,6 +14,7 @@ import { TalkParticles } from "@/components/TalkParticles";
 import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { ContactTracking } from "@/components/ContactTracking";
 import { ScrollGuide } from "@/components/ScrollGuide";
+import { DiagnosisQuiz } from "@/components/DiagnosisQuiz";
 import { ConsentBanner, ConsentPreferences } from "@/components/ConsentBanner";
 import { privacyCopy } from "@/lib/privacy-copy";
 import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
@@ -160,8 +161,9 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {/* Around the site: how the patient finds the clinic and gets to the calendar. Described as work done, with no
             numbers, results or clients (there are none to show yet). */}
         <div className={`${styles.serviceList} ${styles.serviceMore}`} data-read-list><div className={styles.serviceLabel}><h3>{t.supportTitle}</h3><p>{t.supportText}</p></div>{t.support.map(item => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
-        {/* For what is not on the list: an invitation to talk, not a promise (no CRM or dashboard delivered yet). */}
-        <a className={styles.serviceCustom} href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="sob-medida"><span><strong>{t.customLead}</strong> {t.customText}</span><Arrow size={20}/></a>
+        {/* For whoever does not know which of these they need (22/11/2026): two questions and where Gabriel would start.
+            "Sob medida" is now its last answer, and the old line comes back without JavaScript. */}
+        <DiagnosisQuiz copy={{ ...t.diagnosis, fallback: { lead: t.customLead, text: t.customText, href: contact } }} place="diagnostico" />
         {/* How it works, read by the dot like the lists above. Process only: no deadlines or prices until Gabriel sets them. */}
         <h3 className={styles.stepsTitle} id="editorial-steps">{t.stepsTitle}</h3>
         <div className={`${styles.serviceList} ${styles.stepsList}`} data-read-list>{t.steps.map((item, i) => <article key={item.title} className={styles.serviceItem} data-read-item><h3><span className={styles.stepNum}>{String(i + 1).padStart(2, "0")}</span><span className={styles.readLine}>{item.title}</span></h3><p>{item.text}</p></article>)}{readTrack}</div>
