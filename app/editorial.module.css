@@ -522,3 +522,10 @@
 .page[data-editorial-motion=off] .scrollGuide :is(.guideHand,.guideTouch,.guideWheel){animation:none;opacity:1;transform:none}
 @media(prefers-reduced-motion:reduce){.scrollGuide{transition:none}.scrollGuide :is(.guideHand,.guideTouch,.guideWheel){animation:none!important;opacity:1;transform:none}}
 @media(max-width:700px){.scrollGuide{bottom:92px}}
+
+/* Project cards (22/11/2026): name and sector, then one line on what the site does for the business, in reading size;
+   the font and the measured colors follow, small, as proof of the method. */
+.stripCaption{flex-direction:column;gap:8px}
+.stripCaption .spec{justify-items:start;margin-top:2px}
+.benefit{margin:0;max-width:36ch;font-size:13.5px;line-height:1.45;letter-spacing:-.005em;color:var(--ink)}
+@media(max-width:700px){.benefit{font-size:14px}}

@@ -67,6 +67,8 @@ export function EditorialHome({ locale }: { locale: Locale }) {
     const data = work.kit ? kit(work.kit) : undefined;
     return <li key={work.name} className={styles.stripItem}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
       <div className={styles.stripCaption}><div><h3>{work.name}</h3><span>{t.sectors[work.id]}</span></div>
+        {/* What the site does for the business, before the designer's data (22/11/2026). */}
+        <p className={styles.benefit}>{t.benefits[work.id]}</p>
         {data && <dl className={styles.spec}><div><dt className={styles.sr}>{t.specFont}</dt><dd>{data.typography.display}</dd></div><div><dt className={styles.sr}>{t.specColors}</dt><dd className={styles.swatches}>{Object.values(data.palette).map(hex => <span key={hex} style={{ background: hex }} title={hex}><i>{hex}</i></span>)}</dd></div></dl>}
       </div></li>;
   };
