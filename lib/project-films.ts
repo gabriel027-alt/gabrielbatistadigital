@@ -5,7 +5,7 @@ export const projectFilms = {
   aura: {
     id: "aura", name: "Aura", sector: "HARMONIZAÇÃO FACIAL", slug: "aura-aesthetics",
     description: "Expressão, movimento e um caminho para a avaliação.",
-    source: "/videos/projects/aura-showcase.mp4", captions: "/videos/projects/aura-showcase.pt.vtt",
+    source: "/videos/projects/aura-showcase.mp4", mobileSource: "/videos/projects/aura-showcase-mobile.mp4", captions: "/videos/projects/aura-showcase.pt.vtt",
     poster: "/images/projects/aura-film-poster.webp",
     label: "Aura: vídeo da experiência de harmonização facial",
     action: "Quero um site para minha clínica", contact: auraFilmContact,
@@ -13,7 +13,7 @@ export const projectFilms = {
   orla: {
     id: "orla", name: "Orla", sector: "RESIDÊNCIAS", slug: "imoveis",
     description: "Da paisagem aos critérios de uma nova casa.",
-    source: "/videos/projects/orla-showcase.mp4", captions: "/videos/projects/orla-showcase.pt.vtt",
+    source: "/videos/projects/orla-showcase.mp4", mobileSource: "/videos/projects/orla-showcase-mobile.mp4", captions: "/videos/projects/orla-showcase.pt.vtt",
     poster: "/images/projects/orla-film-poster.jpg",
     label: "Orla: vídeo da experiência de residências",
     action: "Quero um site para minha imobiliária",

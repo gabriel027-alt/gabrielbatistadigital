@@ -75,13 +75,16 @@ try {
       await page.waitForTimeout(2500);
       if (brand === 'paddock' && name === 'loop') {
         await mkdir('public/images/projects/brands',{recursive:true});
-        const poster=spawnSync('ffmpeg',['-v','error','-y','-i','pipe:0','-frames:v','1','-c:v','libwebp','-quality','90','public/images/projects/brands/paddock-hero.webp'],{input:await page.screenshot(),encoding:'utf8'});
-        if(poster.status!==0)throw new Error(poster.stderr);
         // Card-only framing: keep the full-width car at 16:9 inside the 5:4 preview.
         // The approved website tour and its portrait composition stay untouched.
         await page.addStyleTag({content:'[data-tour-canvas]{top:82px!important;height:540px!important;bottom:auto!important}[data-tour-stage]>svg{top:82px!important;height:540px!important}[data-inspection-mark][data-proof-index="2"]{top:52%!important}[data-inspection-mark][data-proof-index="3"]{top:50%!important}'});
         await page.waitForTimeout(200);
         const bounds=await page.locator('[data-paddock-tour]').evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,distance:el.offsetHeight-innerHeight}));
+        // The card's still is the whole car with the report open (23/11/2026). It used to be the top of the page, taken
+        // after the warm pass, when the first frames had already been let go: a black screen with the lines and no car.
+        await page.evaluate(({top,distance})=>scrollTo(0,top+distance),bounds);await page.waitForTimeout(2500);
+        const poster=spawnSync(process.env.FFMPEG_PATH||'ffmpeg',['-v','error','-y','-i','pipe:0','-frames:v','1','-c:v','libwebp','-quality','90','public/images/projects/brands/paddock-hero.webp'],{input:await page.screenshot(),encoding:'utf8'});
+        if(poster.status!==0)throw new Error(poster.stderr);
         await page.evaluate(({top,distance})=>scrollTo(0,top+distance*.5),bounds);await page.waitForTimeout(700);
         const stats=await record(page,'public/videos/projects/brands/paddock-loop.mp4',format.out,async()=>{
           await page.evaluate(async ({top,distance})=>{

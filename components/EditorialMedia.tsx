@@ -29,7 +29,11 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
       const reduced = matchMedia("(prefers-reduced-motion: reduce)");
       const connection = (navigator as Navigator & { connection?: { saveData?: boolean } }).connection;
       el.style.opacity = "0";
-      const on = () => {
+      // Only a mouse or the keyboard: on a phone a tap opens the film, and the preview used to start behind it (and
+      // again when the focus came back on close), so the card showed a cropped scene instead of the top of the site.
+      const on = (event: Event) => {
+        if (event.type === "pointerenter" && (event as PointerEvent).pointerType !== "mouse") return;
+        if (event.type === "focus" && !host.matches(":focus-visible")) return;
         if (root.dataset.editorialMotion === "off" || reduced.matches || connection?.saveData) return;
         if (!el.getAttribute("src")) el.src = films[film].loop || `/videos/projects/${film}-loop.mp4`;
         el.style.opacity = "1"; void el.play().catch(() => {});
@@ -56,7 +60,7 @@ export function EditorialMedia({ name, image, film, href, compact = false, decor
     reduced.addEventListener("change", update); document.addEventListener("visibilitychange", update); document.addEventListener("editorial-modal", update);
     return () => { observer.disconnect(); mutations.disconnect(); reduced.removeEventListener("change", update); document.removeEventListener("visibilitychange", update); document.removeEventListener("editorial-modal", update); el.pause(); };
   }, [film, hydrated, teaser]);
-  const visual = <><Image src={image} alt={`${t.interface} ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 72vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && teaser && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? t.watch : t.explore} <Arrow size={17}/></span></>;
+  const visual = <><Image src={image} alt={`${t.interface} ${name}`} fill quality={90} sizes={compact ? "(max-width:700px) 86vw, 24vw" : "(max-width:700px) 90vw, 45vw"}/>{film && teaser && <video ref={video} className={styles.teaser} data-editorial-loop={film} muted loop playsInline preload="none" aria-hidden="true" tabIndex={-1}/>}<span className={styles.mediaHover}>{film ? t.watch : t.explore} <Arrow size={17}/></span></>;
   const tab = decorative ? -1 : undefined;
   if (!film) return <Link className={styles.media} href={href || "#editorial-work"} tabIndex={tab}>{visual}</Link>;
   const data = { ...films[film], ...filmText(film, locale) };

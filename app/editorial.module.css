@@ -553,3 +553,6 @@
 .faqList p{margin:0;padding:0 0 24px;max-width:62ch;font-size:15px;line-height:1.6;color:var(--ink)}
 @media(max-width:700px){.faq{grid-template-columns:1fr;gap:20px;padding:70px 6vw 24px}.faqList summary{font-size:18px;padding:18px 0}.faqList p{font-size:14.5px}}
 @media(prefers-reduced-motion:reduce){.faqList summary span:before,.faqList summary span:after{transition:none}}
+/* Vertical films on phones (23/11/2026): the dialog takes almost the whole screen, so the film is as large as it can be
+   while the header and the call still fit under it. */
+@media(max-width:700px){.filmDialog:has(video[data-vertical]){width:calc(100% - 12px);max-width:none;max-height:calc(100svh - 12px);padding:10px 10px 12px}.filmDialog>video[data-vertical]{height:min(74svh,calc((100vw - 32px)*16/9))}}

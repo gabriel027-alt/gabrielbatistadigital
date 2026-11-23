@@ -394,3 +394,16 @@ test('The diagnosis suggests where to start and opens the conversation with the 
   await expect(still.locator('[data-diagnosis] a[href*="wa.me"]').filter({ hasText: 'Sob medida.' })).toBeVisible();
   await context.close();
 });
+
+test('On a phone every film opens in its vertical cut, as large as the screen allows', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto(route);
+  for (const name of ['Paddock', 'Aura', 'Orla']) {
+    await page.getByRole('button', { name: new RegExp(`: ${name}$`) }).click();
+    const video = page.locator('dialog[open] video');
+    await video.evaluate(v => { (v as HTMLVideoElement).muted = true; return (v as HTMLVideoElement).play().catch(() => {}); });
+    await expect.poll(() => video.evaluate(v => (v as HTMLVideoElement).videoHeight > (v as HTMLVideoElement).videoWidth)).toBe(true);
+    expect(await video.evaluate(v => v.getBoundingClientRect().width)).toBeGreaterThan(340);
+    await page.keyboard.press('Escape');
+  }
+});
