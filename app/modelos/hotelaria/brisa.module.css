@@ -163,3 +163,5 @@
 
 /* Phones: the motion control becomes a round icon so it never covers the copy (the label stays for screen readers). */
 @media(max-width:700px){.motionToggle{display:grid;place-items:center;width:44px;height:44px;min-height:44px;padding:0;border-radius:50%;font-size:0;line-height:0}.motionToggle:before{content:"";width:4px;height:14px;border-left:4px solid currentColor;border-right:4px solid currentColor;box-sizing:content-box;padding:0 1px}.motionToggle[aria-pressed=true]:before{width:0;height:0;padding:0;border-style:solid;border-width:8px 0 8px 13px;border-color:transparent transparent transparent currentColor;margin-left:3px}}
+/* Who answers (23/11/2026): under the line, on the light sky of the top. */
+.heroWho{display:inline-block;margin:-12px auto 22px;padding:6px 16px;border-radius:18px;background:#f6efe2e6;color:var(--nogueira);font-size:14.5px;font-weight:500;backdrop-filter:blur(6px)}

@@ -94,7 +94,18 @@ Até aqui cada marca resolvia isso por pedido avulso. Agora é obrigatório, e e
 | --- | --- |
 | Com nome | Lume (Helena Prado), Arrimo (Ricardo Teles), Talhão (Marina Couto), Aura (Isadora Lins), Cerne (Rafael Monteiro) |
 | Nome aprovado, página ainda por montar | Nítida (Beatriz Sallum) |
-| Pelo canal de atendimento (a conferir se o topo e o roteiro já dizem quem responde) | Forma, Sutil, Toca, Almeida, Paddock, Casa Brisa e Orla |
+| Pelo canal de atendimento, conferido e completado em 23/11/2026 | Veja a lista abaixo |
+
+**Pelo canal de atendimento** (conferido e completado em 23/11/2026):
+- **Sutil:** "a cirurgiã explica" no topo; roteiro com a equipe e a cirurgiã. Já estava completa.
+- **Almeida:** "Falar com a advogada" no topo e no roteiro. Já estava completa.
+- **Forma:** o botão do topo passou a "Agendar com a dentista"; o roteiro cita a equipe e a dentista.
+- **Toca:** o botão do topo passou a "Agendar com a veterinária". Roteiro: "A recepção confirma o horário… na consulta, a veterinária examina".
+- **Paddock:** no topo, "A equipe da loja responde e mostra o laudo do carro que você escolher". O roteiro começa por "A equipe da loja responde…".
+- **Casa Brisa:** no topo, "A recepção responde e confirma datas e valores", numa faixa clara que fica legível sobre a foto aérea. O roteiro já citava a equipe.
+- **Orla:** no topo, "A equipe da Orla responde e monta a seleção com você". O roteiro começa por "A equipe da Orla responde…".
+
+A linha comum fica em `components/brand/WhoAnswers.tsx`. Na Forma e na Toca ela não entrou porque passava da dobra; ali é o próprio botão que diz com quem é.
 
 ## Direção de fotografia (regra de 19/11/2026)
 

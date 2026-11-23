@@ -7,6 +7,7 @@ import { bookingSteps, chapters, faq, stays } from "@/lib/brisa";
 import { BrisaMark } from "./BrisaMark";
 import { BrisaTour } from "./BrisaTour";
 import styles from "./brisa.module.css";
+import { WhoAnswers } from "@/components/brand/WhoAnswers";
 import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { Gesture, GestureText } from "@/components/brand/Gesture";
 
@@ -52,6 +53,7 @@ export default function BrisaPage() {
             <p className={styles.kicker}>Hotel boutique entre a baía e o campo</p>
             <h1 id="brisa-titulo">Casa Brisa</h1>
             <p className={styles.heroLine}>A chegada já é parte da estadia.</p>
+            <WhoAnswers className={styles.heroWho}>A recepção responde e confirma datas e valores.</WhoAnswers>
             <div className={styles.heroActions}>
               <a className={styles.primary} href={book}>Reservar estadia</a>
               <span className={styles.scrollHint} aria-hidden="true" data-scroll-hint><Gesture /> <GestureText desktop="Role para chegar" phone="Deslize para chegar" /></span>

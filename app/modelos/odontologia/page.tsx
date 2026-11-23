@@ -43,7 +43,7 @@ export default function FormaPage() {
           <h1 id="forma-titulo">Um sorriso planejado <em>com calma e precisão.</em></h1>
           <p>Implantes, lentes de contato dental, alinhadores e clareamento, definidos depois de uma avaliação individual e explicados etapa por etapa.</p>
           <div className={styles.heroActions}>
-            <a className={styles.primary} href={book}>Agendar minha avaliação</a>
+            <a className={styles.primary} href={book}>Agendar com a dentista</a>
             <a className={styles.textLink} href="#planejamento">Ver como planejamos</a>
           </div>
           <ul className={styles.trust} aria-label="Como atendemos">

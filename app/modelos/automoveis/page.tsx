@@ -7,6 +7,7 @@ import { chapters, inspections, reportItems, faq, legalWarranty } from "@/lib/pa
 import { PaddockTour } from "./PaddockTour";
 import { PaddockStock } from "./PaddockStock";
 import styles from "./paddock.module.css";
+import { WhoAnswers } from "@/components/brand/WhoAnswers";
 import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { Gesture, GestureText } from "@/components/brand/Gesture";
 const display = Unbounded({ subsets: ["latin"], weight: ["500", "600"], variable: "--paddock-display", display: "swap" });
@@ -18,7 +19,7 @@ export default function PaddockPage(){return <div className={`${styles.page} ${d
   <header className={styles.header}><a href="#paddock-inicio" className={styles.logo}><Mark/><span>Paddock<small>Automóveis</small></span></a><a href="#paddock-estoque">Estoque com laudo <Arrow size={16}/></a></header>
   <main id="paddock-conteudo"><section id="paddock-inicio" className={styles.tour} data-paddock-tour aria-labelledby="paddock-titulo">
     <div className={styles.stage} data-tour-stage><picture><source media="(max-aspect-ratio: 4/5)" srcSet="/videos/paddock/m/0001.webp"/><Image className={styles.poster} src="/videos/paddock/d/0001.webp" alt="Detalhe do farol de um sedã grafite no escuro" fill sizes="100vw" preload/></picture><canvas className={styles.canvas} data-tour-canvas aria-hidden="true"/>
-      <div className={styles.hero} data-tour-hero><h1 id="paddock-titulo">Todo seminovo parece perfeito no escuro. <span>Nós acendemos a luz.</span></h1><p>Você vê o que foi conferido antes de falar em preço.</p><a href="#paddock-estoque" className={styles.primary}>Ver carros e laudos <Arrow size={18}/></a><p className={styles.hint} data-scroll-hint><Gesture /> <GestureText desktop="Role para abrir o laudo" phone="Deslize para abrir o laudo" /></p></div>
+      <div className={styles.hero} data-tour-hero><h1 id="paddock-titulo">Todo seminovo parece perfeito no escuro. <span>Nós acendemos a luz.</span></h1><p>Você vê o que foi conferido antes de falar em preço.</p><a href="#paddock-estoque" className={styles.primary}>Ver carros e laudos <Arrow size={18}/></a><WhoAnswers>A equipe da loja responde e mostra o laudo do carro que você escolher.</WhoAnswers><p className={styles.hint} data-scroll-hint><Gesture /> <GestureText desktop="Role para abrir o laudo" phone="Deslize para abrir o laudo" /></p></div>
       <div className={styles.scanLine} data-inspection-line aria-hidden="true"><span>Leitura do laudo</span></div>
       <svg className={styles.inspectionLinks} viewBox="0 0 1000 1000" preserveAspectRatio="none" aria-hidden="true">
         <g className={styles.desktopLinks}>{["210,450 320,450 470,440","790,260 740,260 680,280","205,630 350,630 470,720","805,598 790,598 800,590"].map((points,i) => <g key={points} data-proof-link data-proof-index={i}><polyline points={points}/><circle cx={[470,680,470,800][i]} cy={[440,280,720,590][i]} r="6"/></g>)}</g>

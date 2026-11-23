@@ -46,7 +46,7 @@ export default function TocaPage() {
           <p data-only="gato">{heroText.gato}</p>
           <SpeciesSwitch />
           <div className={styles.heroActions}>
-            <a className={styles.primary} href={book}>Agendar uma consulta</a>
+            <a className={styles.primary} href={book}>Agendar com a veterinária</a>
             <a className={styles.textLink} href="#percurso">Conhecer o hospital</a>
           </div>
           <ul className={styles.trust} aria-label="Como atendemos">

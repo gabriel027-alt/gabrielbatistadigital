@@ -281,6 +281,25 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar olhos artificiais, com íris perfeitas demais ou brilho exagerado. Se acontecer, gerar de novo pedindo "textura natural da íris, sem brilho artificial".
 
+## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
+
+- **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
+  - Forma e Toca: o botão do topo diz "com a dentista" e "com a veterinária".
+  - Paddock, Casa Brisa e Orla: linha própria no topo.
+  - Paddock, Orla e Toca: roteiros corrigidos.
+  - A regra de clareza está no design system.
+- **Filmes:** a regravação da Paddock, da Casa Brisa, da Forma e da Orla (PC e celular) estava em andamento. Conferir se os MP4 foram atualizados; se não, rodar de novo `scripts/capture-brand-films.mjs paddock brisa forma` (`--format=desktop` e `--format=mobile`) e `scripts/capture-project-films.mjs orla` (com e sem `--mobile`), e commitar.
+- **Nítida, em andamento e não commitada:**
+  - Fotos recebidas, originais em `public/images/nitida/original/` (topo, iris, mergulho, gaveta, medica).
+  - Paleta medida: branco óptico #f0f0f1, névoa #dde2e6, tinta #24201f, íris #8e512c e água #108693. O acento de água só serve para grafismo, porque o texto branco sobre ele não passa no contraste.
+  - Já escritos: `lib/nitida.ts`, `app/modelos/oftalmologia/page.tsx`, `NitidaMark.tsx`, `FocusPhoto.tsx` e `components/brand/StickyCall.tsx`.
+  - Faltam:
+    1. `app/modelos/oftalmologia/nitida.module.css`. A página usa as classes `chart` (com `data-row` para diminuir as linhas como numa tabela de leitura), `focus`, `focusButton`, `hero`, `moments`, `exams`, `techniques`, `drawer`, `steps`, `doctor`, `faq`, `stickyCall` (com `data-show`), entre outras. No topo, a foto entra desfocada e fica nítida na chegada, menos com movimento reduzido.
+    2. A marca `nitida` no `BrandInquiry`, com três escolhas (o que usa hoje, o que mais incomoda, para quando) e o tema de cores, como na Cerne.
+    3. Ampliar as fotos com o Real-ESRGAN para `public/images/nitida/{nome}.webp`, com o lado maior limitado a 4800 px.
+    4. O kit em `lib/brand-kits.ts` e um teste no modelo de `tests/e2e/cerne-model.spec.ts`.
+    5. Conferir no PC a 125% e no celular, rodar o axe e só então mostrar ao usuário.
+
 ## Próximos passos
 
 1. O usuário aprova ou ajusta a proposta (nome, conceito, recorte de público).

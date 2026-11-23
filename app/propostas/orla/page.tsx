@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
 import { OrlaMotion } from "@/components/OrlaMotion";
 import styles from "./orla.module.css";
+import { WhoAnswers } from "@/components/brand/WhoAnswers";
 import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 
 export const metadata: Metadata = {
@@ -28,6 +29,7 @@ export default function OrlaPage() {
         <div className={styles.heroCopy} data-orla-hero-copy>
           <h1 id="orla-title">Uma casa.<br />Todo um horizonte.</h1>
           <p>Arquitetura que abre espaço<br />para a vida lá fora.</p>
+          <WhoAnswers className={styles.heroWho}>A equipe da Orla responde e monta a seleção com você.</WhoAnswers>
         </div>
         <div className={styles.heroBottom}><p>Entre a casa<br />e a paisagem.</p><div className={styles.heroActions}><a className={styles.inquiryLink} href="#orla-interesse">Encontrar meu imóvel <Arrow size={18}/></a><a className={styles.explore} href="#orla-percurso">Conhecer os espaços <Arrow size={22} /></a></div></div>
       </section>

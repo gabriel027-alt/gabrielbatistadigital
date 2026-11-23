@@ -7,3 +7,5 @@
 
 .heroActions{display:flex;align-items:center;gap:28px}.inquiryLink{display:flex;align-items:center;gap:25px;font-size:13px;text-decoration:none;border-bottom:1px solid #ffffff80;padding:16px 0}
 @media(max-width:700px){.header nav a:last-child{display:none}.heroActions{align-items:end;flex-direction:column;gap:8px}.inquiryLink{font-size:12px;padding:12px 0;gap:16px}}
+/* Who answers (23/11/2026): under the top's sentence, in its own light type. */
+.heroCopy p.heroWho{margin-top:12px;color:inherit;font-size:14px;line-height:1.45;opacity:.85}
