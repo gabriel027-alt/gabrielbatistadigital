@@ -151,7 +151,7 @@ const content: Record<Brand, Content> = {
   // Cerne (implants): the situation, what bothers most and when; no health data, no exam, no appointment made.
   cerne: {
     name: "Cerne Implantes", title: "Vamos preparar a sua avaliação.",
-    intro: "Três escolhas rápidas sobre o seu caso. Na avaliação, o dentista examina e explica o resto com calma.", action: "Agendar uma avaliação",
+    intro: "Três escolhas rápidas sobre o seu caso. Na avaliação, o Rafael examina e explica o resto com calma.", action: "Agendar uma avaliação",
     steps: [
       [{ key: "situacao", label: "Qual é a sua situação hoje?", options: ["Falta um dente", "Faltam vários dentes", "Uso prótese removível (dentadura ou ponte móvel)", "Ainda não sei dizer"] }],
       [
@@ -159,7 +159,7 @@ const content: Record<Brand, Content> = {
         { key: "quando", label: "Para quando você quer resolver?", options: ["O quanto antes", "Nos próximos meses", "Ainda estou pesquisando"] },
       ],
     ],
-    next: "Na avaliação, o dentista examina, pede a tomografia quando ela é necessária e entrega o plano e o orçamento por escrito. Você decide depois, no seu tempo.",
+    next: "Na avaliação, o Rafael examina, pede a tomografia quando ela é necessária e entrega o plano e o orçamento por escrito. Você decide depois, no seu tempo.",
     invitation: "Voltar à mesa começa aqui.", stepNames: ["A situação", "O que incomoda"], stepTitles: ["Por onde começamos?", "O que você quer resolver?"],
     summaryTitle: "Sua avaliação, preparada.", noscript: "Para a avaliação, pense em quantos dentes faltam ou se usa prótese, no que mais incomoda e em quando quer resolver.",
   },

@@ -178,7 +178,9 @@ Observação: imagens geradas tendem a mostrar dentes brancos demais e sorrisos 
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript.
 - **Fora da homepage** até o usuário aprovar. Depois disso: capa, filmes e entrada na seleção.
 
-## 2. Nítida, cirurgia refrativa (proposta de 23/11/2026, aguarda o usuário)
+## 2. Nítida, cirurgia refrativa (proposta aprovada em 23/11/2026, aguarda as fotos)
+
+**Quem atende** (nome autorizado pelo usuário): **Beatriz Sallum, oftalmologista**, persona da marca. Aparece no topo, em primeira pessoa em "Quem atende" e no roteiro. Sem CRM/RQE, formação ou números. Na Cerne, pelo mesmo motivo, o dentista passou a ser **Rafael Monteiro** (filmes e capa regravados).
 
 **Por que esse recorte:**
 - **Ticket alto:** a cirurgia para corrigir o grau (miopia, astigmatismo, hipermetropia) costuma ser paga pelo próprio paciente, e ele pesquisa muito antes de decidir.
@@ -189,7 +191,7 @@ Observação: imagens geradas tendem a mostrar dentes brancos demais e sorrisos 
 - Nunca prometer "nunca mais usar óculos".
 - A promessa é **reduzir ou eliminar a dependência dos óculos, quando os exames indicam**.
 - A página deixa claro que nem todo olho pode operar, e que a avaliação decide.
-- Sem números de grau garantido, porcentagens, prazos de recuperação exatos, CRM/RQE, nome da médica, depoimentos ou antes/depois.
+- Sem números de grau garantido, porcentagens, prazos de recuperação exatos, CRM/RQE, depoimentos ou antes/depois.
 
 | Campo | Proposta |
 | --- | --- |

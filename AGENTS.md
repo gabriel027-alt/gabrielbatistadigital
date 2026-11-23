@@ -632,7 +632,12 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Decisão do usuário: os próximos projetos de alto ticket são estáticos, sem cena ligada à rolagem. Cada um tem marca e estrutura próprias, no mesmo padrão de qualidade e conversão. Proposta, referências e registro em `docs/PROJETOS-ESTATICOS.md`.
 - **Referências do usuário:** dentistapalamos.com, faynestudio.com.br/novaodonto e rideradian.com. Valem também as galerias (Pinterest, godly, Awwwards, Land-book, Dribbble) e a evopixel como esqueleto de conversão. Aproveitar ideias, nunca copiar texto, layout ou imagem.
 - **Primeiro: Cerne Implantes** (`/modelos/implantes`), reabilitação oral para o público de 50 anos ou mais, aprovada pelo usuário como proposta. Conceito "Voltar à mesa", fotos com flash direto geradas por ele, a mordida como recorte e o cardápio de tratamentos. Página montada, aguardando a avaliação visual dele.
-  - Sem nome do dentista, CRO, números, depoimentos, prazos ou preços.
+  - **Nome autorizado pelo usuário em 23/11/2026:** o dentista é **Rafael Monteiro**, persona da marca, como Helena, Ricardo e Isadora. Ele aparece em três pontos:
+    - no topo ("Avaliação com Rafael Monteiro, dentista");
+    - em primeira pessoa em "Quem recebe você";
+    - no roteiro local.
+    - Sem CRO, formação, anos de experiência, números, depoimentos, prazos ou preços.
+  - Também autorizado: **Beatriz Sallum, oftalmologista**, para a **Nítida** (cirurgia refrativa), a segunda marca estática, já aprovada como proposta e aguardando as fotos do usuário. Mesmas restrições.
   - **Aprovada pelo usuário em 23/11/2026.** Entrou em primeiro na seleção: Cerne, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
   - Filmes por `scripts/capture-brand-films.mjs cerne`:
     - `cerne-desktop.mp4` e `cerne-mobile.mp4`;

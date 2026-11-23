@@ -29,14 +29,19 @@
 /* Hero: the table in a card, the title on the empty linen of its left third. */
 .hero{padding:6px 16px 0}
 /* The words sit on their own linen panel (over the photo they fought the bread and the plate); the table fills the rest. */
-.heroCard{position:relative;display:grid;grid-template-columns:minmax(380px,5fr) 7fr;height:min(780px,calc(100svh - 84px));min-height:540px;border-radius:28px;overflow:hidden;background:var(--farinha);--bite:62px}
+.heroCard{position:relative;display:grid;grid-template-columns:minmax(380px,5fr) 7fr;min-height:min(780px,calc(100svh - 84px));border-radius:28px;overflow:hidden;background:var(--farinha);--bite:62px}
 .heroMedia{position:relative;order:2}
 .heroPhoto{object-fit:cover;object-position:78% 50%}
 .heroCopy{position:relative;z-index:1;align-self:center;padding:40px clamp(28px,4vw,72px)}
 .kicker{margin:0 0 16px;font-family:var(--cerne-display),sans-serif;font-weight:700;font-size:15px;color:var(--macaEscura)}
-.hero h1{font-size:clamp(40px,4.3vw,70px)}
-.heroText{margin:22px 0 30px;max-width:32ch;font-size:19px;line-height:1.55}
+.hero h1{font-size:clamp(38px,min(4.3vw,7.6svh),70px)}
+.heroText{margin:clamp(14px,2.6svh,22px) 0 clamp(20px,3.6svh,30px);max-width:32ch;font-size:19px;line-height:1.55}
 .heroCalls{display:flex;flex-wrap:wrap;align-items:center;gap:12px 22px}
+/* Who the patient talks to: the portrait in a small circle and the name, under the calls. */
+.heroWho{display:inline-flex;align-items:center;gap:12px;margin-top:clamp(14px,2.6svh,26px);min-height:44px;color:var(--tinta);font-size:16px;text-decoration:none}
+.heroWho img{width:44px;height:44px;border-radius:50%;object-fit:cover;object-position:50% 22%;background:var(--farinha)}
+.heroWho strong{font-weight:600}
+.heroWho:hover span{text-decoration:underline;text-decoration-color:var(--maca);text-underline-offset:4px}
 @media(prefers-reduced-motion:no-preference){.heroCopy>*{animation:rise .7s cubic-bezier(.2,.7,.2,1) both}.heroCopy>:nth-child(2){animation-delay:.06s}.heroCopy>:nth-child(3){animation-delay:.12s}.heroCopy>:nth-child(4){animation-delay:.18s}}
 @keyframes rise{from{opacity:0;transform:translateY(14px)}}
 

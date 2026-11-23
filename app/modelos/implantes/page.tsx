@@ -4,7 +4,7 @@ import Link from "next/link";
 import { Literata, Schibsted_Grotesk } from "next/font/google";
 import { BrandInquiry } from "@/components/BrandInquiry";
 import { Arrow } from "@/components/ui/icons";
-import { before, faq, steps, team, treatments } from "@/lib/cerne";
+import { before, dentist, faq, steps, team, treatments } from "@/lib/cerne";
 import { CerneMark } from "./CerneMark";
 import { CerneSigns } from "./CerneSigns";
 import { CerneStickyCall } from "./CerneStickyCall";
@@ -48,6 +48,8 @@ export default function CernePage() {
             <h1 id="cerne-titulo">Voltar a comer o que você gosta, com dentes fixos.</h1>
             <p className={styles.heroText}>Para quem perdeu dentes ou usa prótese removível. A primeira consulta começa por uma pergunta: o que você deixou de comer?</p>
             <div className={styles.heroCalls} data-cerne-hero-calls><a className={styles.primary} href={book}>Agendar uma avaliação <Arrow size={20} /></a><a className={styles.secondary} href="#tratamentos">Ver os tratamentos</a></div>
+            {/* Who the patient talks to, from the top (persona authorized by the user, 23/11/2026). */}
+            <a className={styles.heroWho} href="#quem-recebe"><Image src={photo("dentista")} alt="" width={44} height={44} sizes="88px" /><span>Avaliação com <strong>{dentist.name}</strong>, {dentist.role}</span></a>
           </div>
         </div>
       </section>
@@ -95,10 +97,10 @@ export default function CernePage() {
       </section>
 
       <section className={styles.team} id="quem-recebe" aria-labelledby="equipe-titulo">
-        <figure className={`${styles.teamPhoto} ${styles.bite}`}><Image src={photo("dentista")} alt="Dentista de jaleco segurando um modelo de arcada com quatro implantes e a prótese fixa" fill sizes="(max-width:700px) 100vw, 40vw" quality={88} /></figure>
+        <figure className={`${styles.teamPhoto} ${styles.bite}`}><Image src={photo("dentista")} alt="Rafael Monteiro, dentista, de jaleco, segurando um modelo de arcada com quatro implantes e a prótese fixa" fill sizes="(max-width:700px) 100vw, 40vw" quality={88} /></figure>
         <div className={styles.teamBody}>
           <h2 id="equipe-titulo">O plano, explicado com o modelo na mão.</h2>
-          <p>Na avaliação, o dentista mostra num modelo como os implantes seguram os dentes, o que muda no seu caso e o que fica igual. Você sai sabendo cada etapa.</p>
+          <p>Sou o {dentist.first}. Na avaliação, mostro num modelo como os implantes seguram os dentes, o que muda no seu caso e o que fica igual. Você sai sabendo cada etapa, e decide no seu tempo.</p>
           <ul>{team.map(item => <li key={item.role}><strong>{item.role}</strong><span>{item.text}</span></li>)}</ul>
           <a className={styles.primary} href={book}>Agendar uma avaliação <Arrow size={20} /></a>
         </div>
