@@ -178,6 +178,107 @@ Observação: imagens geradas tendem a mostrar dentes brancos demais e sorrisos 
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript.
 - **Fora da homepage** até o usuário aprovar. Depois disso: capa, filmes e entrada na seleção.
 
+## 2. Nítida, cirurgia refrativa (proposta de 23/11/2026, aguarda o usuário)
+
+**Por que esse recorte:**
+- **Ticket alto:** a cirurgia para corrigir o grau (miopia, astigmatismo, hipermetropia) costuma ser paga pelo próprio paciente, e ele pesquisa muito antes de decidir.
+- **Público:** adultos de 25 a 45 anos, cansados de depender de óculos ou lentes de contato.
+- **Diferença:** nenhuma marca do portfólio fala com esse público nem com essa dor.
+
+**Cuidado de conteúdo (mais rígido que nas outras marcas):**
+- Nunca prometer "nunca mais usar óculos".
+- A promessa é **reduzir ou eliminar a dependência dos óculos, quando os exames indicam**.
+- A página deixa claro que nem todo olho pode operar, e que a avaliação decide.
+- Sem números de grau garantido, porcentagens, prazos de recuperação exatos, CRM/RQE, nome da médica, depoimentos ou antes/depois.
+
+| Campo | Proposta |
+| --- | --- |
+| 1. Conceito | **Acordar e já ver.** O primeiro gesto do dia de quem usa óculos é tateá-los na mesinha. A marca fala desse momento e dos outros em que o óculos atrapalha (mar, esporte, chuva, a máscara da academia), não do olho. |
+| 2. Marca | **Nítida**, com um símbolo de dois círculos concêntricos, como uma íris. O círculo de dentro é levemente deslocado e se centraliza no "foco": o símbolo é o próprio ajuste de grau. |
+| 3. Paleta e material | Medida nas fotos quando chegarem. Direção: branco óptico, o preto da tabela de leitura e um único acento tirado da íris das fotos. Material: vidro e lente, com reflexo circular de luz em vez de degradê. Sem azul hospitalar genérico. |
+| 4. Tipografia | Red Hat Display nos títulos e Red Hat Text no texto. É uma família desenhada para legibilidade em tamanhos pequenos e grandes, o que conversa com ler bem. Inédita no portfólio. |
+| 5. Foto | Ponto de vista da própria pessoa, em luz branca muito clara (high-key) e lente tele com foco seletivo (parâmetros abaixo). |
+| 6. Elemento-assinatura | **A tabela de leitura:** os títulos principais são compostos como as linhas de uma tabela de exame de vista, que diminuem de tamanho linha a linha. Organiza o topo e as aberturas de seção. |
+| 7. Composição-assinatura | **O foco ao toque:** algumas fotos aparecem levemente desfocadas, como vistas sem óculos, e ficam nítidas ao tocar ou passar o mouse ("Toque para focar"). Sem rolagem. Com movimento reduzido, sem JS ou depois do primeiro toque, ficam nítidas. É ilustrativo, sem simular resultado de paciente. |
+| 8. Gramática | Topo em ponto de vista (o despertador e o óculos na mesinha) → "Quando o óculos atrapalha?" (situações que a pessoa reconhece) → "Nem todo olho pode operar, e a avaliação diz" (os exames antes da indicação) → técnicas, explicadas em linguagem simples → como funciona → quem atende → dúvidas → roteiro local → barra fixa no celular. |
+
+**Esqueleto de conversão:**
+- **Promessa no topo:** "Acordar e já ver as horas." Abaixo dela: "Cirurgia refrativa para reduzir ou eliminar a dependência dos óculos, quando os exames indicam."
+- **Chamada:** "Agendar avaliação" abre o roteiro local, sem confirmar horário.
+- **Situações:**
+  - procurar o óculos ao acordar;
+  - entrar no mar ou na piscina sem enxergar;
+  - lente de contato que irrita no fim do dia;
+  - óculos que embaça com máscara ou na chuva;
+  - esporte e capacete.
+- **Antes de indicar** (exames comuns na avaliação para cirurgia refrativa, descritos de forma geral):
+  - medição do grau;
+  - mapa da córnea (topografia);
+  - espessura da córnea (paquimetria);
+  - exame do fundo do olho.
+  - Mensagem: "Nem todo olho é candidato, e saber isso também é um resultado da avaliação."
+- **Técnicas** (cada uma com o que ela é, sem prometer resultado):
+  - PRK;
+  - LASIK;
+  - implante de lente (para graus altos ou córnea fina, quando indicado);
+  - a escolha depende dos exames.
+- **Como funciona:**
+  1. avaliação e exames;
+  2. indicação da técnica;
+  3. cirurgia, com anestesia em colírio;
+  4. acompanhamento.
+- **Dúvidas:**
+  - Dói?
+  - Posso operar com qualquer grau?
+  - Quanto tempo para voltar à rotina? (depende da técnica, explicado na avaliação)
+  - O grau pode voltar?
+  - Quanto custa? (depende da técnica e dos exames)
+  - Posso operar se uso lente de contato? (é comum pedir uma pausa antes dos exames; a clínica orienta)
+- **Roteiro local:**
+  - o que você usa hoje: óculos, lentes ou os dois;
+  - o que mais incomoda;
+  - para quando quer resolver.
+  - Sem pedir o grau nem dados de saúde.
+
+### Parâmetros de fotografia
+
+| Parâmetro | Nítida |
+| --- | --- |
+| Enredo | A vida sem procurar o óculos: o despertador lido ao acordar, o mergulho de olhos abertos, o óculos esquecido na gaveta |
+| Luz e hora | Luz branca muito clara e limpa (high-key), sombras quase inexistentes. Nenhuma marca usa |
+| Lente e distância | Tele de 100 a 135 mm com foco seletivo; macro no olho |
+| Enquadramento | **Ponto de vista da própria pessoa** (a câmera é o olho) e macro frontal da íris. Nenhuma marca usa |
+| Tratamento | Branco luminoso, contraste limpo, cor só no acento da íris e da água |
+| Lugar | Quarto ao amanhecer claro, piscina ao ar livre, gaveta de casa e o aparelho de exame |
+
+A comparação com as outras marcas dá no máximo um parâmetro parecido: a lente tele lembra a da Paddock, mas o uso é outro.
+
+### Pedidos de imagem (para o usuário gerar)
+
+Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maior lado com pelo menos 2400 px.
+
+1. **Topo, ponto de vista (16:9, 2880×1620):**
+   - Fotografia realista em primeira pessoa, como se a câmera fossem os olhos de alguém acordando deitado de lado na cama.
+   - Em primeiro plano, a borda do travesseiro branco desfocada. Na mesinha de cabeceira branca, nítidos: um despertador analógico de ponteiros e, ao lado, um óculos de grau dobrado.
+   - Lençóis brancos, parede branca. Luz da manhã muito clara e difusa, high-key, quase sem sombras, sem sol direto e sem tom alaranjado. Lente tele, profundidade de campo rasa.
+   - Espaço livre de parede branca no terço esquerdo para o título.
+2. **A íris (1:1, 2000×2000):**
+   - Macro frontal extremo do olho de uma mulher de cerca de 35 anos, íris castanho-mel com textura nítida, cílios naturais, sem maquiagem pesada.
+   - O reflexo de um anel de luz circular aparece na pupila. Pele ao redor com textura real.
+   - Luz branca limpa e uniforme, fundo branco nas bordas.
+3. **O mergulho (3:2, 2400×1600):**
+   - Homem de cerca de 38 anos emergindo da água de uma piscina ao ar livre, rosto saindo da superfície, olhos abertos e rindo, gotas no rosto, sem óculos de natação.
+   - Água azul-turquesa clara, luz de meio da manhã com céu claro, cor limpa e luminosa, sem pôr do sol. Lente tele, foco no rosto.
+4. **Os óculos na gaveta (4:5, 2000×2500):**
+   - Still life visto de cima de uma gaveta de madeira clara aberta, com vários óculos de grau de modelos e épocas diferentes, dois estojos e um paninho de limpeza.
+   - Luz branca muito clara, high-key, sombras suaves e curtas. Sem marcas visíveis nas armações.
+5. **Quem atende (4:5, 2000×2500):**
+   - Médica oftalmologista de cerca de 50 anos, cabelo grisalho curto, jaleco branco sobre roupa azul-marinho, de frente, do peito para cima, olhar direto e sereno.
+   - Ao lado dela, parcialmente no quadro, um aparelho de exame oftalmológico (lâmpada de fenda), sem marca visível.
+   - Fundo branco liso, luz high-key frontal e suave. Sem janela, planta, estante ou diplomas na parede. Lente 85 mm.
+
+Observação: imagens geradas tendem a dar olhos artificiais, com íris perfeitas demais ou brilho exagerado. Se acontecer, gerar de novo pedindo "textura natural da íris, sem brilho artificial".
+
 ## Próximos passos
 
 1. O usuário aprova ou ajusta a proposta (nome, conceito, recorte de público).
