@@ -7,6 +7,8 @@ import { bookingSteps, chapters, faq, stays } from "@/lib/brisa";
 import { BrisaMark } from "./BrisaMark";
 import { BrisaTour } from "./BrisaTour";
 import styles from "./brisa.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
+import { Gesture, GestureText } from "@/components/brand/Gesture";
 
 /** Marcellus: carved, lime-plaster capitals for the brand name and titles; Karla for reading. */
 const display = Marcellus({ subsets: ["latin"], weight: ["400"], variable: "--brisa-display", display: "swap" });
@@ -52,7 +54,7 @@ export default function BrisaPage() {
             <p className={styles.heroLine}>A chegada já é parte da estadia.</p>
             <div className={styles.heroActions}>
               <a className={styles.primary} href={book}>Reservar estadia</a>
-              <span className={styles.scrollHint} aria-hidden="true">Role para chegar</span>
+              <span className={styles.scrollHint} aria-hidden="true" data-scroll-hint><Gesture /> <GestureText desktop="Role para chegar" phone="Deslize para chegar" /></span>
             </div>
           </div>
           <ol className={styles.captions} aria-label="Capítulos do tour">
@@ -125,6 +127,7 @@ export default function BrisaPage() {
 
       <BrandInquiry brand="brisa" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><BrisaMark size={26} />Casa Brisa</p>

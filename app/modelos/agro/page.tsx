@@ -7,6 +7,8 @@ import { caseSteps, faq, lawyer, mapSize, plots, signs } from "@/lib/talhao";
 import { TalhaoMark } from "./TalhaoMark";
 import { TalhaoMotion } from "./TalhaoMotion";
 import styles from "./talhao.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
+import { Gesture, GestureText } from "@/components/brand/Gesture";
 
 /** Zilla Slab: a square serif with the voice of machinery and farm signs. Work Sans for reading. */
 const display = Zilla_Slab({ subsets: ["latin"], weight: ["500", "700"], variable: "--talhao-display", display: "swap" });
@@ -70,7 +72,7 @@ export default function TalhaoPage() {
                 </g>)}
               </svg>
             </div>
-            <p className={styles.hint} data-talhao-hint>Role para ver cada talhão <span aria-hidden="true">↓</span></p>
+            <p className={styles.hint} data-talhao-hint data-guide-hint><Gesture /> <GestureText desktop="Role para ver cada talhão" phone="Deslize para ver cada talhão" /></p>
           </div>
 
           {/* The map legend carries the message, the five situations and the call. */}
@@ -158,6 +160,7 @@ export default function TalhaoPage() {
 
       <BrandInquiry brand="talhao" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><TalhaoMark size={24} />Talhão Advocacia do Agro</p>

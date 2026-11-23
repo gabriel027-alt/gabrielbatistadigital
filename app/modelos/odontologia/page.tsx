@@ -9,6 +9,7 @@ import { FormaMark } from "./FormaMark";
 import { FormaMotion } from "./FormaMotion";
 import { SmilePlan } from "./SmilePlan";
 import styles from "./forma.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Classic serif with a true italic for this brand's headings (approved version, format of the reference dental sites). */
@@ -134,6 +135,7 @@ export default function FormaPage() {
 
       <BrandInquiry brand="forma" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><FormaMark size={26} />Forma Odontologia</p>

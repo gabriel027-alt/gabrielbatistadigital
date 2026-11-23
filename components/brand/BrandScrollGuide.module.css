@@ -1,0 +1,9 @@
+/* Brand scroll guide (components/brand/BrandScrollGuide.tsx): same pill as the scene hints, fixed at the foot. */
+.guide{position:fixed;left:50%;bottom:26px;z-index:60;display:flex;align-items:center;gap:8px;padding:6px 16px 6px 11px;border-radius:999px;
+  background:#1b1714e0;color:#fff;box-shadow:0 8px 24px -10px #0008;backdrop-filter:blur(8px);font-size:13px;font-weight:600;line-height:1.2;white-space:nowrap;
+  pointer-events:none;opacity:0;transform:translate(-50%,10px);transition:opacity .45s ease,transform .45s ease}
+.light{background:#fffdf8ee;color:#1b1714}
+.guide[data-brand-scroll-guide=on]{opacity:1;transform:translate(-50%,0)}
+.phone{display:none}
+@media(max-width:700px){.desktop{display:none}.phone{display:inline}.guide{font-size:12.5px;bottom:20px}}
+@media(prefers-reduced-motion:reduce){.guide{display:none}}

@@ -9,6 +9,7 @@ import { AlmeidaMotion } from "./AlmeidaMotion";
 import { AlmeidaSeal } from "./AlmeidaSeal";
 import { EstateTree } from "./EstateTree";
 import styles from "./almeida.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Kit: Cormorant Garamond (the tradition of legal documents) for headings, Source Sans 3 for reading. */
@@ -115,6 +116,7 @@ export default function AlmeidaPage() {
 
       <BrandInquiry brand="almeida" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><AlmeidaSeal size={44} className={styles.logoSeal} />Almeida &amp; Valença Advocacia</p>

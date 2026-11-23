@@ -8,6 +8,7 @@ import { lawyer, documents, faq, practiceAreas, situations, periods, stages } fr
 import { ArrimoMark } from "./ArrimoMark";
 import { ArrimoMotion } from "./ArrimoMotion";
 import styles from "./arrimo.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { ScrollHint } from "@/components/brand/ScrollHint";
 
 const display = Barlow_Condensed({ subsets: ["latin"], weight: ["600", "700"], variable: "--arrimo-display", display: "swap" });
@@ -103,6 +104,7 @@ export default function ArrimoPage() {
       <section className={styles.faq} id="arrimo-duvidas" aria-labelledby="duvidas-titulo"><h2 id="duvidas-titulo">Antes de seguir, suas dúvidas.</h2><div>{faq.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></section>
       <BrandInquiry brand="arrimo" />
     </main>
+    <BrandScrollGuide />
     <footer className={styles.footer}>
       <span className={styles.footerMark}><ArrimoMark size={24} />Arrimo</span>
       <a href="#arrimo-inicio">Voltar ao início ↑</a>

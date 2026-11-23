@@ -1,3 +1,4 @@
+import { Gesture } from "./Gesture";
 import styles from "./ScrollHint.module.css";
 
 type Props = {
@@ -17,8 +18,9 @@ type Props = {
  */
 export function ScrollHint({ desktop, phone, tone = "dark", desktopAlign = "center", phoneTop = false }: Props) {
   const classes = [styles.hint, tone === "light" && styles.light, desktopAlign === "right" && styles.right, phoneTop && styles.phoneTop].filter(Boolean).join(" ");
+  // The gesture in place of the old arrow (23/11/2026): a finger swiping on phones, a mouse wheel on computers.
   return <p className={classes} data-scroll-hint>
+    <Gesture touch={tone === "light" ? "#1b171440" : undefined} />
     <span className={styles.desktop}>{desktop}</span><span className={styles.phone}>{phone}</span>
-    <span className={styles.arrow} aria-hidden="true">↓</span>
   </p>;
 }

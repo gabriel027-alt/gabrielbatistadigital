@@ -8,6 +8,7 @@ import { faq, features, firstConsult, recovery, recoveryDays, rulerPosition, sur
 import { SutilMark } from "./SutilMark";
 import { SutilMotion } from "./SutilMotion";
 import styles from "./sutil.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Bodoni Moda: high-contrast, precise display with a true italic; Figtree for reading. */
@@ -156,6 +157,7 @@ export default function SutilPage() {
 
       <BrandInquiry brand="sutil" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><SutilMark size={26} />Sutil Cirurgia Plástica</p>

@@ -6,6 +6,7 @@ import { AuraComparison } from "@/components/AuraComparison";
 import { AuraPhotoSequence } from "@/components/AuraPhotoSequence";
 import { AuraMotion } from "@/components/AuraMotion";
 import styles from "./aura.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 
 export const metadata: Metadata = {
   title: "Aura · Harmonização facial",
@@ -59,5 +60,6 @@ export default function AuraProposal() {
       <div className={styles.brandWordmark} aria-hidden="true">aura</div>
       <div className={styles.brandColophon}><span>Harmonização facial</span><a href="#aura-conteudo">Voltar ao início ↑</a></div>
     </footer>
+    <BrandScrollGuide always />
   </AuraMotion>;
 }

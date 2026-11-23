@@ -9,6 +9,7 @@ import { LumeMark } from "./LumeMark";
 import { LumeMotion } from "./LumeMotion";
 import styles from "./lume.module.css";
 import { ScrollHint } from "@/components/brand/ScrollHint";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 
 /** Young Serif: soft, upright, a conversational voice with no italic. Public Sans for reading. */
 const display = Young_Serif({ subsets: ["latin"], weight: "400", variable: "--lume-display", display: "swap" });
@@ -124,6 +125,7 @@ export default function LumePage() {
 
       <BrandInquiry brand="lume" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><LumeMark size={24} />Lume Psicologia</p>

@@ -9,6 +9,7 @@ import { SpeciesSwitch } from "./SpeciesSwitch";
 import { TocaMark } from "./TocaMark";
 import { TocaMotion } from "./TocaMotion";
 import styles from "./toca.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Fraunces: a soft, warm serif with a true italic; DM Sans for reading. */
@@ -149,6 +150,7 @@ export default function TocaPage() {
 
       <BrandInquiry brand="toca" />
     </main>
+    <BrandScrollGuide />
 
     <footer className={styles.footer}>
       <p className={styles.footerBrand}><TocaMark size={28} />Toca Hospital Veterinário</p>

@@ -1,0 +1,13 @@
+/* The swipe / wheel gesture shared by the brands' scroll hints and guide (components/brand/Gesture.tsx). */
+.gesture{display:inline-flex;flex:none;line-height:0}
+.gesture svg{overflow:visible}
+.finger{display:none}
+.onPhone{display:none}
+@media(max-width:700px){.finger{display:block}.mouse{display:none}.onPhone{display:inline}.onDesktop{display:none}}
+.hand{transform-box:view-box;animation:swipeUp 2s cubic-bezier(.45,0,.25,1) infinite}
+.touch{opacity:0;transform-box:fill-box;transform-origin:center;animation:press 2s ease-in-out infinite}
+.wheel{animation:wheel 1.6s ease-in-out infinite}
+@keyframes swipeUp{0%{transform:translate(0,7px);opacity:.7}12%{opacity:1;transform:translate(0,7px)}62%{transform:translate(0,-5px);opacity:1}76%{transform:translate(0,-5px);opacity:.7}88%{transform:translate(0,-5px);opacity:0}89%{transform:translate(0,7px);opacity:0}100%{transform:translate(0,7px);opacity:.7}}
+@keyframes press{0%,10%{opacity:0;transform:scale(.4)}20%{opacity:.9;transform:scale(1)}60%{opacity:.75}72%,100%{opacity:0}}
+@keyframes wheel{0%{transform:translateY(-1px);opacity:.35}20%{opacity:1}70%{transform:translateY(6px);opacity:0}71%{transform:translateY(-1px);opacity:0}100%{transform:translateY(-1px);opacity:.35}}
+@media(prefers-reduced-motion:reduce){.hand,.touch,.wheel{animation:none;opacity:1;transform:none}.touch{opacity:0}}

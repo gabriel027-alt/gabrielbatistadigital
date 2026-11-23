@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Arrow } from "@/components/ui/icons";
 import { OrlaMotion } from "@/components/OrlaMotion";
 import styles from "./orla.module.css";
+import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
 
 export const metadata: Metadata = {
   title: "Orla | Residências",
@@ -49,5 +50,6 @@ export default function OrlaPage() {
       <BrandInquiry brand="orla" />
     </main>
     <footer className={styles.footer}><a href="#orla-inicio" aria-label="Orla, voltar ao início">orla</a><div><span>Entre a casa e a paisagem.</span><p>© 2026 Orla Residências.<br />Site por <Link href="/#editorial-work">Gabriel Batista Digital</Link>.</p></div></footer>
+    <BrandScrollGuide always />
   </div>;
 }
