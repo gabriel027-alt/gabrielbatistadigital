@@ -433,6 +433,94 @@ Observação: imagens geradas tendem a dar cabelo perfeito demais ou calvície e
   - barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
 - **Fora da homepage até a aprovação dele.**
+## 4. Elo, medicina reprodutiva (proposta de 23/11/2026, aguarda o usuário)
+
+**Por que esse recorte:**
+- **Ticket alto:** cada ciclo de tratamento custa caro e quase sempre é pago pelo paciente, sem convênio.
+- **Mercado de anúncios forte:** os pacientes pesquisam por meses antes de escolher.
+- **Público novo:** casais e pessoas de 30 a 42 anos que querem ter filhos, incluindo quem quer congelar óvulos para decidir depois. Nenhuma marca do portfólio fala com eles.
+
+**Cuidado de conteúdo (o mais rígido do portfólio):**
+- Nenhuma taxa de sucesso, nenhuma promessa de gravidez, nenhum "realize o seu sonho".
+- Nenhuma foto de bebê, barriga ou teste de gravidez como resultado.
+- A página diz que a avaliação define o caminho, e que ele pode ser mais simples que a FIV.
+- **Linguagem inclusiva:** casais de qualquer formação e pessoas que buscam sozinhas.
+- Sem CRM/RQE, título de especialista, números ou depoimentos.
+
+| Campo | Proposta |
+| --- | --- |
+| 1. Conceito | **Um passo de cada vez.** A dor de quem tenta engravidar é não saber o próximo passo. A marca fala do caminho, explicado e acompanhado, e não da promessa. |
+| 2. Marca | **Elo**, com o símbolo de dois anéis que se cruzam em linha fina: duas pessoas, ou uma pessoa e a equipe, juntas no caminho. |
+| 3. Paleta e material | Medida nas fotos quando chegarem. Direção: verdes de folha, areia, pastel desbotado de filme analógico e um acento terroso. Sem rosa-bebê nem azul-bebê. Material: papel de caderno e luz filtrada por folhas. |
+| 4. Tipografia | Newsreader nos títulos, uma serifa calma de leitura, e Nunito Sans no texto, suave e muito legível. Par inédito no portfólio. |
+| 5. Foto | Figuras pequenas na paisagem, filme analógico em tons pastel e luz de meio da manhã filtrada por árvores (parâmetros abaixo). |
+| 6. Elemento-assinatura | **O elo:** os dois anéis do símbolo marcam cada parada do caminho e separam as seções. |
+| 7. Composição-assinatura | **O caminho:** uma trilha com cinco paradas (a primeira conversa, os exames, o diagnóstico, as possibilidades, o acompanhamento). Tocar numa parada mostra o que acontece nela. No celular, a trilha é vertical. Estático, sem rolagem. Sem JS, todas as paradas aparecem explicadas. |
+| 8. Gramática | Topo (o casal na trilha) → "Por onde começar quando nada está claro" (o caminho) → "Nem sempre é FIV" (as possibilidades, da mais simples à mais complexa) → congelar óvulos (decidir depois) → como é a primeira consulta → quem acompanha → dúvidas → roteiro local → barra fixa no celular. |
+
+**Esqueleto de conversão:**
+- **Promessa no topo:** "Um passo de cada vez, e você sabe qual é o próximo." Abaixo dela: "Medicina reprodutiva para quem quer ter filhos agora ou depois. O caminho começa por entender o seu caso."
+- **Chamada:** "Agendar a primeira consulta" abre o roteiro local.
+- **As possibilidades** (da mais simples à mais complexa, cada uma com para quem costuma ser e sem taxas):
+  - acompanhamento do ciclo;
+  - indução da ovulação;
+  - inseminação;
+  - FIV;
+  - congelamento de óvulos;
+  - tratamento com doação, quando indicado.
+- **A primeira consulta:** a história de cada um, os exames que já existem, os que faltam, e um plano por escrito.
+- **Dúvidas:**
+  - Quando procurar ajuda?
+  - Os dois precisam fazer exames?
+  - Quanto custa? (depende do caminho indicado)
+  - A FIV é o único caminho?
+  - Congelar óvulos: com que idade faz sentido?
+  - Posso começar sozinha?
+- **Roteiro local** (sem dado de saúde):
+  - quem está buscando (casal ou sozinha);
+  - em que momento está (começando a tentar, tentando há mais de um ano, pensando em congelar óvulos, já fez tratamento);
+  - para quando quer a primeira consulta.
+- **Quem responde** (regra "Clareza"): a médica com nome, se o usuário autorizar, ou a recepção pelo papel. Sugestão de nome: **Luísa Andrade, médica**.
+
+### Parâmetros de fotografia
+
+| Parâmetro | Elo |
+| --- | --- |
+| Enredo | O caminho a dois: caminhar juntos, as mãos na mesa da cozinha, conversar num banco; nunca o bebê |
+| Luz e hora | Meio da manhã com sol filtrado por árvores, sombras suaves de folhas. Nenhuma marca usa |
+| Lente e distância | 35 mm de longe: figuras pequenas no quadro; 50 mm nos detalhes |
+| Enquadramento | Figuras pequenas na paisagem, de costas ou de lado; mãos em detalhe. Nenhuma marca usa |
+| Tratamento | Filme analógico de médio formato, cores pastel desbotadas, grão médio |
+| Lugar | Trilha num parque arborizado, cozinha de casa com luz de manhã, banco de praça |
+
+A comparação com as outras marcas dá no máximo um parâmetro parecido: o grão de filme lembra a Lume.
+
+### Pedidos de imagem (para o usuário gerar)
+
+Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maior lado com pelo menos 2400 px, o mesmo casal nas fotos 1 a 3.
+
+1. **Topo, a trilha (16:9, 2880×1620):**
+   - Fotografia realista em filme analógico de médio formato: um casal de cerca de 36 anos visto de costas, pequeno no quadro, caminhando de mãos dadas por uma trilha de terra num parque arborizado.
+   - Meio da manhã, sol filtrado pelas folhas, sombras suaves no chão. Cores pastel desbotadas (verdes claros, areia), grão médio de filme.
+   - Lente 35 mm, câmera de longe e um pouco acima. O terço esquerdo do quadro fica com folhagem clara e desfocada, livre para o título.
+   - Sem pôr do sol, sem bebê, sem barriga de gravidez.
+2. **As mãos (3:2, 2400×1600):**
+   - As mãos do mesmo casal entrelaçadas sobre uma mesa de madeira clara de cozinha, de manhã, ao lado de duas xícaras de café e de um caderno fechado.
+   - Luz de manhã entrando de lado, sombras de folhas de uma árvore lá fora projetadas na mesa. Cores pastel, grão de filme. Lente 50 mm, perto.
+   - Sem teste de gravidez, sem objetos de bebê.
+3. **A conversa (3:2, 2400×1600):**
+   - O mesmo casal sentado lado a lado num banco de praça arborizada, de lado para a câmera, conversando com calma. Ela encosta a cabeça no ombro dele.
+   - Meio da manhã, luz filtrada por árvores, cores pastel desbotadas, grão de filme. Lente 35 mm, de média distância.
+4. **O caderno (1:1, 2000×2000):**
+   - Vista de cima de um caderno aberto com anotações à mão ilegíveis, uma caneta, um calendário de mesa sem datas legíveis e um ramo de folha verde.
+   - Luz de manhã com sombras de folhas, cores pastel, grão de filme. Sem exames, seringas, medicamentos ou objetos de bebê.
+5. **Quem acompanha (4:5, 2000×2500):**
+   - Retrato realista ao ar livre de uma médica brasileira de cerca de 48 anos, cabelo castanho na altura dos ombros, jaleco branco aberto sobre blusa verde-oliva.
+   - De frente, do peito para cima, olhar direto e acolhedor, sorriso leve.
+   - Num jardim arborizado em meia-sombra, com fundo verde desfocado. Luz de meio da manhã filtrada por folhas. Lente 85 mm, cores pastel e grão de filme. Sem consultório nem diplomas.
+
+Observação: imagens geradas tendem a dar casais de propaganda, com sorrisos largos e roupas combinando. O alvo é um casal comum, sereno, com roupas do dia a dia.
+
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
