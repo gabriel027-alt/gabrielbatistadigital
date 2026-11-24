@@ -57,7 +57,7 @@ export const brandKits: BrandKit[] = [
     photo: "Movimento de todo dia ao sol duro de meio-dia, de teleobjetiva: a escadaria, o tênis no degrau, a horta, a quadra de areia",
     signatureGraphic: "O eixo: a linha com três pontos separa as seções e acende a região de cada assunto",
     signatureMotion: "Estático de verdade: a escada do tratamento, em degraus do mais simples ao mais complexo",
-    hero: "A mulher subindo a escadaria de concreto no terço direito, com o título sobre o concreto liso à esquerda", status: "em construção",
+    hero: "A mulher subindo a escadaria de concreto no terço direito, com o título sobre o concreto liso à esquerda", status: "aprovado",
   },
   {
     // Fourth static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): reproductive medicine, the strictest in content.

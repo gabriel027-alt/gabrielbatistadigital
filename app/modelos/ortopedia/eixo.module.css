@@ -114,6 +114,7 @@
 
 @media(max-width:1100px){
   .header nav{display:none}.headerCta{margin-left:auto}
+  .heroCopy{max-width:500px;padding:32px 36px;border-radius:10px;background:#f2f1eeeb}
   .stairs{grid-template-columns:1fr;gap:8px}
   .stairs li{margin-top:0;margin-left:calc(var(--step) * 4%);padding:18px 20px}
   .moveList{grid-template-columns:1fr}
@@ -128,7 +129,7 @@
   .hero{flex-direction:column;align-items:stretch;min-height:0;background:var(--cal)}
   .heroPhoto{position:relative;height:46svh}
   .heroPhoto img{object-position:84% 35%}
-  .heroCopy{margin:0;padding:28px 20px 52px;max-width:none}
+  .heroCopy{margin:0;padding:28px 20px 52px;max-width:none;border-radius:0;background:var(--cal)}
   .hero h1{font-size:46px}
   .moves,.stairsSection,.areas,.steps,.reception,.faq{padding:56px 20px}
   .sectionHead h2,.areas h2{font-size:38px}

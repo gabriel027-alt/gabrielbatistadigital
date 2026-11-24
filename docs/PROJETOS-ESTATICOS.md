@@ -282,7 +282,7 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar idosos de propaganda de plano de saúde, com sorrisos largos e roupas esportivas de marca. O alvo é uma mulher comum, em forma mas não atleta, com roupa simples, concentrada no movimento.
 
-## Eixo montada (24/11/2026, aguarda a avaliação do usuário)
+## Eixo montada (24/11/2026, aprovada pelo usuário no mesmo dia)
 
 - **Onde está:** `/modelos/ortopedia`. Conteúdo em `lib/eixo.ts` e kit `eixo` em `lib/brand-kits.ts` (status: em construção).
 - **Fotos:** as cinco fotos do usuário (escadaria, tênis, horta, quadra e recepção), ampliadas com o Real-ESRGAN (80% IA e 20% original). Originais em `public/images/eixo/original/`.

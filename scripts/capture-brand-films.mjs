@@ -9,7 +9,7 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio', cerne: '/modelos/implantes', nitida: '/modelos/oftalmologia', fio: '/modelos/capilar', elo: '/modelos/fertilidade' };
+const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio', cerne: '/modelos/implantes', nitida: '/modelos/oftalmologia', fio: '/modelos/capilar', elo: '/modelos/fertilidade', eixo: '/modelos/ortopedia' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
@@ -54,7 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio', 'elo'].includes(brand)) continue;
+      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio', 'elo', 'eixo'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -169,6 +169,32 @@ try {
         await rm(temp, { recursive: true, force: true });
         if (result.status !== 0) throw new Error(result.stderr);
         console.log(`${brand} loop: ${order.length} stops -> 6 s`);
+        await page.close(); continue;
+      }
+      if (brand === 'eixo' && name === 'loop') {
+        // Static brand (24/11/2026): the card shows the top; the preview holds the top, climbs the treatment staircase,
+        // shows the lit axis of knee, hip and spine, and comes back to the top. Screenshots joined by dissolves, 6 s.
+        await mkdir('public/images/projects/brands', { recursive: true });
+        await page.waitForTimeout(1200);
+        const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/eixo-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
+        if (poster.status !== 0) throw new Error(poster.stderr);
+        await page.addStyleTag({ content: 'html{scroll-behavior:auto!important}' }); await page.waitForTimeout(600);
+        const temp = await mkdtemp(path.join(os.tmpdir(), 'eixo-loop-'));
+        const shots = [null, '#escada ol', '#areas ul', null];
+        for (const [i, selector] of shots.entries()) {
+          if (selector) await page.locator(selector).evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 100, behavior: 'instant' }));
+          else await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
+          await page.waitForTimeout(900);
+          await writeFile(path.join(temp, `shot-${i}.png`), await page.screenshot());
+        }
+        const hold = 1.7, fade = .3, inputs = shots.flatMap((_, i) => ['-loop', '1', '-t', String(hold), '-i', path.join(temp, `shot-${i}.png`)]);
+        let chain = '', last = '[0:v]';
+        for (let i = 1; i < shots.length; i++) { const out = i === shots.length - 1 ? '[v]' : `[x${i}]`; chain += `${last}[${i}:v]xfade=transition=fade:duration=${fade}:offset=${(i * (hold - fade)).toFixed(2)}${out};`; last = out; }
+        const result = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', ...inputs, '-filter_complex', `${chain}[v]tpad=stop_mode=clone:stop_duration=1,fps=30,format=yuv420p[o]`, '-map', '[o]', '-an', '-t', '6',
+          '-c:v', 'libx264', '-profile:v', 'high', '-preset', 'slow', '-crf', '18', '-movflags', '+faststart', 'public/videos/projects/brands/eixo-loop.mp4'], { encoding: 'utf8' });
+        await rm(temp, { recursive: true, force: true });
+        if (result.status !== 0) throw new Error(result.stderr);
+        console.log(`${brand} loop: ${shots.length} shots -> 6 s`);
         await page.close(); continue;
       }
       if (brand === 'fio' && name === 'loop') {

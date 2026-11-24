@@ -47,6 +47,7 @@ const works: Work[] = [
   // Third static brand (23/11/2026, approved): hair transplant, right after Nítida.
   { id: "fio", name: "Fio", image: sample("fio", "hero"), kit: "fio" },
   { id: "elo", name: "Elo", image: sample("elo", "hero"), kit: "elo" },
+  { id: "eixo", name: "Eixo Ortopedia", image: sample("eixo", "hero"), kit: "eixo" },
   { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "arrimo", name: "Arrimo Advocacia Previdenciária", image: sample("arrimo", "hero"), kit: "arrimo" },
   { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },
