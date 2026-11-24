@@ -1,7 +1,8 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-// Landing page for clinics (lib/clinics.ts): result first, proof in the first screen, one call (WhatsApp), no price.
+// Landing page for clinics (lib/clinics.ts): result first, proof in the first screen, one call (WhatsApp), and since
+// 24/11/2026 a price anchor ("a partir de R$ 3.000"), never a full price table.
 test("The clinics page leads with the result, shows four clinic projects and calls only on WhatsApp", async ({ page }) => {
   await page.setViewportSize({ width: 1536, height: 696 });
   await page.goto("/clinicas");
@@ -13,7 +14,8 @@ test("The clinics page leads with the result, shows four clinic projects and cal
   for (const place of ["clinicas-menu", "clinicas-topo", "clinicas-investimento", "clinicas-final"]) {
     await expect(page.locator(`a[data-track-place="${place}"]`)).toHaveAttribute("href", /wa\.me\/5538998267717/);
   }
-  await expect(page.locator("main")).not.toContainText(/R\$|reais|depoimento/i);
+  await expect(page.locator("main")).not.toContainText(/depoimento/i);
+  await expect(page.locator("#clinicas-investimento, main").first()).toContainText("começa em R$ 3.000");
   const audit = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa", "wcag21aa"]).analyze();
   expect(audit.violations.map(v => v.id)).toEqual([]);
 });

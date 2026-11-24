@@ -434,3 +434,14 @@ test('On a phone "Ver mais" is the last card of the project row and opens the re
   await expect(card).toHaveText('Mostrar menos');
   await expect(card).toHaveAttribute('aria-expanded', 'true');
 });
+// Price anchor (24/11/2026): "a partir de R$ 3.000" only in Brazilian Portuguese; the other languages keep the range
+// in the first conversation (another market and another currency).
+test('Only the Brazilian homepage answers the price question with "a partir de R$ 3.000"', async ({ page }) => {
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto('/');
+  await expect(page.locator('#editorial-faq')).toContainText('A partir de R$ 3.000 por um site de uma página.');
+  for (const path of ['/pt-pt', '/en', '/es']) {
+    await page.goto(path);
+    await expect(page.locator('#editorial-faq')).not.toContainText('R$');
+  }
+});
