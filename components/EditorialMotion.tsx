@@ -205,12 +205,13 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
           carry(() => node.querySelector("[data-hook-tittle=carry]"), () => dot,
             () => { const t = node.querySelector("[data-hook-tittle=carry]")!; const own = t.getBoundingClientRect().top + scrollY - innerHeight * .3; return innerWidth <= 700 ? Math.min(own, sceneAt(creation, .2) - innerHeight * .4) : own; },
             () => sceneAt(creation, .2));
-          // The dot of the finished "g." drops onto the folder's tab.
           const work = node.querySelector<HTMLElement>("[data-work-track]");
           if (work) {
-            // The folder is no longer pinned (21/11/2026): the dot lands on its tab as the section enters.
+            // Projects first (24/11/2026): the dot of the top's "g." card drops onto the folder's tab as the projects
+            // enter. On phones the top's signature is hidden, so the folder's dot simply rests on its tab.
             const landAt = () => work.getBoundingClientRect().top + scrollY - innerHeight * .64;
-            carry(() => groups[dotIndex], () => node.querySelector("[data-pasta-dot]"), () => sceneAt(creation, .97), landAt);
+            const cardDot = node.querySelector<Element>('[data-card-part="dot"]');
+            carry(() => cardDot && cardDot.getBoundingClientRect().width > 0 ? cardDot : null, () => node.querySelector("[data-pasta-dot]"), () => Math.max(0, landAt() - innerHeight * .3), landAt);
             // After the projects, the dot reads with the visitor on its way to the conversation: it runs along the top
             // rule of the services (down their left edge on phones), drawing it peach and underlining each title as it
             // passes; then it underlines "Quem desenha é quem programa." and becomes the full stop of "Vamos conversar",
@@ -218,9 +219,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             const panel = node.querySelector<HTMLElement>("[data-contact-panel]"), stop = node.querySelector<HTMLElement>("[data-contact-dot]");
             // The lists are the site services and then "Depois do site"; the dot reads one rule after the other.
             const lists = [...node.querySelectorAll<HTMLElement>("[data-read-list]")], about = node.querySelector<HTMLElement>("[data-read-about]");
-            const pasta = node.querySelector<HTMLElement>("[data-pasta-dot]");
+            // After the hand, the dot of the assembled "g." is the one that goes on to read the services.
+            const gDot = groups[dotIndex] as unknown as HTMLElement;
             const listDots = lists.map(list => list.querySelector<HTMLElement>("[data-read-dot]")), aboutDot = about?.querySelector<HTMLElement>("[data-read-dot]");
-            if (panel && stop && lists.length && about && pasta && listDots.every(Boolean) && aboutDot) {
+            if (panel && stop && lists.length && about && gDot && listDots.every(Boolean) && aboutDot) {
               const top = (el: HTMLElement) => el.getBoundingClientRect().top + scrollY;
               // Read from when the first rule is near the bottom of the screen until its list is still well in view, so
               // the dot never waits under the navigation; each next rule starts right after a short hop down.
@@ -231,10 +233,10 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                 readEnd[k] = () => Math.max(readStart[k]() + 150, top(list) + list.offsetHeight - innerHeight * .62);
               });
               const aboutStart = () => top(about) + about.offsetHeight - innerHeight * .8, aboutEnd = () => top(about) + about.offsetHeight - innerHeight * .5;
-              const stops = [pasta, ...listDots as HTMLElement[], aboutDot, stop];
+              const stops = [gDot, ...listDots as HTMLElement[], aboutDot, stop];
               const flights: [() => number, () => number][] = [
-                // It leaves the folder only once the project grid has gone by, so it never crosses the cards.
-                [() => { const grid = node.querySelector<HTMLElement>("[data-strip]"); return grid ? Math.min(readStart[0]() - 120, top(grid) + grid.offsetHeight - innerHeight * .9) : top(work); }, readStart[0]],
+                // It leaves the "g." once the hand scene is done, and flies to the top rule of the services.
+                [() => Math.min(readStart[0]() - 120, sceneAt(creation, .97)), readStart[0]],
                 // Between lists it waits at the end of the rule it read and flies only over the last stretch, so it never
                 // rests on the diagnosis while someone answers it.
                 ...lists.slice(1).map((_, k) => [() => Math.max(readEnd[k](), readStart[k + 1]() - innerHeight * .4), readStart[k + 1]] as [() => number, () => number]),
@@ -253,9 +255,7 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
                   if (y < s) { rest = i; break; }
                   if (y < e) { rest = -1; flight = i; progress = (y - s) / Math.max(1, e - s); break; }
                 }
-                // Before the dot has landed on the folder, the folder's dot stays hidden (the carrier owns it).
-                const landed = rest !== 0 || y >= landAt();
-                stops.forEach((el, i) => { el.style.visibility = i === rest && landed ? "visible" : "hidden"; });
+                stops.forEach((el, i) => { el.style.visibility = i === rest ? "visible" : "hidden"; });
                 stop.dataset.lit = String(rest === stops.length - 1);
                 carrier.style.visibility = flight >= 0 ? "visible" : "hidden";
                 if (flight < 0) return;

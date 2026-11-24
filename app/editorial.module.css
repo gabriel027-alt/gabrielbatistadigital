@@ -602,3 +602,9 @@
 .footerTop a.footerCtaBig{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin-top:8px;padding:0 22px;border-radius:999px;background:#ffbc95;color:#1c1512;font-weight:700;font-size:16px;text-decoration:none;transition:transform .2s}
 .footerTop a.footerCtaBig:hover{transform:translateY(-2px)}
 @media(max-width:700px){.footerTop>div{font-size:13px}.footerTop a.footerCtaBig{font-size:14px;min-height:46px;padding:0 16px;white-space:nowrap}}
+
+/* Projects first (24/11/2026): the paper sheet that rises over the portrait is now the projects section; the phrase
+   and the hand follow it as an ordinary section. */
+.work{z-index:3;border-radius:34px 34px 0 0;background:var(--paper);box-shadow:0 -26px 60px #00000080}
+.hook{border-radius:0;box-shadow:none}
+@media(max-width:700px){.work{border-radius:26px 26px 0 0}}

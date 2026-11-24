@@ -122,34 +122,9 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {/* The name is the signature: the dot plants a tittle on each "i" and lands in the "g." between the words. */}
         <div className={styles.heroBottom}><p className={styles.heroName} data-hero-wordmark><span className={styles.sr}>Gabriel Batista</span><span aria-hidden="true" data-hero-word>{nameWord("Gabriel")}</span><span className={styles.heroSample} data-hero-sample aria-hidden="true"><span className={styles.heroCard} data-hero-card><svg viewBox={cardView}>{cardParts.map(shape => <g key={shape.id} transform={transformOf(shape.final)}><g data-card-part={shape.id}><GbShape id={shape.id} tone="dark" /></g></g>)}</svg></span></span><span aria-hidden="true" data-hero-word>{nameWord("Batista")}</span><span className={styles.heroDot} data-hero-dot aria-hidden="true" /><svg className={styles.heroTrail} aria-hidden="true" focusable="false"><path data-hero-trail pathLength={1} /></svg><span className={styles.heroGlow} data-hero-glow aria-hidden="true" /><span className={styles.heroGlow} data-hero-wave aria-hidden="true" /></p></div>
       </section>
-      <section className={styles.hook} data-editorial-theme="paper" data-hook>
-        {/* Arrives whole (21/11/2026): word by word it read broken while the hero left. */}
-        <h2 aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique"><span aria-hidden="true">{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span><span className={styles.sr}>{t.hook.clickLabel}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
-        {/* "O próximo clique", one stage: the red tittle of "clique" falls into Gabriel's open palm; the dot rises, bursts,
-            and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
-        <div className={styles.fusionTrack} data-creation-track data-gb-track>
-          <div className={styles.fusionStage} data-fusion-stage>
-            {/* The points that formed him at the top pour down from "clique" with the dot and form his hand. */}
-            <HandParticles />
-            <figure className={styles.palm} data-palm role="img" aria-label={t.palmLabel}>
-              <div className={styles.palmBody} data-palm-body>
-              <Image src="/images/editorial/mao-palma-braco.webp" alt="" width={5800} height={2701} quality={90} sizes="(max-width:700px) 200vw, 150vw" data-palm-hand />
-              <span className={styles.palmRing} data-creation-ring aria-hidden="true" />
-              <span className={styles.palmGlow} data-palm-glow aria-hidden="true" />
-              <span className={styles.palmShadow} data-palm-shadow aria-hidden="true" />
-              <span className={`${styles.tittle} ${styles.palmDot}`} data-creation-dot aria-hidden="true" />
-              </div>
-            </figure>
-            <span className={styles.gShadow} data-g-shadow aria-hidden="true" />
-            <div className={styles.fusionField} data-gb-shapes aria-hidden="true"><svg viewBox={`0 0 ${view.w} ${view.h}`} preserveAspectRatio="xMidYMid meet">
-              {backShapes.map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
-              <path className={styles.gbLine} data-gb-line d={linePath(shapes.filter(shape => onLine(shape.id)).map(shape => shape.final))} pathLength={1} />
-              {frontShapes.map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
-            </svg></div>
-            <div className={styles.palmCopy} data-palm-copy><h2>{t.palmTitle}</h2><p>{t.palmText}</p></div>
-          </div>
-        </div>
-      </section>
+      {/* Projects first (24/11/2026, the review): the proof comes right after the top; the phrase and the hand, which
+          tell how it is made, follow the projects. The dot goes from the top's "g." to the folder's tab, and from the
+          "g." assembled above the hand to the services. */}
       {/* The folder (shortened 21/11/2026): the brand dot drops onto its tab, the folder opens, and right below it the
           projects sit in a still grid, each showing the top of its site; the short preview plays only on hover. The
           endless strip and the points that formed the cards were removed: they delayed and hid the proof. */}
@@ -176,6 +151,34 @@ export function EditorialHome({ locale }: { locale: Locale }) {
           </ul>
           <div className={styles.moreBar} data-more-bar><MoreWorksToggle variant="button" open={t.moreWorks.open} close={t.moreWorks.close} /></div>
           <noscript><style>{"[data-strip] li[data-more]{display:revert!important}[data-more-card],[data-more-bar]{display:none!important}"}</style></noscript>
+        </div>
+      </section>
+      <section className={styles.hook} data-editorial-theme="paper" data-hook>
+        {/* Arrives whole (21/11/2026): word by word it read broken while the hero left. */}
+        <h2 aria-label={t.hook.label}>{t.hook.first[0]}{redI()}{t.hook.first[1]}<br/>{t.hook.lead}<a href={contact} target="_blank" rel="noopener noreferrer" className={styles.clickWord} data-cursor-label={t.hook.cursor} data-track-place="frase-clique"><span aria-hidden="true">{t.hook.click[0]}{redI(true)}{t.hook.click[1]}</span><span className={styles.sr}>{t.hook.clickLabel}</span> <Arrow size={42}/></a>,<br/>{t.hook.tail}</h2>
+        {/* "O próximo clique", one stage: the red tittle of "clique" falls into Gabriel's open palm; the dot rises, bursts,
+            and the pieces of "g." come out of that spark, float with the peach line and assemble above the hand. */}
+        <div className={styles.fusionTrack} data-creation-track data-gb-track>
+          <div className={styles.fusionStage} data-fusion-stage>
+            {/* The points that formed him at the top pour down from "clique" with the dot and form his hand. */}
+            <HandParticles />
+            <figure className={styles.palm} data-palm role="img" aria-label={t.palmLabel}>
+              <div className={styles.palmBody} data-palm-body>
+              <Image src="/images/editorial/mao-palma-braco.webp" alt="" width={5800} height={2701} quality={90} sizes="(max-width:700px) 200vw, 150vw" data-palm-hand />
+              <span className={styles.palmRing} data-creation-ring aria-hidden="true" />
+              <span className={styles.palmGlow} data-palm-glow aria-hidden="true" />
+              <span className={styles.palmShadow} data-palm-shadow aria-hidden="true" />
+              <span className={`${styles.tittle} ${styles.palmDot}`} data-creation-dot aria-hidden="true" />
+              </div>
+            </figure>
+            <span className={styles.gShadow} data-g-shadow aria-hidden="true" />
+            <div className={styles.fusionField} data-gb-shapes aria-hidden="true"><svg viewBox={`0 0 ${view.w} ${view.h}`} preserveAspectRatio="xMidYMid meet">
+              {backShapes.map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
+              <path className={styles.gbLine} data-gb-line d={linePath(shapes.filter(shape => onLine(shape.id)).map(shape => shape.final))} pathLength={1} />
+              {frontShapes.map(shape => <g key={shape.id} data-gb-shape={shape.id} transform={transformOf(shape.final)}><GbShape id={shape.id} /></g>)}
+            </svg></div>
+            <div className={styles.palmCopy} data-palm-copy><h2>{t.palmTitle}</h2><p>{t.palmText}</p></div>
+          </div>
         </div>
       </section>      <section className={styles.services} id="editorial-services" data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>{t.servicesNote}</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>{t.servicesTitle[0]}<br/>{t.servicesTitle[1]}</h2>
