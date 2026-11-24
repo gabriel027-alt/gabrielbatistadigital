@@ -132,6 +132,8 @@
 .credit{margin:0 0 0 auto;opacity:.8}
 
 @media(max-width:1000px){.header nav{display:none}.headerCta{margin-left:auto}.steps ol{grid-template-columns:1fr 1fr}}
+/* Up to 1100 px the man's raised arm reaches the words: the photo goes on top and the words below, as on phones. */
+@media(max-width:1100px){.hero{flex-direction:column;align-items:stretch;min-height:0}.heroPhoto{position:relative;height:52svh}.heroPhoto img{object-position:74% 40%}.heroCopy{max-width:640px;padding:32px 5vw 56px}}
 @media(max-width:860px){.map,.wind,.mirror,.after,.doctor{grid-template-columns:1fr}.beforeList{grid-template-columns:1fr}.mirrorPhoto{order:-1}}
 @media(max-width:700px){
   .page{font-size:17px;padding-bottom:76px}

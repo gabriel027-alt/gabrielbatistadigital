@@ -9,7 +9,7 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio', cerne: '/modelos/implantes', nitida: '/modelos/oftalmologia' };
+const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio', cerne: '/modelos/implantes', nitida: '/modelos/oftalmologia', fio: '/modelos/capilar' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
@@ -54,7 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida'].includes(brand)) continue;
+      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -142,6 +142,24 @@ try {
         });
         console.log(`${brand} loop: ${stats.frames} frames -> 6 s`);
         await page.close();continue;
+      }
+      if (brand === 'fio' && name === 'loop') {
+        // Static brand (23/11/2026): the card shows the top; the preview lights the zones of the head map one by one.
+        await mkdir('public/images/projects/brands', { recursive: true });
+        await page.waitForTimeout(1200);
+        const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/fio-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
+        if (poster.status !== 0) throw new Error(poster.stderr);
+        await page.locator('#mapa').evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY + 60, behavior: 'instant' }));
+        await page.waitForTimeout(800);
+        const stats = await record(page, 'public/videos/projects/brands/fio-loop.mp4', format.out, async () => {
+          await page.evaluate(async () => {
+            const buttons = [...document.querySelectorAll('[data-head-map] button')];
+            for (const [index, at] of [[1, 900], [2, 2100], [3, 3300], [0, 4700]]) setTimeout(() => buttons[index].click(), at);
+            await new Promise(resolve => setTimeout(resolve, 6000));
+          });
+        });
+        console.log(`${brand} loop: ${stats.frames} frames -> 6 s`);
+        await page.close(); continue;
       }
       if (brand === 'nitida' && name === 'loop') {
         // Static brand (23/11/2026): the card shows the top; the preview is the iris coming into focus at a touch.

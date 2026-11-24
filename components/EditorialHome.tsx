@@ -44,6 +44,8 @@ const works: Work[] = [
   { id: "cerne", name: "Cerne Implantes", image: sample("cerne", "hero"), kit: "cerne" },
   // Second static brand (23/11/2026, approved): refractive surgery, right after Cerne.
   { id: "nitida", name: "Nítida", image: sample("nitida", "hero"), kit: "nitida" },
+  // Third static brand (23/11/2026, approved): hair transplant, right after Nítida.
+  { id: "fio", name: "Fio", image: sample("fio", "hero"), kit: "fio" },
   { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "arrimo", name: "Arrimo Advocacia Previdenciária", image: sample("arrimo", "hero"), kit: "arrimo" },
   { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },

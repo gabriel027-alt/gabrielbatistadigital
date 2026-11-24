@@ -638,6 +638,10 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
     - no roteiro local.
     - Sem CRO, formação, anos de experiência, números, depoimentos, prazos ou preços.
   - Também autorizado: **Beatriz Sallum, oftalmologista**, para a **Nítida** (cirurgia refrativa), a segunda marca estática. Mesmas restrições.
+- **Fio** (`/modelos/capilar`, transplante capilar, Daniel Arruda, médico), **aprovada pelo usuário em 23/11/2026** e posta em terceiro na seleção: Cerne, Nítida, Fio, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
+  - Assinaturas: a linha frontal e o mapa da cabeça (`HeadMap`).
+  - Promessa: "quando a avaliação indica"; "nem todo caso é cirurgia". Sem "para sempre", densidade, número de enxertos ou antes/depois.
+  - Filmes por `scripts/capture-brand-films.mjs fio`. A prévia acende as áreas do mapa.
 - **Nítida** (`/modelos/oftalmologia`), **aprovada pelo usuário em 23/11/2026** e posta em segundo na seleção: Cerne, Nítida, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
   - Assinaturas: títulos como tabela de leitura e foto que foca ao toque (`FocusPhoto`).
   - Promessa obrigatória: "reduzir ou eliminar a dependência dos óculos, quando os exames indicam". Nunca "nunca mais usar óculos".

@@ -17,10 +17,10 @@ for (const item of cases) {
     const page = await context.newPage();
     await page.goto(item.route);
     const list = page.locator('#editorial-work ul:not([aria-hidden])');
-    await expect(list.locator("h3")).toHaveText(["Cerne Implantes", "Nítida", "Lume Psicologia", "Arrimo Advocacia Previdenciária", "Paddock", "Talhão Advocacia do Agro", "Sutil Cirurgia Plástica", "Casa Brisa", "Aura", "Orla"]);
-    await expect(list.locator("li").nth(4)).toContainText(item.sector);
+    await expect(list.locator("h3")).toHaveText(["Cerne Implantes", "Nítida", "Fio", "Lume Psicologia", "Arrimo Advocacia Previdenciária", "Paddock", "Talhão Advocacia do Agro", "Sutil Cirurgia Plástica", "Casa Brisa", "Aura", "Orla"]);
+    await expect(list.locator("li").nth(5)).toContainText(item.sector);
     await expect(page.locator('video[data-editorial-loop][src]')).toHaveCount(0);
-    await list.locator("li").nth(4).getByRole("button").click();
+    await list.locator("li").nth(5).getByRole("button").click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();
     await expect(dialog.getByRole("link", { name: item.action })).toHaveAttribute("href", /wa.me\/5538998267717/);
