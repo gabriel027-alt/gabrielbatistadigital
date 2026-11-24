@@ -301,7 +301,7 @@ Observação: imagens geradas tendem a dar idosos de propaganda de plano de saú
 - **Cuidado de conteúdo:** "nem toda dor é cirurgia"; sem prazos de recuperação. O teste confere que a página não diz "garantido", "para sempre", "sem dor", prazos em dias ou semanas, porcentagens nem CRM.
 - **Testes** (`tests/e2e/eixo-model.spec.ts`, 3 testes): quem responde, a escada subindo, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
-- **Fora da homepage até a aprovação dele.**
+- **Na seleção:** quinta, depois da Elo. Filmes `eixo-desktop.mp4` (1920×1080), `eixo-mobile.mp4` (1080×1920) e prévia `eixo-loop.mp4` (6 s, 960×768: o topo, a escada, o eixo aceso e a volta ao topo); capa `eixo-hero.webp`. Abaixo de 1100 px o texto do topo ganha painel claro, porque passava sobre os degraus.
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
