@@ -551,6 +551,83 @@ Observação: imagens geradas tendem a dar casais de propaganda, com sorrisos la
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
 - **Na seleção:** quarta, depois da Fio. Filmes elo-desktop.mp4 (1920×1080), elo-mobile.mp4 (1080×1920) e prévia elo-loop.mp4 (6 s, 960×768, as cinco paradas e a volta à primeira); capa elo-hero.webp.
 
+## 5. Eixo, ortopedia (proposta de 24/11/2026, aguarda o usuário)
+
+**Por que esse recorte:**
+- **Ticket alto:** prótese de joelho e de quadril, artroscopia e coluna. Mesmo com convênio, muita gente escolhe o cirurgião particular ou pede reembolso, e pesquisa antes.
+- **Público:** pessoas de 45 a 70 anos que deixaram de fazer algo do dia a dia (subir escada, caminhar, jogar beach tennis, cuidar do jardim) e querem voltar. Nenhuma marca do portfólio fala com o corpo em movimento.
+- **Serve à página `/clinicas`:** é mais uma clínica médica para as campanhas.
+
+**Cuidado de conteúdo:**
+- Sem "sem dor para sempre", "volte a correr em X dias", prazos de recuperação ou taxa de sucesso.
+- Sem raio-x, ressonância ou cicatriz de paciente, nem antes e depois.
+- A página diz que nem toda dor é cirurgia: o tratamento começa pelo mais simples, e a cirurgia entra quando a avaliação indica.
+- Sem CRM/RQE, título de especialista, números ou depoimentos. Nome do médico só se o usuário autorizar.
+
+| Campo | Proposta |
+| --- | --- |
+| 1. Conceito | **Subir a escada sem pensar nela.** Quem tem dor nas articulações passa a planejar cada movimento comum. A marca fala de voltar a não pensar no movimento, e não da cirurgia. |
+| 2. Marca | **Eixo Ortopedia**, com o símbolo de uma linha vertical com três pontos (quadril, joelho e tornozelo), levemente fora do prumo no ponto do joelho: o eixo do corpo. |
+| 3. Paleta e material | Medida nas fotos quando chegarem. Direção: concreto claro, cal, grafite e um único acento cobalto (a jaqueta da personagem). Sem azul hospitalar claro nem verde de clínica. Material: concreto aparente, sombra dura e linhas de arquitetura. |
+| 4. Tipografia | Archivo (com eixo de largura) nos títulos, firme e técnica, e Instrument Sans no texto. Par inédito no portfólio. |
+| 5. Foto | Movimento de todo dia ao sol duro de meio-dia, de teleobjetiva, com geometria de arquitetura (parâmetros abaixo). |
+| 6. Elemento-assinatura | **O eixo:** a linha com os três pontos separa as seções e marca a região de cada assunto (o ponto do joelho, do quadril ou da coluna acende). |
+| 7. Composição-assinatura | **A escada do tratamento:** os caminhos possíveis montados como degraus, do mais simples ao mais complexo (orientação e fisioterapia, medicamentos, infiltração, artroscopia, prótese). Cada degrau diz para quem costuma ser. É estática de verdade: nenhuma parte depende de toque ou rolagem, diferente do mapa da Fio e do caminho da Elo. No celular, os degraus viram uma escada vertical. |
+| 8. Gramática | Topo (a escadaria) → "O que ficou difícil" (movimentos do dia e a região que cada um costuma envolver) → a escada do tratamento → joelho, quadril e coluna → como é a avaliação (o que se examina e o que levar) → depois da cirurgia, quando indicada (a reabilitação, sem prazos) → quem atende → dúvidas → roteiro local → barra fixa no celular. |
+
+**Esqueleto de conversão:**
+- **Promessa no topo:** "Subir a escada sem pensar nela." Abaixo: "Ortopedia de joelho, quadril e coluna para quem quer voltar ao que deixou de fazer. A avaliação começa pelo movimento."
+- **Chamada:** "Agendar avaliação" abre o roteiro local.
+- **O que ficou difícil** (texto, sem diagnóstico): subir e descer escada; levantar da cadeira; caminhar mais de meia hora; dormir de lado; agachar; voltar ao esporte. Cada um com a frase "a avaliação olha…", nunca "você tem…".
+- **A avaliação:** conversa sobre o que mudou na rotina, exame do movimento, os exames de imagem que já existem e os que faltam, e o plano explicado antes de qualquer decisão.
+- **Dúvidas:**
+  - Toda dor no joelho termina em cirurgia?
+  - Quando a prótese é indicada?
+  - Preciso levar exames?
+  - Atende convênio ou reembolso? (resposta neutra: a recepção informa)
+  - Quanto tempo leva a recuperação? (depende do caso e do tratamento; sem números)
+  - Posso continuar no esporte?
+- **Roteiro local** (sem dado de saúde): a região (joelho, quadril, coluna, outra); há quanto tempo incomoda; o que mais atrapalha (escada, caminhar, dormir, esporte); para quando quer a avaliação.
+- **Quem responde** (regra "Clareza"): o médico, com nome só se o usuário autorizar, e a recepção, que responde, marca e informa sobre convênio e reembolso.
+
+### Parâmetros de fotografia
+
+| Parâmetro | Eixo |
+| --- | --- |
+| Enredo | O movimento comum retomado: subir uma escadaria, amarrar o tênis num degrau, agachar na horta, uma partida de beach tennis; nunca o hospital |
+| Luz e hora | Sol duro de meio-dia, sombras curtas e recortadas. Nenhuma marca usa |
+| Lente e distância | Teleobjetiva de 135 a 200 mm, de longe e de baixo para cima, com o fundo comprimido. Nenhuma marca usa |
+| Enquadramento | Corpo inteiro no meio do movimento, dentro de linhas de arquitetura (degraus, muros, quadra) |
+| Tratamento | Digital nítido, contraste alto, cores pouco saturadas, exceto o acento cobalto da roupa |
+| Lugar | Escadaria de concreto ao ar livre, horta de quintal, quadra de areia, muro de concreto aparente |
+
+A comparação com as outras marcas dá no máximo um parâmetro parecido: a luz dura lembra o retrato da Arrimo, que é em preto e branco e de estúdio.
+
+### Pedidos de imagem (para o usuário gerar)
+
+Regras: fotografia realista, sem texto legível, logotipo ou marca d'água (inclusive no tênis e na roupa), maior lado com pelo menos 2400 px, a mesma mulher nas fotos 1 a 4.
+
+1. **Topo, a escadaria (16:9, 2880×1620):**
+   - Fotografia realista: uma mulher brasileira de cerca de 58 anos, cabelo grisalho curto, jaqueta corta-vento cobalto, calça de tecido cinza e tênis brancos sem logotipo, subindo uma longa escadaria de concreto ao ar livre, no meio do passo, com expressão tranquila.
+   - Sol duro de meio-dia, sombras curtas e bem recortadas nos degraus. Teleobjetiva de 200 mm, de baixo para cima e de longe, com os degraus comprimidos em linhas.
+   - A figura ocupa o terço direito. O terço esquerdo fica com concreto liso e claro, livre para o título.
+   - Contraste alto, cores pouco saturadas, só o cobalto forte. Sem corrimão de hospital, joelheira ou bengala.
+2. **O tênis (3:2, 2400×1600):**
+   - A mesma mulher, com o pé apoiado num degrau de concreto, amarrando o tênis branco sem logotipo. Enquadramento do joelho para baixo e das mãos, a manga cobalto aparecendo.
+   - Sol duro de meio-dia, sombra curta e recortada no degrau. Teleobjetiva de 135 mm, de lado. Contraste alto.
+3. **A horta (3:2, 2400×1600):**
+   - A mesma mulher agachada numa horta de quintal, colhendo folhas de alface, com a mesma jaqueta cobalto. Corpo inteiro, de lado, joelhos dobrados com naturalidade.
+   - Sol de meio-dia, sombras curtas. Teleobjetiva de 135 mm, de longe, com um muro de concreto aparente ao fundo. Cores pouco saturadas, verdes contidos.
+4. **A quadra (16:9, 2880×1620):**
+   - A mesma mulher numa quadra de beach tennis, com camiseta branca e viseira cobalto, no meio de um golpe de raquete sem logotipo, os pés firmes na areia.
+   - Sol duro de meio-dia, sombra curta na areia. Teleobjetiva de 200 mm, de longe e de lado, com a rede e as linhas da quadra cortando o quadro. A bola pode estar desfocada. Contraste alto.
+5. **Quem atende (4:5, 2000×2500):**
+   - Retrato realista de um médico brasileiro de cerca de 52 anos, cabelo escuro curto com fios grisalhos, barba aparada, jaleco branco sobre camisa azul-cobalto.
+   - Encostado num muro de concreto aparente ao ar livre, do peito para cima, olhar direto e calmo, sem sorriso largo.
+   - Sol duro de meio-dia com sombra curta e recortada no muro. Teleobjetiva de 135 mm. Sem consultório, diplomas, esqueleto ou raio-x.
+
+Observação: imagens geradas tendem a dar idosos de propaganda de plano de saúde, com sorrisos largos e roupas esportivas de marca. O alvo é uma mulher comum, em forma mas não atleta, com roupa simples, concentrada no movimento.
+
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.

@@ -48,6 +48,19 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // Fifth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): orthopedics. Proposed; the palette is a direction until
+    // it is measured on the user's photos.
+    id: "eixo", route: "/modelos/ortopedia", niche: "Ortopedia",
+    concept: "Subir a escada sem pensar nela.", mark: "Linha vertical com três pontos (quadril, joelho e tornozelo), fora do prumo no joelho",
+    palette: { concreto: "#d6d3cd", cal: "#f3f2ee", grafite: "#2a2c2f", sombra: "#6b6d70", cobalto: "#2346a6" },
+    material: "Concreto aparente, sombra dura de meio-dia e linhas de arquitetura",
+    typography: { display: "Archivo", text: "Instrument Sans" },
+    photo: "Movimento de todo dia ao sol duro de meio-dia, de teleobjetiva: a escadaria, o tênis no degrau, a horta, a quadra de areia",
+    signatureGraphic: "O eixo: a linha com três pontos separa as seções e acende a região de cada assunto",
+    signatureMotion: "Estático de verdade: a escada do tratamento, em degraus do mais simples ao mais complexo",
+    hero: "A mulher subindo a escadaria de concreto no terço direito, com o título sobre o concreto liso à esquerda", status: "proposto",
+  },
+  {
     // Fourth static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): reproductive medicine, the strictest in content.
     id: "elo", route: "/modelos/fertilidade", niche: "Medicina reprodutiva",
     concept: "Um passo de cada vez.", mark: "Dois anéis finos que se cruzam",
