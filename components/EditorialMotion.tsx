@@ -520,7 +520,8 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
             gsap.fromTo(item, { y: 36, opacity: 0 }, { y: 0, opacity: 1, duration: .55, delay: (i % 4) * .06, ease: "power2.out", scrollTrigger: { trigger: item, start: "top 94%", once: true } });
           });
         }
-        gsap.to("[data-about-photo]", { scale: 1.14, yPercent: 7, ease: "none", scrollTrigger: { trigger: "#editorial-about", start: "top bottom", end: "bottom top", scrub: .8 } });
+        // The about portrait left on 24/11/2026; the slow zoom stays only if a photo comes back.
+        if (node.querySelector("[data-about-photo]")) gsap.to("[data-about-photo]", { scale: 1.14, yPercent: 7, ease: "none", scrollTrigger: { trigger: "#editorial-about", start: "top bottom", end: "bottom top", scrub: .8 } });
         gsap.fromTo("[data-contact-panel]", { scale: .9, borderRadius: 100 }, { scale: 1, borderRadius: 40, ease: "none", scrollTrigger: { trigger: "#editorial-contact", start: "top 95%", end: "center 65%", scrub: .65 } });
         // SplitText owns generated word wrappers and restores accessible original markup.
         return () => { splits.forEach(split => split.revert()); restore.forEach(fn => fn()); };

@@ -192,8 +192,9 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {/* Right where the process is understood, the first step is one tap away (22/11/2026). */}
         <div className={styles.stepsCta}><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="como-funciona">{t.stepsCta.label} <Arrow size={16}/></a><span>{t.stepsCta.note}</span></div>
       </section>
-      <section className={styles.about} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
-        <div className={styles.aboutPhoto} data-about-photo><ArtDirectedImage alt={t.aboutAlt} desktop={{ src: "/images/hero/gabriel-sobre.webp", sizes: "300vw" }} mobile={{ src: "/images/hero/gabriel-sobre-mobile.webp", sizes: "260vw" }} /></div>
+      {/* About without his portrait (24/11/2026, "menos Gabriel"): the face is already the top; a calm dark ground and the
+          words. The red frame stays off here. */}
+      <section className={`${styles.about} ${styles.aboutPlain}`} id="editorial-about" data-editorial-theme="photo" aria-labelledby="editorial-about-title">
         <div className={styles.aboutStatement}><h2 id="editorial-about-title" data-kinetic>{t.aboutTitle[0]}<br/>{t.aboutTitle[1]}</h2><p>{t.aboutText}</p></div>
         <div className={styles.aboutPrinciples}><p>{t.aboutIntro[0]}<br/>{t.aboutIntro[1]}</p><h3 className={styles.readAbout} data-read-about><span className={styles.readLine}>{t.aboutClaim[0]}<br/>{t.aboutClaim[1]}</span><span className={`${styles.carrierDot} ${styles.readDot}`} data-read-dot aria-hidden="true" /></h3><ul>{t.principles.map(item => <li key={item}>{item}</li>)}</ul><a href={contact} target="_blank" rel="noopener noreferrer" className={styles.photoLink} data-track-place="sobre">{t.aboutLink} <Arrow size={22}/></a></div>
       </section>
@@ -204,6 +205,8 @@ export function EditorialHome({ locale }: { locale: Locale }) {
       </section>
       <section className={styles.contact} id="editorial-contact" data-editorial-theme="paper"><a data-contact-panel href={contact} target="_blank" rel="noopener noreferrer" data-cursor-label={t.talkCursor} data-track-place="contato"><TalkParticles /><div><h2>{t.contactTitle[0]}<br/>{t.contactTitle[1]}</h2><p>{t.contactText}</p></div><span className={styles.contactAction}><span className={styles.contactGo}><span>{t.contactGo}<span className={styles.contactDot} data-contact-dot aria-hidden="true" /></span><Arrow size={42}/></span><span className={styles.contactWhere}>{t.contactWhere}</span></span></a></section>
     </main>
-    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk}</a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><span className={styles.footerLegal}><a href={legal.path}>{legal.footerPrivacy}</a><ConsentPreferences label={legal.footerCookies} className={styles.footerPrefs} /></span><a href="#editorial-start">{t.backTop}</a></div></footer>
+    {/* The footer closes the persona the top opens (24/11/2026: the avatar stays, by the user's argument and the review);
+        the call is now a real button, in the peach of the top's buttons, not a small line in a box. */}
+    <footer id="editorial-footer" className={styles.footer} data-editorial-theme="photo"><EditorialAvatarLoop alt={t.avatarAlt}/><div className={styles.footerTop}><p>Gabriel Batista Digital</p><div><span>{t.tagline}</span><p><a className={styles.footerCtaBig} href={contact} target="_blank" rel="noopener noreferrer" data-track-place="rodape">{t.footerTalk} <Arrow size={18}/></a></p></div></div><div className={styles.footerName} aria-hidden="true"><span>Gabriel</span><span>Batista</span></div><div className={styles.footerBottom}><span>{t.rights}</span><span className={styles.footerLegal}><a href={legal.path}>{legal.footerPrivacy}</a><ConsentPreferences label={legal.footerCookies} className={styles.footerPrefs} /></span><a href="#editorial-start">{t.backTop}</a></div></footer>
   </EditorialMotion>;
 }

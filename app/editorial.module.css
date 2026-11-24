@@ -586,3 +586,19 @@
 .footerLegal{row-gap:10px}.footerLegal a{display:inline-flex;align-items:center;min-height:28px}
 /* Phones: the footer links are stacked, so their 44 px touch areas no longer overlap through negative margins. */
 @media(max-width:700px){.footerBottom{gap:0}.footerBottom a{display:inline-flex;align-items:center;min-height:44px;margin-block:0;padding-block:0}.footerLegal{row-gap:0}}
+
+/* ——— Menos Gabriel (24/11/2026, the user's choice after the design review) ———
+   His face appeared three times (top, about, footer avatar). Now the about drops the portrait (a calm dark ground and
+   the words); the top and the footer avatar stay as the site's persona, opening and closing. On computers the menu
+   logo waits while the top's signature is on screen, so the name reads once per screen. The red frame stays in the
+   footer (the user missed it there on 22/11). */
+.aboutPlain{background:#1c1512}
+.page[data-editorial-nav-over=editorial-about] .frameGlow{opacity:0}
+@media(min-width:701px){
+  .page .logo{transition:opacity .35s}
+  .page[data-editorial-nav-over=editorial-start] .logo{opacity:0;pointer-events:none}
+}
+/* The footer call as a real button, in the peach of the top's buttons. */
+.footerTop a.footerCtaBig{display:inline-flex;align-items:center;gap:10px;min-height:48px;margin-top:8px;padding:0 22px;border-radius:999px;background:#ffbc95;color:#1c1512;font-weight:700;font-size:16px;text-decoration:none;transition:transform .2s}
+.footerTop a.footerCtaBig:hover{transform:translateY(-2px)}
+@media(max-width:700px){.footerTop>div{font-size:13px}.footerTop a.footerCtaBig{font-size:14px;min-height:46px;padding:0 16px;white-space:nowrap}}
