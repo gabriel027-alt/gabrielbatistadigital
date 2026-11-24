@@ -73,3 +73,9 @@
 .vao .dialog{--q-bg:#f5efe6;--q-ink:#342312;--q-accent:#723806;--q-border:#34231240;font-family:var(--vao-text),system-ui,sans-serif}
 .vao .invitation h2,.vao .body h3{font-family:var(--vao-display),Georgia,serif;font-weight:400;letter-spacing:-.01em}
 .vao .steps li{opacity:1;color:#6b5034}.vao .steps li[aria-current=step]{color:#342312}
+.lavra{--q-bg:#1f150e;--q-ink:#ece2d3;--q-accent:#d29b4f;--q-border:#ece2d33d;font-family:var(--lavra-text),system-ui,sans-serif}
+.lavra :is(.launch,.primary){color:#120c08;border-radius:999px;font-weight:700}
+.lavra .back{border-radius:999px}
+.lavra .dialog{--q-bg:#120c08;--q-ink:#ece2d3;--q-accent:#d29b4f;--q-border:#ece2d33d;font-family:var(--lavra-text),system-ui,sans-serif}
+.lavra .invitation h2,.lavra .body h3{font-family:var(--lavra-display),Georgia,serif;font-weight:400;letter-spacing:-.01em}
+.lavra .steps li{opacity:1;color:#c2b29c}.lavra .steps li[aria-current=step]{color:#ece2d3}

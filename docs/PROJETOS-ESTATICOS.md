@@ -747,7 +747,7 @@ Observação: imagens geradas tendem a dar apartamentos de catálogo, frios e va
 - **Testes** (`tests/e2e/vao-model.spec.ts`, 3 testes): quem desenha, a planta, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
 - **Na seleção:** sexta, depois da Eixo. Filmes `vao-desktop.mp4` (1920×1080), `vao-mobile.mp4` (1080×1920) e prévia `vao-loop.mp4` (6 s, 960×768: o topo, a planta da rotina, a prancha de materiais e a volta ao topo); capa `vao-hero.webp`.
-## 7. Lavra, joalheria sob medida (proposta de 24/11/2026, aguarda o usuário)
+## 7. Lavra, joalheria sob medida (proposta de 24/11/2026, aprovada pelo usuário ao gerar as fotos)
 
 **Por que esse recorte:**
 - **Consumo premium:** é o quarto grupo escolhido em `docs/MODELOS-ALTO-TICKET.md` e ainda não tem marca na seleção.
@@ -823,6 +823,29 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
    - Sem rosto visível, sem vitrine de loja, sem logotipos, sem texto legível.
 
 Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais e sobre fundo branco. O alvo é ouro com marcas de trabalho, ferramentas gastas e uma luz só.
+
+## Lavra montada (24/11/2026, aguarda a avaliação do usuário)
+
+- **Onde está:** `/modelos/joalheria`. Conteúdo em `lib/lavra.ts` e kit `lavra` em `lib/brand-kits.ts` (status: em construção).
+- **Fotos:** as cinco fotos do usuário (bancada, desenho, cera, alianças e ateliê), ampliadas com o Real-ESRGAN (80% IA e 20% original). Originais em `public/images/lavra/original/`.
+- **Paleta medida nas fotos:**
+  - ébano #120c08, o escuro em volta da lâmpada, no fundo da página;
+  - bancada #5e3418, a madeira;
+  - ouro #d29b4f, a luz da aliança polida, nas chamadas com texto escuro;
+  - cera #466534, o único acento frio, clareado para #7ea566 nos sinais sobre o escuro;
+  - papel #ece2d3, o papel do desenho clareado, no texto.
+  - É uma página escura e quente, diferente do preto frio da Paddock.
+- **Tipografia:** Prata e Mulish.
+- **Assinaturas:**
+  - **O aro:** a elipse do símbolo, em verde de cera, abre as seções.
+  - **Do desenho à peça:** quatro etapas lado a lado. A cera e a fundição saem da mesma foto, cada uma aproximada no seu anel (zoom com origem no ponto do `object-position`). Estática.
+- **Prova:** as mãos do casal e o texto lado a lado; um painel sobre a foto cobria a aliança.
+- **Quem atende:** o ateliê, no topo, na seção com a foto da bancada e no roteiro.
+- **Roteiro local:** `BrandInquiry`, marca `lavra`: a peça, o momento e para quando. Sem fotos, medidas ou dados pessoais. A joia de família é "avaliada com você".
+- **Cuidado de conteúdo:** o teste confere que a página não tem R$, quilates, certificado, garantia, prazos em dias ou semanas nem clientes.
+- **Testes** (`tests/e2e/lavra-model.spec.ts`, 3 testes): quem responde, as quatro etapas, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px. O axe pegou o link do crédito no rodapé sem sublinhado (contraste 1,6:1 com o texto em volta); corrigido.
+- Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
+- **Fora da homepage até a aprovação dele.**
 
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 

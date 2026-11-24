@@ -48,17 +48,16 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
-    // Seventh static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bespoke jeweller. Proposed; the palette is a direction
-    // until it is measured on the user's photos.
+    // Seventh static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bespoke jeweller; palette measured on the photos.
     id: "lavra", route: "/modelos/joalheria", niche: "Joalheria sob medida",
     concept: "Toda joia começa por uma história.", mark: "Um aro visto de lado: elipse fina com um pequeno corte de buril",
-    palette: { ebano: "#1c1612", ouro: "#c9a24a", papel: "#efe8db", cera: "#4f7d62", bancada: "#4a3426" },
+    palette: { ebano: "#120c08", ouro: "#d29b4f", papel: "#ece2d3", cera: "#466534", bancada: "#5e3418" },
     material: "Ouro bruto, cera verde de escultura, papel de desenho e ferramentas gastas sob a lâmpada de bancada",
     typography: { display: "Prata", text: "Mulish" },
     photo: "Macro de mãos e metal sob uma única lâmpada de bancada, quente e pontual, com tudo o mais no escuro",
     signatureGraphic: "O aro: a elipse do símbolo abre as seções e o corte de buril marca a etapa",
     signatureMotion: "Estático: do desenho à peça, em quatro etapas lado a lado",
-    hero: "As mãos do ourives com o anel sob a lâmpada nos dois terços da direita, com o título no escuro à esquerda", status: "proposto",
+    hero: "As mãos do ourives com o anel sob a lâmpada nos dois terços da direita, com o título no escuro à esquerda", status: "em construção",
   },
   {
     // Sixth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): architecture and interiors; palette measured on the photos.

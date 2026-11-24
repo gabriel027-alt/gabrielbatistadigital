@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo" | "vao";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo" | "vao" | "lavra";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -163,7 +163,21 @@ const content: Record<Brand, Content> = {
     invitation: "Um passo de cada vez.", stepNames: ["Quem busca", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
     summaryTitle: "A primeira consulta, preparada.", noscript: "Para a primeira consulta, pense em quem está buscando, em que momento está e para quando quer conversar.",
   },
-  // Vão (architecture and interiors): the property, the moment and what is needed; no address or property data.
+  // Lavra (bespoke jeweller): what to make, the moment and when; no personal data, no photos of jewellery, no order made.
+  lavra: {
+    name: "Lavra Joalheria", title: "Vamos preparar a conversa no ateliê.",
+    intro: "Três escolhas rápidas, sem fotos nem medidas agora. O ateliê responde e marca a conversa.", action: "Agendar uma conversa no ateliê",
+    steps: [
+      [{ key: "peca", label: "O que você quer fazer?", options: ["Alianças", "Anel de noivado", "Uma joia com ouro de família", "Outra peça"] }],
+      [
+        { key: "momento", label: "Qual é o momento?", options: ["Casamento marcado", "Pedido em vista", "Um presente", "Sem data ainda"] },
+        { key: "quando", label: "Para quando você pensa na peça?", options: ["Nos próximos meses", "Ainda este ano", "Sem pressa"] },
+      ],
+    ],
+    next: "O ateliê marca a conversa, sobre a história da peça e o que ela precisa lembrar. Se houver uma joia de família, leve-a: ela é avaliada com você. O valor vem por escrito antes de começar.",
+    invitation: "Toda joia começa por uma história.", stepNames: ["A peça", "O momento"], stepTitles: ["Por onde começamos?", "Qual é o momento?"],
+    summaryTitle: "A conversa no ateliê, preparada.", noscript: "Para a conversa no ateliê, pense na peça que você quer, no momento e para quando.",
+  },  // Vão (architecture and interiors): the property, the moment and what is needed; no address or property data.
   vao: {
     name: "Vão Arquitetura e Interiores", title: "Vamos preparar a primeira conversa.",
     intro: "Três escolhas rápidas, sem endereço nem planta agora. A Clara responde e marca a conversa.", action: "Agendar a primeira conversa",
