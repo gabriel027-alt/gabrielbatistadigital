@@ -48,6 +48,19 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // Eighth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bilingual school. Proposed; the palette is a direction
+    // until it is measured on the user's photos.
+    id: "ponte", route: "/modelos/escola", niche: "Escola bilíngue",
+    concept: "Duas línguas, um mesmo dia.", mark: "Duas margens curtas ligadas por uma tábua curva, em traço grosso e arredondado",
+    palette: { gema: "#f2b632", folha: "#5e9e3e", ceu: "#9fd0ea", giz: "#fbf8f1", lousa: "#24403a" },
+    material: "Papel colorido recortado, giz e madeira clara de mesa baixa, na luz da manhã",
+    typography: { display: "Fredoka", text: "Lexend" },
+    photo: "Manhã clara com a câmera na altura da criança: a chegada pelo pátio, as mãos na atividade, a roda de história, a horta; nunca rostos em destaque",
+    signatureGraphic: "A ponte: o traço curvo liga a frase em português à mesma frase em inglês",
+    signatureMotion: "Estático: o dia em duas línguas, cinco momentos com as duas frases lado a lado",
+    hero: "As crianças de costas chegando pelo pátio, com o título sobre a parede lisa à esquerda", status: "proposto",
+  },
+  {
     // Seventh static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bespoke jeweller; palette measured on the photos.
     id: "lavra", route: "/modelos/joalheria", niche: "Joalheria sob medida",
     concept: "Toda joia começa por uma história.", mark: "Um aro visto de lado: elipse fina com um pequeno corte de buril",
