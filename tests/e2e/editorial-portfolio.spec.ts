@@ -22,7 +22,7 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   // Without motion the folder is open and the projects are one grid (no repeated copy).
-  await expect(page.locator(`${projects} > li`)).toHaveCount(13);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(14);
   await expect(page.locator('#editorial-work ul[aria-hidden]')).toHaveCount(0);
   expect(videos).toEqual([]);
   const audit = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
@@ -70,8 +70,8 @@ test("No JavaScript retains original content, projects and contact without scrip
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const page=await context.newPage();
   await page.goto(route);
-  await expect(page.locator(`${projects} > li`)).toHaveCount(13);
-  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(13);
+  await expect(page.locator(`${projects} > li`)).toHaveCount(14);
+  await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(14);
   await expect(page.getByRole('heading',{name:'Uma boa ideia precisa funcionar.'})).toBeVisible();
   await expect(page.locator('a[href*="wa.me"]').first()).toHaveAttribute('href',/5538998267717/);
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -195,10 +195,10 @@ test('Selection shows the approved brands with the colors measured for each', as
   // A still strip: a moving one never settles for a click.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(route);
-  for (const name of ['Cerne Implantes', 'Nítida', 'Fio', 'Elo', 'Eixo Ortopedia', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Aura', 'Orla']) {
+  for (const name of ['Cerne Implantes', 'Nítida', 'Fio', 'Elo', 'Eixo Ortopedia', 'Vão Arquitetura e Interiores', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Aura', 'Orla']) {
     await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
-  await expect(page.locator(`${projects} dl`)).toHaveCount(11);
+  await expect(page.locator(`${projects} dl`)).toHaveCount(12);
   // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
   await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
   const sutil = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Sutil Cirurgia Plástica' });

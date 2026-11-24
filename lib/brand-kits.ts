@@ -57,7 +57,7 @@ export const brandKits: BrandKit[] = [
     photo: "Interiores em perspectiva central, verticais retas e sol baixo do fim da tarde riscando piso e paredes",
     signatureGraphic: "As amostras: quadrados de material marcam as seções, como uma prancha de materiais",
     signatureMotion: "Estático: a planta da rotina, com um momento do dia em cada ambiente",
-    hero: "A sala em perspectiva central na luz da tarde à direita, com o título na coluna de cal à esquerda", status: "em construção",
+    hero: "A sala em perspectiva central na luz da tarde à direita, com o título na coluna de cal à esquerda", status: "aprovado",
   },
   {
     // Fifth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): orthopedics; palette measured on the user's five photos.

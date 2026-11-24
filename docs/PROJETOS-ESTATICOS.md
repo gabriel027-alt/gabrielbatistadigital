@@ -726,7 +726,7 @@ Regras: fotografia realista de interiores, sem texto legível, logotipo ou marca
 
 Observação: imagens geradas tendem a dar apartamentos de catálogo, frios e vazios, ou cheios de objetos de decoração. O alvo é uma casa onde se mora: poucos objetos, todos com uso, e a luz como protagonista.
 
-## Vão montada (24/11/2026, aguarda a avaliação do usuário)
+## Vão montada (24/11/2026, aprovada pelo usuário no mesmo dia)
 
 - **Onde está:** `/modelos/arquitetura`. Conteúdo em `lib/vao.ts` e kit `vao` em `lib/brand-kits.ts` (status: em construção).
 - **Fotos:** as cinco fotos do usuário (sala, cozinha, prancha de materiais, quarto e Clara), ampliadas com o Real-ESRGAN (80% IA e 20% original). Originais em `public/images/vao/original/`.
@@ -746,7 +746,7 @@ Observação: imagens geradas tendem a dar apartamentos de catálogo, frios e va
 - **Cuidado de conteúdo:** o teste confere que a página não tem R$, m², CAU, prêmio, obras entregues, clientes atendidos nem prazos.
 - **Testes** (`tests/e2e/vao-model.spec.ts`, 3 testes): quem desenha, a planta, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
-- **Fora da homepage até a aprovação dele.**
+- **Na seleção:** sexta, depois da Eixo. Filmes `vao-desktop.mp4` (1920×1080), `vao-mobile.mp4` (1080×1920) e prévia `vao-loop.mp4` (6 s, 960×768: o topo, a planta da rotina, a prancha de materiais e a volta ao topo); capa `vao-hero.webp`.
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
