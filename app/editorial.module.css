@@ -477,20 +477,21 @@
 @media(max-width:700px){.page[data-editorial-animated=true] .fusionTrack{height:150vh}.page[data-editorial-animated=true] .workTrack{height:auto}}
 /* Aura and Orla covers are wider than the card: anchored left, where their headlines are. */
 .gridList li:is([data-work=aura],[data-work=orla]) .media>img{object-position:left top}
-/* "Ver mais" (24/11/2026): the rest of the selection under a native disclosure. */
-.moreWorks{margin-top:clamp(30px,5vh,48px)}
-.moreWorks summary{display:flex;justify-content:center;list-style:none;cursor:pointer}
-.moreWorks summary::-webkit-details-marker{display:none}
-.moreWorks summary span{display:inline-flex;align-items:center;min-height:52px;padding:0 28px;border:2px solid currentColor;border-radius:999px;font-weight:700;font-size:16px;transition:background-color .2s,color .2s}
-.moreWorks summary:hover span{background:#1a1410;color:#f4ede2}
-.moreWorks summary:focus-visible{outline:none}
-.moreWorks summary:focus-visible span{outline:3px solid currentColor;outline-offset:3px}
-.moreClose,.moreWorks[open] .moreOpen{display:none!important}
-.moreWorks[open] .moreClose{display:inline-flex!important}
-.moreWorks[open] summary{order:2;margin-top:34px}
-.moreWorks[open]{display:flex;flex-direction:column}
-.moreWorks>ul{margin-top:34px}
-@media(max-width:700px){.moreWorks summary{padding:0 20px}.moreWorks>ul{margin-top:18px}}
+/* "Ver mais" (24/11/2026): one list; the rest stays hidden while the grid is collapsed. On computers a button below
+   the grid; on phones the last card of the swipe row, so the gesture leads to it. */
+.projectGrid[data-collapsed] li[data-more]{display:none}
+.moreCard{display:none}
+.moreBar{display:flex;justify-content:center;margin-top:clamp(30px,5vh,48px)}
+:is(.moreBar,.moreCard) button{display:inline-flex;align-items:center;justify-content:center;gap:10px;min-height:52px;padding:0 28px;border:2px solid currentColor;border-radius:999px;background:none;color:inherit;font:inherit;font-weight:700;font-size:16px;cursor:pointer;transition:background-color .2s,color .2s}
+:is(.moreBar,.moreCard) button:hover{background:#1a1410;color:#f4ede2}
+:is(.moreBar,.moreCard) button:focus-visible{outline:3px solid currentColor;outline-offset:3px}
+@media(max-width:700px){
+  .moreBar{display:none}
+  .moreCard{display:block;scroll-snap-align:center}
+  .moreCard button{width:100%;aspect-ratio:5/4;border-radius:14px;border-style:dashed;font-size:20px}
+  .moreCard button::after{content:"→";font-size:24px}
+  .moreCard button[aria-expanded=true]::after{content:"←"}
+}
 /* ——— Phone top, third pass (21/11/2026) ———
    Cinematic: the portrait fills the screen and the copy rests on the dark of his shirt, under the chin. One voice: the
    promise (the name is already in the header), with its label above it; the offer at the top and the signature hide. */

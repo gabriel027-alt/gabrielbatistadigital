@@ -15,6 +15,7 @@ import { LanguageSwitch } from "@/components/LanguageSwitch";
 import { ContactTracking } from "@/components/ContactTracking";
 import { ScrollGuide } from "@/components/ScrollGuide";
 import { DiagnosisQuiz } from "@/components/DiagnosisQuiz";
+import { MoreWorksToggle } from "@/components/MoreWorksToggle";
 import { ConsentBanner, ConsentPreferences } from "@/components/ConsentBanner";
 import { privacyCopy } from "@/lib/privacy-copy";
 import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
@@ -78,9 +79,9 @@ const readTrack = <span className={styles.readTrack} aria-hidden="true"><span cl
 export function EditorialHome({ locale }: { locale: Locale }) {
   const t = homeCopy[locale], contact = contactUrl(locale), legal = privacyCopy[locale];
   /** One project of the grid: the top of its site, the film on click and the short preview on hover. */
-  const project = (work: Work) => {
+  const project = (work: Work, more = false) => {
     const data = work.kit ? kit(work.kit) : undefined;
-    return <li key={work.name} className={styles.stripItem} data-work={work.id}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
+    return <li key={work.name} className={styles.stripItem} data-work={work.id} data-more={more || undefined}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
       <div className={styles.stripCaption}><div><h3>{work.name}</h3><span>{t.sectors[work.id]}</span></div>
         {/* What the site does for the business, before the designer's data (22/11/2026). */}
         <p className={styles.benefit}>{t.benefits[work.id]}</p>
@@ -166,14 +167,15 @@ export function EditorialHome({ locale }: { locale: Locale }) {
             <p className={styles.workNote} data-work-note>{t.workNote}</p>
           </div>
         </div>
-        <div className={styles.projectGrid} data-strip>
-          <ul className={styles.gridList}>{works.slice(0, featuredCount).map(work => project(work))}</ul>
-          {/* The rest of the selection, native and readable without JavaScript; EditorialMotion refreshes the scroll
-              scenes on the toggle event, since the page grows. */}
-          <details className={styles.moreWorks}>
-            <summary><span className={styles.moreOpen}>{t.moreWorks.open}</span><span className={styles.moreClose}>{t.moreWorks.close}</span></summary>
-            <ul className={styles.gridList}>{works.slice(featuredCount).map(work => project(work))}</ul>
-          </details>
+        {/* One list: the featured eight, then the rest (data-more), hidden while the grid is collapsed. On phones "Ver
+            mais" is the last card of the swipe row and the rest joins the same row; on computers it is a button below the
+            grid. No count, so it reads as a selection (24/11/2026). Without JavaScript everything shows. */}
+        <div className={styles.projectGrid} data-strip data-collapsed="">
+          <ul className={styles.gridList}>{works.map((work, index) => project(work, index >= featuredCount))}
+            <li className={styles.moreCard} data-more-card><MoreWorksToggle variant="card" open={t.moreWorks.open} close={t.moreWorks.close} /></li>
+          </ul>
+          <div className={styles.moreBar} data-more-bar><MoreWorksToggle variant="button" open={t.moreWorks.open} close={t.moreWorks.close} /></div>
+          <noscript><style>{"[data-strip] li[data-more]{display:revert!important}[data-more-card],[data-more-bar]{display:none!important}"}</style></noscript>
         </div>
       </section>      <section className={styles.services} id="editorial-services" data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>{t.servicesNote}</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>{t.servicesTitle[0]}<br/>{t.servicesTitle[1]}</h2>

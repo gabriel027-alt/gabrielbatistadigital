@@ -22,7 +22,7 @@ test("Editorial reconstruction retains a complete readable mobile and motion-red
     expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
   }
   // Without motion the folder is open and the projects are one grid (no repeated copy).
-  await expect(page.locator(`${projects} > li`)).toHaveCount(16);
+  await expect(page.locator(`${projects} > li[data-work]`)).toHaveCount(16);
   await expect(page.locator('#editorial-work ul[aria-hidden]')).toHaveCount(0);
   expect(videos).toEqual([]);
   const audit = await new AxeBuilder({ page }).withTags(['wcag2a','wcag2aa','wcag21aa']).analyze();
@@ -70,7 +70,7 @@ test("No JavaScript retains original content, projects and contact without scrip
   const context=await browser.newContext({javaScriptEnabled:false,viewport:{width:390,height:844}});
   const page=await context.newPage();
   await page.goto(route);
-  await expect(page.locator(`${projects} > li`)).toHaveCount(16);
+  await expect(page.locator(`${projects} > li[data-work]`)).toHaveCount(16);
   await expect(page.locator(projects).locator('a[href$=".mp4"]')).toHaveCount(16);
   await expect(page.getByRole('heading',{name:'Uma boa ideia precisa funcionar.'})).toBeVisible();
   await expect(page.locator('a[href*="wa.me"]').first()).toHaveAttribute('href',/5538998267717/);
@@ -103,7 +103,7 @@ test('The dot opens the folder, the projects follow in a still grid, and pause r
   // The grid is still: the first card does not move while the visitor reads.
   await toGrid(page);
   await page.waitForTimeout(1200);
-  const first = page.locator(`${projects} > li`).first();
+  const first = page.locator(`${projects} > li[data-work]`).first();
   const before = await first.evaluate(el => el.getBoundingClientRect().left);
   await page.waitForTimeout(1200);
   expect(await first.evaluate(el => el.getBoundingClientRect().left)).toBe(before);
@@ -202,12 +202,12 @@ test('Selection shows the approved brands with the colors measured for each', as
   // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
   await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
   // Eight featured projects; the rest open under "Ver mais", with no count (24/11/2026: a selection, not everything).
-  const more = page.locator('#editorial-work details > summary');
-  await expect(more).toHaveText('Ver mais', { useInnerText: true });
-  await expect(page.locator(`${projects} > li:visible`)).toHaveCount(8);
+  const more = page.locator('[data-more-toggle]:visible');
+  await expect(more).toHaveText('Ver mais');
+  await expect(page.locator(`${projects} > li[data-work]:visible`)).toHaveCount(8);
   await more.click();
-  await expect(page.locator(`${projects} > li:visible`)).toHaveCount(16);
-  await expect(more).toHaveText('Mostrar menos', { useInnerText: true });
+  await expect(page.locator(`${projects} > li[data-work]:visible`)).toHaveCount(16);
+  await expect(more).toHaveText('Mostrar menos');
   const sutil = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Sutil Cirurgia Plástica' });
   await sutil.click();
   const film = page.getByRole('dialog', { name: 'Filme do projeto Sutil Cirurgia Plástica' }).locator('video');
@@ -405,7 +405,7 @@ test('On a phone every film opens in its vertical cut, as large as the screen al
   await page.goto(route);
   for (const name of ['Paddock', 'Aura', 'Orla']) {
     // Orla is under "Ver mais" since 24/11/2026.
-    if (name === 'Orla') await page.locator('#editorial-work details > summary').click();
+    if (name === 'Orla') await page.locator('[data-more-toggle]:visible').click();
     await page.getByRole('button', { name: new RegExp(`: ${name}$`) }).click();
     const video = page.locator('dialog[open] video');
     await video.evaluate(v => { (v as HTMLVideoElement).muted = true; return (v as HTMLVideoElement).play().catch(() => {}); });
@@ -413,4 +413,24 @@ test('On a phone every film opens in its vertical cut, as large as the screen al
     expect(await video.evaluate(v => v.getBoundingClientRect().width)).toBeGreaterThan(340);
     await page.keyboard.press('Escape');
   }
+});
+
+// "Ver mais" on phones (24/11/2026): the last card of the swipe row, and the rest joins the same row.
+test('On a phone "Ver mais" is the last card of the project row and opens the rest in the same row', async ({ page }) => {
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.emulateMedia({ reducedMotion: 'reduce' });
+  await page.goto(route);
+  const row = page.locator(projects);
+  const card = row.locator('> li:last-child [data-more-toggle=card]');
+  await expect(card).toHaveText('Ver mais');
+  await expect(page.locator('[data-more-toggle=button]')).toBeHidden();
+  await expect(row.locator('> li[data-work]:visible')).toHaveCount(8);
+  // The card sits on the same line as the projects, to the right of the eighth.
+  const [eighth, last] = [await row.locator('> li[data-work]').nth(7).boundingBox(), await row.locator('> li:last-child').boundingBox()];
+  expect(Math.abs(last!.y - eighth!.y)).toBeLessThan(4);
+  expect(last!.x).toBeGreaterThan(eighth!.x);
+  await card.click();
+  await expect(row.locator('> li[data-work]:visible')).toHaveCount(16);
+  await expect(card).toHaveText('Mostrar menos');
+  await expect(card).toHaveAttribute('aria-expanded', 'true');
 });
