@@ -521,7 +521,7 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar casais de propaganda, com sorrisos largos e roupas combinando. O alvo é um casal comum, sereno, com roupas do dia a dia.
 
-## Elo montada (23/11/2026, aguarda a avaliação do usuário)
+## Elo montada (23/11/2026, aprovada pelo usuário no mesmo dia)
 
 - **Onde está:** `/modelos/fertilidade`. Conteúdo em `lib/elo.ts` e kit `elo` em `lib/brand-kits.ts` (status: em construção).
 - **Fotos:** as cinco fotos do usuário (trilha, mãos, banco, caderno e médica), ampliadas com o Real-ESRGAN (80% IA e 20% original). A foto do banco é recortada pelo CSS para deixar de fora um logotipo no tênis.
@@ -549,7 +549,7 @@ Observação: imagens geradas tendem a dar casais de propaganda, com sorrisos la
   - sem JS;
   - barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
-- **Fora da homepage até a aprovação dele.**
+- **Na seleção:** quarta, depois da Fio. Filmes elo-desktop.mp4 (1920×1080), elo-mobile.mp4 (1080×1920) e prévia elo-loop.mp4 (6 s, 960×768, as cinco paradas e a volta à primeira); capa elo-hero.webp.
 
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 

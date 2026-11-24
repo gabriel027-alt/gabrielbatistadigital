@@ -57,7 +57,7 @@ export const brandKits: BrandKit[] = [
     photo: "Figuras pequenas na paisagem em filme analógico pastel: o casal na trilha, as mãos na mesa, o banco da praça; nunca bebê",
     signatureGraphic: "O elo: os dois anéis do símbolo marcam as paradas do caminho e abrem as seções",
     signatureMotion: "Estático: o caminho de cinco paradas, que se acendem ao toque",
-    hero: "O casal pequeno na trilha arborizada, com o título num painel de papel sobre a folhagem desfocada", status: "em construção",
+    hero: "O casal pequeno na trilha arborizada, com o título num painel de papel sobre a folhagem desfocada", status: "aprovado",
   },
   {
     // Third static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): hair transplant, cold backlight, men of 28 to 50.
@@ -69,7 +69,7 @@ export const brandKits: BrandKit[] = [
     photo: "Contraluz frio de céu nublado; o homem de perfil e de costas: o boné, o vento no carro, o espelho; macro dos fios",
     signatureGraphic: "A linha frontal: a curva do símbolo sob os títulos",
     signatureMotion: "Estático: o mapa da cabeça vista de cima, com as áreas que acendem ao toque",
-    hero: "Homem de perfil contra o céu nublado, segurando o boné, com o título no céu à esquerda", status: "em construção",
+    hero: "Homem de perfil contra o céu nublado, segurando o boné, com o título no céu à esquerda", status: "aprovado",
   },
   {
     // Second static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): refractive surgery, first-person high-key photography.
@@ -81,7 +81,7 @@ export const brandKits: BrandKit[] = [
     photo: "Ponto de vista de quem acorda, em luz branca muito clara; macro da íris; mergulho de olhos abertos; óculos na gaveta",
     signatureGraphic: "A tabela de leitura: títulos em maiúsculas cujas linhas diminuem como as de um exame de vista",
     signatureMotion: "Estático: o foco ao toque, fotos que saem do desfoque ao tocar ou passar o mouse",
-    hero: "O quarto ao amanhecer visto da cama, com o despertador e o óculos, e o título na parede branca", status: "em construção",
+    hero: "O quarto ao amanhecer visto da cama, com o despertador e o óculos, e o título na parede branca", status: "aprovado",
   },
   {
     // First static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): the signature is a composition, not a scroll scene.
@@ -93,7 +93,7 @@ export const brandKits: BrandKit[] = [
     photo: "Almoço de família com flash direto, como editorial de gastronomia: mesa vista de cima, mordida na maçã, risada à mesa",
     signatureGraphic: "A mordida: três marcas de dente em arco recortadas do canto das fotos e dos cartões",
     signatureMotion: "Estático: o cardápio de tratamentos com o que cada um devolve, e sinais que se acendem ao toque",
-    hero: "Cartão arredondado com a mesa vista de cima, título sobre o linho e a mordida no canto", status: "em construção",
+    hero: "Cartão arredondado com a mesa vista de cima, título sobre o linho e a mordida no canto", status: "aprovado",
   },
   {
     id: "forma", route: "/modelos/odontologia", niche: "Odontologia estética e implantes",
@@ -170,6 +170,6 @@ export const brandKits: BrandKit[] = [
     photo: "Aérea zenital da fazenda e retratos ambientais ao meio-dia, céu limpo, sem dourado",
     signatureGraphic: "Contornos de talhão como mapa de GPS de colheita, com a legenda do mapa",
     signatureMotion: "Os talhões se acendem: a câmera passa de talhão em talhão sobre a foto aérea e cada um acende com uma situação",
-    hero: "Foto aérea da fazenda em tela cheia com a legenda do mapa carregando o título", status: "em construção",
+    hero: "Foto aérea da fazenda em tela cheia com a legenda do mapa carregando o título", status: "aprovado",
   },
 ];
