@@ -63,7 +63,7 @@ export const brandKits: BrandKit[] = [
     photo: "Seis quadrados do dia, vistos de cima, como uma tira de filme: materiais, lanche, horta e pés no pátio; cores vivas, sem rostos de crianças",
     signatureGraphic: "A ponte: o traço curvo liga a frase em português à mesma frase em inglês",
     signatureMotion: "Estático: o dia em duas línguas, cinco momentos com as duas frases lado a lado",
-    heroLayout: "tipografico", hero: "Bom dia e Good morning em letras monumentais, sobre uma tira de seis fotos quadradas do dia", status: "em construção",
+    heroLayout: "tipografico", hero: "Bom dia e Good morning em letras monumentais, sobre uma tira de seis fotos quadradas do dia", status: "aprovado",
   },
   {
     // Seventh static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bespoke jeweller; palette measured on the photos.

@@ -30,6 +30,7 @@ const brandFilm = (id: string, name: string, label: string, niche: string) => ({
   contact: buildWhatsAppUrl(`Olá, Gabriel! Vi o filme da ${name} no seu portfólio e quero conversar sobre um site para ${niche}.`),
 });
 export const brandFilms = {
+  ponte: brandFilm("ponte", "Ponte Escola Bilíngue", "minha escola", "a minha escola"),
   lavra: brandFilm("lavra", "Lavra Joalheria", "minha joalheria", "a minha joalharia"),
   vao: brandFilm("vao", "Vão Arquitetura e Interiores", "meu escritório de arquitetura", "o meu atelier de arquitetura"),
   eixo: brandFilm("eixo", "Eixo Ortopedia", "minha clínica de ortopedia", "a minha clínica de ortopedia"),

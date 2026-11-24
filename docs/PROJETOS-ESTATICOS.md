@@ -913,7 +913,7 @@ Regras comuns a todas: Fotografia realista vista de cima, com a câmera apontada
 
 Observação: imagens geradas tendem a dar cores de plástico e objetos de catálogo perfeitamente alinhados. O alvo é uma escola de verdade, com materiais naturais e um pouco de bagunça de uso.
 
-## Ponte montada (24/11/2026, aguarda a avaliação do usuário)
+## Ponte montada (24/11/2026, aprovada pelo usuário no mesmo dia)
 
 - **Onde está:** `/modelos/escola`. Conteúdo em `lib/ponte.ts` e kit `ponte` em `lib/brand-kits.ts` (status: em construção, `heroLayout` tipográfico).
 - **Primeira marca pela regra "Topo e conjunto de fotos" do design system:** topo tipográfico, seis fotos quadradas vistas de cima, nenhum retrato e nenhuma área vazia para título.
@@ -932,7 +932,7 @@ Observação: imagens geradas tendem a dar cores de plástico e objetos de catá
 - **Cuidado de conteúdo:** nenhum rosto de criança. O teste confere que a página não tem R$, fluência prometida, aprovação, certificação, número de alunos, depoimento nem garantia.
 - **Testes** (`tests/e2e/ponte-model.spec.ts`, 3 testes): a saudação nas duas línguas, quem responde, a tira na primeira tela, os seis momentos, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
-- **Fora da homepage até a aprovação dele.**
+- **Na seleção:** oitava, depois da Lavra. Filmes `ponte-desktop.mp4` (1920×1080), `ponte-mobile.mp4` (1080×1920) e prévia `ponte-loop.mp4` (6 s, 960×768: o topo com a tira, o dia em duas línguas, as idades e a volta ao topo); capa `ponte-hero.webp`.
 
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
