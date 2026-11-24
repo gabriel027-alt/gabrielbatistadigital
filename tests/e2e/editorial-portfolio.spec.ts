@@ -199,8 +199,11 @@ test('Selection shows the approved brands with the colors measured for each', as
     await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
   await expect(page.locator(`${projects} dl`)).toHaveCount(14);
-  // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
-  await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
+  // Each brand has its film; only the eight featured ones also link to their site, in a new tab (24/11/2026).
+  const sites = page.locator(`${projects} a[href^="/modelos/"], ${projects} a[href^="/propostas/"]`);
+  await expect(sites).toHaveCount(8);
+  for (const link of await sites.all()) { await expect(link).toHaveAttribute('target', '_blank'); await expect(link).toHaveAttribute('rel', /noopener/); }
+  await expect(page.locator(`${projects} li[data-more] a[href^="/modelos/"]`)).toHaveCount(0);
   // Eight featured projects; the rest open under "Ver mais", with no count (24/11/2026: a selection, not everything).
   const more = page.locator('[data-more-toggle]:visible');
   await expect(more).toHaveText('Ver mais');

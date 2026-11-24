@@ -6,6 +6,10 @@
 const hideReviewRoutes = process.env.VERCEL_ENV === "production" || process.env.HIDE_REVIEW_ROUTES === "1";
 /** Taken offline on 12/11/2026 by the user's decision while the projects are rebuilt. Set to false to publish again. */
 const siteOffline = hideReviewRoutes && true;
+/** The brand sites the homepage links to ("Ver o site"); the only model and proposal pages public in production. */
+const publicSites = Object.values(require("./lib/public-brand-sites.json"));
+/** The page names under a prefix that stay public, as a regex alternation that matches the whole segment. */
+const except = prefix => `(?:${publicSites.filter(path => path.startsWith(prefix)).map(path => path.slice(prefix.length)).join("|")})$`;
 
 /** @type {import('next').NextConfig} */
 const nextConfig = {
@@ -19,16 +23,19 @@ const nextConfig = {
     if (siteOffline) return [{ source: "/((?!em-breve|_next|images|icon|favicon|robots\\.txt).*)", destination: "/em-breve", permanent: false }];
     if (!hideReviewRoutes) return [];
     return [
-      // The approved brands are shown only as films on the homepage (user decision, 13/11/2026), so no model page is public.
+      // Since 24/11/2026 (the user's request) the featured brands have "Ver o site" on the homepage, so those pages are
+      // public (lib/public-brand-sites.json); every other model and proposal still goes home.
       { source: "/modelos", destination: "/", permanent: false },
-      { source: "/modelos/:path*", destination: "/", permanent: false },
+      { source: `/modelos/:path((?!${except("/modelos/")}).*)`, destination: "/", permanent: false },
       { source: "/conceitos/:path*", destination: "/", permanent: false },
       { source: "/propostas", destination: "/", permanent: false },
-      { source: "/propostas/:path*", destination: "/", permanent: false },
+      { source: `/propostas/:path((?!${except("/propostas/")}).*)`, destination: "/", permanent: false },
     ];
   },
   async headers() {
     return [
+      // The brand sites are portfolio pieces, not real businesses: kept out of search results.
+      ...publicSites.map(source => ({ source, headers: [{ key: "X-Robots-Tag", value: "noindex, nofollow" }] })),
       {
         source: "/(.*)",
         headers: [

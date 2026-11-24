@@ -608,3 +608,7 @@
 .work{z-index:3;border-radius:34px 34px 0 0;background:var(--paper);box-shadow:0 -26px 60px #00000080}
 .hook{border-radius:0;box-shadow:none}
 @media(max-width:700px){.work{border-radius:26px 26px 0 0}}
+
+/* "Ver o site" on the featured cards (24/11/2026): a quiet underlined link under the benefit, 44 px tall to tap. */
+.visitSite{display:inline-flex;align-items:center;gap:6px;min-height:44px;align-self:flex-start;color:inherit;font-weight:700;font-size:14px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
+.visitSite:hover,.visitSite:focus-visible{text-decoration-thickness:2px}

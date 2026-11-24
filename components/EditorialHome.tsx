@@ -20,6 +20,7 @@ import { ConsentBanner, ConsentPreferences } from "@/components/ConsentBanner";
 import { privacyCopy } from "@/lib/privacy-copy";
 import { contactUrl, homeCopy, localeInfo, type Locale } from "@/lib/i18n";
 import type { FilmId } from "@/lib/project-films";
+import publicSites from "@/lib/public-brand-sites.json";
 import styles from "@/app/editorial.module.css";
 
 /**
@@ -81,10 +82,13 @@ export function EditorialHome({ locale }: { locale: Locale }) {
   /** One project of the grid: the top of its site, the film on click and the short preview on hover. */
   const project = (work: Work, more = false) => {
     const data = work.kit ? kit(work.kit) : undefined;
+    const site = (publicSites as Record<string, string>)[work.id];
     return <li key={work.name} className={styles.stripItem} data-work={work.id} data-more={more || undefined}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
       <div className={styles.stripCaption}><div><h3>{work.name}</h3><span>{t.sectors[work.id]}</span></div>
         {/* What the site does for the business, before the designer's data (22/11/2026). */}
         <p className={styles.benefit}>{t.benefits[work.id]}</p>
+        {/* The featured brands open their own site too (24/11/2026); the film stays on the card. */}
+        {site && <a className={styles.visitSite} href={site} target="_blank" rel="noopener noreferrer">{t.visitSite}<span className={styles.sr}>: {work.name}</span> <Arrow size={14}/></a>}
         {data && <dl className={styles.spec}><div><dt className={styles.sr}>{t.specFont}</dt><dd>{data.typography.display}</dd></div><div><dt className={styles.sr}>{t.specColors}</dt><dd className={styles.swatches}>{Object.values(data.palette).map(hex => <span key={hex} style={{ background: hex }} title={hex}><i>{hex}</i></span>)}</dd></div></dl>}
       </div></li>;
   };
