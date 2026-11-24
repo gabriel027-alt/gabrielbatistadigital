@@ -638,6 +638,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
     - no roteiro local.
     - Sem CRO, formação, anos de experiência, números, depoimentos, prazos ou preços.
   - Também autorizado: **Beatriz Sallum, oftalmologista**, para a **Nítida** (cirurgia refrativa), a segunda marca estática. Mesmas restrições.
+- **Elo** (medicina reprodutiva), proposta em `docs/PROJETOS-ESTATICOS.md`. **Luísa Andrade, médica**: nome autorizado pelo usuário em 23/11/2026, com as mesmas restrições. Aguarda as fotos dele. Cuidado mais rígido do portfólio: sem taxa de sucesso, promessa de gravidez ou foto de bebê, barriga ou teste.
 - **Fio** (`/modelos/capilar`, transplante capilar, Daniel Arruda, médico), **aprovada pelo usuário em 23/11/2026** e posta em terceiro na seleção: Cerne, Nítida, Fio, Lume, Arrimo, Paddock, Talhão, Sutil, Casa Brisa, Aura e Orla.
   - Assinaturas: a linha frontal e o mapa da cabeça (`HeadMap`).
   - Promessa: "quando a avaliação indica"; "nem todo caso é cirurgia". Sem "para sempre", densidade, número de enxertos ou antes/depois.

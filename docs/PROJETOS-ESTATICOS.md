@@ -480,7 +480,7 @@ Observação: imagens geradas tendem a dar cabelo perfeito demais ou calvície e
   - quem está buscando (casal ou sozinha);
   - em que momento está (começando a tentar, tentando há mais de um ano, pensando em congelar óvulos, já fez tratamento);
   - para quando quer a primeira consulta.
-- **Quem responde** (regra "Clareza"): a médica com nome, se o usuário autorizar, ou a recepção pelo papel. Sugestão de nome: **Luísa Andrade, médica**.
+- **Quem responde** (regra "Clareza"): **Luísa Andrade, médica**, nome autorizado pelo usuário em 23/11/2026, sem "especialista". Aparece no topo, em primeira pessoa e no roteiro; a recepção responde e marca a primeira consulta.
 
 ### Parâmetros de fotografia
 
