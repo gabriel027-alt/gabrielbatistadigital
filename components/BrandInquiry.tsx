@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -147,6 +147,21 @@ const content: Record<Brand, Content> = {
     next: "Na primeira conversa, a Marina entende a situação, lê os contratos e explica quais caminhos a lei prevê para o seu caso, com os limites de cada um. Nenhuma decisão é tomada antes disso.",
     invitation: "A primeira conversa", stepNames: ["A situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como e quando?"],
     summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense no que mais pesa hoje na fazenda e em como prefere a primeira conversa.",
+  },
+  // Fio (hair transplant): the area, how long and when; no health data, no photos, no appointment made.
+  fio: {
+    name: "Fio", title: "Vamos preparar a sua avaliação.",
+    intro: "Três escolhas rápidas, sem fotos nem dados de saúde. A recepção responde e marca a avaliação com o Daniel.", action: "Agendar avaliação",
+    steps: [
+      [{ key: "area", label: "Onde mais incomoda?", options: ["Entradas", "Linha frontal", "Meio", "Coroa", "Ainda não sei dizer"] }],
+      [
+        { key: "tempo", label: "Há quanto tempo você percebe?", options: ["Menos de um ano", "De um a cinco anos", "Mais de cinco anos"] },
+        { key: "quando", label: "Para quando você pensa em resolver?", options: ["O quanto antes", "Nos próximos meses", "Ainda estou pesquisando"] },
+      ],
+    ],
+    next: "A recepção marca a avaliação e envia as orientações. Na avaliação, o Daniel examina a área doadora, entende como a queda está evoluindo e diz com franqueza se o transplante é indicado agora. Você decide depois.",
+    invitation: "Tirar o boné começa aqui.", stepNames: ["A área", "O momento"], stepTitles: ["Por onde começamos?", "Há quanto tempo, e para quando?"],
+    summaryTitle: "Sua avaliação, preparada.", noscript: "Para a avaliação, pense na área que mais incomoda, há quanto tempo percebe a queda e para quando quer resolver.",
   },
   // Nítida (refractive surgery): what the person uses today, what bothers most and when; no degree or health data.
   nitida: {

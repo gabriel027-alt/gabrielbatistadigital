@@ -46,3 +46,11 @@
 .nitida .dialog{--q-bg:#f0f0f1;--q-ink:#24201f;--q-accent:#8e512c;--q-border:#24201f40;font-family:var(--nitida-text),system-ui,sans-serif}
 .nitida .invitation h2,.nitida .body h3{font-family:var(--nitida-display),system-ui,sans-serif;font-weight:900;text-transform:uppercase;letter-spacing:.03em}
 .nitida .steps li{opacity:1;color:#5d5857}.nitida .steps li[aria-current=step]{color:#24201f}
+/* Fio (transplante capilar): céu nublado, ardósia e grafite, medidos nas fotos de 23/11/2026. */
+.fio{--q-bg:#34393e;--q-ink:#e0e3e9;--q-accent:#e0e3e9;--q-border:#e0e3e94d;font-family:var(--fio-text),system-ui,sans-serif}
+.fio :is(.launch,.primary){color:#1f1e1f;border-radius:6px;font-family:var(--fio-display),system-ui,sans-serif;font-weight:700}
+.fio .back{border-radius:6px}
+.fio .dialog{--q-bg:#e0e3e9;--q-ink:#1f1e1f;--q-accent:#1f1e1f;--q-border:#1f1e1f40;font-family:var(--fio-text),system-ui,sans-serif}
+.fio .dialog :is(.launch,.primary){color:#e0e3e9}
+.fio .invitation h2,.fio .body h3{font-family:var(--fio-display),system-ui,sans-serif;font-weight:700;letter-spacing:-.03em}
+.fio .steps li{opacity:1;color:#4c5056}.fio .steps li[aria-current=step]{color:#1f1e1f}

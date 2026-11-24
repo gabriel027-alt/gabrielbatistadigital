@@ -48,6 +48,18 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // Third static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): hair transplant, cold backlight, men of 28 to 50.
+    id: "fio", route: "/modelos/capilar", niche: "Transplante capilar",
+    concept: "Tirar o boné.", mark: "Uma linha única que desenha a curva da linha frontal do cabelo",
+    palette: { ceu: "#e0e3e9", aco: "#687887", ardosia: "#34393e", grafite: "#1f1e1f", pele: "#897268" },
+    material: "Contraluz frio de céu nublado, o halo que desenha o contorno dos fios",
+    typography: { display: "Space Grotesk", text: "IBM Plex Sans" },
+    photo: "Contraluz frio de céu nublado; o homem de perfil e de costas: o boné, o vento no carro, o espelho; macro dos fios",
+    signatureGraphic: "A linha frontal: a curva do símbolo sob os títulos",
+    signatureMotion: "Estático: o mapa da cabeça vista de cima, com as áreas que acendem ao toque",
+    hero: "Homem de perfil contra o céu nublado, segurando o boné, com o título no céu à esquerda", status: "em construção",
+  },
+  {
     // Second static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): refractive surgery, first-person high-key photography.
     id: "nitida", route: "/modelos/oftalmologia", niche: "Cirurgia refrativa",
     concept: "Acordar e já ver.", mark: "Dois círculos como uma íris, o de dentro levemente fora do centro",

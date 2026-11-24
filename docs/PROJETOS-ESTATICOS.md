@@ -404,6 +404,35 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar cabelo perfeito demais ou calvície exagerada. O alvo é um homem comum, com entradas leves. Nunca usar foto de couro cabeludo como antes/depois.
 
+## Fio montada (23/11/2026, aguarda a avaliação do usuário)
+
+- **Onde está:** `/modelos/capilar`. Conteúdo em `lib/fio.ts` e kit `fio` em `lib/brand-kits.ts` (status: em construção).
+- **Fotos:** as cinco fotos do usuário, ampliadas com o Real-ESRGAN (80% IA e 20% original, lado maior de 4800 px).
+- **Paleta medida nas fotos:**
+  - céu #e0e3e9;
+  - aço #687887;
+  - ardósia #34393e;
+  - grafite #1f1e1f;
+  - pele #897268, só nas linhas.
+  - A seção do médico usa o aço escurecido (#56636f), para o texto branco passar no contraste.
+  - O site é frio e escuro, alternando ardósia e céu, para não parecer com o branco da Nítida.
+- **Tipografia:** Space Grotesk e IBM Plex Sans.
+- **Assinaturas:**
+  - **A linha frontal:** a curva do símbolo sob os títulos.
+  - **O mapa da cabeça** (`HeadMap.tsx`): o desenho visto de cima com quatro áreas. Os botões são os controles acessíveis e o desenho repete a escolha para o mouse. Sem JS, cada área aparece explicada na lista.
+- **Quem atende:**
+  - Daniel Arruda, médico (sem "especialista"), no topo, em primeira pessoa e no roteiro;
+  - a recepção, que responde e marca a avaliação.
+- **Roteiro local:** `BrandInquiry`, marca `fio`, em três escolhas: a área, há quanto tempo e para quando. Sem fotos nem dados de saúde.
+- **Cuidado de conteúdo:** "quando a avaliação indica" e "nem todo caso é cirurgia". O teste confere que a página não diz "para sempre", "garantido" nem "definitivo".
+- **Testes** (`tests/e2e/fio-model.spec.ts`, 3 testes):
+  - promessa e quem atende;
+  - mapa;
+  - axe AA na página e no roteiro;
+  - sem JS;
+  - barra fixa e roteiro no celular de 360 px.
+- Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
+- **Fora da homepage até a aprovação dele.**
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
