@@ -685,7 +685,7 @@ Observação: imagens geradas tendem a dar idosos de propaganda de plano de saú
   - Como é cobrado? (depende do escopo; a proposta vem por escrito depois da visita)
   - Vocês atendem fora da cidade?
 - **Roteiro local** (sem endereço nem dados do imóvel): o tipo de imóvel (apartamento, casa, outro); o momento (na planta, recebendo as chaves, já morando); o que precisa (projeto completo, reforma, um ou dois ambientes); para quando quer começar.
-- **Quem responde** (regra "Clareza"): a definir com o usuário. Pode ser a arquiteta com nome autorizado por ele, ou o estúdio pelo papel ("A equipe do estúdio responde e marca a primeira conversa").
+- **Quem responde** (regra "Clareza"): **Clara Duarte, arquiteta**, nome autorizado pelo usuário em 24/11/2026 (Marina foi descartado porque a Talhão já tem a Marina Couto). Aparece no topo ("Primeira conversa com Clara Duarte, arquiteta"), em primeira pessoa na seção dela e no roteiro. Sem CAU, formação, anos de experiência, obras entregues ou prêmios.
 
 ### Parâmetros de fotografia
 
@@ -720,7 +720,7 @@ Regras: fotografia realista de interiores, sem texto legível, logotipo ou marca
 4. **O quarto (3:2, 2400×1600):**
    - O quarto do mesmo apartamento: cama baixa com roupa de linho cru, cabeceira de freijó, uma poltrona de leitura, uma luminária de piso, cortina de linho.
    - Fim da tarde, sol baixo atravessando a cortina. Perspectiva central, câmera a 1,20 m, lente 24 mm, verticais retas. Sem pessoas.
-5. **Quem responde (4:5, 2000×2500):** depende da escolha do usuário.
+5. **Clara Duarte, arquiteta (4:5, 2000×2500):** a primeira opção abaixo, escolhida pelo usuário.
    - **Se for a arquiteta:** retrato realista de uma arquiteta brasileira de cerca de 42 anos, cabelo escuro preso, camisa de linho cru, em pé junto a uma mesa grande com plantas impressas e as mesmas amostras de material. Luz de fim de tarde vinda de lado, lente 85 mm, fundo de parede de cal. Sem diplomas nem prêmios.
    - **Se for o estúdio:** a mesa de trabalho do estúdio de cima e de lado, com plantas, amostras e duas pessoas de costas conversando sobre o projeto, na mesma luz.
 
