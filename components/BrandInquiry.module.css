@@ -54,3 +54,10 @@
 .fio .dialog :is(.launch,.primary){color:#e0e3e9}
 .fio .invitation h2,.fio .body h3{font-family:var(--fio-display),system-ui,sans-serif;font-weight:700;letter-spacing:-.03em}
 .fio .steps li{opacity:1;color:#4c5056}.fio .steps li[aria-current=step]{color:#1f1e1f}
+/* Elo (medicina reprodutiva): areia, musgo e terra, medidos nas fotos de 23/11/2026. */
+.elo{--q-bg:#e4cfbc;--q-ink:#362815;--q-accent:#575f26;--q-border:#36281540;font-family:var(--elo-text),system-ui,sans-serif}
+.elo :is(.launch,.primary){color:#fff;border-radius:999px;font-weight:700}
+.elo .back{border-radius:999px}
+.elo .dialog{--q-bg:#f3ece3;--q-ink:#362815;--q-accent:#575f26;--q-border:#36281540;font-family:var(--elo-text),system-ui,sans-serif}
+.elo .invitation h2,.elo .body h3{font-family:var(--elo-display),Georgia,serif;font-weight:500;letter-spacing:-.015em}
+.elo .steps li{opacity:1;color:#5b4c3c}.elo .steps li[aria-current=step]{color:#362815}

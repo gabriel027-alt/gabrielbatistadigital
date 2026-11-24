@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -147,6 +147,21 @@ const content: Record<Brand, Content> = {
     next: "Na primeira conversa, a Marina entende a situação, lê os contratos e explica quais caminhos a lei prevê para o seu caso, com os limites de cada um. Nenhuma decisão é tomada antes disso.",
     invitation: "A primeira conversa", stepNames: ["A situação", "A conversa"], stepTitles: ["Por onde começamos?", "Como e quando?"],
     summaryTitle: "Sua conversa, preparada.", noscript: "Para começar, pense no que mais pesa hoje na fazenda e em como prefere a primeira conversa.",
+  },
+  // Elo (reproductive medicine): who is looking, where they are and when; no health data, no exam, no appointment made.
+  elo: {
+    name: "Elo", title: "Vamos preparar a primeira consulta.",
+    intro: "Três escolhas rápidas, sem precisar contar nada de saúde agora. A recepção responde e marca a consulta com a Luísa.", action: "Agendar a primeira consulta",
+    steps: [
+      [{ key: "quem", label: "Quem está buscando?", options: ["Um casal", "Eu, sozinha", "Prefiro contar na consulta"] }],
+      [
+        { key: "momento", label: "Em que momento vocês estão?", options: ["Começando a tentar", "Tentando há mais de um ano", "Pensando em congelar óvulos", "Já fizemos algum tratamento"] },
+        { key: "quando", label: "Para quando pensa na primeira consulta?", options: ["O quanto antes", "Nos próximos meses", "Ainda estou me informando"] },
+      ],
+    ],
+    next: "A recepção marca a primeira consulta e avisa quais exames trazer, se já tiver. Na consulta, a Luísa ouve a sua história, explica o que pode estar acontecendo e diz qual é o próximo passo. Você decide no seu tempo.",
+    invitation: "Um passo de cada vez.", stepNames: ["Quem busca", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
+    summaryTitle: "A primeira consulta, preparada.", noscript: "Para a primeira consulta, pense em quem está buscando, em que momento está e para quando quer conversar.",
   },
   // Fio (hair transplant): the area, how long and when; no health data, no photos, no appointment made.
   fio: {

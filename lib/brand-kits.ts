@@ -48,6 +48,18 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // Fourth static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): reproductive medicine, the strictest in content.
+    id: "elo", route: "/modelos/fertilidade", niche: "Medicina reprodutiva",
+    concept: "Um passo de cada vez.", mark: "Dois anéis finos que se cruzam",
+    palette: { areia: "#e4cfbc", folha: "#808a45", musgo: "#575f26", madeira: "#8b6644", terra: "#362815" },
+    material: "Papel de caderno e luz de manhã filtrada por folhas, em filme analógico pastel",
+    typography: { display: "Newsreader", text: "Nunito Sans" },
+    photo: "Figuras pequenas na paisagem em filme analógico pastel: o casal na trilha, as mãos na mesa, o banco da praça; nunca bebê",
+    signatureGraphic: "O elo: os dois anéis do símbolo marcam as paradas do caminho e abrem as seções",
+    signatureMotion: "Estático: o caminho de cinco paradas, que se acendem ao toque",
+    hero: "O casal pequeno na trilha arborizada, com o título num painel de papel sobre a folhagem desfocada", status: "em construção",
+  },
+  {
     // Third static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): hair transplant, cold backlight, men of 28 to 50.
     id: "fio", route: "/modelos/capilar", niche: "Transplante capilar",
     concept: "Tirar o boné.", mark: "Uma linha única que desenha a curva da linha frontal do cabelo",

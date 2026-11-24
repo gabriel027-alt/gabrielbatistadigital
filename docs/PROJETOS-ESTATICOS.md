@@ -521,6 +521,36 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar casais de propaganda, com sorrisos largos e roupas combinando. O alvo é um casal comum, sereno, com roupas do dia a dia.
 
+## Elo montada (23/11/2026, aguarda a avaliação do usuário)
+
+- **Onde está:** `/modelos/fertilidade`. Conteúdo em `lib/elo.ts` e kit `elo` em `lib/brand-kits.ts` (status: em construção).
+- **Fotos:** as cinco fotos do usuário (trilha, mãos, banco, caderno e médica), ampliadas com o Real-ESRGAN (80% IA e 20% original). A foto do banco é recortada pelo CSS para deixar de fora um logotipo no tênis.
+- **Paleta medida nas fotos:**
+  - areia #e4cfbc;
+  - folha #808a45, só em grafismo;
+  - musgo #575f26, nas chamadas;
+  - madeira #8b6644 nas linhas, e #74532f nos números pequenos, pelo contraste;
+  - terra #362815;
+  - papel #f3ece3.
+- **Tipografia:** Newsreader e Nunito Sans, dupla nova no portfólio.
+- **Assinaturas:**
+  - **Os dois anéis** do símbolo, como divisor das seções.
+  - **O caminho de cinco paradas** (`EloPath.tsx`): na horizontal no PC, na vertical no celular. Cada parada é um botão com `aria-pressed`, e a explicação aparece numa caixa com `aria-live`. Sem JS, cada parada aparece explicada.
+  - O anel interno das paradas foi retirado na conferência, porque cortava o número.
+- **Quem atende:**
+  - Luísa Andrade, médica, no topo, em primeira pessoa e no roteiro;
+  - a recepção, que responde às mensagens, marca as consultas e ajuda com a ordem dos exames.
+- **Roteiro local:** `BrandInquiry`, marca `elo`, em três escolhas: para quem, o momento e para quando. Sem nenhum dado de saúde.
+- **Cuidado de conteúdo:** sem taxa de sucesso, porcentagem, "garantido", "realize o seu sonho" ou foto de bebê, barriga ou teste. O teste confere esses termos. "Nem sempre é FIV" apresenta as possibilidades da mais simples à mais complexa.
+- **Testes** (`tests/e2e/elo-model.spec.ts`, 3 testes):
+  - promessa e quem atende;
+  - caminho;
+  - axe AA na página e no roteiro;
+  - sem JS;
+  - barra fixa e roteiro no celular de 360 px.
+- Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
+- **Fora da homepage até a aprovação dele.**
+
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
