@@ -53,17 +53,17 @@ export const brandKits: BrandKit[] = [
     heroLayout: "cena-de-rolagem", hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
-    // Eighth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bilingual school. Proposed; the palette is a direction
-    // until it is measured on the user's photos.
+    // Eighth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bilingual school; palette measured on the user's six
+    // photos.
     id: "ponte", route: "/modelos/escola", niche: "Escola bilíngue",
     concept: "Duas línguas, um mesmo dia.", mark: "Duas margens curtas ligadas por uma tábua curva, em traço grosso e arredondado",
-    palette: { gema: "#f2b632", folha: "#5e9e3e", ceu: "#9fd0ea", giz: "#fbf8f1", lousa: "#24403a" },
+    palette: { gema: "#e9a908", folha: "#3a9f55", ceu: "#59add9", papel: "#fbf7ee", terra: "#1d1a16" },
     material: "Papel colorido recortado, giz e madeira clara de mesa baixa, na luz da manhã",
     typography: { display: "Fredoka", text: "Lexend" },
     photo: "Seis quadrados do dia, vistos de cima, como uma tira de filme: materiais, lanche, horta e pés no pátio; cores vivas, sem rostos de crianças",
     signatureGraphic: "A ponte: o traço curvo liga a frase em português à mesma frase em inglês",
     signatureMotion: "Estático: o dia em duas línguas, cinco momentos com as duas frases lado a lado",
-    heroLayout: "tipografico", hero: "Bom dia e Good morning em letras monumentais, sobre uma tira de seis fotos quadradas do dia", status: "proposto",
+    heroLayout: "tipografico", hero: "Bom dia e Good morning em letras monumentais, sobre uma tira de seis fotos quadradas do dia", status: "em construção",
   },
   {
     // Seventh static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bespoke jeweller; palette measured on the photos.

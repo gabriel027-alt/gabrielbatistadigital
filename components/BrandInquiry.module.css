@@ -79,3 +79,9 @@
 .lavra .dialog{--q-bg:#120c08;--q-ink:#ece2d3;--q-accent:#d29b4f;--q-border:#ece2d33d;font-family:var(--lavra-text),system-ui,sans-serif}
 .lavra .invitation h2,.lavra .body h3{font-family:var(--lavra-display),Georgia,serif;font-weight:400;letter-spacing:-.01em}
 .lavra .steps li{opacity:1;color:#c2b29c}.lavra .steps li[aria-current=step]{color:#ece2d3}
+.ponte{--q-bg:#ffffff;--q-ink:#1d1a16;--q-accent:#1f6b35;--q-border:#1d1a1633;font-family:var(--ponte-text),system-ui,sans-serif}
+.ponte :is(.launch,.primary){color:#fff;border-radius:16px;font-weight:600}
+.ponte .back{border-radius:16px}
+.ponte .dialog{--q-bg:#fbf7ee;--q-ink:#1d1a16;--q-accent:#1f6b35;--q-border:#1d1a1633;font-family:var(--ponte-text),system-ui,sans-serif}
+.ponte .invitation h2,.ponte .body h3{font-family:var(--ponte-display),system-ui,sans-serif;font-weight:600;letter-spacing:-.01em}
+.ponte .steps li{opacity:1;color:#4f4a42}.ponte .steps li[aria-current=step]{color:#1d1a16}

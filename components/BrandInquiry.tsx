@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo" | "vao" | "lavra";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo" | "vao" | "lavra" | "ponte";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -162,6 +162,21 @@ const content: Record<Brand, Content> = {
     next: "A recepção marca a primeira consulta e avisa quais exames trazer, se já tiver. Na consulta, a Luísa ouve a sua história, explica o que pode estar acontecendo e diz qual é o próximo passo. Você decide no seu tempo.",
     invitation: "Um passo de cada vez.", stepNames: ["Quem busca", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
     summaryTitle: "A primeira consulta, preparada.", noscript: "Para a primeira consulta, pense em quem está buscando, em que momento está e para quando quer conversar.",
+  },
+  // Ponte (bilingual school): the child's age, the moment and when; no name or data about the child, no place promised.
+  ponte: {
+    name: "Ponte Escola Bilíngue", title: "Vamos preparar a sua visita.",
+    intro: "Três escolhas rápidas, sem nome nem dados da criança agora. A secretaria responde e marca a visita.", action: "Agendar uma visita",
+    steps: [
+      [{ key: "idade", label: "Qual é a idade da criança?", options: ["2 a 3 anos", "4 a 5 anos", "6 a 10 anos"] }],
+      [
+        { key: "momento", label: "Qual é o momento?", options: ["Primeira escola", "Mudança de escola", "Ainda estamos conhecendo"] },
+        { key: "quando", label: "Para quando?", options: ["Este ano", "O próximo ano", "Ainda não sei"] },
+      ],
+    ],
+    next: "A secretaria marca a visita e conta como ela funciona. Na escola, você conhece as salas, o pátio e a horta, vê um pouco do dia e recebe por escrito horários, alimentação e valores. Nenhuma vaga é prometida antes da visita.",
+    invitation: "Duas línguas, um mesmo dia.", stepNames: ["A criança", "O momento"], stepTitles: ["Por onde começamos?", "Qual é o momento?"],
+    summaryTitle: "A visita, preparada.", noscript: "Para a visita, pense na idade da criança, no momento da família e para quando.",
   },
   // Lavra (bespoke jeweller): what to make, the moment and when; no personal data, no photos of jewellery, no order made.
   lavra: {

@@ -847,7 +847,7 @@ Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
 - **Na seleção:** sétima, depois da Vão. Filmes `lavra-desktop.mp4` (1920×1080), `lavra-mobile.mp4` (1080×1920) e prévia `lavra-loop.mp4` (6 s, 960×768: o topo, do desenho à peça, as mãos do casal e a volta ao topo); capa `lavra-hero.webp`.
 
-## 8. Ponte, escola bilíngue (proposta de 24/11/2026, aguarda o usuário)
+## 8. Ponte, escola bilíngue (proposta de 24/11/2026, aprovada pelo usuário ao gerar as fotos)
 
 **Por que esse recorte:**
 - **Decisão por confiança:** os pais escolhem a quem entregar o filho todos os dias. Pesquisam por meses e visitam várias escolas.
@@ -912,6 +912,27 @@ Regras comuns a todas: Fotografia realista vista de cima, com a câmera apontada
 6. **A saída (1:1, 2000×2000):** vista de cima do pátio no fim da tarde, com as sombras compridas de um adulto e de uma criança de mãos dadas projetadas no chão de pedra e uma lancheira verde ao lado. Aqui a luz é baixa e quente.
 
 Observação: imagens geradas tendem a dar cores de plástico e objetos de catálogo perfeitamente alinhados. O alvo é uma escola de verdade, com materiais naturais e um pouco de bagunça de uso.
+
+## Ponte montada (24/11/2026, aguarda a avaliação do usuário)
+
+- **Onde está:** `/modelos/escola`. Conteúdo em `lib/ponte.ts` e kit `ponte` em `lib/brand-kits.ts` (status: em construção, `heroLayout` tipográfico).
+- **Primeira marca pela regra "Topo e conjunto de fotos" do design system:** topo tipográfico, seis fotos quadradas vistas de cima, nenhum retrato e nenhuma área vazia para título.
+- **Fotos:** as seis do usuário (chegada, roda, projeto, horta, lanche e saída), ampliadas com o Real-ESRGAN (80% IA e 20% original). Cinco vieram em 3:2; o recorte quadrado é feito na página, com o ponto de cada uma em `lib/ponte.ts` (`position`). A da saída foi refeita em 1:1, com as sombras saindo da borda de baixo.
+- **Paleta medida nas fotos:**
+  - gema #e9a908, a mochila e o regador, nas chamadas com texto escuro;
+  - folha #3a9f55, o papel verde, em grafismo (o inglês usa o verde escurecido #1f6b35, pelo contraste);
+  - céu #59add9, o papel azul;
+  - papel #fbf7ee, o fundo;
+  - terra #1d1a16, a terra da horta, no texto. O coral das almofadas aparece só nos números da visita.
+- **Tipografia:** Fredoka e Lexend.
+- **Topo:** "Bom dia." e "Good morning." monumentais, ligados pela ponte; à direita, a promessa como h1, as chamadas e quem responde; embaixo, a tira dos seis quadrados. No PC a 125%, tudo cabe na primeira tela.
+- **Assinatura, o dia em duas línguas:** seis cartões, cada um com a miniatura, a frase em português, a ponte e a mesma frase em inglês (`lang="en"`), e o que acontece no momento. Estática.
+- **Quem atende:** a secretaria, só em texto, numa faixa escura com a ponte desenhada grande.
+- **Roteiro local:** `BrandInquiry`, marca `ponte`: a idade, o momento e para quando. Sem nome nem dados da criança, e "nenhuma vaga é prometida antes da visita".
+- **Cuidado de conteúdo:** nenhum rosto de criança. O teste confere que a página não tem R$, fluência prometida, aprovação, certificação, número de alunos, depoimento nem garantia.
+- **Testes** (`tests/e2e/ponte-model.spec.ts`, 3 testes): a saudação nas duas línguas, quem responde, a tira na primeira tela, os seis momentos, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
+- Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
+- **Fora da homepage até a aprovação dele.**
 
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
