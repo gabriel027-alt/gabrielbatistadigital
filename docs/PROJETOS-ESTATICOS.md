@@ -747,6 +747,82 @@ Observação: imagens geradas tendem a dar apartamentos de catálogo, frios e va
 - **Testes** (`tests/e2e/vao-model.spec.ts`, 3 testes): quem desenha, a planta, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
 - **Na seleção:** sexta, depois da Eixo. Filmes `vao-desktop.mp4` (1920×1080), `vao-mobile.mp4` (1080×1920) e prévia `vao-loop.mp4` (6 s, 960×768: o topo, a planta da rotina, a prancha de materiais e a volta ao topo); capa `vao-hero.webp`.
+## 7. Lavra, joalheria sob medida (proposta de 24/11/2026, aguarda o usuário)
+
+**Por que esse recorte:**
+- **Consumo premium:** é o quarto grupo escolhido em `docs/MODELOS-ALTO-TICKET.md` e ainda não tem marca na seleção.
+- **Ticket alto e decisão por confiança:** alianças, anel de noivado e joias feitas a partir de uma história, compradas poucas vezes na vida e escolhidas pelo ourives, não pela vitrine.
+- **Público:** casais de 26 a 40 anos com casamento ou pedido em vista, e pessoas de 40 a 65 que querem transformar uma joia de família.
+- **Não repete ninguém:** é a primeira marca de produto feito à mão, com macro de metal e bancada de ourives.
+
+**Cuidado de conteúdo:**
+- Sem quilates, certificados, laboratórios de gemas, garantias, preços, prazos de entrega ou clientes.
+- Sem nomes de grifes ou de marcas de pedras.
+- O ouro de família é tratado como conversa ("avaliamos com você o que dá para aproveitar"), nunca como promessa de reaproveitamento.
+- Sem depoimentos de casais nem fotos de casamento real.
+
+| Campo | Proposta |
+| --- | --- |
+| 1. Conceito | **Toda joia começa por uma história.** A peça é desenhada a partir de quem vai usar e do que ela precisa lembrar, e não escolhida num catálogo. |
+| 2. Marca | **Lavra Joalheria.** "Lavrar" é trabalhar o metal à mão. O símbolo é um aro visto de lado, uma elipse fina com um pequeno corte de buril. |
+| 3. Paleta e material | Medida nas fotos quando chegarem. Direção: ouro amarelo, madeira escura da bancada, papel de desenho e um acento verde de cera de escultura. Sem o latão e a nogueira da Almeida, sem o mostarda da Vão. Material: cera, ouro bruto, papel e ferramentas. |
+| 4. Tipografia | Prata nos títulos, uma serifa de alto contraste com desenho de gravação, e Mulish no texto. Par inédito no portfólio. |
+| 5. Foto | Macro de mãos e metal sob a luz quente e pontual da lâmpada de bancada, com fundo escuro (parâmetros abaixo). |
+| 6. Elemento-assinatura | **O aro:** a elipse do símbolo abre as seções, e o corte de buril marca a etapa de cada parte. |
+| 7. Composição-assinatura | **Do desenho à peça:** quatro etapas lado a lado, com foto e texto: a história e o desenho, a cera, a fundição e o acabamento. Cada etapa diz o que você vê e decide nela. Estática. No celular, as etapas descem em coluna. |
+| 8. Gramática | Topo (as mãos do ourives na bancada) → "Toda joia começa por uma história" (o que se pode fazer: alianças, anel de noivado, joia de família) → do desenho à peça → as mãos do casal provando as alianças → quem faz → dúvidas → roteiro local → barra fixa no celular. |
+
+**Esqueleto de conversão:**
+- **Promessa no topo:** "Toda joia começa por uma história." Abaixo: "Alianças, anéis de noivado e joias de família desenhados e feitos à mão para quem vai usar. O primeiro passo é contar a sua."
+- **Chamada:** "Agendar uma conversa no ateliê" abre o roteiro local.
+- **O que se pode fazer:** alianças de casamento; anel de noivado; joia a partir de ouro ou pedra de família; peça para marcar uma data.
+- **Dúvidas:**
+  - Posso usar o ouro de uma joia antiga?
+  - Posso trazer uma referência?
+  - Vejo a peça antes de ficar pronta?
+  - Fazem ajuste de tamanho depois?
+  - Quanto custa? (depende do metal, das pedras e do desenho; o valor vem por escrito antes de começar)
+  - Preciso ir ao ateliê?
+- **Roteiro local** (sem dados pessoais): o que você quer fazer; o momento (casamento marcado, pedido em vista, presente, sem data); para quando.
+- **Quem responde** (regra "Clareza"): a definir com o usuário. Pode ser a ourives ou o ourives com nome autorizado por ele, ou o ateliê pelo papel.
+
+### Parâmetros de fotografia
+
+| Parâmetro | Lavra |
+| --- | --- |
+| Enredo | O fazer: as mãos do ourives na bancada, o desenho ao lado de uma aliança antiga, a cera ao lado do metal recém-fundido, as mãos de um casal provando as alianças |
+| Luz e hora | Uma única lâmpada de bancada, quente e pontual, sobre fundo escuro. Nenhuma marca usa |
+| Lente e distância | Macro de 100 mm, muito perto, profundidade de campo rasa |
+| Enquadramento | Mãos e objetos no centro, tudo o mais caindo no escuro |
+| Tratamento | Digital limpo, preto profundo e realces dourados, sem granulado |
+| Lugar | A bancada de madeira escura de um ateliê, com ferramentas antigas desfocadas |
+
+A comparação com as outras marcas dá no máximo um parâmetro parecido: o fundo escuro lembra o tour da Paddock, que é frio, de estúdio e de carro.
+
+### Pedidos de imagem (para o usuário gerar)
+
+Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maior lado com pelo menos 2400 px, a mesma bancada e as mesmas mãos do ourives nas fotos 1 e 3.
+
+1. **Topo, a bancada (16:9, 2880×1620):**
+   - Fotografia macro realista: as mãos de um ourives segurando com uma pinça um anel de ouro amarelo liso sobre uma bancada de madeira escura gasta, sob a luz quente e pontual de uma lâmpada de bancada.
+   - Ferramentas antigas (limas, alicates, um buril) desfocadas ao redor. Lente 100 mm, profundidade rasa, o anel nítido.
+   - A cena ocupa os dois terços da direita; o terço esquerdo fica quase todo no escuro, livre para o título.
+   - Preto profundo, realces dourados. Sem relógio de marca, sem anéis nos dedos do ourives.
+2. **O desenho (3:2, 2400×1600):**
+   - Vista de cima: um desenho a lápis de um anel em papel de desenho, com medidas ilegíveis, ao lado de uma aliança antiga de ouro, gasta pelo uso, e de um lápis.
+   - Luz quente e pontual vinda de um lado, o resto caindo no escuro. Lente 100 mm.
+3. **A cera e o metal (3:2, 2400×1600):**
+   - Na mesma bancada, um anel esculpido em cera verde ao lado do mesmo anel recém-fundido em ouro bruto, ainda sem polimento, e as mãos do ourives limando outra peça ao fundo, desfocadas.
+   - Mesma luz pontual, macro 100 mm, profundidade rasa.
+4. **As alianças (3:2, 2400×1600):**
+   - As mãos de um casal, apoiadas lado a lado sobre a bancada, provando duas alianças de ouro amarelo lisas. Sem rostos, só mãos e punhos, mangas simples.
+   - Luz quente e pontual, fundo escuro, lente 100 mm. Sem flores, véu ou cenário de casamento.
+5. **Quem faz (4:5, 2000×2500):** depende da escolha do usuário.
+   - **Se for um ourives ou uma ourives com nome:** retrato realista de cerca de 45 anos, avental de lona escuro, uma lupa de ourives presa à cabeça, levantada, sentado à bancada, olhando para a câmera com calma. Luz quente da lâmpada de bancada vinda de lado, fundo escuro, lente 85 mm. Sem diplomas, sem vitrine de loja.
+   - **Se for o ateliê:** a bancada inteira vista de lado, com as ferramentas, a lâmpada acesa e uma pessoa de costas trabalhando, na mesma luz.
+
+Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais e sobre fundo branco. O alvo é ouro com marcas de trabalho, ferramentas gastas e uma luz só.
+
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
