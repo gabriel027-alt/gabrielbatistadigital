@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo" | "vao";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -163,7 +163,21 @@ const content: Record<Brand, Content> = {
     invitation: "Um passo de cada vez.", stepNames: ["Quem busca", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
     summaryTitle: "A primeira consulta, preparada.", noscript: "Para a primeira consulta, pense em quem está buscando, em que momento está e para quando quer conversar.",
   },
-  // Eixo (orthopedics): the area, what gets in the way and since when; no health data, no exams, no appointment made.
+  // Vão (architecture and interiors): the property, the moment and what is needed; no address or property data.
+  vao: {
+    name: "Vão Arquitetura e Interiores", title: "Vamos preparar a primeira conversa.",
+    intro: "Três escolhas rápidas, sem endereço nem planta agora. A Clara responde e marca a conversa.", action: "Agendar a primeira conversa",
+    steps: [
+      [{ key: "imovel", label: "Qual é o imóvel?", options: ["Apartamento", "Casa", "Outro espaço"] }],
+      [
+        { key: "momento", label: "Em que momento você está?", options: ["Comprando ou na planta", "Recebendo as chaves", "Já moro e quero reformar"] },
+        { key: "escopo", label: "O que você precisa?", options: ["A casa inteira", "Uma reforma", "Um ou dois ambientes", "Ainda não sei"] },
+      ],
+    ],
+    next: "A Clara marca a primeira conversa, sobre a sua rotina e o que você quer da casa. Depois vem a visita ao imóvel, e a proposta chega por escrito antes de qualquer decisão.",
+    invitation: "A casa começa pela rotina.", stepNames: ["O imóvel", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
+    summaryTitle: "A primeira conversa, preparada.", noscript: "Para a primeira conversa, pense no imóvel, no momento em que você está e no que precisa.",
+  },  // Eixo (orthopedics): the area, what gets in the way and since when; no health data, no exams, no appointment made.
   eixo: {
     name: "Eixo Ortopedia", title: "Vamos preparar a sua avaliação.",
     intro: "Três escolhas rápidas, sem exames nem dados de saúde agora. A recepção responde e marca a avaliação.", action: "Agendar avaliação",

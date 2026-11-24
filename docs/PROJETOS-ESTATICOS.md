@@ -649,7 +649,7 @@ Observação: imagens geradas tendem a dar idosos de propaganda de plano de saú
 - **Testes** (`tests/e2e/eixo-model.spec.ts`, 3 testes): quem responde, a escada subindo, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
 - **Na seleção:** quinta, depois da Elo. Filmes `eixo-desktop.mp4` (1920×1080), `eixo-mobile.mp4` (1080×1920) e prévia `eixo-loop.mp4` (6 s, 960×768: o topo, a escada, o eixo aceso e a volta ao topo); capa `eixo-hero.webp`. Abaixo de 1100 px o texto do topo ganha painel claro, porque passava sobre os degraus.
-## 6. Vão, arquitetura e interiores (proposta de 24/11/2026, aguarda o usuário)
+## 6. Vão, arquitetura e interiores (proposta de 24/11/2026, aprovada pelo usuário ao gerar as fotos)
 
 **Por que esse recorte:**
 - **Equilíbrio da seleção:** 8 dos 13 projetos são de saúde. Um estúdio de arquitetura mostra que o portfólio serve a qualquer negócio escolhido pela confiança.
@@ -726,6 +726,27 @@ Regras: fotografia realista de interiores, sem texto legível, logotipo ou marca
 
 Observação: imagens geradas tendem a dar apartamentos de catálogo, frios e vazios, ou cheios de objetos de decoração. O alvo é uma casa onde se mora: poucos objetos, todos com uso, e a luz como protagonista.
 
+## Vão montada (24/11/2026, aguarda a avaliação do usuário)
+
+- **Onde está:** `/modelos/arquitetura`. Conteúdo em `lib/vao.ts` e kit `vao` em `lib/brand-kits.ts` (status: em construção).
+- **Fotos:** as cinco fotos do usuário (sala, cozinha, prancha de materiais, quarto e Clara), ampliadas com o Real-ESRGAN (80% IA e 20% original). Originais em `public/images/vao/original/`.
+- **Paleta medida nas fotos,** sob a luz da tarde, que escurece e esquenta tudo:
+  - travertino #c69f77, a amostra de pedra;
+  - freijó #723806, o painel, nas chamadas (texto branco passa no contraste);
+  - mostarda #9d6420, o tecido, a única cor forte;
+  - tinta #342312, a madeira mais escura, no texto;
+  - a página usa a cal (#f5efe6) e o linho (#ebe1d2) clareados.
+- **Tipografia:** Gilda Display e Hanken Grotesk.
+- **Topo:** dividido, com o texto numa coluna de cal à esquerda e a sala à direita. A parede lisa da foto era estreita demais para o título passar por cima sem cruzar o painel escuro. O recorte mostra a poltrona mostarda.
+- **Assinaturas:**
+  - **As amostras:** cinco quadrados de material abrem as seções; na prancha, cada um tem o porquê da escolha.
+  - **A planta da rotina** (`RoutinePlan.tsx`): a planta desenhada em linha, com portas, janelas, a cozinha aberta tracejada e um horário em cada ambiente; ao lado, os seis momentos e o que o projeto resolve. O desenho repete a lista para o olho e fica escondido dos leitores de tela. Estática.
+- **Quem atende:** Clara Duarte, arquiteta, no topo, em primeira pessoa e no roteiro. Ela responde e marca a primeira conversa.
+- **Roteiro local:** `BrandInquiry`, marca `vao`: o imóvel, o momento e o que precisa. Sem endereço nem planta.
+- **Cuidado de conteúdo:** o teste confere que a página não tem R$, m², CAU, prêmio, obras entregues, clientes atendidos nem prazos.
+- **Testes** (`tests/e2e/vao-model.spec.ts`, 3 testes): quem desenha, a planta, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px.
+- Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
+- **Fora da homepage até a aprovação dele.**
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.

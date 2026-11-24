@@ -67,3 +67,9 @@
 .eixo .dialog{--q-bg:#f2f1ee;--q-ink:#2d303f;--q-accent:#0f3bb6;--q-border:#2d303f40;font-family:var(--eixo-text),system-ui,sans-serif}
 .eixo .invitation h2,.eixo .body h3{font-family:var(--eixo-display),system-ui,sans-serif;font-weight:700;font-stretch:88%;letter-spacing:-.02em}
 .eixo .steps li{opacity:1;color:#5f574d}.eixo .steps li[aria-current=step]{color:#2d303f}
+.vao{--q-bg:#ebe1d2;--q-ink:#342312;--q-accent:#723806;--q-border:#34231240;font-family:var(--vao-text),system-ui,sans-serif}
+.vao :is(.launch,.primary){color:#fff;border-radius:2px;font-weight:700}
+.vao .back{border-radius:2px}
+.vao .dialog{--q-bg:#f5efe6;--q-ink:#342312;--q-accent:#723806;--q-border:#34231240;font-family:var(--vao-text),system-ui,sans-serif}
+.vao .invitation h2,.vao .body h3{font-family:var(--vao-display),Georgia,serif;font-weight:400;letter-spacing:-.01em}
+.vao .steps li{opacity:1;color:#6b5034}.vao .steps li[aria-current=step]{color:#342312}
