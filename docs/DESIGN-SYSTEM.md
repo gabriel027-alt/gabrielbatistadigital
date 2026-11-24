@@ -149,6 +149,42 @@ A linha comum fica em `components/brand/WhoAnswers.tsx`. Na Forma e na Toca ela 
 
 A tabela e os primeiros usos estão em `docs/NOVOS-PROJETOS-REGISTROS.md`.
 
+## Topo e conjunto de fotos: contra a fórmula (regra de 24/11/2026)
+
+**Pedido do usuário:** ele percebeu um padrão de 5 fotos e de direção de foto nas marcas estáticas.
+
+**O que foi conferido:**
+- Cerne, Nítida, Fio, Elo, Eixo, Vão e Lavra pediram sempre 5 fotos, na mesma receita: um topo 16:9, três detalhes e um retrato 4:5 de quem responde.
+- Em 6 dessas 7, o título fica sobre uma área vazia à esquerda da foto do topo. Todo prompt de topo pedia "o terço esquerdo vazio para o título". Nas 18 marcas, são 7 topos assim.
+- Mãos em detalhe e pessoas de costas se repetiam de marca em marca, e o retrato sempre virava a seção "quem responde", com foto de um lado e texto do outro.
+- O teste contra repetição não via isso, porque comparava o texto da descrição do topo, e não a composição.
+- A luz e a lente variavam de verdade. Paletas, fontes e assinaturas também. O esqueleto de conversão é igual de propósito (Camada 3).
+
+**Catálogo de topos** (`heroLayout` em `lib/brand-kits.ts`):
+
+| Formato | O que é | Marcas |
+| --- | --- | --- |
+| `texto-sobre-foto` | Foto em tela cheia, título sobre uma área lisa dela | Forma, Almeida, Toca, Nítida, Fio, Eixo, Lavra |
+| `painel-sobre-foto` | Foto em tela cheia, título num painel sobre ela | Elo |
+| `dividido` | Texto numa coluna e foto na outra, lado a lado | Arrimo, Vão |
+| `cartao` | A foto num cartão recortado, com o texto em volta | Cerne |
+| `faixa` | Foto em faixa larga e o texto inteiro embaixo | Sutil |
+| `cena-de-rolagem` | O topo é o começo de uma cena ligada à rolagem | Paddock, Lume, Talhão, Casa Brisa, Vanguard |
+| `tipografico` | Título monumental como protagonista, imagens pequenas ou nenhuma | Ponte |
+| `mosaico` | Várias fotos de tamanhos diferentes formam o topo | livre |
+| `vertical-central` | Uma foto vertical estreita no centro, texto dos dois lados | livre |
+
+**As regras:**
+- Uma marca nova usa um formato que no máximo uma marca aprovada usa. O `texto-sobre-foto` está fechado para marcas novas. O teste `tests/e2e/brand-kits.spec.ts` confere as duas coisas.
+- O número e o formato das fotos vêm da história da marca, não de uma receita: de 3 a 8, em qualquer proporção. O retrato de quem responde não é obrigatório; a recepção, o ateliê ou a secretaria podem aparecer só no texto.
+- A direção de foto varia também na composição, não só na luz e na lente: rosto ou anonimato, gente ou objeto, horizontal, vertical ou quadrado, cor ou preto e branco, perto ou longe.
+- Antes de pedir fotos, definir o formato do topo, quantas fotos e em que proporção, e quem aparece. Comparar com as três últimas marcas.
+
+**Proibido como padrão:**
+- pedir "o terço esquerdo vazio para o título";
+- o trio fixo de mão em detalhe, pessoa de costas e retrato 4:5;
+- a seção "quem responde" sempre com retrato de um lado e texto do outro.
+
 ## Régua de qualidade
 
 O peso dos critérios segue a avaliação do Awwwards: design 40%, usabilidade 30%, criatividade 20%, conteúdo 10%.

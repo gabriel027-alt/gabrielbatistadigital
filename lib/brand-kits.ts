@@ -3,6 +3,9 @@
  * Every brand fills the same fields; tests/e2e/brand-kits.spec.ts enforces that no two brands share
  * a display typeface, a palette, a signature graphic or a signature motion.
  */
+export const heroLayouts = ["texto-sobre-foto", "painel-sobre-foto", "dividido", "cartao", "faixa", "cena-de-rolagem", "tipografico", "mosaico", "vertical-central"] as const;
+export type HeroLayout = (typeof heroLayouts)[number];
+
 export type BrandKit = {
   id: string;
   route: string;
@@ -15,6 +18,8 @@ export type BrandKit = {
   photo: string;
   signatureGraphic: string;
   signatureMotion: string;
+  /** The composition of the top, from the catalogue in docs/DESIGN-SYSTEM.md (24/11/2026). */
+  heroLayout: HeroLayout;
   hero: string;
   status: "aprovado" | "em construção" | "proposto";
 };
@@ -25,7 +30,7 @@ export const brandKits: BrandKit[] = [
     material: "Instrumentos de inspeção, registros do laudo e linhas do tablet de diagnóstico", typography: { display: "Unbounded", text: "Sora" },
     photo: "Macros de pintura, pneu, suspensão e scanner iluminados durante a inspeção de carros sem logotipo",
     signatureGraphic: "Linha de leitura com marcações de pintura, quilometragem, revisões e histórico", signatureMotion: "A dúvida no escuro dá lugar ao laudo: a leitura deixa verificações no carro e se desfaz no retorno",
-    hero: "Todo seminovo parece perfeito no escuro. Nós acendemos a luz.", status: "aprovado" },
+    heroLayout: "cena-de-rolagem", hero: "Todo seminovo parece perfeito no escuro. Nós acendemos a luz.", status: "aprovado" },
   {
     id: "arrimo", route: "/modelos/previdenciario", niche: "Advocacia previdenciária",
     concept: "Cada ano trabalhado conta.", mark: "Duas vigas se apoiam e uma travessa forma o A da Arrimo",
@@ -35,7 +40,7 @@ export const brandKits: BrandKit[] = [
     photo: "Retrato frontal de autoridade com luz dura; mãos calejadas com documentos, preto e branco de fotojornalismo",
     signatureGraphic: "Régua dos períodos de trabalho, com lacunas e carimbo de análise",
     signatureMotion: "O tempo se soma: vínculos entram, lacunas recebem ligações em ouro e NEGADO vira EM ANÁLISE",
-    hero: "Retrato preto e branco à direita, título condensado de autoridade sobre o carvão à esquerda", status: "aprovado",
+    heroLayout: "dividido", hero: "Retrato preto e branco à direita, título condensado de autoridade sobre o carvão à esquerda", status: "aprovado",
   },
   {
     id: "vanguard", route: "/propostas/vanguard", niche: "Arquitetura",
@@ -45,7 +50,7 @@ export const brandKits: BrandKit[] = [
     photo: "Arquitetura, terreno e maquete no mesmo enquadramento",
     signatureGraphic: "Linhas medidas sobre a fotografia",
     signatureMotion: "Desenho técnico que vira fotografia; terreno, traço, maquete e casa",
-    hero: "Folha em branco que recebe o desenho", status: "em construção",
+    heroLayout: "cena-de-rolagem", hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
     // Eighth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bilingual school. Proposed; the palette is a direction
@@ -55,10 +60,10 @@ export const brandKits: BrandKit[] = [
     palette: { gema: "#f2b632", folha: "#5e9e3e", ceu: "#9fd0ea", giz: "#fbf8f1", lousa: "#24403a" },
     material: "Papel colorido recortado, giz e madeira clara de mesa baixa, na luz da manhã",
     typography: { display: "Fredoka", text: "Lexend" },
-    photo: "Manhã clara com a câmera na altura da criança: a chegada pelo pátio, as mãos na atividade, a roda de história, a horta; nunca rostos em destaque",
+    photo: "Seis quadrados do dia, vistos de cima, como uma tira de filme: materiais, lanche, horta e pés no pátio; cores vivas, sem rostos de crianças",
     signatureGraphic: "A ponte: o traço curvo liga a frase em português à mesma frase em inglês",
     signatureMotion: "Estático: o dia em duas línguas, cinco momentos com as duas frases lado a lado",
-    hero: "As crianças de costas chegando pelo pátio, com o título sobre a parede lisa à esquerda", status: "proposto",
+    heroLayout: "tipografico", hero: "Bom dia e Good morning em letras monumentais, sobre uma tira de seis fotos quadradas do dia", status: "proposto",
   },
   {
     // Seventh static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): bespoke jeweller; palette measured on the photos.
@@ -70,7 +75,7 @@ export const brandKits: BrandKit[] = [
     photo: "Macro de mãos e metal sob uma única lâmpada de bancada, quente e pontual, com tudo o mais no escuro",
     signatureGraphic: "O aro: a elipse do símbolo abre as seções e o corte de buril marca a etapa",
     signatureMotion: "Estático: do desenho à peça, em quatro etapas lado a lado",
-    hero: "As mãos do ourives com o anel sob a lâmpada nos dois terços da direita, com o título no escuro à esquerda", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "As mãos do ourives com o anel sob a lâmpada nos dois terços da direita, com o título no escuro à esquerda", status: "aprovado",
   },
   {
     // Sixth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): architecture and interiors; palette measured on the photos.
@@ -82,7 +87,7 @@ export const brandKits: BrandKit[] = [
     photo: "Interiores em perspectiva central, verticais retas e sol baixo do fim da tarde riscando piso e paredes",
     signatureGraphic: "As amostras: quadrados de material marcam as seções, como uma prancha de materiais",
     signatureMotion: "Estático: a planta da rotina, com um momento do dia em cada ambiente",
-    hero: "A sala em perspectiva central na luz da tarde à direita, com o título na coluna de cal à esquerda", status: "aprovado",
+    heroLayout: "dividido", hero: "A sala em perspectiva central na luz da tarde à direita, com o título na coluna de cal à esquerda", status: "aprovado",
   },
   {
     // Fifth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): orthopedics; palette measured on the user's five photos.
@@ -94,7 +99,7 @@ export const brandKits: BrandKit[] = [
     photo: "Movimento de todo dia ao sol duro de meio-dia, de teleobjetiva: a escadaria, o tênis no degrau, a horta, a quadra de areia",
     signatureGraphic: "O eixo: a linha com três pontos separa as seções e acende a região de cada assunto",
     signatureMotion: "Estático de verdade: a escada do tratamento, em degraus do mais simples ao mais complexo",
-    hero: "A mulher subindo a escadaria de concreto no terço direito, com o título sobre o concreto liso à esquerda", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "A mulher subindo a escadaria de concreto no terço direito, com o título sobre o concreto liso à esquerda", status: "aprovado",
   },
   {
     // Fourth static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): reproductive medicine, the strictest in content.
@@ -106,7 +111,7 @@ export const brandKits: BrandKit[] = [
     photo: "Figuras pequenas na paisagem em filme analógico pastel: o casal na trilha, as mãos na mesa, o banco da praça; nunca bebê",
     signatureGraphic: "O elo: os dois anéis do símbolo marcam as paradas do caminho e abrem as seções",
     signatureMotion: "Estático: o caminho de cinco paradas, que se acendem ao toque",
-    hero: "O casal pequeno na trilha arborizada, com o título num painel de papel sobre a folhagem desfocada", status: "aprovado",
+    heroLayout: "painel-sobre-foto", hero: "O casal pequeno na trilha arborizada, com o título num painel de papel sobre a folhagem desfocada", status: "aprovado",
   },
   {
     // Third static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): hair transplant, cold backlight, men of 28 to 50.
@@ -118,7 +123,7 @@ export const brandKits: BrandKit[] = [
     photo: "Contraluz frio de céu nublado; o homem de perfil e de costas: o boné, o vento no carro, o espelho; macro dos fios",
     signatureGraphic: "A linha frontal: a curva do símbolo sob os títulos",
     signatureMotion: "Estático: o mapa da cabeça vista de cima, com as áreas que acendem ao toque",
-    hero: "Homem de perfil contra o céu nublado, segurando o boné, com o título no céu à esquerda", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "Homem de perfil contra o céu nublado, segurando o boné, com o título no céu à esquerda", status: "aprovado",
   },
   {
     // Second static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): refractive surgery, first-person high-key photography.
@@ -130,7 +135,7 @@ export const brandKits: BrandKit[] = [
     photo: "Ponto de vista de quem acorda, em luz branca muito clara; macro da íris; mergulho de olhos abertos; óculos na gaveta",
     signatureGraphic: "A tabela de leitura: títulos em maiúsculas cujas linhas diminuem como as de um exame de vista",
     signatureMotion: "Estático: o foco ao toque, fotos que saem do desfoque ao tocar ou passar o mouse",
-    hero: "O quarto ao amanhecer visto da cama, com o despertador e o óculos, e o título na parede branca", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "O quarto ao amanhecer visto da cama, com o despertador e o óculos, e o título na parede branca", status: "aprovado",
   },
   {
     // First static brand (docs/PROJETOS-ESTATICOS.md, 23/11/2026): the signature is a composition, not a scroll scene.
@@ -142,7 +147,7 @@ export const brandKits: BrandKit[] = [
     photo: "Almoço de família com flash direto, como editorial de gastronomia: mesa vista de cima, mordida na maçã, risada à mesa",
     signatureGraphic: "A mordida: três marcas de dente em arco recortadas do canto das fotos e dos cartões",
     signatureMotion: "Estático: o cardápio de tratamentos com o que cada um devolve, e sinais que se acendem ao toque",
-    hero: "Cartão arredondado com a mesa vista de cima, título sobre o linho e a mordida no canto", status: "aprovado",
+    heroLayout: "cartao", hero: "Cartão arredondado com a mesa vista de cima, título sobre o linho e a mordida no canto", status: "aprovado",
   },
   {
     id: "forma", route: "/modelos/odontologia", niche: "Odontologia estética e implantes",
@@ -153,7 +158,7 @@ export const brandKits: BrandKit[] = [
     photo: "Consultório quente em travertino e nogueira, foto larga e retrato vertical",
     signatureGraphic: "Grade de proporção com marcas de medida",
     signatureMotion: "A rolagem planeja o sorriso: grade, contornos em proporção áurea, cerâmica",
-    hero: "Foto larga do consultório com o texto sobre a parede de pedra", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "Foto larga do consultório com o texto sobre a parede de pedra", status: "aprovado",
   },
   {
     id: "almeida", route: "/modelos/patrimonio", niche: "Advocacia de família e sucessões",
@@ -164,7 +169,7 @@ export const brandKits: BrandKit[] = [
     photo: "Escritório em azul-noite, nogueira, couro e luminária de latão",
     signatureGraphic: "Linha de latão com nós, como árvore genealógica",
     signatureMotion: "A partilha se desenha: do patrimônio, uma linha que se divide até os herdeiros",
-    hero: "Escritório noturno com o título sublinhado por uma linha de latão e o lacre", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "Escritório noturno com o título sublinhado por uma linha de latão e o lacre", status: "aprovado",
   },
   {
     id: "brisa", route: "/modelos/hotelaria", niche: "Hotel boutique",
@@ -175,7 +180,7 @@ export const brandKits: BrandKit[] = [
     photo: "Tour contínuo em vídeo, do alto da baía à suíte e à piscina",
     signatureGraphic: "Trajeto do sol sobre a linha do horizonte, marcando os capítulos",
     signatureMotion: "Tour contínuo quadro a quadro: da baía à porta, à recepção, à suíte e à piscina",
-    hero: "Vista aérea da baía em tela cheia, com o nome sobre o céu", status: "aprovado",
+    heroLayout: "cena-de-rolagem", hero: "Vista aérea da baía em tela cheia, com o nome sobre o céu", status: "aprovado",
   },
   {
     id: "sutil", route: "/modelos/cirurgia-plastica", niche: "Cirurgia plástica",
@@ -186,7 +191,7 @@ export const brandKits: BrandKit[] = [
     photo: "Consultório de gesso e travertino com luz lateral, cirurgiã em sálvia e branco",
     signatureGraphic: "Régua de dias da recuperação, com marcos",
     signatureMotion: "A recuperação dia a dia: a régua avança, o contador de dias sobe e a luz da janela atravessa a sala",
-    hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "aprovado",
+    heroLayout: "faixa", hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "aprovado",
   },
   {
     id: "toca", route: "/modelos/veterinaria", niche: "Hospital veterinário",
@@ -197,7 +202,7 @@ export const brandKits: BrandKit[] = [
     photo: "Câmera na altura do animal, azulejo petróleo e madeira clara",
     signatureGraphic: "Placas de sinalização hospitalar numeradas, em mostarda",
     signatureMotion: "Chave Cão / Gato que muda a página e portas do hospital que se abrem sala a sala com a rolagem",
-    hero: "Veterinária ajoelhada com o cão (ou sentada com o gato), título sobre a parede clara e a chave Cão / Gato", status: "aprovado",
+    heroLayout: "texto-sobre-foto", hero: "Veterinária ajoelhada com o cão (ou sentada com o gato), título sobre a parede clara e a chave Cão / Gato", status: "aprovado",
   },
   {
     id: "lume", route: "/modelos/psicologia", niche: "Psicologia",
@@ -208,7 +213,7 @@ export const brandKits: BrandKit[] = [
     photo: "Documental em câmera fixa: a mesma cozinha às 23h e às 7h; retrato de estúdio sobre fundo argila",
     signatureGraphic: "O cone de luz do pendente, que apaga quando a manhã chega",
     signatureMotion: "As cobranças se soltam: frases de cobrança caem com a rolagem enquanto a noite vira manhã",
-    hero: "Título de dor coberto por frases de cobrança ao lado da cozinha às 23h, que vira 7h", status: "aprovado",
+    heroLayout: "cena-de-rolagem", hero: "Título de dor coberto por frases de cobrança ao lado da cozinha às 23h, que vira 7h", status: "aprovado",
   },
   {
     id: "talhao", route: "/modelos/agro", niche: "Advocacia do agro",
@@ -219,6 +224,6 @@ export const brandKits: BrandKit[] = [
     photo: "Aérea zenital da fazenda e retratos ambientais ao meio-dia, céu limpo, sem dourado",
     signatureGraphic: "Contornos de talhão como mapa de GPS de colheita, com a legenda do mapa",
     signatureMotion: "Os talhões se acendem: a câmera passa de talhão em talhão sobre a foto aérea e cada um acende com uma situação",
-    hero: "Foto aérea da fazenda em tela cheia com a legenda do mapa carregando o título", status: "aprovado",
+    heroLayout: "cena-de-rolagem", hero: "Foto aérea da fazenda em tela cheia com a legenda do mapa carregando o título", status: "aprovado",
   },
 ];

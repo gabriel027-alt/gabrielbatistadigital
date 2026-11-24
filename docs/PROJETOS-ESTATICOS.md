@@ -867,13 +867,13 @@ Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais
 | 2. Marca | **Ponte Escola Bilíngue.** A ponte entre as duas línguas. O símbolo são duas margens curtas ligadas por uma tábua curva, desenhada em traço grosso e arredondado. |
 | 3. Paleta e material | Medida nas fotos quando chegarem. Direção: amarelo-gema, verde-folha, céu claro e o branco do giz, saturados e limpos, sobre um fundo de papel claro. Sem o cobalto da Eixo nem o pastel desbotado da Elo. Material: papel colorido recortado, giz, madeira clara de mesa baixa. |
 | 4. Tipografia | Fredoka nos títulos, arredondada e amigável sem ser de desenho animado, e Lexend no texto, desenhada para leitura fácil. Par inédito no portfólio. |
-| 5. Foto | Manhã clara, câmera na altura da criança (cerca de 90 cm), crianças de costas ou só as mãos (parâmetros abaixo). |
+| 5. Foto | Seis quadrados do dia, todos vistos de cima, como uma tira de filme: materiais, mãos, pés e sombras, nunca rostos (parâmetros abaixo). Refeito em 24/11/2026 pela regra "Topo e conjunto de fotos" do design system. |
 | 6. Elemento-assinatura | **A ponte:** o traço curvo do símbolo liga, em cada seção, a frase em português à mesma frase em inglês. |
-| 7. Composição-assinatura | **O dia em duas línguas:** cinco momentos do dia (a chegada, a roda, a horta, o lanche, a história), cada um com a frase que a criança ouve em português e em inglês, lado a lado, ligadas pela ponte. Estática. No celular, as duas frases ficam uma sobre a outra. |
-| 8. Gramática | Topo (as crianças chegando pelo pátio) → "Duas línguas, um mesmo dia" → o dia em duas línguas → as idades (2 a 3, 4 a 5, 6 a 10 anos), o que muda em cada uma → como é a visita → a secretaria, quem recebe a família → dúvidas → roteiro local → barra fixa no celular. |
+| 7. Composição-assinatura | **O dia em duas línguas:** seis momentos (a chegada, a roda, o projeto, a horta, o lanche, a saída), cada um com o seu quadrado e a frase que a criança ouve em português e em inglês, ligadas pela ponte. Estática. No celular, a foto fica em cima e as duas frases embaixo. |
+| 8. Gramática | Topo tipográfico ("Bom dia." e "Good morning." em letras monumentais, com a tira dos seis quadrados embaixo) → o dia em duas línguas → as idades (2 a 3, 4 a 5, 6 a 10 anos), o que muda em cada uma → como é a visita → a secretaria, quem recebe a família → dúvidas → roteiro local → barra fixa no celular. |
 
 **Esqueleto de conversão:**
-- **Promessa no topo:** "Duas línguas, um mesmo dia." Abaixo: "Educação infantil e fundamental para crianças de 2 a 10 anos, que vivem o dia em português e em inglês. O primeiro passo é conhecer a escola."
+- **Topo:** "Bom dia." e "Good morning." em letras monumentais, com a tira dos seis quadrados do dia. A promessa vem logo abaixo, como título: "Duas línguas, um mesmo dia." Depois: "Educação infantil e fundamental para crianças de 2 a 10 anos, que vivem o dia em português e em inglês. O primeiro passo é conhecer a escola."
 - **Chamada:** "Agendar uma visita" abre o roteiro local.
 - **As idades:** o que muda no dia de cada faixa, sem métodos com nome de marca nem resultados.
 - **A visita:** conhecer os espaços, ver um pouco do dia acontecendo e conversar sobre a criança. Sem prometer vaga.
@@ -885,45 +885,33 @@ Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais
   - Quanto custa? (o valor é apresentado na visita)
   - Como é a alimentação?
 - **Roteiro local** (sem nome nem dados da criança): a idade; o momento (primeira escola, mudança de escola); para quando (este ano, o próximo ano).
-- **Quem responde** (regra "Clareza"), por decisão do usuário em 24/11/2026: **a secretaria**, sem nome. Ela responde às mensagens, marca a visita e apresenta os valores na visita. Aparece no topo ("A secretaria responde e marca a sua visita"), numa seção própria com a foto da recepção e no roteiro.
+- **Quem responde** (regra "Clareza"), por decisão do usuário em 24/11/2026: **a secretaria**, sem nome. Ela responde às mensagens, marca a visita e apresenta os valores na visita. Aparece no topo ("A secretaria responde e marca a sua visita"), numa seção só de texto, desenhada com a ponte (sem retrato), e no roteiro.
 
 ### Parâmetros de fotografia
 
 | Parâmetro | Ponte |
 | --- | --- |
-| Enredo | O dia da criança: a chegada pelo pátio, as mãos na atividade, a roda de história, a horta; nunca rostos de crianças em destaque |
-| Luz e hora | Manhã clara e alta, sombras curtas e suaves, cores vivas |
-| Lente e distância | 35 mm, câmera na altura de uma criança, cerca de 90 cm do chão. Nenhuma marca usa |
-| Enquadramento | O ponto de vista da criança: crianças de costas ou de lado, de longe, ou só as mãos |
-| Tratamento | Digital limpo, cores saturadas e naturais, sem filtro |
-| Lugar | Um pátio com uma árvore grande, uma sala com mesas baixas de madeira clara, uma horta, um canto de leitura |
+| Enredo | O dia da escola contado por objetos, mãos e pés: a chegada, a roda, o projeto, a horta, o lanche, a saída |
+| Luz e hora | Manhã clara; a última foto no fim da tarde, com sombras compridas |
+| Lente e distância | 35 mm, de cima, a cerca de um metro do chão ou da mesa. Nenhuma marca usa a série inteira de cima |
+| Enquadramento | Quadrado 1:1, vista zenital, objetos e mãos organizados como numa tira de filme |
+| Tratamento | Digital limpo, cores saturadas e naturais |
+| Lugar | O piso de pedra do pátio, o tapete da roda, a mesa baixa de madeira clara, o canteiro da horta |
 
-A comparação com as outras marcas dá no máximo um parâmetro parecido: a manhã clara lembra a Nítida, que é branca, clínica e vista de cima da cama.
+Diferenças da fórmula anterior: seis fotos quadradas em vez de cinco na receita, nenhum retrato de quem responde, nenhuma área vazia para título e nenhuma pessoa de costas. A Toca fotografa na altura do animal; aqui a câmera olha de cima.
 
 ### Pedidos de imagem (para o usuário gerar)
 
-Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maior lado com pelo menos 2400 px, nenhum rosto de criança em destaque (de costas, de longe ou só mãos), roupas simples sem estampas de personagens.
+Regras comuns a todas: Fotografia realista vista de cima, com a câmera apontada para baixo, em quadrado 1:1. Luz de manhã clara, sombras suaves, cores vivas e naturais. Nenhum rosto, sem texto legível, sem logotipos, sem estampas de personagens, sem marca d'água. Maior lado com pelo menos 2000 px.
 
-1. **Topo, a chegada (16:9, 2880×1620):**
-   - Fotografia realista de três crianças de cerca de 5 anos, de costas, com mochilas coloridas, caminhando de mãos dadas por um pátio de escola em direção à porta aberta de uma sala, numa manhã clara.
-   - Uma árvore grande dá sombra ao pátio. Câmera a cerca de 90 cm do chão, lente 35 mm.
-   - O terço esquerdo do quadro é uma parede pintada de cor clara e lisa, livre para o título.
-   - Cores vivas e naturais. Sem uniforme com logotipo, sem placas com texto.
-2. **As mãos (3:2, 2400×1600):**
-   - Vista de perto das mãos de duas crianças sobre uma mesa baixa de madeira clara, montando um mural com recortes de papel colorido (amarelo, verde, azul-céu), com cola e tesoura sem ponta.
-   - Luz de manhã entrando pela janela. Lente 35 mm. Sem texto legível nos papéis.
-3. **A roda de história (3:2, 2400×1600):**
-   - Uma professora de cerca de 35 anos, sentada num banquinho, de perfil, lendo um livro ilustrado aberto (sem texto legível) para um grupo de crianças sentadas no tapete, todas de costas para a câmera.
-   - Canto de leitura com prateleiras baixas de livros coloridos e almofadas. Luz de manhã, câmera na altura das crianças.
-4. **A horta (3:2, 2400×1600):**
-   - Duas crianças de cerca de 7 anos, de costas e agachadas, regando uma horta de canteiros elevados de madeira com regadores pequenos e coloridos, no pátio da escola.
-   - Manhã clara, sombras curtas. Câmera baixa, lente 35 mm. Cores vivas: verde das folhas, amarelo do regador.
-5. **A secretaria (4:5, 2000×2500):**
-   - Fotografia realista da recepção de uma escola infantil: uma secretária de cerca de 35 anos, de costas ou de perfil, atrás de um balcão baixo de madeira clara, atendendo um pai e uma criança de cerca de 4 anos, os dois de costas, de mãos dadas.
-   - Na parede, desenhos de crianças em papel colorido, sem texto legível. Luz de manhã entrando por uma janela, câmera na altura da criança, lente 35 mm.
-   - Sem crachá, logotipo ou uniforme com marca, e sem rosto de criança.
+1. **A chegada (1:1, 2000×2000):** vista de cima do piso de pedra do pátio, com dois pares de pés pequenos de tênis coloridos e um par de pés de adulto lado a lado, uma mochila amarela no chão e sombras de folhas de uma árvore.
+2. **A roda (1:1, 2000×2000):** vista de cima de um tapete redondo com almofadas coloridas em círculo, um livro ilustrado aberto no centro (sem texto legível) e as pontas dos pés e das mãos de crianças nas bordas.
+3. **O projeto (1:1, 2000×2000):** vista de cima de mãos de crianças montando um mural com recortes de papel amarelo, verde e azul-céu sobre uma mesa de madeira clara, com cola e tesoura sem ponta.
+4. **A horta (1:1, 2000×2000):** vista de cima de um canteiro de madeira com mudas verdes e mãos pequenas segurando um regador amarelo, com gotas de água caindo.
+5. **O lanche (1:1, 2000×2000):** vista de cima de uma mesa baixa de madeira clara com pratinhos de frutas cortadas e copos de água, e mãos de crianças pegando as frutas.
+6. **A saída (1:1, 2000×2000):** vista de cima do pátio no fim da tarde, com as sombras compridas de um adulto e de uma criança de mãos dadas projetadas no chão de pedra e uma lancheira verde ao lado. Aqui a luz é baixa e quente.
 
-Observação: imagens geradas tendem a dar escolas de catálogo, com crianças sorrindo para a câmera e cores de plástico. O alvo é uma escola de verdade, com materiais naturais, um pouco de bagunça de uso e as crianças ocupadas, sem posar.
+Observação: imagens geradas tendem a dar cores de plástico e objetos de catálogo perfeitamente alinhados. O alvo é uma escola de verdade, com materiais naturais e um pouco de bagunça de uso.
 
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
