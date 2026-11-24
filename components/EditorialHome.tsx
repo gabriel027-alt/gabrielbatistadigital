@@ -172,7 +172,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
             grid. No count, so it reads as a selection (24/11/2026). Without JavaScript everything shows. */}
         <div className={styles.projectGrid} data-strip data-collapsed="">
           <ul className={styles.gridList}>{works.map((work, index) => project(work, index >= featuredCount))}
-            <li className={styles.moreCard} data-more-card><MoreWorksToggle variant="card" open={t.moreWorks.open} close={t.moreWorks.close} /></li>
+            <li className={styles.moreCard} data-more-card><MoreWorksToggle variant="card" open={t.moreWorks.open} close={t.moreWorks.close} covers={works.slice(featuredCount, featuredCount + 3).map(work => work.image)} /></li>
           </ul>
           <div className={styles.moreBar} data-more-bar><MoreWorksToggle variant="button" open={t.moreWorks.open} close={t.moreWorks.close} /></div>
           <noscript><style>{"[data-strip] li[data-more]{display:revert!important}[data-more-card],[data-more-bar]{display:none!important}"}</style></noscript>

@@ -488,9 +488,20 @@
 @media(max-width:700px){
   .moreBar{display:none}
   .moreCard{display:block;scroll-snap-align:center}
-  .moreCard button{width:100%;aspect-ratio:5/4;border-radius:14px;border-style:dashed;font-size:20px}
-  .moreCard button::after{content:"→";font-size:24px}
-  .moreCard button[aria-expanded=true]::after{content:"←"}
+  /* The folder card (24/11/2026): the dark of the projects folder, three covers of what is inside peeking out like
+     files, and the words below. Open, only "Mostrar menos". */
+  .moreCard button{position:relative;width:100%;aspect-ratio:5/4;flex-direction:column;justify-content:flex-end;gap:0;padding:0 0 22px;border:0;border-radius:14px;overflow:hidden;background:linear-gradient(180deg,#2f2b29,#191716);color:#f4ede2;font-size:20px;box-shadow:inset 0 1px 0 #ffffff1f}
+  .moreCard button:hover{background:linear-gradient(180deg,#2f2b29,#191716);color:#f4ede2}
+  .moreCard button[aria-expanded=true]{justify-content:center;padding:0;background:none;color:inherit;border:2px solid currentColor;box-shadow:none}
+  .moreCard [data-more-covers]{position:absolute;left:0;right:0;top:12%;height:58%}
+  .moreCard [data-more-covers]>span{position:absolute;top:0;left:50%;width:46%;aspect-ratio:5/4;border-radius:8px;overflow:hidden;box-shadow:0 10px 24px -8px #000c,0 0 0 1px #ffffff1a}
+  .moreCard [data-more-covers]>span img{object-fit:cover;object-position:left top}
+  .moreCard [data-more-covers]>span:nth-child(1){transform:translateX(-102%) translateY(14%) rotate(-8deg)}
+  .moreCard [data-more-covers]>span:nth-child(2){z-index:1;transform:translateX(-50%)}
+  .moreCard [data-more-covers]>span:nth-child(3){transform:translateX(2%) translateY(14%) rotate(8deg)}
+  .moreCard [data-more-label]{position:relative;display:inline-flex;align-items:center;gap:10px}
+  .moreCard [data-more-label]::after{content:"→";font-size:24px}
+  .moreCard button[aria-expanded=true] [data-more-label]::after{content:"←"}
 }
 /* ——— Phone top, third pass (21/11/2026) ———
    Cinematic: the portrait fills the screen and the copy rests on the dark of his shirt, under the chin. One voice: the
