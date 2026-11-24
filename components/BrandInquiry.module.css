@@ -61,3 +61,9 @@
 .elo .dialog{--q-bg:#f3ece3;--q-ink:#362815;--q-accent:#575f26;--q-border:#36281540;font-family:var(--elo-text),system-ui,sans-serif}
 .elo .invitation h2,.elo .body h3{font-family:var(--elo-display),Georgia,serif;font-weight:500;letter-spacing:-.015em}
 .elo .steps li{opacity:1;color:#5b4c3c}.elo .steps li[aria-current=step]{color:#362815}
+.eixo{--q-bg:#c8c7c5;--q-ink:#2d303f;--q-accent:#0f3bb6;--q-border:#2d303f40;font-family:var(--eixo-text),system-ui,sans-serif}
+.eixo :is(.launch,.primary){color:#fff;border-radius:6px;font-weight:700}
+.eixo .back{border-radius:6px}
+.eixo .dialog{--q-bg:#f2f1ee;--q-ink:#2d303f;--q-accent:#0f3bb6;--q-border:#2d303f40;font-family:var(--eixo-text),system-ui,sans-serif}
+.eixo .invitation h2,.eixo .body h3{font-family:var(--eixo-display),system-ui,sans-serif;font-weight:700;font-stretch:88%;letter-spacing:-.02em}
+.eixo .steps li{opacity:1;color:#5f574d}.eixo .steps li[aria-current=step]{color:#2d303f}

@@ -5,7 +5,7 @@ import { cars } from "@/lib/paddock";
 import { Arrow } from "@/components/ui/icons";
 import styles from "./BrandInquiry.module.css";
 
-type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo";
+type Brand = "aura" | "orla" | "forma" | "almeida" | "brisa" | "sutil" | "toca" | "lume" | "arrimo" | "paddock" | "talhao" | "cerne" | "nitida" | "fio" | "elo" | "eixo";
 type Question = { key: string; label: string; options: string[] };
 type Content = {
   name: string; title: string; intro: string; action: string; steps: Question[][]; next: string;
@@ -163,7 +163,21 @@ const content: Record<Brand, Content> = {
     invitation: "Um passo de cada vez.", stepNames: ["Quem busca", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
     summaryTitle: "A primeira consulta, preparada.", noscript: "Para a primeira consulta, pense em quem está buscando, em que momento está e para quando quer conversar.",
   },
-  // Fio (hair transplant): the area, how long and when; no health data, no photos, no appointment made.
+  // Eixo (orthopedics): the area, what gets in the way and since when; no health data, no exams, no appointment made.
+  eixo: {
+    name: "Eixo Ortopedia", title: "Vamos preparar a sua avaliação.",
+    intro: "Três escolhas rápidas, sem exames nem dados de saúde agora. A recepção responde e marca a avaliação.", action: "Agendar avaliação",
+    steps: [
+      [{ key: "regiao", label: "Onde incomoda?", options: ["Joelho", "Quadril", "Coluna", "Outra região", "Ainda não sei dizer"] }],
+      [
+        { key: "atrapalha", label: "O que mais atrapalha hoje?", options: ["Subir ou descer escada", "Caminhar", "Dormir", "Voltar ao esporte", "Outra coisa"] },
+        { key: "tempo", label: "Há quanto tempo?", options: ["Menos de três meses", "De três meses a um ano", "Mais de um ano"] },
+      ],
+    ],
+    next: "A recepção marca a avaliação, explica como funciona pelo seu convênio ou pelo reembolso e pede que você traga os exames que já tiver. Na avaliação, o ortopedista examina o movimento e explica por qual degrau do tratamento começar.",
+    invitation: "Subir a escada sem pensar nela.", stepNames: ["A região", "A rotina"], stepTitles: ["Por onde começamos?", "O que mudou na rotina?"],
+    summaryTitle: "A sua avaliação, preparada.", noscript: "Para a avaliação, pense em onde incomoda, no que mais atrapalha hoje e há quanto tempo.",
+  },  // Fio (hair transplant): the area, how long and when; no health data, no photos, no appointment made.
   fio: {
     name: "Fio", title: "Vamos preparar a sua avaliação.",
     intro: "Três escolhas rápidas, sem fotos nem dados de saúde. A recepção responde e marca a avaliação com o Daniel.", action: "Agendar avaliação",

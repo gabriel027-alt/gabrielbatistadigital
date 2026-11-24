@@ -658,6 +658,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
     - prévia `cerne-loop.mp4`, em que os sinais acendem um a um e voltam ao primeiro;
     - capa `cerne-hero.webp`.
   - Setor, benefício e mensagem do WhatsApp nos quatro idiomas. O site da marca continua só em português.
+- **Eixo Ortopedia** (`/modelos/ortopedia`, joelho, quadril e coluna), montada em 24/11/2026 e aguardando a avaliação do usuário. **Sem nome de médico, por decisão dele: quem responde é a recepção.** Assinaturas: o eixo (linha com três pontos) e a escada do tratamento, estática de verdade. Sem prazos de recuperação, raio-x ou antes e depois. Fora da homepage até a aprovação.
 - **Guia de rolagem da homepage fora do topo** (23/11/2026, decisão do usuário, substitui o pedido de 22/11 de mostrá-lo desde o topo). Ele só começa quando o topo já saiu quase todo da tela.
 - **Varredura de acessibilidade** (23/11/2026): axe com WCAG 2.0, 2.1 e 2.2 nos níveis A e AA, em 18 páginas, no PC e no celular. As páginas são a homepage nos quatro idiomas, `/clinicas`, `/privacidade`, as dez marcas, a Aura e a Orla.
   - Corrigido o nome dos logos das marcas: o `aria-label` "…, início" não continha o texto visível (2.5.3).
