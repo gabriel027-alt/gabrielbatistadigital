@@ -107,6 +107,32 @@ Até aqui cada marca resolvia isso por pedido avulso. Agora é obrigatório, e e
 
 A linha comum fica em `components/brand/WhoAnswers.tsx`. Na Forma e na Toca ela não entrou porque passava da dobra; ali é o próprio botão que diz com quem é.
 
+## Checklist de entrega real: site de cliente (regra de 23/11/2026, pedido do usuário)
+
+**O problema:** as marcas do portfólio não têm prova real (registro, antes/depois, avaliações, endereço), porque tudo isso seria inventado. Num site de cliente, é justamente o que mais converte. A estrutura de cada marca já tem lugar para essas peças.
+
+**A regra:** nenhum site de cliente vai ao ar sem passar por esta lista, com dados fornecidos e autorizados pelo cliente. O que não existir fica de fora; nunca entra um texto provisório ou inventado.
+
+| # | Item | O que pedir ao cliente | Onde entra |
+| --- | --- | --- | --- |
+| 1 | Registro profissional | Nome completo, número do conselho e, se for anunciado como especialista, o registro da especialidade. Exemplos: CRM e RQE, CRO, OAB, CRP, CRMV | Seção de quem atende e rodapé |
+| 2 | Regras de publicidade do conselho | Confirmar com o profissional o que a norma vigente permite: CFM (Resolução 2.336/2023), CFO, Provimento da OAB, CRP, CFMV | Revisão de todo o texto antes de publicar |
+| 3 | Antes e depois | Só fotos reais, com autorização por escrito do paciente e dentro da norma do conselho. Sem promessa de resultado | Faixa de prova, antes das dúvidas |
+| 4 | Prova social | Nota e link do Perfil da Empresa no Google; depoimentos reais com autorização, quando o conselho permite | Faixa de prova e topo (a nota, se houver) |
+| 5 | Endereço, horários e mapa | Endereço completo, horários, estacionamento e acessibilidade. O mapa só carrega com o consentimento de cookies | Seção própria antes do roteiro, rodapé e dados estruturados (LocalBusiness) |
+| 6 | Canal de contato real | O WhatsApp da clínica ou do escritório, com mensagem pronta e quem responde (nome ou papel) | O roteiro local passa a terminar no WhatsApp, com o resumo das escolhas na mensagem |
+| 7 | Avaliação por fotos (opcional) | Se a clínica pede fotos antes da consulta, como e por qual canal seguro | Texto do roteiro e das dúvidas |
+| 8 | Condições de pagamento | Parcelamento, convênios e formas de pagamento, só se forem reais | Dúvidas ("Quanto custa?") e investimento |
+| 9 | Fotos e vídeos próprios | Fotos do espaço, da equipe e do profissional, ou uma sessão combinada. Imagens geradas só como provisórias, com o aval do cliente | Topo, quem atende, espaço |
+| 10 | Política de privacidade e cookies | Responsável pelos dados, finalidade e contato | `/privacidade` própria, banner de consentimento |
+| 11 | Medição | Contas do cliente no GA4 e no Google Ads (ou Meta), com as conversões do WhatsApp e do roteiro | `ContactTracking` com o `data-track-place` de cada botão |
+| 12 | Domínio e e-mail | Domínio (Registro.br ou outro), quem é o titular e o DNS | Vercel com domínio próprio |
+
+**Conferência antes de publicar:**
+- todo nome, número, nota e foto tem origem no cliente, registrada;
+- o texto não promete resultado, prazo garantido nem cura;
+- a mesma bateria de qualidade do portfólio passa: axe AA, 320 px sem rolagem lateral, toques de 44 px, PC a 125% e celular, e versão sem JS.
+
 ## Direção de fotografia (regra de 19/11/2026)
 
 **Pedido do usuário:** a fotografia não pode seguir sempre a mesma direção. Cada marca precisa de enredo, roteiro e cinematografia próprios.

@@ -657,6 +657,7 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - O axe não substitui teste com leitor de tela nem a revisão humana.
 
 - **Regra do design system** (23/11/2026, pedido do usuário): toda marca deixa claro com quem se fala, o que cada parte resolve e o que acontece depois do contato. Ver a Camada 3, "Clareza", em `docs/DESIGN-SYSTEM.md`. O nome não é obrigatório: quem responde pode ser o profissional com nome (só com a autorização dele) ou o canal de atendimento pelo papel (secretária, recepção, atendente, equipe).
+- **Checklist de entrega real** (23/11/2026, pedido do usuário): nenhum site de cliente vai ao ar sem os 12 itens da seção "Checklist de entrega real" em `docs/DESIGN-SYSTEM.md`. São registro profissional e regras do conselho, antes/depois real e autorizado, prova social, endereço, canal real, pagamento, fotos próprias, privacidade, medição e domínio. Tudo vem do cliente; o que não existir fica de fora. As marcas do portfólio continuam sem esses itens, porque seriam inventados.
 
 ## Auditoria de conversão da homepage (21/11/2026, resultado aprovado pelo usuário em 21/11/2026)
 
