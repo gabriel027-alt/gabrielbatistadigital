@@ -49,6 +49,7 @@ const works: Work[] = [
   { id: "elo", name: "Elo", image: sample("elo", "hero"), kit: "elo" },
   { id: "eixo", name: "Eixo Ortopedia", image: sample("eixo", "hero"), kit: "eixo" },
   { id: "vao", name: "Vão Arquitetura e Interiores", image: sample("vao", "hero"), kit: "vao" },
+  { id: "lavra", name: "Lavra Joalheria", image: sample("lavra", "hero"), kit: "lavra" },
   { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "arrimo", name: "Arrimo Advocacia Previdenciária", image: sample("arrimo", "hero"), kit: "arrimo" },
   { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },

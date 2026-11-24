@@ -824,7 +824,7 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 
 Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais e sobre fundo branco. O alvo é ouro com marcas de trabalho, ferramentas gastas e uma luz só.
 
-## Lavra montada (24/11/2026, aguarda a avaliação do usuário)
+## Lavra montada (24/11/2026, aprovada pelo usuário no mesmo dia)
 
 - **Onde está:** `/modelos/joalheria`. Conteúdo em `lib/lavra.ts` e kit `lavra` em `lib/brand-kits.ts` (status: em construção).
 - **Fotos:** as cinco fotos do usuário (bancada, desenho, cera, alianças e ateliê), ampliadas com o Real-ESRGAN (80% IA e 20% original). Originais em `public/images/lavra/original/`.
@@ -845,7 +845,7 @@ Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais
 - **Cuidado de conteúdo:** o teste confere que a página não tem R$, quilates, certificado, garantia, prazos em dias ou semanas nem clientes.
 - **Testes** (`tests/e2e/lavra-model.spec.ts`, 3 testes): quem responde, as quatro etapas, axe AA na página e no roteiro, sem JS, barra fixa e roteiro no celular de 360 px. O axe pegou o link do crédito no rodapé sem sublinhado (contraste 1,6:1 com o texto em volta); corrigido.
 - Conferida em PC 1536×696 a 125% e em celular de 390×844, sem erro de JavaScript nem rolagem lateral.
-- **Fora da homepage até a aprovação dele.**
+- **Na seleção:** sétima, depois da Vão. Filmes `lavra-desktop.mp4` (1920×1080), `lavra-mobile.mp4` (1080×1920) e prévia `lavra-loop.mp4` (6 s, 960×768: o topo, do desenho à peça, as mãos do casal e a volta ao topo); capa `lavra-hero.webp`.
 
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 

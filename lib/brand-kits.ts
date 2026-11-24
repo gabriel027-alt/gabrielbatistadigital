@@ -57,7 +57,7 @@ export const brandKits: BrandKit[] = [
     photo: "Macro de mãos e metal sob uma única lâmpada de bancada, quente e pontual, com tudo o mais no escuro",
     signatureGraphic: "O aro: a elipse do símbolo abre as seções e o corte de buril marca a etapa",
     signatureMotion: "Estático: do desenho à peça, em quatro etapas lado a lado",
-    hero: "As mãos do ourives com o anel sob a lâmpada nos dois terços da direita, com o título no escuro à esquerda", status: "em construção",
+    hero: "As mãos do ourives com o anel sob a lâmpada nos dois terços da direita, com o título no escuro à esquerda", status: "aprovado",
   },
   {
     // Sixth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): architecture and interiors; palette measured on the photos.

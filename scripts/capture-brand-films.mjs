@@ -9,7 +9,7 @@ import path from 'node:path';
 
 const base = process.env.PROJECT_PREVIEW_URL || 'http://127.0.0.1:3109';
 if (!['localhost', '127.0.0.1'].includes(new URL(base).hostname)) throw new Error('Local preview required');
-const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio', cerne: '/modelos/implantes', nitida: '/modelos/oftalmologia', fio: '/modelos/capilar', elo: '/modelos/fertilidade', eixo: '/modelos/ortopedia', vao: '/modelos/arquitetura' };
+const brands = { talhao: '/modelos/agro', paddock: "/modelos/automoveis", arrimo: '/modelos/previdenciario', lume: '/modelos/psicologia', forma: '/modelos/odontologia', sutil: '/modelos/cirurgia-plastica', toca: '/modelos/veterinaria', brisa: '/modelos/hotelaria', almeida: '/modelos/patrimonio', cerne: '/modelos/implantes', nitida: '/modelos/oftalmologia', fio: '/modelos/capilar', elo: '/modelos/fertilidade', eixo: '/modelos/ortopedia', vao: '/modelos/arquitetura', lavra: '/modelos/joalheria' };
 const formats = {
   desktop: { viewport: { width: 1920, height: 1080 }, scale: 1, mobile: false, out: [1920, 1080], speed: 520 },
   mobile: { viewport: { width: 432, height: 768 }, scale: 2.5, mobile: true, out: [1080, 1920], speed: 380 },
@@ -54,7 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio', 'elo', 'eixo', 'vao'].includes(brand)) continue;
+      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio', 'elo', 'eixo', 'vao', 'lavra'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -171,7 +171,7 @@ try {
         console.log(`${brand} loop: ${order.length} stops -> 6 s`);
         await page.close(); continue;
       }
-      if ((brand === 'eixo' || brand === 'vao') && name === 'loop') {
+      if (['eixo', 'vao', 'lavra'].includes(brand) && name === 'loop') {
         // Static brand (24/11/2026): the card shows the top; the preview holds the top, climbs the treatment staircase,
         // shows the lit axis of knee, hip and spine, and comes back to the top. Screenshots joined by dissolves, 6 s.
         await mkdir('public/images/projects/brands', { recursive: true });
@@ -181,7 +181,8 @@ try {
         await page.addStyleTag({ content: 'html{scroll-behavior:auto!important}' }); await page.waitForTimeout(600);
         const temp = await mkdtemp(path.join(os.tmpdir(), `-loop-`));
         // Vão (24/11/2026): the top, the routine plan, the materials board and back.
-        const shots = brand === 'eixo' ? [null, '#escada ol', '#areas ul', null] : [null, '#rotina svg', '#materiais ul', null];
+        // Lavra (24/11/2026): the top, drawing to piece, the couple's hands and back.
+        const shots = { eixo: [null, '#escada ol', '#areas ul', null], vao: [null, '#rotina svg', '#materiais ul', null], lavra: [null, '#processo ol', '[aria-labelledby="prova-titulo"]', null] }[brand];
         for (const [i, selector] of shots.entries()) {
           if (selector) await page.locator(selector).evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 100, behavior: 'instant' }));
           else await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
