@@ -784,7 +784,7 @@ Observação: imagens geradas tendem a dar apartamentos de catálogo, frios e va
   - Quanto custa? (depende do metal, das pedras e do desenho; o valor vem por escrito antes de começar)
   - Preciso ir ao ateliê?
 - **Roteiro local** (sem dados pessoais): o que você quer fazer; o momento (casamento marcado, pedido em vista, presente, sem data); para quando.
-- **Quem responde** (regra "Clareza"): a definir com o usuário. Pode ser a ourives ou o ourives com nome autorizado por ele, ou o ateliê pelo papel.
+- **Quem responde** (regra "Clareza"), por decisão do usuário em 24/11/2026: **o ateliê**, sem nome de ourives. A equipe do ateliê responde às mensagens, marca a conversa e conduz cada etapa. Aparece no topo ("O ateliê responde e marca a sua conversa"), numa seção própria com a foto da bancada e no roteiro.
 
 ### Parâmetros de fotografia
 
@@ -817,9 +817,10 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 4. **As alianças (3:2, 2400×1600):**
    - As mãos de um casal, apoiadas lado a lado sobre a bancada, provando duas alianças de ouro amarelo lisas. Sem rostos, só mãos e punhos, mangas simples.
    - Luz quente e pontual, fundo escuro, lente 100 mm. Sem flores, véu ou cenário de casamento.
-5. **Quem faz (4:5, 2000×2500):** depende da escolha do usuário.
-   - **Se for um ourives ou uma ourives com nome:** retrato realista de cerca de 45 anos, avental de lona escuro, uma lupa de ourives presa à cabeça, levantada, sentado à bancada, olhando para a câmera com calma. Luz quente da lâmpada de bancada vinda de lado, fundo escuro, lente 85 mm. Sem diplomas, sem vitrine de loja.
-   - **Se for o ateliê:** a bancada inteira vista de lado, com as ferramentas, a lâmpada acesa e uma pessoa de costas trabalhando, na mesma luz.
+5. **O ateliê (4:5, 2000×2500):**
+   - Fotografia realista da bancada inteira de um ateliê de joalheria, vista de lado: a madeira escura gasta, as ferramentas penduradas, a lâmpada de bancada acesa e uma pessoa de costas trabalhando numa peça, de avental de lona escuro.
+   - Luz quente e pontual da lâmpada, o resto do ateliê caindo no escuro. Lente 50 mm, profundidade média.
+   - Sem rosto visível, sem vitrine de loja, sem logotipos, sem texto legível.
 
 Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais e sobre fundo branco. O alvo é ouro com marcas de trabalho, ferramentas gastas e uma luz só.
 
