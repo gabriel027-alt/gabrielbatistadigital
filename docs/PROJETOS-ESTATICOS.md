@@ -870,7 +870,7 @@ Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais
 | 5. Foto | Manhã clara, câmera na altura da criança (cerca de 90 cm), crianças de costas ou só as mãos (parâmetros abaixo). |
 | 6. Elemento-assinatura | **A ponte:** o traço curvo do símbolo liga, em cada seção, a frase em português à mesma frase em inglês. |
 | 7. Composição-assinatura | **O dia em duas línguas:** cinco momentos do dia (a chegada, a roda, a horta, o lanche, a história), cada um com a frase que a criança ouve em português e em inglês, lado a lado, ligadas pela ponte. Estática. No celular, as duas frases ficam uma sobre a outra. |
-| 8. Gramática | Topo (as crianças chegando pelo pátio) → "Duas línguas, um mesmo dia" → o dia em duas línguas → as idades (2 a 3, 4 a 5, 6 a 10 anos), o que muda em cada uma → como é a visita → quem recebe a família → dúvidas → roteiro local → barra fixa no celular. |
+| 8. Gramática | Topo (as crianças chegando pelo pátio) → "Duas línguas, um mesmo dia" → o dia em duas línguas → as idades (2 a 3, 4 a 5, 6 a 10 anos), o que muda em cada uma → como é a visita → a secretaria, quem recebe a família → dúvidas → roteiro local → barra fixa no celular. |
 
 **Esqueleto de conversão:**
 - **Promessa no topo:** "Duas línguas, um mesmo dia." Abaixo: "Educação infantil e fundamental para crianças de 2 a 10 anos, que vivem o dia em português e em inglês. O primeiro passo é conhecer a escola."
@@ -885,7 +885,7 @@ Observação: imagens geradas tendem a dar joias de catálogo, brilhantes demais
   - Quanto custa? (o valor é apresentado na visita)
   - Como é a alimentação?
 - **Roteiro local** (sem nome nem dados da criança): a idade; o momento (primeira escola, mudança de escola); para quando (este ano, o próximo ano).
-- **Quem responde** (regra "Clareza"): a definir com o usuário. Pode ser a coordenação ou a direção com nome autorizado por ele, ou a secretaria pelo papel.
+- **Quem responde** (regra "Clareza"), por decisão do usuário em 24/11/2026: **a secretaria**, sem nome. Ela responde às mensagens, marca a visita e apresenta os valores na visita. Aparece no topo ("A secretaria responde e marca a sua visita"), numa seção própria com a foto da recepção e no roteiro.
 
 ### Parâmetros de fotografia
 
@@ -918,9 +918,10 @@ Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maio
 4. **A horta (3:2, 2400×1600):**
    - Duas crianças de cerca de 7 anos, de costas e agachadas, regando uma horta de canteiros elevados de madeira com regadores pequenos e coloridos, no pátio da escola.
    - Manhã clara, sombras curtas. Câmera baixa, lente 35 mm. Cores vivas: verde das folhas, amarelo do regador.
-5. **Quem recebe a família (4:5, 2000×2500):** depende da escolha do usuário.
-   - **Se for a coordenadora ou a diretora com nome:** retrato realista de uma educadora brasileira de cerca de 45 anos, cabelo curto e grisalho ou preso, blusa de linho verde-folha, sorrindo, em pé na entrada da sala, com o pátio e a árvore desfocados atrás. Luz de manhã, lente 85 mm. Sem crachá nem logotipo.
-   - **Se for a secretaria:** a recepção da escola com uma secretária de costas atendendo um pai e uma criança (de costas), balcão baixo de madeira clara e desenhos de crianças na parede, sem texto legível.
+5. **A secretaria (4:5, 2000×2500):**
+   - Fotografia realista da recepção de uma escola infantil: uma secretária de cerca de 35 anos, de costas ou de perfil, atrás de um balcão baixo de madeira clara, atendendo um pai e uma criança de cerca de 4 anos, os dois de costas, de mãos dadas.
+   - Na parede, desenhos de crianças em papel colorido, sem texto legível. Luz de manhã entrando por uma janela, câmera na altura da criança, lente 35 mm.
+   - Sem crachá, logotipo ou uniforme com marca, e sem rosto de criança.
 
 Observação: imagens geradas tendem a dar escolas de catálogo, com crianças sorrindo para a câmera e cores de plástico. O alvo é uma escola de verdade, com materiais naturais, um pouco de bagunça de uso e as crianças ocupadas, sem posar.
 
