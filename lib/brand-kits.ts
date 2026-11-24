@@ -48,6 +48,19 @@ export const brandKits: BrandKit[] = [
     hero: "Folha em branco que recebe o desenho", status: "em construção",
   },
   {
+    // Sixth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): architecture and interiors. Proposed; the palette is a
+    // direction until it is measured on the user's photos.
+    id: "vao", route: "/modelos/arquitetura", niche: "Arquitetura e interiores",
+    concept: "A casa começa pela rotina.", mark: "Duas linhas verticais e uma verga: um vão de porta visto de frente",
+    palette: { travertino: "#ddd2c2", cal: "#f6f2ea", freijo: "#9a6b43", linho: "#e9e1d3", mostarda: "#c8932b" },
+    material: "Amostras de travertino, freijó, linho cru e cal sob a luz baixa do fim da tarde",
+    typography: { display: "Gilda Display", text: "Hanken Grotesk" },
+    photo: "Interiores em perspectiva central, verticais retas e sol baixo do fim da tarde riscando piso e paredes",
+    signatureGraphic: "As amostras: quadrados de material marcam as seções, como uma prancha de materiais",
+    signatureMotion: "Estático: a planta da rotina, com um momento do dia em cada ambiente",
+    hero: "A sala em perspectiva central na luz da tarde, com o título sobre a parede de cal à esquerda", status: "proposto",
+  },
+  {
     // Fifth static brand (docs/PROJETOS-ESTATICOS.md, 24/11/2026): orthopedics; palette measured on the user's five photos.
     id: "eixo", route: "/modelos/ortopedia", niche: "Ortopedia",
     concept: "Subir a escada sem pensar nela.", mark: "Linha vertical com três pontos (quadril, joelho e tornozelo), fora do prumo no joelho",
