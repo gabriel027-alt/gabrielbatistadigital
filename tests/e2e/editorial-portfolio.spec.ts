@@ -195,12 +195,19 @@ test('Selection shows the approved brands with the colors measured for each', as
   // A still strip: a moving one never settles for a click.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(route);
-  for (const name of ['Cerne Implantes', 'Nítida', 'Fio', 'Elo', 'Eixo Ortopedia', 'Vão Arquitetura e Interiores', 'Lavra Joalheria', 'Ponte Escola Bilíngue', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Aura', 'Orla']) {
+  for (const name of ['Cerne Implantes', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Vão Arquitetura e Interiores', 'Lavra Joalheria', 'Ponte Escola Bilíngue', 'Aura', 'Nítida', 'Fio', 'Elo', 'Eixo Ortopedia', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Orla']) {
     await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
   await expect(page.locator(`${projects} dl`)).toHaveCount(14);
   // The brands are shown only as films: no link leads to the brand sites, and each film has a vertical cut for phones.
   await expect(page.locator('a[href*="/modelos"]')).toHaveCount(0);
+  // Eight featured projects; the rest open under "Ver mais", with no count (24/11/2026: a selection, not everything).
+  const more = page.locator('#editorial-work details > summary');
+  await expect(more).toHaveText('Ver mais', { useInnerText: true });
+  await expect(page.locator(`${projects} > li:visible`)).toHaveCount(8);
+  await more.click();
+  await expect(page.locator(`${projects} > li:visible`)).toHaveCount(16);
+  await expect(more).toHaveText('Mostrar menos', { useInnerText: true });
   const sutil = page.locator(projects).getByRole('button', { name: 'Ver filme completo: Sutil Cirurgia Plástica' });
   await sutil.click();
   const film = page.getByRole('dialog', { name: 'Filme do projeto Sutil Cirurgia Plástica' }).locator('video');
@@ -397,6 +404,8 @@ test('On a phone every film opens in its vertical cut, as large as the screen al
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(route);
   for (const name of ['Paddock', 'Aura', 'Orla']) {
+    // Orla is under "Ver mais" since 24/11/2026.
+    if (name === 'Orla') await page.locator('#editorial-work details > summary').click();
     await page.getByRole('button', { name: new RegExp(`: ${name}$`) }).click();
     const video = page.locator('dialog[open] video');
     await video.evaluate(v => { (v as HTMLVideoElement).muted = true; return (v as HTMLVideoElement).play().catch(() => {}); });

@@ -39,27 +39,30 @@ const sample = (id: string, kind: "hero" | "cena") => `/images/projects/brands/$
 const kit = (id: string) => brandKits.find(item => item.id === id);
 
 type Work = { id: FilmId; name: string; image: string; kit?: string };
+/**
+ * The selection (24/11/2026, the user's request): the homepage shows the eight strongest, one per kind of business and
+ * both kinds of site (scroll scene and static), and the rest open under "Ver mais", with no count, so it reads as a selection, not everything. Featured first.
+ */
 const works: Work[] = [
-  // First static brand (23/11/2026, approved): high-ticket dentistry leads the selection.
   { id: "cerne", name: "Cerne Implantes", image: sample("cerne", "hero"), kit: "cerne" },
-  // Second static brand (23/11/2026, approved): refractive surgery, right after Cerne.
-  { id: "nitida", name: "Nítida", image: sample("nitida", "hero"), kit: "nitida" },
-  // Third static brand (23/11/2026, approved): hair transplant, right after Nítida.
-  { id: "fio", name: "Fio", image: sample("fio", "hero"), kit: "fio" },
-  { id: "elo", name: "Elo", image: sample("elo", "hero"), kit: "elo" },
-  { id: "eixo", name: "Eixo Ortopedia", image: sample("eixo", "hero"), kit: "eixo" },
-  { id: "vao", name: "Vão Arquitetura e Interiores", image: sample("vao", "hero"), kit: "vao" },
-  { id: "lavra", name: "Lavra Joalheria", image: sample("lavra", "hero"), kit: "lavra" },
-  { id: "ponte", name: "Ponte Escola Bilíngue", image: sample("ponte", "hero"), kit: "ponte" },
   { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "arrimo", name: "Arrimo Advocacia Previdenciária", image: sample("arrimo", "hero"), kit: "arrimo" },
   { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },
+  { id: "vao", name: "Vão Arquitetura e Interiores", image: sample("vao", "hero"), kit: "vao" },
+  { id: "lavra", name: "Lavra Joalheria", image: sample("lavra", "hero"), kit: "lavra" },
+  { id: "ponte", name: "Ponte Escola Bilíngue", image: sample("ponte", "hero"), kit: "ponte" },
+  { id: "aura", name: "Aura", image: "/images/projects/aura-film-poster.webp" },
+  // Behind "Ver mais".
+  { id: "nitida", name: "Nítida", image: sample("nitida", "hero"), kit: "nitida" },
+  { id: "fio", name: "Fio", image: sample("fio", "hero"), kit: "fio" },
+  { id: "elo", name: "Elo", image: sample("elo", "hero"), kit: "elo" },
+  { id: "eixo", name: "Eixo Ortopedia", image: sample("eixo", "hero"), kit: "eixo" },
   { id: "talhao", name: "Talhão Advocacia do Agro", image: sample("talhao", "hero"), kit: "talhao" },
   { id: "sutil", name: "Sutil Cirurgia Plástica", image: sample("sutil", "hero"), kit: "sutil" },
   { id: "brisa", name: "Casa Brisa", image: sample("brisa", "hero"), kit: "brisa" },
-  { id: "aura", name: "Aura", image: "/images/projects/aura-film-poster.webp" },
   { id: "orla", name: "Orla", image: "/images/projects/orla-film-poster.jpg" },
 ];
+const featuredCount = 8;
 // Between the two words of the name: a peach card where "g." assembles in a loop (same story as the scroll scene).
 // View box framed around the assembled letter; the stem is painted first so the bowl sits on top of it.
 const cardView = "379 321 700 482";
@@ -77,7 +80,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
   /** One project of the grid: the top of its site, the film on click and the short preview on hover. */
   const project = (work: Work) => {
     const data = work.kit ? kit(work.kit) : undefined;
-    return <li key={work.name} className={styles.stripItem}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
+    return <li key={work.name} className={styles.stripItem} data-work={work.id}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
       <div className={styles.stripCaption}><div><h3>{work.name}</h3><span>{t.sectors[work.id]}</span></div>
         {/* What the site does for the business, before the designer's data (22/11/2026). */}
         <p className={styles.benefit}>{t.benefits[work.id]}</p>
@@ -164,7 +167,13 @@ export function EditorialHome({ locale }: { locale: Locale }) {
           </div>
         </div>
         <div className={styles.projectGrid} data-strip>
-          <ul className={styles.gridList}>{works.map(work => project(work))}</ul>
+          <ul className={styles.gridList}>{works.slice(0, featuredCount).map(work => project(work))}</ul>
+          {/* The rest of the selection, native and readable without JavaScript; EditorialMotion refreshes the scroll
+              scenes on the toggle event, since the page grows. */}
+          <details className={styles.moreWorks}>
+            <summary><span className={styles.moreOpen}>{t.moreWorks.open}</span><span className={styles.moreClose}>{t.moreWorks.close}</span></summary>
+            <ul className={styles.gridList}>{works.slice(featuredCount).map(work => project(work))}</ul>
+          </details>
         </div>
       </section>      <section className={styles.services} id="editorial-services" data-editorial-theme="paper" aria-labelledby="editorial-services-title">
         <p className={styles.sectionNote}>{t.servicesNote}</p><h2 id="editorial-services-title" className={styles.servicesTitle} data-kinetic>{t.servicesTitle[0]}<br/>{t.servicesTitle[1]}</h2>

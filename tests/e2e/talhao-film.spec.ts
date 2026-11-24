@@ -17,10 +17,12 @@ for (const item of cases) {
     const page = await context.newPage();
     await page.goto(item.route);
     const list = page.locator('#editorial-work ul:not([aria-hidden])');
-    await expect(list.locator("h3")).toHaveText(["Cerne Implantes", "Nítida", "Fio", "Elo", "Eixo Ortopedia", "Vão Arquitetura e Interiores", "Lavra Joalheria", "Ponte Escola Bilíngue", "Lume Psicologia", "Arrimo Advocacia Previdenciária", "Paddock", "Talhão Advocacia do Agro", "Sutil Cirurgia Plástica", "Casa Brisa", "Aura", "Orla"]);
-    await expect(list.locator("li").nth(11)).toContainText(item.sector);
+    await expect(list.locator("h3")).toHaveText(["Cerne Implantes", "Lume Psicologia", "Arrimo Advocacia Previdenciária", "Paddock", "Vão Arquitetura e Interiores", "Lavra Joalheria", "Ponte Escola Bilíngue", "Aura", "Nítida", "Fio", "Elo", "Eixo Ortopedia", "Talhão Advocacia do Agro", "Sutil Cirurgia Plástica", "Casa Brisa", "Orla"]);
+    // Talhão is behind "Ver mais" since 24/11/2026.
+    await page.locator("#editorial-work details > summary").click();
+    await expect(list.locator("li").nth(12)).toContainText(item.sector);
     await expect(page.locator('video[data-editorial-loop][src]')).toHaveCount(0);
-    await list.locator("li").nth(11).getByRole("button").click();
+    await list.locator("li").nth(12).getByRole("button").click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();
     await expect(dialog.getByRole("link", { name: item.action })).toHaveAttribute("href", /wa.me\/5538998267717/);
