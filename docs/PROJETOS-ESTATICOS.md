@@ -310,6 +310,100 @@ Observação: imagens geradas tendem a dar olhos artificiais, com íris perfeita
   - barra fixa e roteiro no celular de 360 px.
   - Os testes da Cerne e dos kits também passaram.
 - **Fora da homepage até a aprovação dele.** Depois disso: capa, filmes e entrada na seleção.
+## 3. Fio, transplante capilar (proposta de 23/11/2026, aguarda o usuário)
+
+**Por que esse recorte:**
+- **Ticket alto:** o transplante capilar costuma ser pago de uma vez, e o paciente pesquisa muito antes de decidir.
+- **Mercado de anúncios grande:** as clínicas anunciam muito no Google e no Instagram.
+- **Público novo:** homens de 28 a 50 anos. Nenhuma marca do portfólio fala com eles.
+
+**Cuidado de conteúdo (como na Nítida):**
+- Nada de "cabelo de volta para sempre", densidade garantida, número de fios ou de enxertos, prazo de resultado ou antes/depois.
+- A página deixa claro que a avaliação diz se há área doadora suficiente e se o transplante é indicado. Às vezes o caminho é tratamento clínico antes, ou no lugar da cirurgia.
+- Sem CRM/RQE, título de especialista, depoimentos ou números.
+
+| Campo | Proposta |
+| --- | --- |
+| 1. Conceito | **Tirar o boné.** O boné que nunca sai da cabeça, a mão que arruma o cabelo antes da foto, o vento que o homem evita. A marca fala desses momentos, não de folículo. |
+| 2. Marca | **Fio**, com um símbolo de uma única linha que desenha a curva da linha frontal do cabelo vista de frente. |
+| 3. Paleta e material | Medida nas fotos quando chegarem. Direção: céu nublado frio, cinza-grafite, pele e um acento quente tirado do contorno de luz no cabelo. Material: contraluz, o halo de luz que desenha o contorno dos fios. |
+| 4. Tipografia | Space Grotesk nos títulos, técnica e masculina, e IBM Plex Sans no texto, clara e de leitura fácil. Par inédito no portfólio. |
+| 5. Foto | Contraluz frio de céu nublado, que desenha o contorno do cabelo; perfil e três quartos de costas (parâmetros abaixo). |
+| 6. Elemento-assinatura | **A linha frontal:** uma curva única, a mesma do símbolo, que sublinha os títulos e separa as seções, como o contorno do cabelo. |
+| 7. Composição-assinatura | **O mapa da cabeça:** um desenho da cabeça vista de cima, com as áreas (entradas, linha frontal, meio, coroa). Ao tocar numa área, aparece o que costuma ser avaliado nela e o caminho possível. É estático, sem rolagem. Sem JS, todas as áreas aparecem explicadas em lista. |
+| 8. Gramática | Topo (o boné) → "Onde está incomodando?" (o mapa) → "Nem todo caso é cirurgia" (avaliação, área doadora, tratamento clínico) → técnicas (FUE e o que muda) → como funciona → os dias depois (orientações gerais, sem prazos exatos) → quem atende → dúvidas → roteiro local → barra fixa no celular. |
+
+**Esqueleto de conversão:**
+- **Promessa no topo:** "Tirar o boné sem pensar duas vezes." Abaixo dela: "Transplante capilar quando a avaliação indica, e tratamento quando ele é o melhor caminho."
+- **Chamada:** "Agendar avaliação" abre o roteiro local.
+- **O mapa:**
+  - **entradas:** o recuo nas têmporas;
+  - **linha frontal:** a frente que subiu;
+  - **meio:** o cabelo que afinou;
+  - **coroa:** o topo de trás, que a pessoa só vê em foto.
+- **Antes de indicar:**
+  - a área doadora (a nuca e as laterais) tem fios suficientes?;
+  - a queda está estável?;
+  - há causa clínica a tratar antes?
+  - Mensagem: "Saber que a cirurgia ainda não é o caminho também é um resultado da avaliação."
+- **Técnica:** FUE (extração fio a fio), explicada sem promessa. A escolha depende da avaliação.
+- **Como funciona:**
+  1. avaliação;
+  2. planejamento da área e do desenho da linha;
+  3. procedimento, com anestesia local;
+  4. acompanhamento.
+- **Dúvidas:**
+  - Dói?
+  - Fica natural? (depende do desenho e da área doadora, explicado na avaliação)
+  - Quanto tempo até ver o resultado? (varia, explicado na avaliação)
+  - Preciso raspar a cabeça?
+  - Quanto custa? (depende da área)
+  - Posso fazer se ainda estou perdendo cabelo?
+- **Roteiro local** (sem dado de saúde):
+  - a área que mais incomoda;
+  - há quanto tempo;
+  - para quando a pessoa quer resolver.
+- **Quem responde:** o médico com nome, se o usuário autorizar, ou a recepção pelo papel (regra "Clareza" do design system). Sugestão de nome: **Daniel Arruda, médico**. Sem "especialista", porque o título depende de registro.
+
+### Parâmetros de fotografia
+
+| Parâmetro | Fio |
+| --- | --- |
+| Enredo | Os momentos em que o cabelo pesa: tirar o boné, o vento no carro, a mão arrumando o cabelo antes da foto |
+| Luz e hora | Contraluz frio de céu nublado claro, que acende o contorno do cabelo. Nenhuma marca usa |
+| Lente e distância | 85 mm em retrato; macro nos fios contra a luz |
+| Enquadramento | Perfil e três quartos de costas, com a cabeça recortada contra o céu. Nenhuma marca usa |
+| Tratamento | Cor fria e levemente dessaturada, contraste médio, grão fino |
+| Lugar | Rua de cidade em dia nublado, carro com a janela aberta, hall de entrada de casa |
+
+A comparação com as outras marcas dá no máximo um parâmetro parecido: o grão fino lembra a Lume.
+
+### Pedidos de imagem (para o usuário gerar)
+
+Regras: fotografia realista, sem texto legível, logotipo ou marca d'água, maior lado com pelo menos 2400 px, o mesmo homem nas fotos 1 a 3.
+
+1. **Topo, o boné (16:9, 2880×1620):**
+   - Homem brasileiro de cerca de 38 anos, de perfil, numa calçada de cidade em dia nublado claro, tirando um boné liso cinza-escuro da cabeça com uma das mãos.
+   - Cabelo curto e natural, com as entradas levemente marcadas nas têmporas, sem calvície acentuada. Camiseta cinza-grafite.
+   - Contraluz frio do céu branco nublado desenhando o contorno do cabelo e do perfil. Fundo desfocado de prédios claros.
+   - Lente 85 mm, profundidade rasa, cor fria levemente dessaturada, grão fino.
+   - Espaço livre de céu no terço esquerdo para o título.
+2. **O vento (3:2, 2400×1600):**
+   - O mesmo homem dirigindo com a janela aberta, visto de três quartos de trás, pelo banco do passageiro. O vento mexe o cabelo, e ele sorri olhando a estrada.
+   - Dia nublado claro, luz fria, sem pôr do sol. Interior do carro escuro e sem marcas visíveis. Lente 50 mm.
+3. **O espelho (4:5, 2000×2500):**
+   - O mesmo homem num hall de entrada claro, de costas em três quartos, ajeitando o cabelo com a mão diante de um espelho redondo, com o reflexo do rosto desfocado.
+   - Luz fria de janela fora do quadro, sem cortina nem planta. Um boné pendurado num gancho de parede, no canto.
+4. **Os fios (1:1, 2000×2000):**
+   - Macro de fios de cabelo castanho-escuro contra a luz, vistos de perto, com o contorno iluminado e o fundo cinza-azulado desfocado.
+   - Sem pele nem couro cabeludo visível, sem pinças nem instrumentos.
+5. **Quem atende (4:5, 2000×2500):**
+   - Médico brasileiro de cerca de 45 anos, de frente, do peito para cima, cabelo curto grisalho nas laterais, barba bem aparada.
+   - Jaleco branco aberto sobre camisa azul-acinzentada, olhar direto e sereno.
+   - Fundo de papel contínuo cinza-azulado frio, com contraluz suave que desenha o contorno da cabeça. Sem consultório, janela ou diplomas. Lente 85 mm.
+
+Observação: imagens geradas tendem a dar cabelo perfeito demais ou calvície exagerada. O alvo é um homem comum, com entradas leves. Nunca usar foto de couro cabeludo como antes/depois.
+
 ## Onde parar e de onde seguir (23/11/2026, limite de uso do usuário)
 
 - **Commitado:** a linha "quem responde" nas marcas, em `components/brand/WhoAnswers.tsx`.
