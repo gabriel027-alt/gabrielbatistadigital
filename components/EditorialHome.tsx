@@ -106,9 +106,9 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {/* Before the first paint: with motion allowed, the portrait waits hidden so the points can form it
             (components/HeroClouds.tsx). Without JS, with reduced motion or saved data, it shows as usual; and the CSS
             shows it after 3 s whatever happens. */}
-        {/* Phones skip the gathering (25/11/2026, the user's choice after a review found the arrival heavy): the portrait shows
-            at once and only the floating points come, after the page has loaded. */}
-        <script dangerouslySetInnerHTML={{ __html: "try{if(matchMedia('(min-width: 701px)').matches&&!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(navigator.connection&&navigator.connection.saveData))document.documentElement.dataset.heroAssemble=''}catch(e){}" }} />
+        {/* Phones gather too (25/11/2026, the user kept the effect): there the portrait waits dim, not hidden (CSS), so the
+            browser counts it as shown from the first paint. */}
+        <script dangerouslySetInnerHTML={{ __html: "try{if(!matchMedia('(prefers-reduced-motion: reduce)').matches&&!(navigator.connection&&navigator.connection.saveData))document.documentElement.dataset.heroAssemble=''}catch(e){}" }} />
         <div className={styles.heroPhoto} data-hero-photo><ArtDirectedImage alt={t.heroAlt} preload desktop={{ src: "/images/hero/gabriel-hero-wide.webp", sizes: "130vw" }} mobile={{ src: "/images/hero/gabriel-hero-mobile.webp", sizes: "150vw" }} /><HeroClouds /></div>
         {/* The brand dot is born as the tittle of "Design": it soaks the phrase in red ink, then drips onto the name. */}
         <p className={styles.heroOffer} data-hero-offer><span className={styles.sr}>{t.offer.label}</span><span aria-hidden="true">{t.offer.before}<span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.offerTittle}`} data-offer-tittle /></span>{t.offer.after} <br/>{t.offer.line2}</span><span className={styles.offerInk} data-offer-ink aria-hidden="true" /></p>

@@ -146,14 +146,7 @@ export function HeroClouds() {
   const anchor = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
-    // Phones start the floating points only after the page has loaded (25/11/2026): starting with the page held a
-    // mid-range phone on arrival. The portrait itself is not hidden on phones, so nothing waits for this.
-    const late = matchMedia("(max-width: 700px)").matches;
-    if (!late) return run();
-    let stop: (() => void) | undefined, timer = 0, cancelled = false;
-    const begin = () => { timer = window.setTimeout(() => { if (!cancelled) stop = run(); }, 400); };
-    if (document.readyState === "complete") begin(); else addEventListener("load", begin, { once: true });
-    return () => { cancelled = true; removeEventListener("load", begin); window.clearTimeout(timer); stop?.(); };
+    return run();
 
     function run(): (() => void) | undefined {
     const holder = anchor.current?.parentElement;
@@ -260,8 +253,7 @@ export function HeroClouds() {
         if (red(x, y - near) < 90 || (y > height * .72 && (red(x - near, y) < 90 || red(x + near, y) < 90))) edge.push(x, y);
       }
       const pick = (list: number[]) => { const i = Math.floor(Math.random() * list.length / 2) * 2; return [(list[i] + Math.random()) / width, 1 - (list[i + 1] + Math.random()) / height]; };
-      // No gathering on phones: the portrait is not hidden there, so those points would never be drawn.
-      gatherCount = inside.length && !phone ? 14000 : 0;
+      gatherCount = inside.length ? (phone ? 6500 : 14000) : 0;
       const gather = new Float32Array(gatherCount * 5);
       for (let i = 0; i < gatherCount; i++) gather.set([...pick(inside), Math.random(), Math.random(), Math.random()], i * 5);
       gl.bindBuffer(gl.ARRAY_BUFFER, gatherBuffer);
@@ -271,6 +263,20 @@ export function HeroClouds() {
       for (let i = 0; i < emitCount; i++) emit.set([...pick(edge), Math.random(), Math.random()], i * 4);
       gl.bindBuffer(gl.ARRAY_BUFFER, emitBuffer);
       gl.bufferData(gl.ARRAY_BUFFER, emit, gl.STATIC_DRAW);
+    };
+
+    // Precomputed points (25/11/2026, docs/research/hero-relight/hero_points.py): the same positions plant() reads from the
+    // mask, shipped as a small file so the browser skips the scan. Seeds are drawn here.
+    const usePoints = (buffer: ArrayBuffer) => {
+      const view16 = new DataView(buffer);
+      const g = view16.getUint32(0, true), e = view16.getUint32(4, true);
+      const pairs = new Uint16Array(buffer, 8, (g + e) * 2);
+      gatherCount = g; emitCount = e;
+      const gather = new Float32Array(g * 5), emit = new Float32Array(e * 4);
+      for (let i = 0; i < g; i++) gather.set([pairs[i * 2] / 65535, pairs[i * 2 + 1] / 65535, Math.random(), Math.random(), Math.random()], i * 5);
+      for (let i = 0; i < e; i++) emit.set([pairs[(g + i) * 2] / 65535, pairs[(g + i) * 2 + 1] / 65535, Math.random(), Math.random()], i * 4);
+      gl.bindBuffer(gl.ARRAY_BUFFER, gatherBuffer); gl.bufferData(gl.ARRAY_BUFFER, gather, gl.STATIC_DRAW);
+      gl.bindBuffer(gl.ARRAY_BUFFER, emitBuffer); gl.bufferData(gl.ARRAY_BUFFER, emit, gl.STATIC_DRAW);
     };
 
     // The masks that match the photo on screen (the phone gets its own portrait crop), and the photo itself.
@@ -313,7 +319,15 @@ export function HeroClouds() {
         };
         next.src = `${base}-${suffix}.webp`;
       };
-      fetchImage("mask", 1, 1, image => { mask = image; plant(image, base.endsWith("mobile")); fit(); });
+      // The mask counts as ready only once the points are in too (from the file, or scanned if the file fails).
+      let maskImage: HTMLImageElement | null = null, points: ArrayBuffer | null | false = null;
+      const settle = () => {
+        if (maskBase !== base || !maskImage || points === null) return;
+        if (points) usePoints(points); else plant(maskImage, base.endsWith("mobile"));
+        mask = maskImage; ready |= 1; fit(); wake();
+      };
+      fetch(`${base}-points.bin`).then(r => r.ok ? r.arrayBuffer() : Promise.reject()).then(b => { points = b; }, () => { points = false; }).then(settle);
+      fetchImage("mask", 1, 0, image => { maskImage = image; settle(); });
       fetchImage("wall", 3, 4);
     };
 
