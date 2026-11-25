@@ -67,9 +67,10 @@ export default function CernePage() {
         </div>
       </section>
 
-      {/* The manifesto: what the treatment gives back is the table, not the tooth. */}
+      {/* The manifesto: what the treatment gives back is the table, not the tooth. No bite here since 25/11/2026 (the user's
+          choice): cut from the top corner it showed the dark section above as a brown round shape over her face. */}
       <section className={styles.manifesto} aria-labelledby="mesa-titulo">
-        <figure className={`${styles.manifestoPhoto} ${styles.biteTop}`}><Image src={photo("risada")} alt="Casal de cerca de 60 anos rindo num almoço de família; ela segura uma maçã mordida" fill sizes="(max-width:700px) 200vw, 100vw" quality={88} /></figure>
+        <figure className={styles.manifestoPhoto}><Image src={photo("risada")} alt="Casal de cerca de 60 anos rindo num almoço de família; ela segura uma maçã mordida" fill sizes="(max-width:700px) 200vw, 100vw" quality={88} /></figure>
         <div className={styles.manifestoCopy}>
           <h2 id="mesa-titulo">Voltar à mesa.</h2>
           <p>O implante não é sobre o dente. É sobre o almoço de domingo, a maçã inteira e a risada sem a mão na frente da boca.</p>
