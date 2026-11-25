@@ -15,6 +15,9 @@ const except = prefix => `(?:${publicSites.filter(path => path.startsWith(prefix
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   poweredByHeader: false,
+  // CSS inlined in the HTML (25/11/2026): the stylesheet was a render-blocking request; on a slow phone the first paint
+  // came ~0.6 s earlier. Experimental in Next; the HTML grows (29 to 99 KB) and the CSS is not cached apart.
+  experimental: { inlineCss: true },
   // 90 for the portrait and project samples, which are shown large on Full HD screens.
   images: { qualities: [75, 90] },
   // Keep the original source out of the browser in production (this is Next's default; stated so it is not switched on by accident).
