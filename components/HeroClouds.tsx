@@ -1,5 +1,6 @@
 "use client";
 
+import { fastWebGL } from "@/lib/webgl";
 import { useEffect, useRef } from "react";
 import styles from "@/app/editorial.module.css";
 import { CLOUD_GLSL } from "@/lib/cloud-shader";
@@ -166,7 +167,7 @@ export function HeroClouds() {
     view.className = styles.heroClouds;
     view.dataset.heroClouds = "";
     view.setAttribute("aria-hidden", "true");
-    const gl = view.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false });
+    const gl = fastWebGL(view);
     if (!gl) { release(); return; }
 
     const build = (vertex: string, fragment: string) => {

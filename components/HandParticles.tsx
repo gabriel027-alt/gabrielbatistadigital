@@ -1,5 +1,6 @@
 "use client";
 
+import { fastWebGL } from "@/lib/webgl";
 import { useEffect, useRef } from "react";
 import styles from "@/app/editorial.module.css";
 
@@ -75,7 +76,7 @@ export function HandParticles() {
     const view = document.createElement("canvas");
     view.className = styles.handParticles;
     view.setAttribute("aria-hidden", "true");
-    const gl = view.getContext("webgl", { premultipliedAlpha: true, alpha: true, antialias: false });
+    const gl = fastWebGL(view);
     if (!gl) return;
     const shader = (type: number, source: string) => { const s = gl.createShader(type)!; gl.shaderSource(s, source); gl.compileShader(s); return s; };
     const program = gl.createProgram()!;
