@@ -33,11 +33,11 @@ Compartilhada por todas as marcas, sem determinar a aparência:
 | --- | --- |
 | Grade e espaço | Grade de 12 colunas, gutter de 5 vw no desktop e 6 vw no celular. Escala de espaço 4, 8, 12, 16, 24, 32, 48, 64, 96, 128, 160. |
 | Escala tipográfica | Fluida com `clamp`. Corpo de 16 a 18 px, linha de 60 a 75 caracteres, contraste AA. |
-| Motor de movimento | GSAP/ScrollTrigger, já instalado, em componente cliente por marca. Contrato obrigatório: movimento reduzido mostra o estado final; botão de pausa; sem JS mostra o conteúdo completo; não recalcular o ScrollTrigger a cada imagem carregada; retorno do scroll reversível. |
+| Motor de movimento | GSAP/ScrollTrigger, já instalado, em componente cliente por marca. Contrato obrigatório: movimento reduzido mostra o estado final; sem JS mostra o conteúdo completo; botão de pausa só quando algo se mexe sozinho por mais de 5 s e o cliente quer cumprir a WCAG 2.2.2 (decisão dele, registrada); não recalcular o ScrollTrigger a cada imagem carregada; retorno do scroll reversível. |
 | Dica de interação | Regra de 20/11/2026, a pedido do usuário. Toda cena ligada à rolagem tem uma dica na voz da própria marca, por `components/brand/ScrollHint.tsx`. Diz "role" no PC e "deslize" no celular, some nos primeiros 160 px da cena e volta quando a pessoa sobe. Não aparece com movimento reduzido, pausa ou sem JS. Fica dentro do palco da cena, sem cobrir o elemento principal (`desktopAlign`, `phoneTop`). Todo controle clicável (chave, filtro, comparador) diz que é uma escolha, sem depender do mouse. |
 | Conversão | Componente BrandInquiry (roteiro local, sem envio de dados). Botões de chamada em vários pontos, com textos diferentes. |
 | Ícones | `components/ModelIcon.tsx` só como apoio. Ícone nunca é o elemento de identidade. |
-| Verificação | Playwright: formato, roteiro, 360/390/768/1440 sem overflow, axe AA, sem JS. Vídeo da rolagem para ida e volta, no celular e com movimento reduzido. |
+| Verificação | Playwright: formato, roteiro, 360/390/768/1440 sem overflow, axe AA (com movimento ligado e reduzido), sem JS. Vídeo da rolagem para ida e volta, no celular e com movimento reduzido. PageSpeed do celular depois de publicar (ver "Qualidade técnica"). |
 | Conteúdo | Nada de números, depoimentos, registros profissionais, endereços ou antes/depois inventados. Rodapé como site de cliente: “© 2026 <marca>. Site por Gabriel Batista Digital”. Em 11/11/2026 o usuário dispensou os avisos dentro das marcas: demonstração no rodapé, legendas das ilustrações e “Nada é enviado” no roteiro (`privacyItem` opcional no BrandInquiry). A ilustração mantém o nome acessível descritivo no SVG, e o resumo do roteiro não afirma agendamento feito. |
 
 ## Camada 2: kit de marca (obrigatório e único por marca)
@@ -88,12 +88,12 @@ Até aqui cada marca resolvia isso por pedido avulso. Agora é obrigatório, e e
    - O resumo do roteiro e o "Como funciona" dizem o próximo passo concreto: o que é examinado, o que a pessoa recebe (plano, orçamento por escrito) e o que fica para ela decidir.
    - Nada é confirmado (horário, agendamento, visita) sem atendimento real.
 
-**Estado em 23/11/2026:**
+**Estado em 25/11/2026:**
 
 | Situação | Marcas |
 | --- | --- |
-| Com nome | Lume (Helena Prado), Arrimo (Ricardo Teles), Talhão (Marina Couto), Aura (Isadora Lins), Cerne (Rafael Monteiro) |
-| Nome aprovado, página ainda por montar | Nítida (Beatriz Sallum) |
+| Com nome | Talhão (Marina Couto), Nítida (Beatriz Sallum), Fio (Daniel Arruda), Elo (Luísa Andrade): só em filme, em "Ver mais" |
+| Nome retirado em 24/11/2026, decisão do usuário antes de abrir os sites ao público | Cerne (o dentista), Lume (a psicóloga clínica), Arrimo (o advogado previdenciarista), Vão (a arquiteta), Aura (a equipe) |
 | Pelo canal de atendimento, conferido e completado em 23/11/2026 | Veja a lista abaixo |
 
 **Pelo canal de atendimento** (conferido e completado em 23/11/2026):
@@ -132,6 +132,45 @@ A linha comum fica em `components/brand/WhoAnswers.tsx`. Na Forma e na Toca ela 
 - todo nome, número, nota e foto tem origem no cliente, registrada;
 - o texto não promete resultado, prazo garantido nem cura;
 - a mesma bateria de qualidade do portfólio passa: axe AA, 320 px sem rolagem lateral, toques de 44 px, PC a 125% e celular, e versão sem JS.
+
+## Qualidade técnica para entrega real (regra de 25/11/2026)
+
+**De onde vem:** num só dia, o portfólio foi de nota 40 para 99 no PageSpeed do celular (100 em acessibilidade, boas práticas e SEO), sem perder os efeitos, depois da revisão de alguém de fora (Oliveira). As causas e as correções valem para qualquer site de cliente com movimento. O histórico detalhado está no AGENTS.md.
+
+**Meta de entrega:** PageSpeed do celular com 90 ou mais em desempenho e 100 nas outras três categorias, medido no pagespeed.web.dev depois de publicar, em duas ou três rodadas (a nota varia). Abaixo de 90, o site não é entregue sem o cliente saber por quê.
+
+### Desempenho
+
+| Regra | Por quê | Como |
+| --- | --- | --- |
+| Efeitos WebGL só com aceleração de vídeo de verdade | O teste do Google e celulares fracos desenham WebGL por software; cada quadro vira tarefa longa (foi o que derrubou a nota para 40) | `lib/webgl.ts` (`fastWebGL`): `failIfMajorPerformanceCaveat` e recusa de SwiftShader/llvmpipe. Sem aceleração, o efeito não liga e a foto aparece |
+| A foto principal nunca fica escondida esperando uma animação | Escondida, ela não conta como pintada e o "maior conteúdo visível" atrasa | No máximo escurecida (12%) enquanto o efeito acontece; sem aceleração, nem isso (teste no script do topo, antes da primeira pintura) |
+| `sizes` igual ao tamanho real na tela | `150vw` num retrato que ocupa a largura baixava 1200 px em vez de 750 px | Conferir `sizes` de toda foto de topo no celular |
+| Só as fontes, subconjuntos e eixos usados | Cada fonte pré-carregada disputa a conexão com a foto e o título | Tirar fontes sem uso; conferir se o caractere especial já está no `latin` (o "ı" está); eixo variável só se o desenho usa |
+| CSS dentro do HTML quando ele é pequeno | O arquivo de CSS bloqueava a primeira pintura | `experimental.inlineCss` em `next.config.js` (adiantou ~0,6 s num celular lento) |
+| Efeito pesado preparado só quando a cena se aproxima | Preparar tudo na chegada trava os primeiros segundos | `IntersectionObserver` com margem; contexto gráfico criado só perto da cena |
+| Pré-calcular o que não muda | Ler uma imagem pixel a pixel no navegador custa caro no celular | Posições de partículas num arquivo pequeno gerado uma vez (ex.: `hero_points.py`) |
+| Nada por quadro sem necessidade | Trabalho repetido a cada quadro soma no celular | Não reenviar texturas vazias; parar o que já terminou |
+
+**Como medir:** no Chrome visível, com a placa de vídeo real, e também forçando o desenho por software (`--use-angle=swiftshader`), CPU 4× mais lenta e 4G lenta. O navegador de teste sem placa de vídeo exagera o custo do WebGL. O Google multiplica o tempo por 4: um quadro acima de 12,5 ms já conta como tarefa longa.
+
+### Acessibilidade com movimento
+
+- Texto animado nunca começa abaixo do contraste mínimo (3:1 em letra grande, 4,5:1 no resto). O Google e os leitores de tela avaliam a página antes da rolagem.
+- Animar posição, sombra e borda, não a opacidade do texto (os cartões de "Como funciona" acendem sem apagar o texto).
+- Rodar o axe com o movimento ligado, não só com ele reduzido.
+
+### Conversão
+
+- Um botão logo depois de cada prova (projetos, como funciona, sobre): quem chega não procura o botão.
+- Se houver botão de pausa, pausar não pode mudar o lugar da página (guardar o que está no meio da tela e voltar a ele).
+- Cartões e chamadas falam com o dono do negócio: nada de dados técnicos de design (nome da fonte, cores medidas).
+
+### Composição
+
+- Recorte ou máscara nunca revela a cor da seção vizinha sobre um rosto (a "mordida" da Cerne virava uma mancha marrom no celular).
+- A capa de um projeto é o quadro mais legível no tamanho do cartão, não necessariamente o primeiro (Lume de manhã, Casa Brisa na fachada).
+- Antes de entregar, mostrar a alguém de fora: a revisão externa pegou peso no celular, falta de botões e a pausa que o autor não via.
 
 ## Direção de fotografia (regra de 19/11/2026)
 
