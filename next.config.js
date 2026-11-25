@@ -4,8 +4,9 @@
  * and Vercel previews keep them for review and for the test suite. HIDE_REVIEW_ROUTES=1 simulates production.
  */
 const hideReviewRoutes = process.env.VERCEL_ENV === "production" || process.env.HIDE_REVIEW_ROUTES === "1";
-/** Taken offline on 12/11/2026 by the user's decision while the projects are rebuilt. Set to false to publish again. */
-const siteOffline = hideReviewRoutes && true;
+/** Taken offline on 12/11/2026 by the user's decision while the projects were rebuilt; back online on 25/11/2026 by his
+ *  order. Set to true to put the holding page back. */
+const siteOffline = hideReviewRoutes && false;
 /** The brand sites the homepage links to ("Ver o site"); the only model and proposal pages public in production. */
 const publicSites = Object.values(require("./lib/public-brand-sites.json"));
 /** The page names under a prefix that stay public, as a regex alternation that matches the whole segment. */
