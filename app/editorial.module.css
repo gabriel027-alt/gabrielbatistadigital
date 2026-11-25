@@ -619,3 +619,7 @@
 .nav nav .motionControl:hover,.nav nav .motionControl:focus-visible{opacity:1}
 .nav nav .motionControl:before{width:8px;height:10px;border-width:0 2.5px}
 .nav nav .motionControl[aria-pressed=true]:before{width:0;height:0;border-width:5px 0 5px 8px}
+
+/* Paper sections (24/11/2026): the scrim stays solid behind the whole header row, so the name and the menu never sit
+   on a project cover while the grid scrolls under them. */
+.page[data-editorial-theme=paper] .nav:before{background:linear-gradient(180deg,var(--nav-scrim) 74%,transparent)}
