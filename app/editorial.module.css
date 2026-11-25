@@ -636,9 +636,9 @@
    its peach edge as the brand dot reads it (--u, 0 to 1, set by EditorialMotion). Without motion --u is unset and the
    cards simply stand finished. */
 .stepsList{gap:16px 1.6vw;border-top:1px solid #20171426;padding-top:24px}
-.stepsList .serviceItem{--k:var(--u,1);position:relative;padding:26px 24px 28px;border-radius:22px;background:#fffaf4;border:1px solid rgb(255 188 149/calc(.25 + var(--k) * .75));box-shadow:0 calc(var(--k) * 18px) calc(var(--k) * 40px) -18px #5a2b1440;opacity:calc(.45 + var(--k) * .55);transform:translateY(calc((1 - var(--k)) * 18px));transition:transform .25s,box-shadow .25s}
+.stepsList .serviceItem{--k:var(--u,1);position:relative;padding:26px 24px 28px;border-radius:22px;background:#fffaf4;border:1px solid rgb(255 188 149/calc(.25 + var(--k) * .75));box-shadow:0 calc(var(--k) * 18px) calc(var(--k) * 40px) -18px #5a2b1440;transform:translateY(calc((1 - var(--k)) * 18px));transition:transform .25s,box-shadow .25s}
 .stepsList .serviceItem:hover{transform:translateY(-4px);box-shadow:0 22px 44px -18px #5a2b1459}
-.stepsList .stepNum{font-family:var(--display);font-size:clamp(30px,2.6vw,42px);font-weight:500;letter-spacing:-.04em;line-height:1;margin-bottom:14px;color:rgb(184 98 58/calc(.35 + var(--k) * .65))}
+.stepsList .stepNum{font-family:var(--display);font-size:clamp(30px,2.6vw,42px);font-weight:500;letter-spacing:-.04em;line-height:1;margin-bottom:14px;color:var(--copper)}
 .stepsList .serviceItem p{max-width:none}
 @media(max-width:900px){.stepsList{grid-template-columns:1fr 1fr;gap:14px 14px}}
 @media(max-width:560px){.stepsList{grid-template-columns:1fr;gap:12px}.stepsList .serviceItem{padding:20px 20px 22px;border-radius:18px}.stepsList .stepNum{font-size:28px;margin-bottom:10px}}
@@ -647,3 +647,5 @@
 /* Phones (25/11/2026): while the points gather, the portrait waits dim instead of hidden, so the browser counts it as
    painted from the start; the points form over it and it lights up when they land. */
 @media(max-width:700px){:global(html[data-hero-assemble]) .heroPhoto img{opacity:.12}}
+/* 25/11/2026: the cards no longer fade their text while unread (PageSpeed and axe read the page before any scroll);
+   the rise, the shadow and the peach edge carry the reading. */

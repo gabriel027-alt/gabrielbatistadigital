@@ -51,7 +51,9 @@ export function EditorialMotion({ children, className = "" }: { children: ReactN
         gsap.utils.toArray<HTMLElement>("[data-kinetic]").forEach(title => {
           const split = SplitText.create(title, { type: "words", wordsClass: "editorial-word", aria: title.querySelector("a") ? "none" : "auto" });
           splits.push(split);
-          gsap.fromTo(split.words, { yPercent: 95, rotationX: -35, opacity: .12 }, {
+          // Words start at .62, not .12 (25/11/2026): unrevealed they must still read (3:1 for large text), as PageSpeed and
+          // screen readers check the page before any scroll. The rise and turn still carry the reveal.
+          gsap.fromTo(split.words, { yPercent: 95, rotationX: -35, opacity: .62 }, {
             yPercent: 0, rotationX: 0, opacity: 1, stagger: .08, ease: "power2.out",
             scrollTrigger: { trigger: title, start: "top 90%", end: "bottom 55%", scrub: .65 },
           });

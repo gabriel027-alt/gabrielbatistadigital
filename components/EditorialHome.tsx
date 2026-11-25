@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { ArtDirectedImage } from "@/components/ArtDirectedImage";
-import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
+import { Bricolage_Grotesque } from "next/font/google";
 import { linePath, onLine, shapes, transformOf, view, type ShapeId } from "@/lib/gb-shapes";
 import { GbShape, GbShapeDefs } from "@/components/GbShape";
 import { Arrow } from "@/components/ui/icons";
@@ -29,9 +29,8 @@ import styles from "@/app/editorial.module.css";
  */
 // Monumental words (name, section titles, contact); Manrope stays for reading. Mono only for real brand data.
 // Variable width and weight: the hero name breathes between narrow and wide, as in the reference.
-// latin-ext brings the dotless "ı": the red brand dot takes the place of the tittle on both i of the name.
-const display = Bricolage_Grotesque({ subsets: ["latin", "latin-ext"], weight: "variable", axes: ["wdth", "opsz"], variable: "--gb-display", display: "swap" });
-const mono = JetBrains_Mono({ subsets: ["latin"], weight: ["400"], variable: "--gb-mono", display: "swap" });
+// The dotless "ı" (U+0131) is in the latin subset, so latin-ext (53 KB, preloaded) is not needed (25/11/2026).
+const display = Bricolage_Grotesque({ subsets: ["latin"], weight: "variable", axes: ["wdth", "opsz"], variable: "--gb-display", display: "swap" });
 /** A dotless "ı" whose only tittle is the red brand dot (a red dot over a brown one looked doubled, 21/11/2026); `carry` marks the one the scroll picks up and drops into the palm. */
 const redI = (carry = false) => <span className={styles.iSlot}>ı<span className={`${styles.tittle} ${styles.hookTittle}`} data-hook-tittle={carry ? "carry" : ""} aria-hidden="true" /></span>;
 /** Draws a word of the name with a red tittle (the brand dot) over each "i". */
@@ -90,7 +89,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         {/* The font and the measured colours left the cards on 24/11/2026: they spoke to designers, not to the business owner. */}
       </div></li>;
   };
-  return <EditorialMotion className={`${display.variable} ${mono.variable}`}>
+  return <EditorialMotion className={`${display.variable}`}>
     {/* The root layout says pt-BR; the other languages correct it before anything is read. */}
     {/* Counts the clicks on WhatsApp for the analytics tool to come; loads and sends nothing by itself. */}
     <ContactTracking />
