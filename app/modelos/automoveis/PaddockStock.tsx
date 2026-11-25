@@ -6,16 +6,11 @@ import { BrandInquiry } from "@/components/BrandInquiry";
 import { Arrow } from "@/components/ui/icons";
 import { bodies, cars, reportItems, legalWarranty } from "@/lib/paddock";
 import styles from "./paddock.module.css";
-function StockPhoto({ car }: { car: (typeof cars)[number] }) {
-  const ref = useRef<HTMLElement>(null);
-  const [near, setNear] = useState(false);
-  useEffect(() => {
-    const observer = new IntersectionObserver(([entry]) => { if(entry.isIntersecting) { setNear(true); observer.disconnect(); } }, {rootMargin:"400px"});
-    if(ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
-  },[]);
-  const photo = <Image src={`/images/paddock/${car.id}.webp`} alt={`${car.name}, em estúdio`} width={3200} height={2400} sizes="(max-width:700px) 100vw, (max-width:1100px) 50vw, 33vw" quality={90}/>;
-  return <figure ref={ref}>{near && photo}<noscript>{photo}</noscript></figure>;
+/** The photos load together once the stock is near: on phones the row scrolls sideways, and cards clipped by it would
+ *  otherwise only start loading as they are swiped in. */
+function StockPhoto({ car, near }: { car: (typeof cars)[number]; near: boolean }) {
+  const photo = <Image src={`/images/paddock/${car.id}.webp`} alt={`${car.name}, em estúdio`} width={3200} height={2400} sizes="(max-width:700px) 100vw, (max-width:1100px) 50vw, 33vw" quality={90} loading="eager"/>;
+  return <figure>{near && photo}<noscript>{photo}</noscript></figure>;
 }
 const subscribe = () => () => {};
 export function PaddockStock({ children }: { children?: ReactNode }) {
@@ -31,17 +26,27 @@ export function PaddockStock({ children }: { children?: ReactNode }) {
   const [lit, setLit] = useState<string | null>(null);
   const [body, setBody] = useState("Todos");
   const shown = cars.filter(car => body === "Todos" || car.body === body);
+  const row = useRef<HTMLUListElement>(null);
+  const [near, setNear] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(([entry]) => { if(entry.isIntersecting) { setNear(true); observer.disconnect(); } }, {rootMargin:"400px"});
+    if(row.current) observer.observe(row.current);
+    return () => observer.disconnect();
+  },[]);
   function choose(value: string) {
     if (value === body) return;
+    row.current?.scrollTo({ left: 0 });
     if (document.startViewTransition && !matchMedia('(prefers-reduced-motion: reduce)').matches) document.startViewTransition(() => flushSync(() => setBody(value)));
     else setBody(value);
   }
   return <><section className={styles.stock} id="paddock-estoque" aria-labelledby="estoque-titulo">
     <div className={styles.stockHead}><div><p className={styles.eyebrow}>Sem pular a inspeção</p><h2 id="estoque-titulo">Escolha o carro. Abra o laudo.</h2></div><p>A condição vem antes da proposta.<br />O preço, você consulta depois.</p></div>
     <fieldset className={styles.filters}><legend>Carroceria</legend><div>{bodies.map(item => <button key={item} type="button" disabled={!hydrated} aria-pressed={body === item} onClick={() => choose(item)}>{item}</button>)}</div></fieldset>
-    <p className={styles.count} role="status">{shown.length} {shown.length === 1 ? "carro" : "carros"}</p>
-    <ul className={styles.cars} data-paddock-cars>{shown.map(car => <li key={car.id} data-lit={lit === car.id || undefined} onPointerDown={() => setLit(car.id)} style={{ viewTransitionName: `car-${car.id}`, "--car-accent":car.accent } as CSSProperties}>
-      <StockPhoto car={car}/>
+    <p className={styles.count} role="status">{shown.length} {shown.length === 1 ? "carro" : "carros"}{shown.length > 1 && <span className={styles.swipeHint}> · deslize para o lado</span>}</p>
+    {/* On phones the cars sit side by side in a row you swipe (24/11/2026): one after another, the six full cards made
+        the page and its film a long run of near-identical blocks. */}
+    <ul className={styles.cars} data-paddock-cars ref={row}>{shown.map(car => <li key={car.id} data-lit={lit === car.id || undefined} onPointerDown={() => setLit(car.id)} style={{ viewTransitionName: `car-${car.id}`, "--car-accent":car.accent } as CSSProperties}>
+      <StockPhoto car={car} near={near}/>
       <div className={styles.carCopy}><p>{car.body}</p><h3>{car.name}</h3><dl><div><dt>Ano</dt><dd>{car.year}</dd></div><div><dt>Quilometragem</dt><dd>{car.km}</dd></div><div><dt>Câmbio</dt><dd>{car.gear}</dd></div></dl><div className={styles.reportBrief}><span>Ficha de inspeção</span><p className={styles.carDetail}>{car.detail}</p><ul>{reportItems.map(item => <li key={item.id}>{item.short}</li>)}</ul></div>
       {hydrated && <button id={`laudo-${car.id}`} className={styles.reportButton} type="button" onClick={event => openReport(car,event.currentTarget)}>Ver o laudo deste carro <Arrow size={17}/></button>}
       <p className={styles.price}>Consulte</p></div>

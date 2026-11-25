@@ -29,8 +29,8 @@
     },
     {
       "file": "/videos/projects/brands/paddock-mobile.mp4",
-      "bytes": 21310197,
-      "sha256": "6da2df9156a8f9c2639170e83843df1b4daa112e2e7e2080bd9c31aa720258d2",
+      "bytes": 24759358,
+      "sha256": "8c930d8bcdd31873fac9869062964b7c7f5799d2210f0b37490a2614988e3b69",
       "captureViewport": [
         432,
         768
@@ -47,7 +47,8 @@
         "duration": "93.966667",
         "nb_frames": "2819"
       },
-      "audio": false
+      "audio": false,
+      "changed": "24/11/2026: stock as a swipe row and a larger final car on phones"
     },
     {
       "file": "/videos/projects/brands/paddock-loop.mp4",

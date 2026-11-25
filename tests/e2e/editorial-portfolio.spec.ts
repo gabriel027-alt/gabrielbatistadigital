@@ -195,7 +195,7 @@ test('Selection shows the approved brands with the colors measured for each', as
   // A still strip: a moving one never settles for a click.
   await page.emulateMedia({ reducedMotion: 'reduce' });
   await page.goto(route);
-  for (const name of ['Cerne Implantes', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Paddock', 'Vão Arquitetura e Interiores', 'Lavra Joalheria', 'Ponte Escola Bilíngue', 'Aura', 'Nítida', 'Fio', 'Elo', 'Eixo Ortopedia', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Casa Brisa', 'Orla']) {
+  for (const name of ['Cerne Implantes', 'Lume Psicologia', 'Arrimo Advocacia Previdenciária', 'Casa Brisa', 'Vão Arquitetura e Interiores', 'Lavra Joalheria', 'Ponte Escola Bilíngue', 'Aura', 'Nítida', 'Fio', 'Elo', 'Eixo Ortopedia', 'Paddock', 'Talhão Advocacia do Agro', 'Sutil Cirurgia Plástica', 'Orla']) {
     await expect(page.locator(`${projects} h3`, { hasText: name })).toHaveCount(1);
   }
   await expect(page.locator(`${projects} dl`)).toHaveCount(14);
@@ -407,8 +407,8 @@ test('On a phone every film opens in its vertical cut, as large as the screen al
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto(route);
   for (const name of ['Paddock', 'Aura', 'Orla']) {
-    // Orla is under "Ver mais" since 24/11/2026.
-    if (name === 'Orla') await page.locator('[data-more-toggle]:visible').click();
+    // Paddock and Orla are under "Ver mais" since 24/11/2026; it opens once and stays open.
+    if (name === 'Paddock') await page.locator('[data-more-toggle]:visible').click();
     await page.getByRole('button', { name: new RegExp(`: ${name}$`) }).click();
     const video = page.locator('dialog[open] video');
     await video.evaluate(v => { (v as HTMLVideoElement).muted = true; return (v as HTMLVideoElement).play().catch(() => {}); });

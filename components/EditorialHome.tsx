@@ -49,7 +49,8 @@ const works: Work[] = [
   { id: "cerne", name: "Cerne Implantes", image: sample("cerne", "hero"), kit: "cerne" },
   { id: "lume", name: "Lume Psicologia", image: sample("lume", "hero"), kit: "lume" },
   { id: "arrimo", name: "Arrimo Advocacia Previdenciária", image: sample("arrimo", "hero"), kit: "arrimo" },
-  { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },
+  // Casa Brisa took Paddock's place on 24/11/2026: Paddock went behind "Ver mais" (the user's decision).
+  { id: "brisa", name: "Casa Brisa", image: sample("brisa", "hero"), kit: "brisa" },
   { id: "vao", name: "Vão Arquitetura e Interiores", image: sample("vao", "hero"), kit: "vao" },
   { id: "lavra", name: "Lavra Joalheria", image: sample("lavra", "hero"), kit: "lavra" },
   { id: "ponte", name: "Ponte Escola Bilíngue", image: sample("ponte", "hero"), kit: "ponte" },
@@ -59,9 +60,9 @@ const works: Work[] = [
   { id: "fio", name: "Fio", image: sample("fio", "hero"), kit: "fio" },
   { id: "elo", name: "Elo", image: sample("elo", "hero"), kit: "elo" },
   { id: "eixo", name: "Eixo Ortopedia", image: sample("eixo", "hero"), kit: "eixo" },
+  { id: "paddock", name: "Paddock", image: sample("paddock", "hero"), kit: "paddock" },
   { id: "talhao", name: "Talhão Advocacia do Agro", image: sample("talhao", "hero"), kit: "talhao" },
   { id: "sutil", name: "Sutil Cirurgia Plástica", image: sample("sutil", "hero"), kit: "sutil" },
-  { id: "brisa", name: "Casa Brisa", image: sample("brisa", "hero"), kit: "brisa" },
   { id: "orla", name: "Orla", image: "/images/projects/orla-film-poster.jpg" },
 ];
 const featuredCount = 8;

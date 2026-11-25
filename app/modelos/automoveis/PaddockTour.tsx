@@ -11,6 +11,9 @@ import styles from "./paddock.module.css";
  * Frames load in a small window near the current scroll position and the nearest loaded frame is drawn meanwhile.
  * Without JS, with reduced motion or when paused, the page shows the whole car with all four inspection marks.
  */
+/** Phones: how much the final landscape frames are enlarged, and the car's horizontal centre in them. */
+const WIDE_ZOOM = 1.25, CAR_CENTRE = .538;
+
 function build(root: HTMLElement) {
   const section = root.querySelector<HTMLElement>("[data-paddock-tour]");
   const canvas = root.querySelector<HTMLCanvasElement>("[data-tour-canvas]");
@@ -26,7 +29,9 @@ function build(root: HTMLElement) {
 
   // Portrait screens get the centre crop (405×720); wide screens the full 1280×720 frame.
   const set = matchMedia("(max-aspect-ratio: 4/5)").matches ? "m" : "d";
-  const scanPoints = set === "m" ? [35,58,30,80] : [47,68,47,80];
+  // Where the scan line meets each callout point (% of the width). On phones the points were measured at x 35, 58, 30
+  // and 80 on the width-fit car; with the zoom they move to 50 + (x - 53.8) × 1.25.
+  const scanPoints = set === "m" ? [35,58,30,80].map(x => 50 + (x - CAR_CENTRE * 100) * WIDE_ZOOM) : [47,68,47,80];
   const crossing = scanPoints.map(x => (x-10)/82);
   const frames: (HTMLImageElement | null)[] = new Array(tourFrames).fill(null);
   const wideFrames = new Map<number, HTMLImageElement>();
@@ -67,10 +72,13 @@ function build(root: HTMLElement) {
         const alpha = Math.min(1, (state.frame - 208) / 10);
         context.save(); context.globalAlpha = alpha;
         context.fillStyle = "#010101"; context.fillRect(0,0,canvas.width,canvas.height);
-        const fit = canvas.width / wide.naturalWidth;
-        const fitHeight = wide.naturalHeight * fit;
+        // 24/11/2026: drawn 1.25× wider than the screen, centred on the car (17.9–89.7% of the frame, centre 53.8%),
+        // so the whole car fills the phone with a small margin instead of a third of the screen. The callout lines
+        // get the same zoom in CSS (.inspectionLinks on phones).
+        const fit = canvas.width / wide.naturalWidth * WIDE_ZOOM;
+        const fitWidth = wide.naturalWidth * fit, fitHeight = wide.naturalHeight * fit;
         const top = (canvas.height - fitHeight) / 2;
-        context.drawImage(wide, 0, top, canvas.width, fitHeight);
+        context.drawImage(wide, canvas.width / 2 - fitWidth * CAR_CENTRE, top, fitWidth, fitHeight);
         const upper = context.createLinearGradient(0,top,0,top+fitHeight*.18);
         upper.addColorStop(0,"#010101"); upper.addColorStop(1,"#01010100");
         context.fillStyle=upper; context.fillRect(0,top,canvas.width,fitHeight*.18);

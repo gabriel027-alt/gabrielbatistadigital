@@ -8,7 +8,7 @@ const cases = [
 ];
 
 for (const item of cases) {
-  test(`Paddock follows Arrimo in the selected strip and plays its matching film in ${item.route}`, async ({ browser }) => {
+  test(`Paddock sits behind "Ver mais" and plays its matching film in ${item.route}`, async ({ browser }) => {
     const context = await browser.newContext({
       viewport: item.mobile ? { width: 390, height: 844 } : { width: 1536, height: 696 },
       deviceScaleFactor: item.mobile ? 1 : 1.25,
@@ -17,10 +17,12 @@ for (const item of cases) {
     const page = await context.newPage();
     await page.goto(item.route);
     const list = page.locator('#editorial-work ul:not([aria-hidden])');
-    await expect(list.locator("h3")).toHaveText(["Cerne Implantes", "Lume Psicologia", "Arrimo Advocacia Previdenciária", "Paddock", "Vão Arquitetura e Interiores", "Lavra Joalheria", "Ponte Escola Bilíngue", "Aura", "Nítida", "Fio", "Elo", "Eixo Ortopedia", "Talhão Advocacia do Agro", "Sutil Cirurgia Plástica", "Casa Brisa", "Orla"]);
-    await expect(list.locator("li").nth(3)).toContainText(item.sector);
+    await expect(list.locator("h3")).toHaveText(["Cerne Implantes", "Lume Psicologia", "Arrimo Advocacia Previdenciária", "Casa Brisa", "Vão Arquitetura e Interiores", "Lavra Joalheria", "Ponte Escola Bilíngue", "Aura", "Nítida", "Fio", "Elo", "Eixo Ortopedia", "Paddock", "Talhão Advocacia do Agro", "Sutil Cirurgia Plástica", "Orla"]);
+    // Behind "Ver mais" since 24/11/2026 (Casa Brisa took its featured place).
+    await page.locator("[data-more-toggle]:visible").click();
+    await expect(list.locator("li").nth(12)).toContainText(item.sector);
     await expect(page.locator('video[data-editorial-loop][src]')).toHaveCount(0);
-    await list.locator("li").nth(3).getByRole("button").click();
+    await list.locator("li").nth(12).getByRole("button").click();
     const dialog = page.getByRole("dialog");
     await expect(dialog).toBeVisible();
     await expect(dialog.getByRole("link", { name: item.action })).toHaveAttribute("href", /wa.me\/5538998267717/);

@@ -96,3 +96,19 @@
 /* No pause button since 21/11/2026: the header gets its full width back. */
 .header.header{padding-right:5vw}
 @media(max-width:700px){.header.header{padding-right:6vw}}
+
+/* Phones (24/11/2026): the stock is a row you swipe, one car per screen with the next one peeking, instead of six full
+   cards one under the other. The filters and the count stay above it. */
+.swipeHint{display:none}
+@media(max-width:700px){
+ .swipeHint{display:inline}
+ .cars{display:flex;gap:14px;overflow-x:auto;overscroll-behavior-x:contain;scroll-snap-type:x mandatory;margin:0 -6vw!important;padding:0 6vw 6px;scroll-padding-inline:6vw;scrollbar-width:none}
+ .cars::-webkit-scrollbar{display:none}
+ .cars>li{flex:0 0 84%;scroll-snap-align:start}
+}
+
+/* Phones (24/11/2026): the final car is drawn 1.25x larger, centred on the car (PaddockTour WIDE_ZOOM, CAR_CENTRE);
+   the callout lines take the same zoom so their points stay on the car. */
+@media(max-width:700px){
+ .page[data-brand-animated=true] .inspectionLinks{transform-origin:53.8% 50%;transform:translateX(-3.8%) scale(1.25)}
+}

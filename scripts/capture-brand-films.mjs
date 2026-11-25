@@ -70,6 +70,8 @@ try {
         await page.locator('#paddock-estoque').scrollIntoViewIfNeeded();
         for(const card of await page.locator('[data-paddock-cars]>li').all()){await card.scrollIntoViewIfNeeded();await page.waitForTimeout(150);}
         await page.locator('[data-paddock-cars] img:not(noscript img)').evaluateAll(imgs=>Promise.all(imgs.map(i=>i.decode().catch(()=>{}))));
+        // The warm-up scrolled the phone's swipe row to its last car; the film starts it from the first.
+        await page.locator('[data-paddock-cars]').evaluate(row=>row.scrollTo({left:0,behavior:'instant'}));
       }
       await page.evaluate(() => scrollTo(0, 0));
       await page.waitForTimeout(2500);
@@ -309,6 +311,14 @@ try {
             const through = Math.min(end, s.top + s.height - innerHeight);
             if (through > scrollY + 40) { await glide(through, (brand === "paddock" ? Math.min(18000,(through - scrollY) / (scene ? speed * .42 : speed) * 1000) : (through - scrollY) / (scene ? speed * .42 : speed) * 1000), scene); await rest(scene ? 1200 : 700); }
             if(s.id === 'paddock-estoque') {
+              // Phones (24/11/2026): the stock is a row you swipe; the film brings it into view and swipes through a few cars.
+              const row=document.querySelector('[data-paddock-cars]');
+              if(row && row.scrollWidth>row.clientWidth+10){
+                await glide(Math.min(end,row.getBoundingClientRect().top+scrollY-140),1100);await rest(900);
+                const first=row.firstElementChild;
+                for(const li of [...row.children].slice(1,4)){row.scrollTo({left:li.offsetLeft-first.offsetLeft,behavior:'smooth'});await rest(1400);}
+                row.scrollTo({left:0,behavior:'smooth'});await rest(1000);
+              }
               const trigger=document.getElementById('laudo-sedan-verde');trigger?.click();await rest(1700);
               const report=document.querySelector('dialog[open]');report?.scrollTo({top:report.scrollHeight,behavior:'smooth'});await rest(1000);
               report?.querySelector('a[data-inquiry-car]')?.click();await rest(800);
