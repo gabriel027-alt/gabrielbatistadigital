@@ -1,7 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState, useSyncExternalStore, type ReactNode } from "react";
-import { createPortal } from "react-dom";
+import { useEffect, useRef, useState, type ReactNode } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { CustomEase } from "gsap/CustomEase";
@@ -10,27 +9,15 @@ import { SplitText } from "gsap/SplitText";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
 import styles from "@/app/editorial.module.css";
 import { lineEnds, linePath, onLine, pathThrough, shapes, transformOf, type Pose } from "@/lib/gb-shapes";
-const subscribe = () => () => {};
 
-export function EditorialMotion({ children, className = "", labels = { pause: "Pausar movimento", resume: "Ativar movimento" } }: { children: ReactNode; className?: string; labels?: { pause: string; resume: string } }) {
+export function EditorialMotion({ children, className = "" }: { children: ReactNode; className?: string }) {
   const root = useRef<HTMLDivElement>(null);
   const initialAnchorHandled = useRef(false);
   // The brand dot's arrival scene plays once per visit, not again after pausing and resuming motion.
   const dotSceneDone = useRef(false);
-  const [paused, setPaused] = useState(false);
-  // Pausing changes the height of the scroll scenes (the folder, the hand), so the same scroll position would show other
-  // content. The section under the middle of the screen, and how far into it, is kept and restored (24/11/2026).
-  const keep = useRef<{ el: HTMLElement; at: number } | null>(null);
-  const toggle = () => {
-    const middle = innerHeight / 2;
-    // Outside the scroll scenes, the very thing in the middle (a project card, a list) is kept; inside one, its section.
-    const hit = document.elementFromPoint(innerWidth / 2, middle);
-    const still = hit && !hit.closest("[data-work-track],[data-creation-track],[data-hero-photo]") ? hit.closest<HTMLElement>("li,article,details,h2,p") : null;
-    const el = still ?? [...(root.current?.querySelectorAll<HTMLElement>("main > section, footer") ?? [])].find(section => { const r = section.getBoundingClientRect(); return r.top <= middle && r.bottom > middle; });
-    if (el) { const r = el.getBoundingClientRect(); keep.current = { el, at: (middle - r.top) / r.height }; }
-    setPaused(value => !value);
-  };
-  const hydrated = useSyncExternalStore(subscribe, () => true, () => false);
+  // No pause button since 25/11/2026 (the user's decision after an outside review): the motion stays continuous. The
+  // page is still still with reduced motion. `paused` stays as the switch the effects read.
+  const [paused] = useState(false);
   useEffect(() => {
     const node = root.current;
     if (!node || paused) return;
@@ -562,16 +549,6 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
     return () => media.revert();
   }, [paused]);
   useEffect(() => {
-    const kept = keep.current; keep.current = null;
-    if (!kept) return;
-    let frame = requestAnimationFrame(() => { frame = requestAnimationFrame(() => {
-      const r = kept.el.getBoundingClientRect();
-      scrollTo({ top: Math.max(0, r.top + scrollY + kept.at * r.height - innerHeight / 2), behavior: "instant" });
-      ScrollTrigger.update();
-    }); });
-    return () => cancelAnimationFrame(frame);
-  }, [paused]);
-  useEffect(() => {
     const node = root.current;if (!node) return;
     // The theme follows whichever section is under the logo right now, so reversing near a boundary cannot leave it stale.
     const sections = [...node.querySelectorAll<HTMLElement>("section[data-editorial-theme],footer[data-editorial-theme]")];
@@ -603,7 +580,5 @@ export function EditorialMotion({ children, className = "", labels = { pause: "P
   },[paused]);
   return <div ref={root} className={`${styles.page} ${className}`} data-editorial data-editorial-motion={paused ? "off" : "on"} data-editorial-theme="photo" data-editorial-nav-over="editorial-start">
     {children}<div className={styles.frameGlow} data-frame-glow aria-hidden="true"/><div className={styles.cursor} data-editorial-cursor aria-hidden="true"/>
-    {/* Inside the menu since 24/11/2026: a floating round button beside the menu weighed on the bottom of the phone screen. */}
-    {hydrated && (() => { const button = <button className={styles.motionControl} type="button" aria-pressed={paused} title={paused ? labels.resume : labels.pause} onClick={toggle}><span className={styles.motionLabel}>{paused ? labels.resume : labels.pause}</span></button>; const menu = document.querySelector<HTMLElement>("[data-editorial-nav] nav"); return menu ? createPortal(button, menu) : button; })()}
   </div>;
 }

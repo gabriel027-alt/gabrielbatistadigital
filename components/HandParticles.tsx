@@ -55,6 +55,16 @@ export function HandParticles() {
   const anchor = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // Set up only as the hand scene approaches (25/11/2026): creating the graphics context and its shader on arrival
+    // weighed on the first seconds of the page, long before the hand is on screen.
+    const near = anchor.current?.closest<HTMLElement>("[data-creation-track]");
+    if (!near) return;
+    let stop: (() => void) | undefined;
+    const watch = new IntersectionObserver(([entry]) => { if (entry.isIntersecting && !stop) { watch.disconnect(); stop = run() ?? (() => {}); } }, { rootMargin: "150% 0px" });
+    watch.observe(near);
+    return () => { watch.disconnect(); stop?.(); };
+
+    function run(): (() => void) | undefined {
     const stage = anchor.current?.parentElement;
     const root = stage?.closest<HTMLElement>("[data-editorial]");
     const track = stage?.closest<HTMLElement>("[data-creation-track]");
@@ -87,7 +97,8 @@ export function HandParticles() {
     let small: ImageBitmap | null = null, asking = false;
     const plant = () => {
       if (ready || !img.complete || !img.naturalWidth) return;
-      const w = 520, h = Math.round(img.naturalHeight * w / img.naturalWidth);
+      // Phones use a smaller copy and fewer points (25/11/2026): the hand still forms, with less work as it arrives.
+      const w = innerWidth < 700 ? 360 : 520, h = Math.round(img.naturalHeight * w / img.naturalWidth);
       if (!small) {
         if (!asking && "createImageBitmap" in window) {
           asking = true;
@@ -104,7 +115,7 @@ export function HandParticles() {
       const inside: number[] = [];
       for (let y = 0; y < h; y++) for (let x = 0; x < w; x++) if (data[(y * w + x) * 4 + 3] > 200) inside.push(x, y);
       if (!inside.length) return;
-      count = innerWidth < 700 ? 5000 : 9000;
+      count = innerWidth < 700 ? 3200 : 9000;
       const points = new Float32Array(count * 5);
       for (let i = 0; i < count; i++) {
         const j = Math.floor(Math.random() * inside.length / 2) * 2;
@@ -191,6 +202,7 @@ export function HandParticles() {
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       view.remove();
     };
+    }
   }, []);
 
   return <span ref={anchor} hidden />;

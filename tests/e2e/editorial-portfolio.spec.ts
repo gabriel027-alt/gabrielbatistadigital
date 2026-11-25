@@ -145,20 +145,15 @@ test('Navigation theme follows the section under the logo after reversing near a
   await expect(root).toHaveAttribute('data-editorial-theme', 'photo');
 });
 
-test('Mobile motion control sits inside the menu, which still fits the screen, and the top has only a soft red edge', async ({ page }) => {
-  // 22/11/2026: the motion is continuous again by the user's choice, so the page-wide pause is back (WCAG 2.2.2).
-  // 24/11/2026: the control is the last item of the menu pill, no longer a round button beside it.
+test('Mobile menu has no pause button and fits the screen, and the top has only a soft red edge', async ({ page }) => {
+  // 25/11/2026: the pause button is gone by the user's decision (the motion stays continuous); reduced motion still
+  // gives the still page.
   for (const width of [320, 360, 390]) {
     await page.setViewportSize({ width, height: 800 });
     await page.goto(route);
-    const control = page.locator('[data-editorial-nav] nav').getByRole('button', { name: 'Pausar movimento' });
-    await expect(control).toBeVisible();
+    await expect(page.getByRole('button', { name: 'Pausar movimento' })).toHaveCount(0);
     const pill = await page.locator('[data-editorial-nav] nav').boundingBox();
-    const button = await control.boundingBox();
-    expect(pill && button && button.x >= pill.x && button.x + button.width <= pill.x + pill.width + 1).toBe(true);
     expect(pill!.x + pill!.width).toBeLessThanOrEqual(width);
-    expect(button!.width).toBeGreaterThanOrEqual(44);
-    expect(button!.height).toBeGreaterThanOrEqual(44);
     // Soft red edge on phones (22/11/2026): present, but faint (no alpha above 0.25).
     const shadow = await page.locator('[data-frame-glow]').evaluate(el => getComputedStyle(el).boxShadow);
     const alphas = [...shadow.matchAll(/rgba\([^)]*,\s*([\d.]+)\)/g)].map(m => +m[1]);
@@ -202,6 +197,8 @@ test('Selection shows the approved brands with the colors measured for each', as
   }
   // No font name or colour swatches on the cards since 24/11/2026: the benefit is the card's message.
   await expect(page.locator(`${projects} dl`)).toHaveCount(0);
+  // Right after the grid, a call to act on what was just seen (25/11/2026).
+  await expect(page.locator('#editorial-work a[data-track-place="projetos"]')).toHaveAttribute('href', /wa.me\/5538998267717/);
   // Each brand has its film; only the eight featured ones also link to their site, in a new tab (24/11/2026).
   const sites = page.locator(`${projects} a[href^="/modelos/"], ${projects} a[href^="/propostas/"]`);
   await expect(sites).toHaveCount(8);

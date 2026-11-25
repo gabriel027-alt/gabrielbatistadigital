@@ -50,10 +50,8 @@ test("Footer film loads on arrival, pauses offscreen and obeys the motion contro
   expect(await film.evaluate(el => (el as HTMLVideoElement).duration)).toBeCloseTo(334 / 30, 1);
   await film.evaluate(el => { const v = el as HTMLVideoElement; v.currentTime = v.duration - .1; });
   await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).currentTime)).toBeLessThan(2);
-  await page.getByRole("button", { name: "Pausar movimento" }).click();
-  await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(true);
-  await page.getByRole("button", { name: "Ativar movimento" }).click();
-  await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(false);
+  // No pause button since 25/11/2026 (the user's decision): the loop keeps playing while the footer is on screen.
+  await expect(page.getByRole("button", { name: "Pausar movimento" })).toHaveCount(0);
   await page.locator("#editorial-footer").getByRole("link", { name: "Voltar ao início" }).click();
   await expect.poll(() => film.evaluate(el => (el as HTMLVideoElement).paused)).toBe(true);
 });

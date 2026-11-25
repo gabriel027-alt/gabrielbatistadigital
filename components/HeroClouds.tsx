@@ -146,6 +146,16 @@ export function HeroClouds() {
   const anchor = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
+    // Phones start the floating points only after the page has loaded (25/11/2026): starting with the page held a
+    // mid-range phone on arrival. The portrait itself is not hidden on phones, so nothing waits for this.
+    const late = matchMedia("(max-width: 700px)").matches;
+    if (!late) return run();
+    let stop: (() => void) | undefined, timer = 0, cancelled = false;
+    const begin = () => { timer = window.setTimeout(() => { if (!cancelled) stop = run(); }, 400); };
+    if (document.readyState === "complete") begin(); else addEventListener("load", begin, { once: true });
+    return () => { cancelled = true; removeEventListener("load", begin); window.clearTimeout(timer); stop?.(); };
+
+    function run(): (() => void) | undefined {
     const holder = anchor.current?.parentElement;
     const hero = holder?.closest("section");
     const root = holder?.closest<HTMLElement>("[data-editorial]");
@@ -231,10 +241,14 @@ export function HeroClouds() {
     const gatherBuffer = gl.createBuffer(), emitBuffer = gl.createBuffer();
     let gatherCount = 0, emitCount = 0;
     const plant = (image: HTMLImageElement, phone: boolean) => {
+      // Phones read a small copy of the mask (25/11/2026): scanning the full mask held a mid-range phone for a long moment
+      // on arrival. The upper-edge test keeps its 3 px on the original, scaled to the copy.
+      const scan = phone ? Math.min(1, 420 / image.naturalWidth) : 1;
       const c = document.createElement("canvas");
-      c.width = image.naturalWidth; c.height = image.naturalHeight;
+      c.width = Math.max(1, Math.round(image.naturalWidth * scan)); c.height = Math.max(1, Math.round(image.naturalHeight * scan));
       const g = c.getContext("2d", { willReadFrequently: true })!;
-      g.drawImage(image, 0, 0);
+      g.drawImage(image, 0, 0, c.width, c.height);
+      const near = Math.max(1, Math.round(3 * scan));
       const { data, width, height } = g.getImageData(0, 0, c.width, c.height);
       const red = (x: number, y: number) => data[(Math.min(height - 1, Math.max(0, y)) * width + Math.min(width - 1, Math.max(0, x))) * 4];
       const inside: number[] = [], edge: number[] = [];
@@ -243,10 +257,11 @@ export function HeroClouds() {
         inside.push(x, y);
         // Only the upper edges (top of the hair, tops of the shoulders): rising from there the points go straight
         // into the air; from the sides of the head they would drift across his face like specks on the skin.
-        if (red(x, y - 3) < 90 || (y > height * .72 && (red(x - 3, y) < 90 || red(x + 3, y) < 90))) edge.push(x, y);
+        if (red(x, y - near) < 90 || (y > height * .72 && (red(x - near, y) < 90 || red(x + near, y) < 90))) edge.push(x, y);
       }
       const pick = (list: number[]) => { const i = Math.floor(Math.random() * list.length / 2) * 2; return [(list[i] + Math.random()) / width, 1 - (list[i + 1] + Math.random()) / height]; };
-      gatherCount = inside.length ? (phone ? 6500 : 14000) : 0;
+      // No gathering on phones: the portrait is not hidden there, so those points would never be drawn.
+      gatherCount = inside.length && !phone ? 14000 : 0;
       const gather = new Float32Array(gatherCount * 5);
       for (let i = 0; i < gatherCount; i++) gather.set([...pick(inside), Math.random(), Math.random(), Math.random()], i * 5);
       gl.bindBuffer(gl.ARRAY_BUFFER, gatherBuffer);
@@ -341,6 +356,7 @@ export function HeroClouds() {
 
     let last: { x: number; y: number } | null = null;
     let hand = { x: -9, y: -9, at: -1e9 };
+    let trailCleared = false;
     const stamp = (clientX: number, clientY: number) => {
       const box = view.getBoundingClientRect();
       if (!box.width) return;
@@ -420,11 +436,16 @@ export function HeroClouds() {
       }
       // Formed once the points have mostly landed: the dot may be born.
       if (g >= 1.6) formed();
-      pen.globalCompositeOperation = "destination-out";
-      pen.fillStyle = `rgba(0,0,0,${Math.min(.2, .011 * dt)})`;
-      pen.fillRect(0, 0, trail.width, trail.height);
-      gl.activeTexture(gl.TEXTURE0);
-      gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, trail);
+      // The pointer's trail fades over a few seconds; after that it is empty, so it is no longer faded and re-sent to the
+      // graphics card every frame (25/11/2026: that per-frame work weighed on mid-range phones).
+      if (now - hand.at < 6000 || !trailCleared) {
+        pen.globalCompositeOperation = "destination-out";
+        pen.fillStyle = `rgba(0,0,0,${Math.min(.2, .011 * dt)})`;
+        pen.fillRect(0, 0, trail.width, trail.height);
+        if (now - hand.at >= 6000) { pen.clearRect(0, 0, trail.width, trail.height); trailCleared = true; } else trailCleared = false;
+        gl.activeTexture(gl.TEXTURE0);
+        gl.texImage2D(gl.TEXTURE_2D, 0, gl.RGBA, gl.RGBA, gl.UNSIGNED_BYTE, trail);
+      }
       // The clouds rise once the dot has signed the name (or after 10 s at most): never skipped.
       if (!riseStart && (html.dataset.heroSigned !== undefined || now - born > 10000)) riseStart = now + 200;
       const rise = riseStart ? Math.min(1, Math.max(0, (now - riseStart) / 1000 / RISE_FOR)) : 0;
@@ -516,6 +537,7 @@ export function HeroClouds() {
       gl.getExtension("WEBGL_lose_context")?.loseContext();
       view.remove();
     };
+    }
   }, []);
 
   return <span ref={anchor} hidden />;

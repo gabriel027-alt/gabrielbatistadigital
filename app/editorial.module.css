@@ -623,3 +623,23 @@
 /* Paper sections (24/11/2026): the scrim stays solid behind the whole header row, so the name and the menu never sit
    on a project cover while the grid scrolls under them. */
 .page[data-editorial-theme=paper] .nav:before{background:linear-gradient(180deg,var(--nav-scrim) 74%,transparent)}
+
+/* Calls in the sections (25/11/2026, an outside review): a peach button after the project grid, and the about's link
+   becomes a button too. */
+.workCta{justify-content:center;margin:56px 4vw 0}
+.about .photoLink{display:inline-flex;align-items:center;gap:10px;min-height:48px;padding:0 24px;border-radius:999px;background:var(--peach);color:#201714!important;font-size:15px;font-weight:600;text-decoration:none;transition:background-color .2s,transform .2s}
+.about .photoLink:hover{background:#ffd3b8;transform:translateY(-1px)}
+.about .photoLink svg{width:16px;height:16px}
+@media(max-width:700px){.workCta{justify-content:flex-start;margin:36px 6vw 0}.about .photoLink{min-height:46px;padding:0 20px;font-size:14px}}
+
+/* "Como funciona" as cards (25/11/2026, an outside review): each step is a card that rises, takes a shadow and lights
+   its peach edge as the brand dot reads it (--u, 0 to 1, set by EditorialMotion). Without motion --u is unset and the
+   cards simply stand finished. */
+.stepsList{gap:16px 1.6vw;border-top:1px solid #20171426;padding-top:24px}
+.stepsList .serviceItem{--k:var(--u,1);position:relative;padding:26px 24px 28px;border-radius:22px;background:#fffaf4;border:1px solid rgb(255 188 149/calc(.25 + var(--k) * .75));box-shadow:0 calc(var(--k) * 18px) calc(var(--k) * 40px) -18px #5a2b1440;opacity:calc(.45 + var(--k) * .55);transform:translateY(calc((1 - var(--k)) * 18px));transition:transform .25s,box-shadow .25s}
+.stepsList .serviceItem:hover{transform:translateY(-4px);box-shadow:0 22px 44px -18px #5a2b1459}
+.stepsList .stepNum{font-family:var(--display);font-size:clamp(30px,2.6vw,42px);font-weight:500;letter-spacing:-.04em;line-height:1;margin-bottom:14px;color:rgb(184 98 58/calc(.35 + var(--k) * .65))}
+.stepsList .serviceItem p{max-width:none}
+@media(max-width:900px){.stepsList{grid-template-columns:1fr 1fr;gap:14px 14px}}
+@media(max-width:560px){.stepsList{grid-template-columns:1fr;gap:12px}.stepsList .serviceItem{padding:20px 20px 22px;border-radius:18px}.stepsList .stepNum{font-size:28px;margin-bottom:10px}}
+@media(prefers-reduced-motion:reduce){.stepsList .serviceItem{transition:none}.stepsList .serviceItem:hover{transform:none}}
