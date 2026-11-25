@@ -3,8 +3,9 @@
  * no name, CRP, numbers, testimonials or promise of cure (CFP code of ethics).
  */
 
-/** The psychologist's name, by the user's decision (19/11/2026): a brand persona, never with a CRP number. */
-export const psychologist = { name: "Helena Prado", first: "Helena", role: "Psicóloga clínica" };
+/** Who listens: the psychologist, by role. The persona's name was removed on 24/11/2026 (the user's decision, before
+ *  the brand sites go public), so no visitor takes it for a real professional. Never a CRP number. */
+export const psychologist = { role: "psicóloga clínica" };
 
 /** The demands that weigh on the headline in the hero and fall away with the scroll. Positions are % of the title box. */
 export const weights = [

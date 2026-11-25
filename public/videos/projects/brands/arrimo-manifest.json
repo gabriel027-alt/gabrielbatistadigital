@@ -7,8 +7,8 @@
   "files": [
     {
       "file": "/videos/projects/brands/arrimo-desktop.mp4",
-      "bytes": 7220292,
-      "sha256": "7d7c342e37a892e4bb94593ab1a6a979c00ff7d4b7deed7ddcb7e9e6299931bd",
+      "bytes": 14222142,
+      "sha256": "0e34c009c88636830ece54d4b720797f55e99d777c4c564922f12c574f6e380d",
       "captureViewport": [
         1920,
         1080
@@ -29,8 +29,8 @@
     },
     {
       "file": "/videos/projects/brands/arrimo-mobile.mp4",
-      "bytes": 17152673,
-      "sha256": "f049fb5c5b1c3bd9a38d765118a7f7dc7325a2d383b7b9bd900bfd5c3b5c4be4",
+      "bytes": 29962400,
+      "sha256": "26562261da7de59b123c808e4b2c777248fad317f8f0b1309d0e3d22e7af0158",
       "captureViewport": [
         432,
         768
@@ -51,8 +51,8 @@
     },
     {
       "file": "/videos/projects/brands/arrimo-loop.mp4",
-      "bytes": 458143,
-      "sha256": "b77c8b28fe14a4575984ab1c059c83b899c5aaf4dd91a9f5fd9cd24589c4e89c",
+      "bytes": 389930,
+      "sha256": "de84234ec57a98aff354f0162137782ce53a901538244c7f571c72f83732b2b6",
       "captureViewport": [
         960,
         768

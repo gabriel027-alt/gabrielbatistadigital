@@ -102,9 +102,9 @@ for (const device of [{ width: 1536, height: 696, scale: 1.25 }, { width: 390, h
 
 test("Full Arrimo journey keeps choices local, supports editing and returns focus", async ({ page }) => {
   await page.goto(route);
-  for (const name of ["Isso é pra você?", "Onde a Arrimo atua.", "O que levar para a primeira conversa.", "Ricardo Teles", "Antes de seguir, suas dúvidas."]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
-  await expect(page.getByRole("link", { name: "Com Ricardo Teles, advogado previdenciarista" })).toHaveAttribute("href", "#arrimo-escritorio");
-  await expect(page.locator('#arrimo-escritorio')).toContainText("Sou o Ricardo");
+  for (const name of ["Isso é pra você?", "Onde a Arrimo atua.", "O que levar para a primeira conversa.", "O advogado da Arrimo", "Antes de seguir, suas dúvidas."]) await expect(page.getByRole("heading", { name, exact: true })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Com o advogado previdenciarista da Arrimo" })).toHaveAttribute("href", "#arrimo-escritorio");
+  await expect(page.locator('#arrimo-escritorio')).toContainText("Sou advogado previdenciarista");
   await expect(page.locator('body')).not.toContainText(/OAB\s*\d|anos de experiência|formado em/i);
   await expect(page.locator('#arrimo-situacoes article')).toHaveCount(4);
   await expect(page.locator('[data-arrimo-poster]')).toHaveCount(4);
@@ -119,7 +119,7 @@ test("Full Arrimo journey keeps choices local, supports editing and returns focu
   await page.getByRole("radio", { name: "Recebi uma negativa", exact: true }).check();
   await page.getByRole("radio", { name: "Para alguém da família", exact: true }).check();
   await page.getByRole("button", { name: "Ver meu resumo", exact: true }).click();
-  await expect(dialog).toContainText("O Ricardo confirma");
+  await expect(dialog).toContainText("O advogado confirma");
   await expect(dialog).toContainText("Benefício negado");
   await expect(dialog).toContainText("Para alguém da família");
   await page.getByRole("button", { name: "Ajustar escolhas", exact: true }).click();
@@ -133,6 +133,6 @@ test("Full Arrimo journey keeps choices local, supports editing and returns focu
 
 test("Office anchor leaves its label below the sticky header", async ({ page }) => {
   await page.goto(route);
-  await page.getByRole("link", { name: "Com Ricardo Teles, advogado previdenciarista" }).click();
+  await page.getByRole("link", { name: "Com o advogado previdenciarista da Arrimo" }).click();
   await expect.poll(() => page.locator('#arrimo-escritorio > div > p').first().evaluate(el => el.getBoundingClientRect().top)).toBeGreaterThan(98);
 });

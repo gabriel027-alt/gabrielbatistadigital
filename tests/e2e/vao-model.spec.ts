@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-// Vão (docs/PROJETOS-ESTATICOS.md): the sixth static brand. Who answers from the top (Clara Duarte, arquiteta), the
+// Vão (docs/PROJETOS-ESTATICOS.md): the sixth static brand. Who answers from the top (the architect, by role), the
 // routine plan, no invented works or prices, the local journey and the phone call bar.
 const route = "/modelos/arquitetura";
 
@@ -9,7 +9,7 @@ test("Vão says who designs, shows the routine plan and never invents works or p
   await page.setViewportSize({ width: 1536, height: 696 });
   await page.goto(route);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("A casa começa pela rotina.");
-  await expect(page.getByRole("link", { name: "Primeira conversa com Clara Duarte, arquiteta" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "Primeira conversa com a arquiteta da Vão" })).toBeVisible();
   await expect(page.locator("body")).not.toContainText(/R\$|m²|CAU|prêmio|obras entregues|clientes atendidos|\d+ dias|\d+ semanas/i);
   const plan = page.locator("#rotina ol > li");
   await expect(plan).toHaveCount(6);
@@ -41,6 +41,6 @@ test("On a phone the call at the thumb waits for the top and opens the journey, 
   await dialog.getByText("Recebendo as chaves").click();
   await dialog.getByText("Um ou dois ambientes").click();
   await dialog.getByRole("button", { name: "Ver meu resumo" }).click();
-  await expect(dialog.getByText("A Clara marca a primeira conversa")).toBeVisible();
+  await expect(dialog.getByText("A arquiteta marca a primeira conversa")).toBeVisible();
   expect((await new AxeBuilder({ page }).include("dialog").withTags(["wcag2a", "wcag2aa"]).analyze()).violations).toEqual([]);
 });

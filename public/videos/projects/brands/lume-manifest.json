@@ -6,8 +6,8 @@
   "files": [
     {
       "file": "/videos/projects/brands/lume-desktop.mp4",
-      "bytes": 5863863,
-      "sha256": "62b7035ff5a04a538d1efcb1aca61a17b18cab49393562e7131a5cb740b1af2a",
+      "bytes": 9554736,
+      "sha256": "c8e4ee19ed8b9bcb947c1edcfe30887f2d04a3f2b50c1fa7eda29c8689c9ce4e",
       "captureViewport": [
         1920,
         1080
@@ -28,8 +28,8 @@
     },
     {
       "file": "/videos/projects/brands/lume-mobile.mp4",
-      "bytes": 15433019,
-      "sha256": "dc548a1699bc6684e3c1391b19fc0650bd1ab08eac9aa911d6510c60eb8520a1",
+      "bytes": 21067435,
+      "sha256": "6ffdf2be2709731d27dc7b91243deed86d3bc48f227eddde3248116f607a1746",
       "captureViewport": [
         432,
         768
@@ -50,8 +50,8 @@
     },
     {
       "file": "/videos/projects/brands/lume-loop.mp4",
-      "bytes": 1075200,
-      "sha256": "8829dea4d741cae02fd9b05607429faa99ce74ec4832dd04e952760e1983cfb6",
+      "bytes": 951541,
+      "sha256": "fd779a6f65aa7b7daf8e2557e26e8c61ba1cd253d2a74310bedba7c60bf05db6",
       "captureViewport": [
         960,
         768

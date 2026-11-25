@@ -16,7 +16,7 @@ const text = Hanken_Grotesk({ subsets: ["latin"], weight: ["400", "500", "700"],
 
 export const metadata: Metadata = {
   title: "Vão Arquitetura e Interiores",
-  description: "Projetos de interiores e reformas para quem quer morar do próprio jeito. A casa começa pela rotina, com Clara Duarte, arquiteta.",
+  description: "Projetos de interiores e reformas para quem quer morar do próprio jeito. A casa começa pela rotina.",
   robots: { index: false, follow: true },
   alternates: { canonical: "/modelos/arquitetura" },
 };
@@ -35,7 +35,7 @@ export default function VaoPage() {
     <a className={styles.skip} href="#vao-conteudo">Pular para o conteúdo</a>
     <header className={styles.header}>
       <a className={styles.logo} href="#vao-inicio"><VaoMark size={30} /><span>Vão<small>Arquitetura e interiores</small></span></a>
-      <nav aria-label="Navegação principal"><a href="#rotina">A rotina</a><a href="#materiais">Materiais</a><a href="#como-funciona">Como funciona</a><a href="#clara">Quem desenha</a></nav>
+      <nav aria-label="Navegação principal"><a href="#rotina">A rotina</a><a href="#materiais">Materiais</a><a href="#como-funciona">Como funciona</a><a href="#arquiteta">Quem desenha</a></nav>
       <a className={styles.headerCta} href={book}>Agendar conversa</a>
     </header>
 
@@ -48,7 +48,7 @@ export default function VaoPage() {
           <h1 id="vao-titulo">A casa começa <em>pela rotina.</em></h1>
           <p className={styles.heroText}>Projetos de interiores e reformas para quem quer morar do próprio jeito. O primeiro passo é uma conversa sobre o seu dia.</p>
           <div className={styles.calls} data-hero-calls><a className={styles.primary} href={book}>Agendar a primeira conversa <Arrow size={20} /></a><a className={styles.secondary} href="#rotina">Ver a planta da rotina</a></div>
-          <a className={styles.who} href="#clara"><Image src={photo("clara")} alt="" width={44} height={44} /><span>Primeira conversa com <strong>{architect.name}</strong>, {architect.role}</span></a>
+          <a className={styles.who} href="#arquiteta"><Image src={photo("clara")} alt="" width={44} height={44} /><span>Primeira conversa com <strong>a {architect.role} da Vão</strong></span></a>
         </div>
       </section>
 
@@ -83,13 +83,13 @@ export default function VaoPage() {
         <a className={styles.primary} href={book}>Começar pela conversa <Arrow size={20} /></a>
       </section>
 
-      <section className={styles.architect} id="clara" aria-labelledby="clara-titulo">
-        <figure className={styles.architectPhoto}><Image src={photo("clara")} alt="Clara Duarte, arquiteta, em pé junto a uma mesa com plantas e amostras de material" fill sizes="(max-width:860px) 100vw, 40vw" quality={88} /></figure>
+      <section className={styles.architect} id="arquiteta" aria-labelledby="arquiteta-titulo">
+        <figure className={styles.architectPhoto}><Image src={photo("clara")} alt="A arquiteta da Vão, em pé junto a uma mesa com plantas e amostras de material" fill sizes="(max-width:860px) 100vw, 40vw" quality={88} /></figure>
         <div>
-          <h2 id="clara-titulo">Quem desenha a sua casa.</h2>
-          <p>Sou a {architect.first}. Começo perguntando como você vive, não o que está na moda. Desenho cada ambiente a partir disso, e você acompanha cada decisão antes de ela virar obra.</p>
-          <p className={styles.note}>A {architect.first} responde às mensagens e marca a primeira conversa.</p>
-          <a className={styles.primary} href={book}>Conversar com a {architect.first} <Arrow size={20} /></a>
+          <h2 id="arquiteta-titulo">Quem desenha a sua casa.</h2>
+          <p>Sou arquiteta. Começo perguntando como você vive, não o que está na moda. Desenho cada ambiente a partir disso, e você acompanha cada decisão antes de ela virar obra.</p>
+          <p className={styles.note}>A própria arquiteta responde às mensagens e marca a primeira conversa.</p>
+          <a className={styles.primary} href={book}>Conversar com a {architect.role} <Arrow size={20} /></a>
         </div>
       </section>
 

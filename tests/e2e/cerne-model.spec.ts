@@ -11,8 +11,8 @@ test("Cerne leads with the promise, lights one sign at a time and reads the menu
   await expect(page.getByRole("heading", { level: 1 })).toHaveText("Voltar a comer o que você gosta, com dentes fixos.");
   await expect(page.locator("[data-brand-scroll-guide], [data-scroll-hint]")).toHaveCount(0);
   // Who the patient talks to, from the top and in his own words (persona authorized by the user, 23/11/2026).
-  await expect(page.getByRole("link", { name: "Avaliação com Rafael Monteiro, dentista" })).toBeVisible();
-  await expect(page.locator("#quem-recebe")).toContainText("Sou o Rafael.");
+  await expect(page.getByRole("link", { name: "Avaliação com o dentista da Cerne" })).toBeVisible();
+  await expect(page.locator("#quem-recebe")).toContainText("Na avaliação, o dentista mostra num modelo");
   const signs = page.locator("[data-cerne-signs] > li");
   await expect(signs).toHaveCount(5);
   await expect(signs.first()).toHaveAttribute("data-active", "true");

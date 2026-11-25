@@ -33,7 +33,7 @@ const content: Record<Brand, Content> = {
       [{ key: "momento", label: "Em que momento você está?", options: ["Ainda não fiz um pedido", "Aguardo uma decisão do INSS", "Recebi uma negativa", "Quero entender uma decisão ou benefício"] },
        { key: "pessoa", label: "Para quem procura orientação?", options: ["Para mim", "Para alguém da família"] }],
     ],
-    next: "O Ricardo confirma quais documentos precisam ser reunidos e esclarece os próximos passos após analisar o seu caso. Separe os registros que já tem e as dúvidas que quer esclarecer. Não compartilhe senhas.",
+    next: "O advogado confirma quais documentos precisam ser reunidos e esclarece os próximos passos após analisar o seu caso. Separe os registros que já tem e as dúvidas que quer esclarecer. Não compartilhe senhas.",
     invitation: "O próximo passo começa pela sua história.", stepNames: ["O assunto", "O momento"], stepTitles: ["Por onde começamos?", "Vamos entender o ponto de partida."],
     summaryTitle: "Sua conversa, organizada.", noscript: "Separe o assunto, a situação do pedido e os documentos disponíveis para a primeira conversa.",
   },
@@ -44,7 +44,7 @@ const content: Record<Brand, Content> = {
       [{ key: "regiao", label: "Por onde você quer começar?", options: ["Lábios", "Maçãs do rosto", "Queixo e contorno", "Nariz", "Quero olhar o rosto inteiro"] }],
       [{ key: "duvida", label: "O que você quer entender primeiro?", options: ["As possibilidades para o meu rosto", "Como funciona a avaliação", "Os cuidados e a recuperação", "Ainda estou conhecendo as opções"] }],
     ],
-    next: "Na avaliação, a Isadora considera suas expectativas, suas características e os limites de cada possibilidade. Essas escolhas ajudam a começar a conversa; não indicam um procedimento.",
+    next: "Na avaliação, a equipe considera suas expectativas, suas características e os limites de cada possibilidade. Essas escolhas ajudam a começar a conversa; não indicam um procedimento.",
     invitation: "Uma avaliação começa por ouvir.", stepNames: ["Seu interesse", "Sua dúvida"], stepTitles: ["O que chama sua atenção?", "Vamos esclarecer sua dúvida."],
     summaryTitle: "Seu ponto de partida.", noscript: "Para começar, pense na região de interesse e nas dúvidas que deseja esclarecer em uma avaliação individual.",
   },
@@ -195,7 +195,7 @@ const content: Record<Brand, Content> = {
   },  // Vão (architecture and interiors): the property, the moment and what is needed; no address or property data.
   vao: {
     name: "Vão Arquitetura e Interiores", title: "Vamos preparar a primeira conversa.",
-    intro: "Três escolhas rápidas, sem endereço nem planta agora. A Clara responde e marca a conversa.", action: "Agendar a primeira conversa",
+    intro: "Três escolhas rápidas, sem endereço nem planta agora. A arquiteta responde e marca a conversa.", action: "Agendar a primeira conversa",
     steps: [
       [{ key: "imovel", label: "Qual é o imóvel?", options: ["Apartamento", "Casa", "Outro espaço"] }],
       [
@@ -203,7 +203,7 @@ const content: Record<Brand, Content> = {
         { key: "escopo", label: "O que você precisa?", options: ["A casa inteira", "Uma reforma", "Um ou dois ambientes", "Ainda não sei"] },
       ],
     ],
-    next: "A Clara marca a primeira conversa, sobre a sua rotina e o que você quer da casa. Depois vem a visita ao imóvel, e a proposta chega por escrito antes de qualquer decisão.",
+    next: "A arquiteta marca a primeira conversa, sobre a sua rotina e o que você quer da casa. Depois vem a visita ao imóvel, e a proposta chega por escrito antes de qualquer decisão.",
     invitation: "A casa começa pela rotina.", stepNames: ["O imóvel", "O momento"], stepTitles: ["Por onde começamos?", "Em que momento você está?"],
     summaryTitle: "A primeira conversa, preparada.", noscript: "Para a primeira conversa, pense no imóvel, no momento em que você está e no que precisa.",
   },  // Eixo (orthopedics): the area, what gets in the way and since when; no health data, no exams, no appointment made.
@@ -253,7 +253,7 @@ const content: Record<Brand, Content> = {
   // Cerne (implants): the situation, what bothers most and when; no health data, no exam, no appointment made.
   cerne: {
     name: "Cerne Implantes", title: "Vamos preparar a sua avaliação.",
-    intro: "Três escolhas rápidas sobre o seu caso. Na avaliação, o Rafael examina e explica o resto com calma.", action: "Agendar uma avaliação",
+    intro: "Três escolhas rápidas sobre o seu caso. Na avaliação, o dentista examina e explica o resto com calma.", action: "Agendar uma avaliação",
     steps: [
       [{ key: "situacao", label: "Qual é a sua situação hoje?", options: ["Falta um dente", "Faltam vários dentes", "Uso prótese removível (dentadura ou ponte móvel)", "Ainda não sei dizer"] }],
       [
@@ -261,7 +261,7 @@ const content: Record<Brand, Content> = {
         { key: "quando", label: "Para quando você quer resolver?", options: ["O quanto antes", "Nos próximos meses", "Ainda estou pesquisando"] },
       ],
     ],
-    next: "Na avaliação, o Rafael examina, pede a tomografia quando ela é necessária e entrega o plano e o orçamento por escrito. Você decide depois, no seu tempo.",
+    next: "Na avaliação, o dentista examina, pede a tomografia quando ela é necessária e entrega o plano e o orçamento por escrito. Você decide depois, no seu tempo.",
     invitation: "Voltar à mesa começa aqui.", stepNames: ["A situação", "O que incomoda"], stepTitles: ["Por onde começamos?", "O que você quer resolver?"],
     summaryTitle: "Sua avaliação, preparada.", noscript: "Para a avaliação, pense em quantos dentes faltam ou se usa prótese, no que mais incomoda e em quando quer resolver.",
   },
@@ -276,7 +276,7 @@ const content: Record<Brand, Content> = {
         { key: "periodo", label: "Qual período cabe na sua semana?", options: ["Manhã", "Hora do almoço", "Tarde", "Início da noite"] },
       ],
     ],
-    next: "A Helena confirma um horário com você e explica como funcionam as sessões, o sigilo e os valores antes de qualquer compromisso.",
+    next: "A psicóloga confirma um horário com você e explica como funcionam as sessões, o sigilo e os valores antes de qualquer compromisso.",
     invitation: "A primeira conversa", stepNames: ["Como começar", "Quando"], stepTitles: ["Do seu jeito.", "Onde e quando cabe melhor?"],
     summaryTitle: "Sua primeira conversa, preparada.", noscript: "Para agendar, pense em como prefere começar, se presencial ou online, e no melhor período da semana.",
   },

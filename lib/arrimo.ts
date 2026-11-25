@@ -1,5 +1,6 @@
-/** Ricardo Teles is the brand persona named by the user; no invented credentials or outcomes. */
-export const lawyer = { name: "Ricardo Teles", role: "advogado previdenciarista" };
+/** Who answers: the lawyer, by role. The persona's name was removed on 24/11/2026 (the user's decision, before the
+ *  brand sites go public); no invented credentials or outcomes. */
+export const lawyer = { role: "advogado previdenciarista" };
 export const periods = [
   { title: "Trabalho com carteira", record: "Vínculos e registros", detail: "O que consta na carteira e nos registros da vida profissional." },
   { title: "Atividade rural", record: "Documentos do campo", detail: "Os documentos que ajudam a compreender a atividade rural, quando ela faz parte da história." },

@@ -29,7 +29,7 @@ export default function ArrimoPage() {
     </header>
     <main id="arrimo-conteudo">
       <section id="arrimo-inicio" className={styles.hero} aria-labelledby="arrimo-titulo">
-        <figure className={styles.heroPhoto}><Image src="/images/arrimo/hero.webp" alt="Ricardo Teles, de braços cruzados, em um retrato preto e branco com luz lateral" fill sizes="(max-width:760px) 200vw, 120vw" quality={90} preload /></figure>
+        <figure className={styles.heroPhoto}><Image src="/images/arrimo/hero.webp" alt="O advogado da Arrimo, de braços cruzados, em um retrato preto e branco com luz lateral" fill sizes="(max-width:760px) 200vw, 120vw" quality={90} preload /></figure>
         <div className={styles.heroCopy}>
           <p className={styles.field} data-arrimo-arrival>Direito previdenciário</p>
           <h1 id="arrimo-titulo" data-arrimo-arrival><span>O INSS negou?</span>{" "}<span>Isso ainda</span>{" "}<span>não é o fim.</span></h1>
@@ -37,7 +37,7 @@ export default function ArrimoPage() {
           <a className={styles.primary} href="#arrimo-tempo" data-arrimo-arrival>Entender a análise <span aria-hidden="true">↓</span></a>
           <a className={styles.signature} href="#arrimo-escritorio" data-arrimo-arrival>
             <span className={styles.thumb}><Image src="/images/arrimo/hero.webp" alt="" fill sizes="52px" quality={90} /></span>
-            <span>Com <strong>{lawyer.name}</strong>, {lawyer.role}</span>
+            <span>Com <strong>o {lawyer.role}</strong> da Arrimo</span>
           </a>
           <p className={styles.heroNote} data-arrimo-arrival>Cada ano trabalhado conta.</p>
         </div>
@@ -98,8 +98,8 @@ export default function ArrimoPage() {
         <p className={styles.documentNote}>Guarde os originais. Não compartilhe senhas do Meu INSS ou de outros serviços.</p>
       </section>
       <section className={styles.office} id="arrimo-escritorio" aria-labelledby="escritorio-titulo">
-        <figure><Image src="/images/arrimo/atendimento.webp" alt="Ricardo Teles explicando um documento a um casal de idosos à mesa do escritório" fill sizes="(max-width:760px) 150vw, 100vw" quality={90} /></figure>
-        <div className={styles.officeCopy}><p className={styles.field}>O escritório</p><h2 id="escritorio-titulo">{lawyer.name}</h2><p>Sou o Ricardo, advogado previdenciarista. Meu trabalho começa por ouvir a sua história e entender o que os documentos mostram.</p><p>Organizo os registros e explico os caminhos possíveis, com os limites de cada um. Antes de definir um encaminhamento, preciso compreender o seu caso.</p><a className={styles.primary} href="#arrimo-interesse">Preparar a primeira conversa <span aria-hidden="true"><Arrow size={18} /></span></a></div>
+        <figure><Image src="/images/arrimo/atendimento.webp" alt="O advogado da Arrimo explicando um documento a um casal de idosos à mesa do escritório" fill sizes="(max-width:760px) 150vw, 100vw" quality={90} /></figure>
+        <div className={styles.officeCopy}><p className={styles.field}>O escritório</p><h2 id="escritorio-titulo">O advogado da Arrimo</h2><p>Sou advogado previdenciarista. Meu trabalho começa por ouvir a sua história e entender o que os documentos mostram.</p><p>Organizo os registros e explico os caminhos possíveis, com os limites de cada um. Antes de definir um encaminhamento, preciso compreender o seu caso.</p><a className={styles.primary} href="#arrimo-interesse">Preparar a primeira conversa <span aria-hidden="true"><Arrow size={18} /></span></a></div>
       </section>
       <section className={styles.faq} id="arrimo-duvidas" aria-labelledby="duvidas-titulo"><h2 id="duvidas-titulo">Antes de seguir, suas dúvidas.</h2><div>{faq.map(item => <details key={item.question}><summary>{item.question}<span aria-hidden="true">+</span></summary><p>{item.answer}</p></details>)}</div></section>
       <BrandInquiry brand="arrimo" />

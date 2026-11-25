@@ -7,8 +7,8 @@
   "files": [
     {
       "file": "/videos/projects/brands/paddock-desktop.mp4",
-      "bytes": 13561202,
-      "sha256": "83caf6de3c741787cbeb73574014673ba3043f821ccdc5947c8bfe4689d7b890",
+      "bytes": 22607059,
+      "sha256": "54e19f335b2b68553a89d934afe6de83f840c587f507e0f20a5bdacb0606ffc0",
       "captureViewport": [
         1920,
         1080
@@ -52,8 +52,8 @@
     },
     {
       "file": "/videos/projects/brands/paddock-loop.mp4",
-      "bytes": 1260244,
-      "sha256": "23e53927782c22c5a3f19853b22da2b68abcdd44089c4ef30359e8084e55385e",
+      "bytes": 1224955,
+      "sha256": "f153805557920b5adf62e4ecb84aa25ff231b555f0d261a75e000b5f8bedebec",
       "captureViewport": [
         960,
         768

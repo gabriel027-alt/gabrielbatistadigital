@@ -3,8 +3,9 @@
  * people who want to live their own way; the project starts from the routine. No delivered works, clients, awards,
  * publications, CAU, real areas, deadlines or price per square metre. The rooms are the brand's illustrative project.
  */
-/** Who answers (persona authorized by the user, 24/11/2026): name and role only. */
-export const architect = { name: "Clara Duarte", first: "Clara", role: "arquiteta" };
+/** Who answers: the architect, by role. The persona's name was removed on 24/11/2026 (the user's decision, before the
+ *  brand sites go public), so no visitor takes it for a real professional. */
+export const architect = { role: "arquiteta" };
 
 /** The routine plan (composição-assinatura): one moment of the day in each room, and what the project solves there. */
 export const rooms = [
@@ -27,7 +28,7 @@ export const materials = [
 
 export const steps = [
   { title: "A conversa", text: "Você conta como é o seu dia, o que funciona e o que atrapalha na casa de hoje. Ainda não se fala de acabamento." },
-  { title: "A visita", text: "A Clara conhece o imóvel, mede o que precisa ser medido e observa a luz em cada ambiente." },
+  { title: "A visita", text: "A arquiteta conhece o imóvel, mede o que precisa ser medido e observa a luz em cada ambiente." },
   { title: "O estudo", text: "A planta com a rotina desenhada e as primeiras imagens, para você ver a casa antes de decidir." },
   { title: "O projeto", text: "Os desenhos de execução, a marcenaria e a lista de materiais, prontos para orçar com quem vai construir." },
   { title: "A obra", text: "O acompanhamento das etapas combinadas, para o que foi desenhado ser o que fica pronto." },
@@ -37,7 +38,7 @@ export const faq = [
   { q: "Vocês fazem só um ambiente?", a: "Sim. O projeto pode ser da casa inteira, de uma reforma ou de um ou dois ambientes, como a cozinha e a sala." },
   { q: "Preciso já ter o imóvel?", a: "Não. Dá para começar com a planta do imóvel na planta, ou antes da compra, para entender o que cada opção permite." },
   { q: "O projeto inclui o acompanhamento da obra?", a: "Pode incluir. O que entra no acompanhamento é combinado na proposta, antes de começar." },
-  { q: "Posso aproveitar os móveis que já tenho?", a: "Sim. Na visita, a Clara vê o que você quer manter, e o projeto parte disso." },
+  { q: "Posso aproveitar os móveis que já tenho?", a: "Sim. Na visita, a arquiteta vê o que você quer manter, e o projeto parte disso." },
   { q: "Como é cobrado?", a: "Depende do tamanho e do escopo do projeto. A proposta vem por escrito depois da conversa e da visita, antes de qualquer decisão." },
   { q: "Vocês atendem fora da cidade?", a: "A conversa pode ser à distância. Para a visita e a obra, as condições são combinadas na proposta." },
 ];

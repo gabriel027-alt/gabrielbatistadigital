@@ -61,7 +61,7 @@ test("Lume keeps the conversion skeleton and the local booking journey", async (
   await page.goto("/modelos/psicologia");
   await expect(page.getByRole("heading", { level: 2, name: "Uma hora da semana só sua." })).toBeVisible();
   await expect(page.locator("#como-funciona h3")).toHaveCount(4);
-  await expect(page.getByRole("heading", { level: 2, name: "Helena Prado" })).toBeVisible();
+  await expect(page.getByRole("heading", { level: 2, name: "A psicóloga da Lume" })).toBeVisible();
   await expect(page.locator("#duvidas details")).toHaveCount(5);
   await page.locator('[data-inquiry="lume"]').getByRole("button", { name: "Agendar uma primeira conversa" }).click();
   const dialog = page.getByRole("dialog");

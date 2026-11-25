@@ -4,10 +4,10 @@
  * or promise of outcome. Clinical statements stay general and always point back to the evaluation.
  */
 /**
- * Who the patient talks to (23/11/2026, the user's authorization): a brand persona, as Helena (Lume), Ricardo (Arrimo)
- * and Isadora (Aura). Name and role only: no CRO, training, years of practice, numbers or testimonials.
+ * Who the patient talks to: the dentist, by role. The named persona was removed on 24/11/2026 (the user's decision,
+ * before the brand sites go public with "Ver o site"), so no visitor takes a made-up name for a real professional.
  */
-export const dentist = { name: "Rafael Monteiro", first: "Rafael", role: "dentista" };
+export const dentist = { role: "dentista" };
 
 export const before = [
   { title: "Avaliação completa", text: "Exame da boca, conversa sobre o que você sente e tomografia quando ela é necessária para planejar." },
@@ -33,20 +33,20 @@ export const treatments = [
 ];
 
 export const steps = [
-  { title: "Avaliação e tomografia", text: "O Rafael examina, ouve o que incomoda e pede a tomografia quando ela é necessária para planejar." },
+  { title: "Avaliação e tomografia", text: "O dentista examina, ouve o que incomoda e pede a tomografia quando ela é necessária para planejar." },
   { title: "Planejamento", text: "Com os exames, o plano mostra quantos implantes, onde e em que ordem, com o orçamento de cada etapa." },
   { title: "Cirurgia", text: "Os implantes são colocados com anestesia local. Em muitos casos, você sai com uma prótese provisória." },
   { title: "Prótese definitiva", text: "Depois da cicatrização, que varia de pessoa para pessoa, os dentes definitivos são feitos e ajustados." },
 ];
 
 export const team = [
-  { role: "Rafael Monteiro", text: "Dentista. Faz a avaliação, explica o plano com o modelo na mão e conduz a cirurgia." },
+  { role: "Dentista", text: "Faz a avaliação, explica o plano com o modelo na mão e conduz a cirurgia." },
   { role: "Auxiliar", text: "Acompanha cada consulta e cuida do conforto durante os procedimentos." },
   { role: "Recepção", text: "Organiza os horários e tira as dúvidas sobre as etapas e o orçamento." },
 ];
 
 export const faq = [
-  { q: "Dói?", a: "A cirurgia é feita com anestesia local. Depois, é comum sentir algum incômodo por alguns dias, e o Rafael explica antes como cuidar e o que tomar." },
+  { q: "Dói?", a: "A cirurgia é feita com anestesia local. Depois, é comum sentir algum incômodo por alguns dias, e o dentista explica antes como cuidar e o que tomar." },
   { q: "Tenho idade para implante?", a: "A idade, sozinha, não impede. O que conta é a saúde geral e a do osso, que a avaliação e a tomografia mostram." },
   { q: "Quanto tempo leva?", a: "Depende de quantos implantes, de precisar ou não de enxerto e da cicatrização de cada pessoa. O plano mostra as etapas do seu caso." },
   { q: "Quanto custa?", a: "Depende do plano: quantos implantes, que prótese e se há enxerto. Você recebe o orçamento de cada etapa por escrito, depois da avaliação." },

@@ -60,7 +60,7 @@ export default function LumePage() {
             {/* Who listens, from the first screen. */}
             <a className={styles.signature} href="#psicologa" data-lume-after>
               <span className={styles.thumb}><Image src="/images/lume/retrato.webp" alt="" fill sizes="56px" /></span>
-              <span>Com <strong>{psychologist.name}</strong>, {psychologist.role.toLowerCase()}</span>
+              <span>Com <strong>a {psychologist.role}</strong> da Lume</span>
             </a>
           </div>
           {/* The same kitchen at 23h and at 7h: the morning comes in as the demands fall. */}
@@ -101,13 +101,13 @@ export default function LumePage() {
       {/* The psychologist stands on the section itself: its colour is her studio backdrop. */}
       <section className={styles.about} id="psicologa" aria-labelledby="psicologa-titulo">
         <figure className={styles.portrait}>
-          <Image src="/images/lume/retrato.webp" alt={`${psychologist.name}, psicóloga da Lume, de camisa de seda cacau, olhando para a câmera`} fill sizes="(max-width:900px) 130vw, 46vw" quality={88} />
+          <Image src="/images/lume/retrato.webp" alt={`A psicóloga da Lume, de camisa de seda cacau, olhando para a câmera`} fill sizes="(max-width:900px) 130vw, 46vw" quality={88} />
         </figure>
         <div className={styles.aboutCopy}>
           <p className={styles.aboutLead}>Quem escuta você</p>
-          <h2 id="psicologa-titulo">{psychologist.name}</h2>
-          <p className={styles.role}>{psychologist.role}, fundadora da Lume</p>
-          <p>Sou a {psychologist.first}. Atendo mulheres adultas que seguram a casa, o trabalho e as pessoas ao redor, e que se esqueceram de si no meio disso.</p>
+          <h2 id="psicologa-titulo">A psicóloga da Lume</h2>
+          <p className={styles.role}>Psicóloga clínica e fundadora</p>
+          <p>Atendo mulheres adultas que seguram a casa, o trabalho e as pessoas ao redor, e que se esqueceram de si no meio disso.</p>
           <p>Na terapia, a gente olha com calma para o que pesa: a culpa de parar, o cansaço que não passa, a dificuldade de dizer não. Sem julgamento e no seu tempo.</p>
           <ul className={styles.facts}>
             <li>Mulheres adultas</li>
