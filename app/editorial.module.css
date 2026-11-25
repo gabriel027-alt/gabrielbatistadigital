@@ -612,3 +612,10 @@
 /* "Ver o site" on the featured cards (24/11/2026): a quiet underlined link under the benefit, 44 px tall to tap. */
 .visitSite{display:inline-flex;align-items:center;gap:6px;min-height:44px;align-self:flex-start;color:inherit;font-weight:700;font-size:14px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:4px}
 .visitSite:hover,.visitSite:focus-visible{text-decoration-thickness:2px}
+
+/* The pause control lives inside the menu pill (24/11/2026): a small icon after "Conversar", 44 px to tap, no floating
+   round button of its own. */
+.nav nav .motionControl{position:static;inset:auto;flex:none;align-self:center;width:44px;height:44px;min-height:44px;padding:0;margin-left:2px;display:grid;place-items:center;border:0;border-left:1px solid #514b4726;border-radius:0 30px 30px 0;background:transparent;box-shadow:none;backdrop-filter:none;opacity:.85}
+.nav nav .motionControl:hover,.nav nav .motionControl:focus-visible{opacity:1}
+.nav nav .motionControl:before{width:8px;height:10px;border-width:0 2.5px}
+.nav nav .motionControl[aria-pressed=true]:before{width:0;height:0;border-width:5px 0 5px 8px}

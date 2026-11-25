@@ -40,7 +40,7 @@ export type HomeCopy = {
   hero: { title: string; sub: string; projects: string; talk: string; talkShort: string };
   hook: { label: string; first: [string, string]; lead: string; click: [string, string]; clickLabel: string; tail: string; cursor: string };
   palmLabel: string; palmTitle: string; palmText: string;
-  projects: string; workProof: string; workNote: string; specFont: string; specColors: string; sectors: Record<string, string>;
+  projects: string; workProof: string; workNote: string; sectors: Record<string, string>;
   /** What each project does for the business (22/11/2026): written from what the site really shows, never a result. */
   benefits: Record<string, string>;
   /** The disclosure under the eight featured projects (24/11/2026). */
@@ -78,7 +78,7 @@ const pt: HomeCopy = {
   hook: { label: "Do primeiro olhar ao próximo clique, e dele até a sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e dele até a sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelo pronto: cada site nasce da sua própria marca.",
-  projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotos.", workNote: "Clique num projeto para ver o filme.", specFont: "Fonte", specColors: "Cores medidas nas fotos",
+  projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotos.", workNote: "Clique num projeto para ver o filme.",
   moreWorks: { open: "Ver mais", close: "Mostrar menos" },
   visitSite: "Ver o site",
   sectors: { ponte: "Escola bilíngue", lavra: "Joalheria sob medida", vao: "Arquitetura e interiores", eixo: "Ortopedia", elo: "Medicina reprodutiva", fio: "Transplante capilar", nitida: "Cirurgia refrativa", cerne: "Implantes e reabilitação oral", talhao: "Advocacia do agro", paddock: "Seminovos com o laudo aberto", arrimo: "Advocacia previdenciária", lume: "Psicologia", forma: "Odontologia estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Família e sucessões", aura: "Harmonização facial", orla: "Residências" },
@@ -140,7 +140,7 @@ const ptPT: HomeCopy = {
   hook: { label: "Do primeiro olhar ao próximo clique, e daí até à sua agenda.", first: ["Do pr", "meiro olhar"], lead: "ao próximo ", click: ["cl", "que"], clickLabel: "clique", tail: "e daí até à sua agenda.", cursor: "Começar um projeto" },
   palmLabel: "A mão aberta de Gabriel, com a palma virada para cima, segura o ponto vermelho da marca.",
   palmTitle: "Feito à mão, do primeiro traço ao último clique.", palmText: "Sem modelos prontos: cada site nasce da sua própria marca.",
-  projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotografias.", workNote: "Clique num projeto para ver o filme. Marcas brasileiras, com sites em português do Brasil.", specFont: "Tipo de letra", specColors: "Cores medidas nas fotografias",
+  projects: "Projetos", workProof: "Nenhum se parece com o outro: cada marca tem as cores das próprias fotografias.", workNote: "Clique num projeto para ver o filme. Marcas brasileiras, com sites em português do Brasil.",
   moreWorks: { open: "Ver mais", close: "Mostrar menos" },
   visitSite: "Ver o site",
   sectors: { ponte: "Escola bilingue", lavra: "Joalharia por medida", vao: "Arquitetura e interiores", eixo: "Ortopedia", elo: "Medicina da reprodução", fio: "Transplante capilar", nitida: "Cirurgia refrativa", cerne: "Implantes e reabilitação oral", talhao: "Direito agrário", paddock: "Usados com relatório aberto", arrimo: "Direito da Segurança Social", lume: "Psicologia", forma: "Medicina dentária estética", sutil: "Cirurgia plástica", toca: "Hospital veterinário", brisa: "Hotel boutique", almeida: "Direito da família e sucessões", aura: "Harmonização facial", orla: "Imobiliário residencial" },
@@ -197,7 +197,7 @@ const en: HomeCopy = {
   hook: { label: "From first glance to the next click, and from there to your calendar.", first: ["From f", "rst glance"], lead: "to the next ", click: ["cl", "ck"], clickLabel: "click", tail: "and from there to your calendar.", cursor: "Start a project" },
   palmLabel: "Gabriel's open hand, palm up, holding the brand's red dot.",
   palmTitle: "Handmade, from the first stroke to the last click.", palmText: "No ready-made template: every website is born from your own brand.",
-  projects: "Projects", workProof: "No two alike: each brand gets the colors of its own photos.", workNote: "Click a project to watch its film. Brazilian brands: the sites are in Portuguese.", specFont: "Typeface", specColors: "Colors measured from the photos",
+  projects: "Projects", workProof: "No two alike: each brand gets the colors of its own photos.", workNote: "Click a project to watch its film. Brazilian brands: the sites are in Portuguese.",
   moreWorks: { open: "See more", close: "Show fewer" },
   visitSite: "Visit the site",
   sectors: { ponte: "Bilingual school", lavra: "Bespoke jewellery", vao: "Architecture and interiors", eixo: "Orthopedics", elo: "Reproductive medicine", fio: "Hair transplant", nitida: "Refractive eye surgery", cerne: "Dental implants and oral rehabilitation", talhao: "Agribusiness law", paddock: "Pre-owned cars with open inspection reports", arrimo: "Social security law", lume: "Psychology", forma: "Cosmetic dentistry", sutil: "Plastic surgery", toca: "Veterinary hospital", brisa: "Boutique hotel", almeida: "Family and estate law", aura: "Facial aesthetics", orla: "Residences" },
@@ -254,7 +254,7 @@ const es: HomeCopy = {
   hook: { label: "De la primera mirada al próximo clic, y de ahí a tu agenda.", first: ["De la pr", "mera mirada"], lead: "al próximo ", click: ["cl", "c"], clickLabel: "clic", tail: "y de ahí a tu agenda.", cursor: "Empezar un proyecto" },
   palmLabel: "La mano abierta de Gabriel, con la palma hacia arriba, sostiene el punto rojo de la marca.",
   palmTitle: "Hecho a mano, del primer trazo al último clic.", palmText: "Sin plantillas: cada sitio nace de tu propia marca.",
-  projects: "Proyectos", workProof: "Ninguno se parece a otro: cada marca tiene los colores de sus propias fotos.", workNote: "Haz clic en un proyecto para ver su video. Marcas brasileñas: los sitios están en portugués.", specFont: "Tipografía", specColors: "Colores medidos en las fotos",
+  projects: "Proyectos", workProof: "Ninguno se parece a otro: cada marca tiene los colores de sus propias fotos.", workNote: "Haz clic en un proyecto para ver su video. Marcas brasileñas: los sitios están en portugués.",
   moreWorks: { open: "Ver más", close: "Mostrar menos" },
   visitSite: "Ver el sitio",
   sectors: { ponte: "Escuela bilingüe", lavra: "Joyería a medida", vao: "Arquitectura e interiores", eixo: "Ortopedia", elo: "Medicina reproductiva", fio: "Trasplante capilar", nitida: "Cirugía refractiva", cerne: "Implantes y rehabilitación oral", talhao: "Derecho agrario", paddock: "Seminuevos con el informe abierto", arrimo: "Derecho de la seguridad social", lume: "Psicología", forma: "Odontología estética", sutil: "Cirugía plástica", toca: "Hospital veterinario", brisa: "Hotel boutique", almeida: "Derecho de familia y sucesiones", aura: "Armonización facial", orla: "Residencias" },

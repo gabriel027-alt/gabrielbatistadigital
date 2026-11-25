@@ -688,6 +688,11 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
   - Quem responde agora é o papel: "o dentista da Cerne", "a psicóloga clínica da Lume", "o advogado previdenciarista da Arrimo", "a arquiteta da Vão" e "a equipe da Aura". As fotos continuam; os textos em primeira pessoa ficaram sem nome ("Sou advogado previdenciarista.", "Sou arquiteta."). O roteiro local (`BrandInquiry`) também fala do papel.
   - Filmes de PC e celular, prévias e capas das cinco foram regravados. A prévia da Aura (`aura-loop.mp4`) foi recortada de novo dos 6 primeiros segundos do filme.
   - As marcas de "Ver mais" (Nítida, Fio, Elo e Talhão) ainda têm nome; mudar só com pedido dele. Não reintroduzir nomes nas oito em destaque.
+- **Acabamento antes de publicar** (24/11/2026, pedidos do usuário depois da avaliação estética):
+  - **Cartões sem fonte nem cores:** o nome da fonte e as cinco bolinhas de cor saíram dos cartões da homepage; falavam com designers, não com o dono do negócio. Ficam nome, setor, benefício e "Ver o site". Substitui a regra de 12/11 de mostrar fonte e cores medidas em cada marca.
+  - **Pausa dentro do menu:** o botão de pausa é o último item da pílula do menu (`createPortal` em `EditorialMotion`), no PC e no celular, e não mais um botão redondo solto no pé da tela.
+  - **Pausar não muda de lugar:** pausar mudava a altura das cenas (pasta e mão) e a tela pulava para outro conteúdo. Agora a página guarda o que está no meio da tela (o elemento, fora das cenas; a seção, dentro delas) e volta a ele ao pausar e ao retomar.
+  - **Capa da Lume:** passou a ser a manhã, depois que as cobranças caem (`capture-brand-films.mjs lume --format=loop`). À noite os bilhetes ficavam sobre o título, ilegíveis no tamanho do cartão. A prévia de 6 s continua noite → manhã → noite.
 - **Guia de rolagem da homepage fora do topo** (23/11/2026, decisão do usuário, substitui o pedido de 22/11 de mostrá-lo desde o topo). Ele só começa quando o topo já saiu quase todo da tela.
 - **Varredura de acessibilidade** (23/11/2026): axe com WCAG 2.0, 2.1 e 2.2 nos níveis A e AA, em 18 páginas, no PC e no celular. As páginas são a homepage nos quatro idiomas, `/clinicas`, `/privacidade`, as dez marcas, a Aura e a Orla.
   - Corrigido o nome dos logos das marcas: o `aria-label` "…, início" não continha o texto visível (2.5.3).

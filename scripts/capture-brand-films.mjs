@@ -254,8 +254,12 @@ try {
       }
       if (brand === 'lume' && name === 'loop') {
         await mkdir('public/images/projects/brands', { recursive: true });
+        // The cover is the morning (24/11/2026): at night the falling notes sit over the title, unreadable at card size.
+        await page.evaluate(() => { const hero = document.querySelector('[data-lume-hero]'); scrollTo({ top: Math.max(0, hero.getBoundingClientRect().top + scrollY + hero.offsetHeight - innerHeight), behavior: 'instant' }); });
+        await page.waitForTimeout(1500);
         const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', 'public/images/projects/brands/lume-hero.webp'], { input: await page.screenshot(), encoding: 'utf8' });
         if (poster.status !== 0) throw new Error(poster.stderr);
+        await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' })); await page.waitForTimeout(1500);
         const stats = await record(page, 'public/videos/projects/brands/lume-loop.mp4', format.out, async () => {
           await page.evaluate(async () => {
             const hero = document.querySelector('[data-lume-hero]');

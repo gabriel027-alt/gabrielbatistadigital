@@ -3,7 +3,6 @@ import { ArtDirectedImage } from "@/components/ArtDirectedImage";
 import { Bricolage_Grotesque, JetBrains_Mono } from "next/font/google";
 import { linePath, onLine, shapes, transformOf, view, type ShapeId } from "@/lib/gb-shapes";
 import { GbShape, GbShapeDefs } from "@/components/GbShape";
-import { brandKits } from "@/lib/brand-kits";
 import { Arrow } from "@/components/ui/icons";
 import { EditorialAvatarLoop } from "@/components/EditorialAvatarLoop";
 import { EditorialMotion } from "@/components/EditorialMotion";
@@ -38,7 +37,6 @@ const redI = (carry = false) => <span className={styles.iSlot}>ı<span className
 /** Draws a word of the name with a red tittle (the brand dot) over each "i". */
 const nameWord = (text: string) => [...text].map((letter, index) => letter === "i" ? <span key={index} className={styles.iSlot}>ı<span className={styles.tittle} data-tittle /></span> : letter);
 const sample = (id: string, kind: "hero" | "cena") => `/images/projects/brands/${id}-${kind}.webp`;
-const kit = (id: string) => brandKits.find(item => item.id === id);
 
 type Work = { id: FilmId; name: string; image: string; kit?: string };
 /**
@@ -82,7 +80,6 @@ export function EditorialHome({ locale }: { locale: Locale }) {
   const t = homeCopy[locale], contact = contactUrl(locale), legal = privacyCopy[locale];
   /** One project of the grid: the top of its site, the film on click and the short preview on hover. */
   const project = (work: Work, more = false) => {
-    const data = work.kit ? kit(work.kit) : undefined;
     const site = (publicSites as Record<string, string>)[work.id];
     return <li key={work.name} className={styles.stripItem} data-work={work.id} data-more={more || undefined}><EditorialMedia name={work.name} image={work.image} film={work.id} compact locale={locale} teaser="hover"/>
       <div className={styles.stripCaption}><div><h3>{work.name}</h3><span>{t.sectors[work.id]}</span></div>
@@ -90,7 +87,7 @@ export function EditorialHome({ locale }: { locale: Locale }) {
         <p className={styles.benefit}>{t.benefits[work.id]}</p>
         {/* The featured brands open their own site too (24/11/2026); the film stays on the card. */}
         {site && <a className={styles.visitSite} href={site} target="_blank" rel="noopener noreferrer">{t.visitSite}<span className={styles.sr}>: {work.name}</span> <Arrow size={14}/></a>}
-        {data && <dl className={styles.spec}><div><dt className={styles.sr}>{t.specFont}</dt><dd>{data.typography.display}</dd></div><div><dt className={styles.sr}>{t.specColors}</dt><dd className={styles.swatches}>{Object.values(data.palette).map(hex => <span key={hex} style={{ background: hex }} title={hex}><i>{hex}</i></span>)}</dd></div></dl>}
+        {/* The font and the measured colours left the cards on 24/11/2026: they spoke to designers, not to the business owner. */}
       </div></li>;
   };
   return <EditorialMotion className={`${display.variable} ${mono.variable}`} labels={t.motion}>
