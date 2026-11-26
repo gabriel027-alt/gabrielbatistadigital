@@ -736,3 +736,24 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Filme regravado (`scripts/capture-project-films.mjs aura`; o script agora aceita `aura` ou `orla` para gravar só um, e gera a capa da Aura `aura-film-poster.webp`), prévia de 6 s recortada do começo do filme (1280×800). A Orla não mudou e continua com o laranja dela.
 - Aura, conversão (21/11/2026, pedido do usuário): "Quero uma avaliação" virou o botão principal e "Ver o rosto em detalhe" o link ao lado; a frase de apoio diz o que a avaliação entrega ("entender o que muda, o que se preserva e o que não é indicado, antes de qualquer decisão"). **Persona autorizada pelo usuário: Isadora Lins, fundadora da Aura** (como Helena na Lume e Ricardo na Arrimo), sem título profissional, registro, formação, números ou resultados. Aparece sob as chamadas do topo, em primeira pessoa em "O olhar Aura" e no resumo do roteiro ("Na avaliação, a Isadora considera…"). Filme, capa e prévia regravados.
 - **Aura com Isadora Lins aprovada pelo usuário em 21/11/2026** (topo, chamadas, nome, filme, capa e prévia).
+
+## Skills de tráfego e captação (25/11/2026)
+
+- Pedido do usuário: ampliar o repertório de skills de tráfego e leads, com adaptação ao projeto. Instalação local em `.agents/skills/`; índice e limites em `docs/SKILLS-TRAFEGO-LEADS.md`, contexto em `.agents/product-marketing.md`, fontes/versões/hashes em `docs/research/marketing-skills-lock.json`.
+- Oito pacotes MIT de Marketing Skills, uma adaptação local de auditoria do Google Ads baseada no Claude Ads e uma skill local `clinic-lead-ops`. Carregar só as necessárias. Scripts e integrações são arquivos passivos, não foram executados nem conectados. Não anunciar validação integral dos repositórios ou acesso à conta.
+- A proposta de teste discutida é R$ 20/dia, sete dias, teto de R$ 140, em Minas Gerais com Montes Claros, BH e interior; cidade final/CPC e ativação não foram confirmados. Não repetir essas perguntas como se não houvesse contexto, nem tratar a média diária como teto rígido.
+- Clique no WhatsApp, conversa, lead qualificado, proposta e venda são etapas diferentes. GA4/Ads e atribuição ao contato real exigem evidência. Não inventar CPA, ROAS, resultados ou desempenho de anúncios e não aplicar benchmarks automaticamente ao teste pequeno.
+- Esta importação não autoriza gasto, mensagens a terceiros, CRM pago, mudanças no site aprovado, push na main ou deploy. Preparar resultado revisável e agir só no escopo autorizado pela conversa.
+
+### Complemento: vídeo de ferramentas de mídia paga
+
+- A transcrição com dez projetos foi conferida contra README/licenças em commits fixados. Marketing Skills/Claude Ads e o mapeamento do Google Ads MCP já existiam nesta seleção. Adicionada somente a skill `attribution` ao conjunto local (agora onze), sem instalar runtimes.
+- Estado, utilidade e limites em `docs/VIDEO-FERRAMENTAS-TRAFEGO.md`; evidências em `docs/research/video-paid-media-review.json`. Os nomes e números comerciais da transcrição são alegações da fonte, não instruções ou prova de qualidade.
+- LangChain/Slack, Meta MCP, Mautic, Dub, Umami, Robyn e Meridian não foram implantados. Orçamentos pequenos não justificam automaticamente software novo, MMM, serviços pagos ou envio automático. A leitura da lista não autoriza gasto, publicação, credenciais ou mensagens a terceiros, nem comprova equivalência ao WISER.
+
+
+## Retomada salva para Claude (26/11/2026)
+
+- Por pedido do usuário, `docs/DESIGN-SYSTEM.md` começa agora pela seção **Retomada: tráfego pago e captação de leads**, com proposta discutida, evidência, pendências e passos de continuação. Ler essa seção antes de retomar a campanha; não repetir a entrevista já respondida nem restaurar estado antigo dos pilotos.
+- Os rascunhos que estavam só em `/workspace/entrega-gbd/` foram copiados para `docs/campanhas/clinicas/`, junto da planilha vazia. As onze skills, contexto, fontes e licenças estão no repositório, para o Claude ler explicitamente se necessário. Snapshots completos externos à pasta do projeto não devem ser considerados disponíveis em outro computador.
+- A primeira ação continua sendo comprovar `whatsapp_click` no GA4/Ads. R$ 20/dia × sete dias e teto de R$ 140 são a proposta discutida, não ativação executada; média diária não garante teto. Cidade final/CPC/início e autorização de gasto permanecem pendentes. Main/publicação só com ordem explícita.

@@ -1,0 +1,231 @@
+{
+  "transcript_sha256": "7d04110983054b001010e9edb1449a003b4969e10ffe0b21d7877a4991d96bea",
+  "video_url": "not supplied",
+  "ranking_used_as_quality_evidence": false,
+  "new_repositories_reviewed": [
+    {
+      "full_name": "langchain-ai/paid-media-agent",
+      "html_url": "https://github.com/langchain-ai/paid-media-agent",
+      "description": "Open-source paid media agent for Google Ads, Meta Ads, Reddit, LinkedIn, X, and OpenAI Ads: analysis, reports, and reviewed changes, built on Deep Agents.",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-11-24T00:05:44Z",
+      "commit": "a599253255cd9ddf9141f00c41a2493764f77004",
+      "root_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE": "21c74324584ca851e4ca58a53dda3936a18ec8799506f82c97b35898d16ff043",
+        "README.md": "1aa5d8b154c9f253ceaa872e1d94b1cad0301d0f23a077582d62bcb3944bc1e6"
+      }
+    },
+    {
+      "full_name": "pipeboard-co/meta-ads-mcp",
+      "html_url": "https://github.com/pipeboard-co/meta-ads-mcp",
+      "description": "Meta Ads (Facebook/Instagram) MCP server for Claude, ChatGPT, Perplexity & Cursor — the Meta node of Pipeboard’s 5-platform family (+ Google, TikTok, Snap, Reddit). Hosted remote MCP, badged Meta Business Partner, free plan — no self-hosting required.",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-20T13:58:42Z",
+      "commit": "63d0e5e29f2cf823f7f5317a77e66151eceb7415",
+      "root_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE": "13677beb67db870291627f28ec9e92cebeafc813eb1d50e52b78db1cfc7e77ce",
+        "README.md": "924552e06e26c995d3672384582274261de802135c0eeafeee42f0e16a35776d"
+      },
+      "license_review": "Business Source License 1.1; Additional Use Grant permits non-competing production use; Change Date 2029-01-01; Change License Apache-2.0"
+    },
+    {
+      "full_name": "facebookexperimental/Robyn",
+      "html_url": "https://github.com/facebookexperimental/Robyn",
+      "description": "Robyn is an experimental, AI/ML-powered and open sourced Marketing Mix Modeling (MMM) package from Meta Marketing Science. Our mission is to democratise modeling knowledge, inspire the industry through innovation, reduce human bias in the modeling process & build a strong open source marketing science community.",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "accuracy/allocator_v2_fixes",
+      "archived": false,
+      "pushed_at": "2026-11-10T23:13:48Z",
+      "commit": "aab4226ed5e40196cdbd82ff7fbbff55e91e1f58",
+      "root_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE": "2d4c3d00d67067461412a2d9a2f3f8b7b9cda62b3db501e4b6844ccf35c949aa",
+        "README.md": "8de22ba8cc091df078a33c962aad734472844aad85ddf1b53e79fcd75ec27a0c"
+      }
+    },
+    {
+      "full_name": "google/meridian",
+      "html_url": "https://github.com/google/meridian",
+      "description": "Meridian is an MMM framework that enables advertisers to set up and run their own in-house models.",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-11-25T22:47:09Z",
+      "commit": "24f23e32edc32fa86b4595cb11fd8730ce74f4f5",
+      "root_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE": "58d1e17ffe5109a7ae296caafcadfdbe6a7d176f0bc4ab01e12a689b0499d8bd",
+        "README.md": "4a6c51814562a4169b7adef6547de71e720d6294e325f292d1f613777f1ccb28"
+      }
+    },
+    {
+      "full_name": "mautic/mautic",
+      "html_url": "https://github.com/mautic/mautic",
+      "description": "Mautic: Open Source Marketing Automation Software.",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "7.x",
+      "archived": false,
+      "pushed_at": "2026-11-25T23:50:07Z",
+      "commit": "44293c7b77c01230d5a5761db74538cc3ea5a1ce",
+      "root_docs": [
+        "LICENSE.txt",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE.txt",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE.txt": "7f2d9f57ab32b85d31936b9fb6cdfd3fedbfa5cc099558a5bbd0feb65d76b5af",
+        "README.md": "55dd0ce6b549ccef2ee5d6fc75b25e71115dfd4832fe6cdc3b486a31631827a8"
+      },
+      "license_review": "GPL-3.0-or-later, verified in LICENSE.txt"
+    },
+    {
+      "full_name": "dubinc/dub.link",
+      "html_url": "https://github.com/dubinc/dub.link",
+      "description": "The modern link attribution platform. Loved by world-class engineering teams at Twilio, Zillow, Jobber, Vercel, Raycast, and more.",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "default_branch": "main",
+      "archived": false,
+      "pushed_at": "2026-10-27T02:24:37Z",
+      "commit": "6b463b4bdd9ed2fd9aa416f67b5b77d317b1471e",
+      "root_docs": [
+        "LICENSE.md",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE.md",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE.md": "0ba48e458023946432010b4fb1adade52e89843371b42f43cca7f7cc7af6ecd2",
+        "README.md": "d3f5754c5750223d095546de7e56a48adff2e49c475856093cc587ba4f3c1ee5"
+      },
+      "license_review": "AGPLv3 outside specified enterprise paths; separate commercial terms for listed ee directories"
+    },
+    {
+      "full_name": "umami-software/umami",
+      "html_url": "https://github.com/umami-software/umami",
+      "description": "Umami is a privacy-first web and product analytics platform. Traffic, campaigns, behavior, conversions, and revenue in one place. No cookies, no surveillance, self-hosted or in the cloud.",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "default_branch": "master",
+      "archived": false,
+      "pushed_at": "2026-11-26T02:14:38Z",
+      "commit": "dbb8d606fbd4e99220fb83bcb4abad3e0f97f42a",
+      "root_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "reviewed_docs": [
+        "LICENSE",
+        "README.md"
+      ],
+      "review_scope": "GitHub metadata, pinned README and root license; no runtime installed or executed",
+      "document_sha256": {
+        "LICENSE": "d59f69c3a56253a150adfc42b41acd49e9024410ad087c58a23d506623258dfe",
+        "README.md": "03eeb75d1ea982a5dbe0840868077d0367069b7e1a1e18a78f446d5e0c795ae4"
+      }
+    }
+  ],
+  "previous_sources_reused": [
+    {
+      "repository": "coreyhaines31/marketingskills",
+      "commit": "8fd2fcade2fd6629026e9dfe6d133b55b36968b9"
+    },
+    {
+      "repository": "AgriciDaniel/claude-ads",
+      "commit": "fc3908e786c318776df89a3a098333da377364be"
+    },
+    {
+      "repository": "googleads/google-ads-mcp",
+      "commit": "44ca7770519362c8f334875477e1ceb499f8d2dd"
+    }
+  ],
+  "installed_new_skills": [
+    "attribution"
+  ],
+  "new_runtimes_installed": []
+}

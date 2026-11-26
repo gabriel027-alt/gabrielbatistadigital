@@ -2,6 +2,13 @@
 
 Roteiro para o usuário montar sozinho a primeira campanha no Google Ads. A página de destino é `/clinicas`. Valores de orçamento e de lance são decisão dele; nada aqui é promessa de resultado.
 
+
+## Estado de retomada (26/11/2026)
+
+Ler primeiro [o ponto de continuidade no design system](DESIGN-SYSTEM.md#retomada-tráfego-pago-e-captação-de-leads-26112026). O usuário propôs R$ 20/dia por sete dias, teto de R$ 140, em Minas Gerais (Montes Claros, BH e principais cidades do interior). Não repetir orçamento/região como se não tivessem sido discutidos: faltam lista final de cidades, CPC, início, controle efetivo do teto e autorização de ativação.
+
+A página e os identificadores foram conferidos publicamente, mas a chegada de `whatsapp_click` ao GA4 e sua importação no Ads ainda precisam de evidência da conta. Nenhuma campanha foi criada ou ativada pelo Codex. [Anúncios, palavras e planilha](campanhas/clinicas/LEIA-ME.md) estão salvos no repositório como rascunhos, não como alterações prontas para aplicar.
+
 ## 1. Antes de gastar: a medição
 
 1. No celular, abrir https://www.gabrielbatistadigital.com.br/clinicas, aceitar os cookies e tocar em um botão do WhatsApp (pode fechar a conversa sem enviar).
@@ -15,10 +22,10 @@ Roteiro para o usuário montar sozinho a primeira campanha no Google Ads. A pág
 
 - **Tipo:** Rede de Pesquisa (não Performance Max nem Display para começar).
 - **Nome:** `Portfolio | Clinicas | Pesquisa`.
-- **Local:** a região onde ele quer atender primeiro (pode ser o Brasil todo, porque o trabalho é à distância). Opção: "Presença: pessoas que estão no local".
+- **Local proposto:** Minas Gerais, incluindo Montes Claros, BH e interior; lista final a confirmar. Opção: "Presença: pessoas que estão no local". Começar só pelas duas cidades foi sugestão do assistente, ainda não confirmada pelo usuário.
 - **Idioma:** português.
-- **Orçamento:** um valor diário pequeno para testar por duas semanas, decidido por ele.
-- **Lance:** começar em "Maximizar cliques" com limite de CPC; trocar para "Maximizar conversões" depois de umas 15 a 30 conversões.
+- **Proposta de orçamento:** R$ 20/dia por sete dias, teto total desejado de R$ 140. A média diária e as datas não garantem esse teto; conferir a modalidade e os controles reais antes de ativar.
+- **Lance proposto:** começar em "Maximizar cliques" com limite de CPC a definir com dados. Avaliar mudança para conversões conforme qualidade/volume/atraso dos resultados e capacidade da conta; não trocar automaticamente por atingir uma contagem fixa.
 - **URL final:** `https://www.gabrielbatistadigital.com.br/clinicas?utm_source=google&utm_medium=cpc&utm_campaign=clinicas` (o site já guarda utm e gclid junto com cada clique no WhatsApp).
 
 ### Grupos de anúncio e palavras-chave (correspondência de frase e exata)
@@ -30,7 +37,7 @@ Roteiro para o usuário montar sozinho a primeira campanha no Google Ads. A pág
 | Psicologia | "site para psicólogo", "site para psicóloga", "site para clínica de psicologia" |
 | Estética | "site para clínica de estética", "site para harmonização facial", "site para biomédica esteta" |
 
-**Negativas da campanha:** grátis, gratuito, curso, aula, tutorial, como fazer, modelo, template, wix, wordpress, canva, emprego, vaga, estágio, freelancer barato, mercado livre, pdf.
+**Hipóteses iniciais de negativas, não auditadas nem para aplicação automática:** grátis, gratuito, curso, aula, tutorial, como fazer, modelo, template, wix, wordpress, canva, emprego, vaga, estágio, freelancer barato, mercado livre, pdf.
 
 ### Anúncio responsivo (confira o limite de caracteres no próprio Ads)
 
