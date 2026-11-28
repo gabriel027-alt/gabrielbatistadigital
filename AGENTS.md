@@ -757,3 +757,17 @@ This block is written and re-added by `next dev` — verify at `node_modules/nex
 - Por pedido do usuário, `docs/DESIGN-SYSTEM.md` começa agora pela seção **Retomada: tráfego pago e captação de leads**, com proposta discutida, evidência, pendências e passos de continuação. Ler essa seção antes de retomar a campanha; não repetir a entrevista já respondida nem restaurar estado antigo dos pilotos.
 - Os rascunhos que estavam só em `/workspace/entrega-gbd/` foram copiados para `docs/campanhas/clinicas/`, junto da planilha vazia. As onze skills, contexto, fontes e licenças estão no repositório, para o Claude ler explicitamente se necessário. Snapshots completos externos à pasta do projeto não devem ser considerados disponíveis em outro computador.
 - A primeira ação continua sendo comprovar `whatsapp_click` no GA4/Ads. R$ 20/dia × sete dias e teto de R$ 140 são a proposta discutida, não ativação executada; média diária não garante teto. Cidade final/CPC/início e autorização de gasto permanecem pendentes. Main/publicação só com ordem explícita.
+
+
+## Campanha publicada: retomada em 27/11/2026
+
+- Ler primeiro a seção **Retomada atual: campanha publicada** no topo de `docs/DESIGN-SYSTEM.md`. Substitui os registros de 25–26/11 que ainda falam em proposta sem ativação, conta Pianoforall, geografia/CPC não definidos e medição sem evidência.
+- Usuário publicou a Pesquisa para clínicas na conta 590-815-6468: R$ 140 totais de 27/11 a 03/12, todos os dias 10h30–20h Brasília, MG por presença, maximizar cliques com limite de lance CPC R$ 5. R$ 50 de saldo pré-pago confirmados; nenhuma recarga automática autorizada.
+- Conversão direta AW-18582583733 / tD09CKvGpcAdELXz7pxF testada no Tag Assistant; principal, uma, sem valor, meta específica Contatos. Disparo técnico não comprova conversa, venda nem atribuição real. Codificação automática Sim; aplicação automática desligada. Onze negativas de frase na campanha.
+- Usuário fez redeploy da mesma produção 499be22 para aplicar variáveis; não houve push main pelo agente. Próximo passo: período de relatório Hoje, observar dados reais após 10h30, sem refazer campanha ou aumentar gasto automaticamente. Demais limites de publicação permanecem.
+
+## Continuidade consolidada: serviços e campanha
+
+- Ler `CLAUDE.md` e **Ponto de retomada para Claude: serviços, site e campanha** no topo de `docs/DESIGN-SYSTEM.md`. Substituem pendências antigas de ativação/medição.
+- Home brasileira e `/clinicas` revisadas localmente; serviços de Instagram/conteúdo e retrato na landing, quatro projetos preservados. Build/lint/TypeScript e quatro testes Playwright passaram; capturas em `docs/preview/servicos-clinicas/`. Sem publicação.
+- Exportações do Planejador preservadas no repositório. Última evidência: quatro impressões/zero cliques em 27/11. CPC R$7 preenchido, persistência ainda não confirmada.

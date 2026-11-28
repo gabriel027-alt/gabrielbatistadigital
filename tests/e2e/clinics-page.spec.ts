@@ -1,7 +1,7 @@
 import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-// Landing page for clinics (lib/clinics.ts): result first, proof in the first screen, one call (WhatsApp), and since
+// Landing page for clinics (lib/clinics.ts): result first, portrait in the opening and proof below, one call (WhatsApp), and since
 // 24/11/2026 a price anchor ("a partir de R$ 3.000"), never a full price table.
 test("The clinics page leads with the result, shows four clinic projects and calls only on WhatsApp", async ({ page }) => {
   await page.setViewportSize({ width: 1536, height: 696 });
@@ -9,8 +9,9 @@ test("The clinics page leads with the result, shows four clinic projects and cal
   await expect(page).toHaveTitle(/Sites para clínicas/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(/paciente certo confiar na sua clínica/);
   await expect(page.locator("#clinicas-projetos li h3")).toHaveText(["Lume Psicologia", "Sutil Cirurgia Plástica", "Forma Odontologia", "Aura"]);
-  // The projects share the first screen with the promise on computers.
-  expect(await page.locator("#clinicas-projetos li").first().evaluate(el => el.getBoundingClientRect().top < innerHeight)).toBe(true);
+  // The approved portrait introduces who is responsible before the project selection.
+  await expect(page.getByRole("img", { name: /Gabriel Batista, responsável/ })).toBeVisible();
+  expect(await page.locator("#clinicas-projetos").evaluate(el => el.getBoundingClientRect().top > document.querySelector("figure")!.getBoundingClientRect().top)).toBe(true);
   for (const place of ["clinicas-menu", "clinicas-topo", "clinicas-investimento", "clinicas-final"]) {
     await expect(page.locator(`a[data-track-place="${place}"]`)).toHaveAttribute("href", /wa\.me\/5538998267717/);
   }
@@ -39,4 +40,13 @@ test("On the clinics page the diagnosis asks only the situation and speaks of th
   const talk = quiz.getByRole("link", { name: /Conversar sobre isso/ });
   await expect(talk).toHaveAttribute("data-track-place", "clinicas-diagnostico");
   expect(decodeURIComponent((await talk.getAttribute("href"))!.split("text=")[1])).toContain("Vi a página para clínicas");
+});
+
+ test("Instagram needs reach a tracked WhatsApp conversation", async ({ page }) => {
+  await page.goto("/clinicas");
+  const quiz = page.locator("[data-diagnosis]");
+  await quiz.getByRole("button", { name: "Preciso organizar o Instagram e criar conteúdo" }).click();
+  const call = quiz.getByRole("link", { name: /Conversar sobre isso/ });
+  expect(decodeURIComponent((await call.getAttribute("href"))!)).toContain("gestão de Instagram");
+  await expect(call).toHaveAttribute("data-track-place", "clinicas-diagnostico");
 });

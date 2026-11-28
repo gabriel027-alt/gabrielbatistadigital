@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
 import { Bricolage_Grotesque } from "next/font/google";
 import { EditorialMedia } from "@/components/EditorialMedia";
 import { ContactTracking } from "@/components/ContactTracking";
@@ -37,7 +38,7 @@ export default function ClinicsPage() {
       <a className={styles.headerCall} href={clinicsContact} target="_blank" rel="noopener noreferrer" data-track-place="clinicas-menu">Conversar <Arrow size={14} /></a>
     </header>
     <main id="clinicas-conteudo">
-      {/* On computers the promise and the proof share the first screen. */}
+      {/* A personal introduction, followed by the clinical projects. */}
       <div className={styles.top}>
       <section className={styles.hero} aria-labelledby="clinicas-titulo">
         <p className={styles.eyebrow}>{t.eyebrow}</p>
@@ -46,6 +47,11 @@ export default function ClinicsPage() {
         <div className={styles.actions}><a className={styles.primary} href={clinicsContact} target="_blank" rel="noopener noreferrer" data-track-place="clinicas-topo"><span className={styles.long}>{t.talk}</span><span className={styles.short}>{t.talkShort}</span> <Arrow size={16} /></a><a className={styles.secondary} href="#clinicas-projetos">{t.projects} <span aria-hidden="true">↓</span></a></div>
         <p className={styles.who}>{t.who}</p>
       </section>
+      <figure className={styles.portrait}>
+        <Image src="/images/hero/gabriel-hero-mobile.webp" alt="Gabriel Batista, responsável pelo design, desenvolvimento e criação de conteúdo" fill sizes="(max-width: 700px) 88vw, 42vw" preload />
+        <figcaption><strong>Gabriel Batista</strong><span>Do site ao conteúdo, a conversa é direto comigo.</span></figcaption>
+      </figure>
+      </div>
 
       <section className={styles.projects} id="clinicas-projetos" aria-labelledby="clinicas-projetos-titulo">
         <div className={styles.sectionHead}><h2 id="clinicas-projetos-titulo">{t.projectsTitle}</h2><p>{t.projectsNote}</p></div>
@@ -56,7 +62,6 @@ export default function ClinicsPage() {
           </li>)}
         </ul>
       </section>
-      </div>
 
       <section className={styles.block} aria-labelledby="clinicas-por-que">
         <h2 id="clinicas-por-que">{t.whyTitle}</h2>
@@ -67,6 +72,7 @@ export default function ClinicsPage() {
         <h2 id="clinicas-incluso">{t.includedTitle}</h2>
         <ul className={styles.cards}>{t.included.map(item => <li key={item.title}><h3>{item.title}</h3><p>{item.text}</p></li>)}</ul>
         <h3 className={styles.afterTitle}>{t.afterTitle}</h3>
+        <p className={styles.serviceNote}>{t.afterNote}</p>
         <ul className={styles.after}>{t.after.map(item => <li key={item.title}><h4>{item.title}</h4><p>{item.text}</p></li>)}</ul>
       </section>
 

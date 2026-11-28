@@ -1,6 +1,97 @@
+## Ponto de retomada para Claude: serviços, site e campanha
+
+**Pedido mais recente: commit e push para `revisao-site`. Mudanças de interface e continuidade incluídas nesse envio autorizado, sem merge em main ou deploy de produção.** A produção continua com a versão anterior; não confundir a prévia com o site publicado. A data 28/11 abaixo é a data do ambiente da revisão; os prints de campanha são de 27/11, até 21h56 de Brasília.
+
+### O que ler e conferir
+
+1. Ler `AGENTS.md`, a revisão local abaixo e o histórico de campanha publicada neste documento. As seções antigas de preparação não representam o estado atual.
+2. Revisar `lib/i18n.ts` (apenas home brasileira), `lib/clinics.ts`, `app/clinicas/page.tsx`, `app/clinicas/clinicas.module.css` e `tests/e2e/clinics-page.spec.ts`. A home principal preserva sua fotografia e composição; `/clinicas` recebeu a mesma fotografia aprovada. Instagram, criativos, Google, campanhas e automação têm escopos apresentados separadamente.
+3. Capturas revisadas: `docs/preview/servicos-clinicas/clinicas-desktop.png` e `clinicas-mobile.png`. Quatro testes existentes/adaptados passaram, incluindo a nova intenção Instagram no diagnóstico, abertura do filme e axe na landing. Build, TypeScript e lint dos arquivos alterados passaram. Isso não comprova eficácia comercial nem aprovação estética do usuário.
+4. Não trocar Forma por Cerne automaticamente: discutimos a comparação, mas os projetos atuais foram mantidos. Não inventar exemplos de gestão de redes, clientes ou resultados. Exemplos de conteúdo ainda não foram produzidos.
+5. Publicação continua pendente de instrução explícita. Não alterar anúncios, orçamento, recarga ou campanhas por consequência desta revisão de site.
+
+### Evidência de tráfego até o último print
+
+- 27/11: quatro impressões, zero cliques, zero gasto. Frases: criação de sites para médicos (2), clínicas (1), consultórios (1). Não há visitas pagas observadas para avaliar conversão da página.
+- Frase dentistas: parcela de impressões <10%, perdida por classificação >90%. Médicos e consultórios: 100% de parcela e 0% perdida por classificação nos dados disponíveis, com amostra mínima e atualização ainda possível. Não generalizar para todo o mercado.
+- Diagnóstico celular: site para médicos sem classificação suficiente para primeira página em Montes Claros e BH; criação de sites para dentistas em BH com mensagem de exibição. Diagnóstico não gera impressão real nem garante exibição em todos os leilões.
+- Proposta após essas métricas: teste de CPC máximo R$7, mantendo R$140 total. Usuário chegou primeiro a editar orçamento, foi orientado a cancelar; tabela ainda mostrava R$140 total. Depois enviou tela correta de limite CPC R$7, com botão Salvar. **Falta confirmação pós-salvamento; conferir o valor persistido antes de afirmar que mudou.** Não refazer o ajuste às cegas.
+- Manter /clinicas como destino da campanha; home orgânica com oferta mais ampla. Horário 10h30–20h Brasília. R$50 de saldo manual foi a última confirmação; sem nova recarga ou saldo posterior comprovado.
+
+### Pesquisas enviadas pelo usuário
+
+- Arquivos originais preservados em `docs/campanhas/clinicas/pesquisa-2026-11-27/`: `planejador-marketing.tsv` e `planejador-criacao-sites.tsv`. Recorte do painel: Minas Gerais, Português, Google, novembro/2025 a outubro/2026.
+- Valores 50/500 do export são aproximados; interface mostrou faixas, não contagens precisas. Não somar variantes semelhantes, tratar campos vazios como custo baixo ou inferir volume diário.
+- Topo histórico: site para médicos R$5,44–13,68; captação R$5,24–17,45; marketing médico R$9,02–23,09; marketing para clínicas R$19,72–33,69. Referências de topo não são CPC obrigatório nem CPA.
+- Criação para psicólogos é uma candidata alinhada à Lume, mas não foi adicionada. Termos genéricos e marketing não foram adicionados. Negativas da campanha continuam as onze já documentadas; não remover por hipótese.
+- A pasta não rastreada `docs/research/avatar-motion-github/integration-v2-flow/` já existia e não faz parte desta tarefa. Preservar.
+
+## Revisão local: serviços e presença pessoal (28/11/2026)
+
+- Pedido: ajustar home brasileira e `/clinicas`, a página usada em Ads e a home orgânica. Não significa retirar a oferta de gestão de anúncios.
+- Home: serviços passam a explicar sites, gestão de Instagram, conteúdo/criativos e direção visual. Google, campanhas, automação e sistemas apresentados como frentes contratáveis separadamente. Processo e contato passam a atender essas demandas; diagnóstico ganha Instagram.
+- `/clinicas`: mantém sites no título e preço do site, inclui o retrato aprovado da hero da home na abertura e move os quatro projetos para logo abaixo. Seleção Lume/Sutil/Forma/Aura preservada; não foi feita substituição sem comparação visual com Cerne.
+- Gestão do Instagram inclui planejamento, calendário, posts, legendas e publicação. Frequência, aprovações, mensagens e produção de fotos/vídeos ficam definidas na proposta. Verba de mídia separada; nenhuma promessa de pacientes ou resultados.
+- Direção visual: preservar tokens paper/ink/copper/peach e Bricolage/Manrope; retrato aprovado como presença humana, sem animação nova ou alteração da fisionomia. Hero em duas colunas no desktop, sequência vertical no celular. Projetos continuam acessíveis pelos mesmos filmes e âncora.
+- Revisão enviada à branch `revisao-site` por pedido explícito. Sem merge em main, deploy de produção ou mudanças na conta de anúncios. Traduções estrangeiras da home preservadas.
+- Verificação: TypeScript, ESLint dos arquivos alterados e build de produção aprovados; quatro testes Playwright de clínicas passaram, incluindo axe, filme, diagnóstico e encaminhamento de Instagram ao WhatsApp. Capturas inspecionadas em 1440×900 e 390×844; sem rolagem horizontal nesses tamanhos.
+- Campanha: último registro visual mostrou quatro impressões e zero cliques/gasto em 27/11. Perda por classificação >90% na frase dentistas; usuário preencheu limite CPC R$7 na tela correta, mas não enviou confirmação após Salvar. Não registrar como alteração confirmada.
+
 # Design system dos projetos de marca (10/11/2026)
 
-## Retomada: tráfego pago e captação de leads (26/11/2026)
+## Retomada atual: campanha publicada (27/11/2026, conferência até 10h09 de Brasília)
+
+**Ler primeiro, Claude e Codex. Este registro substitui o estado de preparação de 26/11 abaixo e os trechos antigos que dizem que a campanha não foi ativada ou que falta escolher conta, geografia e CPC.** Evidência: capturas enviadas pelo usuário e snippet colado na conversa; operação dos painéis feita pelo próprio usuário com orientação, não por acesso autenticado do agente. Não repetir o cadastro ou criar outra campanha.
+
+### Configuração final observada
+
+| Item | Estado confirmado |
+| --- | --- |
+| Conta Google Ads | Gabriel Batista Digital, **590-815-6468**, separada da antiga Pianoforall (862-910-9129). |
+| Campanha | **Pesquisa \| Sites para Clínicas \| MG \| Teste 01**, publicada pelo usuário em 27/11/2026. ID da campanha publicada na URL: `24561469621` (o rascunho tinha outro ID). |
+| Status | Campanha ativada/qualificada (aprendizado); anúncio ativado e qualificado nas capturas da manhã. Aprovação não comprova desempenho. |
+| Oferta/destino | Criação de sites para donos/gestores de clínicas; uma página a partir de R$ 3.000, escopo e valor final por escrito. `https://www.gabrielbatistadigital.com.br/clinicas`. Não anunciar atendimento médico ou garantia de leads/vendas. |
+| Local | Estado de Minas Gerais inteiro, modalidade **Presença** (pessoas que estão ou frequentam a área), não presença ou interesse. |
+| Redes | Apenas Pesquisa Google. Parceiros de pesquisa e Display desativados. A indicação de prioridade alta dos canais não os reativa. |
+| Verba | **Orçamento total da campanha: R$ 140**, não diário. De **27/11 a 03/12/2026**. Tipo diário/total não pode ser trocado depois do início segundo a interface; não mudar sem avaliar. |
+| Pagamento | **Pix, pré-pago. R$ 50 pagos e disponíveis**, comprovados no painel. R$ 90 adicionais não depositados nem automaticamente autorizados. Não prometer distribuição diária uniforme ou saldo suficiente por sete dias. Não aumentar gasto para obter promoção. |
+| Horários | Todos os sete dias, **10h30–20h**, fuso da conta Brasília (GMT−03:00). A mudança de 08h para 10h30 foi escolha do usuário para acompanhar os contatos ao acordar. |
+| Lances | **Maximizar cliques**, com **limite de lance máximo de CPC R$ 5**. É um controle inicial escolhido, não CPC de mercado comprovado, CPA nem promessa de conversão. Aquisição especial e retenção desligadas. |
+| IA Max | Desligada, assim como personalização de texto e expansão da URL final. Resumo do assistente ficou inconsistente; **salvar/sair do rascunho e reabrir corrigiu o resumo**, que passou a confirmar desativadas e somente palavras/tipos de correspondência próprios. Não reativar para corrigir texto. |
+| Meta | **Específicas da campanha: Contatos**, salvo e confirmado em 27/11 por volta de 10h08. Não é mais padrão da conta. |
+| Automação | Configurações da conta confirmam **Codificação automática: Sim** e **Aplicação automática: Desativado** (10h09). Não aplicar recomendações em massa. |
+
+### Palavras-chave e anúncio publicados
+
+Um grupo e um anúncio responsivo. Dez palavras: frases `"criação de sites para clínicas"`, `"criação de sites para consultórios"`, `"desenvolvimento de sites para clínicas"`, `"empresa de sites para clínicas"`, `"criação de sites para médicos"`, `"criação de sites para dentistas"`; exatas `[site para clínica]`, `[site para consultório]`, `[site para médicos]`, `[site para dentistas]`. Pela manhã, oito qualificadas; desenvolvimento/empresa para clínicas com baixo volume (não bloqueia as demais). Não ampliar automaticamente para buscas genéricas de pacientes.
+
+- Oito títulos: Criação de Sites para Clínicas; Sites para Consultórios; Site com Identidade Própria; Site Integrado ao WhatsApp; Design e Desenvolvimento; Sites a Partir de R$ 3.000; Converse Sobre Seu Projeto; Gabriel Batista Digital. Caminho de exibição `sites/clinicas`. Não restaurar o título anterior de 31 caracteres.
+- Quatro descrições sobre sites sob medida, serviços e WhatsApp, preço de uma página e proposta, contato direto com Gabriel. Todas aceitas pelo limite de 90 no editor; não inventar resultados. Os CSVs antigos são rascunhos, não espelho exato do anúncio publicado.
+- Quatro sitelinks conferidos contra IDs da página pública: Projetos para Clínicas → `/clinicas#clinicas-projetos`; O Que Está Incluso → `#clinicas-incluso`; Como Funciona → `#clinicas-como`; Investimento → `#clinicas-investimento`.
+- Destaques: Design sob medida; **Fale direto com Gabriel**; Integração com WhatsApp; Proposta por escrito. Não restaurar “Contato direto com Gabriel” (26 caracteres).
+- **11 negativas de frase**, adicionadas depois da publicação e antes da janela de veiculação: `"curso"`, `"tutorial"`, `"como criar"`, `"como fazer"`, `"grátis"`, `"gratuito"`, `"gratuita"`, `"download"`, `"vaga de emprego"`, `"salário"`, `"concurso"`. Aplicadas à campanha, não à conta. “Nenhuma” na linha de negativas das configurações da conta não as remove. São exclusões preventivas, não termos observados. Novas negativas só com análise das buscas reais; evitar bloquear preço, orçamento, nomes de profissões, WordPress ou barato por suposição. Negativas não incluem automaticamente todas as variantes.
+
+### Medição instalada e evidência técnica
+
+- Ação de site **Clique no WhatsApp**, categoria Contatos, **principal**, contagem **Uma conversão**, **Não usar um valor**, janela de clique 30 dias, atribuição baseada em dados; conversões otimizadas não configuradas. O ID interno da ação exibido é `7919461163`, diferente do ID AW.
+- Escolhido **envio direto Google Ads** para essa ação; não importar também o mesmo clique do GA4 como outra principal. GA4 continua com `whatsapp_click`; evento-chave/importação GA4 não foram comprovados nem são necessários para duplicar essa ação.
+- Variáveis Vercel **Production**, tipo Configuração: `NEXT_PUBLIC_GA_ID=G-WRGB672YF4` preservada; `NEXT_PUBLIC_ADS_ID=AW-18582583733`; `NEXT_PUBLIC_ADS_CONVERSION_LABEL=tD09CKvGpcAdELXz7pxF`. A tradução do Chrome traduziu visualmente o nome da variável; versão original em inglês confirmou a chave correta. Não renomear para português.
+- O código existente (`lib/analytics.ts`, `components/ConsentBanner.tsx`, `components/ContactTracking.tsx`) já suporta as variáveis e dispara conversão no clique de links wa.me após consentimento. Não foi necessário colar snippet nem instalar GTM adicional.
+- **O usuário executou redeploy Production da mesma versão publicada da main, commit 499be22**, sem cache, para incorporar variáveis. Deployment `2R7yh57JV772yArDCbggMgXu4nFB`: Ready / Production / Current na captura. Não houve push/merge na main pelo agente nem promoção da revisao-site. Esse redeploy específico já ocorreu; futuras publicações continuam exigindo ordem do usuário.
+- Tag Assistant, teste consentido em `/clinicas`: detectou GA4 `G-WRGB672YF4`, hit `whatsapp_click`; detectou Ads `AW-18582583733`, hit **conversion** enviado para `googleadservices.com/pagead/conversion/18582583733/`, rótulo **tD09CKvGpcAdELXz7pxF**, página `/clinicas`. Google Ads também confirmou a tag instalada. Não foi enviada mensagem para testar.
+- Isso comprova **disparo técnico visto no navegador**, não conversão atribuída a anúncio, mensagem recebida, lead qualificado, venda ou receita. Teste de recusa/ausência de disparo antes do clique não foi documentado nesta sessão. Não afirmar auditoria integral de consentimento ou entrega de dados na conta a partir da simples detecção.
+
+### Onde parar e de onde seguir
+
+1. Preparação essencial conferida até 10h09; aguardar a janela das 10h30. Não alterar anúncio, verba ou lances só por aprendizado, recomendações, nota de otimização ou ausência imediata de impressões.
+2. **Corrigir o período de relatório para Hoje / 27/11 nos dois campos.** As últimas capturas ainda estavam em 20–26/11 (antes da campanha). Não interpretar zeros desse período como desempenho atual.
+3. Acompanhar impressões, cliques, gasto, CPC, termos de pesquisa e eventuais limitações reais. O começo da janela não garante exibição imediata; dados podem atrasar. Previsão de 28 cliques / CPC R$ 5,08 / custo R$ 142,24 era estimativa da interface, não resultado nem mudança do orçamento total R$ 140.
+4. Se houver pouca veiculação, verificar diagnóstico, elegibilidade, saldo e buscas antes de propor aumento de CPC. R$ 5 pode limitar o alcance; não garantir leads com R$ 50 ou R$ 140. Não aumentar orçamento/recarga automaticamente.
+5. Registrar conversas recebidas, qualificação, propostas e vendas separadamente em `docs/campanhas/clinicas/controle-leads.csv`, sem inventar registros nem presumir vínculo individual automático com gclid. Não clicar no próprio anúncio para testar.
+6. Verificação em duas etapas foi recomendada pelo banner, mas **não comprovada como concluída**. Promoção teve mensagens inconsistentes de elegibilidade e depois “ativa”; não contar com crédito ou aumentar gasto para obtê-lo.
+7. Skills, fontes e limites seguem na retomada histórica abaixo. Não criar CRM pago, automações, campanha de dashboards ou outro canal sem escopo. Oferta mais ampla de sistemas foi discutida, mas esta campanha permanece exclusivamente de sites para clínicas.
+
+## Retomada histórica: preparação de tráfego pago (26/11/2026)
 
 **Ponto de continuidade para Claude e Codex.** O usuário pediu para salvar aqui o que já foi estabelecido. Esta seção consolida a conversa atual; datas e instruções anteriores permanecem como histórico. Retomar da medição da campanha, sem refazer o site aprovado, os pilotos antigos ou a entrevista já respondida.
 

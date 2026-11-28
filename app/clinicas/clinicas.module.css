@@ -101,20 +101,21 @@
 .page .secondary.secondary{color:#2b211d}
 .page .final .primary.primary{color:var(--paper)}
 .final .note{margin:14px auto 0}
-/* Computers: the promise on the left and the four projects on the right, both in the first screen. */
+/* The same approved portrait as the home, with a quiet introduction and projects below. */
+.top{padding:0 5vw 56px}
+.top .hero{padding:40px 0}
+.portrait{position:relative;min-width:0;height:clamp(360px,48vw,620px);margin:0;overflow:hidden;border-radius:24px;background:#201714}
+.portrait img{object-fit:cover;object-position:center 36%}
+.portrait figcaption{position:absolute;inset:auto 0 0;padding:64px 24px 24px;background:linear-gradient(transparent,#201714);color:#faf6ef}
+.portrait strong,.portrait span{display:block}
+.portrait strong{font-family:var(--display);font-size:26px;font-weight:500}
+.portrait span{margin-top:8px;font-size:14px;line-height:1.5}
+.serviceNote{max-width:76ch;margin:-8px 0 30px;font-size:15px;line-height:1.6}
 @media(min-width:1001px){
-  .top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.95fr);gap:4vw;align-items:center;min-height:calc(100svh - 76px);padding:0 5vw}
-  .top .hero{padding:32px 0}
+  .top{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.95fr);gap:4vw;align-items:center;min-height:calc(100svh - 76px)}
   .top .hero h1{font-size:clamp(34px,3.4vw,60px)}
-  .top .projects{padding:32px 0}
-  .top .sectionHead{margin-bottom:16px}
-  .top .sectionHead h2{font-size:clamp(20px,1.6vw,26px)}
-  .top .sectionHead p{font-size:13px}
-  .top .grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 16px}
-  .top .caption{margin-top:8px}
-  .top .caption h3{font-size:15px}
-  .top .caption span{font-size:12px}
 }
+@media(max-width:700px){.top{padding:0 6vw 48px}.top .hero{padding:36px 0}.portrait{height:440px;border-radius:18px}}
 .short{display:none}
 @media(max-width:700px){.long{display:none}.short{display:inline}}
 /* Aura's cover is wider than the card: anchored left, where its headline is (4th card, see lib/clinics.ts order). */

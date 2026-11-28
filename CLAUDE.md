@@ -1,11 +1,12 @@
 # Continuidade do projeto
 
-Leia `AGENTS.md` antes de alterar arquivos. Para retomar o tráfego pago, comece pela seção **Retomada: tráfego pago e captação de leads (26/11/2026)**, no início de `docs/DESIGN-SYSTEM.md`.
+Leia `AGENTS.md` e depois **Ponto de retomada para Claude: serviços, site e campanha**, no início de `docs/DESIGN-SYSTEM.md`.
 
-- Reutilize o contexto em `.agents/product-marketing.md`; não refaça a entrevista já respondida.
-- Leia `.agents/skills/clinic-lead-ops/SKILL.md` para escolher só as skills necessárias. Se a ferramenta não descobrir `.agents/skills/`, leia as entradas explicitamente; arquivos instalados não significam contas conectadas.
-- Rascunhos e planilha vazia estão em `docs/campanhas/clinicas/`. São materiais de revisão, não campanhas ativadas nem resultados observados.
-- Primeiro passo pendente: comprovar a chegada de `whatsapp_click` no GA4 e sua importação correta no Ads. Não confundir clique, conversa e lead qualificado.
-- Trabalhe na `revisao-site`. Main é o site publicado; push/merge nela ou deploy só por ordem explícita. Ativação de gasto também depende de autorização concreta após conferir configuração, datas e controle real do teto desejado.
+- Branch atual: `revisao-site`. Home brasileira e `/clinicas` ajustadas localmente para serviços e presença pessoal; mudanças e capturas incluídas no envio autorizado para `revisao-site`. Nenhum merge em main ou deploy de produção foi solicitado.
+- Campanha já foi publicada pelo usuário. Conversão direta Ads foi testada no Tag Assistant. Os registros antigos de campanha não ativada e primeiro teste de medição pendente foram superados.
+- Últimos resultados observados: quatro impressões, zero cliques/gasto em 27/11. CPC R$7 foi preenchido na tela correta; falta confirmação após Salvar. Não afirmar mudança efetivada ou operar conta sem evidência/autorização.
+- Originais do Planejador preservados em `docs/campanhas/clinicas/pesquisa-2026-11-27/`. Não confundir cliques, conversas e vendas.
+- Reutilize `.agents/product-marketing.md` e carregue somente skills pertinentes de `.agents/skills/`. Arquivos de skills não significam contas conectadas.
+- Main é produção; publicação, push/merge e gastos novos dependem de instrução explícita. Preservar alterações existentes e a pasta de pesquisa de avatar fora do escopo.
 
-Pedido para retomar: “Leia CLAUDE.md e continue pelo ponto de retomada do tráfego no design system, verificando primeiro a medição.”
+Pedido para retomar: “Leia CLAUDE.md e o ponto de retomada no design system; revise os ajustes locais da home e /clinicas antes de continuar.”
