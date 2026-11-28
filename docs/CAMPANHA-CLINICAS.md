@@ -69,3 +69,14 @@ Descrições (até 90 caracteres):
 - Conferir se cada clique no WhatsApp aparece no GA4 com `place` (topo, investimento, final) e a campanha.
 - Não mexer em lance nem anúncio antes de uns 7 dias, salvo termos ruins.
 - Anotar cada conversa real que chegar (quem, de onde, se virou proposta): é o que diz se a campanha funciona, mais do que o clique.
+
+## Estado observado em 27/11/2026 (capturas do usuário)
+
+- **Tag Assistant na `/clinicas`:** duas tags Google na página, `AW-18582583733` (Google Ads) e `G-WRGB672YF4` (GA4). Um clique de teste no WhatsApp enviou:
+  - ao Ads: "Conversão" (tag direta com rótulo, via `NEXT_PUBLIC_ADS_ID` e `NEXT_PUBLIC_ADS_CONVERSION_LABEL` na Vercel), "Whatsapp Click" e visualização de página;
+  - ao GA4: `whatsapp_click` e visualização de página.
+  - É prova de **envio**; a chegada no painel do GA4 (DebugView/Tempo real) e o status da ação de conversão no Ads ainda não foram vistos.
+- **Conta do Ads:** 590-815-6468 "Gabriel Batista", conta própria, e não a Pianoforall do histórico. Isso resolve a mistura de conversões com outro negócio.
+- **Campanha:** "Pesquisa | Sites para Clínicas | MG | Teste 01", Grupo de anúncios 1, **já exibindo** (Diagnóstico de anúncios: "Seu anúncio está sendo exibido" para "criação de sites para dentistas" em Belo Horizonte, celular). Criada e ativada pelo usuário; não pelo Claude nem pelo Codex.
+- **Contar uma vez:** a conversão primária da campanha deve ser só a tag direta ("Conversão"). Se o `whatsapp_click` do GA4 for importado, deixá-lo como secundário.
+- **Pendências:** status da ação de conversão no Ads (Metas > Conversões), conferir orçamento diário, data de término e cidades na configuração da campanha, e o relatório de termos de pesquisa depois de 1 a 2 dias.
