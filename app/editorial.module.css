@@ -233,6 +233,10 @@
 .serviceLabel h3{margin:0 0 14px;font-family:var(--display);font-size:clamp(22px,2vw,32px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--copper)}
 .serviceLabel p{margin:0;font-size:13px;line-height:1.6;max-width:28ch;color:var(--soft)}
 @media(max-width:560px){.serviceMore{margin-top:-20px}.serviceLabel{padding:24px 0 8px}}
+/* The group's name plus four services are five cells (27/11/2026): five columns on wide screens; on narrower ones the
+   name takes its own row, so no service is left alone on a third row. */
+@media(min-width:1201px){.serviceList.serviceMore{grid-template-columns:repeat(5,minmax(0,1fr));gap:0 2.4vw}}
+@media(max-width:1200px){.serviceMore .serviceLabel{grid-column:1/-1;padding-bottom:8px}}
 /* "Como funciona": four steps in the same columns, numbered, read by the dot like the services. */
 .stepsTitle{margin:0 4vw 0;font-family:var(--display);font-size:clamp(22px,2vw,32px);font-weight:500;letter-spacing:-.05em;line-height:1;color:var(--copper);padding-bottom:24px}
 .stepNum{display:block;margin-bottom:8px;font-family:var(--font-manrope),Arial,sans-serif;font-size:12px;font-weight:600;letter-spacing:.04em;color:var(--copper)}

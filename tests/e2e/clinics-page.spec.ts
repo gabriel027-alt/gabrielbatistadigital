@@ -9,9 +9,13 @@ test("The clinics page leads with the result, shows four clinic projects and cal
   await expect(page).toHaveTitle(/Sites para clínicas/);
   await expect(page.getByRole("heading", { level: 1 })).toHaveText(/paciente certo confiar na sua clínica/);
   await expect(page.locator("#clinicas-projetos li h3")).toHaveText(["Lume Psicologia", "Sutil Cirurgia Plástica", "Forma Odontologia", "Aura"]);
-  // The approved portrait introduces who is responsible before the project selection.
-  await expect(page.getByRole("img", { name: /Gabriel Batista, responsável/ })).toBeVisible();
-  expect(await page.locator("#clinicas-projetos").evaluate(el => el.getBoundingClientRect().top > document.querySelector("figure")!.getBoundingClientRect().top)).toBe(true);
+  // A compact portrait sits with the line about who does the work, and on a computer the projects share the first
+  // screen, on the right (27/11/2026: a large portrait had pushed them below).
+  await expect(page.locator("[class*=whoRow] img")).toBeVisible();
+  await expect(page.locator("[class*=whoRow]")).toContainText("Eu sou Gabriel Batista");
+  const projects = await page.locator("#clinicas-projetos").boundingBox();
+  expect(projects!.y).toBeLessThan(696 / 2);
+  expect(projects!.x).toBeGreaterThan(1536 / 2);
   for (const place of ["clinicas-menu", "clinicas-topo", "clinicas-investimento", "clinicas-final"]) {
     await expect(page.locator(`a[data-track-place="${place}"]`)).toHaveAttribute("href", /wa\.me\/5538998267717/);
   }

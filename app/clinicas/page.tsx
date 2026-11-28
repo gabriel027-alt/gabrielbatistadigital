@@ -31,27 +31,25 @@ export default function ClinicsPage() {
   const talk = (place: string, label: string, primary = true) => <a className={primary ? styles.primary : styles.secondary} href={clinicsContact} target="_blank" rel="noopener noreferrer" data-track-place={place}>{label} <Arrow size={16} /></a>;
   return <div className={`${editorial.page} ${styles.page} ${display.variable}`} data-editorial data-editorial-motion="on" data-editorial-theme="paper">
     <ContactTracking />
-    <ConsentBanner copy={legal} />
+    {/* Waits for half a screen of scroll, as on the homepage (27/11/2026): on arrival it covered the main button for
+        people coming from the ad. */}
+    <ConsentBanner copy={legal} afterHero />
     <a className={styles.skip} href="#clinicas-conteudo">Pular para o conteúdo</a>
     <header className={styles.header}>
       <Link className={styles.logo} href="/">Gabriel<span aria-hidden="true">•</span>Batista</Link>
       <a className={styles.headerCall} href={clinicsContact} target="_blank" rel="noopener noreferrer" data-track-place="clinicas-menu">Conversar <Arrow size={14} /></a>
     </header>
     <main id="clinicas-conteudo">
-      {/* A personal introduction, followed by the clinical projects. */}
+      {/* On computers the promise and the proof share the first screen; a compact portrait sits with the line about
+          who does the work (27/11/2026: a large portrait pushed the projects out of the first screen). */}
       <div className={styles.top}>
       <section className={styles.hero} aria-labelledby="clinicas-titulo">
         <p className={styles.eyebrow}>{t.eyebrow}</p>
         <h1 id="clinicas-titulo">{t.title}</h1>
         <p className={styles.sub}>{t.sub}</p>
         <div className={styles.actions}><a className={styles.primary} href={clinicsContact} target="_blank" rel="noopener noreferrer" data-track-place="clinicas-topo"><span className={styles.long}>{t.talk}</span><span className={styles.short}>{t.talkShort}</span> <Arrow size={16} /></a><a className={styles.secondary} href="#clinicas-projetos">{t.projects} <span aria-hidden="true">↓</span></a></div>
-        <p className={styles.who}>{t.who}</p>
+        <div className={styles.whoRow}><span className={styles.whoPhoto}><Image src="/images/hero/gabriel-hero-mobile.webp" alt="" fill sizes="96px" /></span><p className={styles.who}>{t.who}</p></div>
       </section>
-      <figure className={styles.portrait}>
-        <Image src="/images/hero/gabriel-hero-mobile.webp" alt="Gabriel Batista, responsável pelo design, desenvolvimento e criação de conteúdo" fill sizes="(max-width: 700px) 88vw, 42vw" preload />
-        <figcaption><strong>Gabriel Batista</strong><span>Do site ao conteúdo, a conversa é direto comigo.</span></figcaption>
-      </figure>
-      </div>
 
       <section className={styles.projects} id="clinicas-projetos" aria-labelledby="clinicas-projetos-titulo">
         <div className={styles.sectionHead}><h2 id="clinicas-projetos-titulo">{t.projectsTitle}</h2><p>{t.projectsNote}</p></div>
@@ -62,6 +60,7 @@ export default function ClinicsPage() {
           </li>)}
         </ul>
       </section>
+      </div>
 
       <section className={styles.block} aria-labelledby="clinicas-por-que">
         <h2 id="clinicas-por-que">{t.whyTitle}</h2>
