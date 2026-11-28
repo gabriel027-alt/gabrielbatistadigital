@@ -1,16 +1,8 @@
-import { expect, test, type Page } from "@playwright/test";
+import { expect, test } from "@playwright/test";
 import AxeBuilder from "@axe-core/playwright";
 
-const day = (page: Page) => page.locator("[data-day-count]").evaluate(el => Number(el.textContent));
-const milestone = (page: Page) => page.locator("[data-milestone][data-active] h3").textContent();
-async function scrollScene(page: Page, progress: number) {
-  await page.evaluate(p => {
-    const el = document.querySelector<HTMLElement>("[data-sutil-recovery]")!;
-    scrollTo(0, el.getBoundingClientRect().top + scrollY + (el.offsetHeight - innerHeight) * p);
-  }, progress);
-}
-
-test("Sutil recovery counts the days with the scroll and back", async ({ page }) => {
+// The recovery, since 28/11/2026: five phases on one line, all on screen at once; the line draws itself on arrival.
+test("Sutil recovery shows the five phases on one line and draws it on arrival", async ({ page }) => {
   await page.setViewportSize({ width: 1440, height: 810 });
   const errors: string[] = [];
   page.on("pageerror", error => errors.push(error.message));
@@ -18,13 +10,15 @@ test("Sutil recovery counts the days with the scroll and back", async ({ page })
   await expect(page.locator('[data-model="sutil"]')).toHaveAttribute("data-brand-animated", "true");
   await expect(page.getByRole("heading", { level: 1 })).toContainText("vem antes da cirurgia.");
 
-  await expect.poll(async () => { await scrollScene(page, 0); return day(page); }).toBe(1);
-  await expect.poll(() => milestone(page)).toBe("O dia da cirurgia");
-  await expect.poll(async () => { await scrollScene(page, .6); return day(page); }).toBeGreaterThan(25);
-  await expect.poll(() => milestone(page)).toBe("De volta à rotina leve");
-  await expect.poll(async () => { await scrollScene(page, 1); return day(page); }).toBe(90);
-  await expect.poll(() => milestone(page)).toBe("Até a alta");
-  await expect.poll(async () => { await scrollScene(page, 0); return day(page); }).toBe(1);
+  const phases = page.locator("[data-phase]");
+  await expect(phases.locator("h3")).toHaveText(["O dia da cirurgia", "A fase de mais cuidado", "De volta à rotina leve", "Exercícios em etapas", "Até a alta"]);
+  await page.locator("[data-phases]").scrollIntoViewIfNeeded();
+  const tops = await phases.evaluateAll(items => items.map(item => Math.round(item.getBoundingClientRect().top)));
+  expect(new Set(tops).size).toBe(1);
+  // No pinned scroll: the whole section is at most a screen and a half.
+  expect(await page.locator("[data-sutil-recovery]").evaluate(el => (el as HTMLElement).offsetHeight / innerHeight)).toBeLessThan(1.5);
+  await expect.poll(() => page.locator("[data-phases]").evaluate(el => Number(getComputedStyle(el).getPropertyValue("--fill")))).toBe(1);
+  await expect(page.locator("[data-day-count]")).toHaveCount(0);
 
   await expect(page.locator("footer")).toContainText("© 2026 Sutil Cirurgia Plástica. Site por Gabriel Batista Digital");
   await expect(page.locator("body")).not.toContainText(/demonstração|fictíci|antes e depois|CRM \d|RQE|garant/i);
@@ -38,7 +32,6 @@ test("Sutil without motion lists every recovery stage and passes axe", async ({ 
   for (const title of ["O dia da cirurgia", "A fase de mais cuidado", "De volta à rotina leve", "Exercícios em etapas", "Até a alta"]) {
     await expect(page.getByRole("heading", { level: 3, name: title })).toBeVisible();
   }
-  await expect(page.locator("[data-day-count]")).toBeHidden();
   const results = await new AxeBuilder({ page }).withTags(["wcag2a", "wcag2aa"]).analyze();
   expect(results.violations.map(v => v.id)).toEqual([]);
   await context.close();

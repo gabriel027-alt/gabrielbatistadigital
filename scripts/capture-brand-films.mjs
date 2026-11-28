@@ -54,7 +54,7 @@ try {
   for (const [brand, route] of Object.entries(brands)) {
     if (only.length && !only.includes(brand)) continue;
     for (const [name, format] of Object.entries(formats)) {
-      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio', 'elo', 'eixo', 'vao', 'lavra', 'ponte'].includes(brand)) continue;
+      if (name === 'loop' && !['lume', 'arrimo', 'paddock', 'talhao', 'cerne', 'nitida', 'fio', 'elo', 'eixo', 'vao', 'lavra', 'ponte', 'sutil'].includes(brand)) continue;
       if (formatArg && formatArg !== name) continue;
       const page = await browser.newPage({ viewport: format.viewport, deviceScaleFactor: format.scale, isMobile: format.mobile, hasTouch: format.mobile });
       await page.goto(base + route, { waitUntil: 'networkidle' });
@@ -173,22 +173,23 @@ try {
         console.log(`${brand} loop: ${order.length} stops -> 6 s`);
         await page.close(); continue;
       }
-      if (['eixo', 'vao', 'lavra', 'ponte'].includes(brand) && name === 'loop') {
+      if (['eixo', 'vao', 'lavra', 'ponte', 'sutil'].includes(brand) && name === 'loop') {
         // Static brand (24/11/2026): the card shows the top; the preview holds the top, climbs the treatment staircase,
         // shows the lit axis of knee, hip and spine, and comes back to the top. Screenshots joined by dissolves, 6 s.
         await mkdir('public/images/projects/brands', { recursive: true });
         await page.waitForTimeout(1200);
         const poster = spawnSync(process.env.FFMPEG_PATH || 'ffmpeg', ['-v', 'error', '-y', '-i', 'pipe:0', '-frames:v', '1', '-c:v', 'libwebp', '-quality', '90', `public/images/projects/brands/${brand}-hero.webp`], { input: await page.screenshot(), encoding: 'utf8' });
         if (poster.status !== 0) throw new Error(poster.stderr);
-        await page.addStyleTag({ content: 'html{scroll-behavior:auto!important}' }); await page.waitForTimeout(600);
+        await page.addStyleTag({ content: 'html{scroll-behavior:auto!important}' + (brand === 'sutil' ? '[data-brand-scroll-guide]{display:none!important}' : '') }); await page.waitForTimeout(600); // The card preview has no scroll to guide; on Sutil the guide covered the phase texts.
         const temp = await mkdtemp(path.join(os.tmpdir(), `-loop-`));
         // Vão (24/11/2026): the top, the routine plan, the materials board and back.
         // Lavra (24/11/2026): the top, drawing to piece, the couple's hands and back.
-        const shots = { eixo: [null, '#escada ol', '#areas ul', null], vao: [null, '#rotina svg', '#materiais ul', null], lavra: [null, '#processo ol', '[aria-labelledby="prova-titulo"]', null], ponte: [null, '#o-dia ol', '#idades ul', null] }[brand];
+        // Sutil (28/11/2026, "Gesso"): the plaster face, the five recovery phases drawn on their line, the surgeon and back.
+        const shots = { eixo: [null, '#escada ol', '#areas ul', null], vao: [null, '#rotina svg', '#materiais ul', null], lavra: [null, '#processo ol', '[aria-labelledby="prova-titulo"]', null], ponte: [null, '#o-dia ol', '#idades ul', null], sutil: [null, '#recuperacao', '#cirurgia', null] }[brand];
         for (const [i, selector] of shots.entries()) {
           if (selector) await page.locator(selector).evaluate(el => scrollTo({ top: el.getBoundingClientRect().top + scrollY - 100, behavior: 'instant' }));
           else await page.evaluate(() => scrollTo({ top: 0, behavior: 'instant' }));
-          await page.waitForTimeout(900);
+          await page.waitForTimeout(brand === 'sutil' ? 2600 : 900); // Sutil's phase line draws itself in about 2 s.
           await writeFile(path.join(temp, `shot-${i}.png`), await page.screenshot());
         }
         const hold = 1.7, fade = .3, inputs = shots.flatMap((_, i) => ['-loop', '1', '-t', String(hold), '-i', path.join(temp, `shot-${i}.png`)]);

@@ -9,7 +9,6 @@ import { SutilMark } from "./SutilMark";
 import { SutilMotion } from "./SutilMotion";
 import styles from "./sutil.module.css";
 import { BrandScrollGuide } from "@/components/brand/BrandScrollGuide";
-import { ScrollHint } from "@/components/brand/ScrollHint";
 
 /** Bodoni Moda: high-contrast, precise display with a true italic; Figtree for reading. */
 const display = Bodoni_Moda({ subsets: ["latin"], style: ["normal", "italic"], weight: ["400", "500"], variable: "--sutil-display", display: "swap" });
@@ -36,10 +35,11 @@ export default function SutilPage() {
     </header>
 
     <main id="sutil-conteudo">
-      {/* Hero, 21/11/2026: the brand begins at Dia 0, the conversation. The consultation runs the full width, the text
-          sits on a plaster veil at the bottom, and the recovery ruler (the brand's signature) starts here, lit at Dia 0. */}
+      {/* Hero, 28/11/2026 ("Gesso" direction): a plaster face in profile under hard light from above; the title rests on
+          the plaster wall beside it, and the recovery ruler (the brand's signature) starts here, lit at Dia 0. It replaced
+          the consultation photo, which repeated the window-light clinic formula (docs/DESIGN-SYSTEM.md). */}
       <section className={styles.hero} id="sutil-inicio" aria-labelledby="sutil-titulo" data-sutil-hero>
-        <Image className={styles.heroImage} src="/images/sutil/consulta.webp" alt="Cirurgiã conversa com uma paciente à mesa do consultório" fill sizes="(max-width:700px) 400vw, 120vw" quality={90} preload />
+        <Image className={styles.heroImage} src="/images/sutil/gesso.webp" alt="Rosto de gesso em perfil, preso a uma parede de gesso, sob luz dura vinda de cima" fill sizes="(max-width:900px) 160vw, 100vw" quality={90} preload />
         <div className={styles.heroCopy}>
           <div>
             <p className={styles.kicker}>Cirurgia plástica</p>
@@ -70,36 +70,30 @@ export default function SutilPage() {
         <ul>{features.map(item => <li key={item.title}><ModelIcon name={item.icon} /><strong>{item.title}</strong><span>{item.text}</span></li>)}</ul>
       </section>
 
-      {/* Brand signature: the recovery, day by day. */}
+      {/* Brand signature, 28/11/2026: the recovery in five phases on one line, all visible at once. The day-by-day
+          counter (420svh of pinned scroll for five texts) was replaced at the user's request; the line draws itself
+          and lights each phase once when the section arrives, and the text never fades. */}
       <section className={styles.recovery} id="recuperacao" aria-labelledby="recuperacao-titulo" data-sutil-recovery>
-        <div className={styles.recoveryStage}><ScrollHint desktop="Role para avançar os dias da recuperação." phone="Deslize para avançar os dias." />
-          <figure className={styles.recoveryPhoto} data-recovery-photo>
-            <Image src="/images/sutil/recuperacao.webp" alt="Poltrona de recuperação ao lado da janela, com uma manta sálvia e um copo d'água" fill quality={90} sizes="(max-width:900px) 150vw, 100vw" />
-            <span className={styles.light} data-recovery-light aria-hidden="true" />
-          </figure>
+        <div className={styles.recoveryHead}>
           <div className={styles.recoveryCopy}>
-            <p className={styles.kicker}>A recuperação, dia a dia</p>
+            <p className={styles.kicker}>A recuperação, fase a fase</p>
             <h2 id="recuperacao-titulo">Você sabe o que esperar <em>antes de começar.</em></h2>
-            <p className={styles.counter} aria-hidden="true"><span>Dia</span><strong data-day-count>1</strong></p>
-            <ol className={styles.milestones}>
-              {recovery.map(stop => <li key={stop.day} data-milestone>
-                <span>{stop.label}</span><h3>{stop.title}</h3><p>{stop.text}</p>
-              </li>)}
-            </ol>
             <p className={styles.note}>Os prazos são aproximados. Cada cirurgia tem o seu cronograma, explicado na consulta.</p>
           </div>
-          <div className={styles.ruler} aria-hidden="true">
-            <div className={styles.ticks}>{ticks.map(day => <i key={day} style={{ left: `${rulerPosition(day) * 100}%` }} data-week={day % 7 === 0 || day === 1 ? "" : undefined} />)}</div>
-            <div className={styles.rulerFill} data-ruler-fill />
-            <div className={styles.rulerMarker} data-ruler-marker />
-            <ol>{recovery.map(stop => <li key={stop.day} data-ruler-stop style={{ left: `${rulerPosition(stop.day) * 100}%` }}>{stop.label}</li>)}</ol>
-          </div>
+          <figure className={styles.recoveryPhoto}>
+            <Image src="/images/sutil/cuidados.webp" alt="Vistos de cima, sobre um lençol de linho: cinta compressiva dobrada, termômetro, porta-comprimidos da semana, folha de orientações e garrafa de água" fill quality={90} sizes="(max-width:900px) 100vw, 55vw" />
+          </figure>
         </div>
+        <ol className={styles.phases} data-phases>
+          {recovery.map(stop => <li key={stop.day} data-phase>
+            <span className={styles.phaseDot} aria-hidden="true" data-phase-dot /><span className={styles.phaseLabel}>{stop.label}</span><h3>{stop.title}</h3><p>{stop.text}</p>
+          </li>)}
+        </ol>
       </section>
 
       <section className={styles.about} id="cirurgia" aria-labelledby="cirurgia-titulo">
         <figure className={styles.aboutPhoto}>
-          <Image src="/images/sutil/retrato.webp" alt="Cirurgiã plástica de jaleco branco e blusa sálvia, em pé no consultório" fill sizes="(max-width:900px) 150vw, 40vw" />
+          <Image src="/images/sutil/cirurgia.webp" alt="Cirurgiã de blusa sálvia, em pé e de frente num corredor de gesso e travertino, sob uma claraboia" fill sizes="(max-width:900px) 160vw, 70vw" />
           <figcaption><SutilMark size={22} />Cada plano começa por ouvir.</figcaption>
         </figure>
         <div className={styles.aboutCopy}>

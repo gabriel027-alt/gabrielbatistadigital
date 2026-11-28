@@ -188,10 +188,11 @@ export const brandKits: BrandKit[] = [
     // Palette measured on the user's photos: plaster wall, travertine, curtain sage, blouse sage, graphite trousers.
     palette: { gesso: "#efebe6", travertino: "#c8bfb5", salvia: "#9ba191", salviaProfunda: "#4a5044", grafite: "#2a2a27" },
     material: "Gesso, travertino e linho sálvia", typography: { display: "Bodoni Moda", text: "Figtree" },
-    photo: "Consultório de gesso e travertino com luz lateral, cirurgiã em sálvia e branco",
+    // 28/11/2026, direction "Gesso" (the user's new photos): sculpture, skylight and the care kit replace the window-light clinic.
+    photo: "Rosto de gesso em perfil sob luz dura de cima; cirurgiã de frente sob claraboia ao meio-dia, 28 mm; cuidados da recuperação vistos de cima em dia nublado",
     signatureGraphic: "Régua de dias da recuperação, com marcos",
     signatureMotion: "A recuperação dia a dia: a régua avança, o contador de dias sobe e a luz da janela atravessa a sala",
-    heroLayout: "faixa", hero: "Consulta em tela cheia, cirurgiã à direita e título sobre a parede de gesso", status: "aprovado",
+    heroLayout: "dividido", hero: "O rosto de gesso inteiro à direita, na altura do topo, e o título em Bodoni sobre a mesma parede à esquerda", status: "aprovado",
   },
   {
     id: "toca", route: "/modelos/veterinaria", niche: "Hospital veterinário",

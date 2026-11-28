@@ -627,6 +627,19 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 - Suíte completa: 102 aprovados e 4 ignorados.
 - Vídeo da unidade em `Downloads/sutil-recuperacao-scroll.mp4`, fora do repositório.
 
+**Direção "Gesso" (28/11/2026):** o usuário achou que a Sutil "não convence". As fotos repetiam a fórmula proibida: janela com cortina, poltrona com copo d'água, cirurgiã sorrindo de jaleco. Ele gerou três fotos novas a partir dos pedidos do Claude:
+- **Topo:** `gesso.webp`, rosto de gesso em perfil sob luz dura de cima, 100 mm, quase monocromático. O rosto aparece inteiro à direita, na altura do topo. A parede continua na cor #aca899 e a borda da foto se dissolve nela. O título fica em grafite sobre a parede; o cinza suave e a sálvia pequena não passam no contraste ali.
+- **A cirurgiã:** `cirurgia.webp`, de frente sob claraboia ao meio-dia, 28 mm, blusa sálvia, sem jaleco.
+- **Recuperação:** `cuidados.webp`, vista de cima em dia nublado: cinta, termômetro, porta-comprimidos, folha de orientações sem texto legível e garrafa.
+- **Fotos antigas:** `consulta.webp`, `recuperacao.webp` e `retrato.webp` foram removidas.
+
+**Recuperação em cinco fases (28/11/2026, escolha do usuário):** o contador do Dia 1 ao Dia 90 saiu. Eram 420svh de rolagem presa para cinco textos; o número sozinho dizia pouco e sugeria um acompanhamento diário que a página não tem.
+- Agora as cinco fases ficam numa linha, todas visíveis de uma vez, abaixo do texto e da foto dos cuidados.
+- A linha sálvia se desenha e os pontos chegam em sequência quando a seção aparece. O texto nunca some.
+- Até 1100 px a linha fica em pé, com os pontos à esquerda.
+- A régua de dias continua só no topo, com o marcador no Dia 0.
+- Filmes, prévia do cartão (topo → fases → cirurgiã → topo, sem o guia de rolagem) e capa foram regravados por `scripts/capture-brand-films.mjs sutil`.
+
 **Galeria:** a Sutil ainda não está no catálogo da homepage. O catálogo usa capturas do template antigo e depende da galeria em faixa de páginas, que está pendente em MODELOS-ALTO-TICKET.md.
 
 ## Toca pelo sistema (12/11/2026)
