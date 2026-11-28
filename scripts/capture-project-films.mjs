@@ -45,7 +45,8 @@ for (const brand of ['aura', 'orla'].filter(name => !only.length || only.include
       chapter('Experiência pelo scroll');
       if (brand === 'aura') {
         const scene = await geometry('[data-photo-track]');
-        await travel(scene.top + scene.travel, 13000);
+        // 28/11/2026: 13 s to 9.5 s on the face (the user's review); each region still holds long enough to show its change.
+        await travel(scene.top + scene.travel, 9500);
         await page.waitForTimeout(500);
         chapter('Antes e depois');
         const comparison = await geometry('[data-aura-comparator]');

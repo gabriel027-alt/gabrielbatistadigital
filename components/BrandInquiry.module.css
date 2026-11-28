@@ -85,3 +85,12 @@
 .ponte .dialog{--q-bg:#fbf7ee;--q-ink:#1d1a16;--q-accent:#1f6b35;--q-border:#1d1a1633;font-family:var(--ponte-text),system-ui,sans-serif}
 .ponte .invitation h2,.ponte .body h3{font-family:var(--ponte-display),system-ui,sans-serif;font-weight:600;letter-spacing:-.01em}
 .ponte .steps li{opacity:1;color:#4f4a42}.ponte .steps li[aria-current=step]{color:#1d1a16}
+/* Aura, 28/11/2026 (the user's review): the questionnaire was a white, neutral window over the dark brand. It now
+   keeps the page's dark (#201714), warm white text and the rose call, with dark ink on the rose. */
+.aura .dialog{--q-bg:#201714;--q-ink:#f2f1eb;--q-accent:#d9a28e;--q-border:#f2f1eb3d;color-scheme:dark;border:1px solid #f2f1eb1f;box-shadow:0 30px 120px #000c}
+.aura .dialog::backdrop{background:#0b0807bf}
+.aura .dialog .primary{color:#201714}
+.aura .dialog .steps li{opacity:1;color:#bfb2a8}.aura .dialog .steps li[aria-current=step]{color:#f2f1eb;border-color:#d9a28e}
+.aura .dialog .options label:has(input:checked){background:#d9a28e1f;border-color:#d9a28e}
+.aura .dialog .options input{accent-color:#d9a28e}
+.aura .dialog :is(button,input):focus-visible{outline-color:#d9a28e}

@@ -640,6 +640,16 @@ O usuário escolheu manter as fotos atuais do escritório. A paleta do kit (pape
 - A régua de dias continua só no topo, com o marcador no Dia 0.
 - Filmes, prévia do cartão (topo → fases → cirurgiã → topo, sem o guia de rolagem) e capa foram regravados por `scripts/capture-brand-films.mjs sutil`.
 
+**Aura, revisão de 28/11/2026 (pedido do usuário):** o antes e depois ilustrativo continua, por decisão dele.
+- **Topo:** a câmera de abertura começa mais afastada.
+  - No PC: zoom .82, cabeça a 66% da largura. A cabeça aparece inteira, com respiro em cima e longe do menu.
+  - No celular: zoom .72. O rosto termina acima do título.
+  - Uma elipse dissolve o fundo da foto na página só nesse quadro, porque antes aparecia um retângulo. Ela some quando a câmera entra no primeiro close.
+- **Closes:** coluna de texto mais larga, títulos de 48 a 84 px e texto de 17 a 21 px. No PC, uma sombra escura à esquerda segura a leitura sobre a bochecha.
+- **Tempo no rosto:** a cena caiu de 620 para 460svh no PC e de 580 para 440svh no celular. No filme, de 13 para 9,5 s.
+- **Questionário:** fundo escuro da página, texto claro e botão rosado.
+- **Arquivos regravados:** filmes PC e celular, capa e prévia do cartão (6 s do início do filme, em 1280×800).
+
 **Galeria:** a Sutil ainda não está no catálogo da homepage. O catálogo usa capturas do template antigo e depende da galeria em faixa de páginas, que está pendente em MODELOS-ALTO-TICKET.md.
 
 ## Toca pelo sistema (12/11/2026)

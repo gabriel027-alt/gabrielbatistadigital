@@ -94,3 +94,36 @@
 .meterTrack { height:2px; background:#f2f1eb33; margin-top:10px; }
 .meterTrack span { display:block; height:100%; background:#e8b197; transform:scaleX(0); transform-origin:left; }
 @media(max-width:899px), (max-height:699px) { .comparisonMeter { margin-top:18px; max-width:240px; } }
+
+/* 28/11/2026, the user's review: the close-up texts were small on the dark and nearly unreadable in the card and the
+   film, and the face scene ran long. Wider copy column, larger titles and body, and a shorter scene (620 to 460svh on
+   computers, 580 to 440svh on phones); each region still gets the same share of the scroll to show its change. */
+@media(min-height:1px){
+ .track[data-sequence-animated=true]{height:460svh}
+ .track[data-sequence-animated=true] .heading h2{font-size:clamp(28px,2.4vw,38px)}
+ .track[data-sequence-animated=true] .copy{width:34%;top:33%}
+ .track[data-sequence-animated=true] .copy h3{font-size:clamp(48px,5vw,84px);margin-bottom:22px}
+ .track[data-sequence-animated=true] .copy p{font-size:clamp(17px,1.35vw,21px);line-height:1.6;max-width:30em}
+ .track[data-sequence-animated=true] .comparisonLabel{font-size:13px}
+ .track[data-sequence-animated=true] .comparisonMeter>div:first-child{font-size:13px}
+}
+/* Computers: a dark veil from the left keeps the larger copy readable where its lines reach the cheek. */
+@media(min-width:900px){
+ .track[data-sequence-animated=true] .stage::after{background:linear-gradient(#20171499,transparent 18%,transparent 82%,#20171499),linear-gradient(90deg,#201714d9 0,#201714a6 26%,#20171400 46%)}
+}
+@media(max-height:699px) and (min-width:900px){
+ .track[data-sequence-animated=true] .copy{top:27%}
+ .track[data-sequence-animated=true] .copy h3{font-size:54px;margin-bottom:16px}
+ .track[data-sequence-animated=true] .copy p{font-size:17px;line-height:1.55}
+}
+@media(max-width:899px){
+ .track[data-sequence-animated=true]{height:440svh}
+ .track[data-sequence-animated=true] .copy{top:auto;width:auto}
+ .track[data-sequence-animated=true] .copy h3{font-size:44px}
+ .track[data-sequence-animated=true] .copy p{font-size:16px;line-height:1.55}
+ .track[data-sequence-animated=true] .comparisonLabel{font-size:11px}
+}
+@media(max-height:699px) and (max-width:899px){
+ .track[data-sequence-animated=true] .copy h3{font-size:34px}
+ .track[data-sequence-animated=true] .copy p{font-size:14px}
+}

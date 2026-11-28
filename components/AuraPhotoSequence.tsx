@@ -103,10 +103,13 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
             intro.style.pointerEvents=introOpacity>.5 ? "auto" : "none";
             chapterChrome.forEach(el=>{el.style.opacity=String(Math.max(0,Math.min(1,(sceneProgress-.12)/.06)));el.style.visibility=sceneProgress>.12 ? "visible" : "hidden";});
             const mobile = width<900, pictureHeight = mobile ? height*.64 : height;
-            const zoom = enter(1.04,mix(a.zoom,b.zoom));
+            // The opening frame (28/11/2026, the user's review): the camera starts further back, so the whole head shows
+            // with room above it, clear of the menu, and on phones the face ends above the title instead of under it.
+            // The entry then travels into the first close-up as before.
+            const zoom = enter(mobile ? .72 : .82,mix(a.zoom,b.zoom));
             const scale = pictureHeight/texture.height*zoom;
-            const anchor = mobile ? .5 : mix(a.side,b.side);
-            const targetY = mobile ? pictureHeight*.49 : height*.48;
+            const anchor = mobile ? .5 : enter(.66,mix(a.side,b.side));
+            const targetY = mobile ? enter(height*.315,pictureHeight*.49) : enter(height*.52,height*.48);
             const x = width*anchor-cameraX*texture.width*scale;
             const y = targetY-cameraY*texture.height*scale;
             context!.clearRect(0,0,width,height);
@@ -122,6 +125,18 @@ export function AuraPhotoSequence({ children }: { children: ReactNode }) {
               return reveal;
             });
             context!.globalAlpha=1;
+            // Opening frame: with the camera further back the photo's own studio backdrop would read as a rectangle, so
+            // an oval around head and neck dissolves it into the page; it fades out as the camera travels in.
+            if (entryEase<1) {
+              const w=texture.width*scale, h=texture.height*scale;
+              context!.save();
+              context!.globalCompositeOperation="destination-in";
+              context!.translate(x+w*.5,y+h*.5); context!.scale(1,h/w*1.12);
+              const oval=context!.createRadialGradient(0,0,w*.24,0,0,w*.58);
+              oval.addColorStop(0,"black"); oval.addColorStop(1,`rgba(0,0,0,${entryEase.toFixed(3)})`);
+              context!.fillStyle=oval; context!.fillRect(-w*2,-w*2,w*4,w*4);
+              context!.restore();
+            }
             canvas!.dataset.comparison=reveals.map(value=>value.toFixed(3)).join(",");
             // A soft, moving edge maintains room for the copy while the same photograph travels.
             context!.globalCompositeOperation = "destination-in";

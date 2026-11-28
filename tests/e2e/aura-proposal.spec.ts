@@ -66,7 +66,8 @@ test("Aura camera draws intermediate views and reverses without loading a 3D mod
   const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
   const notes=page.locator('[data-photo-copy]');
   await page.evaluate(y=>scrollTo(0,y),g.top);
-  await expect(camera).toHaveAttribute('data-camera','0.5000,0.5000,1.0400,0.7200');
+  // Opening frame since 28/11/2026: the camera starts further back (zoom .82, head at 66% of the width).
+  await expect(camera).toHaveAttribute('data-camera','0.5000,0.5000,0.8200,0.6600');
   await expect(page.locator('[data-scene-intro]')).toBeVisible();
   await expect(page.locator('[data-transition-text]')).toHaveCount(0);
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*.09);
@@ -135,6 +136,7 @@ test("Aura holds the camera while the illustrative comparison changes and revers
   const g=await track.evaluate(el=>({top:el.getBoundingClientRect().top+scrollY,travel:(el as HTMLElement).offsetHeight-innerHeight}));
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(800);
   const before=await camera.screenshot(), position=await camera.getAttribute('data-camera');
+  const beforeCanvas=await camera.evaluate(el=>(el as HTMLCanvasElement).toDataURL());
   const eyePixels=()=>camera.evaluate(el=>{
     const c=el as HTMLCanvasElement;
     return Array.from(c.getContext('2d')!.getImageData(Math.round(c.width*.60),Math.round(c.height*.14),60,40).data);
@@ -149,7 +151,9 @@ test("Aura holds the camera while the illustrative comparison changes and revers
   await expect(page.locator('[data-malar-progress]')).toHaveAttribute('style','transform: scaleX(1);');
   expect(await eyePixels()).toEqual(unchangedEye);
   await page.evaluate(y=>scrollTo(0,y),g.top+g.travel*(.18+.82*.01)); await page.waitForTimeout(800);
-  expect((await camera.screenshot()).equals(before)).toBe(true);
+  // The photo itself returns to the same pixels. Compared on the canvas, not a screenshot of the element: since
+  // 28/11/2026 the larger copy overlaps the camera's box and its fade differs between arriving and coming back.
+  expect(await camera.evaluate(el=>(el as HTMLCanvasElement).toDataURL())).toBe(beforeCanvas);
   await page.emulateMedia({reducedMotion:'reduce'});
   await expect(track).not.toHaveAttribute('data-sequence-animated','true');
   await page.getByText('Ver comparação',{exact:true}).first().click();

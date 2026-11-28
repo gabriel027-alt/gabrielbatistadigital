@@ -1,40 +1,40 @@
 {
   "title": "Aura — filme do projeto",
   "source": "/propostas/aura",
-  "durationSeconds": 34.6,
+  "durationSeconds": 33.966667,
   "width": 1920,
   "height": 1200,
   "codec": "H.264 High",
   "audio": false,
-  "bytes": 12229322,
-  "sha256": "10e5852232f0c13448a9e18587a876bf89f41b6a6d64728d085f255f16af2236",
+  "bytes": 9364216,
+  "sha256": "311354aed92d31dbba0906a8038e91b94b7181b496c955a5746571258da70d98",
   "captureViewport": "1280x800",
   "patientResults": false,
   "localInteractionsOnly": true,
   "chapters": [
     {
       "label": "Abertura",
-      "seconds": 0.00003720000000021173
+      "seconds": 0.00003150000000005093
     },
     {
       "label": "Experiência pelo scroll",
-      "seconds": 1.6098812000000002
+      "seconds": 1.7507007999999997
     },
     {
       "label": "Antes e depois",
-      "seconds": 15.3078116
+      "seconds": 12.361451399999998
     },
     {
       "label": "CTA e escolhas",
-      "seconds": 23.031419300000003
+      "seconds": 20.605537599999998
     },
     {
       "label": "Resumo revisável",
-      "seconds": 27.9085657
+      "seconds": 26.4911465
     },
     {
       "label": "Encerramento da marca",
-      "seconds": 30.374884
+      "seconds": 29.1542698
     }
   ],
   "ending": "Brand-local CTA journey and summary, followed by brand closing. Agency contact stays outside the film."
